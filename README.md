@@ -24,6 +24,7 @@ By default, SHMEMVV will run all the tests, but if you want to only run a specif
 ```
 -DTEST_SETUP
 ```
+Will test the following routines:
 - SHMEM_INIT
 - SHMEM_MY_PE
 - SHMEM_N_PES
@@ -39,6 +40,7 @@ By default, SHMEMVV will run all the tests, but if you want to only run a specif
 ```
 -DTEST_THREADS
 ```
+Will test the following routines:
 - SHMEM_INIT_THREAD
 - SHMEM_QUERY_THREAD
 
@@ -46,6 +48,7 @@ By default, SHMEMVV will run all the tests, but if you want to only run a specif
 ```
 -DTEST_MEM
 ```
+Will test the following routines:
 - SHMEM_MALLOC
 - SHMEM_FREE
 - SHMEM_REALLOC
@@ -57,6 +60,7 @@ By default, SHMEMVV will run all the tests, but if you want to only run a specif
 ```
 -DTEST_TEAMS
 ```
+Will test the following routines:
 - SHMEM_TEAM_MY_PE
 - SHMEM_TEAM_N_PES
 - SHMEM_TEAM_CONFIG_T
@@ -70,6 +74,7 @@ By default, SHMEMVV will run all the tests, but if you want to only run a specif
 ```
 -DTEST_COMMS
 ```
+Will test the following routines:
 - SHMEM_CTX_CREATE
 - SHMEM_TEAM_CREATE_CTX
 - SHMEM_CTX_DESTROY
@@ -79,6 +84,7 @@ By default, SHMEMVV will run all the tests, but if you want to only run a specif
 ```
 -DTEST_REMOTE
 ```
+Will test the following routines:
 - SHMEM_PUT
 - SHMEM_P
 - SHMEM_IPUT
@@ -92,6 +98,7 @@ By default, SHMEMVV will run all the tests, but if you want to only run a specif
 ```
 -DTEST_ATOMICS
 ```
+Will test the following routines:
 - SHMEM_ATOMIC_FETCH
 - SHMEM_ATOMIC_SET
 - SHMEM_ATOMIC_COMPARE_SWAP
@@ -119,6 +126,7 @@ By default, SHMEMVV will run all the tests, but if you want to only run a specif
 ```
 -DTEST_SIGNALING
 ```
+Will test the following routines:
 - SHMEM_PUT_SIGNAL
 - SHMEM_PUT_SIGNAL_NBI
 - SHMEM_SIGNAL_FETCH
@@ -127,6 +135,7 @@ By default, SHMEMVV will run all the tests, but if you want to only run a specif
 ```
 -DTEST_COLLECTIVES
 ```
+Will test the following routines:
 - SHMEM_BARRIER_ALL
 - SHMEM_BARRIER
 - SHMEM_SYNC
@@ -144,6 +153,7 @@ By default, SHMEMVV will run all the tests, but if you want to only run a specif
 ```
 -DTEST_PT2PT_SYNCH
 ```
+Will test the following routines:
 - SHMEM_WAIT_UNTIL
 - SHMEM_WAIT_UNTIL_ALL
 - SHMEM_WAIT_UNTIL_ANY
@@ -164,6 +174,7 @@ By default, SHMEMVV will run all the tests, but if you want to only run a specif
 ```
 -DTEST_MEM_ORDERING
 ```
+Will test the following routines:
 - SHMEM_FENCE
 - SHMEM_QUIET
 - Synchronization and Communication Ordering in OpenSHMEM
@@ -172,6 +183,7 @@ By default, SHMEMVV will run all the tests, but if you want to only run a specif
 ```
 -DTEST_LOCKING
 ```
+Will test the following routines:
 - SHMEM_LOCK
 - SHMEM_UNLOCK
 
