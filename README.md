@@ -5,17 +5,22 @@ Validation/Verification test suite for OpenSHMEM (v1.5)
 - Implementation of the OpenSHMEM v1.5 specification
 - CMake/CTest
 
-## Building/Compiling
+## Building
 ```bash
 mkdir -p build
 cd build
 cmake ../
 ```
 
-## Tests
-By default, SHMEMVV will run all the tests, but if you want to only run specific set(s) of tests, you can enable or or multiple of the following flags in your cmake command.
+SHMEMVV should be able to find your OpenSHMEM installation assuming your `oshcc` executable is added to your PATH. However, you can manually specify the paths to your OpenSHMEM `lib` and `include` directories with the following flags in your CMake command, respectively:
 
-### Library Setup, Exit, and Query Routines
+- `-DOPENSHMEM_INCLUDE_DIR=/path/to/openshmem/include`
+- `-DOPENSHMEM_LIBRARY=/path/to/openshmem/lib/libshmem.so`
+
+## Tests
+By default, SHMEMVV will run all the tests, but if you want to only run a specific set or sets of tests, you can enable one or multiple of the following flags in your cmake command:
+
+#### Library Setup, Exit, and Query Routines
 ```
 -DTEST_SETUP
 ```
@@ -30,14 +35,14 @@ By default, SHMEMVV will run all the tests, but if you want to only run specific
 - SHMEM_INFO_GET_NAME
 - START_PES
 
-### Thread Support
+#### Thread Support
 ```
 -DTEST_THREADS
 ```
 - SHMEM_INIT_THREAD
 - SHMEM_QUERY_THREAD
 
-### Memory Management Routines
+#### Memory Management Routines
 ```
 -DTEST_MEM
 ```
@@ -48,7 +53,7 @@ By default, SHMEMVV will run all the tests, but if you want to only run specific
 - SHMEM_MALLOC_WITH_HINTS
 - SHMEM_CALLOC
 
-### Team Managment Routines
+#### Team Managment Routines
 ```
 -DTEST_TEAMS
 ```
@@ -61,7 +66,7 @@ By default, SHMEMVV will run all the tests, but if you want to only run specific
 - SHMEM_TEAM_SPLIT_2D
 - SHMEM_TEAM_DESTROY
 
-### Communication/Context Management Routines
+#### Communication/Context Management Routines
 ```
 -DTEST_COMMS
 ```
@@ -70,7 +75,7 @@ By default, SHMEMVV will run all the tests, but if you want to only run specific
 - SHMEM_CTX_DESTROY
 - SHMEM_CTX_GET_TEAM
 
-### Remote Access Routines
+#### Remote Access Routines
 ```
 -DTEST_REMOTE
 ```
@@ -83,7 +88,7 @@ By default, SHMEMVV will run all the tests, but if you want to only run specific
 - SHMEM_PUT_NBI
 - SHMEM_GET_NBI
 
-### Atomic Memory Operations
+#### Atomic Memory Operations
 ```
 -DTEST_ATOMICS
 ```
@@ -110,7 +115,7 @@ By default, SHMEMVV will run all the tests, but if you want to only run specific
 - SHMEM_ATOMIC_FETCH_OR_NBI
 - SHMEM_ATOMIC_FETCH_XOR_NBI
 
-### Signaling Operations
+#### Signaling Operations
 ```
 -DTEST_SIGNALING
 ```
@@ -118,7 +123,7 @@ By default, SHMEMVV will run all the tests, but if you want to only run specific
 - SHMEM_PUT_SIGNAL_NBI
 - SHMEM_SIGNAL_FETCH
 
-### Collective Routines
+#### Collective Routines
 ```
 -DTEST_COLLECTIVES
 ```
@@ -135,7 +140,7 @@ By default, SHMEMVV will run all the tests, but if you want to only run specific
   - AND, OR, XOR
   - MAX, MIN, SUM, PROD
 
-### Point-Point Synchronization Routines
+#### Point-Point Synchronization Routines
 ```
 -DTEST_PT2PT_SYNCH
 ```
@@ -155,7 +160,7 @@ By default, SHMEMVV will run all the tests, but if you want to only run specific
 - SHMEM_TEST_SOME_VECTOR
 - SHMEM_SIGNAL_WAIT_UNTIL
 
-### Memory Ordering Routines
+#### Memory Ordering Routines
 ```
 -DTEST_MEM_ORDERING
 ```
@@ -163,7 +168,7 @@ By default, SHMEMVV will run all the tests, but if you want to only run specific
 - SHMEM_QUIET
 - Synchronization and Communication Ordering in OpenSHMEM
 
-### Distributed Locking Routines
+#### Distributed Locking Routines
 ```
 -DTEST_LOCKING
 ```
