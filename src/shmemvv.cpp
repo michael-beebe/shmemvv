@@ -103,5 +103,15 @@ bool parse_opts(int argc, char *argv[], test_options &opts) {
 }
 
 void display_logo() {
-  std::cout << "      SHMEMVV - OpenSHMEM Verification/Validation Suite" << std::endl;
+  std::cout << R"(
+
+        ░░░░░░░ ░░   ░░ ░░░    ░░░ ░░░░░░░ ░░░    ░░░ ░░    ░░ ░░    ░░ 
+        ▒▒      ▒▒   ▒▒ ▒▒▒▒  ▒▒▒▒ ▒▒      ▒▒▒▒  ▒▒▒▒ ▒▒    ▒▒ ▒▒    ▒▒ 
+        ▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒ ▒▒ ▒▒▒▒ ▒▒ ▒▒▒▒▒   ▒▒ ▒▒▒▒ ▒▒ ▒▒    ▒▒ ▒▒    ▒▒ 
+             ▓▓ ▓▓   ▓▓ ▓▓  ▓▓  ▓▓ ▓▓      ▓▓  ▓▓  ▓▓  ▓▓  ▓▓   ▓▓  ▓▓  
+        ███████ ██   ██ ██      ██ ███████ ██      ██   ████     ████   
+
+
+)";
 }
+

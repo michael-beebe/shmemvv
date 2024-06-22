@@ -41,73 +41,73 @@ int main(int argc, char *argv[]) {
 
   /* Include headers and execute selected tests */
   if (opts.test_setup) {
-    #include "setup/setup_tests.hpp"
+    #include "tests/setup/setup_tests.hpp"
     std::cout << "Running setup tests...\n";
     /* Call your setup tests here */
   }
 
   if (opts.test_threads) {
-    #include "threads/threads_tests.hpp"
+    #include "tests/threads/threads_tests.hpp"
     std::cout << "Running thread support tests...\n";
     /* Call your thread support tests here */
   }
 
   if (opts.test_mem) {
-    #include "mem/mem_tests.hpp"
+    #include "tests/mem/mem_tests.hpp"
     std::cout << "Running memory management tests...\n";
     /* Call your memory management tests here */
   }
 
   if (opts.test_teams) {
-    #include "teams/teams_tests.hpp"
+    #include "tests/teams/teams_tests.hpp"
     std::cout << "Running team management tests...\n";
     /* Call your team management tests here */
   }
 
   if (opts.test_comms) {
-    #include "comms/comms_tests.hpp"
+    #include "tests/comms/comms_tests.hpp"
     std::cout << "Running communication management tests...\n";
     /* Call your communication management tests here */
   }
 
   if (opts.test_remote) {
-    #include "remote/remote_tests.hpp"
+    #include "tests/remote/remote_tests.hpp"
     std::cout << "Running remote memory access tests...\n";
     /* Call your remote memory access tests here */
   }
 
   if (opts.test_atomics) {
-    #include "atomics/atomics_tests.hpp"
+    #include "tests/atomics/atomics_tests.hpp"
     std::cout << "Running atomic memory operations tests...\n";
     /* Call your atomic memory operations tests here */
   }
 
   if (opts.test_signaling) {
-    #include "signaling/signaling_tests.hpp"
+    #include "tests/signaling/signaling_tests.hpp"
     std::cout << "Running signaling operations tests...\n";
     /* Call your signaling operations tests here */
   }
 
   if (opts.test_collectives) {
-    #include "collectives/collectives_tests.hpp"
+    #include "tests/collectives/collectives_tests.hpp"
     std::cout << "Running collective operations tests...\n";
     /* Call your collective operations tests here */
   }
 
   if (opts.test_pt2pt_synch) {
-    #include "pt2pt/pt2pt_tests.hpp"
+    #include "tests/pt2pt/pt2pt_tests.hpp"
     std::cout << "Running point-to-point synchronization tests...\n";
     /* Call your point-to-point synchronization tests here */
   }
 
   if (opts.test_mem_ordering) {
-    #include "mem_ordering/mem_ordering_tests.hpp"
+    #include "tests/mem_ordering/mem_ordering_tests.hpp"
     std::cout << "Running memory ordering tests...\n";
     /* Call your memory ordering tests here */
   }
 
   if (opts.test_locking) {
-    #include "locking/locking_tests.hpp"
+    #include "tests/locking/locking_tests.hpp"
     std::cout << "Running distributed locking tests...\n";
     /* Call your distributed locking tests here */
   }
