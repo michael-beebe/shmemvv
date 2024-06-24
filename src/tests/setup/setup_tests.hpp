@@ -2,8 +2,9 @@
 #define SETUP_TESTS_HPP
 
 #include <shmem.h>
+#include <iostream>
 
-/** Function declarations for setup tests */
+/* Function declarations for setup tests */
 bool test_shmem_init(void);
 bool test_shmem_finalize(void);
 bool test_shmem_my_pe(void);

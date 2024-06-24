@@ -16,3 +16,9 @@ cmake \
   ../
 
 make
+# ctest
+
+echo ; echo
+cd ../
+./TEST.sh setup
+

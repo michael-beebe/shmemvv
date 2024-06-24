@@ -1,22 +1,30 @@
+/**
+  @file  main.cpp
+  @brief Driver file for the test suite.
+*/
+
 #include "shmemvv.hpp"
 
 int main(int argc, char *argv[]) {
+  shmem_init();
+  int mype = shmem_my_pe();
+
   test_options opts;
 
   /* Parse command-line options */
   if (!parse_opts(argc, argv, opts)) {
-    display_help();
+    if (mype == 0) { display_help(); }
     return EXIT_FAILURE;
   }
 
   /* Display help if requested */
   if (opts.help) {
-    display_help();
+    if (mype == 0) { display_help(); }
     return EXIT_SUCCESS;
   }
 
   /* Display ASCII art logo */
-  display_logo();
+  if (mype == 0) { display_logo(); }
 
   /* Enable all tests if --all is specified or no specific test is selected */
   if (
@@ -41,76 +49,110 @@ int main(int argc, char *argv[]) {
 
   /* Include headers and execute selected tests */
   if (opts.test_setup) {
-    #include "tests/setup/setup_tests.hpp"
-    std::cout << "Running setup tests...\n";
-    /* Call your setup tests here */
+
+    if (mype == 0) {
+      std::cout << "--------------------------------------" << std::endl;
+      std::cout << "      Running setup tests..." << std::endl;
+      std::cout << "--------------------------------------" << std::endl;
+    }
+    if ( !test_shmem_init() ) {
+      if (mype == 0) {
+        std::cerr << "shmem_init() test failed." << std::endl;
+      }
+    }
+    else {
+      if (mype == 0) {
+        std::cout << "shmem_init() test passed!" << std::endl;
+      }
+    }
+    if ( !test_shmem_finalize() ) {
+      if (mype == 0) {
+        std::cerr << "shmem_finalize() test failed." << std::endl;
+      }
+    }
+    else {
+      if (mype == 0) {
+        std::cout << "shmem_finalize() test passed!" << std::endl;
+      }
+    }
+    if (!test_shmem_my_pe()) {
+      if (mype == 0) {
+        std::cerr << "shmem_my_pe() test failed." << std::endl;
+      }
+    }
+    else {
+      if (mype == 0) {
+        std::cout << "shmem_my_pe() test passed!" << std::endl;
+      }
+    }
+    if (!test_shmem_n_pes()) {
+      if (mype == 0) {
+        std::cerr << "shmem_n_pes() test failed." << std::endl;
+      }
+    }
+    else {
+      if (mype == 0) {
+        std::cout << "shmem_n_pes() test passed!" << std::endl;
+      }
+    }
+
   }
 
   if (opts.test_threads) {
-    #include "tests/threads/threads_tests.hpp"
     std::cout << "Running thread support tests...\n";
-    /* Call your thread support tests here */
+    /* TODO: Call thread support tests here */
   }
 
   if (opts.test_mem) {
-    #include "tests/mem/mem_tests.hpp"
     std::cout << "Running memory management tests...\n";
-    /* Call your memory management tests here */
+    /* TODO: Call memory management tests here */
   }
 
   if (opts.test_teams) {
-    #include "tests/teams/teams_tests.hpp"
     std::cout << "Running team management tests...\n";
-    /* Call your team management tests here */
+    /* TODO: Call team management tests here */
   }
 
   if (opts.test_comms) {
-    #include "tests/comms/comms_tests.hpp"
     std::cout << "Running communication management tests...\n";
-    /* Call your communication management tests here */
+    /* TODO: Call communication management tests here */
   }
 
   if (opts.test_remote) {
-    #include "tests/remote/remote_tests.hpp"
     std::cout << "Running remote memory access tests...\n";
-    /* Call your remote memory access tests here */
+    /* TODO: Call remote memory access tests here */
   }
 
   if (opts.test_atomics) {
-    #include "tests/atomics/atomics_tests.hpp"
     std::cout << "Running atomic memory operations tests...\n";
-    /* Call your atomic memory operations tests here */
+    /* TODO: Call atomic memory operations tests here */
   }
 
   if (opts.test_signaling) {
-    #include "tests/signaling/signaling_tests.hpp"
     std::cout << "Running signaling operations tests...\n";
-    /* Call your signaling operations tests here */
+    /* TODO: Call signaling operations tests here */
   }
 
   if (opts.test_collectives) {
-    #include "tests/collectives/collectives_tests.hpp"
     std::cout << "Running collective operations tests...\n";
-    /* Call your collective operations tests here */
+    /* TODO: Call collective operations tests here */
   }
 
   if (opts.test_pt2pt_synch) {
-    #include "tests/pt2pt/pt2pt_tests.hpp"
     std::cout << "Running point-to-point synchronization tests...\n";
-    /* Call your point-to-point synchronization tests here */
+    /* TODO: Call point-to-point synchronization tests here */
   }
 
   if (opts.test_mem_ordering) {
-    #include "tests/mem_ordering/mem_ordering_tests.hpp"
     std::cout << "Running memory ordering tests...\n";
-    /* Call your memory ordering tests here */
+    /* TODO: Call memory ordering tests here */
   }
 
   if (opts.test_locking) {
-    #include "tests/locking/locking_tests.hpp"
     std::cout << "Running distributed locking tests...\n";
-    /* Call your distributed locking tests here */
+    /* TODO: Call distributed locking tests here */
   }
 
+  shmem_finalize();
   return EXIT_SUCCESS;
 }

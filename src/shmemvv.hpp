@@ -1,11 +1,23 @@
 #ifndef SHMEMVV_HPP
 #define SHMEMVV_HPP
 
-#include <shmem.h> /* we're gonna need this... */
-
+#include <shmem.h>
 #include <iostream>
 #include <getopt.h>
 #include <string.h>
+
+#include "tests/setup/setup_tests.hpp"
+#include "tests/threads/threads_tests.hpp"
+#include "tests/mem/mem_tests.hpp"
+#include "tests/teams/teams_tests.hpp"
+#include "tests/comms/comms_tests.hpp"
+#include "tests/remote/remote_tests.hpp"
+#include "tests/atomics/atomics_tests.hpp"
+#include "tests/signaling/signaling_tests.hpp"
+#include "tests/collectives/collectives_tests.hpp"
+#include "tests/pt2pt/pt2pt_tests.hpp"
+#include "tests/mem_ordering/mem_ordering_tests.hpp"
+#include "tests/locking/locking_tests.hpp"
 
 /* Struct to hold selected tests */
 struct test_options {
