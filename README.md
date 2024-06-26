@@ -24,6 +24,25 @@ oshrun -np 2 shmemvv --test_comms
 
 Since all the tests need the items within the setup routines, those will be run no matter, regardless of which tests you select.
 
+<!-- ```bash
+Usage: shmemvv [options]
+Options:
+  --test_setup         Run setup tests
+  --test_threads       Run thread support tests
+  --test_mem           Run memory management tests
+  --test_teams         Run team management tests
+  --test_comms         Run communication management tests
+  --test_remote        Run remote memory access tests
+  --test_atomics       Run atomic memory operations tests
+  --test_signaling     Run signaling operations tests
+  --test_collectives   Run collective operations tests
+  --test_pt2pt_synch   Run point-to-point synchronization tests
+  --test_mem_ordering  Run memory ordering tests
+  --test_locking       Run distributed locking tests
+  --all                (default) Run all tests
+  --help               Display help message
+``` -->
+
 ### Library Setup, Exit, and Query Routines
 ```
 --test_setup
@@ -151,7 +170,6 @@ Will test the following routines:
 - shmem_reductions
     - and, or, xor
     - max, min, sum, prod
-<!-- TODO: list the full routine for each reduction -->
 
 ### Point-Point Synchronization Routines
 ```
@@ -195,4 +213,5 @@ Will test the following routines:
 --test_all
 ```
 Will run all the tests
+
 

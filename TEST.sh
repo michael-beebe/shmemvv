@@ -2,7 +2,7 @@
 # ---- Check if an argument is provided
 if [ $# -eq 0 ]; then
   echo "Usage: $0 <test_option>"
-  echo "Available test options: setup, threads, mem, teams, comms, remote, atomics, signaling, collectives, pt2pt_synch, mem_ordering, locking, all"
+  echo "Available test options: setup, threads, mem, teams, comms, remote, atomics, signaling, collectives, pt2pt_synch, mem_ordering, locking, all, help"
   exit 1
 fi
 
@@ -50,9 +50,12 @@ case $test_option in
   all)
     arg="--all"
     ;;
+  help)
+    arg="--help"
+    ;;
   *)
     echo "Invalid test option: $test_option"
-    echo "Available test options: setup, threads, mem, teams, comms, remote, atomics, signaling, collectives, pt2pt_synch, mem_ordering, locking, all"
+    echo "Available test options: setup, threads, mem, teams, comms, remote, atomics, signaling, collectives, pt2pt_synch, mem_ordering, locking, all, help"
     exit 1
     ;;
 esac
