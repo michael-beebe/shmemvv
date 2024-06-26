@@ -20,5 +20,5 @@ make -j 40
 
 echo ; echo
 cd ../
-./TEST.sh mem
+./TEST.sh all
 

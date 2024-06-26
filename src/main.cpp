@@ -284,13 +284,108 @@ int main(int argc, char *argv[]) {
   shmem_barrier_all();
   if (opts.test_teams) {
     if (mype == 0) { display_test_header("TEAMS MANAGMENT"); }
-    /* TODO: Call team management tests here */
+
+    /* Run shmem_team_my_pe() test */
+    if (!test_shmem_team_my_pe()) {
+      if (mype == 0) {
+        std::cerr << RED_COLOR << "shmem_team_my_pe() test FAILED!" << RESET_COLOR << std::endl;
+      }
+    }
+    else {
+      if (mype == 0) {
+        std::cout << GREEN_COLOR << "shmem_team_my_pe() test PASSED!" << RESET_COLOR << std::endl;
+      }
+    }
+
+    /* Run shmem_team_n_pes() test */
+    if (!test_shmem_team_n_pes()) {
+      if (mype == 0) {
+        std::cerr << RED_COLOR << "shmem_team_n_pes() test FAILED!" << RESET_COLOR << std::endl;
+      }
+    }
+    else {
+      if (mype == 0) {
+        std::cout << GREEN_COLOR << "shmem_team_n_pes() test PASSED!" << RESET_COLOR << std::endl;
+      }
+    }
+
+    /* Run shmem_team_config_t() test */
+    if (!test_shmem_team_config_t()) {
+      if (mype == 0) {
+        std::cerr << RED_COLOR << "shmem_team_config_t() test FAILED!" << RESET_COLOR << std::endl;
+      }
+    }
+    else {
+      if (mype == 0) {
+        std::cout << GREEN_COLOR << "shmem_team_config_t() test PASSED!" << RESET_COLOR << std::endl;
+      }
+    }
+
+    /* Run shmem_team_get_config() test */
+    if (!test_shmem_team_get_config()) {
+      if (mype == 0) {
+        std::cerr << RED_COLOR << "shmem_team_get_config() test FAILED!" << RESET_COLOR << std::endl;
+      }
+    }
+    else {
+      if (mype == 0) {
+        std::cout << GREEN_COLOR << "shmem_team_get_config() test PASSED!" << RESET_COLOR << std::endl;
+      }
+    }
+
+    /* Run shmem_team_translate_pe() test */
+    if (!test_shmem_team_translate_pe()) {
+      if (mype == 0) {
+        std::cerr << RED_COLOR << "shmem_team_translate_pe() test FAILED!" << RESET_COLOR << std::endl;
+      }
+    }
+    else {
+      if (mype == 0) {
+        std::cout << GREEN_COLOR << "shmem_team_translate_pe() test PASSED!" << RESET_COLOR << std::endl;
+      }
+    }
+
+    /* Run shmem_team_split_strided() test */
+    if (!test_shmem_team_split_strided()) {
+      if (mype == 0) {
+        std::cerr << RED_COLOR << "shmem_team_split_strided() test FAILED!" << RESET_COLOR << std::endl;
+      }
+    }
+    else {
+      if (mype == 0) {
+        std::cout << GREEN_COLOR << "shmem_team_split_strided() test PASSED!" << RESET_COLOR << std::endl;
+      }
+    }
+
+    /* Run shmem_team_split_2d() test */
+    if (!test_shmem_team_split_2d()) {
+      if (mype == 0) {
+        std::cerr << RED_COLOR << "shmem_team_split_2d() test FAILED!" << RESET_COLOR << std::endl;
+      }
+    }
+    else {
+      if (mype == 0) {
+        std::cout << GREEN_COLOR << "shmem_team_split_2d() test PASSED!" << RESET_COLOR << std::endl;
+      }
+    }
+
+    /* Run shmem_team_destroy() test */
+    if (!test_shmem_team_destroy()) {
+      if (mype == 0) {
+        std::cerr << RED_COLOR << "shmem_team_destroy() test FAILED!" << RESET_COLOR << std::endl;
+      }
+    }
+    else {
+      if (mype == 0) {
+        std::cout << GREEN_COLOR << "shmem_team_destroy() test PASSED!" << RESET_COLOR << std::endl;
+      }
+    }
   }
 
   /************************* START OF COMMS TESTS **************************/
   shmem_barrier_all();
   if (opts.test_comms) {
-    if (mype == 0) { display_test_header("COMMUNICATION MANAGEMENT"); }
+    if (mype == 0) { display_test_header("COMMUNICATION / CONTEXT"); }
     /* TODO: Call communication management tests here */
   }
 
