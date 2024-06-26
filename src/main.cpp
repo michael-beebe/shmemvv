@@ -39,24 +39,21 @@ int main(int argc, char *argv[]) {
   /* Initialize with shmem_init_thread() if THREADS tests were enabled */
   if (opts.test_threads) {
     if (!test_shmem_init_thread()) {
-      if (shmem_my_pe() == 0) {
-        std::cerr << RED_COLOR << "shmem_init_thread() test FAILED! This test must pass to continue!" << RESET_COLOR << std::endl;
-      }
+      if (shmem_my_pe() == 0) { display_test_result("shmem_init_thread()", false, true); }
       return EXIT_FAILURE;
     }
   }
   else {
     /* Initialize with regular shmem_init() if THREADS tests are not enabled */
     if (!test_shmem_init()) {
-      std::cerr << RED_COLOR << "shmem_init() test FAILED! This test must pass to continue!" << RESET_COLOR << std::endl;
+      display_test_result("shmem_init()", false, true);
       return EXIT_FAILURE;
     }
   }
 
+  /* Run shmem_barrier_all() test */
   if (!test_shmem_barrier_all()) {
-    if (shmem_my_pe() == 0) {
-      std::cerr << RED_COLOR << "shmem_barrier_all() test FAILED! This test must pass to continue!" << RESET_COLOR << std::endl;
-    }
+    if (shmem_my_pe() == 0) { display_test_result("shmem_barrier_all()", false, true); }
     shmem_finalize();
     return EXIT_FAILURE;
   }
@@ -65,9 +62,7 @@ int main(int argc, char *argv[]) {
   shmem_barrier_all();
   mype = test_shmem_my_pe();
   if (mype < 0) {
-    if (mype == 0) {
-      std::cerr << RED_COLOR << "shmem_my_pe() test FAILED! This test must pass to continue!" << RESET_COLOR << std::endl;
-    }
+    if (mype == 0) { display_test_result("shmem_my_pe()", false, true); }
     shmem_finalize();
     return EXIT_FAILURE;
   }
@@ -76,9 +71,15 @@ int main(int argc, char *argv[]) {
   shmem_barrier_all();
   npes = test_shmem_n_pes();
   if (npes <= 0) {
-    if (mype == 0) {
-      std::cerr << RED_COLOR << "shmem_n_pes() test FAILED! This test must pass to continue!" << RESET_COLOR << std::endl;
-    }
+    if (mype == 0) { display_test_result("shmem_n_pes()", false, true); }
+    shmem_finalize();
+    return EXIT_FAILURE;
+  }
+
+  /* Run shmem_pe_accessible() test */
+  shmem_barrier_all();
+  if (!test_shmem_pe_accessible()) {
+    if (mype == 0) { display_test_result("shmem_pe_accessible()", false, true); }
     shmem_finalize();
     return EXIT_FAILURE;
   }
@@ -86,56 +87,34 @@ int main(int argc, char *argv[]) {
   /* Display help if requested */
   shmem_barrier_all();
   if (opts.help) {
-    if (mype == 0) {
-      display_help();
-    }
+    if (mype == 0) { display_help(); }
     shmem_finalize();
     return EXIT_SUCCESS;
   }
 
   /* Display ASCII art logo */
   shmem_barrier_all();
-  if (mype == 0) {
-    display_logo();
-  }
+  if (mype == 0) { display_logo(); }
 
   /* Print setup tests header */
   shmem_barrier_all();
-  if (mype == 0) {
-    display_test_header("SETUP");
-  }
+  if (mype == 0) { display_test_header("SETUP"); }
 
   /* shmem_init() and shmem_my_pe() tests passed */
   shmem_barrier_all();
   if (mype == 0) {
-    if (!opts.test_threads) {
-      std::cout << GREEN_COLOR << "shmem_init() test PASSED!" << RESET_COLOR << std::endl;
-    }
-    std::cout << GREEN_COLOR << "shmem_barrier_all() test PASSED!" << RESET_COLOR << std::endl;
-    std::cout << GREEN_COLOR << "shmem_my_pe() test PASSED!" << RESET_COLOR << std::endl;
-    std::cout << GREEN_COLOR << "shmem_n_pes() test PASSED!" << RESET_COLOR << std::endl;
-  }
-
-  /* Run shmem_pe_accessible() test */
-  shmem_barrier_all();
-  if (!test_shmem_pe_accessible()) {
-    if (mype == 0) {
-      std::cerr << RED_COLOR << "shmem_pe_accessible() test FAILED!" << RESET_COLOR << std::endl;
-    }
-  }
-  else {
-    if (mype == 0) {
-      std::cout << GREEN_COLOR << "shmem_pe_accessible() test PASSED!" << RESET_COLOR << std::endl;
-    }
+    if (!opts.test_threads) { display_test_result("shmem_init()", true, true); }
+    display_test_result("shmem_barrier_all()", true, true);
+    display_test_result("shmem_my_pe()", true, true);
+    display_test_result("shmem_n_pes()", true, true);
+    display_test_result("shmem_pe_accessible()", true, true);
   }
 
   /* Run shmem_info_get_version() test */
   shmem_barrier_all();
   version = test_shmem_info_get_version();
   if (version == "") {
-    if (mype == 0) {
-      std::cerr << RED_COLOR << "shmem_info_get_version() test FAILED!" << RESET_COLOR << std::endl;
-    }
+    if (mype == 0) { display_test_result("shmem_info_get_version()", false, false); }
   }
   else if (version != "1.5" && version != "1.50") {
     if (mype == 0) {
@@ -143,23 +122,17 @@ int main(int argc, char *argv[]) {
     }
   }
   else {
-    if (mype == 0) {
-      std::cout << GREEN_COLOR << "shmem_info_get_version() test PASSED!" << RESET_COLOR << std::endl;
-    }
+    if (mype == 0) { display_test_result("shmem_info_get_version()", true, false); }
   }
 
   /* Run shmem_info_get_name() test */
   shmem_barrier_all();
   name = test_shmem_info_get_name();
   if (name == "") {
-    if (mype == 0) {
-      std::cerr << RED_COLOR << "shmem_info_get_name() test FAILED!" << RESET_COLOR << std::endl;
-    }
+    if (mype == 0) { display_test_result("shmem_info_get_name()", false, false); }
   }
   else {
-    if (mype == 0) {
-      std::cout << GREEN_COLOR << "shmem_info_get_name() test PASSED!" << RESET_COLOR << std::endl;
-    }
+    if (mype == 0) { display_test_result("shmem_info_get_name()", true, false); }
   }
 
   /* Display test information */
@@ -172,21 +145,14 @@ int main(int argc, char *argv[]) {
     if (mype == 0) { display_test_header("THREADS"); }
 
     /* If we made it here shmem_init_thread() passed */
-    if (mype == 0) {
-      std::cout << GREEN_COLOR << "shmem_init_thread() test PASSED!" << RESET_COLOR << std::endl;
-    }
+    shmem_barrier_all();
+    if (mype == 0) { display_test_result("shmem_init_thread()", true, true); }
 
     /* Test shmem_query_thread() */
-    if (!test_shmem_query_thread()) {
-      if (mype == 0) {
-        std::cerr << RED_COLOR << "shmem_query_thread() test FAILED!" << RESET_COLOR << std::endl;
-      }
-    }
-    else {
-      if (mype == 0) {
-        std::cout << GREEN_COLOR << "shmem_query_thread() test PASSED!" << RESET_COLOR << std::endl;
-      }
-    }
+    shmem_barrier_all();
+    bool result_shmem_query_thread = test_shmem_query_thread();
+    shmem_barrier_all();
+    if (mype == 0) { display_test_result("shmem_query_thread()", result_shmem_query_thread, false); }
   }
 
   /************************* START OF MEMORY TESTS **************************/
@@ -195,192 +161,124 @@ int main(int argc, char *argv[]) {
     if (mype == 0) { display_test_header("MEMORY MANAGEMENT"); }
 
     /* Test shmem_ptr() */
-    if (!test_shmem_ptr()) {
-      if (mype == 0) {
-        std::cerr << RED_COLOR << "shmem_ptr() test FAILED!" << RESET_COLOR << std::endl;
-      }
-    } 
-    else {
-      if (mype == 0) {
-        std::cout << GREEN_COLOR << "shmem_ptr() test PASSED!" << RESET_COLOR << std::endl;
-      }
-    }
+    shmem_barrier_all();
+    bool result_shmem_ptr = test_shmem_ptr();
+    shmem_barrier_all();
+    if (mype == 0) { display_test_result("shmem_ptr()", result_shmem_ptr, false); }
 
     /* Test shmem_malloc() and shmem_free() */
     shmem_barrier_all();
-    if (!test_shmem_malloc_free()) {
-      if (mype == 0) {
-        std::cerr << RED_COLOR << "shmem_malloc() test FAILED!" << RESET_COLOR << std::endl;
-        std::cerr << RED_COLOR << "shmem_free() test FAILED!" << RESET_COLOR << std::endl;
-      }
-    } 
-    else {
-      if (mype == 0) {
-        std::cout << GREEN_COLOR << "shmem_malloc() test PASSED!" << RESET_COLOR << std::endl;
-        std::cout << GREEN_COLOR << "shmem_free() test PASSED!" << RESET_COLOR << std::endl;
-      }
-    }
+    bool result_shmem_malloc_free = test_shmem_malloc_free();
+    shmem_barrier_all();
+    if (mype == 0) { display_test_result("shmem_malloc() and shmem_free()", result_shmem_malloc_free, false); }
 
     /* Test shmem_realloc() */
     shmem_barrier_all();
-    if (!test_shmem_realloc()) {
-      if (mype == 0) {
-        std::cerr << RED_COLOR << "shmem_realloc() test FAILED!" << RESET_COLOR << std::endl;
-      }
-    } 
-    else {
-      if (mype == 0) {
-        std::cout << GREEN_COLOR << "shmem_realloc() test PASSED!" << RESET_COLOR << std::endl;
-      }
-    }
+    bool result_shmem_realloc = test_shmem_realloc();
+    shmem_barrier_all();
+    if (mype == 0) { display_test_result("shmem_realloc()", result_shmem_realloc, false); }
 
     /* Test shmem_align() */
     shmem_barrier_all();
-    if (!test_shmem_align()) {
-      if (mype == 0) {
-        std::cerr << RED_COLOR << "shmem_align() test FAILED!" << RESET_COLOR << std::endl;
-      }
-    } 
-    else {
-      if (mype == 0) {
-        std::cout << GREEN_COLOR << "shmem_align() test PASSED!" << RESET_COLOR << std::endl;
-      }
-    }
+    bool result_shmem_align = test_shmem_align();
+    shmem_barrier_all();
+    if (mype == 0) { display_test_result("shmem_align()", result_shmem_align, false); }
 
     /* Test shmem_malloc_with_hints() */
     shmem_barrier_all();
-    if (!test_shmem_malloc_with_hints()) {
-      if (mype == 0) {
-        std::cerr << RED_COLOR << "shmem_malloc_with_hints() test FAILED!" << RESET_COLOR << std::endl;
-      }
-    } 
-    else {
-      if (mype == 0) {
-        std::cout << GREEN_COLOR << "shmem_malloc_with_hints() test PASSED!" << RESET_COLOR << std::endl;
-      }
-    }
+    bool result_shmem_malloc_with_hints = test_shmem_malloc_with_hints();
+    shmem_barrier_all();
+    if (mype == 0) { display_test_result("shmem_malloc_with_hints()", result_shmem_malloc_with_hints, false); }
 
     /* Test shmem_calloc() */
     shmem_barrier_all();
-    if (!test_shmem_calloc()) {
-      if (mype == 0) {
-        std::cerr << RED_COLOR << "shmem_calloc() test FAILED!" << RESET_COLOR << std::endl;
-      }
-    } 
-    else {
-      if (mype == 0) {
-        std::cout << GREEN_COLOR << "shmem_calloc() test PASSED!" << RESET_COLOR << std::endl;
-      }
-    }
+    bool result_shmem_calloc = test_shmem_calloc();
+    shmem_barrier_all();
+    if (mype == 0) { display_test_result("shmem_calloc()", result_shmem_calloc, false); }
   }
 
   /************************* START OF TEAMS TESTS **************************/
   shmem_barrier_all();
   if (opts.test_teams) {
-    if (mype == 0) { display_test_header("TEAMS MANAGMENT"); }
+    if (mype == 0) { display_test_header("TEAMS MANAGEMENT"); }
 
     /* Run shmem_team_my_pe() test */
-    if (!test_shmem_team_my_pe()) {
-      if (mype == 0) {
-        std::cerr << RED_COLOR << "shmem_team_my_pe() test FAILED!" << RESET_COLOR << std::endl;
-      }
-    }
-    else {
-      if (mype == 0) {
-        std::cout << GREEN_COLOR << "shmem_team_my_pe() test PASSED!" << RESET_COLOR << std::endl;
-      }
-    }
+    shmem_barrier_all();
+    bool result_shmem_team_my_pe = test_shmem_team_my_pe();
+    shmem_barrier_all();
+    if (mype == 0) { display_test_result("shmem_team_my_pe()", result_shmem_team_my_pe, false); }
 
     /* Run shmem_team_n_pes() test */
-    if (!test_shmem_team_n_pes()) {
-      if (mype == 0) {
-        std::cerr << RED_COLOR << "shmem_team_n_pes() test FAILED!" << RESET_COLOR << std::endl;
-      }
-    }
-    else {
-      if (mype == 0) {
-        std::cout << GREEN_COLOR << "shmem_team_n_pes() test PASSED!" << RESET_COLOR << std::endl;
-      }
-    }
+    shmem_barrier_all();
+    bool result_shmem_team_n_pes = test_shmem_team_n_pes();
+    shmem_barrier_all();
+    if (mype == 0) { display_test_result("shmem_team_n_pes()", result_shmem_team_n_pes, false); }
 
     /* Run shmem_team_config_t() test */
-    if (!test_shmem_team_config_t()) {
-      if (mype == 0) {
-        std::cerr << RED_COLOR << "shmem_team_config_t() test FAILED!" << RESET_COLOR << std::endl;
-      }
-    }
-    else {
-      if (mype == 0) {
-        std::cout << GREEN_COLOR << "shmem_team_config_t() test PASSED!" << RESET_COLOR << std::endl;
-      }
-    }
+    shmem_barrier_all();
+    bool result_shmem_team_config_t = test_shmem_team_config_t();
+    shmem_barrier_all();
+    if (mype == 0) { display_test_result("shmem_team_config_t()", result_shmem_team_config_t, false); }
 
     /* Run shmem_team_get_config() test */
-    if (!test_shmem_team_get_config()) {
-      if (mype == 0) {
-        std::cerr << RED_COLOR << "shmem_team_get_config() test FAILED!" << RESET_COLOR << std::endl;
-      }
-    }
-    else {
-      if (mype == 0) {
-        std::cout << GREEN_COLOR << "shmem_team_get_config() test PASSED!" << RESET_COLOR << std::endl;
-      }
-    }
+    shmem_barrier_all();
+    bool result_shmem_team_get_config = test_shmem_team_get_config();
+    shmem_barrier_all();
+    if (mype == 0) { display_test_result("shmem_team_get_config()", result_shmem_team_get_config, false); }
 
     /* Run shmem_team_translate_pe() test */
-    if (!test_shmem_team_translate_pe()) {
-      if (mype == 0) {
-        std::cerr << RED_COLOR << "shmem_team_translate_pe() test FAILED!" << RESET_COLOR << std::endl;
-      }
-    }
-    else {
-      if (mype == 0) {
-        std::cout << GREEN_COLOR << "shmem_team_translate_pe() test PASSED!" << RESET_COLOR << std::endl;
-      }
-    }
+    shmem_barrier_all();
+    bool result_shmem_team_translate_pe = test_shmem_team_translate_pe();
+    shmem_barrier_all();
+    if (mype == 0) { display_test_result("shmem_team_translate_pe()", result_shmem_team_translate_pe, false); }
 
     /* Run shmem_team_split_strided() test */
-    if (!test_shmem_team_split_strided()) {
-      if (mype == 0) {
-        std::cerr << RED_COLOR << "shmem_team_split_strided() test FAILED!" << RESET_COLOR << std::endl;
-      }
-    }
-    else {
-      if (mype == 0) {
-        std::cout << GREEN_COLOR << "shmem_team_split_strided() test PASSED!" << RESET_COLOR << std::endl;
-      }
-    }
+    shmem_barrier_all();
+    bool result_shmem_team_split_strided = test_shmem_team_split_strided();
+    shmem_barrier_all();
+    if (mype == 0) { display_test_result("shmem_team_split_strided()", result_shmem_team_split_strided, false); }
 
     /* Run shmem_team_split_2d() test */
-    if (!test_shmem_team_split_2d()) {
-      if (mype == 0) {
-        std::cerr << RED_COLOR << "shmem_team_split_2d() test FAILED!" << RESET_COLOR << std::endl;
-      }
-    }
-    else {
-      if (mype == 0) {
-        std::cout << GREEN_COLOR << "shmem_team_split_2d() test PASSED!" << RESET_COLOR << std::endl;
-      }
-    }
+    shmem_barrier_all();
+    bool result_shmem_team_split_2d = test_shmem_team_split_2d();
+    shmem_barrier_all();
+    if (mype == 0) { display_test_result("shmem_team_split_2d()", result_shmem_team_split_2d, false); }
 
     /* Run shmem_team_destroy() test */
-    if (!test_shmem_team_destroy()) {
-      if (mype == 0) {
-        std::cerr << RED_COLOR << "shmem_team_destroy() test FAILED!" << RESET_COLOR << std::endl;
-      }
-    }
-    else {
-      if (mype == 0) {
-        std::cout << GREEN_COLOR << "shmem_team_destroy() test PASSED!" << RESET_COLOR << std::endl;
-      }
-    }
+    shmem_barrier_all();
+    bool result_shmem_team_destroy = test_shmem_team_destroy();
+    shmem_barrier_all();
+    if (mype == 0) { display_test_result("shmem_team_destroy()", result_shmem_team_destroy, false); }
   }
 
   /************************* START OF COMMS TESTS **************************/
   shmem_barrier_all();
   if (opts.test_comms) {
     if (mype == 0) { display_test_header("COMMUNICATION / CONTEXT"); }
-    /* TODO: Call communication management tests here */
+
+    /* Run shmem_ctx_create() test */
+    shmem_barrier_all();
+    bool result_shmem_ctx_create = test_shmem_ctx_create();
+    shmem_barrier_all();
+    if (mype == 0) { display_test_result("shmem_ctx_create()", result_shmem_ctx_create, false); }
+
+    /* Run shmem_team_create_ctx() test */
+    shmem_barrier_all();
+    bool result_shmem_team_create_ctx = test_shmem_team_create_ctx();
+    shmem_barrier_all();
+    if (mype == 0) { display_test_result("shmem_team_create_ctx()", result_shmem_team_create_ctx, false); }
+
+    /* Run shmem_ctx_destroy() test */
+    shmem_barrier_all();
+    bool result_shmem_ctx_destroy = test_shmem_ctx_destroy();
+    shmem_barrier_all();
+    if (mype == 0) { display_test_result("shmem_ctx_destroy()", result_shmem_ctx_destroy, false); }
+
+    /* Run shmem_ctx_get_team() test */
+    shmem_barrier_all();
+    bool result_shmem_ctx_get_team = test_shmem_ctx_get_team();
+    shmem_barrier_all();
+    if (mype == 0) { display_test_result("shmem_ctx_get_team()", result_shmem_ctx_get_team, false); }
   }
 
   /************************* START OF REMOTE TESTS **************************/
@@ -436,17 +334,9 @@ int main(int argc, char *argv[]) {
   /* Run shmem_finalize() test */
   shmem_barrier_all();
   if (mype == 0) { display_test_header("FINALIZATION"); }
-  if (!test_shmem_finalize()) {
-    if (mype == 0) {
-      std::cerr << RED_COLOR << "shmem_finalize() test FAILED!\n" << RESET_COLOR << std::endl;
-    }
-  }
-  else {
-    if (mype == 0) {
-      std::cout << GREEN_COLOR << "shmem_finalize() test PASSED!\n" << RESET_COLOR << std::endl;
-    }
-  }
+  if (mype == 0) { display_test_result("shmem_finalize()", test_shmem_finalize(), false); }
+  if (mype == 0) { std::cout << std::endl; }
 
+  /* We made it! End the program. */
   return EXIT_SUCCESS;
 }
-

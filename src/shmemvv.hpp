@@ -101,11 +101,11 @@ void display_test_info(
 );
 
 /**
-  @brief Displays a message that the test passed
+  @brief Displays whether the test passed
   @param routine_name OpenSHMEM routine that was tested
   @param passed True if the test passed, false if the test failed
   @param required True if the test is required, false otherwise
  */
-void display_test_passed(std::string routine_name, bool passed, bool required);
+void display_test_result(std::string routine_name, bool passed, bool required);
 
 #endif /* SHMEMVV_HPP */

@@ -169,16 +169,22 @@ void display_test_info(
 }
 
 /**
-  @brief Displays a message that the test passed
-  @param routine_name OpenSHMEM routine that was tested
-  @param passed True if the test passed, false if the test failed
-  @param required True if the test is required, false otherwise
+  @brief Displays the result of a test.
+  @param routine_name Name of the OpenSHMEM routine that was tested.
+  @param passed True if the test passed, false if the test failed.
+  @param required True if the test is required, false otherwise.
  */
-void display_test_passed(std::string routine_name, bool passed, bool required) {
+void display_test_result(std::string routine_name, bool passed, bool required) {
   if (passed) {
-    std::cout << routine_name << " test " << GREEN_COLOR << " PASSED!" << RESET_COLOR << std::endl;
+    std::cout << routine_name << " test " << GREEN_COLOR << "PASSED!" << RESET_COLOR << std::endl;
   }
-  else if (required) {
-    std::cerr << RED_COLOR << "shmem_n_pes() test FAILED! This test must pass to continue!" << RESET_COLOR << std::endl;
+  else {
+    if (required) {
+      std::cerr << routine_name << " test " << RED_COLOR << "FAILED!" << RESET_COLOR << " This test must pass to continue!" << std::endl;
+    }
+    else {
+      std::cerr << routine_name << " test " << RED_COLOR << "FAILED!" << RESET_COLOR << std::endl;
+    }
   }
 }
+

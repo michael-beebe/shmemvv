@@ -44,8 +44,8 @@ bool test_shmem_team_create_ctx(void) {
 bool test_shmem_ctx_destroy(void) {
   shmem_ctx_t ctx;
   shmem_ctx_create(0, &ctx);
-  int ret = shmem_ctx_destroy(ctx);
-  return (ret == 0);  /* 0 indicates success */
+  shmem_ctx_destroy(ctx);
+  return true;  /* Context destroyed successfully */
 }
 
 /**
@@ -56,7 +56,7 @@ bool test_shmem_ctx_get_team(void) {
   shmem_ctx_t ctx;
   shmem_team_t team;
   shmem_ctx_create(0, &ctx);
-  team = shmem_ctx_get_team(ctx);
+  int ret = shmem_ctx_get_team(ctx, &team);
   shmem_ctx_destroy(ctx);
-  return (team == SHMEM_TEAM_WORLD);  /* Expecting the team to be SHMEM_TEAM_WORLD */
+  return (ret == 0 && team == SHMEM_TEAM_WORLD);  /* Expecting the team to be SHMEM_TEAM_WORLD */
 }
