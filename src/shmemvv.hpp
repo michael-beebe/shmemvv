@@ -26,6 +26,12 @@
 #include "tests/mem_ordering/mem_ordering_tests.hpp"
 #include "tests/locking/locking_tests.hpp"
 
+/* ANSI color codes for pretty output */
+#define RESET_COLOR "\033[0m"
+#define RED_COLOR "\033[31m"
+#define GREEN_COLOR "\033[32m"
+#define YELLOW_COLOR "\033[33m"
+
 /**
   @struct test_options
   @brief Struct to hold selected tests options.
@@ -93,5 +99,13 @@ void display_test_info(
   std::string shmem_version,
   int npes
 );
+
+/**
+  @brief Displays a message that the test passed
+  @param routine_name OpenSHMEM routine that was tested
+  @param passed True if the test passed, false if the test failed
+  @param required True if the test is required, false otherwise
+ */
+void display_test_passed(std::string routine_name, bool passed, bool required);
 
 #endif /* SHMEMVV_HPP */

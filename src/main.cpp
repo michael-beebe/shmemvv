@@ -5,12 +5,6 @@
 
 #include "shmemvv.hpp"
 
-/* ANSI color codes for pretty output */
-#define RESET_COLOR "\033[0m"
-#define RED_COLOR "\033[31m"
-#define GREEN_COLOR "\033[32m"
-#define YELLOW_COLOR "\033[33m"
-
 /**
   @brief Main function for running the test suite.
   @param argc Number of command-line arguments.
