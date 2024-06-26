@@ -67,4 +67,4 @@ if [ ! -f "$exe" ]; then
 fi
 
 # Run the executable with the appropriate argument
-oshrun -np 4 $exe $arg
+oshrun -np 2 $exe $arg

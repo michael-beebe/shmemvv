@@ -1,0 +1,2 @@
+- Add shmem_barrier_all() to the setup tests and test that right
+  in the beginning alongside shmem_init() and shmem_my_pe()

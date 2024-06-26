@@ -1,10 +1,17 @@
+/**
+  @file shmemvv.hpp
+  @brief Contains helper function declarations
+ */
+
 #ifndef SHMEMVV_HPP
 #define SHMEMVV_HPP
 
 #include <shmem.h>
 #include <iostream>
 #include <getopt.h>
-#include <string.h>
+#include <string>
+#include <vector>
+#include <sstream>
 
 #include "tests/setup/setup_tests.hpp"
 #include "tests/threads/threads_tests.hpp"
@@ -52,5 +59,15 @@ void display_help();
 
 /* Function to display logo */
 void display_logo();
+
+/* Function to display test header */
+void display_test_header(std::string test_name);
+
+/* Function to display test info */
+void display_test_info(
+  std::string shmem_name,
+  std::string shmem_version,
+  int npes
+);
 
 #endif /* SHMEMVV_HPP */

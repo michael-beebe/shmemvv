@@ -15,10 +15,10 @@ cmake \
   -DCMAKE_INSTALL_PREFIX=$SWHOME/shmemvv \
   ../
 
-make
+make -j 40
 # ctest
 
 echo ; echo
 cd ../
-./TEST.sh setup
+./TEST.sh threads
 

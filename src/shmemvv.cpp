@@ -1,3 +1,8 @@
+/**
+  @file shmemvv.cpp
+  @brief Contains helper functions
+ */
+
 #include "shmemvv.hpp"
 
 void display_help() {
@@ -111,7 +116,24 @@ void display_logo() {
              ▓▓ ▓▓   ▓▓ ▓▓  ▓▓  ▓▓ ▓▓      ▓▓  ▓▓  ▓▓  ▓▓  ▓▓   ▓▓  ▓▓  
         ███████ ██   ██ ██      ██ ███████ ██      ██   ████     ████   
 
-
 )";
 }
 
+void display_test_header(std::string test_name) {
+  std::cout << "\n==============================================================" << std::endl;
+  std::cout << "          Running " << test_name << " tests..." << std::endl;
+  std::cout << "==============================================================" << std::endl;
+}
+
+void display_test_info(
+  std::string shmem_name,
+  std::string shmem_version,
+  int npes
+) {
+  std::cout << "\n--------------------------------------------------------------" << std::endl;
+  std::cout << "                    Test Information" << std::endl;
+  std::cout << "--------------------------------------------------------------" << std::endl;
+  std::cout << "  OpenSHMEM Name:       " << shmem_name << std::endl;
+  std::cout << "  OpenSHMEM Version:    " << shmem_version << std::endl;
+  std::cout << "  Number of PEs:        " << npes << std::endl;  
+}
