@@ -9,181 +9,190 @@ Validation/Verification test suite for OpenSHMEM (v1.5)
 ```bash
 mkdir -p build
 cd build
-cmake ../
+cmake \
+  -DCMAKE_INCLUDE_PATH=</path/to/openshmem/include/dir>  \
+  -DCMAKE_LIBRARY_PATH=</path/to/openshmem/lib/dir>      \
+  -DCMAKE_C_LINKER_FLAGS="<linker flags, such as -lsma>" \
+  ../
 ```
-
-SHMEMVV should be able to find your OpenSHMEM installation assuming your `oshcc` executable is added to your PATH. However, you can manually specify the paths to your OpenSHMEM `lib` and `include` directories with the following flags in your CMake command, respectively:
-
-- `-DOPENSHMEM_INCLUDE_DIR=/path/to/openshmem/include`
-- `-DOPENSHMEM_LIBRARY=/path/to/openshmem/lib/libshmem.so`
 
 ## Tests
-By default, SHMEMVV will run all the tests, but if you want to only run a specific set or sets of tests, you can enable one or multiple of the following flags in your cmake command:
-
-#### Library Setup, Exit, and Query Routines
+By default, SHMEMVV will run all the tests, but if you want to only run a specific set or sets of tests, you can use one of these runtime flags. For example, this command will run the tests for the communication/context management routines.
 ```
--DTEST_SETUP
+oshrun -np 2 shmemvv --test_comms
+```
+
+Since all the tests need the items within the setup routines, those will be run no matter, regardless of which tests you select.
+
+### Library Setup, Exit, and Query Routines
+```
+--test_setup
+```
+Will ONLY test the following routines:
+- shmem_init()
+- shmem_my_pe()
+- shmem_n_pes()
+- shmem_pe_accessible()
+- shmem_ptr()
+- shmem_info_get_version()
+- shmem_info_get_name()
+- shmem_finalize()
+- shmem_global_exit()
+
+### Thread Support
+```
+--test_threads
 ```
 Will test the following routines:
-- SHMEM_INIT
-- SHMEM_MY_PE
-- SHMEM_N_PES
-- SHMEM_FINALIZE
-- SHMEM_GLOBAL_EXIT
-- SHMEM_PE_ACCESSIBLE
-- SHMEM_PTR
-- SHEM_INFO_GET_VERSION
-- SHMEM_INFO_GET_NAME
-- START_PES
+- shmem_init_thread()
+- shmem_query_thread()
 
-#### Thread Support
+### Memory Management Routines
 ```
--DTEST_THREADS
+--test_mem
 ```
 Will test the following routines:
-- SHMEM_INIT_THREAD
-- SHMEM_QUERY_THREAD
+- shmem_malloc()
+- shmem_free()
+- shmem_realloc()
+- shmem_align()
+- shmem_malloc_with_hints()
+- shmem_calloc()
 
-#### Memory Management Routines
+### Team Managment Routines
 ```
--DTEST_MEM
+--test_teams
 ```
 Will test the following routines:
-- SHMEM_MALLOC
-- SHMEM_FREE
-- SHMEM_REALLOC
-- SHMEM_ALIGN
-- SHMEM_MALLOC_WITH_HINTS
-- SHMEM_CALLOC
+- shmem_team_my_pe()
+- shmem_team_n_pes()
+- shmem_team_config_t()
+- shmem_team_get_config()
+- shmem_team_translate_pe()
+- shmem_team_split_strided()
+- shmem_team_split_2d()
+- shmem_team_destroy()
 
-#### Team Managment Routines
+### Communication/Context Management Routines
 ```
--DTEST_TEAMS
+--test_comms
 ```
 Will test the following routines:
-- SHMEM_TEAM_MY_PE
-- SHMEM_TEAM_N_PES
-- SHMEM_TEAM_CONFIG_T
-- SHMEM_TEAM_GET_CONFIG
-- SHMEM_TEAM_TRANSLATE_PE
-- SHMEM_TEAM_SPLIT_STRIDED
-- SHMEM_TEAM_SPLIT_2D
-- SHMEM_TEAM_DESTROY
+- shmem_ctx_create()
+- shmem_team_create_ctx()
+- shmem_ctx_destroy()
+- shmem_ctx_get_team()
 
-#### Communication/Context Management Routines
+### Remote Access Routines
 ```
--DTEST_COMMS
+--test_remote
 ```
 Will test the following routines:
-- SHMEM_CTX_CREATE
-- SHMEM_TEAM_CREATE_CTX
-- SHMEM_CTX_DESTROY
-- SHMEM_CTX_GET_TEAM
+- shmem_put()
+- shmem_p()
+- shmem_iput()
+- shmem_get()
+- shmem_g()
+- shmem_iget()
+- shmem_put_nbi()
+- shmem_get_nbi()
 
-#### Remote Access Routines
+### Atomic Memory Operations
 ```
--DTEST_REMOTE
+--test_atomics
 ```
 Will test the following routines:
-- SHMEM_PUT
-- SHMEM_P
-- SHMEM_IPUT
-- SHMEM_GET
-- SHMEM_G
-- SHMEM_IGET
-- SHMEM_PUT_NBI
-- SHMEM_GET_NBI
+- shmem_atomic_fetch()
+- shmem_atomic_set()
+- shmem_atomic_compare_swap()
+- shmem_atomic_swap
+- shmem_atomic_fetch_inc()
+- shmem_atomic_inc()
+- shmem_atomic_fetch_add()
+- shmem_atomic_add()
+- shmem_atomic_fetch_and()
+- shmem_atomic_and()
+- shmem_atomic_fetch_or()
+- shmem_atomic_or()
+- shmem_atomic_fetch_xor()
+- shmem_atomic_xor()
+- shmem_atomic_fetch_nbi()
+- shmem_atomic_compare_swap_nbi()
+- shmem_atomic_swap_nbi()
+- shmem_atomic_fetch_inc_nbi()
+- shmem_atomic_fetch_add_nbi()
+- shmem_atomic_fetch_and_nbi()
+- shmem_atomic_fetch_or_nbi()
+- shmem_atomic_fetch_xor_nbi()
 
-#### Atomic Memory Operations
+### Signaling Operations
 ```
--DTEST_ATOMICS
+--test_signaling
 ```
 Will test the following routines:
-- SHMEM_ATOMIC_FETCH
-- SHMEM_ATOMIC_SET
-- SHMEM_ATOMIC_COMPARE_SWAP
-- SHMEM_ATOMIC_SWAP
-- SHMEM_ATOMIC_FETCH_INC
-- SHMEM_ATOMIC_INC
-- SHMEM_ATOMIC_FETCH_ADD
-- SHMEM_ATOMIC_ADD
-- SHMEM_ATOMIC_FETCH_AND
-- SHMEM_ATOMIC_AND
-- SHMEM_ATOMIC_FETCH_OR
-- SHMEM_ATOMIC_OR
-- SHMEM_ATOMIC_FETCH_XOR
-- SHMEM_ATOMIC_XOR
-- SHMEM_ATOMIC_FETCH_NBI
-- SHMEM_ATOMIC_COMPARE_SWAP_NBI
-- SHMEM_ATOMIC_SWAP_NBI
-- SHMEM_ATOMIC_FETCH_INC_NBI
-- SHMEM_ATOMIC_FETCH_ADD_NBI
-- SHMEM_ATOMIC_FETCH_AND_NBI
-- SHMEM_ATOMIC_FETCH_OR_NBI
-- SHMEM_ATOMIC_FETCH_XOR_NBI
+- shmem_put_signal()
+- shmem_put_signal_nbi()
+- shmem_signal_fetch()
 
-#### Signaling Operations
+### Collective Routines
 ```
--DTEST_SIGNALING
+--test_collectives
 ```
 Will test the following routines:
-- SHMEM_PUT_SIGNAL
-- SHMEM_PUT_SIGNAL_NBI
-- SHMEM_SIGNAL_FETCH
+-  shmem_barrier_all()
+- shmem_barrier()
+- shmem_sync()
+- shmem_sync_all()
+- shmem_alltoall()
+- shmem_alltoalls()
+- shmem_broadcast()
+- shmem_collect()
+- shmem_fcollect()
+- shmem_reductions
+    - and, or, xor
+    - max, min, sum, prod
+<!-- TODO: list the full routine for each reduction -->
 
-#### Collective Routines
+### Point-Point Synchronization Routines
 ```
--DTEST_COLLECTIVES
+--test_pt2pt_synch
 ```
 Will test the following routines:
-- SHMEM_BARRIER_ALL
-- SHMEM_BARRIER
-- SHMEM_SYNC
-- SHMEM_SYNC_ALL
-- SHMEM_ALLTOALL
-- SHMEM_ALLTOALLS
-- SHMEM_BROADCAST
-- SHMEM_COLLECT
-- SHMEM_FCOLLECT
-- SHMEM_REDUCTIONS
-  - AND, OR, XOR
-  - MAX, MIN, SUM, PROD
+- shmem_wait_until()
+- shmem_wait_until_all()
+- shmem_wait_until_any()
+- shmem_wait_until_some()
+- shmem_wait_until_all_vector()
+- shmem_wait_until_any_vector()
+- shmem_wait_until_some_vector()
+- shmem_test()
+- shmem_test_all()
+- shmem_test_any()
+- shmem_test_some()
+- shmem_test_all_vector()
+- shmem_test_any_vector()
+- shmem_test_some_vector()
+- shmem_signal_wait_until()
 
-#### Point-Point Synchronization Routines
+### Memory Ordering Routines
 ```
--DTEST_PT2PT_SYNCH
+-test_mem_ordering
 ```
 Will test the following routines:
-- SHMEM_WAIT_UNTIL
-- SHMEM_WAIT_UNTIL_ALL
-- SHMEM_WAIT_UNTIL_ANY
-- SHMEM_WAIT_UNTIL_SOME
-- SHMEM_WAIT_UNTIL_ALL_VECTOR
-- SHMEM_WAIT_UNTIL_ANY_VECTOR
-- SHMEM_WAIT_UNTIL_SOME_VECTOR
-- SHMEM_TEST
-- SHMEM_TEST_ALL
-- SHMEM_TEST_ANY
-- SHMEM_TEST_SOME
-- SHMEM_TEST_ALL_VECTOR
-- SHMEM_TEST_ANY_VECTOR
-- SHMEM_TEST_SOME_VECTOR
-- SHMEM_SIGNAL_WAIT_UNTIL
+- shmem_fence()
+- shmem_quiet()
 
-#### Memory Ordering Routines
+### Distributed Locking Routines
 ```
--DTEST_MEM_ORDERING
+-test_locking
 ```
 Will test the following routines:
-- SHMEM_FENCE
-- SHMEM_QUIET
-- Synchronization and Communication Ordering in OpenSHMEM
+- shmem_lock()
+- shmem_unlock()
 
-#### Distributed Locking Routines
+### All tests
 ```
--DTEST_LOCKING
+--test_all
 ```
-Will test the following routines:
-- SHMEM_LOCK
-- SHMEM_UNLOCK
+Will run all the tests
 
