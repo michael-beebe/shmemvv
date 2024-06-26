@@ -1,6 +1,6 @@
 /**
   @file shmemvv.hpp
-  @brief Contains helper function declarations
+  @brief Contains helper function declarations for the OpenSHMEM verification/validation test suite.
  */
 
 #ifndef SHMEMVV_HPP
@@ -26,23 +26,29 @@
 #include "tests/mem_ordering/mem_ordering_tests.hpp"
 #include "tests/locking/locking_tests.hpp"
 
-/* Struct to hold selected tests */
+/**
+  @struct test_options
+  @brief Struct to hold selected tests options.
+ */
 struct test_options {
-  bool all;
-  bool test_setup;
-  bool test_threads;
-  bool test_mem;
-  bool test_teams;
-  bool test_comms;
-  bool test_remote;
-  bool test_atomics;
-  bool test_signaling;
-  bool test_collectives;
-  bool test_pt2pt_synch;
-  bool test_mem_ordering;
-  bool test_locking;
-  bool help;
+  bool all;                    /**< Flag to run all tests */
+  bool test_setup;             /**< Flag to run setup tests */
+  bool test_threads;           /**< Flag to run thread support tests */
+  bool test_mem;               /**< Flag to run memory management tests */
+  bool test_teams;             /**< Flag to run team management tests */
+  bool test_comms;             /**< Flag to run communication management tests */
+  bool test_remote;            /**< Flag to run remote memory access tests */
+  bool test_atomics;           /**< Flag to run atomic memory operations tests */
+  bool test_signaling;         /**< Flag to run signaling operations tests */
+  bool test_collectives;       /**< Flag to run collective operations tests */
+  bool test_pt2pt_synch;       /**< Flag to run point-to-point synchronization tests */
+  bool test_mem_ordering;      /**< Flag to run memory ordering tests */
+  bool test_locking;           /**< Flag to run distributed locking tests */
+  bool help;                   /**< Flag to display help message */
 
+  /**
+    @brief Constructor to initialize all flags to false.
+   */
   test_options() :
     all(false), test_setup(false), test_threads(false),
     test_mem(false), test_teams(false), test_comms(false),
@@ -51,19 +57,37 @@ struct test_options {
     test_mem_ordering(false), test_locking(false), help(false) {}
 };
 
-/* Function to parse command-line options */
+/**
+  @brief Parses command-line options.
+  @param argc Number of command-line arguments.
+  @param argv Array of command-line argument strings.
+  @param opts Reference to the test options structure.
+  @return True if parsing is successful, false otherwise.
+ */
 bool parse_opts(int argc, char *argv[], test_options &opts);
 
-/* Function to display usage information */
+/**
+  @brief Displays usage information.
+ */
 void display_help();
 
-/* Function to display logo */
+/**
+  @brief Displays the ASCII art logo.
+ */
 void display_logo();
 
-/* Function to display test header */
+/**
+  @brief Displays a header for the test category.
+  @param test_name Name of the test category.
+ */
 void display_test_header(std::string test_name);
 
-/* Function to display test info */
+/**
+  @brief Displays information about the test suite.
+  @param shmem_name Name of the OpenSHMEM library.
+  @param shmem_version Version of the OpenSHMEM library.
+  @param npes Number of PEs (Processing Elements).
+ */
 void display_test_info(
   std::string shmem_name,
   std::string shmem_version,

@@ -1,10 +1,13 @@
 /**
   @file shmemvv.cpp
-  @brief Contains helper functions
+  @brief Contains helper functions for the OpenSHMEM verification/validation test suite.
  */
 
 #include "shmemvv.hpp"
 
+/**
+  @brief Displays usage information for the test suite.
+ */
 void display_help() {
   std::cout << "\nThis program is a verification/validation test suite for OpenSHMEM implementations.\n";
   std::cout << "\nUsage: shmemvv [options]\n";
@@ -26,6 +29,13 @@ void display_help() {
   std::cout << std::endl;
 }
 
+/**
+  @brief Parses command-line options.
+  @param argc Number of command-line arguments.
+  @param argv Array of command-line argument strings.
+  @param opts Reference to the test options structure.
+  @return True if parsing is successful, false otherwise.
+ */
 bool parse_opts(int argc, char *argv[], test_options &opts) {
   /* Define command-line options */
   static struct option long_options[] = {
@@ -107,6 +117,9 @@ bool parse_opts(int argc, char *argv[], test_options &opts) {
   return true;
 }
 
+/**
+  @brief Displays the ASCII art logo.
+ */
 void display_logo() {
   std::cout << R"(
 
@@ -119,6 +132,10 @@ void display_logo() {
 )";
 }
 
+/**
+  @brief Displays a header for the test category.
+  @param test_name Name of the test category.
+ */
 void display_test_header(std::string test_name) {
   if (test_name == "FINALIZATION") {
     std::cout << "\n==================================================================" << std::endl;
@@ -132,6 +149,12 @@ void display_test_header(std::string test_name) {
   }
 }
 
+/**
+  @brief Displays information about the test suite.
+  @param shmem_name Name of the OpenSHMEM library.
+  @param shmem_version Version of the OpenSHMEM library.
+  @param npes Number of PEs (Processing Elements).
+ */
 void display_test_info(
   std::string shmem_name,
   std::string shmem_version,
