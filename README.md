@@ -24,7 +24,7 @@ oshrun -np 2 shmemvv --test_comms
 
 Since all the tests need the items within the setup routines, those will be run no matter, regardless of which tests you select.
 
-<!-- ```bash
+```bash
 Usage: shmemvv [options]
 Options:
   --test_setup         Run setup tests
@@ -41,9 +41,9 @@ Options:
   --test_locking       Run distributed locking tests
   --all                (default) Run all tests
   --help               Display help message
-``` -->
+```
 
-### Library Setup, Exit, and Query Routines
+#### Library Setup, Exit, and Query Routines
 ```
 --test_setup
 ```
@@ -57,7 +57,7 @@ Will ONLY test the following routines:
 - shmem_finalize()
 - shmem_global_exit()
 
-### Thread Support
+#### Thread Support
 ```
 --test_threads
 ```
@@ -65,7 +65,7 @@ Will test the following routines:
 - shmem_init_thread()
 - shmem_query_thread()
 
-### Memory Management Routines
+#### Memory Management Routines
 ```
 --test_mem
 ```
@@ -78,7 +78,7 @@ Will test the following routines:
 - shmem_malloc_with_hints()
 - shmem_calloc()
 
-### Team Managment Routines
+#### Team Managment Routines
 ```
 --test_teams
 ```
@@ -92,7 +92,7 @@ Will test the following routines:
 - shmem_team_split_2d()
 - shmem_team_destroy()
 
-### Communication/Context Management Routines
+#### Communication/Context Management Routines
 ```
 --test_comms
 ```
@@ -102,7 +102,7 @@ Will test the following routines:
 - shmem_ctx_destroy()
 - shmem_ctx_get_team()
 
-### Remote Access Routines
+#### Remote Access Routines
 ```
 --test_remote
 ```
@@ -116,7 +116,7 @@ Will test the following routines:
 - shmem_put_nbi()
 - shmem_get_nbi()
 
-### Atomic Memory Operations
+#### Atomic Memory Operations
 ```
 --test_atomics
 ```
@@ -144,7 +144,7 @@ Will test the following routines:
 - shmem_atomic_fetch_or_nbi()
 - shmem_atomic_fetch_xor_nbi()
 
-### Signaling Operations
+#### Signaling Operations
 ```
 --test_signaling
 ```
@@ -153,7 +153,7 @@ Will test the following routines:
 - shmem_put_signal_nbi()
 - shmem_signal_fetch()
 
-### Collective Routines
+#### Collective Routines
 ```
 --test_collectives
 ```
@@ -171,7 +171,7 @@ Will test the following routines:
     - and, or, xor
     - max, min, sum, prod
 
-### Point-Point Synchronization Routines
+#### Point-Point Synchronization Routines
 ```
 --test_pt2pt_synch
 ```
@@ -192,7 +192,7 @@ Will test the following routines:
 - shmem_test_some_vector()
 - shmem_signal_wait_until()
 
-### Memory Ordering Routines
+#### Memory Ordering Routines
 ```
 -test_mem_ordering
 ```
@@ -200,7 +200,7 @@ Will test the following routines:
 - shmem_fence()
 - shmem_quiet()
 
-### Distributed Locking Routines
+#### Distributed Locking Routines
 ```
 -test_locking
 ```
@@ -208,7 +208,7 @@ Will test the following routines:
 - shmem_lock()
 - shmem_unlock()
 
-### All tests
+#### All tests
 ```
 --test_all
 ```
