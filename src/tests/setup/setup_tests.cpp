@@ -84,48 +84,6 @@ bool test_shmem_pe_accessible() {
 }
 
 /**
-  @brief Tests if a pointer is accessible from a remote PE.
-  @return True if the pointer is accessible, false otherwise.
- */
-bool test_shmem_ptr() {
-  int mype = shmem_my_pe();
-  int npes = shmem_n_pes();
-  int* ptr = (int*)shmem_malloc(sizeof(int));
-
-  if (ptr == nullptr) {
-    return false;
-  }
-
-  *ptr = mype;
-
-  shmem_barrier_all();
-
-  bool test_passed = true;
-
-  for (int pe = 0; pe < npes; ++pe) {
-    if (shmem_addr_accessible(ptr, pe) != 1) {
-      test_passed = false;
-    }
-    else {
-      int* remote_ptr = (int*)shmem_ptr(ptr, pe);
-      if (pe == mype) {
-        if (remote_ptr != ptr) {
-          test_passed = false;
-        }
-      }
-      else {
-        if (remote_ptr == nullptr) {
-          test_passed = false;
-        }
-      }
-    }
-  }
-
-  shmem_free(ptr);
-  return test_passed;
-}
-
-/**
   @brief Tests retrieving the OpenSHMEM library version.
   @return The version as a string in the format "major.minor".
  */

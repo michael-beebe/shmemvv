@@ -42,12 +42,6 @@ int test_shmem_n_pes(void);
 bool test_shmem_pe_accessible(void);
 
 /**
-  @brief Tests if a pointer is accessible from a remote PE.
-  @return True if the pointer is accessible, false otherwise.
- */
-bool test_shmem_ptr(void);
-
-/**
   @brief Tests retrieving the OpenSHMEM library version.
   @return The version as a string in the format "major.minor".
  */

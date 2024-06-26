@@ -18,7 +18,7 @@
   @return EXIT_SUCCESS on success, EXIT_FAILURE on failure.
 */
 int main(int argc, char *argv[]) {
-  /************************* BEGINNING OF SETUP **************************/
+  /************************* START OF SETUP **************************/
   int mype;
   int npes;
   std::string version = "";
@@ -114,7 +114,9 @@ int main(int argc, char *argv[]) {
   /* shmem_init() and shmem_my_pe() tests passed */
   shmem_barrier_all();
   if (mype == 0) {
-    std::cout << GREEN_COLOR << "shmem_init() test PASSED!" << RESET_COLOR << std::endl;
+    if (!opts.test_threads) {
+      std::cout << GREEN_COLOR << "shmem_init() test PASSED!" << RESET_COLOR << std::endl;
+    }
     std::cout << GREEN_COLOR << "shmem_barrier_all() test PASSED!" << RESET_COLOR << std::endl;
     std::cout << GREEN_COLOR << "shmem_my_pe() test PASSED!" << RESET_COLOR << std::endl;
     std::cout << GREEN_COLOR << "shmem_n_pes() test PASSED!" << RESET_COLOR << std::endl;
@@ -130,19 +132,6 @@ int main(int argc, char *argv[]) {
   else {
     if (mype == 0) {
       std::cout << GREEN_COLOR << "shmem_pe_accessible() test PASSED!" << RESET_COLOR << std::endl;
-    }
-  }
-
-  /* Run shmem_ptr() test */
-  shmem_barrier_all();
-  if (!test_shmem_ptr()) {
-    if (mype == 0) {
-      std::cerr << RED_COLOR << "shmem_ptr() test FAILED!" << RESET_COLOR << std::endl;
-    }
-  } 
-  else {
-    if (mype == 0) {
-      std::cout << GREEN_COLOR << "shmem_ptr() test PASSED!" << RESET_COLOR << std::endl;
     }
   }
 
@@ -183,16 +172,17 @@ int main(int argc, char *argv[]) {
   shmem_barrier_all();
   if (mype == 0) { display_test_info(name, version, npes); }
 
-  /************************* END OF SETUP **************************/
-
+  /************************* START OF THREADS TESTS **************************/
   shmem_barrier_all();
   if (opts.test_threads) {
     if (mype == 0) { display_test_header("THREADS"); }
 
+    /* If we made it here shmem_init_thread() passed */
     if (mype == 0) {
       std::cout << GREEN_COLOR << "shmem_init_thread() test PASSED!" << RESET_COLOR << std::endl;
     }
 
+    /* Test shmem_query_thread() */
     if (!test_shmem_query_thread()) {
       if (mype == 0) {
         std::cerr << RED_COLOR << "shmem_query_thread() test FAILED!" << RESET_COLOR << std::endl;
@@ -205,66 +195,155 @@ int main(int argc, char *argv[]) {
     }
   }
 
+  /************************* START OF MEMORY TESTS **************************/
   shmem_barrier_all();
   if (opts.test_mem) {
     if (mype == 0) { display_test_header("MEMORY MANAGEMENT"); }
-    /* TODO: Call memory management tests here */
+
+    /* Test shmem_ptr() */
+    if (!test_shmem_ptr()) {
+      if (mype == 0) {
+        std::cerr << RED_COLOR << "shmem_ptr() test FAILED!" << RESET_COLOR << std::endl;
+      }
+    } 
+    else {
+      if (mype == 0) {
+        std::cout << GREEN_COLOR << "shmem_ptr() test PASSED!" << RESET_COLOR << std::endl;
+      }
+    }
+
+    /* Test shmem_malloc() and shmem_free() */
+    shmem_barrier_all();
+    if (!test_shmem_malloc_free()) {
+      if (mype == 0) {
+        std::cerr << RED_COLOR << "shmem_malloc() test FAILED!" << RESET_COLOR << std::endl;
+        std::cerr << RED_COLOR << "shmem_free() test FAILED!" << RESET_COLOR << std::endl;
+      }
+    } 
+    else {
+      if (mype == 0) {
+        std::cout << GREEN_COLOR << "shmem_malloc() test PASSED!" << RESET_COLOR << std::endl;
+        std::cout << GREEN_COLOR << "shmem_free() test PASSED!" << RESET_COLOR << std::endl;
+      }
+    }
+
+    /* Test shmem_realloc() */
+    shmem_barrier_all();
+    if (!test_shmem_realloc()) {
+      if (mype == 0) {
+        std::cerr << RED_COLOR << "shmem_realloc() test FAILED!" << RESET_COLOR << std::endl;
+      }
+    } 
+    else {
+      if (mype == 0) {
+        std::cout << GREEN_COLOR << "shmem_realloc() test PASSED!" << RESET_COLOR << std::endl;
+      }
+    }
+
+    /* Test shmem_align() */
+    shmem_barrier_all();
+    if (!test_shmem_align()) {
+      if (mype == 0) {
+        std::cerr << RED_COLOR << "shmem_align() test FAILED!" << RESET_COLOR << std::endl;
+      }
+    } 
+    else {
+      if (mype == 0) {
+        std::cout << GREEN_COLOR << "shmem_align() test PASSED!" << RESET_COLOR << std::endl;
+      }
+    }
+
+    /* Test shmem_malloc_with_hints() */
+    shmem_barrier_all();
+    if (!test_shmem_malloc_with_hints()) {
+      if (mype == 0) {
+        std::cerr << RED_COLOR << "shmem_malloc_with_hints() test FAILED!" << RESET_COLOR << std::endl;
+      }
+    } 
+    else {
+      if (mype == 0) {
+        std::cout << GREEN_COLOR << "shmem_malloc_with_hints() test PASSED!" << RESET_COLOR << std::endl;
+      }
+    }
+
+    /* Test shmem_calloc() */
+    shmem_barrier_all();
+    if (!test_shmem_calloc()) {
+      if (mype == 0) {
+        std::cerr << RED_COLOR << "shmem_calloc() test FAILED!" << RESET_COLOR << std::endl;
+      }
+    } 
+    else {
+      if (mype == 0) {
+        std::cout << GREEN_COLOR << "shmem_calloc() test PASSED!" << RESET_COLOR << std::endl;
+      }
+    }
   }
 
+  /************************* START OF TEAMS TESTS **************************/
   shmem_barrier_all();
   if (opts.test_teams) {
     if (mype == 0) { display_test_header("TEAMS MANAGMENT"); }
     /* TODO: Call team management tests here */
   }
 
+  /************************* START OF COMMS TESTS **************************/
   shmem_barrier_all();
   if (opts.test_comms) {
     if (mype == 0) { display_test_header("COMMUNICATION MANAGEMENT"); }
     /* TODO: Call communication management tests here */
   }
 
+  /************************* START OF REMOTE TESTS **************************/
   shmem_barrier_all();
   if (opts.test_remote) {
     if (mype == 0) { display_test_header("REMOTE MEMORY ACCESS"); }
     /* TODO: Call remote memory access tests here */
   }
 
+  /************************* START OF ATOMICS TESTS **************************/
   shmem_barrier_all();
   if (opts.test_atomics) {
     if (mype == 0) { display_test_header("ATOMIC MEMORY OPS"); }
     /* TODO: Call atomic memory operations tests here */
   }
 
+  /************************* START OF SIGNALING TESTS **************************/
   shmem_barrier_all();
   if (opts.test_signaling) {
     if (mype == 0) { display_test_header("SIGNALING OPS"); }
     /* TODO: Call signaling operations tests here */
   }
 
+  /************************* START OF COLLECTIVES TESTS **************************/
   shmem_barrier_all();
   if (opts.test_collectives) {
     if (mype == 0) { display_test_header("COLLECTIVE OPS"); }
     /* TODO: Call collective operations tests here */
   }
 
+  /************************* START OF PT2PT TESTS **************************/
   shmem_barrier_all();
   if (opts.test_pt2pt_synch) {
     if (mype == 0) { display_test_header("PT2PT SYNCHRONIZATION"); }
     /* TODO: Call point-to-point synchronization tests here */
   }
 
+  /************************* START OF MEM ORDERING TESTS **************************/
   shmem_barrier_all();
   if (opts.test_mem_ordering) {
     if (mype == 0) { display_test_header("MEMORY ORDERING"); }
     /* TODO: Call memory ordering tests here */
   }
 
+  /************************* START OF DIS LOCKING TESTS **************************/
   shmem_barrier_all();
   if (opts.test_locking) {
     if (mype == 0) { display_test_header("DISTRIBUTED LOCKING"); }
     /* TODO: Call distributed locking tests here */
   }
 
+  /************************* START OF FINALIZATION **************************/
   /* Run shmem_finalize() test */
   shmem_barrier_all();
   if (mype == 0) { display_test_header("FINALIZATION"); }

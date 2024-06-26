@@ -52,7 +52,6 @@ Will ONLY test the following routines:
 - shmem_my_pe()
 - shmem_n_pes()
 - shmem_pe_accessible()
-- shmem_ptr()
 - shmem_info_get_version()
 - shmem_info_get_name()
 - shmem_finalize()
@@ -71,6 +70,7 @@ Will test the following routines:
 --test_mem
 ```
 Will test the following routines:
+- shmem_ptr()
 - shmem_malloc()
 - shmem_free()
 - shmem_realloc()
