@@ -65,20 +65,4 @@ bool test_shmem_finalize(void);
  */
 bool test_shmem_global_exit(void);
 
-// /**
-//   @brief Performs the setup for the test suite.
-//   @param argc Number of command-line arguments.
-//   @param argv Array of command-line argument strings.
-//   @param mype Reference to the PE number.
-//   @param npes Reference to the number of PEs.
-//   @param version Reference to the string that will hold the version.
-//   @param name Reference to the string that will hold the name.
-//   @return EXIT_SUCCESS on success, EXIT_FAILURE on failure.
-//  */
-// int perform_setup(int argc, char *argv[], int &mype, int &npes, std::string &version, std::string &name);
-
 #endif /* SETUP_TESTS_HPP */
-
-
-
-
