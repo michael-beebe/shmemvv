@@ -6,7 +6,7 @@
 #include "teams_tests.hpp"
 
 /**
-  @brief Tests the shmem_team_my_pe() function.
+  @brief Tests the shmem_team_my_pe() routine.
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_team_my_pe(void) {
@@ -18,7 +18,7 @@ bool test_shmem_team_my_pe(void) {
 }
 
 /**
-  @brief Tests the shmem_team_n_pes() function.
+  @brief Tests the shmem_team_n_pes() routine.
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_team_n_pes(void) {
@@ -30,7 +30,7 @@ bool test_shmem_team_n_pes(void) {
 }
 
 /**
-  @brief Tests the shmem_team_config_t structure and related functions.
+  @brief Tests the shmem_team_config_t structure and related routines.
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_team_config_t(void) {
@@ -40,7 +40,7 @@ bool test_shmem_team_config_t(void) {
 }
 
 /**
-  @brief Tests the shmem_team_get_config() function.
+  @brief Tests the shmem_team_get_config() routine.
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_team_get_config(void) {
@@ -53,7 +53,7 @@ bool test_shmem_team_get_config(void) {
 }
 
 /**
-  @brief Tests the shmem_team_translate_pe() function.
+  @brief Tests the shmem_team_translate_pe() routine.
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_team_translate_pe(void) {
@@ -65,7 +65,7 @@ bool test_shmem_team_translate_pe(void) {
 }
 
 /**
-  @brief Tests the shmem_team_split_strided() function.
+  @brief Tests the shmem_team_split_strided() routine.
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_team_split_strided(void) {
@@ -77,7 +77,7 @@ bool test_shmem_team_split_strided(void) {
 }
 
 /**
-  @brief Tests the shmem_team_split_2d() function.
+  @brief Tests the shmem_team_split_2d() routine.
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_team_split_2d(void) {
@@ -91,7 +91,7 @@ bool test_shmem_team_split_2d(void) {
 }
 
 /**
-  @brief Tests the shmem_team_destroy() function.
+  @brief Tests the shmem_team_destroy() routine.
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_team_destroy(void) {

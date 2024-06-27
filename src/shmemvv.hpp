@@ -108,4 +108,10 @@ void display_test_info(
  */
 void display_test_result(std::string routine_name, bool passed, bool required);
 
+/**
+  @brief Run finalization test
+  @param mype Current PE
+ */
+ void finalize_shmemvv(int mype);
+
 #endif /* SHMEMVV_HPP */

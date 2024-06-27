@@ -285,8 +285,63 @@ int main(int argc, char *argv[]) {
   shmem_barrier_all();
   if (opts.test_remote) {
     if (mype == 0) { display_test_header("REMOTE MEMORY ACCESS"); }
-    /* TODO: Call remote memory access tests here */
+    
+    /* Check to make sure there are at least 2 PEs */
+    shmem_barrier_all();
+    if ( !(npes > 1) ) {
+      std::cerr << RED_COLOR << "ERROR: " << RESET_COLOR << "REMOTE MEMORY ACCESS tests require at least 2 PEs!" << std::endl;
+    }
+    else {
+      /* Run shmem_put() test */
+      shmem_barrier_all();
+      bool result_shmem_put = test_shmem_put();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_put()", result_shmem_put, false); }
+
+      /* Run shmem_p() test */
+      shmem_barrier_all();
+      bool result_shmem_p = test_shmem_p();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_p()", result_shmem_p, false); }
+
+      /* Run shmem_iput() test */
+      shmem_barrier_all();
+      bool result_shmem_iput = test_shmem_iput();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_iput()", result_shmem_iput, false); }
+
+      /* Run shmem_get() test */
+      shmem_barrier_all();
+      bool result_shmem_get = test_shmem_get();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_get()", result_shmem_get, false); }
+
+      /* Run shmem_g() test */
+      shmem_barrier_all();
+      bool result_shmem_g = test_shmem_g();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_g()", result_shmem_g, false); }
+
+      /* Run shmem_iget() test */
+      shmem_barrier_all();
+      bool result_shmem_iget = test_shmem_iget();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_iget()", result_shmem_iget, false); }
+
+      /* Run shmem_put_nbi() test */
+      shmem_barrier_all();
+      bool result_shmem_put_nbi = test_shmem_put_nbi();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_put_nbi()", result_shmem_put_nbi, false); }
+
+      /* Run shmem_get_nbi() test */
+      shmem_barrier_all();
+      bool result_shmem_get_nbi = test_shmem_get_nbi();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_get_nbi()", result_shmem_get_nbi, false); }
+    }
   }
+
 
   /************************* START OF ATOMICS TESTS **************************/
   shmem_barrier_all();
