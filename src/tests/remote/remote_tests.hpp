@@ -7,6 +7,7 @@
 #define REMOTE_TESTS_HPP
 
 #include <shmem.h>
+#include <iostream>
 
 /**
   @brief Tests the shmem_put() routine.

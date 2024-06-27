@@ -356,6 +356,7 @@ int main(int argc, char *argv[]) {
     if (!(npes > 1)) {
       std::cerr << RED_COLOR << "ERROR: " << RESET_COLOR << "ATOMIC MEMORY OPS tests require at least 2 PEs!" << std::endl;
     }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     else {
       /* Run shmem_atomic_fetch() test */
       shmem_barrier_all();
@@ -489,13 +490,39 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (mype == 0) { display_test_result("shmem_atomic_fetch_xor_nbi()", result_shmem_atomic_fetch_xor_nbi, false); }
     }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   }
 
   /************************* SIGNALING TESTS **************************/
   shmem_barrier_all();
   if (opts.test_signaling) {
     if (mype == 0) { display_test_header("SIGNALING OPS"); }
-    /* TODO: Call signaling operations tests here */
+
+    shmem_barrier_all();
+    if ( !(npes > 1) ) {
+      std::cerr << RED_COLOR << "ERROR: " << RESET_COLOR << "SIGNALING OPS tests require at least 2 PEs!" << std::endl;
+    }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    else {
+      /* Run shmem_put_signal() test */
+      shmem_barrier_all();
+      bool result_shmem_put_signal = test_shmem_put_signal();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_put_signal()", result_shmem_put_signal, false); }
+
+      /* Run shmem_put_signal_nbi() test */
+      shmem_barrier_all();
+      bool result_shmem_put_signal_nbi = test_shmem_put_signal_nbi();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_put_signal_nbi()", result_shmem_put_signal_nbi, false); }
+
+      /* Run shmem_signal_fetch() test */
+      shmem_barrier_all();
+      bool result_shmem_signal_fetch = test_shmem_signal_fetch();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_signal_fetch()", result_shmem_signal_fetch, false); }
+    }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   }
 
   /************************* COLLECTIVES TESTS **************************/
@@ -519,7 +546,7 @@ int main(int argc, char *argv[]) {
     /* TODO: Call memory ordering tests here */
   }
 
-  /************************* DIS LOCKING TESTS **************************/
+  /************************* DISTRIBUTED BLOCKING TESTS **************************/
   shmem_barrier_all();
   if (opts.test_locking) {
     if (mype == 0) { display_test_header("DISTRIBUTED LOCKING"); }

@@ -4,7 +4,6 @@
  */
 
 #include "comms_tests.hpp"
-#include <iostream>
 
 /**
   @brief Tests the shmem_ctx_create() function.

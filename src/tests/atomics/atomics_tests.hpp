@@ -7,6 +7,7 @@
 #define ATOMICS_TESTS_HPP
 
 #include <shmem.h>
+#include <iostream>
 
 /* Function declarations for atomic memory operations tests */
 bool test_shmem_atomic_fetch(void);

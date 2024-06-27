@@ -4,7 +4,6 @@
  */
 
 #include "remote_tests.hpp"
-#include <iostream>
 
 /**
   @brief Tests the shmem_put() function.
