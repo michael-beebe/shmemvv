@@ -12,7 +12,7 @@
   @return EXIT_SUCCESS on success, EXIT_FAILURE on failure.
 */
 int main(int argc, char *argv[]) {
-  /************************* START OF SETUP **************************/
+  /************************* SETUP **************************/
   int mype;
   int npes;
   std::string version = "";
@@ -139,7 +139,7 @@ int main(int argc, char *argv[]) {
   shmem_barrier_all();
   if (mype == 0) { display_test_info(name, version, npes); }
 
-  /************************* START OF THREADS TESTS **************************/
+  /************************* THREADS TESTS **************************/
   shmem_barrier_all();
   if (opts.test_threads) {
     if (mype == 0) { display_test_header("THREADS"); }
@@ -155,7 +155,7 @@ int main(int argc, char *argv[]) {
     if (mype == 0) { display_test_result("shmem_query_thread()", result_shmem_query_thread, false); }
   }
 
-  /************************* START OF MEMORY TESTS **************************/
+  /************************* MEMORY TESTS **************************/
   shmem_barrier_all();
   if (opts.test_mem) {
     if (mype == 0) { display_test_header("MEMORY MANAGEMENT"); }
@@ -170,7 +170,10 @@ int main(int argc, char *argv[]) {
     shmem_barrier_all();
     bool result_shmem_malloc_free = test_shmem_malloc_free();
     shmem_barrier_all();
-    if (mype == 0) { display_test_result("shmem_malloc() and shmem_free()", result_shmem_malloc_free, false); }
+    if (mype == 0) {
+      display_test_result("shmem_malloc()", result_shmem_malloc_free, false);
+      display_test_result("shmem_free()", result_shmem_malloc_free, false);
+    }
 
     /* Test shmem_realloc() */
     shmem_barrier_all();
@@ -197,7 +200,7 @@ int main(int argc, char *argv[]) {
     if (mype == 0) { display_test_result("shmem_calloc()", result_shmem_calloc, false); }
   }
 
-  /************************* START OF TEAMS TESTS **************************/
+  /************************* TEAMS TESTS **************************/
   shmem_barrier_all();
   if (opts.test_teams) {
     if (mype == 0) { display_test_header("TEAMS MANAGEMENT"); }
@@ -251,7 +254,7 @@ int main(int argc, char *argv[]) {
     if (mype == 0) { display_test_result("shmem_team_destroy()", result_shmem_team_destroy, false); }
   }
 
-  /************************* START OF COMMS TESTS **************************/
+  /************************* COMMS TESTS **************************/
   shmem_barrier_all();
   if (opts.test_comms) {
     if (mype == 0) { display_test_header("COMMUNICATION / CONTEXT"); }
@@ -281,7 +284,7 @@ int main(int argc, char *argv[]) {
     if (mype == 0) { display_test_result("shmem_ctx_get_team()", result_shmem_ctx_get_team, false); }
   }
 
-  /************************* START OF REMOTE TESTS **************************/
+  /************************* REMOTE TESTS **************************/
   shmem_barrier_all();
   if (opts.test_remote) {
     if (mype == 0) { display_test_header("REMOTE MEMORY ACCESS"); }
@@ -343,49 +346,187 @@ int main(int argc, char *argv[]) {
   }
 
 
-  /************************* START OF ATOMICS TESTS **************************/
+  /************************* ATOMICS TESTS **************************/
   shmem_barrier_all();
   if (opts.test_atomics) {
     if (mype == 0) { display_test_header("ATOMIC MEMORY OPS"); }
-    /* TODO: Call atomic memory operations tests here */
+
+    /* Make sure there are at least 2 PEs */
+    shmem_barrier_all();
+    if (!(npes > 1)) {
+      std::cerr << RED_COLOR << "ERROR: " << RESET_COLOR << "ATOMIC MEMORY OPS tests require at least 2 PEs!" << std::endl;
+    }
+    else {
+      /* Run shmem_atomic_fetch() test */
+      shmem_barrier_all();
+      bool result_shmem_atomic_fetch = test_shmem_atomic_fetch();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_atomic_fetch()", result_shmem_atomic_fetch, false); }
+
+      /* Run shmem_atomic_set() test */
+      shmem_barrier_all();
+      bool result_shmem_atomic_set = test_shmem_atomic_set();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_atomic_set()", result_shmem_atomic_set, false); }
+
+      /* Run shmem_atomic_compare_swap() test */
+      shmem_barrier_all();
+      bool result_shmem_atomic_compare_swap = test_shmem_atomic_compare_swap();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_atomic_compare_swap()", result_shmem_atomic_compare_swap, false); }
+
+      /* Run shmem_atomic_swap() test */
+      shmem_barrier_all();
+      bool result_shmem_atomic_swap = test_shmem_atomic_swap();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_atomic_swap()", result_shmem_atomic_swap, false); }
+
+      /* Run shmem_atomic_fetch_inc() test */
+      shmem_barrier_all();
+      bool result_shmem_atomic_fetch_inc = test_shmem_atomic_fetch_inc();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_atomic_fetch_inc()", result_shmem_atomic_fetch_inc, false); }
+
+      /* Run shmem_atomic_inc() test */
+      shmem_barrier_all();
+      bool result_shmem_atomic_inc = test_shmem_atomic_inc();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_atomic_inc()", result_shmem_atomic_inc, false); }
+
+      /* Run shmem_atomic_fetch_add() test */
+      shmem_barrier_all();
+      bool result_shmem_atomic_fetch_add = test_shmem_atomic_fetch_add();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_atomic_fetch_add()", result_shmem_atomic_fetch_add, false); }
+
+      /* Run shmem_atomic_add() test */
+      shmem_barrier_all();
+      bool result_shmem_atomic_add = test_shmem_atomic_add();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_atomic_add()", result_shmem_atomic_add, false); }
+
+      /* Run shmem_atomic_fetch_and() test */
+      shmem_barrier_all();
+      bool result_shmem_atomic_fetch_and = test_shmem_atomic_fetch_and();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_atomic_fetch_and()", result_shmem_atomic_fetch_and, false); }
+
+      /* Run shmem_atomic_and() test */
+      shmem_barrier_all();
+      bool result_shmem_atomic_and = test_shmem_atomic_and();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_atomic_and()", result_shmem_atomic_and, false); }
+
+      /* Run shmem_atomic_fetch_or() test */
+      shmem_barrier_all();
+      bool result_shmem_atomic_fetch_or = test_shmem_atomic_fetch_or();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_atomic_fetch_or()", result_shmem_atomic_fetch_or, false); }
+
+      /* Run shmem_atomic_or() test */
+      shmem_barrier_all();
+      bool result_shmem_atomic_or = test_shmem_atomic_or();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_atomic_or()", result_shmem_atomic_or, false); }
+
+      /* Run shmem_atomic_fetch_xor() test */
+      shmem_barrier_all();
+      bool result_shmem_atomic_fetch_xor = test_shmem_atomic_fetch_xor();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_atomic_fetch_xor()", result_shmem_atomic_fetch_xor, false); }
+
+      /* Run shmem_atomic_xor() test */
+      shmem_barrier_all();
+      bool result_shmem_atomic_xor = test_shmem_atomic_xor();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_atomic_xor()", result_shmem_atomic_xor, false); }
+
+      /* Run shmem_atomic_fetch_nbi() test */
+      shmem_barrier_all();
+      bool result_shmem_atomic_fetch_nbi = test_shmem_atomic_fetch_nbi();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_atomic_fetch_nbi()", result_shmem_atomic_fetch_nbi, false); }
+
+      /* Run shmem_atomic_compare_swap_nbi() test */
+      shmem_barrier_all();
+      bool result_shmem_atomic_compare_swap_nbi = test_shmem_atomic_compare_swap_nbi();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_atomic_compare_swap_nbi()", result_shmem_atomic_compare_swap_nbi, false); }
+
+      /* Run shmem_atomic_swap_nbi() test */
+      shmem_barrier_all();
+      bool result_shmem_atomic_swap_nbi = test_shmem_atomic_swap_nbi();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_atomic_swap_nbi()", result_shmem_atomic_swap_nbi, false); }
+
+      /* Run shmem_atomic_fetch_inc_nbi() test */
+      shmem_barrier_all();
+      bool result_shmem_atomic_fetch_inc_nbi = test_shmem_atomic_fetch_inc_nbi();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_atomic_fetch_inc_nbi()", result_shmem_atomic_fetch_inc_nbi, false); }
+
+      /* Run shmem_atomic_fetch_add_nbi() test */
+      shmem_barrier_all();
+      bool result_shmem_atomic_fetch_add_nbi = test_shmem_atomic_fetch_add_nbi();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_atomic_fetch_add_nbi()", result_shmem_atomic_fetch_add_nbi, false); }
+
+      /* Run shmem_atomic_fetch_and_nbi() test */
+      shmem_barrier_all();
+      bool result_shmem_atomic_fetch_and_nbi = test_shmem_atomic_fetch_and_nbi();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_atomic_fetch_and_nbi()", result_shmem_atomic_fetch_and_nbi, false); }
+
+      /* Run shmem_atomic_fetch_or_nbi() test */
+      shmem_barrier_all();
+      bool result_shmem_atomic_fetch_or_nbi = test_shmem_atomic_fetch_or_nbi();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_atomic_fetch_or_nbi()", result_shmem_atomic_fetch_or_nbi, false); }
+
+      /* Run shmem_atomic_fetch_xor_nbi() test */
+      shmem_barrier_all();
+      bool result_shmem_atomic_fetch_xor_nbi = test_shmem_atomic_fetch_xor_nbi();
+      shmem_barrier_all();
+      if (mype == 0) { display_test_result("shmem_atomic_fetch_xor_nbi()", result_shmem_atomic_fetch_xor_nbi, false); }
+    }
   }
 
-  /************************* START OF SIGNALING TESTS **************************/
+  /************************* SIGNALING TESTS **************************/
   shmem_barrier_all();
   if (opts.test_signaling) {
     if (mype == 0) { display_test_header("SIGNALING OPS"); }
     /* TODO: Call signaling operations tests here */
   }
 
-  /************************* START OF COLLECTIVES TESTS **************************/
+  /************************* COLLECTIVES TESTS **************************/
   shmem_barrier_all();
   if (opts.test_collectives) {
     if (mype == 0) { display_test_header("COLLECTIVE OPS"); }
     /* TODO: Call collective operations tests here */
   }
 
-  /************************* START OF PT2PT TESTS **************************/
+  /************************* PT2PT TESTS **************************/
   shmem_barrier_all();
   if (opts.test_pt2pt_synch) {
     if (mype == 0) { display_test_header("PT2PT SYNCHRONIZATION"); }
     /* TODO: Call point-to-point synchronization tests here */
   }
 
-  /************************* START OF MEM ORDERING TESTS **************************/
+  /************************* MEM ORDERING TESTS **************************/
   shmem_barrier_all();
   if (opts.test_mem_ordering) {
     if (mype == 0) { display_test_header("MEMORY ORDERING"); }
     /* TODO: Call memory ordering tests here */
   }
 
-  /************************* START OF DIS LOCKING TESTS **************************/
+  /************************* DIS LOCKING TESTS **************************/
   shmem_barrier_all();
   if (opts.test_locking) {
     if (mype == 0) { display_test_header("DISTRIBUTED LOCKING"); }
     /* TODO: Call distributed locking tests here */
   }
 
-  /************************* START OF FINALIZATION **************************/
+  /************************* FINALIZATION **************************/
   /* Run shmem_finalize() test */
   shmem_barrier_all();
   if (mype == 0) { display_test_header("FINALIZATION"); }

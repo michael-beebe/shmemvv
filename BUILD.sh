@@ -18,6 +18,10 @@ cmake \
 make -j 40
 # ctest
 
+export SHMEM_SYMMETRIC_HEAP_SIZE=128M
+export SHMEM_OFI_USE_PROVIDER=sockets
+export SHMEM_DEBUG=verbose
+
 echo ; echo
 cd ../
 ./TEST.sh all
