@@ -56,6 +56,8 @@ Will ONLY test the following routines:
 - shmem_my_pe()
 - shmem_n_pes()
 - shmem_pe_accessible()
+- shmem_barrier_all()
+- shmem_barrier()
 - shmem_info_get_version()
 - shmem_info_get_name()
 - shmem_finalize()
@@ -162,8 +164,6 @@ Will test the following routines:
 --test_collectives
 ```
 Will test the following routines:
--  shmem_barrier_all()
-- shmem_barrier()
 - shmem_sync()
 - shmem_sync_all()
 - shmem_alltoall()

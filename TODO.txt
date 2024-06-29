@@ -1,0 +1,2 @@
+- Add more data types to collective tests
+- figure out why the program hangs on random tests at runtime

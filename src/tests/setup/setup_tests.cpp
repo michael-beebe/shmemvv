@@ -42,6 +42,20 @@ bool test_shmem_barrier_all() {
 }
 
 /**
+  @brief Tests the shmem_barrier() routine.
+  @return True if the test is successful, false otherwise.
+ */
+bool test_shmem_barrier(void) {
+  static long pSync[SHMEM_BARRIER_SYNC_SIZE];
+  for (int i = 0; i < SHMEM_BARRIER_SYNC_SIZE; i++) {
+    pSync[i] = SHMEM_SYNC_VALUE;
+  }
+
+  shmem_barrier(0, 0, shmem_n_pes(), pSync);
+  return true;
+}
+
+/**
   @brief Tests retrieving the PE number of the calling PE.
   @return The PE number on success, -1 on failure.
  */

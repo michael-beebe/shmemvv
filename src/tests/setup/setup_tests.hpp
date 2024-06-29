@@ -24,6 +24,12 @@ bool test_shmem_init(void);
 bool test_shmem_barrier_all(void);
 
 /**
+  @brief Tests the shmem_barrier() routine.
+  @return True if the test is successful, false otherwise.
+ */
+bool test_shmem_barrier(void);
+
+/**
   @brief Tests retrieving the PE number of the calling PE.
   @return The PE number on success, -1 on failure.
  */
