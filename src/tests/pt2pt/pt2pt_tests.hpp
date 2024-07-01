@@ -9,6 +9,8 @@
 #include <shmem.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <ctime>
+#include <unistd.h>
 
 /* Function Prototypes */
 /**
