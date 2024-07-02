@@ -7,6 +7,7 @@
 #define THREADS_TESTS_HPP
 
 #include <shmem.h>
+#include <iostream>
 
 bool test_shmem_init_thread(void);
 bool test_shmem_query_thread(void);

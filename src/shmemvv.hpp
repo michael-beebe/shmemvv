@@ -32,6 +32,8 @@
 #define GREEN_COLOR "\033[32m"
 #define YELLOW_COLOR "\033[33m"
 
+#define DEBUG_LINE "--------------------------------------------"
+
 /**
   @struct test_options
   @brief Struct to hold selected tests options.
