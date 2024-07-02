@@ -198,7 +198,7 @@ Will test the following routines:
 
 #### Memory Ordering Routines
 ```
--test_mem_ordering
+--test_mem_ordering
 ```
 Will test the following routines:
 - shmem_fence()
@@ -206,7 +206,7 @@ Will test the following routines:
 
 #### Distributed Locking Routines
 ```
--test_locking
+--test_locking
 ```
 Will test the following routines:
 - shmem_lock()

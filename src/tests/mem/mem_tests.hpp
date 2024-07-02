@@ -12,7 +12,7 @@
 #include <cstring>
 
 /**
-  @brief Tests if a pointer is accessible from a remote PE.
+  @brief Tests the shmem_ptr() routine.
   @return True if the pointer is accessible, false otherwise.
  */
 bool test_shmem_ptr(void);
@@ -24,25 +24,25 @@ bool test_shmem_ptr(void);
 bool test_shmem_malloc_free(void);
 
 /**
-  @brief Tests the shmem_realloc() function.
+  @brief Tests the shmem_realloc() routine.
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_realloc(void);
 
 /**
-  @brief Tests the shmem_align() function.
+  @brief Tests the shmem_align() routine.
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_align(void);
 
 /**
-  @brief Tests the shmem_malloc_with_hints() function.
+  @brief Tests the shmem_malloc_with_hints() routine.
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_malloc_with_hints(void);
 
 /**
-  @brief Tests the shmem_calloc() function.
+  @brief Tests the shmem_calloc() routine.
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_calloc(void);

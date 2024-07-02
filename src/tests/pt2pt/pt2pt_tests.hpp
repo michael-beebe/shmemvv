@@ -7,8 +7,9 @@
 #define PT2PT_TESTS_HPP
 
 #include <shmem.h>
-#include <stdbool.h>
+#include <iostream>
 #include <stdio.h>
+#include <stdbool.h>
 #include <ctime>
 #include <unistd.h>
 

@@ -13,10 +13,10 @@ cmake \
   -DCMAKE_LIBRARY_PATH=$SOS_LIB         \
   -DCMAKE_C_LINKER_FLAGS="-lpmi_simple -lsma" \
   -DCMAKE_INSTALL_PREFIX=$SWHOME/shmemvv \
-  -DDEBUG=ON \
+  -DDEBUG=OFF \
   ../
 
-make -j 40
+make -j 50
 
 export SHMEM_SYMMETRIC_HEAP_SIZE=1G
 # export SHMEM_DEBUG=3
@@ -44,4 +44,4 @@ if [ ! -f "$exe" ]; then
 fi
 
 oshrun_flags="--bind-to core --map-by core"
-oshrun $oshrun_flags -np 2 $exe --test_pt2pt_synch
+oshrun $oshrun_flags -np 2 $exe --all
