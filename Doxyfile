@@ -1,0 +1,93 @@
+# Doxyfile 1.9.1
+
+# This file describes the settings to be used by the documentation system
+# doxygen (www.doxygen.org) for a project
+
+# All text after a `#' in the configuration file is considered a comment and
+# will be ignored
+
+# The format is:
+#   TAG = value [value, ...]
+
+# All values after a tag are space or comma separated.
+
+#---------------------------------------------------------------------------
+
+# Project related configuration options
+
+#---------------------------------------------------------------------------
+
+# The PROJECT_NAME tag is a single word (or a sequence of words surrounded 
+# by quotes) that should identify the project.
+
+PROJECT_NAME           = "shmemvv"
+
+# The PROJECT_NUMBER tag can be used to enter a project or revision number.
+# This could be handy for archiving the generated documentation or 
+# if some version control system is used.
+
+PROJECT_NUMBER         = 0.1
+
+# The PROJECT_BRIEF tag can be used to add a one line description of the project
+PROJECT_BRIEF          = "A V&V suite for OpenSHMEM implementations."
+
+# The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute) path
+# into which the generated documentation will be written. If a relative path
+# is entered, it will be relative to the location where doxygen was started.
+# If left blank the current directory will be used.
+
+OUTPUT_DIRECTORY       = ./docs
+
+# The GENERATE_HTML tag can be used to disable the HTML output.
+# Possible values are YES and NO.
+
+GENERATE_HTML          = YES
+
+# The GENERATE_LATEX tag can be used to disable the generation of the LaTeX 
+# files. 
+# Possible values are YES and NO.
+
+GENERATE_LATEX         = YES
+
+# The EXTRACT_ALL tag can be used to enable the extraction of all entities 
+# from the source files (if defined).
+
+EXTRACT_ALL            = YES
+
+# The RECURSIVE tag can be used to specify whether or not subdirectories should
+# be searched for input files as well.
+# Possible values are YES and NO.
+
+RECURSIVE              = YES
+
+# The INPUT tag can be used to specify the files and/or directories that contain
+# documented source files.
+
+INPUT                  = src
+
+# The FILE_PATTERNS tag can be used to specify one or more wildcard patterns 
+# (like *.cpp and *.h) to filter out the source files in the directories.
+# Note that if this tag is empty or omitted all files are included.
+
+FILE_PATTERNS          = *.cpp *.h
+
+# The EXCLUDE_PATTERNS tag can be used to specify one or more wildcard patterns 
+# to exclude certain files from being processed. 
+# Note that the wildcard syntax is similar to the one used in FILE_PATTERNS.
+# For example if you want to exclude all test directories you could specify:
+# EXCLUDE_PATTERNS       = */test/*
+
+EXCLUDE_PATTERNS       =
+
+# The EXTRACT_PRIVATE and EXTRACT_STATIC tags can be used to specify whether
+# the members (attributes and methods) of a class that are declared private 
+# or static should be included in the documentation.
+# Possible values are YES and NO.
+
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = NO
+
+# The GENERATE_TREEVIEW tag can be used to enable (YES) or disable (NO) the
+# graphical tree view of the documentation.
+
+GENERATE_TREEVIEW      = YES
