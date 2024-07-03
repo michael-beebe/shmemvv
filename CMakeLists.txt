@@ -14,5 +14,13 @@ if (DEBUG)
   add_definitions(-D_DEBUG_)
 endif()
 
+# ---- Check for dlfcn.h
+include(CheckIncludeFile)
+check_include_file("dlfcn.h" HAVE_DLFCN_H)
+
+if (NOT HAVE_DLFCN_H)
+  message(FATAL_ERROR "dlfcn.h not found, but required!")
+endif()
+
 # ---- Add subdirectory for src
 add_subdirectory(src)

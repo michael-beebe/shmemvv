@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <dlfcn.h>
 
 #include "tests/setup/setup_tests.hpp"
 #include "tests/threads/threads_tests.hpp"
@@ -101,6 +102,13 @@ void display_test_info(
   std::string shmem_version,
   int npes
 );
+
+/**
+  @brief Checks whether the tested OpenSHMEM implementation has a given routine
+  @param routine_name OpenSHMEM routine that we are making sure is present
+  @param mype Current OpenSHMEM PE
+ */
+ bool check_if_exists(std::string routine_name, int mype);
 
 /**
   @brief Displays whether the test passed

@@ -169,6 +169,26 @@ void display_test_info(
 }
 
 /**
+  @brief Checks whether the tested OpenSHMEM implementation has a given routine
+  @param routine_name OpenSHMEM routine that we are making sure is present
+  @param mype Current OpenSHMEM PE
+ */
+ bool check_if_exists(std::string routine_name, int mype) {
+  void *handle = dlopen(NULL, RTLD_LAZY);
+  if (!handle) {
+    if (mype == 0) {
+      std::cerr << RED_COLOR << "Failed to open handle: " << RESET_COLOR << dlerror() << std::endl;
+      return false;
+    }
+  }
+
+  void *symbol = dlsym(handle, routine_name.c_str());
+  dlclose(handle);
+
+  return symbol != nullptr;
+ }
+
+/**
   @brief Displays the result of a test.
   @param routine_name Name of the OpenSHMEM routine that was tested.
   @param passed True if the test passed, false if the test failed.

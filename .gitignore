@@ -14,3 +14,6 @@ _deps
 # --- Other stuff
 build
 *.bk
+CLEAN.sh
+TEST.sh
+TODO.txt
