@@ -44,4 +44,4 @@ if [ ! -f "$exe" ]; then
 fi
 
 oshrun_flags="--bind-to core --map-by core"
-oshrun $oshrun_flags -np 2 $exe --test_threads
+oshrun $oshrun_flags -np 2 $exe --all

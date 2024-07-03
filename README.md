@@ -172,9 +172,13 @@ Will test the following routines:
 - shmem_broadcast()
 - shmem_collect()
 - shmem_fcollect()
-- shmem_reductions
-    - and, or, xor
-    - max, min, sum, prod
+<!-- - shmem_and_reduce()
+- shmem_or_reduce()
+- shmem_xor_reduce() -->
+- shmem_max_reduce()
+- shmem_min_reduce()
+- shmem_sum_reduce()
+- shmem_prod_reduce()
 
 #### Point-Point Synchronization Routines
 ```
@@ -210,8 +214,8 @@ Will test the following routines:
 --test_locking
 ```
 Will test the following routines:
-- shmem_lock()
-- shmem_unlock()
+- shmem_set_lock()
+- shmem_clear_unlock()
 
 #### All tests
 ```

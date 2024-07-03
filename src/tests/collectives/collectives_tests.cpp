@@ -179,63 +179,6 @@ bool test_shmem_fcollect(void) {
   return success;
 }
 
-// /**
-//   @brief Tests the shmem_double_and_reduce() routine.
-//   @return True if the test is successful, false otherwise.
-//  */
-// bool test_shmem_and_reduce(void) {
-//   shmem_team_t team = SHMEM_TEAM_WORLD;
-//   double src = (double)shmem_my_pe();
-//   double and_result;
-
-//   shmem_double_and_reduce(team, &and_result, &src, 1);
-  
-//   double expected = (double)shmem_my_pe();
-//   for (int i = 1; i < shmem_n_pes(); i++) {
-//     expected = expected && (double)i;
-//   }
-
-//   return (and_result == expected);
-// }
-
-// /**
-//   @brief Tests the shmem_double_or_reduce() routine.
-//   @return True if the test is successful, false otherwise.
-//  */
-// bool test_shmem_or_reduce(void) {
-//   shmem_team_t team = SHMEM_TEAM_WORLD;
-//   double src = (double)shmem_my_pe();
-//   double or_result;
-
-//   shmem_double_or_reduce(team, &or_result, &src, 1);
-  
-//   double expected = 0.0;
-//   for (int i = 0; i < shmem_n_pes(); i++) {
-//     expected = expected || (double)i;
-//   }
-
-//   return (or_result == expected);
-// }
-
-// /**
-//   @brief Tests the shmem_double_xor_reduce() routine.
-//   @return True if the test is successful, false otherwise.
-//  */
-// bool test_shmem_xor_reduce(void) {
-//   shmem_team_t team = SHMEM_TEAM_WORLD;
-//   double src = (double)shmem_my_pe();
-//   double xor_result;
-
-//   shmem_double_xor_reduce(team, &xor_result, &src, 1);
-  
-//   double expected = 0.0;
-//   for (int i = 0; i < shmem_n_pes(); i++) {
-//     expected = (expected != (double)i);
-//   }
-
-//   return (xor_result == expected);
-// }
-
 /**
   @brief Tests the shmem_sum_reduce() routine.
   @return True if the test is successful, false otherwise.
