@@ -92,7 +92,6 @@ Will test the following routines:
 Will test the following routines:
 - shmem_team_my_pe()
 - shmem_team_n_pes()
-- shmem_team_config_t()
 - shmem_team_get_config()
 - shmem_team_translate_pe()
 - shmem_team_split_strided()
@@ -101,7 +100,7 @@ Will test the following routines:
 
 #### Communication/Context Management Routines
 ```
---test_comms
+--test_ctx
 ```
 Will test the following routines:
 - shmem_ctx_create()
@@ -172,13 +171,13 @@ Will test the following routines:
 - shmem_broadcast()
 - shmem_collect()
 - shmem_fcollect()
-<!-- - shmem_and_reduce()
-- shmem_or_reduce()
-- shmem_xor_reduce() -->
 - shmem_max_reduce()
 - shmem_min_reduce()
 - shmem_sum_reduce()
 - shmem_prod_reduce()
+<!-- - shmem_and_reduce()
+- shmem_or_reduce()
+- shmem_xor_reduce() -->
 
 #### Point-Point Synchronization Routines
 ```

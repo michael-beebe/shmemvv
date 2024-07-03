@@ -15,5 +15,5 @@ _deps
 build
 *.bk
 CLEAN.sh
-TEST.sh
+BUILD.sh
 TODO.txt

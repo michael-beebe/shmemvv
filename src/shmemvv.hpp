@@ -10,9 +10,13 @@
 #include <iostream>
 #include <getopt.h>
 #include <string>
+#include <cstring>
+#include <link.h>
 #include <vector>
 #include <sstream>
 #include <dlfcn.h>
+
+#include <elf.h>
 
 #include "tests/setup/setup_tests.hpp"
 #include "tests/threads/threads_tests.hpp"
@@ -45,7 +49,7 @@ struct test_options {
   bool test_threads;           /**< Flag to run thread support tests */
   bool test_mem;               /**< Flag to run memory management tests */
   bool test_teams;             /**< Flag to run team management tests */
-  bool test_comms;             /**< Flag to run communication management tests */
+  bool test_ctx;             /**< Flag to run communication management tests */
   bool test_remote;            /**< Flag to run remote memory access tests */
   bool test_atomics;           /**< Flag to run atomic memory operations tests */
   bool test_signaling;         /**< Flag to run signaling operations tests */
@@ -60,7 +64,7 @@ struct test_options {
    */
   test_options() :
     all(false), test_setup(false), test_threads(false),
-    test_mem(false), test_teams(false), test_comms(false),
+    test_mem(false), test_teams(false), test_ctx(false),
     test_remote(false), test_atomics(false), test_signaling(false),
     test_collectives(false), test_pt2pt_synch(false),
     test_mem_ordering(false), test_locking(false), help(false) {}
@@ -108,7 +112,15 @@ void display_test_info(
   @param routine_name OpenSHMEM routine that we are making sure is present
   @param mype Current OpenSHMEM PE
  */
- bool check_if_exists(std::string routine_name, int mype);
+//  bool check_if_exists(std::string routine_name, int mype);
+bool check_if_exists(const std::string& routine_name, int mype);
+
+/**
+  @brief Displays a warning message that the given routine is not avaible in the
+        tested OpenSHMEM library
+  @param routine_name OpenSHMEM routine
+*/
+void display_not_found_warning(std::string routine_name);
 
 /**
   @brief Displays whether the test passed

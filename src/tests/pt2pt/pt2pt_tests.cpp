@@ -459,7 +459,7 @@ bool test_shmem_test_any_vector(void) {
         shmem_free(flags);
         return false;
       }
-      sleep(1); // Sleep for a short duration to avoid busy waiting
+      sleep(1);
     }
   }
 
@@ -487,14 +487,14 @@ bool test_shmem_test_some_vector(void) {
       shmem_long_p(&flags[1], one, pe);
       shmem_long_p(&flags[3], one, pe);
     }
-    shmem_quiet(); // Ensure all puts are complete before proceeding
+    shmem_quiet();
   }
 
   shmem_barrier_all();
 
   if (mype != 0) {
     time_t start_time = time(NULL);
-    long cmp_values[4] = {0, 1, 0, 1}; // Check for flags[1] and flags[3] to be set
+    long cmp_values[4] = {0, 1, 0, 1};
     size_t indices[4];
     size_t num_indices;
     while ((num_indices = shmem_long_test_some_vector(flags, 4, indices, NULL, SHMEM_CMP_EQ, cmp_values)) == 0) {

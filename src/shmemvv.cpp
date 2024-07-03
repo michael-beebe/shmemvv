@@ -16,7 +16,7 @@ void display_help() {
   std::cout << "  --test_threads       Run thread support tests\n";
   std::cout << "  --test_mem           Run memory management tests\n";
   std::cout << "  --test_teams         Run team management tests\n";
-  std::cout << "  --test_comms         Run communication management tests\n";
+  std::cout << "  --test_ctx           Run communication/context management tests\n";
   std::cout << "  --test_remote        Run remote memory access tests\n";
   std::cout << "  --test_atomics       Run atomic memory operations tests\n";
   std::cout << "  --test_signaling     Run signaling operations tests\n";
@@ -43,7 +43,7 @@ bool parse_opts(int argc, char *argv[], test_options &opts) {
     {"test_threads", no_argument, 0, 'b'},
     {"test_mem", no_argument, 0, 'c'},
     {"test_teams", no_argument, 0, 'd'},
-    {"test_comms", no_argument, 0, 'e'},
+    {"test_ctx", no_argument, 0, 'e'},
     {"test_remote", no_argument, 0, 'f'},
     {"test_atomics", no_argument, 0, 'g'},
     {"test_signaling", no_argument, 0, 'h'},
@@ -73,7 +73,7 @@ bool parse_opts(int argc, char *argv[], test_options &opts) {
         opts.test_teams = true;
         break;
       case 'e':
-        opts.test_comms = true;
+        opts.test_ctx = true;
         break;
       case 'f':
         opts.test_remote = true;
@@ -109,7 +109,7 @@ bool parse_opts(int argc, char *argv[], test_options &opts) {
 
   /* If no specific tests are selected and --all is not specified, enable all tests */
   if (!(opts.test_setup || opts.test_threads || opts.test_mem || opts.test_teams ||
-        opts.test_comms || opts.test_remote || opts.test_atomics || opts.test_signaling ||
+        opts.test_ctx || opts.test_remote || opts.test_atomics || opts.test_signaling ||
         opts.test_collectives || opts.test_pt2pt_synch || opts.test_mem_ordering || opts.test_locking || opts.all)) {
     opts.all = true;
   }
@@ -169,24 +169,45 @@ void display_test_info(
 }
 
 /**
-  @brief Checks whether the tested OpenSHMEM implementation has a given routine
-  @param routine_name OpenSHMEM routine that we are making sure is present
-  @param mype Current OpenSHMEM PE
+ * Function to check if a routine exists
+ * @param routine_name - Name of the OpenSHMEM routine to check
+ * @param mype - Current PE number
+ * @return - True if the routine exists, false otherwise
  */
- bool check_if_exists(std::string routine_name, int mype) {
+bool check_if_exists(const std::string& routine_name, int mype) {
+  // void *handle = dlopen(NULL, RTLD_NOW | RTLD_GLOBAL);
   void *handle = dlopen(NULL, RTLD_LAZY);
   if (!handle) {
     if (mype == 0) {
-      std::cerr << RED_COLOR << "Failed to open handle: " << RESET_COLOR << dlerror() << std::endl;
-      return false;
+      std::cerr << "Failed to open handle: " << dlerror() << std::endl;
     }
+    return false;
   }
 
-  void *symbol = dlsym(handle, routine_name.c_str());
-  dlclose(handle);
+  /* Clear any existing errors */
+  dlerror();
 
+  void *symbol = dlsym(handle, routine_name.c_str());
+  const char *dlsym_error = dlerror();
+  if (dlsym_error) {
+    if (mype == 0) {
+      std::cerr << "Function " << routine_name << " not found: " << dlsym_error << std::endl;
+    }
+    symbol = nullptr;
+  }
+
+  dlclose(handle);
   return symbol != nullptr;
- }
+}
+
+/**
+  @brief Displays a warning message that the given routine is not avaible in the
+        tested OpenSHMEM library
+  @param routine_name OpenSHMEM routine
+*/
+void display_not_found_warning(std::string routine_name) {
+  std::cerr << YELLOW_COLOR << "This OpenSHMEM implementation does not support " << routine_name << RESET_COLOR << std::endl;
+}
 
 /**
   @brief Displays the result of a test.

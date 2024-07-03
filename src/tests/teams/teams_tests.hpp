@@ -22,12 +22,6 @@ bool test_shmem_team_my_pe(void);
 bool test_shmem_team_n_pes(void);
 
 /**
- * @brief Tests the shmem_team_config_t structure and related routines.
- * @return True if the test is successful, false otherwise.
- */
-bool test_shmem_team_config_t(void);
-
-/**
  * @brief Tests the shmem_team_get_config() routine.
  * @return True if the test is successful, false otherwise.
  */
