@@ -169,10 +169,10 @@ void display_test_info(
 }
 
 /**
- * Function to check if a routine exists
- * @param routine_name - Name of the OpenSHMEM routine to check
- * @param mype - Current PE number
- * @return - True if the routine exists, false otherwise
+ * @brief Function to check if a routine exists
+ * @param routine_name Name of the OpenSHMEM routine to check
+ * @param mype Current PE number
+ * @return True if the routine exists, false otherwise
  */
 bool check_if_exists(const std::string& routine_name, int mype) {
   // void *handle = dlopen(NULL, RTLD_NOW | RTLD_GLOBAL);
@@ -238,3 +238,63 @@ void finalize_shmemvv(int mype) {
   if (mype == 0) { display_test_result("shmem_finalize()", test_shmem_finalize(), false); }
   if (mype == 0) { std::cout << std::endl; }
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// /* Structure to hold routine name and found flag */
+// struct RoutineCheck {
+//   std::string routine_name;
+//   bool found;
+// };
+
+// /* Callback function for dl_iterate_phdr */
+// int callback(struct dl_phdr_info *info, size_t size, void *data) {
+//   RoutineCheck *routine_check = static_cast<RoutineCheck *>(data);
+
+//   for (int i = 0; i < info->dlpi_phnum; ++i) {
+//     if (info->dlpi_phdr[i].p_type == PT_DYNAMIC) {
+//       ElfW(Dyn) *dyn = reinterpret_cast<ElfW(Dyn) *>(info->dlpi_addr + info->dlpi_phdr[i].p_vaddr);
+//       ElfW(Sym) *symtab = nullptr;
+//       const char *strtab = nullptr;
+
+//       while (dyn->d_tag != DT_NULL) {
+//         if (dyn->d_tag == DT_SYMTAB) {
+//           symtab = reinterpret_cast<ElfW(Sym) *>(info->dlpi_addr + dyn->d_un.d_ptr);
+//         } else if (dyn->d_tag == DT_STRTAB) {
+//           strtab = reinterpret_cast<const char *>(info->dlpi_addr + dyn->d_un.d_ptr);
+//         }
+//         ++dyn;
+//       }
+
+//       if (symtab && strtab) {
+//         for (size_t j = 0; symtab[j].st_name != 0; ++j) {
+//           const char *sym_name = &strtab[symtab[j].st_name];
+//           std::cerr << "Checking symbol: " << sym_name << std::endl;
+//           if (std::strstr(sym_name, routine_check->routine_name.c_str()) != nullptr) {
+//             std::cerr << "Found matching symbol: " << sym_name << std::endl;
+//             routine_check->found = true;
+//             return 1; /* Stop iterating */
+//           }
+//         }
+//       }
+//     }
+//   }
+
+//   return 0; /* Continue iterating */
+// }
+
+// /**
+//  * Function to check if a routine exists
+//  * @param routine_name - Name of the OpenSHMEM routine to check
+//  * @param mype - Current PE number
+//  * @return - True if the routine exists, false otherwise
+//  */
+// bool check_if_exists(const std::string& routine_name, int mype) {
+//   std::cerr << "Entering check_if_exists for " << routine_name << std::endl;
+
+//   RoutineCheck routine_check = {routine_name, false};
+//   dl_iterate_phdr(callback, &routine_check);
+
+//   std::cerr << "Exiting check_if_exists for " << routine_name << " with result " << (routine_check.found ? "found" : "not found") << std::endl;
+//   return routine_check.found;
+// }
+//////////////////////////////////////////////////////////////////////////////////////////////////

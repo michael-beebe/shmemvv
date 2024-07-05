@@ -11,11 +11,12 @@
 #include <getopt.h>
 #include <string>
 #include <cstring>
-#include <link.h>
 #include <vector>
 #include <sstream>
 #include <dlfcn.h>
 
+#include <link.h>
+#include <algorithm>
 #include <elf.h>
 
 #include "tests/setup/setup_tests.hpp"
