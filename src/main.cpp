@@ -12,13 +12,13 @@
   @return EXIT_SUCCESS on success, EXIT_FAILURE on failure.
 */
 int main(int argc, char *argv[]) {
+  /************************* SETUP **************************/ 
   /* Load OpenSHMEM routines */
   if (!load_routines()) {
     std::cerr << "Failed to load OpenSHMEM routines" << std::endl;
     return EXIT_FAILURE;
   }
 
-  /************************* SETUP **************************/
   int mype;
   int npes;
   std::string version = "";
@@ -42,40 +42,54 @@ int main(int argc, char *argv[]) {
     opts.test_collectives = true; opts.test_pt2pt_synch = true; opts.test_mem_ordering = true; opts.test_locking = true;
   }
 
+  /* Variables to hold test results */
+  bool result_shmem_init = true;
+  bool result_shmem_init_thread = true;
+  bool result_shmem_barrier_all = true;
+  bool result_shmem_barrier = true;
+  bool result_shmem_my_pe = true;
+  bool result_shmem_n_pes = true;
+  bool result_shmem_pe_accessible = true;
+  bool result_shmem_info_get_version = true;
+  bool result_shmem_info_get_name = true;
+
   /* Initialize with shmem_init_thread() if THREADS tests were enabled */
   if (opts.test_threads) {
-    if ( !check_if_exists("shmem_init_thread", 0) ) {
+    if (!check_if_exists("shmem_init_thread", 0)) {
       std::cerr << RED_COLOR << "This OpenSHMEM implementation does not support shmem_init_thread()" << RESET_COLOR << std::endl;
       return EXIT_FAILURE;
     }
     else {
-      if (!test_shmem_init_thread()) {
-        display_test_result("shmem_init_thread()", false, true);
+      result_shmem_init_thread = test_shmem_init_thread();
+      if (!result_shmem_init_thread) {
+        display_test_result("shmem_init_thread()", result_shmem_init_thread, true);
+        return EXIT_FAILURE;
       }
     }
   }
   else {
     /* Initialize with regular shmem_init() if THREADS tests are not enabled */
-    if ( !check_if_exists("shmem_init", 0) ) {
+    if (!check_if_exists("shmem_init", 0)) {
       std::cerr << RED_COLOR << "This OpenSHMEM implementation does not support shmem_init()" << RESET_COLOR << std::endl;
       return EXIT_FAILURE;
     }
     else {
-      if (!test_shmem_init()) {
-        display_test_result("shmem_init()", false, true);
+      result_shmem_init = test_shmem_init();
+      if (!result_shmem_init) {
+        display_test_result("shmem_init()", result_shmem_init, true);
         return EXIT_FAILURE;
       }
     }
   }
 
   /* Run shmem_barrier_all() test */
-  if ( !check_if_exists("shmem_barrier_all", 0) ) {
+  if (!check_if_exists("shmem_barrier_all", 0)) {
     std::cerr << RED_COLOR << "This OpenSHMEM implementation does not support shmem_barrier_all()" << RESET_COLOR << std::endl;
     shmem_finalize();
     return EXIT_FAILURE;
   }
   else {
-    bool result_shmem_barrier_all = test_shmem_barrier_all();
+    result_shmem_barrier_all = test_shmem_barrier_all();
     if (!result_shmem_barrier_all) {
       if (shmem_my_pe() == 0) {
         display_test_result("shmem_barrier_all()", result_shmem_barrier_all, true);
@@ -87,15 +101,16 @@ int main(int argc, char *argv[]) {
 
   /* Run shmem_my_pe() test */
   shmem_barrier_all();
-  if ( !check_if_exists("shmem_my_pe", 0) ) {
+  if (!check_if_exists("shmem_my_pe", 0)) {
     std::cerr << RED_COLOR << "This OpenSHMEM implementation does not support shmem_my_pe()" << RESET_COLOR << std::endl;
     shmem_finalize();
     return EXIT_FAILURE;
   }
   else {
     mype = test_shmem_my_pe();
-    if (mype < 0) {
-      if (mype == 0) { display_test_result("shmem_my_pe()", false, true); }
+    result_shmem_my_pe = mype >= 0;
+    if (!result_shmem_my_pe) {
+      if (mype == 0) { display_test_result("shmem_my_pe()", result_shmem_my_pe, true); }
       shmem_finalize();
       return EXIT_FAILURE;
     }
@@ -103,7 +118,7 @@ int main(int argc, char *argv[]) {
 
   /* Run shmem_n_pes() test */
   shmem_barrier_all();
-  if ( !check_if_exists("shmem_n_pes", mype) ) {
+  if (!check_if_exists("shmem_n_pes", mype)) {
     if (mype == 0) {
       std::cerr << RED_COLOR << "This OpenSHMEM implementation does not support shmem_n_pes()" << RESET_COLOR << std::endl; 
     }
@@ -113,8 +128,11 @@ int main(int argc, char *argv[]) {
   else {
     /* Set npes */
     npes = test_shmem_n_pes();
-    if (npes <= 0) {
-      if (mype == 0) { display_test_result("shmem_n_pes()", false, true); }
+    result_shmem_n_pes = npes > 0;
+    if (!result_shmem_n_pes) {
+      if (mype == 0) {
+        display_test_result("shmem_n_pes()", result_shmem_n_pes, true);
+      }
       shmem_finalize();
       return EXIT_FAILURE;
     }
@@ -122,20 +140,37 @@ int main(int argc, char *argv[]) {
 
   /* Run shmem_pe_accessible() test */
   shmem_barrier_all();
-  if ( !check_if_exists("shmem_pe_accessible", mype) ) {
+  if (!check_if_exists("shmem_pe_accessible", mype)) {
     if (mype == 0) {
       display_not_found_warning("shmem_pe_accessible()");
     }
   }
   else {
-    if (!test_shmem_pe_accessible()) {
+    result_shmem_pe_accessible = test_shmem_pe_accessible();
+    if (!result_shmem_pe_accessible) {
       if (mype == 0) {
-        display_test_result("shmem_pe_accessible()", false, true);
+        display_test_result("shmem_pe_accessible()", result_shmem_pe_accessible, true);
       }
       shmem_finalize();
       return EXIT_FAILURE;
     }
   }
+
+  /*
+    Run test to make sure OpenSHMEM routines that aren't implemented
+    don't throw compiler errors
+  */
+  #ifdef _DEBUG_
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_fake_routine", mype)) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_fake_routine()");
+      }
+    }
+    else {
+      test_shmem_fake_routine();
+    }
+  #endif
 
   /* Display help if requested */
   shmem_barrier_all();
@@ -153,6 +188,55 @@ int main(int argc, char *argv[]) {
     display_logo();
   }
 
+  /* Run shmem_barrier() test */
+  shmem_barrier_all();
+  if (!check_if_exists("shmem_barrier", mype)) {
+    if (mype == 0) {
+      display_not_found_warning("shmem_barrier()");
+    }
+  }
+  else {
+    result_shmem_barrier = test_shmem_barrier();
+    shmem_barrier_all();
+  }
+
+  /* Run shmem_info_get_version() test */
+  shmem_barrier_all();
+  if (!check_if_exists("shmem_info_get_version", mype)) {
+    result_shmem_info_get_version = false;
+    if (mype == 0) {
+      display_not_found_warning("shmem_info_get_version()");
+    }
+  }
+  else {
+    version = test_shmem_info_get_version();
+    if (version == "") {
+      result_shmem_info_get_version = false;
+    }
+  }
+
+  /* Run shmem_info_get_name() test */
+  shmem_barrier_all();
+  if (!check_if_exists("shmem_info_get_name", mype)) {
+    result_shmem_info_get_name = false;
+    if (mype == 0) {
+      display_not_found_warning("shmem_info_get_name()");
+    }
+  }
+  else {
+    name = test_shmem_info_get_name();
+    if (name == "") {
+      result_shmem_info_get_name = false;
+    }
+  }
+  
+//////////////////////////////////////////////////////////////////////////////////////////
+  /* Display test information */
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_info(name, version, npes);
+  } 
+
   /* Print setup tests header */
   shmem_barrier_all();
   if (mype == 0) {
@@ -162,76 +246,23 @@ int main(int argc, char *argv[]) {
   /* shmem_init() and shmem_my_pe() tests passed */
   shmem_barrier_all();
   if (mype == 0) {
-    if (!opts.test_threads) { display_test_result("shmem_init()", true, true); }
-    display_test_result("shmem_barrier_all()", true, true);
-    display_test_result("shmem_my_pe()", true, true);
-    display_test_result("shmem_n_pes()", true, true);
-    display_test_result("shmem_pe_accessible()", true, true);
-  }
-
-  /* Run shmem_barrier() test */
-  shmem_barrier_all();
-  if ( !check_if_exists("shmem_barrier", mype) ) {
-    if (mype == 0) {
-      display_not_found_warning("shmem_barrier()");
+    if (!opts.test_threads) {
+      display_test_result("shmem_init()", result_shmem_init, true);
     }
-  }
-  else {
-    bool result_shmem_barrier = test_shmem_barrier();
-    shmem_barrier_all();
+    display_test_result("shmem_barrier_all()", result_shmem_barrier_all, true);
     display_test_result("shmem_barrier()", result_shmem_barrier, false);
-  }
-
-  /* Run shmem_info_get_version() test */
-  shmem_barrier_all();
-  if ( !check_if_exists("shmem_info_get_version", mype) ) {
-    if (mype == 0) {
-      display_not_found_warning("shmem_info_get_version()");
-    }
-  }
-  else {
-    version = test_shmem_info_get_version();
-    if (version == "") {
-      if (mype == 0) {
-        display_test_result("shmem_info_get_version()", false, false);
-      }
-    }
-    else if (version != "1.5" && version != "1.50") {
-      if (mype == 0) {
-        std::cerr << YELLOW_COLOR << "shmem_info_get_version() test did not return 1.5... Returned " << version << std::endl;
-      }
+    display_test_result("shmem_my_pe()", result_shmem_my_pe, true);
+    display_test_result("shmem_n_pes()", result_shmem_n_pes, true);
+    display_test_result("shmem_pe_accessible()", result_shmem_pe_accessible, true);
+    if (version != "1.5" && version != "1.50") {
+      std::cerr << YELLOW_COLOR << "shmem_info_get_version() test did not return 1.5... Returned " << version << std::endl;
     }
     else {
-      if (mype == 0) {
-        display_test_result("shmem_info_get_version()", true, false);
-      }
+      display_test_result("shmem_info_get_version()", result_shmem_info_get_version, false);
     }
+    display_test_result("shmem_info_get_name()", result_shmem_info_get_name,false);
   }
-
-  /* Run shmem_info_get_name() test */
-  shmem_barrier_all();
-  if ( !check_if_exists("shmem_info_get_name", mype) ) {
-    if (mype == 0) {
-      display_not_found_warning("shmem_info_get_name()");
-    }
-  }
-  else {
-    name = test_shmem_info_get_name();
-    if (name == "") {
-      if (mype == 0) {
-        display_test_result("shmem_info_get_name()", false, false);
-      }
-    }
-    else {
-      if (mype == 0) {
-        display_test_result("shmem_info_get_name()", true, false);
-      }
-    }
-
-    /* Display test information */
-    shmem_barrier_all();
-    if (mype == 0) { display_test_info(name, version, npes); } 
-  }
+//////////////////////////////////////////////////////////////////////////////////////////
 
   /************************* THREADS TESTS **************************/
   if (opts.test_threads) {
@@ -241,21 +272,8 @@ int main(int argc, char *argv[]) {
  
     /* If we made it here shmem_init_thread() passed */
     if (mype == 0) {
-      display_test_result("shmem_init_thread()", true, true);
+      display_test_result("shmem_init_thread()", result_shmem_init_thread, true);
     }
-
-    //////////////////////////////////////////////////////////////////
-    if ( !check_if_exists("shmem_fake_routine", mype) ) {
-      if (mype == 0) {
-        std::cout << "!!!!!!!shmem_fake_routine is a nullptr!!!!!!!" << std::endl;  
-      }
-    }
-    else {
-      if (mype == 0) {
-        std::cout << "!!!!!!!shmem_fake_routine is NOT a nullptr!!!!!!!" << std::endl;  
-      }
-    }
-    //////////////////////////////////////////////////////////////////
 
     /* Test shmem_query_thread() */
     shmem_barrier_all();

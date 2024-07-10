@@ -17,7 +17,7 @@ cmake \
   -DCMAKE_INCLUDE_PATH=</path/to/openshmem/include/dir>  \
   -DCMAKE_LIBRARY_PATH=</path/to/openshmem/lib/dir>      \
   -DCMAKE_C_LINKER_FLAGS="<linker flags, such as -lsma>" \
-  -DDEBUG=<OFF or ON>                                    \
+  -DDEBUG=<OFF/ON>                                       \
   ../
 ```
 

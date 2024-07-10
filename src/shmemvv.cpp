@@ -122,7 +122,6 @@ bool parse_opts(int argc, char *argv[], test_options &opts) {
  */
 void display_logo() {
   std::cout << R"(
-
   ░░░░░░░ ░░   ░░ ░░░    ░░░ ░░░░░░░ ░░░    ░░░ ░░    ░░ ░░    ░░ 
   ▒▒      ▒▒   ▒▒ ▒▒▒▒  ▒▒▒▒ ▒▒      ▒▒▒▒  ▒▒▒▒ ▒▒    ▒▒ ▒▒    ▒▒ 
   ▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒ ▒▒ ▒▒▒▒ ▒▒ ▒▒▒▒▒   ▒▒ ▒▒▒▒ ▒▒ ▒▒    ▒▒ ▒▒    ▒▒ 
@@ -139,12 +138,12 @@ void display_logo() {
 void display_test_header(std::string test_name) {
   if (test_name == "FINALIZATION") {
     std::cout << "\n==================================================================" << std::endl;
-    std::cout << "          Running " << test_name << " test..." << std::endl;
+    std::cout << "            Running " << test_name << " test..." << std::endl;
     std::cout << "==================================================================" << std::endl;
   }
   else {
     std::cout << "\n==================================================================" << std::endl;
-    std::cout << "          Running " << test_name << " tests..." << std::endl;
+    std::cout << "            Running " << test_name << " tests..." << std::endl;
     std::cout << "==================================================================" << std::endl;
   }
 }
@@ -160,9 +159,9 @@ void display_test_info(
   std::string shmem_version,
   int npes
 ) {
-  std::cout << "\n--------------------------------------------------------------" << std::endl;
-  std::cout << "                    Test Information" << std::endl;
-  std::cout << "--------------------------------------------------------------" << std::endl;
+  std::cout << "\n==================================================================" << std::endl;
+  std::cout << "===                   Test Information                         ===" << std::endl;
+  std::cout << "==================================================================" << std::endl;
   std::cout << "  OpenSHMEM Name:       " << shmem_name << std::endl;
   std::cout << "  OpenSHMEM Version:    " << shmem_version << std::endl;
   std::cout << "  Number of PEs:        " << npes << std::endl;  
@@ -170,7 +169,7 @@ void display_test_info(
 
 
 /* Define global function pointers */
-shmem_fake_routine_func p_shmem_fake_routine = nullptr; // FIXME:
+shmem_fake_routine_func p_shmem_fake_routine = nullptr;
 
 /* Setup, Exit, and Query Routines */
 shmem_init_func p_shmem_init = nullptr;
@@ -300,7 +299,7 @@ bool load_routines() {
     return false;
   }
 
-  p_shmem_fake_routine = reinterpret_cast<shmem_fake_routine_func>(dlsym(handle, "shmem_fake_routine")); // FIXME:
+  p_shmem_fake_routine = reinterpret_cast<shmem_fake_routine_func>(dlsym(handle, "shmem_fake_routine"));
 
   /* Setup, Exit, and Query Routines */
   p_shmem_init = reinterpret_cast<shmem_init_func>(dlsym(handle, "shmem_init"));
@@ -452,9 +451,11 @@ bool check_if_exists(const std::string& routine_name, int mype) {
 
   const char *dlsym_error = dlerror();
   if (dlsym_error) {
-    // if (mype == 0) {
-    //   std::cerr << "Function " << routine_name << " not found: " << dlsym_error << std::endl;
-    // }
+    #ifdef _DEBUG_
+      if (mype == 0) {
+        std::cerr << "Function " << routine_name << " not found: " << dlsym_error << std::endl;
+      }
+    #endif
     symbol = nullptr;
   }
 
