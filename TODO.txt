@@ -1,4 +1,0 @@
-- Add check_if_exists to each test in main.cpp
-- Refine tests themselves
-
-- Add more data types to collective tests

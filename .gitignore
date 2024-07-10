@@ -16,4 +16,4 @@ build
 *.bk
 CLEAN.sh
 BUILD.sh
-TODO.txt
+NM.*

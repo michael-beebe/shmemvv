@@ -22,5 +22,8 @@ if (NOT HAVE_DLFCN_H)
   message(FATAL_ERROR "dlfcn.h not found, but required!")
 endif()
 
+# --- Add include directory
+include_directories(${CMAKE_SOURCE_DIR}/src/include)
+
 # ---- Add subdirectory for src
 add_subdirectory(src)

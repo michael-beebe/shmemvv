@@ -4,7 +4,6 @@
 */
 
 #include "pt2pt_tests.hpp"
-#include <ctime>
 
 /**
   @brief Tests the shmem_wait_until() routine.

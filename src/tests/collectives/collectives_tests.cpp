@@ -1,7 +1,4 @@
 #include "collectives_tests.hpp"
-#include <shmem.h>
-#include <stdbool.h>
-#include <stdio.h>
 
 /**
   @brief Tests the shmem_sync() routine.
@@ -34,14 +31,14 @@ bool test_shmem_alltoall(void) {
   int npes = shmem_n_pes();
   int mype = shmem_my_pe();
   
-  int *src = (int *)shmem_malloc(npes * sizeof(int));
-  int *dest = (int *)shmem_malloc(npes * sizeof(int));
+  long *src = (long *)shmem_malloc(npes * sizeof(long));
+  long *dest = (long *)shmem_malloc(npes * sizeof(long));
 
   for (int i = 0; i < npes; ++i) {
     src[i] = mype + i;
   }
 
-  shmem_int_alltoall(SHMEM_TEAM_WORLD, dest, src, 1);
+  shmem_long_alltoall(SHMEM_TEAM_WORLD, dest, src, 1);
 
   bool success = true;
   for (int i = 0; i < npes; ++i) {
@@ -65,14 +62,14 @@ bool test_shmem_alltoalls(void) {
   int npes = shmem_n_pes();
   int mype = shmem_my_pe();
   
-  int *src = (int *)shmem_malloc(npes * npes * sizeof(int));
-  int *dest = (int *)shmem_malloc(npes * npes * sizeof(int));
+  long *src = (long *)shmem_malloc(npes * npes * sizeof(long));
+  long *dest = (long *)shmem_malloc(npes * npes * sizeof(long));
 
   for (int i = 0; i < npes * npes; ++i) {
     src[i] = mype + i;
   }
 
-  shmem_int_alltoalls(SHMEM_TEAM_WORLD, dest, src, 1, 1, npes);
+  shmem_long_alltoalls(SHMEM_TEAM_WORLD, dest, src, 1, 1, npes);
 
   bool success = true;
   for (int i = 0; i < npes * npes; ++i) {
@@ -88,8 +85,6 @@ bool test_shmem_alltoalls(void) {
   return success;
 }
 
-
-
 /**
   @brief Tests the shmem_broadcast() routine.
   @return True if the test is successful, false otherwise.
@@ -98,14 +93,14 @@ bool test_shmem_broadcast(void) {
   int npes = shmem_n_pes();
   int mype = shmem_my_pe();
   
-  int *src = (int *)shmem_malloc(4 * sizeof(int));
-  int *dest = (int *)shmem_malloc(4 * sizeof(int));
+  long *src = (long *)shmem_malloc(4 * sizeof(long));
+  long *dest = (long *)shmem_malloc(4 * sizeof(long));
 
   for (int i = 0; i < 4; ++i) {
     src[i] = mype;
   }
 
-  shmem_int_broadcast(SHMEM_TEAM_WORLD, dest, src, 4, 0);
+  shmem_long_broadcast(SHMEM_TEAM_WORLD, dest, src, 4, 0);
 
   bool success = true;
   for (int i = 0; i < 4; ++i) {
@@ -129,12 +124,12 @@ bool test_shmem_collect(void) {
   int npes = shmem_n_pes();
   int mype = shmem_my_pe();
   
-  int *src = (int *)shmem_malloc(sizeof(int));
-  int *dest = (int *)shmem_malloc(npes * sizeof(int));
+  long *src = (long *)shmem_malloc(sizeof(long));
+  long *dest = (long *)shmem_malloc(npes * sizeof(long));
 
   src[0] = mype;
 
-  shmem_int_collect(SHMEM_TEAM_WORLD, dest, src, 1);
+  shmem_long_collect(SHMEM_TEAM_WORLD, dest, src, 1);
 
   bool success = true;
   for (int i = 0; i < npes; ++i) {
@@ -158,12 +153,12 @@ bool test_shmem_fcollect(void) {
   int npes = shmem_n_pes();
   int mype = shmem_my_pe();
   
-  int *src = (int *)shmem_malloc(sizeof(int));
-  int *dest = (int *)shmem_malloc(npes * sizeof(int));
+  long *src = (long *)shmem_malloc(sizeof(long));
+  long *dest = (long *)shmem_malloc(npes * sizeof(long));
 
   src[0] = mype;
 
-  shmem_int_fcollect(SHMEM_TEAM_WORLD, dest, src, 1);
+  shmem_long_fcollect(SHMEM_TEAM_WORLD, dest, src, 1);
 
   bool success = true;
   for (int i = 0; i < npes; ++i) {
@@ -253,7 +248,6 @@ bool test_shmem_min_reduce(void) {
 
   return success;
 }
-
 
 /**
   @brief Tests the shmem_max_reduce() routine.

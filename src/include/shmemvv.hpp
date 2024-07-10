@@ -6,6 +6,8 @@
 #ifndef SHMEMVV_HPP
 #define SHMEMVV_HPP
 
+#include "routines.hpp"
+
 #include <shmem.h>
 #include <iostream>
 #include <getopt.h>
@@ -15,22 +17,18 @@
 #include <sstream>
 #include <dlfcn.h>
 
-#include <link.h>
-#include <algorithm>
-#include <elf.h>
-
-#include "tests/setup/setup_tests.hpp"
-#include "tests/threads/threads_tests.hpp"
-#include "tests/mem/mem_tests.hpp"
-#include "tests/teams/teams_tests.hpp"
-#include "tests/comms/comms_tests.hpp"
-#include "tests/remote/remote_tests.hpp"
-#include "tests/atomics/atomics_tests.hpp"
-#include "tests/signaling/signaling_tests.hpp"
-#include "tests/collectives/collectives_tests.hpp"
-#include "tests/pt2pt/pt2pt_tests.hpp"
-#include "tests/mem_ordering/mem_ordering_tests.hpp"
-#include "tests/locking/locking_tests.hpp"
+#include "../tests/setup/setup_tests.hpp"
+#include "../tests/threads/threads_tests.hpp"
+#include "../tests/mem/mem_tests.hpp"
+#include "../tests/teams/teams_tests.hpp"
+#include "../tests/comms/comms_tests.hpp"
+#include "../tests/remote/remote_tests.hpp"
+#include "../tests/atomics/atomics_tests.hpp"
+#include "../tests/signaling/signaling_tests.hpp"
+#include "../tests/collectives/collectives_tests.hpp"
+#include "../tests/pt2pt/pt2pt_tests.hpp"
+#include "../tests/mem_ordering/mem_ordering_tests.hpp"
+#include "../tests/locking/locking_tests.hpp"
 
 /* ANSI color codes for pretty output */
 #define RESET_COLOR "\033[0m"
@@ -50,7 +48,7 @@ struct test_options {
   bool test_threads;           /**< Flag to run thread support tests */
   bool test_mem;               /**< Flag to run memory management tests */
   bool test_teams;             /**< Flag to run team management tests */
-  bool test_ctx;             /**< Flag to run communication management tests */
+  bool test_ctx;               /**< Flag to run communication management tests */
   bool test_remote;            /**< Flag to run remote memory access tests */
   bool test_atomics;           /**< Flag to run atomic memory operations tests */
   bool test_signaling;         /**< Flag to run signaling operations tests */
@@ -109,11 +107,17 @@ void display_test_info(
 );
 
 /**
+  @brief Loads the OpenSHMEM routines dynamically.
+  @return True if successful, false if otherwise
+ */
+bool load_routines();
+
+/**
   @brief Checks whether the tested OpenSHMEM implementation has a given routine
   @param routine_name OpenSHMEM routine that we are making sure is present
   @param mype Current OpenSHMEM PE
+  @return true if it exists, false otherwise
  */
-//  bool check_if_exists(std::string routine_name, int mype);
 bool check_if_exists(const std::string& routine_name, int mype);
 
 /**
@@ -136,5 +140,6 @@ void display_test_result(std::string routine_name, bool passed, bool required);
   @param mype Current PE
  */
  void finalize_shmemvv(int mype);
+
 
 #endif /* SHMEMVV_HPP */

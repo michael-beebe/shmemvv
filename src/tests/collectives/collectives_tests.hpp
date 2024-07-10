@@ -8,6 +8,8 @@
 
 #include <shmem.h>
 #include <cstring>
+#include <stdbool.h>
+#include <stdio.h>
 
 /**
   @brief Tests the shmem_sync() routine.

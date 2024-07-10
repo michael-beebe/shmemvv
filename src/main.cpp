@@ -12,6 +12,12 @@
   @return EXIT_SUCCESS on success, EXIT_FAILURE on failure.
 */
 int main(int argc, char *argv[]) {
+  /* Load OpenSHMEM routines */
+  if (!load_routines()) {
+    std::cerr << "Failed to load OpenSHMEM routines" << std::endl;
+    return EXIT_FAILURE;
+  }
+
   /************************* SETUP **************************/
   int mype;
   int npes;
@@ -237,6 +243,19 @@ int main(int argc, char *argv[]) {
     if (mype == 0) {
       display_test_result("shmem_init_thread()", true, true);
     }
+
+    //////////////////////////////////////////////////////////////////
+    if ( !check_if_exists("shmem_fake_routine", mype) ) {
+      if (mype == 0) {
+        std::cout << "!!!!!!!shmem_fake_routine is a nullptr!!!!!!!" << std::endl;  
+      }
+    }
+    else {
+      if (mype == 0) {
+        std::cout << "!!!!!!!shmem_fake_routine is NOT a nullptr!!!!!!!" << std::endl;  
+      }
+    }
+    //////////////////////////////////////////////////////////////////
 
     /* Test shmem_query_thread() */
     shmem_barrier_all();
@@ -531,212 +550,134 @@ int main(int argc, char *argv[]) {
   /************************* REMOTE TESTS **************************/
   if (opts.test_remote) {
     shmem_barrier_all();
-    if (mype == 0) {
-      display_test_header("REMOTE MEMORY ACCESS");
-    }
+    if (mype == 0) { display_test_header("REMOTE MEMORY ACCESS"); }
 
     /* Check to make sure there are at least 2 PEs */
-    if (!(npes > 1)) {
+    if ( !(npes > 1) ) {
       std::cerr << RED_COLOR << "ERROR: " << RESET_COLOR << "REMOTE MEMORY ACCESS tests require at least 2 PEs!" << std::endl;
     }
     else {
       /* Run shmem_put() test */
       shmem_barrier_all();
-      bool result_shmem_put = test_shmem_put();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("shmem_put()", result_shmem_put, false);
+      if (!check_if_exists("shmem_long_put", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_put()");
+        }
+      }
+      else {
+        bool result_shmem_put = test_shmem_put();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_put()", result_shmem_put, false);
+        }
       }
 
       /* Run shmem_p() test */
       shmem_barrier_all();
-      bool result_shmem_p = test_shmem_p();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("shmem_p()", result_shmem_p, false);
+      if (!check_if_exists("shmem_long_p", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_p()");
+        }
+      }
+      else {
+        bool result_shmem_p = test_shmem_p();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_p()", result_shmem_p, false);
+        }
       }
 
       /* Run shmem_iput() test */
       shmem_barrier_all();
-      bool result_shmem_iput = test_shmem_iput();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("shmem_iput()", result_shmem_iput, false);
+      if (!check_if_exists("shmem_long_iput", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_iput()");
+        }
+      }
+      else {
+        bool result_shmem_iput = test_shmem_iput();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_iput()", result_shmem_iput, false);
+        }
       }
 
       /* Run shmem_get() test */
       shmem_barrier_all();
-      bool result_shmem_get = test_shmem_get();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("shmem_get()", result_shmem_get, false);
+      if (!check_if_exists("shmem_long_get", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_get()");
+        }
+      }
+      else {
+        bool result_shmem_get = test_shmem_get();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_get()", result_shmem_get, false);
+        }
       }
 
       /* Run shmem_g() test */
       shmem_barrier_all();
-      bool result_shmem_g = test_shmem_g();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("shmem_g()", result_shmem_g, false);
+      if (!check_if_exists("shmem_long_g", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_g()");
+        }
+      }
+      else {
+        bool result_shmem_g = test_shmem_g();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_g()", result_shmem_g, false);
+        }
       }
 
       /* Run shmem_iget() test */
       shmem_barrier_all();
-      bool result_shmem_iget = test_shmem_iget();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("shmem_iget()", result_shmem_iget, false);
+      if (!check_if_exists("shmem_long_iget", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_iget()");
+        }
+      }
+      else {
+        bool result_shmem_iget = test_shmem_iget();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_iget()", result_shmem_iget, false);
+        }
       }
 
       /* Run shmem_put_nbi() test */
       shmem_barrier_all();
-      bool result_shmem_put_nbi = test_shmem_put_nbi();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("shmem_put_nbi()", result_shmem_put_nbi, false);
+      if (!check_if_exists("shmem_long_put_nbi", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_put_nbi()");
+        }
+      }
+      else {
+        bool result_shmem_put_nbi = test_shmem_put_nbi();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_put_nbi()", result_shmem_put_nbi, false);
+        }
       }
 
       /* Run shmem_get_nbi() test */
       shmem_barrier_all();
-      bool result_shmem_get_nbi = test_shmem_get_nbi();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("shmem_get_nbi()", result_shmem_get_nbi, false);
+      if (!check_if_exists("shmem_long_get_nbi", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_get_nbi()");
+        }
+      }
+      else {
+        bool result_shmem_get_nbi = test_shmem_get_nbi();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_get_nbi()", result_shmem_get_nbi, false);
+        }
       }
     }
   }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // if (opts.test_remote) {
-  //   shmem_barrier_all();
-  //   if (mype == 0) { display_test_header("REMOTE MEMORY ACCESS"); }
-
-  //   /* Check to make sure there are at least 2 PEs */
-  //   if ( !(npes > 1) ) {
-  //     std::cerr << RED_COLOR << "ERROR: " << RESET_COLOR << "REMOTE MEMORY ACCESS tests require at least 2 PEs!" << std::endl;
-  //   }
-  //   else {
-  //     /* Run shmem_put() test */
-  //     shmem_barrier_all();
-  //     if (!check_if_exists("shmem_put", mype)) {
-  //       if (mype == 0) {
-  //         display_not_found_warning("shmem_put()");
-  //       }
-  //     }
-  //     else {
-  //       bool result_shmem_put = test_shmem_put();
-  //       shmem_barrier_all();
-  //       if (mype == 0) {
-  //         display_test_result("shmem_put()", result_shmem_put, false);
-  //       }
-  //     }
-
-  //     /* Run shmem_p() test */
-  //     shmem_barrier_all();
-  //     if (!check_if_exists("shmem_p", mype)) {
-  //       if (mype == 0) {
-  //         display_not_found_warning("shmem_p()");
-  //       }
-  //     }
-  //     else {
-  //       bool result_shmem_p = test_shmem_p();
-  //       shmem_barrier_all();
-  //       if (mype == 0) {
-  //         display_test_result("shmem_p()", result_shmem_p, false);
-  //       }
-  //     }
-
-  //     /* Run shmem_iput() test */
-  //     shmem_barrier_all();
-  //     if (!check_if_exists("shmem_iput", mype)) {
-  //       if (mype == 0) {
-  //         display_not_found_warning("shmem_iput()");
-  //       }
-  //     }
-  //     else {
-  //       bool result_shmem_iput = test_shmem_iput();
-  //       shmem_barrier_all();
-  //       if (mype == 0) {
-  //         display_test_result("shmem_iput()", result_shmem_iput, false);
-  //       }
-  //     }
-
-  //     /* Run shmem_get() test */
-  //     shmem_barrier_all();
-  //     if (!check_if_exists("shmem_get", mype)) {
-  //       if (mype == 0) {
-  //         display_not_found_warning("shmem_get()");
-  //       }
-  //     }
-  //     else {
-  //       bool result_shmem_get = test_shmem_get();
-  //       shmem_barrier_all();
-  //       if (mype == 0) {
-  //         display_test_result("shmem_get()", result_shmem_get, false);
-  //       }
-  //     }
-
-  //     /* Run shmem_g() test */
-  //     shmem_barrier_all();
-  //     if (!check_if_exists("shmem_g", mype)) {
-  //       if (mype == 0) {
-  //         display_not_found_warning("shmem_g()");
-  //       }
-  //     }
-  //     else {
-  //       bool result_shmem_g = test_shmem_g();
-  //       shmem_barrier_all();
-  //       if (mype == 0) {
-  //         display_test_result("shmem_g()", result_shmem_g, false);
-  //       }
-  //     }
-
-  //     /* Run shmem_iget() test */
-  //     shmem_barrier_all();
-  //     if (!check_if_exists("shmem_iget", mype)) {
-  //       if (mype == 0) {
-  //         display_not_found_warning("shmem_iget()");
-  //       }
-  //     }
-  //     else {
-  //       bool result_shmem_iget = test_shmem_iget();
-  //       shmem_barrier_all();
-  //       if (mype == 0) {
-  //         display_test_result("shmem_iget()", result_shmem_iget, false);
-  //       }
-  //     }
-
-  //     /* Run shmem_put_nbi() test */
-  //     shmem_barrier_all();
-  //     if (!check_if_exists("shmem_put_nbi", mype)) {
-  //       if (mype == 0) {
-  //         display_not_found_warning("shmem_put_nbi()");
-  //       }
-  //     }
-  //     else {
-  //       bool result_shmem_put_nbi = test_shmem_put_nbi();
-  //       shmem_barrier_all();
-  //       if (mype == 0) {
-  //         display_test_result("shmem_put_nbi()", result_shmem_put_nbi, false);
-  //       }
-  //     }
-
-  //     /* Run shmem_get_nbi() test */
-  //     shmem_barrier_all();
-  //     if (!check_if_exists("shmem_get_nbi", mype)) {
-  //       if (mype == 0) {
-  //         display_not_found_warning("shmem_get_nbi()");
-  //       }
-  //     }
-  //     else {
-  //       bool result_shmem_get_nbi = test_shmem_get_nbi();
-  //       shmem_barrier_all();
-  //       if (mype == 0) {
-  //         display_test_result("shmem_get_nbi()", result_shmem_get_nbi, false);
-  //       }
-  //     }
-  //   }
-  // }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   /************************* ATOMICS TESTS **************************/
   if (opts.test_atomics) {
     shmem_barrier_all();
@@ -748,166 +689,346 @@ int main(int argc, char *argv[]) {
       << "ATOMIC MEMORY OPS tests require at least 2 PEs!" << std::endl;
     }
     else {
-      /* Run shmem_atomic_fetch() test */ // TODO: add check_if_exists
+      /* Run shmem_atomic_fetch() test */
       shmem_barrier_all();
-      bool result_shmem_atomic_fetch = test_shmem_atomic_fetch();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_atomic_fetch()", result_shmem_atomic_fetch, false); }
+      if (!check_if_exists("shmem_long_atomic_fetch", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_atomic_fetch()");
+        }
+      }
+      else {
+        bool result_shmem_atomic_fetch = test_shmem_atomic_fetch();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_atomic_fetch()", result_shmem_atomic_fetch, false); }
+      }
 
-      /* Run shmem_atomic_set() test */ // TODO: add check_if_exists
+      /* Run shmem_atomic_set() test */
       shmem_barrier_all();
-      bool result_shmem_atomic_set = test_shmem_atomic_set();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_atomic_set()", result_shmem_atomic_set, false); }
+      if (!check_if_exists("shmem_long_atomic_set", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_atomic_set()");
+        }
+      }
+      else {
+        bool result_shmem_atomic_set = test_shmem_atomic_set();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_atomic_set()", result_shmem_atomic_set, false); }
+      }
 
-      /* Run shmem_atomic_compare_swap() test */ // TODO: add check_if_exists
+      /* Run shmem_atomic_compare_swap() test */
       shmem_barrier_all();
-      bool result_shmem_atomic_compare_swap = test_shmem_atomic_compare_swap();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_atomic_compare_swap()", result_shmem_atomic_compare_swap, false); }
+      if (!check_if_exists("shmem_long_atomic_compare_swap", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_atomic_compare_swap()");
+        }
+      }
+      else {
+        bool result_shmem_atomic_compare_swap = test_shmem_atomic_compare_swap();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_atomic_compare_swap()", result_shmem_atomic_compare_swap, false); }
+      }
 
-      /* Run shmem_atomic_swap() test */ // TODO: add check_if_exists
+      /* Run shmem_atomic_swap() test */
       shmem_barrier_all();
-      bool result_shmem_atomic_swap = test_shmem_atomic_swap();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_atomic_swap()", result_shmem_atomic_swap, false); }
+      if (!check_if_exists("shmem_long_atomic_swap", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_atomic_swap()");
+        }
+      }
+      else {
+        bool result_shmem_atomic_swap = test_shmem_atomic_swap();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_atomic_swap()", result_shmem_atomic_swap, false); }
+      }
 
-      /* Run shmem_atomic_fetch_inc() test */ // TODO: add check_if_exists
+      /* Run shmem_atomic_fetch_inc() test */
       shmem_barrier_all();
-      bool result_shmem_atomic_fetch_inc = test_shmem_atomic_fetch_inc();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_atomic_fetch_inc()", result_shmem_atomic_fetch_inc, false); }
+      if (!check_if_exists("shmem_long_atomic_fetch_inc", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_atomic_fetch_inc()");
+        }
+      }
+      else {
+        bool result_shmem_atomic_fetch_inc = test_shmem_atomic_fetch_inc();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_atomic_fetch_inc()", result_shmem_atomic_fetch_inc, false); }
+      }
 
-      /* Run shmem_atomic_inc() test */ // TODO: add check_if_exists
+      /* Run shmem_atomic_inc() test */
       shmem_barrier_all();
-      bool result_shmem_atomic_inc = test_shmem_atomic_inc();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_atomic_inc()", result_shmem_atomic_inc, false); }
+      if (!check_if_exists("shmem_long_atomic_inc", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_atomic_inc()");
+        }
+      }
+      else {
+        bool result_shmem_atomic_inc = test_shmem_atomic_inc();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_atomic_inc()", result_shmem_atomic_inc, false); }
+      }
 
-      /* Run shmem_atomic_fetch_add() test */ // TODO: add check_if_exists
+      /* Run shmem_atomic_fetch_add() test */
       shmem_barrier_all();
-      bool result_shmem_atomic_fetch_add = test_shmem_atomic_fetch_add();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_atomic_fetch_add()", result_shmem_atomic_fetch_add, false); }
+      if (!check_if_exists("shmem_long_atomic_fetch_add", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_atomic_fetch_add()");
+        }
+      }
+      else {
+        bool result_shmem_atomic_fetch_add = test_shmem_atomic_fetch_add();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_atomic_fetch_add()", result_shmem_atomic_fetch_add, false); }
+      }
 
-      /* Run shmem_atomic_add() test */ // TODO: add check_if_exists
+      /* Run shmem_atomic_add() test */
       shmem_barrier_all();
-      bool result_shmem_atomic_add = test_shmem_atomic_add();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_atomic_add()", result_shmem_atomic_add, false); }
+      if (!check_if_exists("shmem_long_atomic_add", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_atomic_add()");
+        }
+      }
+      else {
+        bool result_shmem_atomic_add = test_shmem_atomic_add();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_atomic_add()", result_shmem_atomic_add, false); }
+      }
 
-      /* Run shmem_atomic_fetch_and() test */ // TODO: add check_if_exists
+      /* Run shmem_atomic_fetch_and() test */
       shmem_barrier_all();
-      bool result_shmem_atomic_fetch_and = test_shmem_atomic_fetch_and();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_atomic_fetch_and()", result_shmem_atomic_fetch_and, false); }
+      if (!check_if_exists("shmem_long_atomic_fetch_and", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_atomic_fetch_and()");
+        }
+      }
+      else {
+        bool result_shmem_atomic_fetch_and = test_shmem_atomic_fetch_and();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_atomic_fetch_and()", result_shmem_atomic_fetch_and, false); }
+      }
 
-      /* Run shmem_atomic_and() test */ // TODO: add check_if_exists
+      /* Run shmem_atomic_and() test */
       shmem_barrier_all();
-      bool result_shmem_atomic_and = test_shmem_atomic_and();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_atomic_and()", result_shmem_atomic_and, false); }
+      if (!check_if_exists("shmem_long_atomic_and", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_atomic_and()");
+        }
+      }
+      else {
+        bool result_shmem_atomic_and = test_shmem_atomic_and();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_atomic_and()", result_shmem_atomic_and, false); }
+      }
 
-      /* Run shmem_atomic_fetch_or() test */ // TODO: add check_if_exists
+      /* Run shmem_atomic_fetch_or() test */
       shmem_barrier_all();
-      bool result_shmem_atomic_fetch_or = test_shmem_atomic_fetch_or();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_atomic_fetch_or()", result_shmem_atomic_fetch_or, false); }
+      if (!check_if_exists("shmem_long_atomic_fetch_or", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_atomic_fetch_or()");
+        }
+      }
+      else {
+        bool result_shmem_atomic_fetch_or = test_shmem_atomic_fetch_or();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_atomic_fetch_or()", result_shmem_atomic_fetch_or, false); }
+      }
 
-      /* Run shmem_atomic_or() test */ // TODO: add check_if_exists
+      /* Run shmem_atomic_or() test */
       shmem_barrier_all();
-      bool result_shmem_atomic_or = test_shmem_atomic_or();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_atomic_or()", result_shmem_atomic_or, false); }
+      if (!check_if_exists("shmem_long_atomic_or", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_atomic_or()");
+        }
+      }
+      else {
+        bool result_shmem_atomic_or = test_shmem_atomic_or();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_atomic_or()", result_shmem_atomic_or, false); }
+      }
 
-      /* Run shmem_atomic_fetch_xor() test */ // TODO: add check_if_exists
+      /* Run shmem_atomic_fetch_xor() test */
       shmem_barrier_all();
-      bool result_shmem_atomic_fetch_xor = test_shmem_atomic_fetch_xor();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_atomic_fetch_xor()", result_shmem_atomic_fetch_xor, false); }
+      if (!check_if_exists("shmem_long_atomic_fetch_xor", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_atomic_fetch_xor()");
+        }
+      }
+      else {
+        bool result_shmem_atomic_fetch_xor = test_shmem_atomic_fetch_xor();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_atomic_fetch_xor()", result_shmem_atomic_fetch_xor, false); }
+      }
 
-      /* Run shmem_atomic_xor() test */ // TODO: add check_if_exists
+      /* Run shmem_atomic_xor() test */
       shmem_barrier_all();
-      bool result_shmem_atomic_xor = test_shmem_atomic_xor();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_atomic_xor()", result_shmem_atomic_xor, false); }
+      if (!check_if_exists("shmem_long_atomic_xor", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_atomic_xor()");
+        }
+      }
+      else {
+        bool result_shmem_atomic_xor = test_shmem_atomic_xor();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_atomic_xor()", result_shmem_atomic_xor, false); }
+      }
 
-      /* Run shmem_atomic_fetch_nbi() test */ // TODO: add check_if_exists
+      /* Run shmem_atomic_fetch_nbi() test */
       shmem_barrier_all();
-      bool result_shmem_atomic_fetch_nbi = test_shmem_atomic_fetch_nbi();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_atomic_fetch_nbi()", result_shmem_atomic_fetch_nbi, false); }
+      if (!check_if_exists("shmem_long_atomic_fetch_nbi", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_atomic_fetch_nbi()");
+        }
+      }
+      else {
+        bool result_shmem_atomic_fetch_nbi = test_shmem_atomic_fetch_nbi();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_atomic_fetch_nbi()", result_shmem_atomic_fetch_nbi, false); }
+      }
 
-      /* Run shmem_atomic_compare_swap_nbi() test */ // TODO: add check_if_exists
+      /* Run shmem_atomic_compare_swap_nbi() test */
       shmem_barrier_all();
-      bool result_shmem_atomic_compare_swap_nbi = test_shmem_atomic_compare_swap_nbi();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_atomic_compare_swap_nbi()", result_shmem_atomic_compare_swap_nbi, false); }
+      if (!check_if_exists("shmem_long_atomic_compare_swap_nbi", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_atomic_compare_swap_nbi()");
+        }
+      }
+      else {
+        bool result_shmem_atomic_compare_swap_nbi = test_shmem_atomic_compare_swap_nbi();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_atomic_compare_swap_nbi()", result_shmem_atomic_compare_swap_nbi, false); }
+      }
 
-      /* Run shmem_atomic_swap_nbi() test */ // TODO: add check_if_exists
+      /* Run shmem_atomic_swap_nbi() test */
       shmem_barrier_all();
-      bool result_shmem_atomic_swap_nbi = test_shmem_atomic_swap_nbi();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_atomic_swap_nbi()", result_shmem_atomic_swap_nbi, false); }
+      if (!check_if_exists("shmem_long_atomic_swap_nbi", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_atomic_swap_nbi()");
+        }
+      }
+      else {
+        bool result_shmem_atomic_swap_nbi = test_shmem_atomic_swap_nbi();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_atomic_swap_nbi()", result_shmem_atomic_swap_nbi, false); }
+      }
 
-      /* Run shmem_atomic_fetch_inc_nbi() test */ // TODO: add check_if_exists
+      /* Run shmem_atomic_fetch_inc_nbi() test */
       shmem_barrier_all();
-      bool result_shmem_atomic_fetch_inc_nbi = test_shmem_atomic_fetch_inc_nbi();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_atomic_fetch_inc_nbi()", result_shmem_atomic_fetch_inc_nbi, false); }
+      if (!check_if_exists("shmem_long_atomic_fetch_inc_nbi", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_atomic_fetch_inc_nbi()");
+        }
+      }
+      else {
+        bool result_shmem_atomic_fetch_inc_nbi = test_shmem_atomic_fetch_inc_nbi();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_atomic_fetch_inc_nbi()", result_shmem_atomic_fetch_inc_nbi, false); }
+      }
 
-      /* Run shmem_atomic_fetch_add_nbi() test */ // TODO: add check_if_exists
+      /* Run shmem_atomic_fetch_add_nbi() test */
       shmem_barrier_all();
-      bool result_shmem_atomic_fetch_add_nbi = test_shmem_atomic_fetch_add_nbi();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_atomic_fetch_add_nbi()", result_shmem_atomic_fetch_add_nbi, false); }
+      if (!check_if_exists("shmem_long_atomic_fetch_add_nbi", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_atomic_fetch_add_nbi()");
+        }
+      }
+      else {
+        bool result_shmem_atomic_fetch_add_nbi = test_shmem_atomic_fetch_add_nbi();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_atomic_fetch_add_nbi()", result_shmem_atomic_fetch_add_nbi, false); }
+      }
 
-      /* Run shmem_atomic_fetch_and_nbi() test */ // TODO: add check_if_exists
+      /* Run shmem_atomic_fetch_and_nbi() test */
       shmem_barrier_all();
-      bool result_shmem_atomic_fetch_and_nbi = test_shmem_atomic_fetch_and_nbi();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_atomic_fetch_and_nbi()", result_shmem_atomic_fetch_and_nbi, false); }
+      if (!check_if_exists("shmem_long_atomic_fetch_and_nbi", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_atomic_fetch_and_nbi()");
+        }
+      }
+      else {
+        bool result_shmem_atomic_fetch_and_nbi = test_shmem_atomic_fetch_and_nbi();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_atomic_fetch_and_nbi()", result_shmem_atomic_fetch_and_nbi, false); }
+      }
 
-      /* Run shmem_atomic_fetch_or_nbi() test */ // TODO: add check_if_exists
+      /* Run shmem_atomic_fetch_or_nbi() test */
       shmem_barrier_all();
-      bool result_shmem_atomic_fetch_or_nbi = test_shmem_atomic_fetch_or_nbi();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_atomic_fetch_or_nbi()", result_shmem_atomic_fetch_or_nbi, false); }
+      if (!check_if_exists("shmem_long_atomic_fetch_or_nbi", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_atomic_fetch_or_nbi()");
+        }
+      }
+      else {
+        bool result_shmem_atomic_fetch_or_nbi = test_shmem_atomic_fetch_or_nbi();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_atomic_fetch_or_nbi()", result_shmem_atomic_fetch_or_nbi, false); }
+      }
 
-      /* Run shmem_atomic_fetch_xor_nbi() test */ // TODO: add check_if_exists
+      /* Run shmem_atomic_fetch_xor_nbi() test */
       shmem_barrier_all();
-      bool result_shmem_atomic_fetch_xor_nbi = test_shmem_atomic_fetch_xor_nbi();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_atomic_fetch_xor_nbi()", result_shmem_atomic_fetch_xor_nbi, false); }
+      if (!check_if_exists("shmem_long_atomic_fetch_xor_nbi", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_atomic_fetch_xor_nbi()");
+        }
+      }
+      else {
+        bool result_shmem_atomic_fetch_xor_nbi = test_shmem_atomic_fetch_xor_nbi();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_atomic_fetch_xor_nbi()", result_shmem_atomic_fetch_xor_nbi, false); }
+      }
     }
   }
-
   /************************* SIGNALING TESTS **************************/
   if (opts.test_signaling) {
     shmem_barrier_all();
     if (mype == 0) { display_test_header("SIGNALING OPS"); }
 
-    if ( !(npes > 1) ) {
+    if (!(npes > 1)) {
       std::cerr << RED_COLOR << "ERROR: " << RESET_COLOR << "SIGNALING OPS tests require at least 2 PEs!" << std::endl;
     }
     else {
-      /* Run shmem_put_signal() test */ // TODO: add check_if_exists
+      /* Run shmem_put_signal() test */
       shmem_barrier_all();
-      bool result_shmem_put_signal = test_shmem_put_signal();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_put_signal()", result_shmem_put_signal, false); }
+      if (!check_if_exists("shmem_long_put_signal", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_put_signal()");
+        }
+      }
+      else {
+        bool result_shmem_put_signal = test_shmem_put_signal();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_put_signal()", result_shmem_put_signal, false);
+        }
+      }
 
-      /* Run shmem_put_signal_nbi() test */ // TODO: add check_if_exists
+      /* Run shmem_put_signal_nbi() test */
       shmem_barrier_all();
-      bool result_shmem_put_signal_nbi = test_shmem_put_signal_nbi();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_put_signal_nbi()", result_shmem_put_signal_nbi, false); }
+      if (!check_if_exists("shmem_long_put_signal_nbi", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_put_signal_nbi()");
+        }
+      }
+      else {
+        bool result_shmem_put_signal_nbi = test_shmem_put_signal_nbi();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_put_signal_nbi()", result_shmem_put_signal_nbi, false);
+        }
+      }
 
-      /* Run shmem_signal_fetch() test */ // TODO: add check_if_exists
+      /* Run shmem_signal_fetch() test */
       shmem_barrier_all();
-      bool result_shmem_signal_fetch = test_shmem_signal_fetch();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_signal_fetch()", result_shmem_signal_fetch, false); }
+      if (!check_if_exists("shmem_signal_fetch", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_signal_fetch()");
+        }
+      }
+      else {
+        bool result_shmem_signal_fetch = test_shmem_signal_fetch();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_signal_fetch()", result_shmem_signal_fetch, false);
+        }
+      }
     }
   }
 
@@ -922,173 +1043,376 @@ int main(int argc, char *argv[]) {
       std::cerr << RED_COLOR << "ERROR: " << RESET_COLOR << "COLLECTIVE tests require at least 2 PEs!" << std::endl;
     }
     else {
-      /* Run shmem_sync() test */ // TODO: add check_if_exists
+      /* Run shmem_sync() test */
       shmem_barrier_all();
-      bool result_shmem_sync = test_shmem_sync();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_sync()", result_shmem_sync, false); }
+      if (!check_if_exists("shmem_sync", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_sync()");
+        }
+      } 
+      else {
+        bool result_shmem_sync = test_shmem_sync();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_sync()", result_shmem_sync, false);
+        }
+      }
 
-      /* Run shmem_sync_all() test */ // TODO: add check_if_exists
+      /* Run shmem_sync_all() test */
       shmem_barrier_all();
-      bool result_shmem_sync_all = test_shmem_sync_all();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_sync_all()", result_shmem_sync_all, false); }
+      if (!check_if_exists("shmem_sync_all", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_sync_all()");
+        }
+      } 
+      else {
+        bool result_shmem_sync_all = test_shmem_sync_all();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_sync_all()", result_shmem_sync_all, false);
+        }
+      }
 
-      /* Run shmem_alltoall() test */ // TODO: add check_if_exists
+      /* Run shmem_alltoall() test */
       shmem_barrier_all();
-      bool result_shmem_alltoall = test_shmem_alltoall();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_alltoall()", result_shmem_alltoall, false); }
+      if (!check_if_exists("shmem_long_alltoall", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_alltoall()");
+        }
+      } 
+      else {
+        bool result_shmem_alltoall = test_shmem_alltoall();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_alltoall()", result_shmem_alltoall, false);
+        }
+      }
 
-      /* Run shmem_alltoalls() test */ // TODO: add check_if_exists
+      /* Run shmem_alltoalls() test */
       shmem_barrier_all();
-      bool result_shmem_alltoalls = test_shmem_alltoalls();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_alltoalls()", result_shmem_alltoalls, false); }
+      if (!check_if_exists("shmem_long_alltoalls", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_alltoalls()");
+        }
+      } 
+      else {
+        bool result_shmem_alltoalls = test_shmem_alltoalls();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_alltoalls()", result_shmem_alltoalls, false);
+        }
+      }
 
-      /* Run shmem_broadcast() test */ // TODO: add check_if_exists
+      /* Run shmem_broadcast() test */
       shmem_barrier_all();
-      bool result_shmem_broadcast = test_shmem_broadcast();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_broadcast()", result_shmem_broadcast, false); }
+      if (!check_if_exists("shmem_long_broadcast", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_broadcast()");
+        }
+      } 
+      else {
+        bool result_shmem_broadcast = test_shmem_broadcast();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_broadcast()", result_shmem_broadcast, false);
+        }
+      }
 
-      /* Run shmem_collect() test */  // TODO: add check_if_exists
+      /* Run shmem_collect() test */
       shmem_barrier_all();
-      bool result_shmem_collect = test_shmem_collect();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_collect()", result_shmem_collect, false); }
+      if (!check_if_exists("shmem_long_collect", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_collect()");
+        }
+      } 
+      else {
+        bool result_shmem_collect = test_shmem_collect();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_collect()", result_shmem_collect, false);
+        }
+      }
 
-      /* Run shmem_fcollect() test */ // TODO: add check_if_exists
+      /* Run shmem_fcollect() test */
       shmem_barrier_all();
-      bool result_shmem_fcollect = test_shmem_fcollect();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_fcollect()", result_shmem_fcollect, false); }
+      if (!check_if_exists("shmem_long_fcollect", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_fcollect()");
+        }
+      } 
+      else {
+        bool result_shmem_fcollect = test_shmem_fcollect();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_fcollect()", result_shmem_fcollect, false);
+        }
+      }
 
-      /* Run shmem_max_reduce() test */ // TODO: add check_if_exists
+      /* Run shmem_max_reduce() test */
       shmem_barrier_all();
-      bool result_shmem_max_reduce = test_shmem_max_reduce();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_max_reduce()", result_shmem_max_reduce, false); }
+      if (!check_if_exists("shmem_long_max_reduce", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_max_reduce()");
+        }
+      } 
+      else {
+        bool result_shmem_max_reduce = test_shmem_max_reduce();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_max_reduce()", result_shmem_max_reduce, false);
+        }
+      }
 
-      /* Run shmem_min_reduce() test */ // TODO: add check_if_exists
+      /* Run shmem_min_reduce() test */
       shmem_barrier_all();
-      bool result_shmem_min_reduce = test_shmem_min_reduce();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_min_reduce()", result_shmem_min_reduce, false); }
+      if (!check_if_exists("shmem_long_min_reduce", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_min_reduce()");
+        }
+      } 
+      else {
+        bool result_shmem_min_reduce = test_shmem_min_reduce();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_min_reduce()", result_shmem_min_reduce, false);
+        }
+      }
 
-      /* Run shmem_sum_reduce() test */ // TODO: add check_if_exists
+      /* Run shmem_sum_reduce() test */
       shmem_barrier_all();
-      bool result_shmem_sum_reduce = test_shmem_sum_reduce();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_sum_reduce()", result_shmem_sum_reduce, false); }
+      if (!check_if_exists("shmem_long_sum_reduce", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_sum_reduce()");
+        }
+      } 
+      else {
+        bool result_shmem_sum_reduce = test_shmem_sum_reduce();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_sum_reduce()", result_shmem_sum_reduce, false);
+        }
+      }
 
-      /* Run shmem_prod_reduce() test */ // TODO: add check_if_exists
+      /* Run shmem_prod_reduce() test */
       shmem_barrier_all();
-      bool result_shmem_prod_reduce = test_shmem_prod_reduce();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_prod_reduce()", result_shmem_prod_reduce, false); } 
+      if (!check_if_exists("shmem_long_prod_reduce", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_prod_reduce()");
+        }
+      } 
+      else {
+        bool result_shmem_prod_reduce = test_shmem_prod_reduce();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_prod_reduce()", result_shmem_prod_reduce, false);
+        }
+      }
     }
   }
 
   /************************* PT2PT TESTS **************************/
   if (opts.test_pt2pt_synch) {
     shmem_barrier_all();
-    if (mype == 0) { display_test_header("PT2PT SYNCHRONIZATION"); }
+    if (mype == 0) { display_test_header("POINT-TO-POINT SYNC OPS"); }
 
-    /* Make sure there are at least 2 PEs */
-    if ( !(npes > 1) ) {
-      std::cerr << RED_COLOR << "ERROR: " << RESET_COLOR << "PT2PT SYNCHRONIZATION tests require at least 2 PEs!" << std::endl;
+    if (!(npes > 1)) {
+      std::cerr << RED_COLOR << "ERROR: " << RESET_COLOR << "POINT-TO-POINT SYNC OPS tests require at least 2 PEs!" << std::endl;
     }
     else {
-      /* Run shmem_wait_until() test */ // TODO: add check_if_exists
+      /* Run shmem_wait_until() test */
       shmem_barrier_all();
-      bool result_shmem_wait_until = test_shmem_wait_until();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_wait_until()", result_shmem_wait_until, false); }
+      if (!check_if_exists("shmem_long_wait_until", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_wait_until()");
+        }
+      }
+      else {
+        bool result_shmem_wait_until = test_shmem_wait_until();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_wait_until()", result_shmem_wait_until, false); }
+      }
 
-      /* Run shmem_wait_until_all() test */ // TODO: add check_if_exists
+      /* Run shmem_wait_until_all() test */
       shmem_barrier_all();
-      bool result_shmem_wait_until_all = test_shmem_wait_until_all();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_wait_until_all()", result_shmem_wait_until_all, false); }
+      if (!check_if_exists("shmem_long_wait_until_all", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_wait_until_all()");
+        }
+      }
+      else {
+        bool result_shmem_wait_until_all = test_shmem_wait_until_all();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_wait_until_all()", result_shmem_wait_until_all, false); }
+      }
 
-      /* Run shmem_wait_until_any() test */ // TODO: add check_if_exists
+      /* Run shmem_wait_until_any() test */
       shmem_barrier_all();
-      bool result_shmem_wait_until_any = test_shmem_wait_until_any();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_wait_until_any()", result_shmem_wait_until_any, false); }
+      if (!check_if_exists("shmem_long_wait_until_any", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_wait_until_any()");
+        }
+      }
+      else {
+        bool result_shmem_wait_until_any = test_shmem_wait_until_any();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_wait_until_any()", result_shmem_wait_until_any, false); }
+      }
 
-      /* Run shmem_wait_until_some() test */ // TODO: add check_if_exists
+      /* Run shmem_wait_until_some() test */
       shmem_barrier_all();
-      bool result_shmem_wait_until_some = test_shmem_wait_until_some();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_wait_until_some()", result_shmem_wait_until_some, false); }
+      if (!check_if_exists("shmem_long_wait_until_some", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_wait_until_some()");
+        }
+      }
+      else {
+        bool result_shmem_wait_until_some = test_shmem_wait_until_some();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_wait_until_some()", result_shmem_wait_until_some, false); }
+      }
 
-      /* Run shmem_wait_until_all_vector() test */ // TODO: add check_if_exists
+      /* Run shmem_wait_until_all_vector() test */
       shmem_barrier_all();
-      bool result_shmem_wait_until_all_vector = test_shmem_wait_until_all_vector();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_wait_until_all_vector()", result_shmem_wait_until_all_vector, false); }
+      if (!check_if_exists("shmem_long_wait_until_all_vector", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_wait_until_all_vector()");
+        }
+      }
+      else {
+        bool result_shmem_wait_until_all_vector = test_shmem_wait_until_all_vector();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_wait_until_all_vector()", result_shmem_wait_until_all_vector, false); }
+      }
 
-      /* Run shmem_wait_until_any_vector() test */ // TODO: add check_if_exists
+      /* Run shmem_wait_until_any_vector() test */
       shmem_barrier_all();
-      bool result_shmem_wait_until_any_vector = test_shmem_wait_until_any_vector();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_wait_until_any_vector()", result_shmem_wait_until_any_vector, false); }
+      if (!check_if_exists("shmem_long_wait_until_any_vector", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_wait_until_any_vector()");
+        }
+      }
+      else {
+        bool result_shmem_wait_until_any_vector = test_shmem_wait_until_any_vector();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_wait_until_any_vector()", result_shmem_wait_until_any_vector, false); }
+      }
 
-      /* Run shmem_wait_until_some_vector() test */ // TODO: add check_if_exists
+      /* Run shmem_wait_until_some_vector() test */
       shmem_barrier_all();
-      bool result_shmem_wait_until_some_vector = test_shmem_wait_until_some_vector();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_wait_until_some_vector()", result_shmem_wait_until_some_vector, false); }
+      if (!check_if_exists("shmem_long_wait_until_some_vector", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_wait_until_some_vector()");
+        }
+      }
+      else {
+        bool result_shmem_wait_until_some_vector = test_shmem_wait_until_some_vector();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_wait_until_some_vector()", result_shmem_wait_until_some_vector, false); }
+      }
 
-      /* Run shmem_test() test */ // TODO: add check_if_exists
+      /* Run shmem_test() test */
       shmem_barrier_all();
-      bool result_shmem_test = test_shmem_test();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_test()", result_shmem_test, false); }
+      if (!check_if_exists("shmem_long_test", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_test()");
+        }
+      }
+      else {
+        bool result_shmem_test = test_shmem_test();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_test()", result_shmem_test, false); }
+      }
 
-      /* Run shmem_test_all() test */ // TODO: add check_if_exists
+      /* Run shmem_test_all() test */
       shmem_barrier_all();
-      bool result_shmem_test_all = test_shmem_test_all();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_test_all()", result_shmem_test_all, false); }
+      if (!check_if_exists("shmem_long_test_all", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_test_all()");
+        }
+      }
+      else {
+        bool result_shmem_test_all = test_shmem_test_all();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_test_all()", result_shmem_test_all, false); }
+      }
 
-      /* Run shmem_test_any() test */ // TODO: add check_if_exists
+      /* Run shmem_test_any() test */
       shmem_barrier_all();
-      bool result_shmem_test_any = test_shmem_test_any();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_test_any()", result_shmem_test_any, false); }
+      if (!check_if_exists("shmem_long_test_any", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_test_any()");
+        }
+      }
+      else {
+        bool result_shmem_test_any = test_shmem_test_any();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_test_any()", result_shmem_test_any, false); }
+      }
 
-      /* Run shmem_test_some() test */ // TODO: add check_if_exists
+      /* Run shmem_test_some() test */
       shmem_barrier_all();
-      bool result_shmem_test_some = test_shmem_test_some();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_test_some()", result_shmem_test_some, false); }
+      if (!check_if_exists("shmem_long_test_some", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_test_some()");
+        }
+      }
+      else {
+        bool result_shmem_test_some = test_shmem_test_some();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_test_some()", result_shmem_test_some, false); }
+      }
 
-      /* Run shmem_test_all_vector() test */ // TODO: add check_if_exists
+      /* Run shmem_test_all_vector() test */
       shmem_barrier_all();
-      bool result_shmem_test_all_vector = test_shmem_test_all_vector();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_test_all_vector()", result_shmem_test_all_vector, false); }
+      if (!check_if_exists("shmem_long_test_all_vector", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_test_all_vector()");
+        }
+      }
+      else {
+        bool result_shmem_test_all_vector = test_shmem_test_all_vector();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_test_all_vector()", result_shmem_test_all_vector, false); }
+      }
 
-      /* Run shmem_test_any_vector() test */ // TODO: add check_if_exists
+      /* Run shmem_test_any_vector() test */
       shmem_barrier_all();
-      bool result_shmem_test_any_vector = test_shmem_test_any_vector();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_test_any_vector()", result_shmem_test_any_vector, false); }
+      if (!check_if_exists("shmem_long_test_any_vector", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_test_any_vector()");
+        }
+      }
+      else {
+        bool result_shmem_test_any_vector = test_shmem_test_any_vector();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_test_any_vector()", result_shmem_test_any_vector, false); }
+      }
 
-      /* Run shmem_test_some_vector() test */ // TODO: add check_if_exists
+      /* Run shmem_test_some_vector() test */
       shmem_barrier_all();
-      bool result_shmem_test_some_vector = test_shmem_test_some_vector();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_test_some_vector()", result_shmem_test_some_vector, false); }
+      if (!check_if_exists("shmem_long_test_some_vector", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_test_some_vector()");
+        }
+      }
+      else {
+        bool result_shmem_test_some_vector = test_shmem_test_some_vector();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_test_some_vector()", result_shmem_test_some_vector, false); }
+      }
 
-      /* Run shmem_signal_wait_until() test */ // TODO: add check_if_exists
+      /* Run shmem_signal_wait_until() test */
       shmem_barrier_all();
-      bool result_shmem_signal_wait_until = test_shmem_signal_wait_until();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_signal_wait_until()", result_shmem_signal_wait_until, false); }
+      if (!check_if_exists("shmem_long_wait_until", mype)) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_long_wait_until()");
+        }
+      }
+      else {
+        bool result_shmem_signal_wait_until = test_shmem_signal_wait_until();
+        shmem_barrier_all();
+        if (mype == 0) { display_test_result("shmem_signal_wait_until()", result_shmem_signal_wait_until, false); }
+      }
     }
   }
 
@@ -1104,17 +1428,35 @@ int main(int argc, char *argv[]) {
       }
     }
     else {
-      /* Run the shmem_fence() test */ // TODO: add check_if_exists
+      /* Run the shmem_fence() test */
       shmem_barrier_all();
-      bool result_shmem_fence = test_shmem_fence();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_fence()", result_shmem_fence, false); }
+      if ( !check_if_exists("shmem_fence", mype) ) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_fence()");
+        }
+      }
+      else {
+        bool result_shmem_fence = test_shmem_fence();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_fence()", result_shmem_fence, false);
+        }
+      }
 
-      /* Run the shmem_quiet() test */ // TODO: add check_if_exists
+      /* Run the shmem_quiet() test */
       shmem_barrier_all();
-      bool result_shmem_quiet = test_shmem_quiet();
-      shmem_barrier_all();
-      if (mype == 0) { display_test_result("shmem_quiet()", result_shmem_quiet, false); }
+      if ( !check_if_exists("shmem_quiet", mype) ) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_quiet()");
+        }
+      }
+      else {
+        bool result_shmem_quiet = test_shmem_quiet();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_quiet()", result_shmem_quiet, false);
+        }
+      }
     }
   }
 
@@ -1131,13 +1473,27 @@ int main(int argc, char *argv[]) {
       }
     }
     else {
-      /* Run the shmem_lock and shmem_unlock tests */ // TODO: add check_if_exists
+      /* Run the shmem_set_lock and shmem_clear_lock tests */
       shmem_barrier_all();
-      bool result_shmem_lock_unlock = test_shmem_lock_unlock();
+      if ( !check_if_exists("shmem_set_lock", mype) ) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_set_lock()");
+        }
+      }
+      if ( !check_if_exists("shmem_clear_lock", mype )) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_clear_lock()");
+        }
+      }
+      
       shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("shmem_set_lock()", result_shmem_lock_unlock, false);
-        display_test_result("shmem_clear_unlock()", result_shmem_lock_unlock, false);
+      if ( check_if_exists("shmem_set_lock", mype) && check_if_exists("shmem_clear_lock", mype) ) {
+        bool result_shmem_lock_unlock = test_shmem_lock_unlock();
+        shmem_barrier_all();
+        if (mype == 0) {
+          display_test_result("shmem_set_lock()", result_shmem_lock_unlock, false);
+          display_test_result("shmem_clear_lock()", result_shmem_lock_unlock, false);
+        }
       }
     }
   }
@@ -1145,10 +1501,16 @@ int main(int argc, char *argv[]) {
   /************************* FINALIZATION **************************/
   /* Run shmem_finalize() test */
   shmem_barrier_all();
-  if (mype == 0) {
-    display_test_header("FINALIZATION");
-    display_test_result("shmem_finalize()", test_shmem_finalize(), false);
-    std::cout << std::endl;
+
+  if ( !check_if_exists("shmem_finalize", mype) ) {
+    display_not_found_warning("shmem_finalize()");
+  }
+  else {
+    if (mype == 0) {
+      display_test_header("FINALIZATION");
+      display_test_result("shmem_finalize()", test_shmem_finalize(), false);
+      std::cout << std::endl;
+    }
   }
 
   /* We made it! End the program. */

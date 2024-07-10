@@ -4,6 +4,17 @@
  */
 
 #include "threads_tests.hpp"
+#include "routines.hpp"
+
+bool test_shmem_fake_routine(void) {
+  if (p_shmem_fake_routine) {
+    p_shmem_fake_routine();
+    return true;
+  } else {
+    std::cerr << "shmem_fake_routine is not available." << std::endl;
+    return false;
+  }
+}
 
 /**
   @brief Tests the initialization of OpenSHMEM with threading support.

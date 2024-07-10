@@ -168,6 +168,267 @@ void display_test_info(
   std::cout << "  Number of PEs:        " << npes << std::endl;  
 }
 
+
+/* Define global function pointers */
+shmem_fake_routine_func p_shmem_fake_routine = nullptr; // FIXME:
+
+/* Setup, Exit, and Query Routines */
+shmem_init_func p_shmem_init = nullptr;
+shmem_finalize_func p_shmem_finalize = nullptr;
+shmem_my_pe_func p_shmem_my_pe = nullptr;
+shmem_n_pes_func p_shmem_n_pes = nullptr;
+shmem_pe_accessible_func p_shmem_pe_accessible = nullptr;
+shmem_barrier_all_func p_shmem_barrier_all = nullptr;
+shmem_barrier_func p_shmem_barrier = nullptr;
+shmem_info_get_version_func p_shmem_info_get_version = nullptr;
+shmem_info_get_name_func p_shmem_info_get_name = nullptr;
+shmem_global_exit_func p_shmem_global_exit = nullptr;
+
+/* Thread Support Routines */
+shmem_init_thread_func p_shmem_init_thread = nullptr;
+shmem_query_thread_func p_shmem_query_thread = nullptr;
+
+/* Memory Management Routines */
+shmem_ptr_func p_shmem_ptr = nullptr;
+shmem_malloc_func p_shmem_malloc = nullptr;
+shmem_free_func p_shmem_free = nullptr;
+shmem_realloc_func p_shmem_realloc = nullptr;
+shmem_align_func p_shmem_align = nullptr;
+shmem_malloc_with_hints_func p_shmem_malloc_with_hints = nullptr;
+shmem_calloc_func p_shmem_calloc = nullptr;
+
+/* Team Management Routines */
+shmem_team_my_pe_func p_shmem_team_my_pe = nullptr;
+shmem_team_n_pes_func p_shmem_team_n_pes = nullptr;
+shmem_team_get_config_func p_shmem_team_get_config = nullptr;
+shmem_team_translate_pe_func p_shmem_team_translate_pe = nullptr;
+shmem_team_split_strided_func p_shmem_team_split_strided = nullptr;
+shmem_team_split_2d_func p_shmem_team_split_2d = nullptr;
+shmem_team_destroy_func p_shmem_team_destroy = nullptr;
+
+/* Communication/Context Management Routines */
+shmem_ctx_create_func p_shmem_ctx_create = nullptr;
+shmem_team_create_ctx_func p_shmem_team_create_ctx = nullptr;
+shmem_ctx_destroy_func p_shmem_ctx_destroy = nullptr;
+shmem_ctx_get_team_func p_shmem_ctx_get_team = nullptr;
+
+/* Remote Access Routines */
+shmem_p_func p_shmem_p = nullptr;
+shmem_put_func p_shmem_put = nullptr;
+shmem_iput_func p_shmem_iput = nullptr;
+shmem_get_func p_shmem_get = nullptr;
+shmem_g_func p_shmem_g = nullptr;
+shmem_iget_func p_shmem_iget = nullptr;
+shmem_put_nbi_func p_shmem_put_nbi = nullptr;
+shmem_get_nbi_func p_shmem_get_nbi = nullptr;
+
+/* Atomic Memory Operations */
+shmem_atomic_fetch_func p_shmem_atomic_fetch = nullptr;
+shmem_atomic_set_func p_shmem_atomic_set = nullptr;
+shmem_atomic_compare_swap_func p_shmem_atomic_compare_swap = nullptr;
+shmem_atomic_swap_func p_shmem_atomic_swap = nullptr;
+shmem_atomic_fetch_inc_func p_shmem_atomic_fetch_inc = nullptr;
+shmem_atomic_inc_func p_shmem_atomic_inc = nullptr;
+shmem_atomic_fetch_add_func p_shmem_atomic_fetch_add = nullptr;
+shmem_atomic_add_func p_shmem_atomic_add = nullptr;
+shmem_atomic_fetch_and_func p_shmem_atomic_fetch_and = nullptr;
+shmem_atomic_and_func p_shmem_atomic_and = nullptr;
+shmem_atomic_fetch_or_func p_shmem_atomic_fetch_or = nullptr;
+shmem_atomic_or_func p_shmem_atomic_or = nullptr;
+shmem_atomic_fetch_xor_func p_shmem_atomic_fetch_xor = nullptr;
+shmem_atomic_xor_func p_shmem_atomic_xor = nullptr;
+shmem_atomic_fetch_nbi_func p_shmem_atomic_fetch_nbi = nullptr;
+shmem_atomic_compare_swap_nbi_func p_shmem_atomic_compare_swap_nbi = nullptr;
+shmem_atomic_swap_nbi_func p_shmem_atomic_swap_nbi = nullptr;
+shmem_atomic_fetch_inc_nbi_func p_shmem_atomic_fetch_inc_nbi = nullptr;
+shmem_atomic_fetch_add_nbi_func p_shmem_atomic_fetch_add_nbi = nullptr;
+shmem_atomic_fetch_and_nbi_func p_shmem_atomic_fetch_and_nbi = nullptr;
+shmem_atomic_fetch_or_nbi_func p_shmem_atomic_fetch_or_nbi = nullptr;
+shmem_atomic_fetch_xor_nbi_func p_shmem_atomic_fetch_xor_nbi = nullptr;
+
+/* Signaling Operations */
+shmem_signal_fetch_func p_shmem_signal_fetch = nullptr;
+shmem_put_signal_func p_shmem_put_signal = nullptr;
+shmem_put_signal_nbi_func p_shmem_put_signal_nbi = nullptr;
+
+/* Collective Routines */
+shmem_sync_func p_shmem_sync = nullptr;
+shmem_sync_all_func p_shmem_sync_all = nullptr;
+shmem_alltoall_func p_shmem_alltoall = nullptr;
+shmem_alltoalls_func p_shmem_alltoalls = nullptr;
+shmem_broadcast_func p_shmem_broadcast = nullptr;
+shmem_collect_func p_shmem_collect = nullptr;
+shmem_fcollect_func p_shmem_fcollect = nullptr;
+shmem_max_reduce_func p_shmem_max_reduce = nullptr;
+shmem_min_reduce_func p_shmem_min_reduce = nullptr;
+shmem_sum_reduce_func p_shmem_sum_reduce = nullptr;
+shmem_prod_reduce_func p_shmem_prod_reduce = nullptr;
+
+/* Point-to-Point Synchronization Routines */
+shmem_wait_until_func p_shmem_wait_until = nullptr;
+shmem_wait_until_all_func p_shmem_wait_until_all = nullptr;
+shmem_wait_until_any_func p_shmem_wait_until_any = nullptr;
+shmem_wait_until_some_func p_shmem_wait_until_some = nullptr;
+shmem_wait_until_all_vector_func p_shmem_wait_until_all_vector = nullptr;
+shmem_wait_until_any_vector_func p_shmem_wait_until_any_vector = nullptr;
+shmem_wait_until_some_vector_func p_shmem_wait_until_some_vector = nullptr;
+shmem_test_func p_shmem_test = nullptr;
+shmem_test_all_func p_shmem_test_all = nullptr;
+shmem_test_any_func p_shmem_test_any = nullptr;
+shmem_test_some_func p_shmem_test_some = nullptr;
+shmem_test_all_vector_func p_shmem_test_all_vector = nullptr;
+shmem_test_any_vector_func p_shmem_test_any_vector = nullptr;
+shmem_test_some_vector_func p_shmem_test_some_vector = nullptr;
+shmem_signal_wait_until_func p_shmem_signal_wait_until = nullptr;
+
+/* Memory Ordering Routines */
+shmem_quiet_func p_shmem_quiet = nullptr;
+shmem_fence_func p_shmem_fence = nullptr;
+
+/* Distributed Locking Routines */
+shmem_set_lock_func p_shmem_set_lock = nullptr;
+shmem_clear_lock_func p_shmem_clear_lock = nullptr;
+
+/**
+  @brief Loads the OpenSHMEM routines dynamically.
+  @return True if successful, false if otherwise
+ */
+bool load_routines() {
+  void *handle = dlopen(NULL, RTLD_LAZY);
+  if (!handle) {
+    std::cerr << "Failed to open handle: " << dlerror() << std::endl;
+    return false;
+  }
+
+  p_shmem_fake_routine = reinterpret_cast<shmem_fake_routine_func>(dlsym(handle, "shmem_fake_routine")); // FIXME:
+
+  /* Setup, Exit, and Query Routines */
+  p_shmem_init = reinterpret_cast<shmem_init_func>(dlsym(handle, "shmem_init"));
+  p_shmem_finalize = reinterpret_cast<shmem_finalize_func>(dlsym(handle, "shmem_finalize"));
+  p_shmem_my_pe = reinterpret_cast<shmem_my_pe_func>(dlsym(handle, "shmem_my_pe"));
+  p_shmem_n_pes = reinterpret_cast<shmem_n_pes_func>(dlsym(handle, "shmem_n_pes"));
+  p_shmem_pe_accessible = reinterpret_cast<shmem_pe_accessible_func>(dlsym(handle, "shmem_pe_accessible"));
+  p_shmem_barrier_all = reinterpret_cast<shmem_barrier_all_func>(dlsym(handle, "shmem_barrier_all"));
+  p_shmem_barrier = reinterpret_cast<shmem_barrier_func>(dlsym(handle, "shmem_barrier"));
+  p_shmem_info_get_version = reinterpret_cast<shmem_info_get_version_func>(dlsym(handle, "shmem_info_get_version"));
+  p_shmem_info_get_name = reinterpret_cast<shmem_info_get_name_func>(dlsym(handle, "shmem_info_get_name"));
+  p_shmem_global_exit = reinterpret_cast<shmem_global_exit_func>(dlsym(handle, "shmem_global_exit"));
+
+  /* Thread Support Routines */
+  p_shmem_init_thread = reinterpret_cast<shmem_init_thread_func>(dlsym(handle, "shmem_init_thread"));
+  p_shmem_query_thread = reinterpret_cast<shmem_query_thread_func>(dlsym(handle, "shmem_query_thread"));
+
+  /* Memory Management Routines */
+  p_shmem_ptr = reinterpret_cast<shmem_ptr_func>(dlsym(handle, "shmem_ptr"));
+  p_shmem_malloc = reinterpret_cast<shmem_malloc_func>(dlsym(handle, "shmem_malloc"));
+  p_shmem_free = reinterpret_cast<shmem_free_func>(dlsym(handle, "shmem_free"));
+  p_shmem_realloc = reinterpret_cast<shmem_realloc_func>(dlsym(handle, "shmem_realloc"));
+  p_shmem_align = reinterpret_cast<shmem_align_func>(dlsym(handle, "shmem_align"));
+  p_shmem_malloc_with_hints = reinterpret_cast<shmem_malloc_with_hints_func>(dlsym(handle, "shmem_malloc_with_hints"));
+  p_shmem_calloc = reinterpret_cast<shmem_calloc_func>(dlsym(handle, "shmem_calloc"));
+
+  /* Team Management Routines */
+  p_shmem_team_my_pe = reinterpret_cast<shmem_team_my_pe_func>(dlsym(handle, "shmem_team_my_pe"));
+  p_shmem_team_n_pes = reinterpret_cast<shmem_team_n_pes_func>(dlsym(handle, "shmem_team_n_pes"));
+  p_shmem_team_get_config = reinterpret_cast<shmem_team_get_config_func>(dlsym(handle, "shmem_team_get_config"));
+  p_shmem_team_translate_pe = reinterpret_cast<shmem_team_translate_pe_func>(dlsym(handle, "shmem_team_translate_pe"));
+  p_shmem_team_split_strided = reinterpret_cast<shmem_team_split_strided_func>(dlsym(handle, "shmem_team_split_strided"));
+  p_shmem_team_split_2d = reinterpret_cast<shmem_team_split_2d_func>(dlsym(handle, "shmem_team_split_2d"));
+  p_shmem_team_destroy = reinterpret_cast<shmem_team_destroy_func>(dlsym(handle, "shmem_team_destroy"));
+
+  /* Communication/Context Management Routines */
+  p_shmem_ctx_create = reinterpret_cast<shmem_ctx_create_func>(dlsym(handle, "shmem_ctx_create"));
+  p_shmem_team_create_ctx = reinterpret_cast<shmem_team_create_ctx_func>(dlsym(handle, "shmem_team_create_ctx"));
+  p_shmem_ctx_destroy = reinterpret_cast<shmem_ctx_destroy_func>(dlsym(handle, "shmem_ctx_destroy"));
+  p_shmem_ctx_get_team = reinterpret_cast<shmem_ctx_get_team_func>(dlsym(handle, "shmem_ctx_get_team"));
+
+  /* Remote Access Routines */
+  p_shmem_p = reinterpret_cast<shmem_p_func>(dlsym(handle, "shmem_p"));
+  p_shmem_put = reinterpret_cast<shmem_put_func>(dlsym(handle, "shmem_put"));
+  p_shmem_iput = reinterpret_cast<shmem_iput_func>(dlsym(handle, "shmem_iput"));
+  p_shmem_get = reinterpret_cast<shmem_get_func>(dlsym(handle, "shmem_get"));
+  p_shmem_g = reinterpret_cast<shmem_g_func>(dlsym(handle, "shmem_g"));
+  p_shmem_iget = reinterpret_cast<shmem_iget_func>(dlsym(handle, "shmem_iget"));
+  p_shmem_put_nbi = reinterpret_cast<shmem_put_nbi_func>(dlsym(handle, "shmem_put_nbi"));
+  p_shmem_get_nbi = reinterpret_cast<shmem_get_nbi_func>(dlsym(handle, "shmem_get_nbi"));
+
+  /* Atomic Memory Operations */
+  p_shmem_atomic_fetch = reinterpret_cast<shmem_atomic_fetch_func>(dlsym(handle, "shmem_atomic_fetch"));
+  p_shmem_atomic_set = reinterpret_cast<shmem_atomic_set_func>(dlsym(handle, "shmem_atomic_set"));
+  p_shmem_atomic_compare_swap = reinterpret_cast<shmem_atomic_compare_swap_func>(dlsym(handle, "shmem_atomic_compare_swap"));
+  p_shmem_atomic_swap = reinterpret_cast<shmem_atomic_swap_func>(dlsym(handle, "shmem_atomic_swap"));
+  p_shmem_atomic_fetch_inc = reinterpret_cast<shmem_atomic_fetch_inc_func>(dlsym(handle, "shmem_atomic_fetch_inc"));
+  p_shmem_atomic_inc = reinterpret_cast<shmem_atomic_inc_func>(dlsym(handle, "shmem_atomic_inc"));
+  p_shmem_atomic_fetch_add = reinterpret_cast<shmem_atomic_fetch_add_func>(dlsym(handle, "shmem_atomic_fetch_add"));
+  p_shmem_atomic_add = reinterpret_cast<shmem_atomic_add_func>(dlsym(handle, "shmem_atomic_add"));
+  p_shmem_atomic_fetch_and = reinterpret_cast<shmem_atomic_fetch_and_func>(dlsym(handle, "shmem_atomic_fetch_and"));
+  p_shmem_atomic_and = reinterpret_cast<shmem_atomic_and_func>(dlsym(handle, "shmem_atomic_and"));
+  p_shmem_atomic_fetch_or = reinterpret_cast<shmem_atomic_fetch_or_func>(dlsym(handle, "shmem_atomic_fetch_or"));
+  p_shmem_atomic_or = reinterpret_cast<shmem_atomic_or_func>(dlsym(handle, "shmem_atomic_or"));
+  p_shmem_atomic_fetch_xor = reinterpret_cast<shmem_atomic_fetch_xor_func>(dlsym(handle, "shmem_atomic_fetch_xor"));
+  p_shmem_atomic_xor = reinterpret_cast<shmem_atomic_xor_func>(dlsym(handle, "shmem_atomic_xor"));
+  p_shmem_atomic_fetch_nbi = reinterpret_cast<shmem_atomic_fetch_nbi_func>(dlsym(handle, "shmem_atomic_fetch_nbi"));
+  p_shmem_atomic_compare_swap_nbi = reinterpret_cast<shmem_atomic_compare_swap_nbi_func>(dlsym(handle, "shmem_atomic_compare_swap_nbi"));
+  p_shmem_atomic_swap_nbi = reinterpret_cast<shmem_atomic_swap_nbi_func>(dlsym(handle, "shmem_atomic_swap_nbi"));
+  p_shmem_atomic_fetch_inc_nbi = reinterpret_cast<shmem_atomic_fetch_inc_nbi_func>(dlsym(handle, "shmem_atomic_fetch_inc_nbi"));
+  p_shmem_atomic_fetch_add_nbi = reinterpret_cast<shmem_atomic_fetch_add_nbi_func>(dlsym(handle, "shmem_atomic_fetch_add_nbi"));
+  p_shmem_atomic_fetch_and_nbi = reinterpret_cast<shmem_atomic_fetch_and_nbi_func>(dlsym(handle, "shmem_atomic_fetch_and_nbi"));
+  p_shmem_atomic_fetch_or_nbi = reinterpret_cast<shmem_atomic_fetch_or_nbi_func>(dlsym(handle, "shmem_atomic_fetch_or_nbi"));
+  p_shmem_atomic_fetch_xor_nbi = reinterpret_cast<shmem_atomic_fetch_xor_nbi_func>(dlsym(handle, "shmem_atomic_fetch_xor_nbi"));
+
+  /* Signaling Operations */
+  p_shmem_signal_fetch = reinterpret_cast<shmem_signal_fetch_func>(dlsym(handle, "shmem_signal_fetch"));
+  p_shmem_put_signal = reinterpret_cast<shmem_put_signal_func>(dlsym(handle, "shmem_put_signal"));
+  p_shmem_put_signal_nbi = reinterpret_cast<shmem_put_signal_nbi_func>(dlsym(handle, "shmem_put_signal_nbi"));
+
+  /* Collective Routines */
+  p_shmem_sync = reinterpret_cast<shmem_sync_func>(dlsym(handle, "shmem_sync"));
+  p_shmem_sync_all = reinterpret_cast<shmem_sync_all_func>(dlsym(handle, "shmem_sync_all"));
+  p_shmem_alltoall = reinterpret_cast<shmem_alltoall_func>(dlsym(handle, "shmem_alltoall"));
+  p_shmem_alltoalls = reinterpret_cast<shmem_alltoalls_func>(dlsym(handle, "shmem_alltoalls"));
+  p_shmem_broadcast = reinterpret_cast<shmem_broadcast_func>(dlsym(handle, "shmem_broadcast"));
+  p_shmem_collect = reinterpret_cast<shmem_collect_func>(dlsym(handle, "shmem_collect"));
+  p_shmem_fcollect = reinterpret_cast<shmem_fcollect_func>(dlsym(handle, "shmem_fcollect"));
+  p_shmem_max_reduce = reinterpret_cast<shmem_max_reduce_func>(dlsym(handle, "shmem_max_reduce"));
+  p_shmem_min_reduce = reinterpret_cast<shmem_min_reduce_func>(dlsym(handle, "shmem_min_reduce"));
+  p_shmem_sum_reduce = reinterpret_cast<shmem_sum_reduce_func>(dlsym(handle, "shmem_sum_reduce"));
+  p_shmem_prod_reduce = reinterpret_cast<shmem_prod_reduce_func>(dlsym(handle, "shmem_prod_reduce"));
+
+  /* Point-to-Point Synchronization Routines */
+  p_shmem_wait_until = reinterpret_cast<shmem_wait_until_func>(dlsym(handle, "shmem_wait_until"));
+  p_shmem_wait_until_all = reinterpret_cast<shmem_wait_until_all_func>(dlsym(handle, "shmem_wait_until_all"));
+  p_shmem_wait_until_any = reinterpret_cast<shmem_wait_until_any_func>(dlsym(handle, "shmem_wait_until_any"));
+  p_shmem_wait_until_some = reinterpret_cast<shmem_wait_until_some_func>(dlsym(handle, "shmem_wait_until_some"));
+  p_shmem_wait_until_all_vector = reinterpret_cast<shmem_wait_until_all_vector_func>(dlsym(handle, "shmem_wait_until_all_vector"));
+  p_shmem_wait_until_any_vector = reinterpret_cast<shmem_wait_until_any_vector_func>(dlsym(handle, "shmem_wait_until_any_vector"));
+  p_shmem_wait_until_some_vector = reinterpret_cast<shmem_wait_until_some_vector_func>(dlsym(handle, "shmem_wait_until_some_vector"));
+  p_shmem_test = reinterpret_cast<shmem_test_func>(dlsym(handle, "shmem_test"));
+  p_shmem_test_all = reinterpret_cast<shmem_test_all_func>(dlsym(handle, "shmem_test_all"));
+  p_shmem_test_any = reinterpret_cast<shmem_test_any_func>(dlsym(handle, "shmem_test_any"));
+  p_shmem_test_some = reinterpret_cast<shmem_test_some_func>(dlsym(handle, "shmem_test_some"));
+  p_shmem_test_all_vector = reinterpret_cast<shmem_test_all_vector_func>(dlsym(handle, "shmem_test_all_vector"));
+  p_shmem_test_any_vector = reinterpret_cast<shmem_test_any_vector_func>(dlsym(handle, "shmem_test_any_vector"));
+  p_shmem_test_some_vector = reinterpret_cast<shmem_test_some_vector_func>(dlsym(handle, "shmem_test_some_vector"));
+  p_shmem_signal_wait_until = reinterpret_cast<shmem_signal_wait_until_func>(dlsym(handle, "shmem_signal_wait_until"));
+
+  /* Memory Ordering Routines */
+  p_shmem_quiet = reinterpret_cast<shmem_quiet_func>(dlsym(handle, "shmem_quiet"));
+  p_shmem_fence = reinterpret_cast<shmem_fence_func>(dlsym(handle, "shmem_fence"));
+
+  /* Distributed Locking Routines */
+  p_shmem_set_lock = reinterpret_cast<shmem_set_lock_func>(dlsym(handle, "shmem_set_lock"));
+  p_shmem_clear_lock = reinterpret_cast<shmem_clear_lock_func>(dlsym(handle, "shmem_clear_lock"));
+
+  const char *dlsym_error = dlerror();
+  if (dlsym_error) {
+    std::cerr << "Error loading functions: " << dlsym_error << std::endl;
+    dlclose(handle);
+    return false;
+  }
+
+  return true;
+}
+
 /**
  * @brief Function to check if a routine exists
  * @param routine_name Name of the OpenSHMEM routine to check
@@ -188,11 +449,12 @@ bool check_if_exists(const std::string& routine_name, int mype) {
   dlerror();
 
   void *symbol = dlsym(handle, routine_name.c_str());
+
   const char *dlsym_error = dlerror();
   if (dlsym_error) {
-    if (mype == 0) {
-      std::cerr << "Function " << routine_name << " not found: " << dlsym_error << std::endl;
-    }
+    // if (mype == 0) {
+    //   std::cerr << "Function " << routine_name << " not found: " << dlsym_error << std::endl;
+    // }
     symbol = nullptr;
   }
 
@@ -238,63 +500,3 @@ void finalize_shmemvv(int mype) {
   if (mype == 0) { display_test_result("shmem_finalize()", test_shmem_finalize(), false); }
   if (mype == 0) { std::cout << std::endl; }
 }
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// /* Structure to hold routine name and found flag */
-// struct RoutineCheck {
-//   std::string routine_name;
-//   bool found;
-// };
-
-// /* Callback function for dl_iterate_phdr */
-// int callback(struct dl_phdr_info *info, size_t size, void *data) {
-//   RoutineCheck *routine_check = static_cast<RoutineCheck *>(data);
-
-//   for (int i = 0; i < info->dlpi_phnum; ++i) {
-//     if (info->dlpi_phdr[i].p_type == PT_DYNAMIC) {
-//       ElfW(Dyn) *dyn = reinterpret_cast<ElfW(Dyn) *>(info->dlpi_addr + info->dlpi_phdr[i].p_vaddr);
-//       ElfW(Sym) *symtab = nullptr;
-//       const char *strtab = nullptr;
-
-//       while (dyn->d_tag != DT_NULL) {
-//         if (dyn->d_tag == DT_SYMTAB) {
-//           symtab = reinterpret_cast<ElfW(Sym) *>(info->dlpi_addr + dyn->d_un.d_ptr);
-//         } else if (dyn->d_tag == DT_STRTAB) {
-//           strtab = reinterpret_cast<const char *>(info->dlpi_addr + dyn->d_un.d_ptr);
-//         }
-//         ++dyn;
-//       }
-
-//       if (symtab && strtab) {
-//         for (size_t j = 0; symtab[j].st_name != 0; ++j) {
-//           const char *sym_name = &strtab[symtab[j].st_name];
-//           std::cerr << "Checking symbol: " << sym_name << std::endl;
-//           if (std::strstr(sym_name, routine_check->routine_name.c_str()) != nullptr) {
-//             std::cerr << "Found matching symbol: " << sym_name << std::endl;
-//             routine_check->found = true;
-//             return 1; /* Stop iterating */
-//           }
-//         }
-//       }
-//     }
-//   }
-
-//   return 0; /* Continue iterating */
-// }
-
-// /**
-//  * Function to check if a routine exists
-//  * @param routine_name - Name of the OpenSHMEM routine to check
-//  * @param mype - Current PE number
-//  * @return - True if the routine exists, false otherwise
-//  */
-// bool check_if_exists(const std::string& routine_name, int mype) {
-//   std::cerr << "Entering check_if_exists for " << routine_name << std::endl;
-
-//   RoutineCheck routine_check = {routine_name, false};
-//   dl_iterate_phdr(callback, &routine_check);
-
-//   std::cerr << "Exiting check_if_exists for " << routine_name << " with result " << (routine_check.found ? "found" : "not found") << std::endl;
-//   return routine_check.found;
-// }
-//////////////////////////////////////////////////////////////////////////////////////////////////
