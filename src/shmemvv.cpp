@@ -195,6 +195,7 @@ shmem_realloc_func p_shmem_realloc = nullptr;
 shmem_align_func p_shmem_align = nullptr;
 shmem_malloc_with_hints_func p_shmem_malloc_with_hints = nullptr;
 shmem_calloc_func p_shmem_calloc = nullptr;
+shmem_addr_accessible_func p_shmem_addr_accessible = nullptr;
 
 /* Team Management Routines */
 shmem_team_my_pe_func p_shmem_team_my_pe = nullptr;
@@ -325,6 +326,7 @@ bool load_routines() {
   p_shmem_align = reinterpret_cast<shmem_align_func>(dlsym(handle, "shmem_align"));
   p_shmem_malloc_with_hints = reinterpret_cast<shmem_malloc_with_hints_func>(dlsym(handle, "shmem_malloc_with_hints"));
   p_shmem_calloc = reinterpret_cast<shmem_calloc_func>(dlsym(handle, "shmem_calloc"));
+  p_shmem_addr_accessible = reinterpret_cast<shmem_addr_accessible_func>(dlsym(handle, "shmem_addr_accessible"));
 
   /* Team Management Routines */
   p_shmem_team_my_pe = reinterpret_cast<shmem_team_my_pe_func>(dlsym(handle, "shmem_team_my_pe"));

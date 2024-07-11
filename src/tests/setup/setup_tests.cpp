@@ -21,7 +21,7 @@ bool test_shmem_fake_routine(void) {
   @return True if the initialization is successful, false otherwise.
  */
 bool test_shmem_init() {
-  shmem_init();
+  p_shmem_init();
   return true;
 }
 
@@ -30,17 +30,17 @@ bool test_shmem_init() {
   @return True if the barrier synchronization is successful, false otherwise.
  */
 bool test_shmem_barrier_all() {
-  int mype = shmem_my_pe();
-  int npes = shmem_n_pes();
+  int mype = p_shmem_my_pe();
+  int npes = p_shmem_n_pes();
   
-  long *sync = (long *)shmem_malloc(sizeof(long));
+  long *sync = (long *)p_shmem_malloc(sizeof(long));
   if (sync == nullptr) {
     return false;
   }
 
   *sync = mype;
 
-  shmem_barrier_all();
+  p_shmem_barrier_all();
 
   bool test_passed = true;
 
@@ -48,7 +48,7 @@ bool test_shmem_barrier_all() {
     test_passed = false;
   }
 
-  shmem_free(sync);
+  p_shmem_free(sync);
   return test_passed;
 }
 
@@ -62,7 +62,7 @@ bool test_shmem_barrier(void) {
     pSync[i] = SHMEM_SYNC_VALUE;
   }
 
-  shmem_barrier(0, 0, shmem_n_pes(), pSync);
+  p_shmem_barrier(0, 0, p_shmem_n_pes(), pSync);
   return true;
 }
 
@@ -71,7 +71,7 @@ bool test_shmem_barrier(void) {
   @return The PE number on success, -1 on failure.
  */
 int test_shmem_my_pe() {
-  int mype = shmem_my_pe();
+  int mype = p_shmem_my_pe();
   if (mype >= 0) {
     return mype;
   }
@@ -85,7 +85,7 @@ int test_shmem_my_pe() {
   @return The number of PEs if greater than 0, otherwise 0.
  */
 int test_shmem_n_pes() {
-  int npes = shmem_n_pes();
+  int npes = p_shmem_n_pes();
   if (!(npes > 0)) {
     return 0;
   }
@@ -99,9 +99,9 @@ int test_shmem_n_pes() {
   @return True if all PEs are accessible, false otherwise.
  */
 bool test_shmem_pe_accessible() {
-  int npes = shmem_n_pes();
+  int npes = p_shmem_n_pes();
   for (int pe = 0; pe < npes; ++pe) {
-    if (!shmem_pe_accessible(pe)) {
+    if (!p_shmem_pe_accessible(pe)) {
       return false;
     }
   }
@@ -114,7 +114,7 @@ bool test_shmem_pe_accessible() {
  */
 std::string test_shmem_info_get_version() {
   int major, minor;
-  shmem_info_get_version(&major, &minor);
+  p_shmem_info_get_version(&major, &minor);
   
   std::string version = std::to_string(major) + "." + std::to_string(minor);
   return version;
@@ -126,7 +126,7 @@ std::string test_shmem_info_get_version() {
  */
 std::string test_shmem_info_get_name() {
   char name[SHMEM_MAX_NAME_LEN];
-  shmem_info_get_name(name);
+  p_shmem_info_get_name(name);
   if (strlen(name) > 0) {
     return std::string(name);
   }
@@ -140,7 +140,7 @@ std::string test_shmem_info_get_name() {
   @return True if the finalization is successful, false otherwise.
  */
 bool test_shmem_finalize() {
-  shmem_finalize();
+  p_shmem_finalize();
   return true;
 }
 
@@ -149,6 +149,6 @@ bool test_shmem_finalize() {
   @return True if the global exit is successful, false otherwise.
  */
 bool test_shmem_global_exit() {
-  shmem_global_exit(0);
+  p_shmem_global_exit(0);
   return true;
 }

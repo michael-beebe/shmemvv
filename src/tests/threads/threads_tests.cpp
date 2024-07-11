@@ -11,7 +11,7 @@
  */
 bool test_shmem_init_thread(void) {
   int provided;
-  shmem_init_thread(SHMEM_THREAD_MULTIPLE, &provided);
+  p_shmem_init_thread(SHMEM_THREAD_MULTIPLE, &provided);
   return (provided == SHMEM_THREAD_MULTIPLE);
 }
 
@@ -21,11 +21,6 @@ bool test_shmem_init_thread(void) {
  */
 bool test_shmem_query_thread(void) {
   int provided;
-  shmem_query_thread(&provided);
-  // #ifdef _DEBUG_
-  //   if (shmem_my_pe() == 0) {
-  //     std::cout << "Querying " << &provided << std::endl;
-  //   }
-  // #endif
+  p_shmem_query_thread(&provided);
   return (provided == SHMEM_THREAD_MULTIPLE);
 }

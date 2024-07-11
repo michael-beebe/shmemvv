@@ -16,28 +16,29 @@ typedef void (*shmem_fake_routine_func)(void);
 
 /* Library Setup, Exit, and Query Routines */
 typedef void (*shmem_init_func)(void);
-typedef int (*shmem_init_thread_func)(int required, int *provided);
 typedef void (*shmem_finalize_func)(void);
 typedef int (*shmem_my_pe_func)(void);
 typedef int (*shmem_n_pes_func)(void);
 typedef int (*shmem_pe_accessible_func)(int pe);
 typedef void (*shmem_barrier_all_func)(void);
 typedef void (*shmem_barrier_func)(int PE_start, int logPE_stride, int PE_size, long *pSync);
-typedef void (*shmem_info_get_version_func)(char *version, size_t len);
-typedef void (*shmem_info_get_name_func)(char *name, size_t len);
+typedef void (*shmem_info_get_version_func)(int *major, int *minor);
+typedef void (*shmem_info_get_name_func)(char *name);
 typedef void (*shmem_global_exit_func)(int status);
 
 /* Thread Support */
+typedef int (*shmem_init_thread_func)(int requested, int *provided);
 typedef int (*shmem_query_thread_func)(int *provided);
 
 /* Memory Management Routines */
-typedef void* (*shmem_ptr_func)(const void *target, int pe);
+typedef void* (*shmem_ptr_func)(const void *dest, int pe);
 typedef void* (*shmem_malloc_func)(size_t size);
 typedef void (*shmem_free_func)(void *ptr);
 typedef void* (*shmem_realloc_func)(void *ptr, size_t size);
 typedef void* (*shmem_align_func)(size_t alignment, size_t size);
 typedef void* (*shmem_malloc_with_hints_func)(size_t size, long hints);
 typedef void* (*shmem_calloc_func)(size_t count, size_t size);
+typedef int (*shmem_addr_accessible_func)(const void *addr, int pe);
 
 /* Team Management Routines */
 typedef int (*shmem_team_my_pe_func)(shmem_team_t team);
@@ -161,6 +162,7 @@ extern shmem_realloc_func p_shmem_realloc;
 extern shmem_align_func p_shmem_align;
 extern shmem_malloc_with_hints_func p_shmem_malloc_with_hints;
 extern shmem_calloc_func p_shmem_calloc;
+extern shmem_addr_accessible_func p_shmem_addr_accessible;
 
 /* Team Management Routines */
 extern shmem_team_my_pe_func p_shmem_team_my_pe;
