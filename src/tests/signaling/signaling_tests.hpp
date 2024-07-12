@@ -6,6 +6,8 @@
 #ifndef SIGNALING_TESTS_HPP
 #define SIGNALING_TESTS_HPP
 
+#include "routines.hpp"
+
 #include <shmem.h>
 
 /**

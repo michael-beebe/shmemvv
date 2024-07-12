@@ -57,7 +57,7 @@ fi
 #   --test_threads       Run thread support tests
 #   --test_mem           Run memory management tests
 #   --test_teams         Run team management tests
-#   --test_comms         Run communication management tests
+#   --test_ctx           Run communication management tests
 #   --test_remote        Run remote memory access tests
 #   --test_atomics       Run atomic memory operations tests
 #   --test_signaling     Run signaling operations tests
@@ -70,4 +70,4 @@ fi
 ######################################################################
 
 oshrun_flags="--bind-to core --map-by core"
-oshrun $oshrun_flags -np 2 $exe --test_mem
+oshrun $oshrun_flags -np 2 $exe --test_signaling

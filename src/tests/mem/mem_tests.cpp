@@ -63,6 +63,35 @@ bool test_shmem_malloc_free(void) {
 }
 
 /**
+  @brief Tests the shmem_addr_accessible() routine.
+  @return True if the address is accessible from all PEs, false otherwise.
+ */
+bool test_shmem_addr_accessible() {
+  int mype = p_shmem_my_pe();
+  int npes = p_shmem_n_pes();
+  int *ptr = (int*)p_shmem_malloc(sizeof(int));
+
+  if (ptr == nullptr) {
+    return false;
+  }
+
+  *ptr = mype;
+
+  p_shmem_barrier_all();
+
+  bool test_passed = true;
+
+  for (int pe = 0; pe < npes; ++pe) {
+    if (p_shmem_addr_accessible(ptr, pe) != 1) {
+      test_passed = false;
+    }
+  }
+
+  p_shmem_free(ptr);
+  return test_passed;
+}
+
+/**
   @brief Tests the shmem_realloc() routine.
   @return True if the test is successful, false otherwise.
  */

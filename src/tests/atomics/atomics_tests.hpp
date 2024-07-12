@@ -6,6 +6,8 @@
 #ifndef ATOMICS_TESTS_HPP
 #define ATOMICS_TESTS_HPP
 
+#include "routines.hpp"
+
 #include <shmem.h>
 #include <iostream>
 

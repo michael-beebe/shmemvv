@@ -19,28 +19,11 @@ int main(int argc, char *argv[]) {
     return EXIT_FAILURE;
   }
 
-  int mype;
-  int npes;
+  int mype = 0;
+  int npes = 0;
   std::string version = "";
   std::string name = "";
   test_options opts;
-
-  /* Parse command-line options */
-  if (!parse_opts(argc, argv, opts)) {
-    display_help();
-    return EXIT_FAILURE;
-  }
-
-  /* Enable all tests if --all is specified or no specific test is selected */
-  if (opts.all ||
-      !(opts.test_setup || opts.test_threads || opts.test_mem || opts.test_teams ||
-        opts.test_ctx || opts.test_remote || opts.test_atomics || opts.test_signaling ||
-        opts.test_collectives || opts.test_pt2pt_synch || opts.test_mem_ordering || opts.test_locking))
-  {
-    opts.test_setup = true; opts.test_threads = true; opts.test_mem = true; opts.test_teams = true;
-    opts.test_ctx = true; opts.test_remote = true; opts.test_atomics = true; opts.test_signaling = true;
-    opts.test_collectives = true; opts.test_pt2pt_synch = true; opts.test_mem_ordering = true; opts.test_locking = true;
-  }
 
   /* Variables to hold test results */
   bool result_shmem_init = true;
@@ -229,8 +212,29 @@ int main(int argc, char *argv[]) {
       result_shmem_info_get_name = false;
     }
   }
+
+  /* Parse command-line options */
+  if (!parse_opts(argc, argv, opts)) {
+    if (mype == 0) {
+      display_help();
+    }
+    shmem_finalize();
+    return EXIT_FAILURE;
+  }
+
+  shmem_barrier_all();
+
+  /* Enable all tests if --all is specified or no specific test is selected */
+  if (opts.all ||
+      !(opts.test_setup || opts.test_threads || opts.test_mem || opts.test_teams ||
+        opts.test_ctx || opts.test_remote || opts.test_atomics || opts.test_signaling ||
+        opts.test_collectives || opts.test_pt2pt_synch || opts.test_mem_ordering || opts.test_locking))
+  {
+    opts.test_setup = true; opts.test_threads = true; opts.test_mem = true; opts.test_teams = true;
+    opts.test_ctx = true; opts.test_remote = true; opts.test_atomics = true; opts.test_signaling = true;
+    opts.test_collectives = true; opts.test_pt2pt_synch = true; opts.test_mem_ordering = true; opts.test_locking = true;
+  }
   
-//////////////////////////////////////////////////////////////////////////////////////////
   /* Display test information */
   shmem_barrier_all();
   if (mype == 0) {
@@ -262,7 +266,6 @@ int main(int argc, char *argv[]) {
     }
     display_test_result("shmem_info_get_name()", result_shmem_info_get_name,false);
   }
-//////////////////////////////////////////////////////////////////////////////////////////
 
   /************************* THREADS TESTS **************************/
   if (opts.test_threads) {
@@ -324,6 +327,21 @@ int main(int argc, char *argv[]) {
       if (mype == 0) {
         display_test_result("shmem_malloc()", result_shmem_malloc_free, false);
         display_test_result("shmem_free()", result_shmem_malloc_free, false);
+      }
+    }
+
+    /* Test shmem_addr_accessible */
+    shmem_barrier_all();
+    if ( !check_if_exists("shmem_addr_accessible", mype) ) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_addr_accessible");
+      }
+    }
+    else {
+      bool result_shmem_addr_accessible = test_shmem_addr_accessible();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("shmem_addr_accessible()", result_shmem_addr_accessible, false);
       }
     }
 
@@ -994,6 +1012,7 @@ int main(int argc, char *argv[]) {
       }
     }
   }
+  
   /************************* SIGNALING TESTS **************************/
   if (opts.test_signaling) {
     shmem_barrier_all();

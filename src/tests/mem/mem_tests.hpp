@@ -26,6 +26,12 @@ bool test_shmem_ptr(void);
 bool test_shmem_malloc_free(void);
 
 /**
+  @brief Tests the shmem_addr_accessible() routine.
+  @return True if the address is accessible from all PEs, false otherwise.
+ */
+bool test_shmem_addr_accessible(void);
+
+/**
   @brief Tests the shmem_realloc() routine.
   @return True if the test is successful, false otherwise.
  */

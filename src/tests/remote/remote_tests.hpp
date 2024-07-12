@@ -6,6 +6,8 @@
 #ifndef REMOTE_TESTS_HPP
 #define REMOTE_TESTS_HPP
 
+#include "routines.hpp"
+
 #include <shmem.h>
 #include <iostream>
 

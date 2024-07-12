@@ -6,6 +6,8 @@
 #ifndef TEAMS_TESTS_HPP
 #define TEAMS_TESTS_HPP
 
+#include "routines.hpp"
+
 #include <shmem.h>
 #include <iostream>
 
