@@ -6,6 +6,8 @@
 #ifndef LOCKING_TESTS_HPP
 #define LOCKING_TESTS_HPP
 
+#include "routines.hpp"
+
 #include <shmem.h>
 #include <iostream>
 #include <cstdlib>

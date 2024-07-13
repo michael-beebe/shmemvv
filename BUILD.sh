@@ -15,7 +15,7 @@ cmake \
   -DCMAKE_LIBRARY_PATH=$SOS_LIB         \
   -DCMAKE_C_LINKER_FLAGS="-lpmi_simple -lsma" \
   -DCMAKE_INSTALL_PREFIX=$SWHOME/shmemvv \
-  -DDEBUG=OFF \
+  -DDEBUG=ON \
   ../
 
 # --- Compile
@@ -70,4 +70,4 @@ fi
 ######################################################################
 
 oshrun_flags="--bind-to core --map-by core"
-oshrun $oshrun_flags -np 2 $exe --test_signaling
+oshrun $oshrun_flags -np 2 $exe --test_locking

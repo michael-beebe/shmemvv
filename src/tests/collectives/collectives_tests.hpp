@@ -6,6 +6,8 @@
 #ifndef COLLECTIVES_TESTS_HPP
 #define COLLECTIVES_TESTS_HPP
 
+#include "routines.hpp"
+
 #include <shmem.h>
 #include <cstring>
 #include <stdbool.h>

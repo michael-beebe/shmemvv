@@ -255,31 +255,34 @@ shmem_long_put_signal_nbi_func p_shmem_long_put_signal_nbi = nullptr;
 /* Collective Routines */
 shmem_sync_func p_shmem_sync = nullptr;
 shmem_sync_all_func p_shmem_sync_all = nullptr;
-shmem_alltoall_func p_shmem_alltoall = nullptr;
-shmem_alltoalls_func p_shmem_alltoalls = nullptr;
-shmem_broadcast_func p_shmem_broadcast = nullptr;
-shmem_collect_func p_shmem_collect = nullptr;
-shmem_fcollect_func p_shmem_fcollect = nullptr;
-shmem_max_reduce_func p_shmem_max_reduce = nullptr;
-shmem_min_reduce_func p_shmem_min_reduce = nullptr;
-shmem_sum_reduce_func p_shmem_sum_reduce = nullptr;
-shmem_prod_reduce_func p_shmem_prod_reduce = nullptr;
+shmem_long_alltoall_func p_shmem_long_alltoall = nullptr;
+shmem_long_alltoalls_func p_shmem_long_alltoalls = nullptr;
+shmem_long_broadcast_func p_shmem_long_broadcast = nullptr;
+shmem_long_collect_func p_shmem_long_collect = nullptr;
+shmem_long_fcollect_func p_shmem_long_fcollect = nullptr;
+shmem_long_and_reduce_func p_shmem_long_and_reduce = nullptr;
+shmem_long_or_reduce_func p_shmem_long_or_reduce = nullptr;
+shmem_long_xor_reduce_func p_shmem_long_xor_reduce = nullptr;
+shmem_long_max_reduce_func p_shmem_long_max_reduce = nullptr;
+shmem_long_min_reduce_func p_shmem_long_min_reduce = nullptr;
+shmem_long_sum_reduce_func p_shmem_long_sum_reduce = nullptr;
+shmem_long_prod_reduce_func p_shmem_long_prod_reduce = nullptr;
 
 /* Point-to-Point Synchronization Routines */
-shmem_wait_until_func p_shmem_wait_until = nullptr;
-shmem_wait_until_all_func p_shmem_wait_until_all = nullptr;
-shmem_wait_until_any_func p_shmem_wait_until_any = nullptr;
-shmem_wait_until_some_func p_shmem_wait_until_some = nullptr;
-shmem_wait_until_all_vector_func p_shmem_wait_until_all_vector = nullptr;
-shmem_wait_until_any_vector_func p_shmem_wait_until_any_vector = nullptr;
-shmem_wait_until_some_vector_func p_shmem_wait_until_some_vector = nullptr;
-shmem_test_func p_shmem_test = nullptr;
-shmem_test_all_func p_shmem_test_all = nullptr;
-shmem_test_any_func p_shmem_test_any = nullptr;
-shmem_test_some_func p_shmem_test_some = nullptr;
-shmem_test_all_vector_func p_shmem_test_all_vector = nullptr;
-shmem_test_any_vector_func p_shmem_test_any_vector = nullptr;
-shmem_test_some_vector_func p_shmem_test_some_vector = nullptr;
+shmem_long_wait_until_func p_shmem_long_wait_until = nullptr;
+shmem_long_wait_until_all_func p_shmem_long_wait_until_all = nullptr;
+shmem_long_wait_until_any_func p_shmem_long_wait_until_any = nullptr;
+shmem_long_wait_until_some_func p_shmem_long_wait_until_some = nullptr;
+shmem_long_wait_until_all_vector_func p_shmem_long_wait_until_all_vector = nullptr;
+shmem_long_wait_until_any_vector_func p_shmem_long_wait_until_any_vector = nullptr;
+shmem_long_wait_until_some_vector_func p_shmem_long_wait_until_some_vector = nullptr;
+shmem_long_test_func p_shmem_long_test = nullptr;
+shmem_long_test_all_func p_shmem_long_test_all = nullptr;
+shmem_long_test_any_func p_shmem_long_test_any = nullptr;
+shmem_long_test_some_func p_shmem_long_test_some = nullptr;
+shmem_long_test_all_vector_func p_shmem_long_test_all_vector = nullptr;
+shmem_long_test_any_vector_func p_shmem_long_test_any_vector = nullptr;
+shmem_long_test_some_vector_func p_shmem_long_test_some_vector = nullptr;
 shmem_signal_wait_until_func p_shmem_signal_wait_until = nullptr;
 
 /* Memory Ordering Routines */
@@ -386,31 +389,34 @@ bool load_routines() {
   /* Collective Routines */
   p_shmem_sync = reinterpret_cast<shmem_sync_func>(dlsym(handle, "shmem_sync"));
   p_shmem_sync_all = reinterpret_cast<shmem_sync_all_func>(dlsym(handle, "shmem_sync_all"));
-  p_shmem_alltoall = reinterpret_cast<shmem_alltoall_func>(dlsym(handle, "shmem_alltoall"));
-  p_shmem_alltoalls = reinterpret_cast<shmem_alltoalls_func>(dlsym(handle, "shmem_alltoalls"));
-  p_shmem_broadcast = reinterpret_cast<shmem_broadcast_func>(dlsym(handle, "shmem_broadcast"));
-  p_shmem_collect = reinterpret_cast<shmem_collect_func>(dlsym(handle, "shmem_collect"));
-  p_shmem_fcollect = reinterpret_cast<shmem_fcollect_func>(dlsym(handle, "shmem_fcollect"));
-  p_shmem_max_reduce = reinterpret_cast<shmem_max_reduce_func>(dlsym(handle, "shmem_max_reduce"));
-  p_shmem_min_reduce = reinterpret_cast<shmem_min_reduce_func>(dlsym(handle, "shmem_min_reduce"));
-  p_shmem_sum_reduce = reinterpret_cast<shmem_sum_reduce_func>(dlsym(handle, "shmem_sum_reduce"));
-  p_shmem_prod_reduce = reinterpret_cast<shmem_prod_reduce_func>(dlsym(handle, "shmem_prod_reduce"));
+  p_shmem_long_alltoall = reinterpret_cast<shmem_long_alltoall_func>(dlsym(handle, "shmem_long_alltoall"));
+  p_shmem_long_alltoalls = reinterpret_cast<shmem_long_alltoalls_func>(dlsym(handle, "shmem_long_alltoalls"));
+  p_shmem_long_broadcast = reinterpret_cast<shmem_long_broadcast_func>(dlsym(handle, "shmem_long_broadcast"));
+  p_shmem_long_collect = reinterpret_cast<shmem_long_collect_func>(dlsym(handle, "shmem_long_collect"));
+  p_shmem_long_fcollect = reinterpret_cast<shmem_long_fcollect_func>(dlsym(handle, "shmem_long_fcollect"));
+  p_shmem_long_and_reduce = reinterpret_cast<shmem_long_and_reduce_func>(dlsym(handle, "shmem_long_and_reduce"));
+  p_shmem_long_or_reduce = reinterpret_cast<shmem_long_or_reduce_func>(dlsym(handle, "shmem_long_or_reduce"));
+  p_shmem_long_xor_reduce = reinterpret_cast<shmem_long_xor_reduce_func>(dlsym(handle, "shmem_long_xor_reduce"));
+  p_shmem_long_max_reduce = reinterpret_cast<shmem_long_max_reduce_func>(dlsym(handle, "shmem_long_max_reduce"));
+  p_shmem_long_min_reduce = reinterpret_cast<shmem_long_min_reduce_func>(dlsym(handle, "shmem_long_min_reduce"));
+  p_shmem_long_sum_reduce = reinterpret_cast<shmem_long_sum_reduce_func>(dlsym(handle, "shmem_long_sum_reduce"));
+  p_shmem_long_prod_reduce = reinterpret_cast<shmem_long_prod_reduce_func>(dlsym(handle, "shmem_long_prod_reduce"));
 
   /* Point-to-Point Synchronization Routines */
-  p_shmem_wait_until = reinterpret_cast<shmem_wait_until_func>(dlsym(handle, "shmem_wait_until"));
-  p_shmem_wait_until_all = reinterpret_cast<shmem_wait_until_all_func>(dlsym(handle, "shmem_wait_until_all"));
-  p_shmem_wait_until_any = reinterpret_cast<shmem_wait_until_any_func>(dlsym(handle, "shmem_wait_until_any"));
-  p_shmem_wait_until_some = reinterpret_cast<shmem_wait_until_some_func>(dlsym(handle, "shmem_wait_until_some"));
-  p_shmem_wait_until_all_vector = reinterpret_cast<shmem_wait_until_all_vector_func>(dlsym(handle, "shmem_wait_until_all_vector"));
-  p_shmem_wait_until_any_vector = reinterpret_cast<shmem_wait_until_any_vector_func>(dlsym(handle, "shmem_wait_until_any_vector"));
-  p_shmem_wait_until_some_vector = reinterpret_cast<shmem_wait_until_some_vector_func>(dlsym(handle, "shmem_wait_until_some_vector"));
-  p_shmem_test = reinterpret_cast<shmem_test_func>(dlsym(handle, "shmem_test"));
-  p_shmem_test_all = reinterpret_cast<shmem_test_all_func>(dlsym(handle, "shmem_test_all"));
-  p_shmem_test_any = reinterpret_cast<shmem_test_any_func>(dlsym(handle, "shmem_test_any"));
-  p_shmem_test_some = reinterpret_cast<shmem_test_some_func>(dlsym(handle, "shmem_test_some"));
-  p_shmem_test_all_vector = reinterpret_cast<shmem_test_all_vector_func>(dlsym(handle, "shmem_test_all_vector"));
-  p_shmem_test_any_vector = reinterpret_cast<shmem_test_any_vector_func>(dlsym(handle, "shmem_test_any_vector"));
-  p_shmem_test_some_vector = reinterpret_cast<shmem_test_some_vector_func>(dlsym(handle, "shmem_test_some_vector"));
+  p_shmem_long_wait_until = reinterpret_cast<shmem_long_wait_until_func>(dlsym(handle, "shmem_long_wait_until"));
+  p_shmem_long_wait_until_all = reinterpret_cast<shmem_long_wait_until_all_func>(dlsym(handle, "shmem_long_wait_until_all"));
+  p_shmem_long_wait_until_any = reinterpret_cast<shmem_long_wait_until_any_func>(dlsym(handle, "shmem_long_wait_until_any"));
+  p_shmem_long_wait_until_some = reinterpret_cast<shmem_long_wait_until_some_func>(dlsym(handle, "shmem_long_wait_until_some"));
+  p_shmem_long_wait_until_all_vector = reinterpret_cast<shmem_long_wait_until_all_vector_func>(dlsym(handle, "shmem_long_wait_until_all_vector"));
+  p_shmem_long_wait_until_any_vector = reinterpret_cast<shmem_long_wait_until_any_vector_func>(dlsym(handle, "shmem_long_wait_until_any_vector"));
+  p_shmem_long_wait_until_some_vector = reinterpret_cast<shmem_long_wait_until_some_vector_func>(dlsym(handle, "shmem_long_wait_until_some_vector"));
+  p_shmem_long_test = reinterpret_cast<shmem_long_test_func>(dlsym(handle, "shmem_long_test"));
+  p_shmem_long_test_all = reinterpret_cast<shmem_long_test_all_func>(dlsym(handle, "shmem_long_test_all"));
+  p_shmem_long_test_any = reinterpret_cast<shmem_long_test_any_func>(dlsym(handle, "shmem_long_test_any"));
+  p_shmem_long_test_some = reinterpret_cast<shmem_long_test_some_func>(dlsym(handle, "shmem_long_test_some"));
+  p_shmem_long_test_all_vector = reinterpret_cast<shmem_long_test_all_vector_func>(dlsym(handle, "shmem_long_test_all_vector"));
+  p_shmem_long_test_any_vector = reinterpret_cast<shmem_long_test_any_vector_func>(dlsym(handle, "shmem_long_test_any_vector"));
+  p_shmem_long_test_some_vector = reinterpret_cast<shmem_long_test_some_vector_func>(dlsym(handle, "shmem_long_test_some_vector"));
   p_shmem_signal_wait_until = reinterpret_cast<shmem_signal_wait_until_func>(dlsym(handle, "shmem_signal_wait_until"));
 
   /* Memory Ordering Routines */
@@ -454,11 +460,11 @@ bool check_if_exists(const std::string& routine_name, int mype) {
 
   const char *dlsym_error = dlerror();
   if (dlsym_error) {
-    #ifdef _DEBUG_
-      if (mype == 0) {
-        std::cerr << "Function " << routine_name << " not found: " << dlsym_error << std::endl;
-      }
-    #endif
+    // #ifdef _DEBUG_
+    //   if (mype == 0) {
+    //     std::cerr << "Function " << routine_name << " not found: " << dlsym_error << std::endl;
+    //   }
+    // #endif
     symbol = nullptr;
   }
 

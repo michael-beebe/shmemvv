@@ -95,34 +95,38 @@ typedef void (*shmem_long_put_signal_nbi_func)(long *dest, const long *source, s
 typedef long (*shmem_signal_fetch_func)(const uint64_t *sig_addr);
 
 /* Collective Routines */
-typedef void (*shmem_sync_func)(int PE_start, int logPE_stride, int PE_size, long *pSync);
+typedef int (*shmem_sync_func)(int PE_start, int logPE_stride, int PE_size, long *pSync);
 typedef void (*shmem_sync_all_func)(void);
-typedef void (*shmem_alltoall_func)(void *dest, const void *src, size_t nelems, int PE_start, int logPE_stride, int PE_size, long *pSync);
-typedef void (*shmem_alltoalls_func)(void *dest, const void *src, ptrdiff_t tst, ptrdiff_t sst, size_t nelems, int PE_start, int logPE_stride, int PE_size, long *pSync);
-typedef void (*shmem_broadcast_func)(void *dest, const void *src, int nelems, int PE_root, int PE_start, int logPE_stride, int PE_size, long *pSync);
-typedef void (*shmem_collect_func)(void *dest, const void *src, size_t nelems, int PE_start, int logPE_stride, int PE_size, long *pSync);
-typedef void (*shmem_fcollect_func)(void *dest, const void *src, size_t nelems, int PE_start, int logPE_stride, int PE_size, long *pSync);
-typedef void (*shmem_max_reduce_func)(void *dest, const void *src, size_t nelems, int PE_start, int logPE_stride, int PE_size, long *pSync);
-typedef void (*shmem_min_reduce_func)(void *dest, const void *src, size_t nelems, int PE_start, int logPE_stride, int PE_size, long *pSync);
-typedef void (*shmem_sum_reduce_func)(void *dest, const void *src, size_t nelems, int PE_start, int logPE_stride, int PE_size, long *pSync);
-typedef void (*shmem_prod_reduce_func)(void *dest, const void *src, size_t nelems, int PE_start, int logPE_stride, int PE_size, long *pSync);
+typedef int (*shmem_long_alltoall_func)(shmem_team_t team, long *dest, const long *source, size_t nelems);
+typedef int (*shmem_long_alltoalls_func)(shmem_team_t team, long *dest, const long *source, ptrdiff_t dst, ptrdiff_t sst, size_t nelems);
+typedef int (*shmem_long_broadcast_func)(shmem_team_t team, long *dest, const long *source, size_t nelems, int PE_root);
+typedef int (*shmem_long_collect_func)(shmem_team_t team, long *dest, const long *source, size_t nelems);
+typedef int (*shmem_long_fcollect_func)(shmem_team_t team, long *dest, const long *source, size_t nelems);
+typedef int (*shmem_long_and_reduce_func)(shmem_team_t team, long *dest, const long *source, size_t nreduce);
+typedef int (*shmem_long_or_reduce_func)(shmem_team_t team, long *dest, const long *source, size_t nreduce);
+typedef int (*shmem_long_xor_reduce_func)(shmem_team_t team, long *dest, const long *source, size_t nreduce);
+typedef int (*shmem_long_max_reduce_func)(shmem_team_t team, long *dest, const long *source, size_t nreduce);
+typedef int (*shmem_long_min_reduce_func)(shmem_team_t team, long *dest, const long *source, size_t nreduce);
+typedef int (*shmem_long_sum_reduce_func)(shmem_team_t team, long *dest, const long *source, size_t nreduce);
+typedef int (*shmem_long_prod_reduce_func)(shmem_team_t team, long *dest, const long *source, size_t nreduce);
 
 /* Point-Point Synchronization Routines */
-typedef void (*shmem_wait_until_func)(long *ivar, int cmp, long value);
-typedef void (*shmem_wait_until_all_func)(long *ivars, int *status, int cmp, long value, size_t nelems);
-typedef void (*shmem_wait_until_any_func)(long *ivars, int *status, int cmp, long value, size_t nelems);
-typedef void (*shmem_wait_until_some_func)(long *ivars, int *status, int cmp, long value, size_t nelems);
-typedef void (*shmem_wait_until_all_vector_func)(long *ivars, int *status, int cmp, long value, size_t nelems);
-typedef void (*shmem_wait_until_any_vector_func)(long *ivars, int *status, int cmp, long value, size_t nelems);
-typedef void (*shmem_wait_until_some_vector_func)(long *ivars, int *status, int cmp, long value, size_t nelems);
-typedef int (*shmem_test_func)(const long *ivar, int cmp, long value);
-typedef int (*shmem_test_all_func)(const long *ivars, int cmp, long value, size_t nelems);
-typedef int (*shmem_test_any_func)(const long *ivars, int *status, int cmp, long value, size_t nelems);
-typedef int (*shmem_test_some_func)(const long *ivars, int *status, int cmp, long value, size_t nelems);
-typedef int (*shmem_test_all_vector_func)(const long *ivars, int *status, int cmp, long value, size_t nelems);
-typedef int (*shmem_test_any_vector_func)(const long *ivars, int *status, int cmp, long value, size_t nelems);
-typedef int (*shmem_test_some_vector_func)(const long *ivars, int *status, int cmp, long value, size_t nelems);
-typedef void (*shmem_signal_wait_until_func)(long *sig_addr, int cmp, long value);
+typedef void (*shmem_long_wait_until_func)(long *ivar, int cmp, long cmp_value);
+typedef void (*shmem_long_wait_until_all_func)(long *ivars, size_t nelems, const int *status, int cmp, long cmp_value);
+typedef size_t (*shmem_long_wait_until_any_func)(long *ivars, size_t nelems, const int *status, int cmp, long cmp_value);
+typedef size_t (*shmem_long_wait_until_some_func)(long *ivars, size_t nelems, size_t *indices, const int *status, int cmp, long cmp_value);
+typedef void (*shmem_long_wait_until_all_vector_func)(long *ivars, size_t nelems, const int *status, int cmp, long *cmp_values);
+typedef size_t (*shmem_long_wait_until_any_vector_func)(long *ivars, size_t nelems, const int *status, int cmp, long *cmp_values);
+typedef size_t (*shmem_long_wait_until_some_vector_func)(long *ivars, size_t nelems, size_t *indices, const int *status, int cmp, long *cmp_values);
+typedef int (*shmem_long_test_func)(long *ivar, int cmp, long cmp_value);
+typedef int (*shmem_long_test_all_func)(long *ivars, size_t nelems, const int *status, int cmp, long cmp_value);
+typedef size_t (*shmem_long_test_any_func)(long *ivars, size_t nelems, const int *status, int cmp,long cmp_value);
+typedef size_t (*shmem_long_test_some_func)(long *ivars, size_t nelems, size_t *indices, const int *status, int cmp, long cmp_value);
+typedef int (*shmem_long_test_all_vector_func)(long *ivars, size_t nelems, const int *status, int cmp, long *cmp_values);
+typedef size_t (*shmem_long_test_any_vector_func)(long *ivars, size_t nelems, const int *status, int cmp, long *cmp_values);
+typedef size_t (*shmem_long_test_some_vector_func)(long *ivars, size_t nelems, size_t *indices, const int *status, int cmp, long *cmp_values);
+
+typedef uint64_t (*shmem_signal_wait_until_func)(uint64_t *sig_addr, int cmp, uint64_t cmp_value);
 
 /* Memory Ordering Routines */
 typedef void (*shmem_fence_func)(void);
@@ -221,31 +225,34 @@ extern shmem_signal_fetch_func p_shmem_signal_fetch;
 /* Collective Routines */
 extern shmem_sync_func p_shmem_sync;
 extern shmem_sync_all_func p_shmem_sync_all;
-extern shmem_alltoall_func p_shmem_alltoall;
-extern shmem_alltoalls_func p_shmem_alltoalls;
-extern shmem_broadcast_func p_shmem_broadcast;
-extern shmem_collect_func p_shmem_collect;
-extern shmem_fcollect_func p_shmem_fcollect;
-extern shmem_max_reduce_func p_shmem_max_reduce;
-extern shmem_min_reduce_func p_shmem_min_reduce;
-extern shmem_sum_reduce_func p_shmem_sum_reduce;
-extern shmem_prod_reduce_func p_shmem_prod_reduce;
+extern shmem_long_alltoall_func p_shmem_long_alltoall;
+extern shmem_long_alltoalls_func p_shmem_long_alltoalls;
+extern shmem_long_broadcast_func p_shmem_long_broadcast;
+extern shmem_long_collect_func p_shmem_long_collect;
+extern shmem_long_fcollect_func p_shmem_long_fcollect;
+extern shmem_long_and_reduce_func p_shmem_long_and_reduce;
+extern shmem_long_or_reduce_func p_shmem_long_or_reduce;
+extern shmem_long_xor_reduce_func p_shmem_long_xor_reduce;
+extern shmem_long_max_reduce_func p_shmem_long_max_reduce;
+extern shmem_long_min_reduce_func p_shmem_long_min_reduce;
+extern shmem_long_sum_reduce_func p_shmem_long_sum_reduce;
+extern shmem_long_prod_reduce_func p_shmem_long_prod_reduce;
 
 /* Point-Point Synchronization Routines */
-extern shmem_wait_until_func p_shmem_wait_until;
-extern shmem_wait_until_all_func p_shmem_wait_until_all;
-extern shmem_wait_until_any_func p_shmem_wait_until_any;
-extern shmem_wait_until_some_func p_shmem_wait_until_some;
-extern shmem_wait_until_all_vector_func p_shmem_wait_until_all_vector;
-extern shmem_wait_until_any_vector_func p_shmem_wait_until_any_vector;
-extern shmem_wait_until_some_vector_func p_shmem_wait_until_some_vector;
-extern shmem_test_func p_shmem_test;
-extern shmem_test_all_func p_shmem_test_all;
-extern shmem_test_any_func p_shmem_test_any;
-extern shmem_test_some_func p_shmem_test_some;
-extern shmem_test_all_vector_func p_shmem_test_all_vector;
-extern shmem_test_any_vector_func p_shmem_test_any_vector;
-extern shmem_test_some_vector_func p_shmem_test_some_vector;
+extern shmem_long_wait_until_func p_shmem_long_wait_until;
+extern shmem_long_wait_until_all_func p_shmem_long_wait_until_all;
+extern shmem_long_wait_until_any_func p_shmem_long_wait_until_any;
+extern shmem_long_wait_until_some_func p_shmem_long_wait_until_some;
+extern shmem_long_wait_until_all_vector_func p_shmem_long_wait_until_all_vector;
+extern shmem_long_wait_until_any_vector_func p_shmem_long_wait_until_any_vector;
+extern shmem_long_wait_until_some_vector_func p_shmem_long_wait_until_some_vector;
+extern shmem_long_test_func p_shmem_long_test;
+extern shmem_long_test_all_func p_shmem_long_test_all;
+extern shmem_long_test_any_func p_shmem_long_test_any;
+extern shmem_long_test_some_func p_shmem_long_test_some;
+extern shmem_long_test_all_vector_func p_shmem_long_test_all_vector;
+extern shmem_long_test_any_vector_func p_shmem_long_test_any_vector;
+extern shmem_long_test_some_vector_func p_shmem_long_test_some_vector;
 extern shmem_signal_wait_until_func p_shmem_signal_wait_until;
 
 /* Memory Ordering Routines */

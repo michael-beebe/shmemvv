@@ -1440,9 +1440,9 @@ int main(int argc, char *argv[]) {
 
       /* Run shmem_signal_wait_until() test */
       shmem_barrier_all();
-      if (!check_if_exists("shmem_long_wait_until", mype)) {
+      if (!check_if_exists("shmem_signal_wait_until", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_wait_until()");
+          display_not_found_warning("shmem_signal_wait_until()");
         }
       }
       else {

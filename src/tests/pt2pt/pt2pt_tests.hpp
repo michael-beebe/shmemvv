@@ -6,6 +6,8 @@
 #ifndef PT2PT_TESTS_HPP
 #define PT2PT_TESTS_HPP
 
+#include "routines.hpp"
+
 #include <shmem.h>
 #include <iostream>
 #include <stdio.h>
