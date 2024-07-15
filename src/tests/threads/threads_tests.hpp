@@ -6,6 +6,8 @@
 #ifndef THREADS_TESTS_HPP
 #define THREADS_TESTS_HPP
 
+#include "routines.hpp"
+
 #include <shmem.h>
 #include <iostream>
 

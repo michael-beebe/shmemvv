@@ -3,11 +3,11 @@ Validation/Verification test suite for OpenSHMEM (v1.5)
 
 <!-- ![Logo](assets/DALL·E%202024-06-26%2016.04.50%20-%20Create%20a%20logo%20for%20an%20OpenSHMEM%20verification_validation%20test%20suite%20called%20SHMEMVV.%20The%20logo%20should%20incorporate%20the%20same%20colors%20as%20the%20OpenSHMEM%20logo,%20w.webp) -->
 
-![Logo](assets/logo.png)
+![Logo](.git/assets/logo.png)
 
 ## Requirements
 - Implementation of the OpenSHMEM v1.5 specification
-- CMake/CTest
+- CMake
 
 ## Building
 ```bash
@@ -17,7 +17,7 @@ cmake \
   -DCMAKE_INCLUDE_PATH=</path/to/openshmem/include/dir>  \
   -DCMAKE_LIBRARY_PATH=</path/to/openshmem/lib/dir>      \
   -DCMAKE_C_LINKER_FLAGS="<linker flags, such as -lsma>" \
-  -DDEBUG=<OFF or ON>                                    \
+  -DDEBUG=<OFF/ON>                                       \
   ../
 ```
 
@@ -36,7 +36,7 @@ Options:
   --test_threads       Run thread support tests
   --test_mem           Run memory management tests
   --test_teams         Run team management tests
-  --test_comms         Run communication management tests
+  --test_ctx           Run communication management tests
   --test_remote        Run remote memory access tests
   --test_atomics       Run atomic memory operations tests
   --test_signaling     Run signaling operations tests
@@ -77,6 +77,7 @@ Will test the following routines:
 --test_mem
 ```
 Will test the following routines:
+- shmem_addr_accessible()
 - shmem_ptr()
 - shmem_malloc()
 - shmem_free()
@@ -92,7 +93,6 @@ Will test the following routines:
 Will test the following routines:
 - shmem_team_my_pe()
 - shmem_team_n_pes()
-- shmem_team_config_t()
 - shmem_team_get_config()
 - shmem_team_translate_pe()
 - shmem_team_split_strided()
@@ -101,7 +101,7 @@ Will test the following routines:
 
 #### Communication/Context Management Routines
 ```
---test_comms
+--test_ctx
 ```
 Will test the following routines:
 - shmem_ctx_create()
@@ -172,13 +172,13 @@ Will test the following routines:
 - shmem_broadcast()
 - shmem_collect()
 - shmem_fcollect()
-<!-- - shmem_and_reduce()
-- shmem_or_reduce()
-- shmem_xor_reduce() -->
 - shmem_max_reduce()
 - shmem_min_reduce()
 - shmem_sum_reduce()
 - shmem_prod_reduce()
+<!-- - shmem_and_reduce()
+- shmem_or_reduce()
+- shmem_xor_reduce() -->
 
 #### Point-Point Synchronization Routines
 ```

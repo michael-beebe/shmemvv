@@ -6,6 +6,8 @@
 #ifndef TEAMS_TESTS_HPP
 #define TEAMS_TESTS_HPP
 
+#include "routines.hpp"
+
 #include <shmem.h>
 #include <iostream>
 
@@ -20,12 +22,6 @@ bool test_shmem_team_my_pe(void);
  * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_team_n_pes(void);
-
-/**
- * @brief Tests the shmem_team_config_t structure and related routines.
- * @return True if the test is successful, false otherwise.
- */
-bool test_shmem_team_config_t(void);
 
 /**
  * @brief Tests the shmem_team_get_config() routine.

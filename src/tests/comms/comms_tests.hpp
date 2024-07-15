@@ -6,6 +6,8 @@
 #ifndef COMMS_TESTS_HPP
 #define COMMS_TESTS_HPP
 
+#include "routines.hpp"
+
 #include <shmem.h>
 #include <iostream>
 

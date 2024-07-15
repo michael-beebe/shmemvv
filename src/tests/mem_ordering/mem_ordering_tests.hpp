@@ -6,6 +6,8 @@
 #ifndef MEM_ORDERING_TESTS_HPP
 #define MEM_ORDERING_TESTS_HPP
 
+#include "routines.hpp"
+
 #include <shmem.h>
 #include <iostream>
 #include <cstdlib>

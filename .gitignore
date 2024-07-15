@@ -14,3 +14,8 @@ _deps
 # --- Other stuff
 build
 *.bk
+BUILD.sh
+NM.*
+
+
+

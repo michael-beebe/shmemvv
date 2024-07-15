@@ -6,10 +6,20 @@
 #ifndef SETUP_TESTS_HPP
 #define SETUP_TESTS_HPP
 
+#include "routines.hpp"
+
 #include <shmem.h>
 #include <iostream>
 #include <cstring>
 #include <string>
+
+/**
+  @brief Tests to make sure routines that aren't
+         implemented in the tested OpenSHMEM library don't throw
+         compiler errrors
+  @return True if success, False of failure
+ */
+bool test_shmem_fake_routine(void);
 
 /**
   @brief Tests the initialization of OpenSHMEM.
