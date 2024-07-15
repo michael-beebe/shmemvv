@@ -440,17 +440,10 @@ bool load_routines() {
 /**
  * @brief Function to check if a routine exists
  * @param routine_name Name of the OpenSHMEM routine to check
- * @param mype Current PE number
  * @return True if the routine exists, false otherwise
  */
-bool check_if_exists(const std::string& routine_name, int mype) {
+bool check_if_exists(const std::string& routine_name) {
   void *handle = dlopen(NULL, RTLD_LAZY);
-  if (!handle) {
-    if (mype == 0) {
-      std::cerr << "Failed to open handle: " << dlerror() << std::endl;
-    }
-    return false;
-  }
 
   /* Clear any existing errors */
   dlerror();

@@ -115,10 +115,9 @@ bool load_routines();
 /**
   @brief Checks whether the tested OpenSHMEM implementation has a given routine
   @param routine_name OpenSHMEM routine that we are making sure is present
-  @param mype Current OpenSHMEM PE
   @return true if it exists, false otherwise
  */
-bool check_if_exists(const std::string& routine_name, int mype);
+bool check_if_exists(const std::string& routine_name);
 
 /**
   @brief Displays a warning message that the given routine is not avaible in the
