@@ -1670,6 +1670,7 @@ int main(int argc, char *argv[]) {
   else {
     if (mype == 0) {
       display_test_header("FINALIZATION");
+      shmem_barrier_all();
       display_test_result("shmem_finalize()", test_shmem_finalize(), false);
       std::cout << std::endl;
     }

@@ -7,7 +7,7 @@ Validation/Verification test suite for OpenSHMEM (v1.5)
 
 ## Requirements
 - Implementation of the OpenSHMEM v1.5 specification
-- CMake/CTest
+- CMake
 
 ## Building
 ```bash

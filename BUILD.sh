@@ -70,4 +70,4 @@ fi
 ######################################################################
 
 oshrun_flags="--bind-to core --map-by core"
-oshrun $oshrun_flags -np 2 $exe --test_setup
+oshrun $oshrun_flags -np 1 $exe --test_remote
