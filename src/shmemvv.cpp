@@ -475,6 +475,15 @@ void display_not_found_warning(std::string routine_name, bool required) {
 }
 
 /**
+  @brief Print error message saying that there needs to be at least
+         2 PEs for the given test type
+  @param test_type Category of tests
+ */
+void display_not_enough_pes(std::string test_type) {
+  std::cerr << RED_COLOR << "ERROR" << RESET_COLOR << ": The " << test_type << " tests require at least 2 PEs!" << std::endl;
+}
+
+/**
   @brief Displays the result of a test.
   @param routine_name Name of the OpenSHMEM routine that was tested.
   @param passed True if the test passed, false if the test failed.

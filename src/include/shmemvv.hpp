@@ -128,6 +128,13 @@ bool check_if_exists(const std::string& routine_name);
 void display_not_found_warning(std::string routine_name, bool required);
 
 /**
+  @brief Print error message saying that there needs to be at least
+         2 PEs for the given test type
+  @param test_type Category of tests
+ */
+void display_not_enough_pes(std::string test_type);
+
+/**
   @brief Displays whether the test passed
   @param routine_name OpenSHMEM routine that was tested
   @param passed True if the test passed, false if the test failed
