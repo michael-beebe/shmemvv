@@ -124,8 +124,9 @@ bool check_if_exists(const std::string& routine_name, int mype);
   @brief Displays a warning message that the given routine is not avaible in the
         tested OpenSHMEM library
   @param routine_name OpenSHMEM routine
+  @param required True if test is required, false otherwise
 */
-void display_not_found_warning(std::string routine_name);
+void display_not_found_warning(std::string routine_name, bool required);
 
 /**
   @brief Displays whether the test passed

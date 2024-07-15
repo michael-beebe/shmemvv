@@ -39,7 +39,9 @@ int main(int argc, char *argv[]) {
   /* Initialize with shmem_init_thread() if THREADS tests were enabled */
   if (opts.test_threads) {
     if (!check_if_exists("shmem_init_thread", 0)) {
-      std::cerr << RED_COLOR << "This OpenSHMEM implementation does not support shmem_init_thread()" << RESET_COLOR << std::endl;
+      if (mype == 0) {
+        display_not_found_warning("shmem_init_thread()", true);
+      }
       return EXIT_FAILURE;
     }
     else {
@@ -53,7 +55,9 @@ int main(int argc, char *argv[]) {
   else {
     /* Initialize with regular shmem_init() if THREADS tests are not enabled */
     if (!check_if_exists("shmem_init", 0)) {
-      std::cerr << RED_COLOR << "This OpenSHMEM implementation does not support shmem_init()" << RESET_COLOR << std::endl;
+      if (mype == 0) {
+        display_not_found_warning("shmem_init()", true);
+      }
       return EXIT_FAILURE;
     }
     else {
@@ -67,7 +71,9 @@ int main(int argc, char *argv[]) {
 
   /* Run shmem_barrier_all() test */
   if (!check_if_exists("shmem_barrier_all", 0)) {
-    std::cerr << RED_COLOR << "This OpenSHMEM implementation does not support shmem_barrier_all()" << RESET_COLOR << std::endl;
+    if (mype == 0) {
+      display_not_found_warning("shmem_barrier_all()", true);
+    }
     shmem_finalize();
     return EXIT_FAILURE;
   }
@@ -85,7 +91,9 @@ int main(int argc, char *argv[]) {
   /* Run shmem_my_pe() test */
   shmem_barrier_all();
   if (!check_if_exists("shmem_my_pe", 0)) {
-    std::cerr << RED_COLOR << "This OpenSHMEM implementation does not support shmem_my_pe()" << RESET_COLOR << std::endl;
+    if (mype == 0) {
+      display_not_found_warning("shmem_my_pe()", true);
+    }
     shmem_finalize();
     return EXIT_FAILURE;
   }
@@ -93,7 +101,9 @@ int main(int argc, char *argv[]) {
     mype = test_shmem_my_pe();
     result_shmem_my_pe = mype >= 0;
     if (!result_shmem_my_pe) {
-      if (mype == 0) { display_test_result("shmem_my_pe()", result_shmem_my_pe, true); }
+      if (mype == 0) {
+        display_test_result("shmem_my_pe()", result_shmem_my_pe, true);
+      }
       shmem_finalize();
       return EXIT_FAILURE;
     }
@@ -103,7 +113,7 @@ int main(int argc, char *argv[]) {
   shmem_barrier_all();
   if (!check_if_exists("shmem_n_pes", mype)) {
     if (mype == 0) {
-      std::cerr << RED_COLOR << "This OpenSHMEM implementation does not support shmem_n_pes()" << RESET_COLOR << std::endl; 
+      display_not_found_warning("shmem_n_pes", true);
     }
     shmem_finalize();
     return EXIT_FAILURE;
@@ -125,7 +135,7 @@ int main(int argc, char *argv[]) {
   shmem_barrier_all();
   if (!check_if_exists("shmem_pe_accessible", mype)) {
     if (mype == 0) {
-      display_not_found_warning("shmem_pe_accessible()");
+      display_not_found_warning("shmem_pe_accessible()", false);
     }
   }
   else {
@@ -147,7 +157,7 @@ int main(int argc, char *argv[]) {
     shmem_barrier_all();
     if (!check_if_exists("shmem_fake_routine", mype)) {
       if (mype == 0) {
-        display_not_found_warning("shmem_fake_routine()");
+        display_not_found_warning("shmem_fake_routine()", false);
       }
     }
     else {
@@ -175,7 +185,7 @@ int main(int argc, char *argv[]) {
   shmem_barrier_all();
   if (!check_if_exists("shmem_barrier", mype)) {
     if (mype == 0) {
-      display_not_found_warning("shmem_barrier()");
+      display_not_found_warning("shmem_barrier()", false);
     }
   }
   else {
@@ -188,7 +198,7 @@ int main(int argc, char *argv[]) {
   if (!check_if_exists("shmem_info_get_version", mype)) {
     result_shmem_info_get_version = false;
     if (mype == 0) {
-      display_not_found_warning("shmem_info_get_version()");
+      display_not_found_warning("shmem_info_get_version()", false);
     }
   }
   else {
@@ -203,7 +213,7 @@ int main(int argc, char *argv[]) {
   if (!check_if_exists("shmem_info_get_name", mype)) {
     result_shmem_info_get_name = false;
     if (mype == 0) {
-      display_not_found_warning("shmem_info_get_name()");
+      display_not_found_warning("shmem_info_get_name()", false);
     }
   }
   else {
@@ -282,7 +292,7 @@ int main(int argc, char *argv[]) {
     shmem_barrier_all();
     if ( !check_if_exists("shmem_query_thread", mype) ) {
       if (mype == 0) {
-        display_not_found_warning("shmem_query_thread()");
+        display_not_found_warning("shmem_query_thread()", false);
       }
     }
     else {
@@ -303,7 +313,7 @@ int main(int argc, char *argv[]) {
     shmem_barrier_all();
     if ( !check_if_exists("shmem_ptr", mype) ) {
       if (mype == 0) {
-        display_not_found_warning("shmem_ptr()");
+        display_not_found_warning("shmem_ptr()", false);
       }
     }
     else {
@@ -315,13 +325,7 @@ int main(int argc, char *argv[]) {
     }
 
     /* Test shmem_malloc() and shmem_free() */
-    shmem_barrier_all();
-    if ( !check_if_exists("shmem_free", mype) ) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_free()");
-      }
-    }
-    else {
+    if ( check_if_exists("shmem_malloc", mype) && check_if_exists("shmem_free", mype) ) {
       bool result_shmem_malloc_free = test_shmem_malloc_free();
       shmem_barrier_all();
       if (mype == 0) {
@@ -329,12 +333,24 @@ int main(int argc, char *argv[]) {
         display_test_result("shmem_free()", result_shmem_malloc_free, false);
       }
     }
+    else {
+      if ( !check_if_exists("shmem_malloc", mype) ) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_malloc()", false);
+        }
+      }
+      if ( !check_if_exists("shmem_free", mype) ) {
+        if (mype == 0) {
+          display_not_found_warning("shmem_free()", false);
+        }
+      }
+    }
 
     /* Test shmem_addr_accessible */
     shmem_barrier_all();
     if ( !check_if_exists("shmem_addr_accessible", mype) ) {
       if (mype == 0) {
-        display_not_found_warning("shmem_addr_accessible");
+        display_not_found_warning("shmem_addr_accessible", false);
       }
     }
     else {
@@ -349,7 +365,7 @@ int main(int argc, char *argv[]) {
     shmem_barrier_all();
     if ( !check_if_exists("shmem_realloc", mype) ) {
       if (mype == 0) {
-        display_not_found_warning("shme_ralloc()");
+        display_not_found_warning("shme_realloc()", false);
       }
     }
     else {
@@ -364,7 +380,7 @@ int main(int argc, char *argv[]) {
     shmem_barrier_all();
     if ( !check_if_exists("shmem_align", mype) ) {
       if (mype == 0) {
-        display_not_found_warning("shmem_align()");
+        display_not_found_warning("shmem_align()", false);
       }
     }
     else {
@@ -379,7 +395,7 @@ int main(int argc, char *argv[]) {
     shmem_barrier_all();
     if ( !check_if_exists("shmem_malloc_with_hints", mype) ) {
       if (mype == 0) {
-        display_not_found_warning("shmem_malloc_with_hints()");
+        display_not_found_warning("shmem_malloc_with_hints()", false);
       }
     }
     else {
@@ -394,7 +410,7 @@ int main(int argc, char *argv[]) {
     shmem_barrier_all();
     if ( !check_if_exists("shmem_calloc", mype) ) {
       if (mype == 0) {
-        display_not_found_warning("shmem_calloc()");
+        display_not_found_warning("shmem_calloc()", false);
       }
     }
     else {
@@ -415,7 +431,7 @@ int main(int argc, char *argv[]) {
     shmem_barrier_all();
     if ( !check_if_exists("shmem_team_my_pe", mype) ) {
       if (mype == 0) {
-        display_not_found_warning("shmem_team_my_pe()");
+        display_not_found_warning("shmem_team_my_pe()", true);
       }
     }
     else {
@@ -430,7 +446,7 @@ int main(int argc, char *argv[]) {
     shmem_barrier_all();
     if ( !check_if_exists("shmem_team_n_pes", mype) ) {
       if (mype == 0) {
-        display_not_found_warning("shmem_team_n_pes()");
+        display_not_found_warning("shmem_team_n_pes()", true);
       }
     }
     else {
@@ -445,7 +461,7 @@ int main(int argc, char *argv[]) {
     shmem_barrier_all();
     if ( !check_if_exists("shmem_team_get_config", mype) ) {
       if (mype == 0) {
-        display_not_found_warning("shmem_team_get_config()");
+        display_not_found_warning("shmem_team_get_config()", false);
       }
     }
     else {
@@ -460,7 +476,7 @@ int main(int argc, char *argv[]) {
     shmem_barrier_all();
     if ( !check_if_exists("shmem_team_translate_pe", mype) ) {
       if (mype == 0) {
-        display_not_found_warning("shmem_team_translate_pe()");
+        display_not_found_warning("shmem_team_translate_pe()", false);
       }
     }
     else {
@@ -475,7 +491,7 @@ int main(int argc, char *argv[]) {
     shmem_barrier_all();
     if ( !check_if_exists("shmem_team_split_strided", mype) ) {
       if (mype == 0) {
-        display_not_found_warning("shmem_team_split_strided()");
+        display_not_found_warning("shmem_team_split_strided()", false);
       }
     }
     else {
@@ -490,7 +506,7 @@ int main(int argc, char *argv[]) {
     shmem_barrier_all();
     if ( !check_if_exists("shmem_team_split_2d", mype) ) {
       if (mype == 0) {
-        display_not_found_warning("shmem_team_split_2d()");
+        display_not_found_warning("shmem_team_split_2d()", false);
       }
     }
     else {
@@ -505,7 +521,7 @@ int main(int argc, char *argv[]) {
     shmem_barrier_all();
     if ( !check_if_exists("shmem_team_destroy", mype) ) {
       if (mype == 0) {
-        display_not_found_warning("shmem_team_destroy()");
+        display_not_found_warning("shmem_team_destroy()", false);
       }
     }
     else {
@@ -526,7 +542,7 @@ int main(int argc, char *argv[]) {
     shmem_barrier_all();
     if (!check_if_exists("shmem_ctx_create", mype)) {
       if (mype == 0) {
-        display_not_found_warning("shmem_ctx_create()");
+        display_not_found_warning("shmem_ctx_create()", false);
       }
     }
     else {
@@ -541,7 +557,7 @@ int main(int argc, char *argv[]) {
     shmem_barrier_all();
     if (!check_if_exists("shmem_team_create_ctx", mype)) {
       if (mype == 0) {
-        display_not_found_warning("shmem_team_create_ctx()");
+        display_not_found_warning("shmem_team_create_ctx()", false);
       }
     }
     else {
@@ -556,7 +572,7 @@ int main(int argc, char *argv[]) {
     shmem_barrier_all();
     if (!check_if_exists("shmem_ctx_destroy", mype)) {
       if (mype == 0) {
-        display_not_found_warning("shmem_ctx_destroy()");
+        display_not_found_warning("shmem_ctx_destroy()", false);
       }
     }
     else {
@@ -571,7 +587,7 @@ int main(int argc, char *argv[]) {
     shmem_barrier_all();
     if (!check_if_exists("shmem_ctx_get_team", mype)) {
       if (mype == 0) {
-        display_not_found_warning("shmem_ctx_get_team()");
+        display_not_found_warning("shmem_ctx_get_team()", false);
       }
     }
     else {
@@ -597,7 +613,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_put", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_put()");
+          display_not_found_warning("shmem_long_put()", false);
         }
       }
       else {
@@ -612,7 +628,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_p", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_p()");
+          display_not_found_warning("shmem_long_p()", false);
         }
       }
       else {
@@ -627,7 +643,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_iput", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_iput()");
+          display_not_found_warning("shmem_long_iput()", false);
         }
       }
       else {
@@ -642,7 +658,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_get", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_get()");
+          display_not_found_warning("shmem_long_get()", false);
         }
       }
       else {
@@ -657,7 +673,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_g", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_g()");
+          display_not_found_warning("shmem_long_g()", false);
         }
       }
       else {
@@ -672,7 +688,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_iget", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_iget()");
+          display_not_found_warning("shmem_long_iget()", false);
         }
       }
       else {
@@ -687,7 +703,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_put_nbi", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_put_nbi()");
+          display_not_found_warning("shmem_long_put_nbi()", false);
         }
       }
       else {
@@ -702,7 +718,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_get_nbi", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_get_nbi()");
+          display_not_found_warning("shmem_long_get_nbi()", false);
         }
       }
       else {
@@ -729,7 +745,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_atomic_fetch", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_atomic_fetch()");
+          display_not_found_warning("shmem_atomic_fetch()", false);
         }
       }
       else {
@@ -742,7 +758,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_atomic_set", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_atomic_set()");
+          display_not_found_warning("shmem_atomic_set()", false);
         }
       }
       else {
@@ -755,7 +771,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_atomic_compare_swap", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_atomic_compare_swap()");
+          display_not_found_warning("shmem_atomic_compare_swap()", false);
         }
       }
       else {
@@ -768,7 +784,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_atomic_swap", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_atomic_swap()");
+          display_not_found_warning("shmem_atomic_swap()", false);
         }
       }
       else {
@@ -781,7 +797,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_atomic_fetch_inc", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_atomic_fetch_inc()");
+          display_not_found_warning("shmem_atomic_fetch_inc()", false);
         }
       }
       else {
@@ -794,7 +810,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_atomic_inc", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_atomic_inc()");
+          display_not_found_warning("shmem_atomic_inc()", false);
         }
       }
       else {
@@ -807,7 +823,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_atomic_fetch_add", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_atomic_fetch_add()");
+          display_not_found_warning("shmem_atomic_fetch_add()", false);
         }
       }
       else {
@@ -820,7 +836,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_atomic_add", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_atomic_add()");
+          display_not_found_warning("shmem_atomic_add()", false);
         }
       }
       else {
@@ -833,7 +849,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_atomic_fetch_and", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_atomic_fetch_and()");
+          display_not_found_warning("shmem_atomic_fetch_and()", false);
         }
       }
       else {
@@ -846,7 +862,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_atomic_and", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_atomic_and()");
+          display_not_found_warning("shmem_atomic_and()", false);
         }
       }
       else {
@@ -859,7 +875,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_atomic_fetch_or", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_atomic_fetch_or()");
+          display_not_found_warning("shmem_atomic_fetch_or()", false);
         }
       }
       else {
@@ -872,7 +888,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_atomic_or", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_atomic_or()");
+          display_not_found_warning("shmem_atomic_or()", false);
         }
       }
       else {
@@ -885,7 +901,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_atomic_fetch_xor", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_atomic_fetch_xor()");
+          display_not_found_warning("shmem_atomic_fetch_xor()", false);
         }
       }
       else {
@@ -898,7 +914,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_atomic_xor", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_atomic_xor()");
+          display_not_found_warning("shmem_atomic_xor()", false);
         }
       }
       else {
@@ -911,7 +927,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_atomic_fetch_nbi", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_atomic_fetch_nbi()");
+          display_not_found_warning("shmem_atomic_fetch_nbi()", false);
         }
       }
       else {
@@ -924,7 +940,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_atomic_compare_swap_nbi", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_atomic_compare_swap_nbi()");
+          display_not_found_warning("shmem_atomic_compare_swap_nbi()", false);
         }
       }
       else {
@@ -937,7 +953,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_atomic_swap_nbi", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_atomic_swap_nbi()");
+          display_not_found_warning("shmem_atomic_swap_nbi()", false);
         }
       }
       else {
@@ -950,7 +966,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_atomic_fetch_inc_nbi", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_atomic_fetch_inc_nbi()");
+          display_not_found_warning("shmem_atomic_fetch_inc_nbi()", false);
         }
       }
       else {
@@ -963,7 +979,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_atomic_fetch_add_nbi", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_atomic_fetch_add_nbi()");
+          display_not_found_warning("shmem_atomic_fetch_add_nbi()", false);
         }
       }
       else {
@@ -976,7 +992,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_atomic_fetch_and_nbi", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_atomic_fetch_and_nbi()");
+          display_not_found_warning("shmem_atomic_fetch_and_nbi()", false);
         }
       }
       else {
@@ -989,7 +1005,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_atomic_fetch_or_nbi", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_atomic_fetch_or_nbi()");
+          display_not_found_warning("shmem_atomic_fetch_or_nbi()", false);
         }
       }
       else {
@@ -1002,7 +1018,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_atomic_fetch_xor_nbi", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_atomic_fetch_xor_nbi()");
+          display_not_found_warning("shmem_atomic_fetch_xor_nbi()", false);
         }
       }
       else {
@@ -1026,7 +1042,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_put_signal", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_put_signal()");
+          display_not_found_warning("shmem_long_put_signal()", false);
         }
       }
       else {
@@ -1041,7 +1057,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_put_signal_nbi", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_put_signal_nbi()");
+          display_not_found_warning("shmem_long_put_signal_nbi()", false);
         }
       }
       else {
@@ -1056,7 +1072,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_signal_fetch", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_signal_fetch()");
+          display_not_found_warning("shmem_signal_fetch()", false);
         }
       }
       else {
@@ -1084,7 +1100,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_sync", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_sync()");
+          display_not_found_warning("shmem_sync()", false);
         }
       } 
       else {
@@ -1099,7 +1115,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_sync_all", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_sync_all()");
+          display_not_found_warning("shmem_sync_all()", false);
         }
       } 
       else {
@@ -1114,7 +1130,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_alltoall", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_alltoall()");
+          display_not_found_warning("shmem_long_alltoall()", false);
         }
       } 
       else {
@@ -1129,7 +1145,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_alltoalls", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_alltoalls()");
+          display_not_found_warning("shmem_long_alltoalls()", false);
         }
       } 
       else {
@@ -1144,7 +1160,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_broadcast", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_broadcast()");
+          display_not_found_warning("shmem_long_broadcast()", false);
         }
       } 
       else {
@@ -1159,7 +1175,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_collect", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_collect()");
+          display_not_found_warning("shmem_long_collect()", false);
         }
       } 
       else {
@@ -1174,7 +1190,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_fcollect", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_fcollect()");
+          display_not_found_warning("shmem_long_fcollect()", false);
         }
       } 
       else {
@@ -1189,7 +1205,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_max_reduce", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_max_reduce()");
+          display_not_found_warning("shmem_long_max_reduce()", false);
         }
       } 
       else {
@@ -1204,7 +1220,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_min_reduce", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_min_reduce()");
+          display_not_found_warning("shmem_long_min_reduce()", false);
         }
       } 
       else {
@@ -1219,7 +1235,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_sum_reduce", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_sum_reduce()");
+          display_not_found_warning("shmem_long_sum_reduce()", false);
         }
       } 
       else {
@@ -1234,7 +1250,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_prod_reduce", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_prod_reduce()");
+          display_not_found_warning("shmem_long_prod_reduce()", false);
         }
       } 
       else {
@@ -1260,7 +1276,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_wait_until", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_wait_until()");
+          display_not_found_warning("shmem_long_wait_until()", false);
         }
       }
       else {
@@ -1273,7 +1289,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_wait_until_all", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_wait_until_all()");
+          display_not_found_warning("shmem_long_wait_until_all()", false);
         }
       }
       else {
@@ -1286,7 +1302,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_wait_until_any", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_wait_until_any()");
+          display_not_found_warning("shmem_long_wait_until_any()", false);
         }
       }
       else {
@@ -1299,7 +1315,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_wait_until_some", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_wait_until_some()");
+          display_not_found_warning("shmem_long_wait_until_some()", false);
         }
       }
       else {
@@ -1312,7 +1328,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_wait_until_all_vector", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_wait_until_all_vector()");
+          display_not_found_warning("shmem_long_wait_until_all_vector()", false);
         }
       }
       else {
@@ -1325,7 +1341,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_wait_until_any_vector", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_wait_until_any_vector()");
+          display_not_found_warning("shmem_long_wait_until_any_vector()", false);
         }
       }
       else {
@@ -1338,7 +1354,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_wait_until_some_vector", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_wait_until_some_vector()");
+          display_not_found_warning("shmem_long_wait_until_some_vector()", false);
         }
       }
       else {
@@ -1351,7 +1367,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_test", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_test()");
+          display_not_found_warning("shmem_long_test()", false);
         }
       }
       else {
@@ -1364,7 +1380,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_test_all", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_test_all()");
+          display_not_found_warning("shmem_long_test_all()", false);
         }
       }
       else {
@@ -1377,7 +1393,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_test_any", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_test_any()");
+          display_not_found_warning("shmem_long_test_any()", false);
         }
       }
       else {
@@ -1390,7 +1406,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_test_some", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_test_some()");
+          display_not_found_warning("shmem_long_test_some()", false);
         }
       }
       else {
@@ -1403,7 +1419,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_test_all_vector", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_test_all_vector()");
+          display_not_found_warning("shmem_long_test_all_vector()", false);
         }
       }
       else {
@@ -1416,7 +1432,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_test_any_vector", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_test_any_vector()");
+          display_not_found_warning("shmem_long_test_any_vector()", false);
         }
       }
       else {
@@ -1429,7 +1445,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_long_test_some_vector", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_long_test_some_vector()");
+          display_not_found_warning("shmem_long_test_some_vector()", false);
         }
       }
       else {
@@ -1442,7 +1458,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if (!check_if_exists("shmem_signal_wait_until", mype)) {
         if (mype == 0) {
-          display_not_found_warning("shmem_signal_wait_until()");
+          display_not_found_warning("shmem_signal_wait_until()", false);
         }
       }
       else {
@@ -1469,7 +1485,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if ( !check_if_exists("shmem_fence", mype) ) {
         if (mype == 0) {
-          display_not_found_warning("shmem_fence()");
+          display_not_found_warning("shmem_fence()", false);
         }
       }
       else {
@@ -1484,7 +1500,7 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if ( !check_if_exists("shmem_quiet", mype) ) {
         if (mype == 0) {
-          display_not_found_warning("shmem_quiet()");
+          display_not_found_warning("shmem_quiet()", false);
         }
       }
       else {
@@ -1514,12 +1530,12 @@ int main(int argc, char *argv[]) {
       shmem_barrier_all();
       if ( !check_if_exists("shmem_set_lock", mype) ) {
         if (mype == 0) {
-          display_not_found_warning("shmem_set_lock()");
+          display_not_found_warning("shmem_set_lock()", false);
         }
       }
       if ( !check_if_exists("shmem_clear_lock", mype )) {
         if (mype == 0) {
-          display_not_found_warning("shmem_clear_lock()");
+          display_not_found_warning("shmem_clear_lock()", false);
         }
       }
       
@@ -1540,7 +1556,7 @@ int main(int argc, char *argv[]) {
   shmem_barrier_all();
 
   if ( !check_if_exists("shmem_finalize", mype) ) {
-    display_not_found_warning("shmem_finalize()");
+    display_not_found_warning("shmem_finalize()", true);
   }
   else {
     if (mype == 0) {

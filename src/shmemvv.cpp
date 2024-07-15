@@ -444,7 +444,6 @@ bool load_routines() {
  * @return True if the routine exists, false otherwise
  */
 bool check_if_exists(const std::string& routine_name, int mype) {
-  // void *handle = dlopen(NULL, RTLD_NOW | RTLD_GLOBAL);
   void *handle = dlopen(NULL, RTLD_LAZY);
   if (!handle) {
     if (mype == 0) {
@@ -460,11 +459,6 @@ bool check_if_exists(const std::string& routine_name, int mype) {
 
   const char *dlsym_error = dlerror();
   if (dlsym_error) {
-    // #ifdef _DEBUG_
-    //   if (mype == 0) {
-    //     std::cerr << "Function " << routine_name << " not found: " << dlsym_error << std::endl;
-    //   }
-    // #endif
     symbol = nullptr;
   }
 
@@ -476,9 +470,15 @@ bool check_if_exists(const std::string& routine_name, int mype) {
   @brief Displays a warning message that the given routine is not avaible in the
         tested OpenSHMEM library
   @param routine_name OpenSHMEM routine
+  @param required True if test is required, false otherwise
 */
-void display_not_found_warning(std::string routine_name) {
-  std::cerr << YELLOW_COLOR << "This OpenSHMEM implementation does not support " << routine_name << RESET_COLOR << std::endl;
+void display_not_found_warning(std::string routine_name, bool required) {
+  if (required) {
+    std::cerr << RED_COLOR << "NOT FOUND - required to continue" << RESET_COLOR << ": " << routine_name << std::endl;
+  }
+  else {
+    std::cerr << YELLOW_COLOR << "NOT FOUND" << RESET_COLOR << ": " << routine_name << std::endl;
+  }
 }
 
 /**
@@ -489,14 +489,14 @@ void display_not_found_warning(std::string routine_name) {
  */
 void display_test_result(std::string routine_name, bool passed, bool required) {
   if (passed) {
-    std::cout << routine_name << " test " << GREEN_COLOR << "PASSED!" << RESET_COLOR << std::endl;
+    std::cout << GREEN_COLOR << "PASSED" << RESET_COLOR << ": " << routine_name << std::endl; 
   }
   else {
     if (required) {
-      std::cerr << routine_name << " test " << RED_COLOR << "FAILED!" << RESET_COLOR << " This test must pass to continue!" << std::endl;
+      std::cerr << RED_COLOR << "FAILED" << RESET_COLOR << ": " << routine_name << RED_COLOR << " This test must pass to continue!" << RESET_COLOR << std::endl;
     }
     else {
-      std::cerr << routine_name << " test " << RED_COLOR << "FAILED!" << RESET_COLOR << std::endl;
+      std::cerr << RED_COLOR << "FAILED" << RESET_COLOR << ": " << routine_name << std::endl;
     }
   }
 }
