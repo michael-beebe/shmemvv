@@ -7,6 +7,7 @@
 #define SETUP_TESTS_HPP
 
 #include "routines.hpp"
+#include "shmemvv.hpp"
 
 #include <shmem.h>
 #include <iostream>

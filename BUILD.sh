@@ -9,32 +9,45 @@ cd build
 PREFIX=$SWHOME/shmemvv
 mkdir -p $PREFIX
 
-# --- Configure build
+# --- Configure build with SOS
+# cmake \
+#   -DCMAKE_INCLUDE_PATH=$SOS_INCLUDE     \
+#   -DCMAKE_LIBRARY_PATH=$SOS_LIB         \
+#   -DCMAKE_C_LINKER_FLAGS="-lpmi_simple -lsma" \
+#   -DCMAKE_INSTALL_PREFIX=$SWHOME/shmemvv \
+#   -DDEBUG=OFF \
+#   -DVERBOSE=ON \
+#   ../
+
+# --- Configure build with Open MPI
 cmake \
-  -DCMAKE_INCLUDE_PATH=$SOS_INCLUDE     \
-  -DCMAKE_LIBRARY_PATH=$SOS_LIB         \
-  -DCMAKE_C_LINKER_FLAGS="-lpmi_simple -lsma" \
+  -DCMAKE_INCLUDE_PATH=$OMPI_INCLUDE     \
+  -DCMAKE_LIBRARY_PATH=$OMPI_LIB         \
+  -DCMAKE_C_LINKER_FLAGS="" \
   -DCMAKE_INSTALL_PREFIX=$SWHOME/shmemvv \
   -DDEBUG=OFF \
+  -DVERBOSE=ON \
   ../
 
 # --- Compile
 make -j 50
 
 # --- Set OpenSHMEM/UCX/OFI env vars
-export SHMEM_SYMMETRIC_HEAP_SIZE=1G
-# export SHMEM_DEBUG=3
-# export UCX_TLS=sm,self,tcp
-# export UCX_NET_DEVICES=mlx5_0:1,mlx5_2:1
-# export UCX_LOG_LEVEL=DEBUG
-# export SHMEM_OFI_USE_PROVIDER=ofi+tcp
 
-# --- Print info about network stuff
+# export SHMEM_UCX_TLS=sm
+
+# export SHMEM_SYMMETRIC_HEAP_SIZE=1G
+# export UCX_NET_DEVICES=mlx5_0:1,mlx5_2:1
+# export UCX_TLS=sm,self
+# export UCX_LOG_LEVEL=DEBUG
+# export SHMEM_DEBUG=3
+
+# --- Print info about network devices
 # echo "Verifying network devices:"
 # ibv_devices
 # ibv_devinfo
 
-# Verify OFI provider
+# --- Verify OFI provider
 # echo "Verifying OFI provider:"
 # fi_info -p ofi+tcp
 
@@ -42,14 +55,14 @@ export SHMEM_SYMMETRIC_HEAP_SIZE=1G
 echo ; echo
 cd ../
 
-# --- Set path to shmemvvv binary
+# --- Set path to shmemvv binary
 exe=build/bin/shmemvv
 if [ ! -f "$exe" ]; then
   echo "Executable $exe not found. Please build the project first."
   exit 1
 fi
 
-# --- Run shmemvv
+# --- Run shmemvv with CPU pinning
 ######################################################################
 # Usage: shmemvv [options]
 # Options:
@@ -68,6 +81,10 @@ fi
 #   --all                (default) Run all tests
 #   --help               Display help message
 ######################################################################
+flags="--bind-to core --map-by core"
 
-oshrun_flags="--bind-to core --map-by core"
-oshrun $oshrun_flags -np 2 $exe --test_remote
+if [ "$(which oshcc)" == "$HOME/sw/el9-x86_64/ompi/bin/oshcc" ]; then
+  flags+=" --mca btl ^openib"
+fi
+
+oshrun $flags -np 2 $exe --all

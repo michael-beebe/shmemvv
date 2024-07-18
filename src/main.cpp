@@ -321,22 +321,8 @@ int main(int argc, char *argv[]) {
       display_test_header("MEMORY MANAGEMENT"); 
     }
 
-    /* Test shmem_ptr() */
-    shmem_barrier_all();
-    if ( !check_if_exists("shmem_ptr") ) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_ptr()", false);
-      }
-    }
-    else {
-      bool result_shmem_ptr = test_shmem_ptr();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("shmem_ptr()", result_shmem_ptr, false);
-      }
-    }
-
     /* Test shmem_malloc() and shmem_free() */
+    shmem_barrier_all();
     if ( check_if_exists("shmem_malloc") && check_if_exists("shmem_free") ) {
       bool result_shmem_malloc_free = test_shmem_malloc_free();
       shmem_barrier_all();
@@ -355,6 +341,21 @@ int main(int argc, char *argv[]) {
         if (mype == 0) {
           display_not_found_warning("shmem_free()", false);
         }
+      }
+    } 
+
+    /* Test shmem_ptr() */
+    shmem_barrier_all();
+    if ( !check_if_exists("shmem_ptr") ) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_ptr()", false);
+      }
+    }
+    else {
+      bool result_shmem_ptr = test_shmem_ptr();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("shmem_ptr()", result_shmem_ptr, false);
       }
     }
 
@@ -1670,7 +1671,6 @@ int main(int argc, char *argv[]) {
   else {
     if (mype == 0) {
       display_test_header("FINALIZATION");
-      shmem_barrier_all();
       display_test_result("shmem_finalize()", test_shmem_finalize(), false);
       std::cout << std::endl;
     }

@@ -17,10 +17,11 @@ bool test_shmem_init_thread(void) {
 
 /**
   @brief Tests querying the level of threading support in OpenSHMEM.
-  @return True if the queried threading level is SHMEM_THREAD_MULTIPLE, false otherwise.
+  @return True if the queried threading level is at least SHMEM_THREAD_SINGLE, false otherwise.
  */
 bool test_shmem_query_thread(void) {
   int provided;
   p_shmem_query_thread(&provided);
+
   return (provided == SHMEM_THREAD_MULTIPLE);
 }
