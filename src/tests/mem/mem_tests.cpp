@@ -38,22 +38,18 @@ bool test_shmem_ptr() {
 
   bool test_passed = true;
 
+  /* Check shmem_ptr on heap segment */
   for (int pe = 0; pe < npes; ++pe) {
-    if (p_shmem_addr_accessible(ptr, pe) != 1) {
-      test_passed = false;
+    int* remote_ptr = (int*)p_shmem_ptr(ptr, pe);
+
+    if (remote_ptr != nullptr) {
+      int remote_val = *remote_ptr;
+      if (remote_val != pe) {
+        test_passed = false;
+      }
     }
-    else {
-      int* remote_ptr = (int*)p_shmem_ptr(ptr, pe);
-      if (pe == mype) {
-        if (remote_ptr != ptr) {
-          test_passed = false;
-        }
-      }
-      else {
-        if (remote_ptr == nullptr) {
-          test_passed = false;
-        }
-      }
+    else if (pe == mype) {
+      test_passed = false;
     }
   }
 

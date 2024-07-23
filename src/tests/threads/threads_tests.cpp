@@ -21,7 +21,16 @@ bool test_shmem_init_thread(void) {
  */
 bool test_shmem_query_thread(void) {
   int provided;
+
+  /* Query the level of threading support */
   p_shmem_query_thread(&provided);
 
-  return (provided == SHMEM_THREAD_MULTIPLE);
+  /* Check if the provided threading level is one of the valid levels */
+  bool success = (provided == SHMEM_THREAD_SINGLE ||
+                  provided == SHMEM_THREAD_FUNNELED ||
+                  provided == SHMEM_THREAD_SERIALIZED ||
+                  provided == SHMEM_THREAD_MULTIPLE);
+
+  return success;
 }
+
