@@ -10,13 +10,13 @@
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_atomic_fetch() {
-  static long *dest;
-  static long fetch;
-  dest = (long *)p_shmem_malloc(sizeof(long));
-  long value = 42;
+  static ulong *dest;
+  static ulong fetch;
+  dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+  ulong value = 42;
   *dest = value;
   p_shmem_barrier_all();
-  fetch = p_shmem_long_atomic_fetch(dest, 1);
+  fetch = p_shmem_ulong_atomic_fetch(dest, 1);
   bool success = (fetch == value);
   p_shmem_free(dest);
   return success;
@@ -27,11 +27,11 @@ bool test_shmem_atomic_fetch() {
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_atomic_set() {
-  static long *dest;
-  dest = (long *)p_shmem_malloc(sizeof(long));
-  long value = 42;
+  static ulong *dest;
+  dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+  ulong value = 42;
   p_shmem_barrier_all();
-  p_shmem_long_atomic_set(dest, value, 1);
+  p_shmem_ulong_atomic_set(dest, value, 1);
   p_shmem_barrier_all();
   bool success = (*dest == value);
   p_shmem_free(dest);
@@ -43,12 +43,12 @@ bool test_shmem_atomic_set() {
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_atomic_compare_swap() {
-  static long *dest;
-  dest = (long *)p_shmem_malloc(sizeof(long));
-  long old = 42, new_val = 43;
+  static ulong *dest;
+  dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+  ulong old = 42, new_val = 43;
   *dest = old;
   p_shmem_barrier_all();
-  long swapped = p_shmem_long_atomic_compare_swap(dest, old, new_val, 1);
+  ulong swapped = p_shmem_ulong_atomic_compare_swap(dest, old, new_val, 1);
   bool success = (swapped == old && *dest == new_val);
   p_shmem_free(dest);
   return success;
@@ -59,12 +59,12 @@ bool test_shmem_atomic_compare_swap() {
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_atomic_swap() {
-  static long *dest;
-  dest = (long *)p_shmem_malloc(sizeof(long));
-  long value = 42, new_val = 43;
+  static ulong *dest;
+  dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+  ulong value = 42, new_val = 43;
   *dest = value;
   p_shmem_barrier_all();
-  long swapped = p_shmem_long_atomic_swap(dest, new_val, 1);
+  ulong swapped = p_shmem_ulong_atomic_swap(dest, new_val, 1);
   bool success = (swapped == value && *dest == new_val);
   p_shmem_free(dest);
   return success;
@@ -75,13 +75,13 @@ bool test_shmem_atomic_swap() {
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_atomic_fetch_inc() {
-  static long *dest;
-  static long fetch;
-  dest = (long *)p_shmem_malloc(sizeof(long));
-  long value = 42;
+  static ulong *dest;
+  static ulong fetch;
+  dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+  ulong value = 42;
   *dest = value;
   p_shmem_barrier_all();
-  fetch = p_shmem_long_atomic_fetch_inc(dest, 1);
+  fetch = p_shmem_ulong_atomic_fetch_inc(dest, 1);
   bool success = (fetch == value && *dest == value + 1);
   p_shmem_free(dest);
   return success;
@@ -92,12 +92,12 @@ bool test_shmem_atomic_fetch_inc() {
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_atomic_inc() {
-  static long *dest;
-  dest = (long *)p_shmem_malloc(sizeof(long));
-  long value = 42;
+  static ulong *dest;
+  dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+  ulong value = 42;
   *dest = value;
   p_shmem_barrier_all();
-  p_shmem_long_atomic_inc(dest, 1);
+  p_shmem_ulong_atomic_inc(dest, 1);
   p_shmem_barrier_all();
   bool success = (*dest == value + 1);
   p_shmem_free(dest);
@@ -109,13 +109,13 @@ bool test_shmem_atomic_inc() {
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_atomic_fetch_add() {
-  static long *dest;
-  static long fetch;
-  dest = (long *)p_shmem_malloc(sizeof(long));
-  long value = 42, add_val = 10;
+  static ulong *dest;
+  static ulong fetch;
+  dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+  ulong value = 42, add_val = 10;
   *dest = value;
   p_shmem_barrier_all();
-  fetch = p_shmem_long_atomic_fetch_add(dest, add_val, 1);
+  fetch = p_shmem_ulong_atomic_fetch_add(dest, add_val, 1);
   bool success = (fetch == value && *dest == value + add_val);
   p_shmem_free(dest);
   return success;
@@ -126,12 +126,12 @@ bool test_shmem_atomic_fetch_add() {
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_atomic_add() {
-  static long *dest;
-  dest = (long *)p_shmem_malloc(sizeof(long));
-  long value = 42, add_val = 10;
+  static ulong *dest;
+  dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+  ulong value = 42, add_val = 10;
   *dest = value;
   p_shmem_barrier_all();
-  p_shmem_long_atomic_add(dest, add_val, 1);
+  p_shmem_ulong_atomic_add(dest, add_val, 1);
   p_shmem_barrier_all();
   bool success = (*dest == value + add_val);
   p_shmem_free(dest);
@@ -143,13 +143,13 @@ bool test_shmem_atomic_add() {
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_atomic_fetch_and() {
-  static long *dest;
-  static long fetch;
-  dest = (long *)p_shmem_malloc(sizeof(long));
-  long value = 42, and_val = 15;
+  static ulong *dest;
+  static ulong fetch;
+  dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+  ulong value = 42, and_val = 15;
   *dest = value;
   p_shmem_barrier_all();
-  fetch = p_shmem_long_atomic_fetch_and(dest, and_val, 1);
+  fetch = p_shmem_ulong_atomic_fetch_and(dest, and_val, 1);
   bool success = (fetch == value && *dest == (value & and_val));
   p_shmem_free(dest);
   return success;
@@ -160,12 +160,12 @@ bool test_shmem_atomic_fetch_and() {
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_atomic_and() {
-  static long *dest;
-  dest = (long *)p_shmem_malloc(sizeof(long));
-  long value = 42, and_val = 15;
+  static ulong *dest;
+  dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+  ulong value = 42, and_val = 15;
   *dest = value;
   p_shmem_barrier_all();
-  p_shmem_long_atomic_and(dest, and_val, 1);
+  p_shmem_ulong_atomic_and(dest, and_val, 1);
   p_shmem_barrier_all();
   bool success = (*dest == (value & and_val));
   p_shmem_free(dest);
@@ -177,13 +177,13 @@ bool test_shmem_atomic_and() {
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_atomic_fetch_or() {
-  static long *dest;
-  static long fetch;
-  dest = (long *)p_shmem_malloc(sizeof(long));
-  long value = 42, or_val = 15;
+  static ulong *dest;
+  static ulong fetch;
+  dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+  ulong value = 42, or_val = 15;
   *dest = value;
   p_shmem_barrier_all();
-  fetch = p_shmem_long_atomic_fetch_or(dest, or_val, 1);
+  fetch = p_shmem_ulong_atomic_fetch_or(dest, or_val, 1);
   bool success = (fetch == value && *dest == (value | or_val));
   p_shmem_free(dest);
   return success;
@@ -194,12 +194,12 @@ bool test_shmem_atomic_fetch_or() {
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_atomic_or() {
-  static long *dest;
-  dest = (long *)p_shmem_malloc(sizeof(long));
-  long value = 42, or_val = 15;
+  static ulong *dest;
+  dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+  ulong value = 42, or_val = 15;
   *dest = value;
   p_shmem_barrier_all();
-  p_shmem_long_atomic_or(dest, or_val, 1);
+  p_shmem_ulong_atomic_or(dest, or_val, 1);
   p_shmem_barrier_all();
   bool success = (*dest == (value | or_val));
   p_shmem_free(dest);
@@ -211,13 +211,13 @@ bool test_shmem_atomic_or() {
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_atomic_fetch_xor() {
-  static long *dest;
-  static long fetch;
-  dest = (long *)p_shmem_malloc(sizeof(long));
-  long value = 42, xor_val = 15;
+  static ulong *dest;
+  static ulong fetch;
+  dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+  ulong value = 42, xor_val = 15;
   *dest = value;
   p_shmem_barrier_all();
-  fetch = p_shmem_long_atomic_fetch_xor(dest, xor_val, 1);
+  fetch = p_shmem_ulong_atomic_fetch_xor(dest, xor_val, 1);
   bool success = (fetch == value && *dest == (value ^ xor_val));
   p_shmem_free(dest);
   return success;
@@ -228,12 +228,12 @@ bool test_shmem_atomic_fetch_xor() {
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_atomic_xor() {
-  static long *dest;
-  dest = (long *)p_shmem_malloc(sizeof(long));
-  long value = 42, xor_val = 15;
+  static ulong *dest;
+  dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+  ulong value = 42, xor_val = 15;
   *dest = value;
   p_shmem_barrier_all();
-  p_shmem_long_atomic_xor(dest, xor_val, 1);
+  p_shmem_ulong_atomic_xor(dest, xor_val, 1);
   p_shmem_barrier_all();
   bool success = (*dest == (value ^ xor_val));
   p_shmem_free(dest);
@@ -245,13 +245,13 @@ bool test_shmem_atomic_xor() {
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_atomic_fetch_nbi() {
-  static long *dest;
-  static long fetch;
-  dest = (long *)p_shmem_malloc(sizeof(long));
-  long value = 42;
+  static ulong *dest;
+  static ulong fetch;
+  dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+  ulong value = 42;
   *dest = value;
   p_shmem_barrier_all();
-  p_shmem_long_atomic_fetch_nbi(&fetch, dest, 1);
+  p_shmem_ulong_atomic_fetch_nbi(&fetch, dest, 1);
   p_shmem_quiet();
   bool success = (fetch == value);
   p_shmem_free(dest);
@@ -263,14 +263,14 @@ bool test_shmem_atomic_fetch_nbi() {
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_atomic_compare_swap_nbi() {
-  static long *dest;
-  static long fetch;
-  dest = (long *)p_shmem_malloc(sizeof(long));
+  static ulong *dest;
+  static ulong fetch;
+  dest = (ulong *)p_shmem_malloc(sizeof(ulong));
   fetch = 0;
-  long old = 42, new_val = 43;
+  ulong old = 42, new_val = 43;
   *dest = old;
   p_shmem_barrier_all();
-  p_shmem_long_atomic_compare_swap_nbi(&fetch, dest, old, new_val, 1);
+  p_shmem_ulong_atomic_compare_swap_nbi(&fetch, dest, old, new_val, 1);
   p_shmem_quiet();
   bool success = (fetch == old && *dest == new_val);
   p_shmem_free(dest);
@@ -282,14 +282,14 @@ bool test_shmem_atomic_compare_swap_nbi() {
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_atomic_swap_nbi() {
-  static long *dest;
-  static long fetch;
-  dest = (long *)p_shmem_malloc(sizeof(long));
+  static ulong *dest;
+  static ulong fetch;
+  dest = (ulong *)p_shmem_malloc(sizeof(ulong));
   fetch = 0;
-  long value = 42, new_val = 43;
+  ulong value = 42, new_val = 43;
   *dest = value;
   p_shmem_barrier_all();
-  p_shmem_long_atomic_swap_nbi(&fetch, dest, new_val, 1);
+  p_shmem_ulong_atomic_swap_nbi(&fetch, dest, new_val, 1);
   p_shmem_quiet();
   bool success = (fetch == value && *dest == new_val);
   p_shmem_free(dest);
@@ -301,14 +301,14 @@ bool test_shmem_atomic_swap_nbi() {
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_atomic_fetch_inc_nbi() {
-  static long *dest;
-  static long fetch;
-  dest = (long *)p_shmem_malloc(sizeof(long));
+  static ulong *dest;
+  static ulong fetch;
+  dest = (ulong *)p_shmem_malloc(sizeof(ulong));
   fetch = 0;
-  long value = 42;
+  ulong value = 42;
   *dest = value;
   p_shmem_barrier_all();
-  p_shmem_long_atomic_fetch_inc_nbi(&fetch, dest, 1);
+  p_shmem_ulong_atomic_fetch_inc_nbi(&fetch, dest, 1);
   p_shmem_quiet();
   bool success = (fetch == value && *dest == value + 1);
   p_shmem_free(dest);
@@ -320,14 +320,14 @@ bool test_shmem_atomic_fetch_inc_nbi() {
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_atomic_fetch_add_nbi() {
-  static long *dest;
-  static long fetch;
-  dest = (long *)p_shmem_malloc(sizeof(long));
+  static ulong *dest;
+  static ulong fetch;
+  dest = (ulong *)p_shmem_malloc(sizeof(ulong));
   fetch = 0;
-  long value = 42, add_val = 10;
+  ulong value = 42, add_val = 10;
   *dest = value;
   p_shmem_barrier_all();
-  p_shmem_long_atomic_fetch_add_nbi(&fetch, dest, add_val, 1);
+  p_shmem_ulong_atomic_fetch_add_nbi(&fetch, dest, add_val, 1);
   p_shmem_quiet();
   bool success = (fetch == value && *dest == value + add_val);
   p_shmem_free(dest);
@@ -339,14 +339,14 @@ bool test_shmem_atomic_fetch_add_nbi() {
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_atomic_fetch_and_nbi() {
-  static long *dest;
-  static long fetch;
-  dest = (long *)p_shmem_malloc(sizeof(long));
+  static ulong *dest;
+  static ulong fetch;
+  dest = (ulong *)p_shmem_malloc(sizeof(ulong));
   fetch = 0;
-  long value = 42, and_val = 15;
+  ulong value = 42, and_val = 15;
   *dest = value;
   p_shmem_barrier_all();
-  p_shmem_long_atomic_fetch_and_nbi(&fetch, dest, and_val, 1);
+  p_shmem_ulong_atomic_fetch_and_nbi(&fetch, dest, and_val, 1);
   p_shmem_quiet();
   bool success = (fetch == value && *dest == (value & and_val));
   p_shmem_free(dest);
@@ -358,14 +358,14 @@ bool test_shmem_atomic_fetch_and_nbi() {
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_atomic_fetch_or_nbi() {
-  static long *dest;
-  static long fetch;
-  dest = (long *)p_shmem_malloc(sizeof(long));
+  static ulong *dest;
+  static ulong fetch;
+  dest = (ulong *)p_shmem_malloc(sizeof(ulong));
   fetch = 0;
-  long value = 42, or_val = 15;
+  ulong value = 42, or_val = 15;
   *dest = value;
   p_shmem_barrier_all();
-  p_shmem_long_atomic_fetch_or_nbi(&fetch, dest, or_val, 1);
+  p_shmem_ulong_atomic_fetch_or_nbi(&fetch, dest, or_val, 1);
   p_shmem_quiet();
   bool success = (fetch == value && *dest == (value | or_val));
   p_shmem_free(dest);
@@ -377,14 +377,14 @@ bool test_shmem_atomic_fetch_or_nbi() {
   @return True if the test is successful, false otherwise.
  */
 bool test_shmem_atomic_fetch_xor_nbi() {
-  static long *dest;
-  static long fetch;
-  dest = (long *)p_shmem_malloc(sizeof(long));
+  static ulong *dest;
+  static ulong fetch;
+  dest = (ulong *)p_shmem_malloc(sizeof(ulong));
   fetch = 0;
-  long value = 42, xor_val = 15;
+  ulong value = 42, xor_val = 15;
   *dest = value;
   p_shmem_barrier_all();
-  p_shmem_long_atomic_fetch_xor_nbi(&fetch, dest, xor_val, 1);
+  p_shmem_ulong_atomic_fetch_xor_nbi(&fetch, dest, xor_val, 1);
   p_shmem_quiet();
   bool success = (fetch == value && *dest == (value ^ xor_val));
   p_shmem_free(dest);
