@@ -15,6 +15,8 @@
 #include <ctime>
 #include <unistd.h>
 
+#include <time.h>
+
 /* Function Prototypes */
 /**
  * @brief Tests the shmem_wait_until() routine.
