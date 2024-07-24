@@ -11,7 +11,6 @@ mkdir -p $PREFIX
 
 # --- Configure build with SOS
 cmake \
-  -DCMAKE_INCLUDE_PATH=$SOS_INCLUDE     \
   -DCMAKE_LIBRARY_PATH=$SOS_LIB         \
   -DCMAKE_C_LINKER_FLAGS="-lpmi_simple -lsma" \
   -DCMAKE_INSTALL_PREFIX=$SWHOME/shmemvv \
@@ -21,7 +20,6 @@ cmake \
 
 # --- Configure build with Open MPI
 # cmake \
-#   -DCMAKE_INCLUDE_PATH=$OMPI_INCLUDE     \
 #   -DCMAKE_LIBRARY_PATH=$OMPI_LIB         \
 #   -DCMAKE_C_LINKER_FLAGS="" \
 #   -DCMAKE_INSTALL_PREFIX=$SWHOME/shmemvv \
@@ -64,8 +62,8 @@ fi
 ######################################################################
 flags="--bind-to core --map-by core"
 
-# if [ "$(which oshcc)" == "$HOME/sw/el9-x86_64/ompi/bin/oshcc" ]; then
-#   flags+=" --mca btl ^openib"
-# fi
+if [ "$(which oshcc)" == "$HOME/sw/el9-x86_64/ompi/bin/oshcc" ]; then
+  flags+=" --mca btl ^openib"
+fi
 
 oshrun $flags -np 2 $exe --all

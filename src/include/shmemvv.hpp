@@ -6,9 +6,8 @@
 #ifndef SHMEMVV_HPP
 #define SHMEMVV_HPP
 
-#include "routines.hpp"
-
 #include <shmem.h>
+
 #include <iostream>
 #include <getopt.h>
 #include <string>
@@ -105,12 +104,6 @@ void display_test_info(
   std::string shmem_version,
   int npes
 );
-
-/**
-  @brief Loads the OpenSHMEM routines dynamically.
-  @return True if successful, false if otherwise
- */
-bool load_routines();
 
 /**
   @brief Checks whether the tested OpenSHMEM implementation has a given routine
