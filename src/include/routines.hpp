@@ -266,3 +266,11 @@ extern shmem_fence_func p_shmem_fence;
 /* Distributed Locking Routines */
 extern shmem_set_lock_func p_shmem_set_lock;
 extern shmem_clear_lock_func p_shmem_clear_lock;
+
+
+/**
+  @brief Loads the OpenSHMEM routines dynamically.
+  @return True if successful, false if otherwise
+ */
+bool load_routines();
+

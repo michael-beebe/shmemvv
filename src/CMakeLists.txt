@@ -3,13 +3,20 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # ---- Add include directories
-include_directories(${CMAKE_INCLUDE_PATH})
+include_directories(${CMAKE_SOURCE_DIR}/src/include)
 
 # ---- Add library directories
 link_directories(${CMAKE_LIBRARY_PATH})
 
+# ---- Collect source files
+set(SOURCES
+  main.cpp
+  shmemvv.cpp
+  routines.cpp
+)
+
 # ---- Add the main executable
-add_executable(shmemvv main.cpp shmemvv.cpp)
+add_executable(shmemvv ${SOURCES})
 
 # ---- Link the libraries with the additional linker flags
 target_link_libraries(

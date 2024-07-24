@@ -4,6 +4,7 @@
 */
 
 #include "shmemvv.hpp"
+#include "routines.hpp"
 
 /**
   @brief Main function for running the test suite.
