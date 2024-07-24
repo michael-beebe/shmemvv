@@ -36,7 +36,7 @@
 #define GREEN_COLOR "\033[32m"
 #define YELLOW_COLOR "\033[33m"
 
-#define DEBUG_LINE "--------------------------------------------"
+#define HLINE "--------------------------------------------"
 
 /**
   @struct test_options

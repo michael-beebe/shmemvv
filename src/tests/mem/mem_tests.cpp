@@ -6,6 +6,20 @@
 #include "mem_tests.hpp"
 
 /**
+  @brief Tests the shmem_malloc() and shmem_free() functions.
+  @return True if the tests are successful, false otherwise.
+ */
+bool test_shmem_malloc_free(void) {
+  size_t size = 1024;
+  void *ptr = p_shmem_malloc(size);
+  if (ptr == nullptr) {
+    return false;
+  }
+  p_shmem_free(ptr);
+  return true;
+}
+
+/**
   @brief Tests the shmem_ptr() routine
   @return True if the pointer is accessible, false otherwise.
  */
@@ -24,42 +38,23 @@ bool test_shmem_ptr() {
 
   bool test_passed = true;
 
+  /* Check shmem_ptr on heap segment */
   for (int pe = 0; pe < npes; ++pe) {
-    if (p_shmem_addr_accessible(ptr, pe) != 1) {
-      test_passed = false;
+    int* remote_ptr = (int*)p_shmem_ptr(ptr, pe);
+
+    if (remote_ptr != nullptr) {
+      int remote_val = *remote_ptr;
+      if (remote_val != pe) {
+        test_passed = false;
+      }
     }
-    else {
-      int* remote_ptr = (int*)p_shmem_ptr(ptr, pe);
-      if (pe == mype) {
-        if (remote_ptr != ptr) {
-          test_passed = false;
-        }
-      }
-      else {
-        if (remote_ptr == nullptr) {
-          test_passed = false;
-        }
-      }
+    else if (pe == mype) {
+      test_passed = false;
     }
   }
 
   p_shmem_free(ptr);
   return test_passed;
-}
-
-/**
-  @brief Tests the shmem_malloc() and shmem_free() functions.
-  @return True if the tests are successful, false otherwise.
- */
-bool test_shmem_malloc_free(void) {
-  size_t size = 1024;
-  void *ptr = p_shmem_malloc(size);
-  if (ptr == nullptr) {
-    std::cerr << "shmem_malloc() failed!" << std::endl;
-    return false;
-  }
-  p_shmem_free(ptr);
-  return true;
 }
 
 /**
@@ -99,13 +94,11 @@ bool test_shmem_realloc(void) {
   size_t size = 1024;
   void *ptr = p_shmem_malloc(size);
   if (ptr == nullptr) {
-    std::cerr << "shmem_malloc() failed!" << std::endl;
     return false;
   }
   size_t new_size = 2048;
   void *new_ptr = p_shmem_realloc(ptr, new_size);
   if (new_ptr == nullptr) {
-    std::cerr << "shmem_realloc() failed!" << std::endl;
     p_shmem_free(ptr);
     return false;
   }
@@ -122,7 +115,6 @@ bool test_shmem_align(void) {
   size_t size = 1024;
   void *ptr = p_shmem_align(alignment, size);
   if (ptr == nullptr) {
-    std::cerr << "shmem_align() failed!" << std::endl;
     return false;
   }
   p_shmem_free(ptr);
@@ -138,7 +130,6 @@ bool test_shmem_malloc_with_hints(void) {
   long hints = SHMEM_MALLOC_ATOMICS_REMOTE;
   void *ptr = p_shmem_malloc_with_hints(size, hints);
   if (ptr == nullptr) {
-    std::cerr << "shmem_malloc_with_hints() failed!" << std::endl;
     return false;
   }
   p_shmem_free(ptr);
@@ -154,12 +145,10 @@ bool test_shmem_calloc(void) {
   size_t size = sizeof(int);
   int *ptr = (int*)p_shmem_calloc(count, size);
   if (ptr == nullptr) {
-    std::cerr << "shmem_calloc() failed!" << std::endl;
     return false;
   }
   for (size_t i = 0; i < count; ++i) {
     if (ptr[i] != 0) {
-      std::cerr << "shmem_calloc() did not initialize memory to zero!" << std::endl;
       p_shmem_free(ptr);
       return false;
     }

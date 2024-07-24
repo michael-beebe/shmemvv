@@ -32,23 +32,18 @@ bool test_shmem_init() {
 bool test_shmem_barrier_all() {
   int mype = p_shmem_my_pe();
   int npes = p_shmem_n_pes();
-  
-  long *sync = (long *)p_shmem_malloc(sizeof(long));
-  if (sync == nullptr) {
-    return false;
-  }
 
-  *sync = mype;
+  static long sync;
+  sync = mype;
 
   p_shmem_barrier_all();
 
   bool test_passed = true;
 
-  if (*sync != mype) {
+  if (sync != mype) {
     test_passed = false;
   }
 
-  p_shmem_free(sync);
   return test_passed;
 }
 

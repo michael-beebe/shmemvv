@@ -10,8 +10,14 @@ enable_testing()
 # ---- Add debug option
 option(DEBUG "Enable debugging output" OFF)
 
+# --- Add debug definition
 if (DEBUG)
   add_definitions(-D_DEBUG_)
+endif()
+
+# --- Add verbose definition
+if (VERBOSE)
+  add_definitions(-D_VERBOSE_)
 endif()
 
 # ---- Check for dlfcn.h

@@ -224,28 +224,28 @@ shmem_long_get_nbi_func p_shmem_long_get_nbi = nullptr;
 
 
 /* Atomic Memory Operations */
-shmem_long_atomic_fetch_func p_shmem_long_atomic_fetch = nullptr;
-shmem_long_atomic_set_func p_shmem_long_atomic_set = nullptr;
-shmem_long_atomic_compare_swap_func p_shmem_long_atomic_compare_swap = nullptr;
-shmem_long_atomic_swap_func p_shmem_long_atomic_swap = nullptr;
-shmem_long_atomic_fetch_inc_func p_shmem_long_atomic_fetch_inc = nullptr;
-shmem_long_atomic_inc_func p_shmem_long_atomic_inc = nullptr;
-shmem_long_atomic_fetch_add_func p_shmem_long_atomic_fetch_add = nullptr;
-shmem_long_atomic_add_func p_shmem_long_atomic_add = nullptr;
-shmem_long_atomic_fetch_and_func p_shmem_long_atomic_fetch_and = nullptr;
-shmem_long_atomic_and_func p_shmem_long_atomic_and = nullptr;
-shmem_long_atomic_fetch_or_func p_shmem_long_atomic_fetch_or = nullptr;
-shmem_long_atomic_or_func p_shmem_long_atomic_or = nullptr;
-shmem_long_atomic_fetch_xor_func p_shmem_long_atomic_fetch_xor = nullptr;
-shmem_long_atomic_xor_func p_shmem_long_atomic_xor = nullptr;
-shmem_long_atomic_fetch_nbi_func p_shmem_long_atomic_fetch_nbi = nullptr;
-shmem_long_atomic_compare_swap_nbi_func p_shmem_long_atomic_compare_swap_nbi = nullptr;
-shmem_long_atomic_swap_nbi_func p_shmem_long_atomic_swap_nbi = nullptr;
-shmem_long_atomic_fetch_inc_nbi_func p_shmem_long_atomic_fetch_inc_nbi = nullptr;
-shmem_long_atomic_fetch_add_nbi_func p_shmem_long_atomic_fetch_add_nbi = nullptr;
-shmem_long_atomic_fetch_and_nbi_func p_shmem_long_atomic_fetch_and_nbi = nullptr;
-shmem_long_atomic_fetch_or_nbi_func p_shmem_long_atomic_fetch_or_nbi = nullptr;
-shmem_long_atomic_fetch_xor_nbi_func p_shmem_long_atomic_fetch_xor_nbi = nullptr;
+shmem_ulong_atomic_fetch_func p_shmem_ulong_atomic_fetch = nullptr;
+shmem_ulong_atomic_set_func p_shmem_ulong_atomic_set = nullptr;
+shmem_ulong_atomic_compare_swap_func p_shmem_ulong_atomic_compare_swap = nullptr;
+shmem_ulong_atomic_swap_func p_shmem_ulong_atomic_swap = nullptr;
+shmem_ulong_atomic_fetch_inc_func p_shmem_ulong_atomic_fetch_inc = nullptr;
+shmem_ulong_atomic_inc_func p_shmem_ulong_atomic_inc = nullptr;
+shmem_ulong_atomic_fetch_add_func p_shmem_ulong_atomic_fetch_add = nullptr;
+shmem_ulong_atomic_add_func p_shmem_ulong_atomic_add = nullptr;
+shmem_ulong_atomic_fetch_and_func p_shmem_ulong_atomic_fetch_and = nullptr;
+shmem_ulong_atomic_and_func p_shmem_ulong_atomic_and = nullptr;
+shmem_ulong_atomic_fetch_or_func p_shmem_ulong_atomic_fetch_or = nullptr;
+shmem_ulong_atomic_or_func p_shmem_ulong_atomic_or = nullptr;
+shmem_ulong_atomic_fetch_xor_func p_shmem_ulong_atomic_fetch_xor = nullptr;
+shmem_ulong_atomic_xor_func p_shmem_ulong_atomic_xor = nullptr;
+shmem_ulong_atomic_fetch_nbi_func p_shmem_ulong_atomic_fetch_nbi = nullptr;
+shmem_ulong_atomic_compare_swap_nbi_func p_shmem_ulong_atomic_compare_swap_nbi = nullptr;
+shmem_ulong_atomic_swap_nbi_func p_shmem_ulong_atomic_swap_nbi = nullptr;
+shmem_ulong_atomic_fetch_inc_nbi_func p_shmem_ulong_atomic_fetch_inc_nbi = nullptr;
+shmem_ulong_atomic_fetch_add_nbi_func p_shmem_ulong_atomic_fetch_add_nbi = nullptr;
+shmem_ulong_atomic_fetch_and_nbi_func p_shmem_ulong_atomic_fetch_and_nbi = nullptr;
+shmem_ulong_atomic_fetch_or_nbi_func p_shmem_ulong_atomic_fetch_or_nbi = nullptr;
+shmem_ulong_atomic_fetch_xor_nbi_func p_shmem_ulong_atomic_fetch_xor_nbi = nullptr;
 
 /* Signaling Operations */
 shmem_signal_fetch_func p_shmem_signal_fetch = nullptr;
@@ -358,28 +358,29 @@ bool load_routines() {
   p_shmem_long_get_nbi = reinterpret_cast<shmem_long_get_nbi_func>(dlsym(handle, "shmem_long_get_nbi"));
 
   /* Atomic Memory Operations */
-  p_shmem_long_atomic_fetch = reinterpret_cast<shmem_long_atomic_fetch_func>(dlsym(handle, "shmem_long_atomic_fetch"));
-  p_shmem_long_atomic_set = reinterpret_cast<shmem_long_atomic_set_func>(dlsym(handle, "shmem_long_atomic_set"));
-  p_shmem_long_atomic_compare_swap = reinterpret_cast<shmem_long_atomic_compare_swap_func>(dlsym(handle, "shmem_long_atomic_compare_swap"));
-  p_shmem_long_atomic_swap = reinterpret_cast<shmem_long_atomic_swap_func>(dlsym(handle, "shmem_long_atomic_swap"));
-  p_shmem_long_atomic_fetch_inc = reinterpret_cast<shmem_long_atomic_fetch_inc_func>(dlsym(handle, "shmem_long_atomic_fetch_inc"));
-  p_shmem_long_atomic_inc = reinterpret_cast<shmem_long_atomic_inc_func>(dlsym(handle, "shmem_long_atomic_inc"));
-  p_shmem_long_atomic_fetch_add = reinterpret_cast<shmem_long_atomic_fetch_add_func>(dlsym(handle, "shmem_long_atomic_fetch_add"));
-  p_shmem_long_atomic_add = reinterpret_cast<shmem_long_atomic_add_func>(dlsym(handle, "shmem_long_atomic_add"));
-  p_shmem_long_atomic_fetch_and = reinterpret_cast<shmem_long_atomic_fetch_and_func>(dlsym(handle, "shmem_long_atomic_fetch_and"));
-  p_shmem_long_atomic_and = reinterpret_cast<shmem_long_atomic_and_func>(dlsym(handle, "shmem_long_atomic_and"));
-  p_shmem_long_atomic_fetch_or = reinterpret_cast<shmem_long_atomic_fetch_or_func>(dlsym(handle, "shmem_long_atomic_fetch_or"));
-  p_shmem_long_atomic_or = reinterpret_cast<shmem_long_atomic_or_func>(dlsym(handle, "shmem_long_atomic_or"));
-  p_shmem_long_atomic_fetch_xor = reinterpret_cast<shmem_long_atomic_fetch_xor_func>(dlsym(handle, "shmem_long_atomic_fetch_xor"));
-  p_shmem_long_atomic_xor = reinterpret_cast<shmem_long_atomic_xor_func>(dlsym(handle, "shmem_long_atomic_xor"));
-  p_shmem_long_atomic_fetch_nbi = reinterpret_cast<shmem_long_atomic_fetch_nbi_func>(dlsym(handle, "shmem_long_atomic_fetch_nbi"));
-  p_shmem_long_atomic_compare_swap_nbi = reinterpret_cast<shmem_long_atomic_compare_swap_nbi_func>(dlsym(handle, "shmem_long_atomic_compare_swap_nbi"));
-  p_shmem_long_atomic_swap_nbi = reinterpret_cast<shmem_long_atomic_swap_nbi_func>(dlsym(handle, "shmem_long_atomic_swap_nbi"));
-  p_shmem_long_atomic_fetch_inc_nbi = reinterpret_cast<shmem_long_atomic_fetch_inc_nbi_func>(dlsym(handle, "shmem_long_atomic_fetch_inc_nbi"));
-  p_shmem_long_atomic_fetch_add_nbi = reinterpret_cast<shmem_long_atomic_fetch_add_nbi_func>(dlsym(handle, "shmem_long_atomic_fetch_add_nbi"));
-  p_shmem_long_atomic_fetch_and_nbi = reinterpret_cast<shmem_long_atomic_fetch_and_nbi_func>(dlsym(handle, "shmem_long_atomic_fetch_and_nbi"));
-  p_shmem_long_atomic_fetch_or_nbi = reinterpret_cast<shmem_long_atomic_fetch_or_nbi_func>(dlsym(handle, "shmem_long_atomic_fetch_or_nbi"));
-  p_shmem_long_atomic_fetch_xor_nbi = reinterpret_cast<shmem_long_atomic_fetch_xor_nbi_func>(dlsym(handle, "shmem_long_atomic_fetch_xor_nbi"));
+  p_shmem_ulong_atomic_fetch = reinterpret_cast<shmem_ulong_atomic_fetch_func>(dlsym(handle, "shmem_ulong_atomic_fetch"));
+  p_shmem_ulong_atomic_set = reinterpret_cast<shmem_ulong_atomic_set_func>(dlsym(handle, "shmem_ulong_atomic_set"));
+  p_shmem_ulong_atomic_compare_swap = reinterpret_cast<shmem_ulong_atomic_compare_swap_func>(dlsym(handle, "shmem_ulong_atomic_compare_swap"));
+  p_shmem_ulong_atomic_swap = reinterpret_cast<shmem_ulong_atomic_swap_func>(dlsym(handle, "shmem_ulong_atomic_swap"));
+  p_shmem_ulong_atomic_fetch_inc = reinterpret_cast<shmem_ulong_atomic_fetch_inc_func>(dlsym(handle, "shmem_ulong_atomic_fetch_inc"));
+  p_shmem_ulong_atomic_inc = reinterpret_cast<shmem_ulong_atomic_inc_func>(dlsym(handle, "shmem_ulong_atomic_inc"));
+  p_shmem_ulong_atomic_fetch_add = reinterpret_cast<shmem_ulong_atomic_fetch_add_func>(dlsym(handle, "shmem_ulong_atomic_fetch_add"));
+  p_shmem_ulong_atomic_add = reinterpret_cast<shmem_ulong_atomic_add_func>(dlsym(handle, "shmem_ulong_atomic_add"));
+  p_shmem_ulong_atomic_fetch_and = reinterpret_cast<shmem_ulong_atomic_fetch_and_func>(dlsym(handle, "shmem_ulong_atomic_fetch_and"));
+  p_shmem_ulong_atomic_and = reinterpret_cast<shmem_ulong_atomic_and_func>(dlsym(handle, "shmem_ulong_atomic_and"));
+  p_shmem_ulong_atomic_fetch_or = reinterpret_cast<shmem_ulong_atomic_fetch_or_func>(dlsym(handle, "shmem_ulong_atomic_fetch_or"));
+  p_shmem_ulong_atomic_or = reinterpret_cast<shmem_ulong_atomic_or_func>(dlsym(handle, "shmem_ulong_atomic_or"));
+  p_shmem_ulong_atomic_fetch_xor = reinterpret_cast<shmem_ulong_atomic_fetch_xor_func>(dlsym(handle, "shmem_ulong_atomic_fetch_xor"));
+  p_shmem_ulong_atomic_xor = reinterpret_cast<shmem_ulong_atomic_xor_func>(dlsym(handle, "shmem_ulong_atomic_xor"));
+
+  p_shmem_ulong_atomic_fetch_nbi = reinterpret_cast<shmem_ulong_atomic_fetch_nbi_func>(dlsym(handle, "shmem_ulong_atomic_fetch_nbi"));
+  p_shmem_ulong_atomic_compare_swap_nbi = reinterpret_cast<shmem_ulong_atomic_compare_swap_nbi_func>(dlsym(handle, "shmem_ulong_atomic_compare_swap_nbi"));
+  p_shmem_ulong_atomic_swap_nbi = reinterpret_cast<shmem_ulong_atomic_swap_nbi_func>(dlsym(handle, "shmem_ulong_atomic_swap_nbi"));
+  p_shmem_ulong_atomic_fetch_inc_nbi = reinterpret_cast<shmem_ulong_atomic_fetch_inc_nbi_func>(dlsym(handle, "shmem_ulong_atomic_fetch_inc_nbi"));
+  p_shmem_ulong_atomic_fetch_add_nbi = reinterpret_cast<shmem_ulong_atomic_fetch_add_nbi_func>(dlsym(handle, "shmem_ulong_atomic_fetch_add_nbi"));
+  p_shmem_ulong_atomic_fetch_and_nbi = reinterpret_cast<shmem_ulong_atomic_fetch_and_nbi_func>(dlsym(handle, "shmem_ulong_atomic_fetch_and_nbi"));
+  p_shmem_ulong_atomic_fetch_or_nbi = reinterpret_cast<shmem_ulong_atomic_fetch_or_nbi_func>(dlsym(handle, "shmem_ulong_atomic_fetch_or_nbi"));
+  p_shmem_ulong_atomic_fetch_xor_nbi = reinterpret_cast<shmem_ulong_atomic_fetch_xor_nbi_func>(dlsym(handle, "shmem_ulong_atomic_fetch_xor_nbi"));
 
   /* Signaling Operations */
   p_shmem_signal_fetch = reinterpret_cast<shmem_signal_fetch_func>(dlsym(handle, "shmem_signal_fetch"));

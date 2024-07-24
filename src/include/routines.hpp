@@ -9,6 +9,7 @@
 #include <shmem.h> /* Include OpenSHMEM header for types and constants */
 
 /************* Define function pointers for OpenSHMEM routines *************/
+
 extern "C" {
 
 /* Fake routine for testing */
@@ -66,28 +67,31 @@ typedef void (*shmem_long_put_nbi_func)(long *dest, const long *src, size_t nele
 typedef void (*shmem_long_get_nbi_func)(long *dest, const long *src, size_t nelems, int pe);
 
 /* Atomic Memory Operations */
-typedef long (*shmem_long_atomic_fetch_func)(const long *target, int pe);
-typedef void (*shmem_long_atomic_set_func)(long *target, long value, int pe);
-typedef long (*shmem_long_atomic_compare_swap_func)(long *target, long cond, long value, int pe);
-typedef long (*shmem_long_atomic_swap_func)(long *target, long value, int pe);
-typedef long (*shmem_long_atomic_fetch_inc_func)(const long *target, int pe);
-typedef void (*shmem_long_atomic_inc_func)(long *target, int pe);
-typedef long (*shmem_long_atomic_fetch_add_func)(const long *target, long value, int pe);
-typedef void (*shmem_long_atomic_add_func)(long *target, long value, int pe);
-typedef long (*shmem_long_atomic_fetch_and_func)(const long *target, long value, int pe);
-typedef void (*shmem_long_atomic_and_func)(long *target, long value, int pe);
-typedef long (*shmem_long_atomic_fetch_or_func)(const long *target, long value, int pe);
-typedef void (*shmem_long_atomic_or_func)(long *target, long value, int pe);
-typedef long (*shmem_long_atomic_fetch_xor_func)(const long *target, long value, int pe);
-typedef void (*shmem_long_atomic_xor_func)(long *target, long value, int pe);
-typedef void (*shmem_long_atomic_fetch_nbi_func)(long *dest, const long *target, int pe);
-typedef void (*shmem_long_atomic_compare_swap_nbi_func)(long *dest, long *target, long cond, long value, int pe);
-typedef void (*shmem_long_atomic_swap_nbi_func)(long *dest, long *target, long value, int pe);
-typedef void (*shmem_long_atomic_fetch_inc_nbi_func)(long *dest, long *target, int pe);
-typedef void (*shmem_long_atomic_fetch_add_nbi_func)(long *dest, long *target, long value, int pe);
-typedef void (*shmem_long_atomic_fetch_and_nbi_func)(long *dest, long *target, long value, int pe);
-typedef void (*shmem_long_atomic_fetch_or_nbi_func)(long *dest, long *target, long value, int pe);
-typedef void (*shmem_long_atomic_fetch_xor_nbi_func)(long *dest, long *target, long value, int pe);
+typedef unsigned long (*shmem_ulong_atomic_fetch_func)(const unsigned long *target, int pe);
+typedef void (*shmem_ulong_atomic_set_func)(unsigned long *target, unsigned long value, int pe);
+typedef unsigned long (*shmem_ulong_atomic_compare_swap_func)(unsigned long *target, unsigned long cond, unsigned long value, int pe);
+typedef unsigned long (*shmem_ulong_atomic_swap_func)(unsigned long *target, unsigned long value, int pe);
+typedef unsigned long (*shmem_ulong_atomic_fetch_inc_func)(const unsigned long *target, int pe);
+typedef void (*shmem_ulong_atomic_inc_func)(unsigned long *target, int pe);
+typedef unsigned long (*shmem_ulong_atomic_fetch_add_func)(const unsigned long *target, unsigned long value, int pe);
+typedef void (*shmem_ulong_atomic_add_func)(const unsigned long *target, unsigned long value, int pe);
+
+typedef unsigned long (*shmem_ulong_atomic_fetch_and_func)(unsigned long *dest, unsigned long value, int pe); // Updated
+typedef void (*shmem_ulong_atomic_and_func)(unsigned long *dest, unsigned long value, int pe); // Updated
+typedef unsigned long (*shmem_ulong_atomic_fetch_or_func)(unsigned long *dest, unsigned long value, int pe); // Updated
+typedef void (*shmem_ulong_atomic_or_func)(unsigned long *dest, unsigned long value, int pe); // Updated
+typedef unsigned long (*shmem_ulong_atomic_fetch_xor_func)(unsigned long *dest, unsigned long value, int pe); // Updated
+typedef void (*shmem_ulong_atomic_xor_func)(unsigned long *dest, unsigned long value, int pe); // Updated
+
+typedef void (*shmem_ulong_atomic_fetch_nbi_func)(unsigned long *dest, const unsigned long *target, int pe);
+typedef void (*shmem_ulong_atomic_compare_swap_nbi_func)(unsigned long *dest, unsigned long *target, unsigned long cond, unsigned long value, int pe);
+typedef void (*shmem_ulong_atomic_swap_nbi_func)(unsigned long *dest, unsigned long *target, unsigned long value, int pe);
+typedef void (*shmem_ulong_atomic_fetch_inc_nbi_func)(unsigned long *dest, const unsigned long *target, int pe);
+typedef void (*shmem_ulong_atomic_fetch_add_nbi_func)(unsigned long *dest, const unsigned long *target, unsigned long value, int pe);
+
+typedef void (*shmem_ulong_atomic_fetch_and_nbi_func)(unsigned long *fetch, unsigned long *dest, unsigned long value, int pe); // Updated
+typedef void (*shmem_ulong_atomic_fetch_or_nbi_func)(unsigned long *fetch, unsigned long *dest, unsigned long value, int pe); // Updated
+typedef void (*shmem_ulong_atomic_fetch_xor_nbi_func)(unsigned long *fetch, unsigned long *dest, unsigned long value, int pe); // Updated
 
 /* Signaling Operations */
 typedef void (*shmem_long_put_signal_func)(long *dest, const long *source, size_t nelems, uint64_t *sig_addr, uint64_t signal, int sig_op, int pe);
@@ -194,28 +198,28 @@ extern shmem_long_put_nbi_func p_shmem_long_put_nbi;
 extern shmem_long_get_nbi_func p_shmem_long_get_nbi;
 
 /* Atomic Memory Operations */
-extern shmem_long_atomic_fetch_func p_shmem_long_atomic_fetch;
-extern shmem_long_atomic_set_func p_shmem_long_atomic_set;
-extern shmem_long_atomic_compare_swap_func p_shmem_long_atomic_compare_swap;
-extern shmem_long_atomic_swap_func p_shmem_long_atomic_swap;
-extern shmem_long_atomic_fetch_inc_func p_shmem_long_atomic_fetch_inc;
-extern shmem_long_atomic_inc_func p_shmem_long_atomic_inc;
-extern shmem_long_atomic_fetch_add_func p_shmem_long_atomic_fetch_add;
-extern shmem_long_atomic_add_func p_shmem_long_atomic_add;
-extern shmem_long_atomic_fetch_and_func p_shmem_long_atomic_fetch_and;
-extern shmem_long_atomic_and_func p_shmem_long_atomic_and;
-extern shmem_long_atomic_fetch_or_func p_shmem_long_atomic_fetch_or;
-extern shmem_long_atomic_or_func p_shmem_long_atomic_or;
-extern shmem_long_atomic_fetch_xor_func p_shmem_long_atomic_fetch_xor;
-extern shmem_long_atomic_xor_func p_shmem_long_atomic_xor;
-extern shmem_long_atomic_fetch_nbi_func p_shmem_long_atomic_fetch_nbi;
-extern shmem_long_atomic_compare_swap_nbi_func p_shmem_long_atomic_compare_swap_nbi;
-extern shmem_long_atomic_swap_nbi_func p_shmem_long_atomic_swap_nbi;
-extern shmem_long_atomic_fetch_inc_nbi_func p_shmem_long_atomic_fetch_inc_nbi;
-extern shmem_long_atomic_fetch_add_nbi_func p_shmem_long_atomic_fetch_add_nbi;
-extern shmem_long_atomic_fetch_and_nbi_func p_shmem_long_atomic_fetch_and_nbi;
-extern shmem_long_atomic_fetch_or_nbi_func p_shmem_long_atomic_fetch_or_nbi;
-extern shmem_long_atomic_fetch_xor_nbi_func p_shmem_long_atomic_fetch_xor_nbi;
+extern shmem_ulong_atomic_fetch_func p_shmem_ulong_atomic_fetch;
+extern shmem_ulong_atomic_set_func p_shmem_ulong_atomic_set;
+extern shmem_ulong_atomic_compare_swap_func p_shmem_ulong_atomic_compare_swap;
+extern shmem_ulong_atomic_swap_func p_shmem_ulong_atomic_swap;
+extern shmem_ulong_atomic_fetch_inc_func p_shmem_ulong_atomic_fetch_inc;
+extern shmem_ulong_atomic_inc_func p_shmem_ulong_atomic_inc;
+extern shmem_ulong_atomic_fetch_add_func p_shmem_ulong_atomic_fetch_add;
+extern shmem_ulong_atomic_add_func p_shmem_ulong_atomic_add;
+extern shmem_ulong_atomic_fetch_and_func p_shmem_ulong_atomic_fetch_and;
+extern shmem_ulong_atomic_and_func p_shmem_ulong_atomic_and;
+extern shmem_ulong_atomic_fetch_or_func p_shmem_ulong_atomic_fetch_or;
+extern shmem_ulong_atomic_or_func p_shmem_ulong_atomic_or;
+extern shmem_ulong_atomic_fetch_xor_func p_shmem_ulong_atomic_fetch_xor;
+extern shmem_ulong_atomic_xor_func p_shmem_ulong_atomic_xor;
+extern shmem_ulong_atomic_fetch_nbi_func p_shmem_ulong_atomic_fetch_nbi;
+extern shmem_ulong_atomic_compare_swap_nbi_func p_shmem_ulong_atomic_compare_swap_nbi;
+extern shmem_ulong_atomic_swap_nbi_func p_shmem_ulong_atomic_swap_nbi;
+extern shmem_ulong_atomic_fetch_inc_nbi_func p_shmem_ulong_atomic_fetch_inc_nbi;
+extern shmem_ulong_atomic_fetch_add_nbi_func p_shmem_ulong_atomic_fetch_add_nbi;
+extern shmem_ulong_atomic_fetch_and_nbi_func p_shmem_ulong_atomic_fetch_and_nbi;
+extern shmem_ulong_atomic_fetch_or_nbi_func p_shmem_ulong_atomic_fetch_or_nbi;
+extern shmem_ulong_atomic_fetch_xor_nbi_func p_shmem_ulong_atomic_fetch_xor_nbi;
 
 /* Signaling Operations */
 extern shmem_long_put_signal_func p_shmem_long_put_signal;
@@ -256,8 +260,8 @@ extern shmem_long_test_some_vector_func p_shmem_long_test_some_vector;
 extern shmem_signal_wait_until_func p_shmem_signal_wait_until;
 
 /* Memory Ordering Routines */
-extern shmem_fence_func p_shmem_fence;
 extern shmem_quiet_func p_shmem_quiet;
+extern shmem_fence_func p_shmem_fence;
 
 /* Distributed Locking Routines */
 extern shmem_set_lock_func p_shmem_set_lock;
