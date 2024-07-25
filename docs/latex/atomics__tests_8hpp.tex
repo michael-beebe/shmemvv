@@ -1,0 +1,980 @@
+\doxysection{src/tests/atomics/atomics\+\_\+tests.hpp File Reference}
+\hypertarget{atomics__tests_8hpp}{}\label{atomics__tests_8hpp}\index{src/tests/atomics/atomics\_tests.hpp@{src/tests/atomics/atomics\_tests.hpp}}
+
+
+Contains function declarations for the Open\+SHMEM atomic memory operations tests.  
+
+
+{\ttfamily \#include "{}routines.\+hpp"{}}\newline
+{\ttfamily \#include $<$shmem.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{atomics__tests_8hpp_a0749b96fafad54551ad7c8acaea908c1}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+atomic\+\_\+fetch() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{atomics__tests_8hpp_a20290aaa5c7dd6ce78ff9c529ba73094}{test\+\_\+shmem\+\_\+atomic\+\_\+set}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+atomic\+\_\+set() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{atomics__tests_8hpp_a85a03d847c2c8af9980cfef3b83184a7}{test\+\_\+shmem\+\_\+atomic\+\_\+compare\+\_\+swap}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+atomic\+\_\+compare\+\_\+swap() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{atomics__tests_8hpp_a68dcf07874962b9e1fee26dfbeeee457}{test\+\_\+shmem\+\_\+atomic\+\_\+swap}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+atomic\+\_\+swap() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{atomics__tests_8hpp_a3d9a923cfc676b7caa6b7fc568bbaa5b}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+inc}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+atomic\+\_\+fetch\+\_\+inc() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{atomics__tests_8hpp_a0c75551cd32f37aeead9f4680967da7b}{test\+\_\+shmem\+\_\+atomic\+\_\+inc}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+atomic\+\_\+inc() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{atomics__tests_8hpp_ac074d587addb282cd57cc4a3279e754e}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+add}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+atomic\+\_\+fetch\+\_\+add() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{atomics__tests_8hpp_ad94e0e1f07ca82ee104cedf3391c2576}{test\+\_\+shmem\+\_\+atomic\+\_\+add}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+atomic\+\_\+add() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{atomics__tests_8hpp_a5f4585a05f5bda8afea15a1a49303d85}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+and}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+atomic\+\_\+fetch\+\_\+and() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{atomics__tests_8hpp_a31e8f4fe83f04ed5db4749a02e20f3f1}{test\+\_\+shmem\+\_\+atomic\+\_\+and}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+atomic\+\_\+and() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{atomics__tests_8hpp_ad3ec341cc119fbd9dc517a2a6ff756e5}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+or}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+atomic\+\_\+fetch\+\_\+or() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{atomics__tests_8hpp_a32d31930d4f7d2a7add3ffc00e931955}{test\+\_\+shmem\+\_\+atomic\+\_\+or}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+atomic\+\_\+or() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{atomics__tests_8hpp_a0b478d58cee380872ce2e83f31b244ec}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+xor}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+atomic\+\_\+fetch\+\_\+xor() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{atomics__tests_8hpp_ad4f22df7819e1ad42dd64d2ecae3fa4f}{test\+\_\+shmem\+\_\+atomic\+\_\+xor}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+atomic\+\_\+xor() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{atomics__tests_8hpp_a9bd8edb162e424b3237c198d6e649fab}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+nbi}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+atomic\+\_\+fetch\+\_\+nbi() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{atomics__tests_8hpp_a2c94ce1cc479eaaaed84184c755b54c1}{test\+\_\+shmem\+\_\+atomic\+\_\+compare\+\_\+swap\+\_\+nbi}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+atomic\+\_\+compare\+\_\+swap\+\_\+nbi() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{atomics__tests_8hpp_a0b96fba908ee4b68e4ec30d9ca7126f1}{test\+\_\+shmem\+\_\+atomic\+\_\+swap\+\_\+nbi}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+atomic\+\_\+swap\+\_\+nbi() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{atomics__tests_8hpp_acf77719edabcbf7c75b91f39347b3396}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+inc\+\_\+nbi}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+atomic\+\_\+fetch\+\_\+inc\+\_\+nbi() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{atomics__tests_8hpp_aa39f9b7755a41d82a839e335598bfac3}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+add\+\_\+nbi}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+atomic\+\_\+fetch\+\_\+add\+\_\+nbi() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{atomics__tests_8hpp_a4d1ba04134286aaffb222db35a972010}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+and\+\_\+nbi}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+atomic\+\_\+fetch\+\_\+and\+\_\+nbi() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{atomics__tests_8hpp_a86bdab65dd092aa67ce199f5ea8b2726}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+or\+\_\+nbi}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+atomic\+\_\+fetch\+\_\+or\+\_\+nbi() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{atomics__tests_8hpp_abc0a421f341cad9e59b4c3226eb681de}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+xor\+\_\+nbi}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+atomic\+\_\+fetch\+\_\+xor\+\_\+nbi() routine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains function declarations for the Open\+SHMEM atomic memory operations tests. 
+
+
+
+Definition in file \mbox{\hyperlink{atomics__tests_8hpp_source}{atomics\+\_\+tests.\+hpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{atomics__tests_8hpp_ad94e0e1f07ca82ee104cedf3391c2576}\index{atomics\_tests.hpp@{atomics\_tests.hpp}!test\_shmem\_atomic\_add@{test\_shmem\_atomic\_add}}
+\index{test\_shmem\_atomic\_add@{test\_shmem\_atomic\_add}!atomics\_tests.hpp@{atomics\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_atomic\_add()}{test\_shmem\_atomic\_add()}}
+{\footnotesize\ttfamily \label{atomics__tests_8hpp_ad94e0e1f07ca82ee104cedf3391c2576} 
+bool test\+\_\+shmem\+\_\+atomic\+\_\+add (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+atomic\+\_\+add() routine. 
+
+This test verifies that the shmem\+\_\+atomic\+\_\+add() routine correctly adds a value to the remote memory location.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{atomics__tests_8cpp_source_l00175}{175}} of file \mbox{\hyperlink{atomics__tests_8cpp_source}{atomics\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00176\ \ \ \textcolor{keyword}{static}\ ulong\ *dest;}
+\DoxyCodeLine{00177\ \ \ dest\ =\ (ulong\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(ulong));}
+\DoxyCodeLine{00178\ \ \ ulong\ value\ =\ 42,\ add\_val\ =\ 10;}
+\DoxyCodeLine{00179\ \ \ *dest\ =\ value;}
+\DoxyCodeLine{00180\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00181\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00182\ \ \ \mbox{\hyperlink{routines_8hpp_a8a36141f20d57118a4b65d4ed8223c9c}{p\_shmem\_ulong\_atomic\_add}}(dest,\ add\_val,\ mype);}
+\DoxyCodeLine{00183\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00184\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (*dest\ ==\ value\ +\ add\_val);}
+\DoxyCodeLine{00185\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{00186\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00187\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, and \mbox{\hyperlink{routines_8cpp_source_l00074}{p\+\_\+shmem\+\_\+ulong\+\_\+atomic\+\_\+add}}.
+
+\Hypertarget{atomics__tests_8hpp_a31e8f4fe83f04ed5db4749a02e20f3f1}\index{atomics\_tests.hpp@{atomics\_tests.hpp}!test\_shmem\_atomic\_and@{test\_shmem\_atomic\_and}}
+\index{test\_shmem\_atomic\_and@{test\_shmem\_atomic\_and}!atomics\_tests.hpp@{atomics\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_atomic\_and()}{test\_shmem\_atomic\_and()}}
+{\footnotesize\ttfamily \label{atomics__tests_8hpp_a31e8f4fe83f04ed5db4749a02e20f3f1} 
+bool test\+\_\+shmem\+\_\+atomic\+\_\+and (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+atomic\+\_\+and() routine. 
+
+This test verifies that the shmem\+\_\+atomic\+\_\+and() routine correctly performs a bitwise AND operation with the remote memory location.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{atomics__tests_8cpp_source_l00220}{220}} of file \mbox{\hyperlink{atomics__tests_8cpp_source}{atomics\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00221\ \ \ \textcolor{keyword}{static}\ ulong\ *dest;}
+\DoxyCodeLine{00222\ \ \ dest\ =\ (ulong\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(ulong));}
+\DoxyCodeLine{00223\ \ \ ulong\ value\ =\ 42,\ and\_val\ =\ 15;}
+\DoxyCodeLine{00224\ \ \ *dest\ =\ value;}
+\DoxyCodeLine{00225\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00226\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00227\ \ \ \mbox{\hyperlink{routines_8hpp_a86fda487497ae1f73ea1915de6933bed}{p\_shmem\_ulong\_atomic\_and}}(dest,\ and\_val,\ mype);}
+\DoxyCodeLine{00228\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00229\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (*dest\ ==\ (value\ \&\ and\_val));}
+\DoxyCodeLine{00230\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{00231\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00232\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, and \mbox{\hyperlink{routines_8cpp_source_l00076}{p\+\_\+shmem\+\_\+ulong\+\_\+atomic\+\_\+and}}.
+
+\Hypertarget{atomics__tests_8hpp_a85a03d847c2c8af9980cfef3b83184a7}\index{atomics\_tests.hpp@{atomics\_tests.hpp}!test\_shmem\_atomic\_compare\_swap@{test\_shmem\_atomic\_compare\_swap}}
+\index{test\_shmem\_atomic\_compare\_swap@{test\_shmem\_atomic\_compare\_swap}!atomics\_tests.hpp@{atomics\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_atomic\_compare\_swap()}{test\_shmem\_atomic\_compare\_swap()}}
+{\footnotesize\ttfamily \label{atomics__tests_8hpp_a85a03d847c2c8af9980cfef3b83184a7} 
+bool test\+\_\+shmem\+\_\+atomic\+\_\+compare\+\_\+swap (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+atomic\+\_\+compare\+\_\+swap() routine. 
+
+This test verifies that the shmem\+\_\+atomic\+\_\+compare\+\_\+swap() routine correctly swaps the value at a remote memory location if it matches the expected value.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{atomics__tests_8cpp_source_l00060}{60}} of file \mbox{\hyperlink{atomics__tests_8cpp_source}{atomics\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \textcolor{keyword}{static}\ ulong\ *dest;}
+\DoxyCodeLine{00062\ \ \ dest\ =\ (ulong\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(ulong));}
+\DoxyCodeLine{00063\ \ \ ulong\ old\ =\ 42,\ new\_val\ =\ 43;}
+\DoxyCodeLine{00064\ \ \ *dest\ =\ old;}
+\DoxyCodeLine{00065\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00066\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00067\ \ \ \textcolor{keywordtype}{int}\ npes\ =\ \mbox{\hyperlink{routines_8hpp_a484f2849d077f71872553f9c633152a7}{p\_shmem\_n\_pes}}();}
+\DoxyCodeLine{00068\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();\ }
+\DoxyCodeLine{00069\ \ \ ulong\ swapped\ =\ \mbox{\hyperlink{routines_8hpp_ab66faa7d297bbdb6b2d01b3cda39a94a}{p\_shmem\_ulong\_atomic\_compare\_swap}}(dest,\ old,\ new\_val,\ (mype\ +\ 1)\ \%\ npes);}
+\DoxyCodeLine{00070\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00071\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (swapped\ ==\ old\ \&\&\ *dest\ ==\ new\_val);}
+\DoxyCodeLine{00072\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00073\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{00074\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00075\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, \mbox{\hyperlink{routines_8cpp_source_l00018}{p\+\_\+shmem\+\_\+n\+\_\+pes}}, and \mbox{\hyperlink{routines_8cpp_source_l00069}{p\+\_\+shmem\+\_\+ulong\+\_\+atomic\+\_\+compare\+\_\+swap}}.
+
+\Hypertarget{atomics__tests_8hpp_a2c94ce1cc479eaaaed84184c755b54c1}\index{atomics\_tests.hpp@{atomics\_tests.hpp}!test\_shmem\_atomic\_compare\_swap\_nbi@{test\_shmem\_atomic\_compare\_swap\_nbi}}
+\index{test\_shmem\_atomic\_compare\_swap\_nbi@{test\_shmem\_atomic\_compare\_swap\_nbi}!atomics\_tests.hpp@{atomics\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_atomic\_compare\_swap\_nbi()}{test\_shmem\_atomic\_compare\_swap\_nbi()}}
+{\footnotesize\ttfamily \label{atomics__tests_8hpp_a2c94ce1cc479eaaaed84184c755b54c1} 
+bool test\+\_\+shmem\+\_\+atomic\+\_\+compare\+\_\+swap\+\_\+nbi (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+atomic\+\_\+compare\+\_\+swap\+\_\+nbi() routine. 
+
+This test verifies that the shmem\+\_\+atomic\+\_\+compare\+\_\+swap\+\_\+nbi() routine correctly swaps the value at a remote memory location in a non-\/blocking manner if it matches the expected value.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{atomics__tests_8cpp_source_l00356}{356}} of file \mbox{\hyperlink{atomics__tests_8cpp_source}{atomics\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00357\ \ \ \textcolor{keyword}{static}\ ulong\ *dest;}
+\DoxyCodeLine{00358\ \ \ \textcolor{keyword}{static}\ ulong\ fetch;}
+\DoxyCodeLine{00359\ \ \ dest\ =\ (ulong\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(ulong));}
+\DoxyCodeLine{00360\ \ \ fetch\ =\ 0;}
+\DoxyCodeLine{00361\ \ \ ulong\ old\ =\ 42,\ new\_val\ =\ 43;}
+\DoxyCodeLine{00362\ \ \ *dest\ =\ old;}
+\DoxyCodeLine{00363\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00364\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00365\ \ \ \mbox{\hyperlink{routines_8hpp_ab0db3362e70e9c5ce8c85e7f6447506e}{p\_shmem\_ulong\_atomic\_compare\_swap\_nbi}}(\&fetch,\ dest,\ old,\ new\_val,\ mype);}
+\DoxyCodeLine{00366\ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{00367\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00368\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (fetch\ ==\ old\ \&\&\ *dest\ ==\ new\_val);}
+\DoxyCodeLine{00369\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{00370\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00371\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, \mbox{\hyperlink{routines_8cpp_source_l00129}{p\+\_\+shmem\+\_\+quiet}}, and \mbox{\hyperlink{routines_8cpp_source_l00082}{p\+\_\+shmem\+\_\+ulong\+\_\+atomic\+\_\+compare\+\_\+swap\+\_\+nbi}}.
+
+\Hypertarget{atomics__tests_8hpp_a0749b96fafad54551ad7c8acaea908c1}\index{atomics\_tests.hpp@{atomics\_tests.hpp}!test\_shmem\_atomic\_fetch@{test\_shmem\_atomic\_fetch}}
+\index{test\_shmem\_atomic\_fetch@{test\_shmem\_atomic\_fetch}!atomics\_tests.hpp@{atomics\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_atomic\_fetch()}{test\_shmem\_atomic\_fetch()}}
+{\footnotesize\ttfamily \label{atomics__tests_8hpp_a0749b96fafad54551ad7c8acaea908c1} 
+bool test\+\_\+shmem\+\_\+atomic\+\_\+fetch (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+atomic\+\_\+fetch() routine. 
+
+This test verifies that the shmem\+\_\+atomic\+\_\+fetch() routine correctly retrieves the value from a remote memory location.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{atomics__tests_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{atomics__tests_8cpp_source}{atomics\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \textcolor{keyword}{static}\ ulong\ *dest;}
+\DoxyCodeLine{00018\ \ \ \textcolor{keyword}{static}\ ulong\ fetch;}
+\DoxyCodeLine{00019\ \ \ dest\ =\ (ulong\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(ulong));}
+\DoxyCodeLine{00020\ \ \ ulong\ value\ =\ 42;}
+\DoxyCodeLine{00021\ \ \ *dest\ =\ value;}
+\DoxyCodeLine{00022\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00023\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00024\ \ \ fetch\ =\ \mbox{\hyperlink{routines_8hpp_aef9e46f700636f44147fc898ac2d5eb5}{p\_shmem\_ulong\_atomic\_fetch}}(dest,\ mype);}
+\DoxyCodeLine{00025\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (fetch\ ==\ value);}
+\DoxyCodeLine{00027\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{00028\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00029\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, and \mbox{\hyperlink{routines_8cpp_source_l00067}{p\+\_\+shmem\+\_\+ulong\+\_\+atomic\+\_\+fetch}}.
+
+\Hypertarget{atomics__tests_8hpp_ac074d587addb282cd57cc4a3279e754e}\index{atomics\_tests.hpp@{atomics\_tests.hpp}!test\_shmem\_atomic\_fetch\_add@{test\_shmem\_atomic\_fetch\_add}}
+\index{test\_shmem\_atomic\_fetch\_add@{test\_shmem\_atomic\_fetch\_add}!atomics\_tests.hpp@{atomics\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_atomic\_fetch\_add()}{test\_shmem\_atomic\_fetch\_add()}}
+{\footnotesize\ttfamily \label{atomics__tests_8hpp_ac074d587addb282cd57cc4a3279e754e} 
+bool test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+add (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+atomic\+\_\+fetch\+\_\+add() routine. 
+
+This test verifies that the shmem\+\_\+atomic\+\_\+fetch\+\_\+add() routine correctly adds a value to the remote memory location and returns the old value.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{atomics__tests_8cpp_source_l00152}{152}} of file \mbox{\hyperlink{atomics__tests_8cpp_source}{atomics\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \textcolor{keyword}{static}\ ulong\ *dest;}
+\DoxyCodeLine{00154\ \ \ \textcolor{keyword}{static}\ ulong\ fetch;}
+\DoxyCodeLine{00155\ \ \ dest\ =\ (ulong\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(ulong));}
+\DoxyCodeLine{00156\ \ \ ulong\ value\ =\ 42,\ add\_val\ =\ 10;}
+\DoxyCodeLine{00157\ \ \ *dest\ =\ value;}
+\DoxyCodeLine{00158\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00159\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00160\ \ \ fetch\ =\ \mbox{\hyperlink{routines_8hpp_ae3e3bc55e17875362728118dfe71d399}{p\_shmem\_ulong\_atomic\_fetch\_add}}(dest,\ add\_val,\ mype);}
+\DoxyCodeLine{00161\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00162\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (fetch\ ==\ value\ \&\&\ *dest\ ==\ value\ +\ add\_val);}
+\DoxyCodeLine{00163\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{00164\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00165\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, and \mbox{\hyperlink{routines_8cpp_source_l00073}{p\+\_\+shmem\+\_\+ulong\+\_\+atomic\+\_\+fetch\+\_\+add}}.
+
+\Hypertarget{atomics__tests_8hpp_aa39f9b7755a41d82a839e335598bfac3}\index{atomics\_tests.hpp@{atomics\_tests.hpp}!test\_shmem\_atomic\_fetch\_add\_nbi@{test\_shmem\_atomic\_fetch\_add\_nbi}}
+\index{test\_shmem\_atomic\_fetch\_add\_nbi@{test\_shmem\_atomic\_fetch\_add\_nbi}!atomics\_tests.hpp@{atomics\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_atomic\_fetch\_add\_nbi()}{test\_shmem\_atomic\_fetch\_add\_nbi()}}
+{\footnotesize\ttfamily \label{atomics__tests_8hpp_aa39f9b7755a41d82a839e335598bfac3} 
+bool test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+add\+\_\+nbi (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+atomic\+\_\+fetch\+\_\+add\+\_\+nbi() routine. 
+
+This test verifies that the shmem\+\_\+atomic\+\_\+fetch\+\_\+add\+\_\+nbi() routine correctly adds a value to the remote memory location in a non-\/blocking manner and returns the old value.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{atomics__tests_8cpp_source_l00431}{431}} of file \mbox{\hyperlink{atomics__tests_8cpp_source}{atomics\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00432\ \ \ \textcolor{keyword}{static}\ ulong\ *dest;}
+\DoxyCodeLine{00433\ \ \ \textcolor{keyword}{static}\ ulong\ fetch;}
+\DoxyCodeLine{00434\ \ \ dest\ =\ (ulong\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(ulong));}
+\DoxyCodeLine{00435\ \ \ fetch\ =\ 0;}
+\DoxyCodeLine{00436\ \ \ ulong\ value\ =\ 42,\ add\_val\ =\ 10;}
+\DoxyCodeLine{00437\ \ \ *dest\ =\ value;}
+\DoxyCodeLine{00438\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00439\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00440\ \ \ \mbox{\hyperlink{routines_8hpp_a3a921173071f1e99fe45ce600a3c9b25}{p\_shmem\_ulong\_atomic\_fetch\_add\_nbi}}(\&fetch,\ dest,\ add\_val,\ mype);}
+\DoxyCodeLine{00441\ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{00442\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00443\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (fetch\ ==\ value\ \&\&\ *dest\ ==\ value\ +\ add\_val);}
+\DoxyCodeLine{00444\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{00445\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00446\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, \mbox{\hyperlink{routines_8cpp_source_l00129}{p\+\_\+shmem\+\_\+quiet}}, and \mbox{\hyperlink{routines_8cpp_source_l00085}{p\+\_\+shmem\+\_\+ulong\+\_\+atomic\+\_\+fetch\+\_\+add\+\_\+nbi}}.
+
+\Hypertarget{atomics__tests_8hpp_a5f4585a05f5bda8afea15a1a49303d85}\index{atomics\_tests.hpp@{atomics\_tests.hpp}!test\_shmem\_atomic\_fetch\_and@{test\_shmem\_atomic\_fetch\_and}}
+\index{test\_shmem\_atomic\_fetch\_and@{test\_shmem\_atomic\_fetch\_and}!atomics\_tests.hpp@{atomics\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_atomic\_fetch\_and()}{test\_shmem\_atomic\_fetch\_and()}}
+{\footnotesize\ttfamily \label{atomics__tests_8hpp_a5f4585a05f5bda8afea15a1a49303d85} 
+bool test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+and (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+atomic\+\_\+fetch\+\_\+and() routine. 
+
+This test verifies that the shmem\+\_\+atomic\+\_\+fetch\+\_\+and() routine correctly performs a bitwise AND operation with the remote memory location and returns the old value.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{atomics__tests_8cpp_source_l00197}{197}} of file \mbox{\hyperlink{atomics__tests_8cpp_source}{atomics\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \textcolor{keyword}{static}\ ulong\ *dest;}
+\DoxyCodeLine{00199\ \ \ \textcolor{keyword}{static}\ ulong\ fetch;}
+\DoxyCodeLine{00200\ \ \ dest\ =\ (ulong\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(ulong));}
+\DoxyCodeLine{00201\ \ \ ulong\ value\ =\ 42,\ and\_val\ =\ 15;}
+\DoxyCodeLine{00202\ \ \ *dest\ =\ value;}
+\DoxyCodeLine{00203\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00204\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00205\ \ \ fetch\ =\ \mbox{\hyperlink{routines_8hpp_a69d8b7e86cf5a690240fa4c0cfe0b13c}{p\_shmem\_ulong\_atomic\_fetch\_and}}(dest,\ and\_val,\ mype);}
+\DoxyCodeLine{00206\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00207\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (fetch\ ==\ value\ \&\&\ *dest\ ==\ (value\ \&\ and\_val));}
+\DoxyCodeLine{00208\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{00209\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00210\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, and \mbox{\hyperlink{routines_8cpp_source_l00075}{p\+\_\+shmem\+\_\+ulong\+\_\+atomic\+\_\+fetch\+\_\+and}}.
+
+\Hypertarget{atomics__tests_8hpp_a4d1ba04134286aaffb222db35a972010}\index{atomics\_tests.hpp@{atomics\_tests.hpp}!test\_shmem\_atomic\_fetch\_and\_nbi@{test\_shmem\_atomic\_fetch\_and\_nbi}}
+\index{test\_shmem\_atomic\_fetch\_and\_nbi@{test\_shmem\_atomic\_fetch\_and\_nbi}!atomics\_tests.hpp@{atomics\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_atomic\_fetch\_and\_nbi()}{test\_shmem\_atomic\_fetch\_and\_nbi()}}
+{\footnotesize\ttfamily \label{atomics__tests_8hpp_a4d1ba04134286aaffb222db35a972010} 
+bool test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+and\+\_\+nbi (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+atomic\+\_\+fetch\+\_\+and\+\_\+nbi() routine. 
+
+This test verifies that the shmem\+\_\+atomic\+\_\+fetch\+\_\+and\+\_\+nbi() routine correctly performs a bitwise AND operation with the remote memory location in a non-\/blocking manner and returns the old value.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{atomics__tests_8cpp_source_l00456}{456}} of file \mbox{\hyperlink{atomics__tests_8cpp_source}{atomics\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00457\ \ \ \textcolor{keyword}{static}\ ulong\ *dest;}
+\DoxyCodeLine{00458\ \ \ \textcolor{keyword}{static}\ ulong\ fetch;}
+\DoxyCodeLine{00459\ \ \ dest\ =\ (ulong\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(ulong));}
+\DoxyCodeLine{00460\ \ \ fetch\ =\ 0;}
+\DoxyCodeLine{00461\ \ \ ulong\ value\ =\ 42,\ and\_val\ =\ 15;}
+\DoxyCodeLine{00462\ \ \ *dest\ =\ value;}
+\DoxyCodeLine{00463\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00464\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00465\ \ \ \mbox{\hyperlink{routines_8hpp_a046dfecb0e8fdd61ec1c393cda6a218b}{p\_shmem\_ulong\_atomic\_fetch\_and\_nbi}}(\&fetch,\ dest,\ and\_val,\ mype);}
+\DoxyCodeLine{00466\ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{00467\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00468\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (fetch\ ==\ value\ \&\&\ *dest\ ==\ (value\ \&\ and\_val));}
+\DoxyCodeLine{00469\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{00470\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00471\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, \mbox{\hyperlink{routines_8cpp_source_l00129}{p\+\_\+shmem\+\_\+quiet}}, and \mbox{\hyperlink{routines_8cpp_source_l00086}{p\+\_\+shmem\+\_\+ulong\+\_\+atomic\+\_\+fetch\+\_\+and\+\_\+nbi}}.
+
+\Hypertarget{atomics__tests_8hpp_a3d9a923cfc676b7caa6b7fc568bbaa5b}\index{atomics\_tests.hpp@{atomics\_tests.hpp}!test\_shmem\_atomic\_fetch\_inc@{test\_shmem\_atomic\_fetch\_inc}}
+\index{test\_shmem\_atomic\_fetch\_inc@{test\_shmem\_atomic\_fetch\_inc}!atomics\_tests.hpp@{atomics\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_atomic\_fetch\_inc()}{test\_shmem\_atomic\_fetch\_inc()}}
+{\footnotesize\ttfamily \label{atomics__tests_8hpp_a3d9a923cfc676b7caa6b7fc568bbaa5b} 
+bool test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+inc (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+atomic\+\_\+fetch\+\_\+inc() routine. 
+
+This test verifies that the shmem\+\_\+atomic\+\_\+fetch\+\_\+inc() routine correctly increments the value at a remote memory location and returns the old value.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{atomics__tests_8cpp_source_l00107}{107}} of file \mbox{\hyperlink{atomics__tests_8cpp_source}{atomics\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \textcolor{keyword}{static}\ ulong\ *dest;}
+\DoxyCodeLine{00109\ \ \ \textcolor{keyword}{static}\ ulong\ fetch;}
+\DoxyCodeLine{00110\ \ \ dest\ =\ (ulong\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(ulong));}
+\DoxyCodeLine{00111\ \ \ ulong\ value\ =\ 42;}
+\DoxyCodeLine{00112\ \ \ *dest\ =\ value;}
+\DoxyCodeLine{00113\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00114\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00115\ \ \ fetch\ =\ \mbox{\hyperlink{routines_8hpp_ab31a453044332188b60d55b3c626af5d}{p\_shmem\_ulong\_atomic\_fetch\_inc}}(dest,\ mype);}
+\DoxyCodeLine{00116\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00117\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (fetch\ ==\ value\ \&\&\ *dest\ ==\ value\ +\ 1);}
+\DoxyCodeLine{00118\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{00119\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00120\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, and \mbox{\hyperlink{routines_8cpp_source_l00071}{p\+\_\+shmem\+\_\+ulong\+\_\+atomic\+\_\+fetch\+\_\+inc}}.
+
+\Hypertarget{atomics__tests_8hpp_acf77719edabcbf7c75b91f39347b3396}\index{atomics\_tests.hpp@{atomics\_tests.hpp}!test\_shmem\_atomic\_fetch\_inc\_nbi@{test\_shmem\_atomic\_fetch\_inc\_nbi}}
+\index{test\_shmem\_atomic\_fetch\_inc\_nbi@{test\_shmem\_atomic\_fetch\_inc\_nbi}!atomics\_tests.hpp@{atomics\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_atomic\_fetch\_inc\_nbi()}{test\_shmem\_atomic\_fetch\_inc\_nbi()}}
+{\footnotesize\ttfamily \label{atomics__tests_8hpp_acf77719edabcbf7c75b91f39347b3396} 
+bool test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+inc\+\_\+nbi (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+atomic\+\_\+fetch\+\_\+inc\+\_\+nbi() routine. 
+
+This test verifies that the shmem\+\_\+atomic\+\_\+fetch\+\_\+inc\+\_\+nbi() routine correctly increments the value at a remote memory location in a non-\/blocking manner and returns the old value.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{atomics__tests_8cpp_source_l00406}{406}} of file \mbox{\hyperlink{atomics__tests_8cpp_source}{atomics\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00407\ \ \ \textcolor{keyword}{static}\ ulong\ *dest;}
+\DoxyCodeLine{00408\ \ \ \textcolor{keyword}{static}\ ulong\ fetch;}
+\DoxyCodeLine{00409\ \ \ dest\ =\ (ulong\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(ulong));}
+\DoxyCodeLine{00410\ \ \ fetch\ =\ 0;}
+\DoxyCodeLine{00411\ \ \ ulong\ value\ =\ 42;}
+\DoxyCodeLine{00412\ \ \ *dest\ =\ value;}
+\DoxyCodeLine{00413\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00414\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00415\ \ \ \mbox{\hyperlink{routines_8hpp_a7f991e4b29d8f95d7f2c197eba2e3999}{p\_shmem\_ulong\_atomic\_fetch\_inc\_nbi}}(\&fetch,\ dest,\ mype);}
+\DoxyCodeLine{00416\ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{00417\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00418\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (fetch\ ==\ value\ \&\&\ *dest\ ==\ value\ +\ 1);}
+\DoxyCodeLine{00419\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{00420\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00421\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, \mbox{\hyperlink{routines_8cpp_source_l00129}{p\+\_\+shmem\+\_\+quiet}}, and \mbox{\hyperlink{routines_8cpp_source_l00084}{p\+\_\+shmem\+\_\+ulong\+\_\+atomic\+\_\+fetch\+\_\+inc\+\_\+nbi}}.
+
+\Hypertarget{atomics__tests_8hpp_a9bd8edb162e424b3237c198d6e649fab}\index{atomics\_tests.hpp@{atomics\_tests.hpp}!test\_shmem\_atomic\_fetch\_nbi@{test\_shmem\_atomic\_fetch\_nbi}}
+\index{test\_shmem\_atomic\_fetch\_nbi@{test\_shmem\_atomic\_fetch\_nbi}!atomics\_tests.hpp@{atomics\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_atomic\_fetch\_nbi()}{test\_shmem\_atomic\_fetch\_nbi()}}
+{\footnotesize\ttfamily \label{atomics__tests_8hpp_a9bd8edb162e424b3237c198d6e649fab} 
+bool test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+nbi (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+atomic\+\_\+fetch\+\_\+nbi() routine. 
+
+This test verifies that the shmem\+\_\+atomic\+\_\+fetch\+\_\+nbi() routine correctly retrieves the value from a remote memory location in a non-\/blocking manner.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{atomics__tests_8cpp_source_l00332}{332}} of file \mbox{\hyperlink{atomics__tests_8cpp_source}{atomics\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00333\ \ \ \textcolor{keyword}{static}\ ulong\ *dest;}
+\DoxyCodeLine{00334\ \ \ \textcolor{keyword}{static}\ ulong\ fetch;}
+\DoxyCodeLine{00335\ \ \ dest\ =\ (ulong\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(ulong));}
+\DoxyCodeLine{00336\ \ \ ulong\ value\ =\ 42;}
+\DoxyCodeLine{00337\ \ \ *dest\ =\ value;}
+\DoxyCodeLine{00338\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00339\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00340\ \ \ \mbox{\hyperlink{routines_8hpp_a7012841905d7d41ac6b8ca19d31c1b94}{p\_shmem\_ulong\_atomic\_fetch\_nbi}}(\&fetch,\ dest,\ mype);}
+\DoxyCodeLine{00341\ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{00342\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00343\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (fetch\ ==\ value);}
+\DoxyCodeLine{00344\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{00345\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00346\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, \mbox{\hyperlink{routines_8cpp_source_l00129}{p\+\_\+shmem\+\_\+quiet}}, and \mbox{\hyperlink{routines_8cpp_source_l00081}{p\+\_\+shmem\+\_\+ulong\+\_\+atomic\+\_\+fetch\+\_\+nbi}}.
+
+\Hypertarget{atomics__tests_8hpp_ad3ec341cc119fbd9dc517a2a6ff756e5}\index{atomics\_tests.hpp@{atomics\_tests.hpp}!test\_shmem\_atomic\_fetch\_or@{test\_shmem\_atomic\_fetch\_or}}
+\index{test\_shmem\_atomic\_fetch\_or@{test\_shmem\_atomic\_fetch\_or}!atomics\_tests.hpp@{atomics\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_atomic\_fetch\_or()}{test\_shmem\_atomic\_fetch\_or()}}
+{\footnotesize\ttfamily \label{atomics__tests_8hpp_ad3ec341cc119fbd9dc517a2a6ff756e5} 
+bool test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+or (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+atomic\+\_\+fetch\+\_\+or() routine. 
+
+This test verifies that the shmem\+\_\+atomic\+\_\+fetch\+\_\+or() routine correctly performs a bitwise OR operation with the remote memory location and returns the old value.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{atomics__tests_8cpp_source_l00242}{242}} of file \mbox{\hyperlink{atomics__tests_8cpp_source}{atomics\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00243\ \ \ \textcolor{keyword}{static}\ ulong\ *dest;}
+\DoxyCodeLine{00244\ \ \ \textcolor{keyword}{static}\ ulong\ fetch;}
+\DoxyCodeLine{00245\ \ \ dest\ =\ (ulong\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(ulong));}
+\DoxyCodeLine{00246\ \ \ ulong\ value\ =\ 42,\ or\_val\ =\ 15;}
+\DoxyCodeLine{00247\ \ \ *dest\ =\ value;}
+\DoxyCodeLine{00248\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00249\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00250\ \ \ fetch\ =\ \mbox{\hyperlink{routines_8hpp_a60a7d751984e7d4d5237e81a2f2be426}{p\_shmem\_ulong\_atomic\_fetch\_or}}(dest,\ or\_val,\ mype);}
+\DoxyCodeLine{00251\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00252\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (fetch\ ==\ value\ \&\&\ *dest\ ==\ (value\ |\ or\_val));}
+\DoxyCodeLine{00253\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{00254\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00255\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, and \mbox{\hyperlink{routines_8cpp_source_l00077}{p\+\_\+shmem\+\_\+ulong\+\_\+atomic\+\_\+fetch\+\_\+or}}.
+
+\Hypertarget{atomics__tests_8hpp_a86bdab65dd092aa67ce199f5ea8b2726}\index{atomics\_tests.hpp@{atomics\_tests.hpp}!test\_shmem\_atomic\_fetch\_or\_nbi@{test\_shmem\_atomic\_fetch\_or\_nbi}}
+\index{test\_shmem\_atomic\_fetch\_or\_nbi@{test\_shmem\_atomic\_fetch\_or\_nbi}!atomics\_tests.hpp@{atomics\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_atomic\_fetch\_or\_nbi()}{test\_shmem\_atomic\_fetch\_or\_nbi()}}
+{\footnotesize\ttfamily \label{atomics__tests_8hpp_a86bdab65dd092aa67ce199f5ea8b2726} 
+bool test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+or\+\_\+nbi (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+atomic\+\_\+fetch\+\_\+or\+\_\+nbi() routine. 
+
+This test verifies that the shmem\+\_\+atomic\+\_\+fetch\+\_\+or\+\_\+nbi() routine correctly performs a bitwise OR operation with the remote memory location in a non-\/blocking manner and returns the old value.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{atomics__tests_8cpp_source_l00481}{481}} of file \mbox{\hyperlink{atomics__tests_8cpp_source}{atomics\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00482\ \ \ \textcolor{keyword}{static}\ ulong\ *dest;}
+\DoxyCodeLine{00483\ \ \ \textcolor{keyword}{static}\ ulong\ fetch;}
+\DoxyCodeLine{00484\ \ \ dest\ =\ (ulong\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(ulong));}
+\DoxyCodeLine{00485\ \ \ fetch\ =\ 0;}
+\DoxyCodeLine{00486\ \ \ ulong\ value\ =\ 42,\ or\_val\ =\ 15;}
+\DoxyCodeLine{00487\ \ \ *dest\ =\ value;}
+\DoxyCodeLine{00488\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00489\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00490\ \ \ \mbox{\hyperlink{routines_8hpp_a678ce93108d5809eb5a452c5105b864c}{p\_shmem\_ulong\_atomic\_fetch\_or\_nbi}}(\&fetch,\ dest,\ or\_val,\ mype);}
+\DoxyCodeLine{00491\ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{00492\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00493\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (fetch\ ==\ value\ \&\&\ *dest\ ==\ (value\ |\ or\_val));}
+\DoxyCodeLine{00494\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{00495\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00496\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, \mbox{\hyperlink{routines_8cpp_source_l00129}{p\+\_\+shmem\+\_\+quiet}}, and \mbox{\hyperlink{routines_8cpp_source_l00087}{p\+\_\+shmem\+\_\+ulong\+\_\+atomic\+\_\+fetch\+\_\+or\+\_\+nbi}}.
+
+\Hypertarget{atomics__tests_8hpp_a0b478d58cee380872ce2e83f31b244ec}\index{atomics\_tests.hpp@{atomics\_tests.hpp}!test\_shmem\_atomic\_fetch\_xor@{test\_shmem\_atomic\_fetch\_xor}}
+\index{test\_shmem\_atomic\_fetch\_xor@{test\_shmem\_atomic\_fetch\_xor}!atomics\_tests.hpp@{atomics\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_atomic\_fetch\_xor()}{test\_shmem\_atomic\_fetch\_xor()}}
+{\footnotesize\ttfamily \label{atomics__tests_8hpp_a0b478d58cee380872ce2e83f31b244ec} 
+bool test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+xor (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+atomic\+\_\+fetch\+\_\+xor() routine. 
+
+This test verifies that the shmem\+\_\+atomic\+\_\+fetch\+\_\+xor() routine correctly performs a bitwise XOR operation with the remote memory location and returns the old value.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{atomics__tests_8cpp_source_l00287}{287}} of file \mbox{\hyperlink{atomics__tests_8cpp_source}{atomics\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00288\ \ \ \textcolor{keyword}{static}\ ulong\ *dest;}
+\DoxyCodeLine{00289\ \ \ \textcolor{keyword}{static}\ ulong\ fetch;}
+\DoxyCodeLine{00290\ \ \ dest\ =\ (ulong\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(ulong));}
+\DoxyCodeLine{00291\ \ \ ulong\ value\ =\ 42,\ xor\_val\ =\ 15;}
+\DoxyCodeLine{00292\ \ \ *dest\ =\ value;}
+\DoxyCodeLine{00293\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00294\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00295\ \ \ fetch\ =\ \mbox{\hyperlink{routines_8hpp_ae6fddeb6e72230aa037828627abcb318}{p\_shmem\_ulong\_atomic\_fetch\_xor}}(dest,\ xor\_val,\ mype);}
+\DoxyCodeLine{00296\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00297\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (fetch\ ==\ value\ \&\&\ *dest\ ==\ (value\ \string^\ xor\_val));}
+\DoxyCodeLine{00298\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{00299\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00300\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, and \mbox{\hyperlink{routines_8cpp_source_l00079}{p\+\_\+shmem\+\_\+ulong\+\_\+atomic\+\_\+fetch\+\_\+xor}}.
+
+\Hypertarget{atomics__tests_8hpp_abc0a421f341cad9e59b4c3226eb681de}\index{atomics\_tests.hpp@{atomics\_tests.hpp}!test\_shmem\_atomic\_fetch\_xor\_nbi@{test\_shmem\_atomic\_fetch\_xor\_nbi}}
+\index{test\_shmem\_atomic\_fetch\_xor\_nbi@{test\_shmem\_atomic\_fetch\_xor\_nbi}!atomics\_tests.hpp@{atomics\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_atomic\_fetch\_xor\_nbi()}{test\_shmem\_atomic\_fetch\_xor\_nbi()}}
+{\footnotesize\ttfamily \label{atomics__tests_8hpp_abc0a421f341cad9e59b4c3226eb681de} 
+bool test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+xor\+\_\+nbi (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+atomic\+\_\+fetch\+\_\+xor\+\_\+nbi() routine. 
+
+This test verifies that the shmem\+\_\+atomic\+\_\+fetch\+\_\+xor\+\_\+nbi() routine correctly performs a bitwise XOR operation with the remote memory location in a non-\/blocking manner and returns the old value.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{atomics__tests_8cpp_source_l00506}{506}} of file \mbox{\hyperlink{atomics__tests_8cpp_source}{atomics\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00507\ \ \ \textcolor{keyword}{static}\ ulong\ *dest;}
+\DoxyCodeLine{00508\ \ \ \textcolor{keyword}{static}\ ulong\ fetch;}
+\DoxyCodeLine{00509\ \ \ dest\ =\ (ulong\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(ulong));}
+\DoxyCodeLine{00510\ \ \ fetch\ =\ 0;}
+\DoxyCodeLine{00511\ \ \ ulong\ value\ =\ 42,\ xor\_val\ =\ 15;}
+\DoxyCodeLine{00512\ \ \ *dest\ =\ value;}
+\DoxyCodeLine{00513\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00514\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00515\ \ \ \mbox{\hyperlink{routines_8hpp_abba85c6ea04b0777c235241fd56e6712}{p\_shmem\_ulong\_atomic\_fetch\_xor\_nbi}}(\&fetch,\ dest,\ xor\_val,\ mype);}
+\DoxyCodeLine{00516\ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{00517\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00518\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (fetch\ ==\ value\ \&\&\ *dest\ ==\ (value\ \string^\ xor\_val));}
+\DoxyCodeLine{00519\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{00520\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00521\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, \mbox{\hyperlink{routines_8cpp_source_l00129}{p\+\_\+shmem\+\_\+quiet}}, and \mbox{\hyperlink{routines_8cpp_source_l00088}{p\+\_\+shmem\+\_\+ulong\+\_\+atomic\+\_\+fetch\+\_\+xor\+\_\+nbi}}.
+
+\Hypertarget{atomics__tests_8hpp_a0c75551cd32f37aeead9f4680967da7b}\index{atomics\_tests.hpp@{atomics\_tests.hpp}!test\_shmem\_atomic\_inc@{test\_shmem\_atomic\_inc}}
+\index{test\_shmem\_atomic\_inc@{test\_shmem\_atomic\_inc}!atomics\_tests.hpp@{atomics\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_atomic\_inc()}{test\_shmem\_atomic\_inc()}}
+{\footnotesize\ttfamily \label{atomics__tests_8hpp_a0c75551cd32f37aeead9f4680967da7b} 
+bool test\+\_\+shmem\+\_\+atomic\+\_\+inc (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+atomic\+\_\+inc() routine. 
+
+This test verifies that the shmem\+\_\+atomic\+\_\+inc() routine correctly increments the value at a remote memory location.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{atomics__tests_8cpp_source_l00130}{130}} of file \mbox{\hyperlink{atomics__tests_8cpp_source}{atomics\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \textcolor{keyword}{static}\ ulong\ *dest;}
+\DoxyCodeLine{00132\ \ \ dest\ =\ (ulong\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(ulong));}
+\DoxyCodeLine{00133\ \ \ ulong\ value\ =\ 42;}
+\DoxyCodeLine{00134\ \ \ *dest\ =\ value;}
+\DoxyCodeLine{00135\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00136\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00137\ \ \ \mbox{\hyperlink{routines_8hpp_acbc231f948952a230320198aa3a694f2}{p\_shmem\_ulong\_atomic\_inc}}(dest,\ mype);}
+\DoxyCodeLine{00138\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00139\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (*dest\ ==\ value\ +\ 1);}
+\DoxyCodeLine{00140\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{00141\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00142\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, and \mbox{\hyperlink{routines_8cpp_source_l00072}{p\+\_\+shmem\+\_\+ulong\+\_\+atomic\+\_\+inc}}.
+
+\Hypertarget{atomics__tests_8hpp_a32d31930d4f7d2a7add3ffc00e931955}\index{atomics\_tests.hpp@{atomics\_tests.hpp}!test\_shmem\_atomic\_or@{test\_shmem\_atomic\_or}}
+\index{test\_shmem\_atomic\_or@{test\_shmem\_atomic\_or}!atomics\_tests.hpp@{atomics\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_atomic\_or()}{test\_shmem\_atomic\_or()}}
+{\footnotesize\ttfamily \label{atomics__tests_8hpp_a32d31930d4f7d2a7add3ffc00e931955} 
+bool test\+\_\+shmem\+\_\+atomic\+\_\+or (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+atomic\+\_\+or() routine. 
+
+This test verifies that the shmem\+\_\+atomic\+\_\+or() routine correctly performs a bitwise OR operation with the remote memory location.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{atomics__tests_8cpp_source_l00265}{265}} of file \mbox{\hyperlink{atomics__tests_8cpp_source}{atomics\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00266\ \ \ \textcolor{keyword}{static}\ ulong\ *dest;}
+\DoxyCodeLine{00267\ \ \ dest\ =\ (ulong\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(ulong));}
+\DoxyCodeLine{00268\ \ \ ulong\ value\ =\ 42,\ or\_val\ =\ 15;}
+\DoxyCodeLine{00269\ \ \ *dest\ =\ value;}
+\DoxyCodeLine{00270\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00271\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00272\ \ \ \mbox{\hyperlink{routines_8hpp_a90972ffe4a093bf0f0862d645bc42ec4}{p\_shmem\_ulong\_atomic\_or}}(dest,\ or\_val,\ mype);}
+\DoxyCodeLine{00273\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00274\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (*dest\ ==\ (value\ |\ or\_val));}
+\DoxyCodeLine{00275\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{00276\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00277\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, and \mbox{\hyperlink{routines_8cpp_source_l00078}{p\+\_\+shmem\+\_\+ulong\+\_\+atomic\+\_\+or}}.
+
+\Hypertarget{atomics__tests_8hpp_a20290aaa5c7dd6ce78ff9c529ba73094}\index{atomics\_tests.hpp@{atomics\_tests.hpp}!test\_shmem\_atomic\_set@{test\_shmem\_atomic\_set}}
+\index{test\_shmem\_atomic\_set@{test\_shmem\_atomic\_set}!atomics\_tests.hpp@{atomics\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_atomic\_set()}{test\_shmem\_atomic\_set()}}
+{\footnotesize\ttfamily \label{atomics__tests_8hpp_a20290aaa5c7dd6ce78ff9c529ba73094} 
+bool test\+\_\+shmem\+\_\+atomic\+\_\+set (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+atomic\+\_\+set() routine. 
+
+This test verifies that the shmem\+\_\+atomic\+\_\+set() routine correctly sets the value at a remote memory location.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{atomics__tests_8cpp_source_l00039}{39}} of file \mbox{\hyperlink{atomics__tests_8cpp_source}{atomics\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \textcolor{keyword}{static}\ ulong\ *dest;}
+\DoxyCodeLine{00041\ \ \ dest\ =\ (ulong\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(ulong));}
+\DoxyCodeLine{00042\ \ \ ulong\ value\ =\ 42;}
+\DoxyCodeLine{00043\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00044\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00045\ \ \ \mbox{\hyperlink{routines_8hpp_a99304ddf689f006173c642ba14e8f991}{p\_shmem\_ulong\_atomic\_set}}(dest,\ value,\ mype);}
+\DoxyCodeLine{00046\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (*dest\ ==\ value);}
+\DoxyCodeLine{00048\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{00049\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00050\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, and \mbox{\hyperlink{routines_8cpp_source_l00068}{p\+\_\+shmem\+\_\+ulong\+\_\+atomic\+\_\+set}}.
+
+\Hypertarget{atomics__tests_8hpp_a68dcf07874962b9e1fee26dfbeeee457}\index{atomics\_tests.hpp@{atomics\_tests.hpp}!test\_shmem\_atomic\_swap@{test\_shmem\_atomic\_swap}}
+\index{test\_shmem\_atomic\_swap@{test\_shmem\_atomic\_swap}!atomics\_tests.hpp@{atomics\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_atomic\_swap()}{test\_shmem\_atomic\_swap()}}
+{\footnotesize\ttfamily \label{atomics__tests_8hpp_a68dcf07874962b9e1fee26dfbeeee457} 
+bool test\+\_\+shmem\+\_\+atomic\+\_\+swap (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+atomic\+\_\+swap() routine. 
+
+This test verifies that the shmem\+\_\+atomic\+\_\+swap() routine correctly swaps the value at a remote memory location and returns the old value.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{atomics__tests_8cpp_source_l00085}{85}} of file \mbox{\hyperlink{atomics__tests_8cpp_source}{atomics\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \textcolor{keyword}{static}\ ulong\ *dest;}
+\DoxyCodeLine{00087\ \ \ dest\ =\ (ulong\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(ulong));}
+\DoxyCodeLine{00088\ \ \ ulong\ value\ =\ 42,\ new\_val\ =\ 43;}
+\DoxyCodeLine{00089\ \ \ *dest\ =\ value;}
+\DoxyCodeLine{00090\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00091\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00092\ \ \ ulong\ swapped\ =\ \mbox{\hyperlink{routines_8hpp_abedbe371968f1cc8c5d7ba5050258d8f}{p\_shmem\_ulong\_atomic\_swap}}(dest,\ new\_val,\ mype);}
+\DoxyCodeLine{00093\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00094\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (swapped\ ==\ value\ \&\&\ *dest\ ==\ new\_val);}
+\DoxyCodeLine{00095\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{00096\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00097\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, and \mbox{\hyperlink{routines_8cpp_source_l00070}{p\+\_\+shmem\+\_\+ulong\+\_\+atomic\+\_\+swap}}.
+
+\Hypertarget{atomics__tests_8hpp_a0b96fba908ee4b68e4ec30d9ca7126f1}\index{atomics\_tests.hpp@{atomics\_tests.hpp}!test\_shmem\_atomic\_swap\_nbi@{test\_shmem\_atomic\_swap\_nbi}}
+\index{test\_shmem\_atomic\_swap\_nbi@{test\_shmem\_atomic\_swap\_nbi}!atomics\_tests.hpp@{atomics\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_atomic\_swap\_nbi()}{test\_shmem\_atomic\_swap\_nbi()}}
+{\footnotesize\ttfamily \label{atomics__tests_8hpp_a0b96fba908ee4b68e4ec30d9ca7126f1} 
+bool test\+\_\+shmem\+\_\+atomic\+\_\+swap\+\_\+nbi (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+atomic\+\_\+swap\+\_\+nbi() routine. 
+
+This test verifies that the shmem\+\_\+atomic\+\_\+swap\+\_\+nbi() routine correctly swaps the value at a remote memory location in a non-\/blocking manner and returns the old value.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{atomics__tests_8cpp_source_l00381}{381}} of file \mbox{\hyperlink{atomics__tests_8cpp_source}{atomics\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00382\ \ \ \textcolor{keyword}{static}\ ulong\ *dest;}
+\DoxyCodeLine{00383\ \ \ \textcolor{keyword}{static}\ ulong\ fetch;}
+\DoxyCodeLine{00384\ \ \ dest\ =\ (ulong\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(ulong));}
+\DoxyCodeLine{00385\ \ \ fetch\ =\ 0;}
+\DoxyCodeLine{00386\ \ \ ulong\ value\ =\ 42,\ new\_val\ =\ 43;}
+\DoxyCodeLine{00387\ \ \ *dest\ =\ value;}
+\DoxyCodeLine{00388\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00389\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00390\ \ \ \mbox{\hyperlink{routines_8hpp_a69bee312d1d614bc546f3e7c41188a28}{p\_shmem\_ulong\_atomic\_swap\_nbi}}(\&fetch,\ dest,\ new\_val,\ mype);}
+\DoxyCodeLine{00391\ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{00392\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00393\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (fetch\ ==\ value\ \&\&\ *dest\ ==\ new\_val);}
+\DoxyCodeLine{00394\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{00395\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00396\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, \mbox{\hyperlink{routines_8cpp_source_l00129}{p\+\_\+shmem\+\_\+quiet}}, and \mbox{\hyperlink{routines_8cpp_source_l00083}{p\+\_\+shmem\+\_\+ulong\+\_\+atomic\+\_\+swap\+\_\+nbi}}.
+
+\Hypertarget{atomics__tests_8hpp_ad4f22df7819e1ad42dd64d2ecae3fa4f}\index{atomics\_tests.hpp@{atomics\_tests.hpp}!test\_shmem\_atomic\_xor@{test\_shmem\_atomic\_xor}}
+\index{test\_shmem\_atomic\_xor@{test\_shmem\_atomic\_xor}!atomics\_tests.hpp@{atomics\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_atomic\_xor()}{test\_shmem\_atomic\_xor()}}
+{\footnotesize\ttfamily \label{atomics__tests_8hpp_ad4f22df7819e1ad42dd64d2ecae3fa4f} 
+bool test\+\_\+shmem\+\_\+atomic\+\_\+xor (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+atomic\+\_\+xor() routine. 
+
+This test verifies that the shmem\+\_\+atomic\+\_\+xor() routine correctly performs a bitwise XOR operation with the remote memory location.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{atomics__tests_8cpp_source_l00310}{310}} of file \mbox{\hyperlink{atomics__tests_8cpp_source}{atomics\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00311\ \ \ \textcolor{keyword}{static}\ ulong\ *dest;}
+\DoxyCodeLine{00312\ \ \ dest\ =\ (ulong\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(ulong));}
+\DoxyCodeLine{00313\ \ \ ulong\ value\ =\ 42,\ xor\_val\ =\ 15;}
+\DoxyCodeLine{00314\ \ \ *dest\ =\ value;}
+\DoxyCodeLine{00315\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00316\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00317\ \ \ \mbox{\hyperlink{routines_8hpp_afaae0d7aaf56776de58a20839b94ca32}{p\_shmem\_ulong\_atomic\_xor}}(dest,\ xor\_val,\ mype);}
+\DoxyCodeLine{00318\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00319\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (*dest\ ==\ (value\ \string^\ xor\_val));}
+\DoxyCodeLine{00320\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{00321\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00322\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, and \mbox{\hyperlink{routines_8cpp_source_l00080}{p\+\_\+shmem\+\_\+ulong\+\_\+atomic\+\_\+xor}}.
+

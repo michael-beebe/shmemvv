@@ -1,0 +1,304 @@
+.TH "src/tests/mem/mem_tests.cpp" 3 "Version 0.1" "shmemvv" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/tests/mem/mem_tests.cpp \- Contains OpenSHMEM memory management tests\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'mem_tests\&.hpp'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBtest_shmem_malloc_free\fP (void)"
+.br
+.RI "Tests the shmem_malloc() and shmem_free() functions\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_ptr\fP ()"
+.br
+.RI "Tests the shmem_ptr() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_addr_accessible\fP ()"
+.br
+.RI "Tests the shmem_addr_accessible() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_realloc\fP (void)"
+.br
+.RI "Tests the shmem_realloc() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_align\fP (void)"
+.br
+.RI "Tests the shmem_align() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_malloc_with_hints\fP (void)"
+.br
+.RI "Tests the shmem_malloc_with_hints() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_calloc\fP (void)"
+.br
+.RI "Tests the shmem_calloc() routine\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Contains OpenSHMEM memory management tests\&. 
+
+
+.PP
+Definition in file \fBmem_tests\&.cpp\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "bool test_shmem_addr_accessible (void )"
+
+.PP
+Tests the shmem_addr_accessible() routine\&. This test verifies that the shmem_addr_accessible() function correctly checks whether a memory address is accessible from all PEs\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the address is accessible from all PEs, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB74\fP of file \fBmem_tests\&.cpp\fP\&.
+.nf
+74                                   {
+75   int mype = p_shmem_my_pe();
+76   int npes = p_shmem_n_pes();
+77   int *ptr = (int *)p_shmem_malloc(sizeof(int));
+78 
+79   if (ptr == nullptr) {
+80     return false;
+81   }
+82 
+83   *ptr = mype;
+84 
+85   p_shmem_barrier_all();
+86 
+87   bool test_passed = true;
+88 
+89   for (int pe = 0; pe < npes; ++pe) {
+90     if (p_shmem_addr_accessible(ptr, pe) != 1) {
+91       test_passed = false;
+92     }
+93   }
+94 
+95   p_shmem_free(ptr);
+96   return test_passed;
+97 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_addr_accessible\fP, \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, and \fBp_shmem_n_pes\fP\&.
+.SS "bool test_shmem_align (void )"
+
+.PP
+Tests the shmem_align() routine\&. This test verifies that the shmem_align() function correctly allocates memory with the specified alignment\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB131\fP of file \fBmem_tests\&.cpp\fP\&.
+.nf
+131                             {
+132   size_t alignment = 64;
+133   size_t size = 1024;
+134   void *ptr = p_shmem_align(alignment, size);
+135   if (ptr == nullptr) {
+136     return false;
+137   }
+138   p_shmem_free(ptr);
+139   return true;
+140 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_align\fP, and \fBp_shmem_free\fP\&.
+.SS "bool test_shmem_calloc (void )"
+
+.PP
+Tests the shmem_calloc() routine\&. This test verifies that the shmem_calloc() function correctly allocates and initializes memory to zero\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB169\fP of file \fBmem_tests\&.cpp\fP\&.
+.nf
+169                              {
+170   size_t count = 256;
+171   size_t size = sizeof(int);
+172   int *ptr = (int *)p_shmem_calloc(count, size);
+173   if (ptr == nullptr) {
+174     return false;
+175   }
+176   for (size_t i = 0; i < count; ++i) {
+177     if (ptr[i] != 0) {
+178       p_shmem_free(ptr);
+179       return false;
+180     }
+181   }
+182   p_shmem_free(ptr);
+183   return true;
+184 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_calloc\fP, and \fBp_shmem_free\fP\&.
+.SS "bool test_shmem_malloc_free (void )"
+
+.PP
+Tests the shmem_malloc() and shmem_free() functions\&. This test verifies that the shmem_malloc() function allocates memory correctly and that the shmem_free() function deallocates the memory correctly\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the tests are successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB16\fP of file \fBmem_tests\&.cpp\fP\&.
+.nf
+16                                   {
+17   size_t size = 1024;
+18   void *ptr = p_shmem_malloc(size);
+19   if (ptr == nullptr) {
+20     return false;
+21   }
+22   p_shmem_free(ptr);
+23   return true;
+24 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_free\fP, and \fBp_shmem_malloc\fP\&.
+.SS "bool test_shmem_malloc_with_hints (void )"
+
+.PP
+Tests the shmem_malloc_with_hints() routine\&. This test verifies that the shmem_malloc_with_hints() function correctly allocates memory with the specified hints\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB150\fP of file \fBmem_tests\&.cpp\fP\&.
+.nf
+150                                         {
+151   size_t size = 1024;
+152   long hints = SHMEM_MALLOC_ATOMICS_REMOTE;
+153   void *ptr = p_shmem_malloc_with_hints(size, hints);
+154   if (ptr == nullptr) {
+155     return false;
+156   }
+157   p_shmem_free(ptr);
+158   return true;
+159 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_free\fP, and \fBp_shmem_malloc_with_hints\fP\&.
+.SS "bool test_shmem_ptr (void )"
+
+.PP
+Tests the shmem_ptr() routine\&. This test verifies that the shmem_ptr() function correctly provides access to the memory of another PE and that the memory content is accessible and correct\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the pointer is accessible, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB34\fP of file \fBmem_tests\&.cpp\fP\&.
+.nf
+34                       {
+35   int mype = p_shmem_my_pe();
+36   int npes = p_shmem_n_pes();
+37   int *ptr = (int *)p_shmem_malloc(sizeof(int));
+38 
+39   if (ptr == nullptr) {
+40     return false;
+41   }
+42 
+43   *ptr = mype;
+44 
+45   p_shmem_barrier_all();
+46 
+47   bool test_passed = true;
+48 
+49   for (int pe = 0; pe < npes; ++pe) {
+50     int *remote_ptr = (int *)p_shmem_ptr(ptr, pe);
+51 
+52     if (remote_ptr != nullptr) {
+53       int remote_val = *remote_ptr;
+54       if (remote_val != pe) {
+55         test_passed = false;
+56       }
+57     } else if (pe == mype) {
+58       test_passed = false;
+59     }
+60   }
+61 
+62   p_shmem_free(ptr);
+63   return test_passed;
+64 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, \fBp_shmem_n_pes\fP, and \fBp_shmem_ptr\fP\&.
+.SS "bool test_shmem_realloc (void )"
+
+.PP
+Tests the shmem_realloc() routine\&. This test verifies that the shmem_realloc() function correctly reallocates memory and that the new memory block is usable\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB107\fP of file \fBmem_tests\&.cpp\fP\&.
+.nf
+107                               {
+108   size_t size = 1024;
+109   void *ptr = p_shmem_malloc(size);
+110   if (ptr == nullptr) {
+111     return false;
+112   }
+113   size_t new_size = 2048;
+114   void *new_ptr = p_shmem_realloc(ptr, new_size);
+115   if (new_ptr == nullptr) {
+116     p_shmem_free(ptr);
+117     return false;
+118   }
+119   p_shmem_free(new_ptr);
+120   return true;
+121 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, and \fBp_shmem_realloc\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for shmemvv from the source code\&.

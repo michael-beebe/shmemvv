@@ -1,0 +1,123 @@
+.TH "src/tests/mem_ordering/mem_ordering_tests.cpp" 3 "Version 0.1" "shmemvv" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/tests/mem_ordering/mem_ordering_tests.cpp \- Contains OpenSHMEM memory ordering tests\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'mem_ordering_tests\&.hpp'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBtest_shmem_fence\fP (void)"
+.br
+.RI "Tests the shmem_fence() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_quiet\fP (void)"
+.br
+.RI "Tests the shmem_quiet() routine\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Contains OpenSHMEM memory ordering tests\&. 
+
+
+.PP
+Definition in file \fBmem_ordering_tests\&.cpp\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "bool test_shmem_fence (void )"
+
+.PP
+Tests the shmem_fence() routine\&. This test verifies that the shmem_fence() routine correctly ensures the ordering of memory operations by checking that the memory store operation on one PE is seen by another PE in the correct order\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB17\fP of file \fBmem_ordering_tests\&.cpp\fP\&.
+.nf
+17                             {
+18   long *flag = (long *)p_shmem_malloc(sizeof(long));
+19   *flag = 0;
+20   int mype = p_shmem_my_pe();
+21 
+22   p_shmem_barrier_all();
+23 
+24   if (mype == 0) {
+25     p_shmem_long_p(flag, 1, 1);
+26     p_shmem_fence();
+27     *flag = 2;
+28   }
+29 
+30   p_shmem_barrier_all();
+31 
+32   bool result = true;
+33   if (mype == 1) {
+34     if (*flag != 1) {
+35       result = false;
+36     }
+37   }
+38 
+39   p_shmem_free(flag);
+40   return result;
+41 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_fence\fP, \fBp_shmem_free\fP, \fBp_shmem_long_p\fP, \fBp_shmem_malloc\fP, and \fBp_shmem_my_pe\fP\&.
+.SS "bool test_shmem_quiet (void )"
+
+.PP
+Tests the shmem_quiet() routine\&. This test verifies that the shmem_quiet() routine correctly ensures the completion of all outstanding memory operations by checking that a memory store operation on one PE is completed before proceeding\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB52\fP of file \fBmem_ordering_tests\&.cpp\fP\&.
+.nf
+52                             {
+53   long *flag = (long *)p_shmem_malloc(sizeof(long));
+54   *flag = 0;
+55   int mype = p_shmem_my_pe();
+56 
+57   p_shmem_barrier_all();
+58 
+59   if (mype == 0) {
+60     p_shmem_long_p(flag, 1, 1);
+61     p_shmem_quiet();
+62   }
+63 
+64   p_shmem_barrier_all();
+65 
+66   bool result = true;
+67   if (mype == 1) {
+68     if (*flag != 1) {
+69       result = false;
+70     }
+71   }
+72 
+73   p_shmem_free(flag);
+74   return result;
+75 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_long_p\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, and \fBp_shmem_quiet\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for shmemvv from the source code\&.

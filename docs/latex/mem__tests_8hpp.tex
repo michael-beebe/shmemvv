@@ -1,0 +1,345 @@
+\doxysection{src/tests/mem/mem\+\_\+tests.hpp File Reference}
+\hypertarget{mem__tests_8hpp}{}\label{mem__tests_8hpp}\index{src/tests/mem/mem\_tests.hpp@{src/tests/mem/mem\_tests.hpp}}
+
+
+Contains function declarations for the Open\+SHMEM memory management tests.  
+
+
+{\ttfamily \#include "{}routines.\+hpp"{}}\newline
+{\ttfamily \#include $<$shmem.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{mem__tests_8hpp_adb4d1e3ac3f93de51a939daee0bfbf5b}{test\+\_\+shmem\+\_\+ptr}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+ptr() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{mem__tests_8hpp_a4fbdc66e5461f9991786d67169465393}{test\+\_\+shmem\+\_\+malloc\+\_\+free}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+malloc() and shmem\+\_\+free() functions. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{mem__tests_8hpp_a1c72c7db8b2b842e1816921672c3d119}{test\+\_\+shmem\+\_\+addr\+\_\+accessible}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+addr\+\_\+accessible() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{mem__tests_8hpp_a1b32cb45146e483ad417f3e278ca46f2}{test\+\_\+shmem\+\_\+realloc}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+realloc() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{mem__tests_8hpp_a754242752d7a0d635ad4d2d023aa8f32}{test\+\_\+shmem\+\_\+align}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+align() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{mem__tests_8hpp_a1290afd5cc23fba4b72134b345b9bec9}{test\+\_\+shmem\+\_\+malloc\+\_\+with\+\_\+hints}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+malloc\+\_\+with\+\_\+hints() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{mem__tests_8hpp_a8184757fab0af8b8537a0081e36f703b}{test\+\_\+shmem\+\_\+calloc}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+calloc() routine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains function declarations for the Open\+SHMEM memory management tests. 
+
+
+
+Definition in file \mbox{\hyperlink{mem__tests_8hpp_source}{mem\+\_\+tests.\+hpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{mem__tests_8hpp_a1c72c7db8b2b842e1816921672c3d119}\index{mem\_tests.hpp@{mem\_tests.hpp}!test\_shmem\_addr\_accessible@{test\_shmem\_addr\_accessible}}
+\index{test\_shmem\_addr\_accessible@{test\_shmem\_addr\_accessible}!mem\_tests.hpp@{mem\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_addr\_accessible()}{test\_shmem\_addr\_accessible()}}
+{\footnotesize\ttfamily \label{mem__tests_8hpp_a1c72c7db8b2b842e1816921672c3d119} 
+bool test\+\_\+shmem\+\_\+addr\+\_\+accessible (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+addr\+\_\+accessible() routine. 
+
+This test verifies that the shmem\+\_\+addr\+\_\+accessible() function correctly checks whether a memory address is accessible from all PEs.
+
+\begin{DoxyReturn}{Returns}
+True if the address is accessible from all PEs, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{mem__tests_8cpp_source_l00074}{74}} of file \mbox{\hyperlink{mem__tests_8cpp_source}{mem\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00076\ \ \ \textcolor{keywordtype}{int}\ npes\ =\ \mbox{\hyperlink{routines_8hpp_a484f2849d077f71872553f9c633152a7}{p\_shmem\_n\_pes}}();}
+\DoxyCodeLine{00077\ \ \ \textcolor{keywordtype}{int}\ *ptr\ =\ (\textcolor{keywordtype}{int}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}));}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \textcolor{keywordflow}{if}\ (ptr\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00081\ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ *ptr\ =\ mype;}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \textcolor{keywordtype}{bool}\ test\_passed\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ pe\ =\ 0;\ pe\ <\ npes;\ ++pe)\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{routines_8hpp_a3cbb376dd03fe81c22ca68717e0c3c78}{p\_shmem\_addr\_accessible}}(ptr,\ pe)\ !=\ 1)\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ test\_passed\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(ptr);}
+\DoxyCodeLine{00096\ \ \ \textcolor{keywordflow}{return}\ test\_passed;}
+\DoxyCodeLine{00097\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00038}{p\+\_\+shmem\+\_\+addr\+\_\+accessible}}, \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, and \mbox{\hyperlink{routines_8cpp_source_l00018}{p\+\_\+shmem\+\_\+n\+\_\+pes}}.
+
+\Hypertarget{mem__tests_8hpp_a754242752d7a0d635ad4d2d023aa8f32}\index{mem\_tests.hpp@{mem\_tests.hpp}!test\_shmem\_align@{test\_shmem\_align}}
+\index{test\_shmem\_align@{test\_shmem\_align}!mem\_tests.hpp@{mem\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_align()}{test\_shmem\_align()}}
+{\footnotesize\ttfamily \label{mem__tests_8hpp_a754242752d7a0d635ad4d2d023aa8f32} 
+bool test\+\_\+shmem\+\_\+align (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+align() routine. 
+
+This test verifies that the shmem\+\_\+align() function correctly allocates memory with the specified alignment.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{mem__tests_8cpp_source_l00131}{131}} of file \mbox{\hyperlink{mem__tests_8cpp_source}{mem\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \textcolor{keywordtype}{size\_t}\ alignment\ =\ 64;}
+\DoxyCodeLine{00133\ \ \ \textcolor{keywordtype}{size\_t}\ size\ =\ 1024;}
+\DoxyCodeLine{00134\ \ \ \textcolor{keywordtype}{void}\ *ptr\ =\ \mbox{\hyperlink{routines_8hpp_ab828866eb066300e161132f7195d443a}{p\_shmem\_align}}(alignment,\ size);}
+\DoxyCodeLine{00135\ \ \ \textcolor{keywordflow}{if}\ (ptr\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00137\ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(ptr);}
+\DoxyCodeLine{00139\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00140\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00035}{p\+\_\+shmem\+\_\+align}}, and \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}.
+
+\Hypertarget{mem__tests_8hpp_a8184757fab0af8b8537a0081e36f703b}\index{mem\_tests.hpp@{mem\_tests.hpp}!test\_shmem\_calloc@{test\_shmem\_calloc}}
+\index{test\_shmem\_calloc@{test\_shmem\_calloc}!mem\_tests.hpp@{mem\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_calloc()}{test\_shmem\_calloc()}}
+{\footnotesize\ttfamily \label{mem__tests_8hpp_a8184757fab0af8b8537a0081e36f703b} 
+bool test\+\_\+shmem\+\_\+calloc (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+calloc() routine. 
+
+This test verifies that the shmem\+\_\+calloc() function correctly allocates and initializes memory to zero.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{mem__tests_8cpp_source_l00169}{169}} of file \mbox{\hyperlink{mem__tests_8cpp_source}{mem\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \textcolor{keywordtype}{size\_t}\ count\ =\ 256;}
+\DoxyCodeLine{00171\ \ \ \textcolor{keywordtype}{size\_t}\ size\ =\ \textcolor{keyword}{sizeof}(int);}
+\DoxyCodeLine{00172\ \ \ \textcolor{keywordtype}{int}\ *ptr\ =\ (\textcolor{keywordtype}{int}\ *)\mbox{\hyperlink{routines_8hpp_a1f98931924980d2c6f3d235267f5419c}{p\_shmem\_calloc}}(count,\ size);}
+\DoxyCodeLine{00173\ \ \ \textcolor{keywordflow}{if}\ (ptr\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00175\ \ \ \}}
+\DoxyCodeLine{00176\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ count;\ ++i)\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordflow}{if}\ (ptr[i]\ !=\ 0)\ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(ptr);}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00180\ \ \ \ \ \}}
+\DoxyCodeLine{00181\ \ \ \}}
+\DoxyCodeLine{00182\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(ptr);}
+\DoxyCodeLine{00183\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00184\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00037}{p\+\_\+shmem\+\_\+calloc}}, and \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}.
+
+\Hypertarget{mem__tests_8hpp_a4fbdc66e5461f9991786d67169465393}\index{mem\_tests.hpp@{mem\_tests.hpp}!test\_shmem\_malloc\_free@{test\_shmem\_malloc\_free}}
+\index{test\_shmem\_malloc\_free@{test\_shmem\_malloc\_free}!mem\_tests.hpp@{mem\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_malloc\_free()}{test\_shmem\_malloc\_free()}}
+{\footnotesize\ttfamily \label{mem__tests_8hpp_a4fbdc66e5461f9991786d67169465393} 
+bool test\+\_\+shmem\+\_\+malloc\+\_\+free (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+malloc() and shmem\+\_\+free() functions. 
+
+This test verifies that the shmem\+\_\+malloc() function allocates memory correctly and that the shmem\+\_\+free() function deallocates the memory correctly.
+
+\begin{DoxyReturn}{Returns}
+True if the tests are successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{mem__tests_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{mem__tests_8cpp_source}{mem\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \textcolor{keywordtype}{size\_t}\ size\ =\ 1024;}
+\DoxyCodeLine{00018\ \ \ \textcolor{keywordtype}{void}\ *ptr\ =\ \mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(size);}
+\DoxyCodeLine{00019\ \ \ \textcolor{keywordflow}{if}\ (ptr\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00021\ \ \ \}}
+\DoxyCodeLine{00022\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(ptr);}
+\DoxyCodeLine{00023\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00024\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, and \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}.
+
+\Hypertarget{mem__tests_8hpp_a1290afd5cc23fba4b72134b345b9bec9}\index{mem\_tests.hpp@{mem\_tests.hpp}!test\_shmem\_malloc\_with\_hints@{test\_shmem\_malloc\_with\_hints}}
+\index{test\_shmem\_malloc\_with\_hints@{test\_shmem\_malloc\_with\_hints}!mem\_tests.hpp@{mem\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_malloc\_with\_hints()}{test\_shmem\_malloc\_with\_hints()}}
+{\footnotesize\ttfamily \label{mem__tests_8hpp_a1290afd5cc23fba4b72134b345b9bec9} 
+bool test\+\_\+shmem\+\_\+malloc\+\_\+with\+\_\+hints (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+malloc\+\_\+with\+\_\+hints() routine. 
+
+This test verifies that the shmem\+\_\+malloc\+\_\+with\+\_\+hints() function correctly allocates memory with the specified hints.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{mem__tests_8cpp_source_l00150}{150}} of file \mbox{\hyperlink{mem__tests_8cpp_source}{mem\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00151\ \ \ \textcolor{keywordtype}{size\_t}\ size\ =\ 1024;}
+\DoxyCodeLine{00152\ \ \ \textcolor{keywordtype}{long}\ hints\ =\ SHMEM\_MALLOC\_ATOMICS\_REMOTE;}
+\DoxyCodeLine{00153\ \ \ \textcolor{keywordtype}{void}\ *ptr\ =\ \mbox{\hyperlink{routines_8hpp_a66bfe405619e12d0264470084b7fe8c6}{p\_shmem\_malloc\_with\_hints}}(size,\ hints);}
+\DoxyCodeLine{00154\ \ \ \textcolor{keywordflow}{if}\ (ptr\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00156\ \ \ \}}
+\DoxyCodeLine{00157\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(ptr);}
+\DoxyCodeLine{00158\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00159\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, and \mbox{\hyperlink{routines_8cpp_source_l00036}{p\+\_\+shmem\+\_\+malloc\+\_\+with\+\_\+hints}}.
+
+\Hypertarget{mem__tests_8hpp_adb4d1e3ac3f93de51a939daee0bfbf5b}\index{mem\_tests.hpp@{mem\_tests.hpp}!test\_shmem\_ptr@{test\_shmem\_ptr}}
+\index{test\_shmem\_ptr@{test\_shmem\_ptr}!mem\_tests.hpp@{mem\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_ptr()}{test\_shmem\_ptr()}}
+{\footnotesize\ttfamily \label{mem__tests_8hpp_adb4d1e3ac3f93de51a939daee0bfbf5b} 
+bool test\+\_\+shmem\+\_\+ptr (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+ptr() routine. 
+
+This test verifies that the shmem\+\_\+ptr() function correctly provides access to the memory of another PE and that the memory content is accessible and correct.
+
+\begin{DoxyReturn}{Returns}
+True if the pointer is accessible, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{mem__tests_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{mem__tests_8cpp_source}{mem\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordtype}{int}\ npes\ =\ \mbox{\hyperlink{routines_8hpp_a484f2849d077f71872553f9c633152a7}{p\_shmem\_n\_pes}}();}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordtype}{int}\ *ptr\ =\ (\textcolor{keywordtype}{int}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}));}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordflow}{if}\ (ptr\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00041\ \ \ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ *ptr\ =\ mype;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordtype}{bool}\ test\_passed\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ pe\ =\ 0;\ pe\ <\ npes;\ ++pe)\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{int}\ *remote\_ptr\ =\ (\textcolor{keywordtype}{int}\ *)\mbox{\hyperlink{routines_8hpp_a5afeee1eb1aca6c0743a8f18f52f5eb9}{p\_shmem\_ptr}}(ptr,\ pe);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{if}\ (remote\_ptr\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ remote\_val\ =\ *remote\_ptr;}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (remote\_val\ !=\ pe)\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ test\_passed\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (pe\ ==\ mype)\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ test\_passed\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(ptr);}
+\DoxyCodeLine{00063\ \ \ \textcolor{keywordflow}{return}\ test\_passed;}
+\DoxyCodeLine{00064\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, \mbox{\hyperlink{routines_8cpp_source_l00018}{p\+\_\+shmem\+\_\+n\+\_\+pes}}, and \mbox{\hyperlink{routines_8cpp_source_l00031}{p\+\_\+shmem\+\_\+ptr}}.
+
+\Hypertarget{mem__tests_8hpp_a1b32cb45146e483ad417f3e278ca46f2}\index{mem\_tests.hpp@{mem\_tests.hpp}!test\_shmem\_realloc@{test\_shmem\_realloc}}
+\index{test\_shmem\_realloc@{test\_shmem\_realloc}!mem\_tests.hpp@{mem\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_realloc()}{test\_shmem\_realloc()}}
+{\footnotesize\ttfamily \label{mem__tests_8hpp_a1b32cb45146e483ad417f3e278ca46f2} 
+bool test\+\_\+shmem\+\_\+realloc (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+realloc() routine. 
+
+This test verifies that the shmem\+\_\+realloc() function correctly reallocates memory and that the new memory block is usable.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{mem__tests_8cpp_source_l00107}{107}} of file \mbox{\hyperlink{mem__tests_8cpp_source}{mem\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \textcolor{keywordtype}{size\_t}\ size\ =\ 1024;}
+\DoxyCodeLine{00109\ \ \ \textcolor{keywordtype}{void}\ *ptr\ =\ \mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(size);}
+\DoxyCodeLine{00110\ \ \ \textcolor{keywordflow}{if}\ (ptr\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00112\ \ \ \}}
+\DoxyCodeLine{00113\ \ \ \textcolor{keywordtype}{size\_t}\ new\_size\ =\ 2048;}
+\DoxyCodeLine{00114\ \ \ \textcolor{keywordtype}{void}\ *new\_ptr\ =\ \mbox{\hyperlink{routines_8hpp_a174b3769193d26861326a596224c4fd0}{p\_shmem\_realloc}}(ptr,\ new\_size);}
+\DoxyCodeLine{00115\ \ \ \textcolor{keywordflow}{if}\ (new\_ptr\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(ptr);}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00118\ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(new\_ptr);}
+\DoxyCodeLine{00120\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00121\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, and \mbox{\hyperlink{routines_8cpp_source_l00034}{p\+\_\+shmem\+\_\+realloc}}.
+

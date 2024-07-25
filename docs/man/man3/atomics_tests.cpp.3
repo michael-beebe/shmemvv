@@ -1,0 +1,851 @@
+.TH "src/tests/atomics/atomics_tests.cpp" 3 "Version 0.1" "shmemvv" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/tests/atomics/atomics_tests.cpp \- Contains tests for OpenSHMEM atomic routines\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'atomics_tests\&.hpp'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBtest_shmem_atomic_fetch\fP ()"
+.br
+.RI "Tests the shmem_atomic_fetch() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_atomic_set\fP ()"
+.br
+.RI "Tests the shmem_atomic_set() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_atomic_compare_swap\fP ()"
+.br
+.RI "Tests the shmem_atomic_compare_swap() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_atomic_swap\fP ()"
+.br
+.RI "Tests the shmem_atomic_swap() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_atomic_fetch_inc\fP ()"
+.br
+.RI "Tests the shmem_atomic_fetch_inc() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_atomic_inc\fP ()"
+.br
+.RI "Tests the shmem_atomic_inc() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_atomic_fetch_add\fP ()"
+.br
+.RI "Tests the shmem_atomic_fetch_add() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_atomic_add\fP ()"
+.br
+.RI "Tests the shmem_atomic_add() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_atomic_fetch_and\fP ()"
+.br
+.RI "Tests the shmem_atomic_fetch_and() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_atomic_and\fP ()"
+.br
+.RI "Tests the shmem_atomic_and() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_atomic_fetch_or\fP ()"
+.br
+.RI "Tests the shmem_atomic_fetch_or() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_atomic_or\fP ()"
+.br
+.RI "Tests the shmem_atomic_or() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_atomic_fetch_xor\fP ()"
+.br
+.RI "Tests the shmem_atomic_fetch_xor() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_atomic_xor\fP ()"
+.br
+.RI "Tests the shmem_atomic_xor() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_atomic_fetch_nbi\fP ()"
+.br
+.RI "Tests the shmem_atomic_fetch_nbi() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_atomic_compare_swap_nbi\fP ()"
+.br
+.RI "Tests the shmem_atomic_compare_swap_nbi() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_atomic_swap_nbi\fP ()"
+.br
+.RI "Tests the shmem_atomic_swap_nbi() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_atomic_fetch_inc_nbi\fP ()"
+.br
+.RI "Tests the shmem_atomic_fetch_inc_nbi() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_atomic_fetch_add_nbi\fP ()"
+.br
+.RI "Tests the shmem_atomic_fetch_add_nbi() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_atomic_fetch_and_nbi\fP ()"
+.br
+.RI "Tests the shmem_atomic_fetch_and_nbi() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_atomic_fetch_or_nbi\fP ()"
+.br
+.RI "Tests the shmem_atomic_fetch_or_nbi() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_atomic_fetch_xor_nbi\fP ()"
+.br
+.RI "Tests the shmem_atomic_fetch_xor_nbi() routine\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Contains tests for OpenSHMEM atomic routines\&. 
+
+
+.PP
+Definition in file \fBatomics_tests\&.cpp\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "bool test_shmem_atomic_add (void )"
+
+.PP
+Tests the shmem_atomic_add() routine\&. This test verifies that the shmem_atomic_add() routine correctly adds a value to the remote memory location\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB175\fP of file \fBatomics_tests\&.cpp\fP\&.
+.nf
+175                              {
+176   static ulong *dest;
+177   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+178   ulong value = 42, add_val = 10;
+179   *dest = value;
+180   p_shmem_barrier_all();
+181   int mype = p_shmem_my_pe();
+182   p_shmem_ulong_atomic_add(dest, add_val, mype);
+183   p_shmem_barrier_all();
+184   bool success = (*dest == value + add_val);
+185   p_shmem_free(dest);
+186   return success;
+187 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, and \fBp_shmem_ulong_atomic_add\fP\&.
+.SS "bool test_shmem_atomic_and (void )"
+
+.PP
+Tests the shmem_atomic_and() routine\&. This test verifies that the shmem_atomic_and() routine correctly performs a bitwise AND operation with the remote memory location\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB220\fP of file \fBatomics_tests\&.cpp\fP\&.
+.nf
+220                              {
+221   static ulong *dest;
+222   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+223   ulong value = 42, and_val = 15;
+224   *dest = value;
+225   p_shmem_barrier_all();
+226   int mype = p_shmem_my_pe();
+227   p_shmem_ulong_atomic_and(dest, and_val, mype);
+228   p_shmem_barrier_all();
+229   bool success = (*dest == (value & and_val));
+230   p_shmem_free(dest);
+231   return success;
+232 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, and \fBp_shmem_ulong_atomic_and\fP\&.
+.SS "bool test_shmem_atomic_compare_swap (void )"
+
+.PP
+Tests the shmem_atomic_compare_swap() routine\&. This test verifies that the shmem_atomic_compare_swap() routine correctly swaps the value at a remote memory location if it matches the expected value\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB60\fP of file \fBatomics_tests\&.cpp\fP\&.
+.nf
+60                                       {
+61   static ulong *dest;
+62   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+63   ulong old = 42, new_val = 43;
+64   *dest = old;
+65   p_shmem_barrier_all();
+66   int mype = p_shmem_my_pe();
+67   int npes = p_shmem_n_pes();
+68   p_shmem_barrier_all(); 
+69   ulong swapped = p_shmem_ulong_atomic_compare_swap(dest, old, new_val, (mype + 1) % npes);
+70   p_shmem_barrier_all();
+71   bool success = (swapped == old && *dest == new_val);
+72   p_shmem_barrier_all();
+73   p_shmem_free(dest);
+74   return success;
+75 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, \fBp_shmem_n_pes\fP, and \fBp_shmem_ulong_atomic_compare_swap\fP\&.
+.SS "bool test_shmem_atomic_compare_swap_nbi (void )"
+
+.PP
+Tests the shmem_atomic_compare_swap_nbi() routine\&. This test verifies that the shmem_atomic_compare_swap_nbi() routine correctly swaps the value at a remote memory location in a non-blocking manner if it matches the expected value\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB356\fP of file \fBatomics_tests\&.cpp\fP\&.
+.nf
+356                                           {
+357   static ulong *dest;
+358   static ulong fetch;
+359   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+360   fetch = 0;
+361   ulong old = 42, new_val = 43;
+362   *dest = old;
+363   p_shmem_barrier_all();
+364   int mype = p_shmem_my_pe();
+365   p_shmem_ulong_atomic_compare_swap_nbi(&fetch, dest, old, new_val, mype);
+366   p_shmem_quiet();
+367   p_shmem_barrier_all();
+368   bool success = (fetch == old && *dest == new_val);
+369   p_shmem_free(dest);
+370   return success;
+371 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, \fBp_shmem_quiet\fP, and \fBp_shmem_ulong_atomic_compare_swap_nbi\fP\&.
+.SS "bool test_shmem_atomic_fetch (void )"
+
+.PP
+Tests the shmem_atomic_fetch() routine\&. This test verifies that the shmem_atomic_fetch() routine correctly retrieves the value from a remote memory location\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB16\fP of file \fBatomics_tests\&.cpp\fP\&.
+.nf
+16                                {
+17   static ulong *dest;
+18   static ulong fetch;
+19   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+20   ulong value = 42;
+21   *dest = value;
+22   p_shmem_barrier_all();
+23   int mype = p_shmem_my_pe();
+24   fetch = p_shmem_ulong_atomic_fetch(dest, mype);
+25   p_shmem_barrier_all();
+26   bool success = (fetch == value);
+27   p_shmem_free(dest);
+28   return success;
+29 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, and \fBp_shmem_ulong_atomic_fetch\fP\&.
+.SS "bool test_shmem_atomic_fetch_add (void )"
+
+.PP
+Tests the shmem_atomic_fetch_add() routine\&. This test verifies that the shmem_atomic_fetch_add() routine correctly adds a value to the remote memory location and returns the old value\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB152\fP of file \fBatomics_tests\&.cpp\fP\&.
+.nf
+152                                    {
+153   static ulong *dest;
+154   static ulong fetch;
+155   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+156   ulong value = 42, add_val = 10;
+157   *dest = value;
+158   p_shmem_barrier_all();
+159   int mype = p_shmem_my_pe();
+160   fetch = p_shmem_ulong_atomic_fetch_add(dest, add_val, mype);
+161   p_shmem_barrier_all();
+162   bool success = (fetch == value && *dest == value + add_val);
+163   p_shmem_free(dest);
+164   return success;
+165 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, and \fBp_shmem_ulong_atomic_fetch_add\fP\&.
+.SS "bool test_shmem_atomic_fetch_add_nbi (void )"
+
+.PP
+Tests the shmem_atomic_fetch_add_nbi() routine\&. This test verifies that the shmem_atomic_fetch_add_nbi() routine correctly adds a value to the remote memory location in a non-blocking manner and returns the old value\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB431\fP of file \fBatomics_tests\&.cpp\fP\&.
+.nf
+431                                        {
+432   static ulong *dest;
+433   static ulong fetch;
+434   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+435   fetch = 0;
+436   ulong value = 42, add_val = 10;
+437   *dest = value;
+438   p_shmem_barrier_all();
+439   int mype = p_shmem_my_pe();
+440   p_shmem_ulong_atomic_fetch_add_nbi(&fetch, dest, add_val, mype);
+441   p_shmem_quiet();
+442   p_shmem_barrier_all();
+443   bool success = (fetch == value && *dest == value + add_val);
+444   p_shmem_free(dest);
+445   return success;
+446 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, \fBp_shmem_quiet\fP, and \fBp_shmem_ulong_atomic_fetch_add_nbi\fP\&.
+.SS "bool test_shmem_atomic_fetch_and (void )"
+
+.PP
+Tests the shmem_atomic_fetch_and() routine\&. This test verifies that the shmem_atomic_fetch_and() routine correctly performs a bitwise AND operation with the remote memory location and returns the old value\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB197\fP of file \fBatomics_tests\&.cpp\fP\&.
+.nf
+197                                    {
+198   static ulong *dest;
+199   static ulong fetch;
+200   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+201   ulong value = 42, and_val = 15;
+202   *dest = value;
+203   p_shmem_barrier_all();
+204   int mype = p_shmem_my_pe();
+205   fetch = p_shmem_ulong_atomic_fetch_and(dest, and_val, mype);
+206   p_shmem_barrier_all();
+207   bool success = (fetch == value && *dest == (value & and_val));
+208   p_shmem_free(dest);
+209   return success;
+210 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, and \fBp_shmem_ulong_atomic_fetch_and\fP\&.
+.SS "bool test_shmem_atomic_fetch_and_nbi (void )"
+
+.PP
+Tests the shmem_atomic_fetch_and_nbi() routine\&. This test verifies that the shmem_atomic_fetch_and_nbi() routine correctly performs a bitwise AND operation with the remote memory location in a non-blocking manner and returns the old value\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB456\fP of file \fBatomics_tests\&.cpp\fP\&.
+.nf
+456                                        {
+457   static ulong *dest;
+458   static ulong fetch;
+459   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+460   fetch = 0;
+461   ulong value = 42, and_val = 15;
+462   *dest = value;
+463   p_shmem_barrier_all();
+464   int mype = p_shmem_my_pe();
+465   p_shmem_ulong_atomic_fetch_and_nbi(&fetch, dest, and_val, mype);
+466   p_shmem_quiet();
+467   p_shmem_barrier_all();
+468   bool success = (fetch == value && *dest == (value & and_val));
+469   p_shmem_free(dest);
+470   return success;
+471 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, \fBp_shmem_quiet\fP, and \fBp_shmem_ulong_atomic_fetch_and_nbi\fP\&.
+.SS "bool test_shmem_atomic_fetch_inc (void )"
+
+.PP
+Tests the shmem_atomic_fetch_inc() routine\&. This test verifies that the shmem_atomic_fetch_inc() routine correctly increments the value at a remote memory location and returns the old value\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB107\fP of file \fBatomics_tests\&.cpp\fP\&.
+.nf
+107                                    {
+108   static ulong *dest;
+109   static ulong fetch;
+110   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+111   ulong value = 42;
+112   *dest = value;
+113   p_shmem_barrier_all();
+114   int mype = p_shmem_my_pe();
+115   fetch = p_shmem_ulong_atomic_fetch_inc(dest, mype);
+116   p_shmem_barrier_all();
+117   bool success = (fetch == value && *dest == value + 1);
+118   p_shmem_free(dest);
+119   return success;
+120 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, and \fBp_shmem_ulong_atomic_fetch_inc\fP\&.
+.SS "bool test_shmem_atomic_fetch_inc_nbi (void )"
+
+.PP
+Tests the shmem_atomic_fetch_inc_nbi() routine\&. This test verifies that the shmem_atomic_fetch_inc_nbi() routine correctly increments the value at a remote memory location in a non-blocking manner and returns the old value\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB406\fP of file \fBatomics_tests\&.cpp\fP\&.
+.nf
+406                                        {
+407   static ulong *dest;
+408   static ulong fetch;
+409   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+410   fetch = 0;
+411   ulong value = 42;
+412   *dest = value;
+413   p_shmem_barrier_all();
+414   int mype = p_shmem_my_pe();
+415   p_shmem_ulong_atomic_fetch_inc_nbi(&fetch, dest, mype);
+416   p_shmem_quiet();
+417   p_shmem_barrier_all();
+418   bool success = (fetch == value && *dest == value + 1);
+419   p_shmem_free(dest);
+420   return success;
+421 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, \fBp_shmem_quiet\fP, and \fBp_shmem_ulong_atomic_fetch_inc_nbi\fP\&.
+.SS "bool test_shmem_atomic_fetch_nbi (void )"
+
+.PP
+Tests the shmem_atomic_fetch_nbi() routine\&. This test verifies that the shmem_atomic_fetch_nbi() routine correctly retrieves the value from a remote memory location in a non-blocking manner\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB332\fP of file \fBatomics_tests\&.cpp\fP\&.
+.nf
+332                                    {
+333   static ulong *dest;
+334   static ulong fetch;
+335   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+336   ulong value = 42;
+337   *dest = value;
+338   p_shmem_barrier_all();
+339   int mype = p_shmem_my_pe();
+340   p_shmem_ulong_atomic_fetch_nbi(&fetch, dest, mype);
+341   p_shmem_quiet();
+342   p_shmem_barrier_all();
+343   bool success = (fetch == value);
+344   p_shmem_free(dest);
+345   return success;
+346 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, \fBp_shmem_quiet\fP, and \fBp_shmem_ulong_atomic_fetch_nbi\fP\&.
+.SS "bool test_shmem_atomic_fetch_or (void )"
+
+.PP
+Tests the shmem_atomic_fetch_or() routine\&. This test verifies that the shmem_atomic_fetch_or() routine correctly performs a bitwise OR operation with the remote memory location and returns the old value\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB242\fP of file \fBatomics_tests\&.cpp\fP\&.
+.nf
+242                                   {
+243   static ulong *dest;
+244   static ulong fetch;
+245   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+246   ulong value = 42, or_val = 15;
+247   *dest = value;
+248   p_shmem_barrier_all();
+249   int mype = p_shmem_my_pe();
+250   fetch = p_shmem_ulong_atomic_fetch_or(dest, or_val, mype);
+251   p_shmem_barrier_all();
+252   bool success = (fetch == value && *dest == (value | or_val));
+253   p_shmem_free(dest);
+254   return success;
+255 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, and \fBp_shmem_ulong_atomic_fetch_or\fP\&.
+.SS "bool test_shmem_atomic_fetch_or_nbi (void )"
+
+.PP
+Tests the shmem_atomic_fetch_or_nbi() routine\&. This test verifies that the shmem_atomic_fetch_or_nbi() routine correctly performs a bitwise OR operation with the remote memory location in a non-blocking manner and returns the old value\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB481\fP of file \fBatomics_tests\&.cpp\fP\&.
+.nf
+481                                       {
+482   static ulong *dest;
+483   static ulong fetch;
+484   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+485   fetch = 0;
+486   ulong value = 42, or_val = 15;
+487   *dest = value;
+488   p_shmem_barrier_all();
+489   int mype = p_shmem_my_pe();
+490   p_shmem_ulong_atomic_fetch_or_nbi(&fetch, dest, or_val, mype);
+491   p_shmem_quiet();
+492   p_shmem_barrier_all();
+493   bool success = (fetch == value && *dest == (value | or_val));
+494   p_shmem_free(dest);
+495   return success;
+496 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, \fBp_shmem_quiet\fP, and \fBp_shmem_ulong_atomic_fetch_or_nbi\fP\&.
+.SS "bool test_shmem_atomic_fetch_xor (void )"
+
+.PP
+Tests the shmem_atomic_fetch_xor() routine\&. This test verifies that the shmem_atomic_fetch_xor() routine correctly performs a bitwise XOR operation with the remote memory location and returns the old value\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB287\fP of file \fBatomics_tests\&.cpp\fP\&.
+.nf
+287                                    {
+288   static ulong *dest;
+289   static ulong fetch;
+290   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+291   ulong value = 42, xor_val = 15;
+292   *dest = value;
+293   p_shmem_barrier_all();
+294   int mype = p_shmem_my_pe();
+295   fetch = p_shmem_ulong_atomic_fetch_xor(dest, xor_val, mype);
+296   p_shmem_barrier_all();
+297   bool success = (fetch == value && *dest == (value ^ xor_val));
+298   p_shmem_free(dest);
+299   return success;
+300 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, and \fBp_shmem_ulong_atomic_fetch_xor\fP\&.
+.SS "bool test_shmem_atomic_fetch_xor_nbi (void )"
+
+.PP
+Tests the shmem_atomic_fetch_xor_nbi() routine\&. This test verifies that the shmem_atomic_fetch_xor_nbi() routine correctly performs a bitwise XOR operation with the remote memory location in a non-blocking manner and returns the old value\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB506\fP of file \fBatomics_tests\&.cpp\fP\&.
+.nf
+506                                        {
+507   static ulong *dest;
+508   static ulong fetch;
+509   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+510   fetch = 0;
+511   ulong value = 42, xor_val = 15;
+512   *dest = value;
+513   p_shmem_barrier_all();
+514   int mype = p_shmem_my_pe();
+515   p_shmem_ulong_atomic_fetch_xor_nbi(&fetch, dest, xor_val, mype);
+516   p_shmem_quiet();
+517   p_shmem_barrier_all();
+518   bool success = (fetch == value && *dest == (value ^ xor_val));
+519   p_shmem_free(dest);
+520   return success;
+521 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, \fBp_shmem_quiet\fP, and \fBp_shmem_ulong_atomic_fetch_xor_nbi\fP\&.
+.SS "bool test_shmem_atomic_inc (void )"
+
+.PP
+Tests the shmem_atomic_inc() routine\&. This test verifies that the shmem_atomic_inc() routine correctly increments the value at a remote memory location\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB130\fP of file \fBatomics_tests\&.cpp\fP\&.
+.nf
+130                              {
+131   static ulong *dest;
+132   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+133   ulong value = 42;
+134   *dest = value;
+135   p_shmem_barrier_all();
+136   int mype = p_shmem_my_pe();
+137   p_shmem_ulong_atomic_inc(dest, mype);
+138   p_shmem_barrier_all();
+139   bool success = (*dest == value + 1);
+140   p_shmem_free(dest);
+141   return success;
+142 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, and \fBp_shmem_ulong_atomic_inc\fP\&.
+.SS "bool test_shmem_atomic_or (void )"
+
+.PP
+Tests the shmem_atomic_or() routine\&. This test verifies that the shmem_atomic_or() routine correctly performs a bitwise OR operation with the remote memory location\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB265\fP of file \fBatomics_tests\&.cpp\fP\&.
+.nf
+265                             {
+266   static ulong *dest;
+267   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+268   ulong value = 42, or_val = 15;
+269   *dest = value;
+270   p_shmem_barrier_all();
+271   int mype = p_shmem_my_pe();
+272   p_shmem_ulong_atomic_or(dest, or_val, mype);
+273   p_shmem_barrier_all();
+274   bool success = (*dest == (value | or_val));
+275   p_shmem_free(dest);
+276   return success;
+277 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, and \fBp_shmem_ulong_atomic_or\fP\&.
+.SS "bool test_shmem_atomic_set (void )"
+
+.PP
+Tests the shmem_atomic_set() routine\&. This test verifies that the shmem_atomic_set() routine correctly sets the value at a remote memory location\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB39\fP of file \fBatomics_tests\&.cpp\fP\&.
+.nf
+39                              {
+40   static ulong *dest;
+41   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+42   ulong value = 42;
+43   p_shmem_barrier_all();
+44   int mype = p_shmem_my_pe();
+45   p_shmem_ulong_atomic_set(dest, value, mype);
+46   p_shmem_barrier_all();
+47   bool success = (*dest == value);
+48   p_shmem_free(dest);
+49   return success;
+50 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, and \fBp_shmem_ulong_atomic_set\fP\&.
+.SS "bool test_shmem_atomic_swap (void )"
+
+.PP
+Tests the shmem_atomic_swap() routine\&. This test verifies that the shmem_atomic_swap() routine correctly swaps the value at a remote memory location and returns the old value\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB85\fP of file \fBatomics_tests\&.cpp\fP\&.
+.nf
+85                               {
+86   static ulong *dest;
+87   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+88   ulong value = 42, new_val = 43;
+89   *dest = value;
+90   p_shmem_barrier_all();
+91   int mype = p_shmem_my_pe();
+92   ulong swapped = p_shmem_ulong_atomic_swap(dest, new_val, mype);
+93   p_shmem_barrier_all();
+94   bool success = (swapped == value && *dest == new_val);
+95   p_shmem_free(dest);
+96   return success;
+97 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, and \fBp_shmem_ulong_atomic_swap\fP\&.
+.SS "bool test_shmem_atomic_swap_nbi (void )"
+
+.PP
+Tests the shmem_atomic_swap_nbi() routine\&. This test verifies that the shmem_atomic_swap_nbi() routine correctly swaps the value at a remote memory location in a non-blocking manner and returns the old value\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB381\fP of file \fBatomics_tests\&.cpp\fP\&.
+.nf
+381                                   {
+382   static ulong *dest;
+383   static ulong fetch;
+384   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+385   fetch = 0;
+386   ulong value = 42, new_val = 43;
+387   *dest = value;
+388   p_shmem_barrier_all();
+389   int mype = p_shmem_my_pe();
+390   p_shmem_ulong_atomic_swap_nbi(&fetch, dest, new_val, mype);
+391   p_shmem_quiet();
+392   p_shmem_barrier_all();
+393   bool success = (fetch == value && *dest == new_val);
+394   p_shmem_free(dest);
+395   return success;
+396 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, \fBp_shmem_quiet\fP, and \fBp_shmem_ulong_atomic_swap_nbi\fP\&.
+.SS "bool test_shmem_atomic_xor (void )"
+
+.PP
+Tests the shmem_atomic_xor() routine\&. This test verifies that the shmem_atomic_xor() routine correctly performs a bitwise XOR operation with the remote memory location\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB310\fP of file \fBatomics_tests\&.cpp\fP\&.
+.nf
+310                              {
+311   static ulong *dest;
+312   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
+313   ulong value = 42, xor_val = 15;
+314   *dest = value;
+315   p_shmem_barrier_all();
+316   int mype = p_shmem_my_pe();
+317   p_shmem_ulong_atomic_xor(dest, xor_val, mype);
+318   p_shmem_barrier_all();
+319   bool success = (*dest == (value ^ xor_val));
+320   p_shmem_free(dest);
+321   return success;
+322 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, and \fBp_shmem_ulong_atomic_xor\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for shmemvv from the source code\&.

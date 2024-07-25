@@ -1,0 +1,91 @@
+\doxysection{signaling\+\_\+tests.\+cpp}
+\hypertarget{signaling__tests_8cpp_source}{}\label{signaling__tests_8cpp_source}\index{src/tests/signaling/signaling\_tests.cpp@{src/tests/signaling/signaling\_tests.cpp}}
+\mbox{\hyperlink{signaling__tests_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{signaling__tests_8hpp}{signaling\_tests.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00016}\mbox{\hyperlink{signaling__tests_8cpp_a941c163b3faa3e4d2d54598563095aa8}{00016}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{signaling__tests_8cpp_a941c163b3faa3e4d2d54598563095aa8}{test\_shmem\_put\_signal}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00017}00017\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{long}\ dest\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00018}00018\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{long}\ value\ =\ 12345;}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00019}00019\ \ \ \textcolor{keyword}{static}\ uint64\_t\ signal\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00020}00020\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00021}00021\ \ \ \textcolor{keywordtype}{int}\ npes\ =\ \mbox{\hyperlink{routines_8hpp_a484f2849d077f71872553f9c633152a7}{p\_shmem\_n\_pes}}();}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00023}00023\ \ \ \textcolor{keywordflow}{if}\ (npes\ <\ 2)\ \{}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00024}00024\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00025}00025\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00027}00027\ \ \ \textcolor{keywordtype}{int}\ target\_pe\ =\ (mype\ +\ 1)\ \%\ npes;}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00029}00029\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00031}00031\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00032}00032\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_a30c420eb28cb6970ebb299c98b6abd44}{p\_shmem\_long\_put\_signal}}(\&dest,\ \&value,\ 1,\ \&signal,\ 1,\ target\_pe,\ SHMEM\_SIGNAL\_SET);}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00033}00033\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00035}00035\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00037}00037\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00038}00038\ \ \ \ \ \textcolor{keywordflow}{if}\ (dest\ !=\ 12345\ ||\ signal\ !=\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00039}00039\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00040}00040\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00041}00041\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00043}00043\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00044}00044\ \}}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00054}\mbox{\hyperlink{signaling__tests_8cpp_a68a349cc672c8b2e71695a9460a82fdd}{00054}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{signaling__tests_8cpp_a68a349cc672c8b2e71695a9460a82fdd}{test\_shmem\_put\_signal\_nbi}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00055}00055\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{long}\ dest\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00056}00056\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{long}\ value\ =\ 67890;}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00057}00057\ \ \ \textcolor{keyword}{static}\ uint64\_t\ signal\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00058}00058\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00059}00059\ \ \ \textcolor{keywordtype}{int}\ npes\ =\ \mbox{\hyperlink{routines_8hpp_a484f2849d077f71872553f9c633152a7}{p\_shmem\_n\_pes}}();}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00061}00061\ \ \ \textcolor{keywordflow}{if}\ (npes\ <\ 2)\ \{}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00062}00062\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00063}00063\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00065}00065\ \ \ \textcolor{keywordtype}{int}\ target\_pe\ =\ (mype\ +\ 1)\ \%\ npes;}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00067}00067\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00069}00069\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00070}00070\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_ae1b4b4e87c936dcb0c5b7655173e6431}{p\_shmem\_long\_put\_signal\_nbi}}(\&dest,\ \&value,\ 1,\ \&signal,\ 1,\ target\_pe,\ SHMEM\_SIGNAL\_SET);}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00071}00071\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00072}00072\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00074}00074\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00076}00076\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00077}00077\ \ \ \ \ \textcolor{keywordflow}{if}\ (dest\ !=\ 67890\ ||\ signal\ !=\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00078}00078\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00079}00079\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00080}00080\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00082}00082\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00083}00083\ \}}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00093}\mbox{\hyperlink{signaling__tests_8cpp_a614a74ca727de456c19a1e9b0522bdda}{00093}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{signaling__tests_8cpp_a614a74ca727de456c19a1e9b0522bdda}{test\_shmem\_signal\_fetch}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00094}00094\ \ \ \textcolor{keyword}{static}\ uint64\_t\ signal\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00095}00095\ \ \ uint64\_t\ fetched\_signal\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00096}00096\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00097}00097\ \ \ \textcolor{keywordtype}{int}\ npes\ =\ \mbox{\hyperlink{routines_8hpp_a484f2849d077f71872553f9c633152a7}{p\_shmem\_n\_pes}}();}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00099}00099\ \ \ \textcolor{keywordflow}{if}\ (npes\ <\ 2)\ \{}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00100}00100\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00101}00101\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00103}00103\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00105}00105\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00106}00106\ \ \ \ \ fetched\_signal\ =\ \mbox{\hyperlink{routines_8hpp_ae5a69f171b549b2bfb7130ac05ce7dbd}{p\_shmem\_signal\_fetch}}(\&signal);}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00107}00107\ \ \ \ \ \textcolor{keywordflow}{if}\ (fetched\_signal\ !=\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00108}00108\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00109}00109\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00110}00110\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00112}00112\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{signaling__tests_8cpp_source_l00113}00113\ \}}
+
+\end{DoxyCode}

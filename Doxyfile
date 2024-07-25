@@ -49,6 +49,30 @@ GENERATE_HTML          = YES
 
 GENERATE_LATEX         = YES
 
+# The GENERATE_RTF tag can be used to enable/disable RTF output
+# (only useful when generated from LaTeX).
+# Possible values are YES and NO.
+
+GENERATE_RTF           = NO
+
+# The GENERATE_MAN tag can be used to enable/disable the generation of the
+# man pages. 
+# Possible values are YES and NO.
+
+GENERATE_MAN           = YES
+
+# The GENERATE_XML tag can be used to enable/disable the generation of the
+# XML output. 
+# Possible values are YES and NO.
+
+GENERATE_XML           = NO
+
+# The GENERATE_DOCBOOK tag can be used to enable/disable the generation of 
+# DocBook files.
+# Possible values are YES and NO.
+
+GENERATE_DOCBOOK       = NO
+
 # The EXTRACT_ALL tag can be used to enable the extraction of all entities 
 # from the source files (if defined).
 
@@ -69,7 +93,7 @@ INPUT                  = src
 # (like *.cpp and *.h) to filter out the source files in the directories.
 # Note that if this tag is empty or omitted all files are included.
 
-FILE_PATTERNS          = *.cpp *.h
+FILE_PATTERNS          = *.cpp *.h *.hpp
 
 # The EXCLUDE_PATTERNS tag can be used to specify one or more wildcard patterns 
 # to exclude certain files from being processed. 
@@ -77,7 +101,7 @@ FILE_PATTERNS          = *.cpp *.h
 # For example if you want to exclude all test directories you could specify:
 # EXCLUDE_PATTERNS       = */test/*
 
-EXCLUDE_PATTERNS       =
+EXCLUDE_PATTERNS       = *shmemvv.cpp
 
 # The EXTRACT_PRIVATE and EXTRACT_STATIC tags can be used to specify whether
 # the members (attributes and methods) of a class that are declared private 
@@ -91,3 +115,72 @@ EXTRACT_STATIC         = NO
 # graphical tree view of the documentation.
 
 GENERATE_TREEVIEW      = YES
+
+# The LATEX_OUTPUT tag is used to specify where the LaTeX docs will be put.
+# If a relative path is entered the value of OUTPUT_DIRECTORY will be
+# put in front of it.
+LATEX_OUTPUT           = latex
+
+# The LATEX_CMD_NAME tag can be used to specify the LaTeX command name to be
+# invoked. If left blank `latex' will be used as the default command name.
+LATEX_CMD_NAME         = pdflatex
+
+# The MAKEINDEX_CMD_NAME tag can be used to specify the command name to
+# generate index for LaTeX.
+MAKEINDEX_CMD_NAME     = makeindex
+
+# If the COMPACT_LATEX tag is set to YES, doxygen generates more compact
+# LaTeX documents. This may be useful for small projects and may help to
+# save some trees in general.
+COMPACT_LATEX          = NO
+
+# The PAPER_TYPE tag can be used to set the paper type that is used
+# by the printer. Possible values are: a4, letter, legal and 
+# executive. If left blank a4 will be used.
+PAPER_TYPE             = a4
+
+# The EXTRA_PACKAGES tag can be used to specify one or more LaTeX package names
+# that should be included in the LaTeX output.
+EXTRA_PACKAGES         = # [T1, inputenc, fontenc, longtable, ulem, textcomp, babel]
+
+# The PDF_HYPERLINKS tag can be used to specify whether or not to 
+# include hyperlinks inside the generated PDF document. 
+# Possible values are YES and NO.
+PDF_HYPERLINKS         = YES
+
+# The USE_PDFLATEX tag can be used to specify whether or not to generate PDF 
+# output directly using pdflatex(1). 
+# If set to NO, the generated LaTeX files should be processed with 
+# latex and dvips to obtain DVI and PostScript files. 
+# Possible values are YES and NO.
+USE_PDFLATEX           = YES
+
+# The LATEX_BATCHMODE tag can be used to specify if LaTeX should be run in 
+# batch mode or not. In batch mode, some errors will be reduced to warnings 
+# and will not stop the document generation.
+LATEX_BATCHMODE        = NO
+
+# The LATEX_HIDE_INDICES tag can be used to hide page numbering in the
+# table of contents. If set to YES, the number of each chapter will be
+# hidden in the table of contents.
+LATEX_HIDE_INDICES     = NO
+
+# The LATEX_SOURCE_CODE tag can be used to enable source code in the PDF output.
+LATEX_SOURCE_CODE      = YES
+
+# The INLINE_SOURCES tag can be used to include the source code within 
+# the documentation. 
+INLINE_SOURCES         = YES
+
+# The SOURCE_BROWSER tag can be used to enable/disable the 
+# generation of a list of source files that are documented.
+SOURCE_BROWSER         = YES
+
+# The VERBATIM_HEADERS tag can be used to include verbatim copies of 
+# the header files in the documentation.
+VERBATIM_HEADERS       = YES
+
+# The REFERENCES_RELATION tag can be used to enable/disable the 
+# generation of the references relation. This allows you to list 
+# which files and classes refer to which other files and classes.
+REFERENCES_RELATION    = YES

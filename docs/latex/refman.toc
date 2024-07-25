@@ -1,0 +1,644 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}Class Index}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Class List}{1}{section.1.1}%
+\contentsline {chapter}{\numberline {2}File Index}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}File List}{3}{section.2.1}%
+\contentsline {chapter}{\numberline {3}Class Documentation}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}test\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}options Struct Reference}{5}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Detailed Description}{5}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Constructor \& Destructor Documentation}{6}{subsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.2.1}test\_options()}{6}{subsubsection.3.1.2.1}%
+\contentsline {subsection}{\numberline {3.1.3}Member Data Documentation}{6}{subsection.3.1.3}%
+\contentsline {subsubsection}{\numberline {3.1.3.1}help}{6}{subsubsection.3.1.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.3.2}test\_all}{6}{subsubsection.3.1.3.2}%
+\contentsline {subsubsection}{\numberline {3.1.3.3}test\_atomics}{6}{subsubsection.3.1.3.3}%
+\contentsline {subsubsection}{\numberline {3.1.3.4}test\_collectives}{6}{subsubsection.3.1.3.4}%
+\contentsline {subsubsection}{\numberline {3.1.3.5}test\_ctx}{7}{subsubsection.3.1.3.5}%
+\contentsline {subsubsection}{\numberline {3.1.3.6}test\_locking}{7}{subsubsection.3.1.3.6}%
+\contentsline {subsubsection}{\numberline {3.1.3.7}test\_mem}{7}{subsubsection.3.1.3.7}%
+\contentsline {subsubsection}{\numberline {3.1.3.8}test\_mem\_ordering}{7}{subsubsection.3.1.3.8}%
+\contentsline {subsubsection}{\numberline {3.1.3.9}test\_pt2pt\_synch}{7}{subsubsection.3.1.3.9}%
+\contentsline {subsubsection}{\numberline {3.1.3.10}test\_remote}{7}{subsubsection.3.1.3.10}%
+\contentsline {subsubsection}{\numberline {3.1.3.11}test\_setup}{8}{subsubsection.3.1.3.11}%
+\contentsline {subsubsection}{\numberline {3.1.3.12}test\_signaling}{8}{subsubsection.3.1.3.12}%
+\contentsline {subsubsection}{\numberline {3.1.3.13}test\_teams}{8}{subsubsection.3.1.3.13}%
+\contentsline {subsubsection}{\numberline {3.1.3.14}test\_threads}{8}{subsubsection.3.1.3.14}%
+\contentsline {chapter}{\numberline {4}File Documentation}{9}{chapter.4}%
+\contentsline {section}{\numberline {4.1}src/include/routines.hpp File Reference}{9}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Detailed Description}{14}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Typedef Documentation}{14}{subsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.1}shmem\_addr\_accessible\_func}{14}{subsubsection.4.1.2.1}%
+\contentsline {subsubsection}{\numberline {4.1.2.2}shmem\_align\_func}{14}{subsubsection.4.1.2.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.3}shmem\_barrier\_all\_func}{14}{subsubsection.4.1.2.3}%
+\contentsline {subsubsection}{\numberline {4.1.2.4}shmem\_barrier\_func}{14}{subsubsection.4.1.2.4}%
+\contentsline {subsubsection}{\numberline {4.1.2.5}shmem\_calloc\_func}{14}{subsubsection.4.1.2.5}%
+\contentsline {subsubsection}{\numberline {4.1.2.6}shmem\_clear\_lock\_func}{15}{subsubsection.4.1.2.6}%
+\contentsline {subsubsection}{\numberline {4.1.2.7}shmem\_ctx\_create\_func}{15}{subsubsection.4.1.2.7}%
+\contentsline {subsubsection}{\numberline {4.1.2.8}shmem\_ctx\_destroy\_func}{15}{subsubsection.4.1.2.8}%
+\contentsline {subsubsection}{\numberline {4.1.2.9}shmem\_ctx\_get\_team\_func}{15}{subsubsection.4.1.2.9}%
+\contentsline {subsubsection}{\numberline {4.1.2.10}shmem\_fake\_routine\_func}{15}{subsubsection.4.1.2.10}%
+\contentsline {subsubsection}{\numberline {4.1.2.11}shmem\_fence\_func}{15}{subsubsection.4.1.2.11}%
+\contentsline {subsubsection}{\numberline {4.1.2.12}shmem\_finalize\_func}{15}{subsubsection.4.1.2.12}%
+\contentsline {subsubsection}{\numberline {4.1.2.13}shmem\_free\_func}{15}{subsubsection.4.1.2.13}%
+\contentsline {subsubsection}{\numberline {4.1.2.14}shmem\_global\_exit\_func}{16}{subsubsection.4.1.2.14}%
+\contentsline {subsubsection}{\numberline {4.1.2.15}shmem\_info\_get\_name\_func}{16}{subsubsection.4.1.2.15}%
+\contentsline {subsubsection}{\numberline {4.1.2.16}shmem\_info\_get\_version\_func}{16}{subsubsection.4.1.2.16}%
+\contentsline {subsubsection}{\numberline {4.1.2.17}shmem\_init\_func}{16}{subsubsection.4.1.2.17}%
+\contentsline {subsubsection}{\numberline {4.1.2.18}shmem\_init\_thread\_func}{16}{subsubsection.4.1.2.18}%
+\contentsline {subsubsection}{\numberline {4.1.2.19}shmem\_long\_alltoall\_func}{16}{subsubsection.4.1.2.19}%
+\contentsline {subsubsection}{\numberline {4.1.2.20}shmem\_long\_alltoalls\_func}{16}{subsubsection.4.1.2.20}%
+\contentsline {subsubsection}{\numberline {4.1.2.21}shmem\_long\_and\_reduce\_func}{17}{subsubsection.4.1.2.21}%
+\contentsline {subsubsection}{\numberline {4.1.2.22}shmem\_long\_broadcast\_func}{17}{subsubsection.4.1.2.22}%
+\contentsline {subsubsection}{\numberline {4.1.2.23}shmem\_long\_collect\_func}{17}{subsubsection.4.1.2.23}%
+\contentsline {subsubsection}{\numberline {4.1.2.24}shmem\_long\_fcollect\_func}{17}{subsubsection.4.1.2.24}%
+\contentsline {subsubsection}{\numberline {4.1.2.25}shmem\_long\_g\_func}{17}{subsubsection.4.1.2.25}%
+\contentsline {subsubsection}{\numberline {4.1.2.26}shmem\_long\_get\_func}{17}{subsubsection.4.1.2.26}%
+\contentsline {subsubsection}{\numberline {4.1.2.27}shmem\_long\_get\_nbi\_func}{17}{subsubsection.4.1.2.27}%
+\contentsline {subsubsection}{\numberline {4.1.2.28}shmem\_long\_iget\_func}{18}{subsubsection.4.1.2.28}%
+\contentsline {subsubsection}{\numberline {4.1.2.29}shmem\_long\_iput\_func}{18}{subsubsection.4.1.2.29}%
+\contentsline {subsubsection}{\numberline {4.1.2.30}shmem\_long\_max\_reduce\_func}{18}{subsubsection.4.1.2.30}%
+\contentsline {subsubsection}{\numberline {4.1.2.31}shmem\_long\_min\_reduce\_func}{18}{subsubsection.4.1.2.31}%
+\contentsline {subsubsection}{\numberline {4.1.2.32}shmem\_long\_or\_reduce\_func}{18}{subsubsection.4.1.2.32}%
+\contentsline {subsubsection}{\numberline {4.1.2.33}shmem\_long\_p\_func}{18}{subsubsection.4.1.2.33}%
+\contentsline {subsubsection}{\numberline {4.1.2.34}shmem\_long\_prod\_reduce\_func}{18}{subsubsection.4.1.2.34}%
+\contentsline {subsubsection}{\numberline {4.1.2.35}shmem\_long\_put\_func}{19}{subsubsection.4.1.2.35}%
+\contentsline {subsubsection}{\numberline {4.1.2.36}shmem\_long\_put\_nbi\_func}{19}{subsubsection.4.1.2.36}%
+\contentsline {subsubsection}{\numberline {4.1.2.37}shmem\_long\_put\_signal\_func}{19}{subsubsection.4.1.2.37}%
+\contentsline {subsubsection}{\numberline {4.1.2.38}shmem\_long\_put\_signal\_nbi\_func}{19}{subsubsection.4.1.2.38}%
+\contentsline {subsubsection}{\numberline {4.1.2.39}shmem\_long\_sum\_reduce\_func}{19}{subsubsection.4.1.2.39}%
+\contentsline {subsubsection}{\numberline {4.1.2.40}shmem\_long\_test\_all\_func}{19}{subsubsection.4.1.2.40}%
+\contentsline {subsubsection}{\numberline {4.1.2.41}shmem\_long\_test\_all\_vector\_func}{19}{subsubsection.4.1.2.41}%
+\contentsline {subsubsection}{\numberline {4.1.2.42}shmem\_long\_test\_any\_func}{20}{subsubsection.4.1.2.42}%
+\contentsline {subsubsection}{\numberline {4.1.2.43}shmem\_long\_test\_any\_vector\_func}{20}{subsubsection.4.1.2.43}%
+\contentsline {subsubsection}{\numberline {4.1.2.44}shmem\_long\_test\_func}{20}{subsubsection.4.1.2.44}%
+\contentsline {subsubsection}{\numberline {4.1.2.45}shmem\_long\_test\_some\_func}{20}{subsubsection.4.1.2.45}%
+\contentsline {subsubsection}{\numberline {4.1.2.46}shmem\_long\_test\_some\_vector\_func}{20}{subsubsection.4.1.2.46}%
+\contentsline {subsubsection}{\numberline {4.1.2.47}shmem\_long\_wait\_until\_all\_func}{20}{subsubsection.4.1.2.47}%
+\contentsline {subsubsection}{\numberline {4.1.2.48}shmem\_long\_wait\_until\_all\_vector\_func}{20}{subsubsection.4.1.2.48}%
+\contentsline {subsubsection}{\numberline {4.1.2.49}shmem\_long\_wait\_until\_any\_func}{21}{subsubsection.4.1.2.49}%
+\contentsline {subsubsection}{\numberline {4.1.2.50}shmem\_long\_wait\_until\_any\_vector\_func}{21}{subsubsection.4.1.2.50}%
+\contentsline {subsubsection}{\numberline {4.1.2.51}shmem\_long\_wait\_until\_func}{21}{subsubsection.4.1.2.51}%
+\contentsline {subsubsection}{\numberline {4.1.2.52}shmem\_long\_wait\_until\_some\_func}{21}{subsubsection.4.1.2.52}%
+\contentsline {subsubsection}{\numberline {4.1.2.53}shmem\_long\_wait\_until\_some\_vector\_func}{21}{subsubsection.4.1.2.53}%
+\contentsline {subsubsection}{\numberline {4.1.2.54}shmem\_long\_xor\_reduce\_func}{21}{subsubsection.4.1.2.54}%
+\contentsline {subsubsection}{\numberline {4.1.2.55}shmem\_malloc\_func}{21}{subsubsection.4.1.2.55}%
+\contentsline {subsubsection}{\numberline {4.1.2.56}shmem\_malloc\_with\_hints\_func}{22}{subsubsection.4.1.2.56}%
+\contentsline {subsubsection}{\numberline {4.1.2.57}shmem\_my\_pe\_func}{22}{subsubsection.4.1.2.57}%
+\contentsline {subsubsection}{\numberline {4.1.2.58}shmem\_n\_pes\_func}{22}{subsubsection.4.1.2.58}%
+\contentsline {subsubsection}{\numberline {4.1.2.59}shmem\_pe\_accessible\_func}{22}{subsubsection.4.1.2.59}%
+\contentsline {subsubsection}{\numberline {4.1.2.60}shmem\_ptr\_func}{22}{subsubsection.4.1.2.60}%
+\contentsline {subsubsection}{\numberline {4.1.2.61}shmem\_query\_thread\_func}{22}{subsubsection.4.1.2.61}%
+\contentsline {subsubsection}{\numberline {4.1.2.62}shmem\_quiet\_func}{22}{subsubsection.4.1.2.62}%
+\contentsline {subsubsection}{\numberline {4.1.2.63}shmem\_realloc\_func}{22}{subsubsection.4.1.2.63}%
+\contentsline {subsubsection}{\numberline {4.1.2.64}shmem\_set\_lock\_func}{23}{subsubsection.4.1.2.64}%
+\contentsline {subsubsection}{\numberline {4.1.2.65}shmem\_signal\_fetch\_func}{23}{subsubsection.4.1.2.65}%
+\contentsline {subsubsection}{\numberline {4.1.2.66}shmem\_signal\_wait\_until\_func}{23}{subsubsection.4.1.2.66}%
+\contentsline {subsubsection}{\numberline {4.1.2.67}shmem\_sync\_all\_func}{23}{subsubsection.4.1.2.67}%
+\contentsline {subsubsection}{\numberline {4.1.2.68}shmem\_sync\_func}{23}{subsubsection.4.1.2.68}%
+\contentsline {subsubsection}{\numberline {4.1.2.69}shmem\_team\_create\_ctx\_func}{23}{subsubsection.4.1.2.69}%
+\contentsline {subsubsection}{\numberline {4.1.2.70}shmem\_team\_destroy\_func}{23}{subsubsection.4.1.2.70}%
+\contentsline {subsubsection}{\numberline {4.1.2.71}shmem\_team\_get\_config\_func}{24}{subsubsection.4.1.2.71}%
+\contentsline {subsubsection}{\numberline {4.1.2.72}shmem\_team\_my\_pe\_func}{24}{subsubsection.4.1.2.72}%
+\contentsline {subsubsection}{\numberline {4.1.2.73}shmem\_team\_n\_pes\_func}{24}{subsubsection.4.1.2.73}%
+\contentsline {subsubsection}{\numberline {4.1.2.74}shmem\_team\_split\_2d\_func}{24}{subsubsection.4.1.2.74}%
+\contentsline {subsubsection}{\numberline {4.1.2.75}shmem\_team\_split\_strided\_func}{24}{subsubsection.4.1.2.75}%
+\contentsline {subsubsection}{\numberline {4.1.2.76}shmem\_team\_translate\_pe\_func}{24}{subsubsection.4.1.2.76}%
+\contentsline {subsubsection}{\numberline {4.1.2.77}shmem\_ulong\_atomic\_add\_func}{24}{subsubsection.4.1.2.77}%
+\contentsline {subsubsection}{\numberline {4.1.2.78}shmem\_ulong\_atomic\_and\_func}{25}{subsubsection.4.1.2.78}%
+\contentsline {subsubsection}{\numberline {4.1.2.79}shmem\_ulong\_atomic\_compare\_swap\_func}{25}{subsubsection.4.1.2.79}%
+\contentsline {subsubsection}{\numberline {4.1.2.80}shmem\_ulong\_atomic\_compare\_swap\_nbi\_func}{25}{subsubsection.4.1.2.80}%
+\contentsline {subsubsection}{\numberline {4.1.2.81}shmem\_ulong\_atomic\_fetch\_add\_func}{25}{subsubsection.4.1.2.81}%
+\contentsline {subsubsection}{\numberline {4.1.2.82}shmem\_ulong\_atomic\_fetch\_add\_nbi\_func}{25}{subsubsection.4.1.2.82}%
+\contentsline {subsubsection}{\numberline {4.1.2.83}shmem\_ulong\_atomic\_fetch\_and\_func}{25}{subsubsection.4.1.2.83}%
+\contentsline {subsubsection}{\numberline {4.1.2.84}shmem\_ulong\_atomic\_fetch\_and\_nbi\_func}{25}{subsubsection.4.1.2.84}%
+\contentsline {subsubsection}{\numberline {4.1.2.85}shmem\_ulong\_atomic\_fetch\_func}{26}{subsubsection.4.1.2.85}%
+\contentsline {subsubsection}{\numberline {4.1.2.86}shmem\_ulong\_atomic\_fetch\_inc\_func}{26}{subsubsection.4.1.2.86}%
+\contentsline {subsubsection}{\numberline {4.1.2.87}shmem\_ulong\_atomic\_fetch\_inc\_nbi\_func}{26}{subsubsection.4.1.2.87}%
+\contentsline {subsubsection}{\numberline {4.1.2.88}shmem\_ulong\_atomic\_fetch\_nbi\_func}{26}{subsubsection.4.1.2.88}%
+\contentsline {subsubsection}{\numberline {4.1.2.89}shmem\_ulong\_atomic\_fetch\_or\_func}{26}{subsubsection.4.1.2.89}%
+\contentsline {subsubsection}{\numberline {4.1.2.90}shmem\_ulong\_atomic\_fetch\_or\_nbi\_func}{26}{subsubsection.4.1.2.90}%
+\contentsline {subsubsection}{\numberline {4.1.2.91}shmem\_ulong\_atomic\_fetch\_xor\_func}{26}{subsubsection.4.1.2.91}%
+\contentsline {subsubsection}{\numberline {4.1.2.92}shmem\_ulong\_atomic\_fetch\_xor\_nbi\_func}{27}{subsubsection.4.1.2.92}%
+\contentsline {subsubsection}{\numberline {4.1.2.93}shmem\_ulong\_atomic\_inc\_func}{27}{subsubsection.4.1.2.93}%
+\contentsline {subsubsection}{\numberline {4.1.2.94}shmem\_ulong\_atomic\_or\_func}{27}{subsubsection.4.1.2.94}%
+\contentsline {subsubsection}{\numberline {4.1.2.95}shmem\_ulong\_atomic\_set\_func}{27}{subsubsection.4.1.2.95}%
+\contentsline {subsubsection}{\numberline {4.1.2.96}shmem\_ulong\_atomic\_swap\_func}{27}{subsubsection.4.1.2.96}%
+\contentsline {subsubsection}{\numberline {4.1.2.97}shmem\_ulong\_atomic\_swap\_nbi\_func}{27}{subsubsection.4.1.2.97}%
+\contentsline {subsubsection}{\numberline {4.1.2.98}shmem\_ulong\_atomic\_xor\_func}{27}{subsubsection.4.1.2.98}%
+\contentsline {subsection}{\numberline {4.1.3}Function Documentation}{28}{subsection.4.1.3}%
+\contentsline {subsubsection}{\numberline {4.1.3.1}load\_routines()}{28}{subsubsection.4.1.3.1}%
+\contentsline {subsection}{\numberline {4.1.4}Variable Documentation}{31}{subsection.4.1.4}%
+\contentsline {subsubsection}{\numberline {4.1.4.1}p\_shmem\_addr\_accessible}{31}{subsubsection.4.1.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.4.2}p\_shmem\_align}{31}{subsubsection.4.1.4.2}%
+\contentsline {subsubsection}{\numberline {4.1.4.3}p\_shmem\_barrier}{31}{subsubsection.4.1.4.3}%
+\contentsline {subsubsection}{\numberline {4.1.4.4}p\_shmem\_barrier\_all}{31}{subsubsection.4.1.4.4}%
+\contentsline {subsubsection}{\numberline {4.1.4.5}p\_shmem\_calloc}{31}{subsubsection.4.1.4.5}%
+\contentsline {subsubsection}{\numberline {4.1.4.6}p\_shmem\_clear\_lock}{32}{subsubsection.4.1.4.6}%
+\contentsline {subsubsection}{\numberline {4.1.4.7}p\_shmem\_ctx\_create}{32}{subsubsection.4.1.4.7}%
+\contentsline {subsubsection}{\numberline {4.1.4.8}p\_shmem\_ctx\_destroy}{32}{subsubsection.4.1.4.8}%
+\contentsline {subsubsection}{\numberline {4.1.4.9}p\_shmem\_ctx\_get\_team}{32}{subsubsection.4.1.4.9}%
+\contentsline {subsubsection}{\numberline {4.1.4.10}p\_shmem\_fake\_routine}{32}{subsubsection.4.1.4.10}%
+\contentsline {subsubsection}{\numberline {4.1.4.11}p\_shmem\_fence}{32}{subsubsection.4.1.4.11}%
+\contentsline {subsubsection}{\numberline {4.1.4.12}p\_shmem\_finalize}{32}{subsubsection.4.1.4.12}%
+\contentsline {subsubsection}{\numberline {4.1.4.13}p\_shmem\_free}{32}{subsubsection.4.1.4.13}%
+\contentsline {subsubsection}{\numberline {4.1.4.14}p\_shmem\_global\_exit}{33}{subsubsection.4.1.4.14}%
+\contentsline {subsubsection}{\numberline {4.1.4.15}p\_shmem\_info\_get\_name}{33}{subsubsection.4.1.4.15}%
+\contentsline {subsubsection}{\numberline {4.1.4.16}p\_shmem\_info\_get\_version}{33}{subsubsection.4.1.4.16}%
+\contentsline {subsubsection}{\numberline {4.1.4.17}p\_shmem\_init}{33}{subsubsection.4.1.4.17}%
+\contentsline {subsubsection}{\numberline {4.1.4.18}p\_shmem\_init\_thread}{33}{subsubsection.4.1.4.18}%
+\contentsline {subsubsection}{\numberline {4.1.4.19}p\_shmem\_long\_alltoall}{33}{subsubsection.4.1.4.19}%
+\contentsline {subsubsection}{\numberline {4.1.4.20}p\_shmem\_long\_alltoalls}{33}{subsubsection.4.1.4.20}%
+\contentsline {subsubsection}{\numberline {4.1.4.21}p\_shmem\_long\_and\_reduce}{33}{subsubsection.4.1.4.21}%
+\contentsline {subsubsection}{\numberline {4.1.4.22}p\_shmem\_long\_broadcast}{34}{subsubsection.4.1.4.22}%
+\contentsline {subsubsection}{\numberline {4.1.4.23}p\_shmem\_long\_collect}{34}{subsubsection.4.1.4.23}%
+\contentsline {subsubsection}{\numberline {4.1.4.24}p\_shmem\_long\_fcollect}{34}{subsubsection.4.1.4.24}%
+\contentsline {subsubsection}{\numberline {4.1.4.25}p\_shmem\_long\_g}{34}{subsubsection.4.1.4.25}%
+\contentsline {subsubsection}{\numberline {4.1.4.26}p\_shmem\_long\_get}{34}{subsubsection.4.1.4.26}%
+\contentsline {subsubsection}{\numberline {4.1.4.27}p\_shmem\_long\_get\_nbi}{34}{subsubsection.4.1.4.27}%
+\contentsline {subsubsection}{\numberline {4.1.4.28}p\_shmem\_long\_iget}{34}{subsubsection.4.1.4.28}%
+\contentsline {subsubsection}{\numberline {4.1.4.29}p\_shmem\_long\_iput}{34}{subsubsection.4.1.4.29}%
+\contentsline {subsubsection}{\numberline {4.1.4.30}p\_shmem\_long\_max\_reduce}{35}{subsubsection.4.1.4.30}%
+\contentsline {subsubsection}{\numberline {4.1.4.31}p\_shmem\_long\_min\_reduce}{35}{subsubsection.4.1.4.31}%
+\contentsline {subsubsection}{\numberline {4.1.4.32}p\_shmem\_long\_or\_reduce}{35}{subsubsection.4.1.4.32}%
+\contentsline {subsubsection}{\numberline {4.1.4.33}p\_shmem\_long\_p}{35}{subsubsection.4.1.4.33}%
+\contentsline {subsubsection}{\numberline {4.1.4.34}p\_shmem\_long\_prod\_reduce}{35}{subsubsection.4.1.4.34}%
+\contentsline {subsubsection}{\numberline {4.1.4.35}p\_shmem\_long\_put}{35}{subsubsection.4.1.4.35}%
+\contentsline {subsubsection}{\numberline {4.1.4.36}p\_shmem\_long\_put\_nbi}{35}{subsubsection.4.1.4.36}%
+\contentsline {subsubsection}{\numberline {4.1.4.37}p\_shmem\_long\_put\_signal}{35}{subsubsection.4.1.4.37}%
+\contentsline {subsubsection}{\numberline {4.1.4.38}p\_shmem\_long\_put\_signal\_nbi}{36}{subsubsection.4.1.4.38}%
+\contentsline {subsubsection}{\numberline {4.1.4.39}p\_shmem\_long\_sum\_reduce}{36}{subsubsection.4.1.4.39}%
+\contentsline {subsubsection}{\numberline {4.1.4.40}p\_shmem\_long\_test}{36}{subsubsection.4.1.4.40}%
+\contentsline {subsubsection}{\numberline {4.1.4.41}p\_shmem\_long\_test\_all}{36}{subsubsection.4.1.4.41}%
+\contentsline {subsubsection}{\numberline {4.1.4.42}p\_shmem\_long\_test\_all\_vector}{36}{subsubsection.4.1.4.42}%
+\contentsline {subsubsection}{\numberline {4.1.4.43}p\_shmem\_long\_test\_any}{36}{subsubsection.4.1.4.43}%
+\contentsline {subsubsection}{\numberline {4.1.4.44}p\_shmem\_long\_test\_any\_vector}{36}{subsubsection.4.1.4.44}%
+\contentsline {subsubsection}{\numberline {4.1.4.45}p\_shmem\_long\_test\_some}{36}{subsubsection.4.1.4.45}%
+\contentsline {subsubsection}{\numberline {4.1.4.46}p\_shmem\_long\_test\_some\_vector}{37}{subsubsection.4.1.4.46}%
+\contentsline {subsubsection}{\numberline {4.1.4.47}p\_shmem\_long\_wait\_until}{37}{subsubsection.4.1.4.47}%
+\contentsline {subsubsection}{\numberline {4.1.4.48}p\_shmem\_long\_wait\_until\_all}{37}{subsubsection.4.1.4.48}%
+\contentsline {subsubsection}{\numberline {4.1.4.49}p\_shmem\_long\_wait\_until\_all\_vector}{37}{subsubsection.4.1.4.49}%
+\contentsline {subsubsection}{\numberline {4.1.4.50}p\_shmem\_long\_wait\_until\_any}{37}{subsubsection.4.1.4.50}%
+\contentsline {subsubsection}{\numberline {4.1.4.51}p\_shmem\_long\_wait\_until\_any\_vector}{37}{subsubsection.4.1.4.51}%
+\contentsline {subsubsection}{\numberline {4.1.4.52}p\_shmem\_long\_wait\_until\_some}{37}{subsubsection.4.1.4.52}%
+\contentsline {subsubsection}{\numberline {4.1.4.53}p\_shmem\_long\_wait\_until\_some\_vector}{37}{subsubsection.4.1.4.53}%
+\contentsline {subsubsection}{\numberline {4.1.4.54}p\_shmem\_long\_xor\_reduce}{38}{subsubsection.4.1.4.54}%
+\contentsline {subsubsection}{\numberline {4.1.4.55}p\_shmem\_malloc}{38}{subsubsection.4.1.4.55}%
+\contentsline {subsubsection}{\numberline {4.1.4.56}p\_shmem\_malloc\_with\_hints}{38}{subsubsection.4.1.4.56}%
+\contentsline {subsubsection}{\numberline {4.1.4.57}p\_shmem\_my\_pe}{38}{subsubsection.4.1.4.57}%
+\contentsline {subsubsection}{\numberline {4.1.4.58}p\_shmem\_n\_pes}{38}{subsubsection.4.1.4.58}%
+\contentsline {subsubsection}{\numberline {4.1.4.59}p\_shmem\_pe\_accessible}{38}{subsubsection.4.1.4.59}%
+\contentsline {subsubsection}{\numberline {4.1.4.60}p\_shmem\_ptr}{38}{subsubsection.4.1.4.60}%
+\contentsline {subsubsection}{\numberline {4.1.4.61}p\_shmem\_query\_thread}{38}{subsubsection.4.1.4.61}%
+\contentsline {subsubsection}{\numberline {4.1.4.62}p\_shmem\_quiet}{39}{subsubsection.4.1.4.62}%
+\contentsline {subsubsection}{\numberline {4.1.4.63}p\_shmem\_realloc}{39}{subsubsection.4.1.4.63}%
+\contentsline {subsubsection}{\numberline {4.1.4.64}p\_shmem\_set\_lock}{39}{subsubsection.4.1.4.64}%
+\contentsline {subsubsection}{\numberline {4.1.4.65}p\_shmem\_signal\_fetch}{39}{subsubsection.4.1.4.65}%
+\contentsline {subsubsection}{\numberline {4.1.4.66}p\_shmem\_signal\_wait\_until}{39}{subsubsection.4.1.4.66}%
+\contentsline {subsubsection}{\numberline {4.1.4.67}p\_shmem\_sync}{39}{subsubsection.4.1.4.67}%
+\contentsline {subsubsection}{\numberline {4.1.4.68}p\_shmem\_sync\_all}{39}{subsubsection.4.1.4.68}%
+\contentsline {subsubsection}{\numberline {4.1.4.69}p\_shmem\_team\_create\_ctx}{39}{subsubsection.4.1.4.69}%
+\contentsline {subsubsection}{\numberline {4.1.4.70}p\_shmem\_team\_destroy}{40}{subsubsection.4.1.4.70}%
+\contentsline {subsubsection}{\numberline {4.1.4.71}p\_shmem\_team\_get\_config}{40}{subsubsection.4.1.4.71}%
+\contentsline {subsubsection}{\numberline {4.1.4.72}p\_shmem\_team\_my\_pe}{40}{subsubsection.4.1.4.72}%
+\contentsline {subsubsection}{\numberline {4.1.4.73}p\_shmem\_team\_n\_pes}{40}{subsubsection.4.1.4.73}%
+\contentsline {subsubsection}{\numberline {4.1.4.74}p\_shmem\_team\_split\_2d}{40}{subsubsection.4.1.4.74}%
+\contentsline {subsubsection}{\numberline {4.1.4.75}p\_shmem\_team\_split\_strided}{40}{subsubsection.4.1.4.75}%
+\contentsline {subsubsection}{\numberline {4.1.4.76}p\_shmem\_team\_translate\_pe}{40}{subsubsection.4.1.4.76}%
+\contentsline {subsubsection}{\numberline {4.1.4.77}p\_shmem\_ulong\_atomic\_add}{40}{subsubsection.4.1.4.77}%
+\contentsline {subsubsection}{\numberline {4.1.4.78}p\_shmem\_ulong\_atomic\_and}{41}{subsubsection.4.1.4.78}%
+\contentsline {subsubsection}{\numberline {4.1.4.79}p\_shmem\_ulong\_atomic\_compare\_swap}{41}{subsubsection.4.1.4.79}%
+\contentsline {subsubsection}{\numberline {4.1.4.80}p\_shmem\_ulong\_atomic\_compare\_swap\_nbi}{41}{subsubsection.4.1.4.80}%
+\contentsline {subsubsection}{\numberline {4.1.4.81}p\_shmem\_ulong\_atomic\_fetch}{41}{subsubsection.4.1.4.81}%
+\contentsline {subsubsection}{\numberline {4.1.4.82}p\_shmem\_ulong\_atomic\_fetch\_add}{41}{subsubsection.4.1.4.82}%
+\contentsline {subsubsection}{\numberline {4.1.4.83}p\_shmem\_ulong\_atomic\_fetch\_add\_nbi}{41}{subsubsection.4.1.4.83}%
+\contentsline {subsubsection}{\numberline {4.1.4.84}p\_shmem\_ulong\_atomic\_fetch\_and}{41}{subsubsection.4.1.4.84}%
+\contentsline {subsubsection}{\numberline {4.1.4.85}p\_shmem\_ulong\_atomic\_fetch\_and\_nbi}{41}{subsubsection.4.1.4.85}%
+\contentsline {subsubsection}{\numberline {4.1.4.86}p\_shmem\_ulong\_atomic\_fetch\_inc}{42}{subsubsection.4.1.4.86}%
+\contentsline {subsubsection}{\numberline {4.1.4.87}p\_shmem\_ulong\_atomic\_fetch\_inc\_nbi}{42}{subsubsection.4.1.4.87}%
+\contentsline {subsubsection}{\numberline {4.1.4.88}p\_shmem\_ulong\_atomic\_fetch\_nbi}{42}{subsubsection.4.1.4.88}%
+\contentsline {subsubsection}{\numberline {4.1.4.89}p\_shmem\_ulong\_atomic\_fetch\_or}{42}{subsubsection.4.1.4.89}%
+\contentsline {subsubsection}{\numberline {4.1.4.90}p\_shmem\_ulong\_atomic\_fetch\_or\_nbi}{42}{subsubsection.4.1.4.90}%
+\contentsline {subsubsection}{\numberline {4.1.4.91}p\_shmem\_ulong\_atomic\_fetch\_xor}{42}{subsubsection.4.1.4.91}%
+\contentsline {subsubsection}{\numberline {4.1.4.92}p\_shmem\_ulong\_atomic\_fetch\_xor\_nbi}{42}{subsubsection.4.1.4.92}%
+\contentsline {subsubsection}{\numberline {4.1.4.93}p\_shmem\_ulong\_atomic\_inc}{42}{subsubsection.4.1.4.93}%
+\contentsline {subsubsection}{\numberline {4.1.4.94}p\_shmem\_ulong\_atomic\_or}{43}{subsubsection.4.1.4.94}%
+\contentsline {subsubsection}{\numberline {4.1.4.95}p\_shmem\_ulong\_atomic\_set}{43}{subsubsection.4.1.4.95}%
+\contentsline {subsubsection}{\numberline {4.1.4.96}p\_shmem\_ulong\_atomic\_swap}{43}{subsubsection.4.1.4.96}%
+\contentsline {subsubsection}{\numberline {4.1.4.97}p\_shmem\_ulong\_atomic\_swap\_nbi}{43}{subsubsection.4.1.4.97}%
+\contentsline {subsubsection}{\numberline {4.1.4.98}p\_shmem\_ulong\_atomic\_xor}{43}{subsubsection.4.1.4.98}%
+\contentsline {section}{\numberline {4.2}routines.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{43}{section.4.2}%
+\contentsline {section}{\numberline {4.3}src/include/shmemvv.hpp File Reference}{47}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Detailed Description}{48}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Macro Definition Documentation}{48}{subsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.1}GREEN\_COLOR}{48}{subsubsection.4.3.2.1}%
+\contentsline {subsubsection}{\numberline {4.3.2.2}HLINE}{48}{subsubsection.4.3.2.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.3}RED\_COLOR}{49}{subsubsection.4.3.2.3}%
+\contentsline {subsubsection}{\numberline {4.3.2.4}RESET\_COLOR}{49}{subsubsection.4.3.2.4}%
+\contentsline {subsubsection}{\numberline {4.3.2.5}YELLOW\_COLOR}{49}{subsubsection.4.3.2.5}%
+\contentsline {subsection}{\numberline {4.3.3}Function Documentation}{49}{subsection.4.3.3}%
+\contentsline {subsubsection}{\numberline {4.3.3.1}check\_if\_exists()}{49}{subsubsection.4.3.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.3.2}display\_help()}{49}{subsubsection.4.3.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.3.3}display\_logo()}{49}{subsubsection.4.3.3.3}%
+\contentsline {subsubsection}{\numberline {4.3.3.4}display\_not\_enough\_pes()}{49}{subsubsection.4.3.3.4}%
+\contentsline {subsubsection}{\numberline {4.3.3.5}display\_not\_found\_warning()}{50}{subsubsection.4.3.3.5}%
+\contentsline {subsubsection}{\numberline {4.3.3.6}display\_test\_header()}{50}{subsubsection.4.3.3.6}%
+\contentsline {subsubsection}{\numberline {4.3.3.7}display\_test\_info()}{50}{subsubsection.4.3.3.7}%
+\contentsline {subsubsection}{\numberline {4.3.3.8}display\_test\_result()}{50}{subsubsection.4.3.3.8}%
+\contentsline {subsubsection}{\numberline {4.3.3.9}finalize\_shmemvv()}{51}{subsubsection.4.3.3.9}%
+\contentsline {subsubsection}{\numberline {4.3.3.10}parse\_opts()}{51}{subsubsection.4.3.3.10}%
+\contentsline {section}{\numberline {4.4}shmemvv.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{51}{section.4.4}%
+\contentsline {section}{\numberline {4.5}src/main.cpp File Reference}{52}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Detailed Description}{53}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Function Documentation}{53}{subsection.4.5.2}%
+\contentsline {subsubsection}{\numberline {4.5.2.1}main()}{53}{subsubsection.4.5.2.1}%
+\contentsline {section}{\numberline {4.6}main.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cpp}{73}{section.4.6}%
+\contentsline {section}{\numberline {4.7}src/routines.cpp File Reference}{92}{section.4.7}%
+\contentsline {subsection}{\numberline {4.7.1}Detailed Description}{95}{subsection.4.7.1}%
+\contentsline {subsection}{\numberline {4.7.2}Function Documentation}{95}{subsection.4.7.2}%
+\contentsline {subsubsection}{\numberline {4.7.2.1}load\_routines()}{95}{subsubsection.4.7.2.1}%
+\contentsline {subsection}{\numberline {4.7.3}Variable Documentation}{98}{subsection.4.7.3}%
+\contentsline {subsubsection}{\numberline {4.7.3.1}p\_shmem\_addr\_accessible}{98}{subsubsection.4.7.3.1}%
+\contentsline {subsubsection}{\numberline {4.7.3.2}p\_shmem\_align}{98}{subsubsection.4.7.3.2}%
+\contentsline {subsubsection}{\numberline {4.7.3.3}p\_shmem\_barrier}{98}{subsubsection.4.7.3.3}%
+\contentsline {subsubsection}{\numberline {4.7.3.4}p\_shmem\_barrier\_all}{98}{subsubsection.4.7.3.4}%
+\contentsline {subsubsection}{\numberline {4.7.3.5}p\_shmem\_calloc}{98}{subsubsection.4.7.3.5}%
+\contentsline {subsubsection}{\numberline {4.7.3.6}p\_shmem\_clear\_lock}{99}{subsubsection.4.7.3.6}%
+\contentsline {subsubsection}{\numberline {4.7.3.7}p\_shmem\_ctx\_create}{99}{subsubsection.4.7.3.7}%
+\contentsline {subsubsection}{\numberline {4.7.3.8}p\_shmem\_ctx\_destroy}{99}{subsubsection.4.7.3.8}%
+\contentsline {subsubsection}{\numberline {4.7.3.9}p\_shmem\_ctx\_get\_team}{99}{subsubsection.4.7.3.9}%
+\contentsline {subsubsection}{\numberline {4.7.3.10}p\_shmem\_fake\_routine}{99}{subsubsection.4.7.3.10}%
+\contentsline {subsubsection}{\numberline {4.7.3.11}p\_shmem\_fence}{99}{subsubsection.4.7.3.11}%
+\contentsline {subsubsection}{\numberline {4.7.3.12}p\_shmem\_finalize}{99}{subsubsection.4.7.3.12}%
+\contentsline {subsubsection}{\numberline {4.7.3.13}p\_shmem\_free}{99}{subsubsection.4.7.3.13}%
+\contentsline {subsubsection}{\numberline {4.7.3.14}p\_shmem\_global\_exit}{100}{subsubsection.4.7.3.14}%
+\contentsline {subsubsection}{\numberline {4.7.3.15}p\_shmem\_info\_get\_name}{100}{subsubsection.4.7.3.15}%
+\contentsline {subsubsection}{\numberline {4.7.3.16}p\_shmem\_info\_get\_version}{100}{subsubsection.4.7.3.16}%
+\contentsline {subsubsection}{\numberline {4.7.3.17}p\_shmem\_init}{100}{subsubsection.4.7.3.17}%
+\contentsline {subsubsection}{\numberline {4.7.3.18}p\_shmem\_init\_thread}{100}{subsubsection.4.7.3.18}%
+\contentsline {subsubsection}{\numberline {4.7.3.19}p\_shmem\_long\_alltoall}{100}{subsubsection.4.7.3.19}%
+\contentsline {subsubsection}{\numberline {4.7.3.20}p\_shmem\_long\_alltoalls}{100}{subsubsection.4.7.3.20}%
+\contentsline {subsubsection}{\numberline {4.7.3.21}p\_shmem\_long\_and\_reduce}{100}{subsubsection.4.7.3.21}%
+\contentsline {subsubsection}{\numberline {4.7.3.22}p\_shmem\_long\_broadcast}{101}{subsubsection.4.7.3.22}%
+\contentsline {subsubsection}{\numberline {4.7.3.23}p\_shmem\_long\_collect}{101}{subsubsection.4.7.3.23}%
+\contentsline {subsubsection}{\numberline {4.7.3.24}p\_shmem\_long\_fcollect}{101}{subsubsection.4.7.3.24}%
+\contentsline {subsubsection}{\numberline {4.7.3.25}p\_shmem\_long\_g}{101}{subsubsection.4.7.3.25}%
+\contentsline {subsubsection}{\numberline {4.7.3.26}p\_shmem\_long\_get}{101}{subsubsection.4.7.3.26}%
+\contentsline {subsubsection}{\numberline {4.7.3.27}p\_shmem\_long\_get\_nbi}{101}{subsubsection.4.7.3.27}%
+\contentsline {subsubsection}{\numberline {4.7.3.28}p\_shmem\_long\_iget}{101}{subsubsection.4.7.3.28}%
+\contentsline {subsubsection}{\numberline {4.7.3.29}p\_shmem\_long\_iput}{101}{subsubsection.4.7.3.29}%
+\contentsline {subsubsection}{\numberline {4.7.3.30}p\_shmem\_long\_max\_reduce}{102}{subsubsection.4.7.3.30}%
+\contentsline {subsubsection}{\numberline {4.7.3.31}p\_shmem\_long\_min\_reduce}{102}{subsubsection.4.7.3.31}%
+\contentsline {subsubsection}{\numberline {4.7.3.32}p\_shmem\_long\_or\_reduce}{102}{subsubsection.4.7.3.32}%
+\contentsline {subsubsection}{\numberline {4.7.3.33}p\_shmem\_long\_p}{102}{subsubsection.4.7.3.33}%
+\contentsline {subsubsection}{\numberline {4.7.3.34}p\_shmem\_long\_prod\_reduce}{102}{subsubsection.4.7.3.34}%
+\contentsline {subsubsection}{\numberline {4.7.3.35}p\_shmem\_long\_put}{102}{subsubsection.4.7.3.35}%
+\contentsline {subsubsection}{\numberline {4.7.3.36}p\_shmem\_long\_put\_nbi}{102}{subsubsection.4.7.3.36}%
+\contentsline {subsubsection}{\numberline {4.7.3.37}p\_shmem\_long\_put\_signal}{102}{subsubsection.4.7.3.37}%
+\contentsline {subsubsection}{\numberline {4.7.3.38}p\_shmem\_long\_put\_signal\_nbi}{103}{subsubsection.4.7.3.38}%
+\contentsline {subsubsection}{\numberline {4.7.3.39}p\_shmem\_long\_sum\_reduce}{103}{subsubsection.4.7.3.39}%
+\contentsline {subsubsection}{\numberline {4.7.3.40}p\_shmem\_long\_test}{103}{subsubsection.4.7.3.40}%
+\contentsline {subsubsection}{\numberline {4.7.3.41}p\_shmem\_long\_test\_all}{103}{subsubsection.4.7.3.41}%
+\contentsline {subsubsection}{\numberline {4.7.3.42}p\_shmem\_long\_test\_all\_vector}{103}{subsubsection.4.7.3.42}%
+\contentsline {subsubsection}{\numberline {4.7.3.43}p\_shmem\_long\_test\_any}{103}{subsubsection.4.7.3.43}%
+\contentsline {subsubsection}{\numberline {4.7.3.44}p\_shmem\_long\_test\_any\_vector}{103}{subsubsection.4.7.3.44}%
+\contentsline {subsubsection}{\numberline {4.7.3.45}p\_shmem\_long\_test\_some}{103}{subsubsection.4.7.3.45}%
+\contentsline {subsubsection}{\numberline {4.7.3.46}p\_shmem\_long\_test\_some\_vector}{104}{subsubsection.4.7.3.46}%
+\contentsline {subsubsection}{\numberline {4.7.3.47}p\_shmem\_long\_wait\_until}{104}{subsubsection.4.7.3.47}%
+\contentsline {subsubsection}{\numberline {4.7.3.48}p\_shmem\_long\_wait\_until\_all}{104}{subsubsection.4.7.3.48}%
+\contentsline {subsubsection}{\numberline {4.7.3.49}p\_shmem\_long\_wait\_until\_all\_vector}{104}{subsubsection.4.7.3.49}%
+\contentsline {subsubsection}{\numberline {4.7.3.50}p\_shmem\_long\_wait\_until\_any}{104}{subsubsection.4.7.3.50}%
+\contentsline {subsubsection}{\numberline {4.7.3.51}p\_shmem\_long\_wait\_until\_any\_vector}{104}{subsubsection.4.7.3.51}%
+\contentsline {subsubsection}{\numberline {4.7.3.52}p\_shmem\_long\_wait\_until\_some}{104}{subsubsection.4.7.3.52}%
+\contentsline {subsubsection}{\numberline {4.7.3.53}p\_shmem\_long\_wait\_until\_some\_vector}{104}{subsubsection.4.7.3.53}%
+\contentsline {subsubsection}{\numberline {4.7.3.54}p\_shmem\_long\_xor\_reduce}{105}{subsubsection.4.7.3.54}%
+\contentsline {subsubsection}{\numberline {4.7.3.55}p\_shmem\_malloc}{105}{subsubsection.4.7.3.55}%
+\contentsline {subsubsection}{\numberline {4.7.3.56}p\_shmem\_malloc\_with\_hints}{105}{subsubsection.4.7.3.56}%
+\contentsline {subsubsection}{\numberline {4.7.3.57}p\_shmem\_my\_pe}{105}{subsubsection.4.7.3.57}%
+\contentsline {subsubsection}{\numberline {4.7.3.58}p\_shmem\_n\_pes}{105}{subsubsection.4.7.3.58}%
+\contentsline {subsubsection}{\numberline {4.7.3.59}p\_shmem\_pe\_accessible}{105}{subsubsection.4.7.3.59}%
+\contentsline {subsubsection}{\numberline {4.7.3.60}p\_shmem\_ptr}{105}{subsubsection.4.7.3.60}%
+\contentsline {subsubsection}{\numberline {4.7.3.61}p\_shmem\_query\_thread}{105}{subsubsection.4.7.3.61}%
+\contentsline {subsubsection}{\numberline {4.7.3.62}p\_shmem\_quiet}{106}{subsubsection.4.7.3.62}%
+\contentsline {subsubsection}{\numberline {4.7.3.63}p\_shmem\_realloc}{106}{subsubsection.4.7.3.63}%
+\contentsline {subsubsection}{\numberline {4.7.3.64}p\_shmem\_set\_lock}{106}{subsubsection.4.7.3.64}%
+\contentsline {subsubsection}{\numberline {4.7.3.65}p\_shmem\_signal\_fetch}{106}{subsubsection.4.7.3.65}%
+\contentsline {subsubsection}{\numberline {4.7.3.66}p\_shmem\_signal\_wait\_until}{106}{subsubsection.4.7.3.66}%
+\contentsline {subsubsection}{\numberline {4.7.3.67}p\_shmem\_sync}{106}{subsubsection.4.7.3.67}%
+\contentsline {subsubsection}{\numberline {4.7.3.68}p\_shmem\_sync\_all}{106}{subsubsection.4.7.3.68}%
+\contentsline {subsubsection}{\numberline {4.7.3.69}p\_shmem\_team\_create\_ctx}{106}{subsubsection.4.7.3.69}%
+\contentsline {subsubsection}{\numberline {4.7.3.70}p\_shmem\_team\_destroy}{107}{subsubsection.4.7.3.70}%
+\contentsline {subsubsection}{\numberline {4.7.3.71}p\_shmem\_team\_get\_config}{107}{subsubsection.4.7.3.71}%
+\contentsline {subsubsection}{\numberline {4.7.3.72}p\_shmem\_team\_my\_pe}{107}{subsubsection.4.7.3.72}%
+\contentsline {subsubsection}{\numberline {4.7.3.73}p\_shmem\_team\_n\_pes}{107}{subsubsection.4.7.3.73}%
+\contentsline {subsubsection}{\numberline {4.7.3.74}p\_shmem\_team\_split\_2d}{107}{subsubsection.4.7.3.74}%
+\contentsline {subsubsection}{\numberline {4.7.3.75}p\_shmem\_team\_split\_strided}{107}{subsubsection.4.7.3.75}%
+\contentsline {subsubsection}{\numberline {4.7.3.76}p\_shmem\_team\_translate\_pe}{107}{subsubsection.4.7.3.76}%
+\contentsline {subsubsection}{\numberline {4.7.3.77}p\_shmem\_ulong\_atomic\_add}{107}{subsubsection.4.7.3.77}%
+\contentsline {subsubsection}{\numberline {4.7.3.78}p\_shmem\_ulong\_atomic\_and}{108}{subsubsection.4.7.3.78}%
+\contentsline {subsubsection}{\numberline {4.7.3.79}p\_shmem\_ulong\_atomic\_compare\_swap}{108}{subsubsection.4.7.3.79}%
+\contentsline {subsubsection}{\numberline {4.7.3.80}p\_shmem\_ulong\_atomic\_compare\_swap\_nbi}{108}{subsubsection.4.7.3.80}%
+\contentsline {subsubsection}{\numberline {4.7.3.81}p\_shmem\_ulong\_atomic\_fetch}{108}{subsubsection.4.7.3.81}%
+\contentsline {subsubsection}{\numberline {4.7.3.82}p\_shmem\_ulong\_atomic\_fetch\_add}{108}{subsubsection.4.7.3.82}%
+\contentsline {subsubsection}{\numberline {4.7.3.83}p\_shmem\_ulong\_atomic\_fetch\_add\_nbi}{108}{subsubsection.4.7.3.83}%
+\contentsline {subsubsection}{\numberline {4.7.3.84}p\_shmem\_ulong\_atomic\_fetch\_and}{108}{subsubsection.4.7.3.84}%
+\contentsline {subsubsection}{\numberline {4.7.3.85}p\_shmem\_ulong\_atomic\_fetch\_and\_nbi}{108}{subsubsection.4.7.3.85}%
+\contentsline {subsubsection}{\numberline {4.7.3.86}p\_shmem\_ulong\_atomic\_fetch\_inc}{109}{subsubsection.4.7.3.86}%
+\contentsline {subsubsection}{\numberline {4.7.3.87}p\_shmem\_ulong\_atomic\_fetch\_inc\_nbi}{109}{subsubsection.4.7.3.87}%
+\contentsline {subsubsection}{\numberline {4.7.3.88}p\_shmem\_ulong\_atomic\_fetch\_nbi}{109}{subsubsection.4.7.3.88}%
+\contentsline {subsubsection}{\numberline {4.7.3.89}p\_shmem\_ulong\_atomic\_fetch\_or}{109}{subsubsection.4.7.3.89}%
+\contentsline {subsubsection}{\numberline {4.7.3.90}p\_shmem\_ulong\_atomic\_fetch\_or\_nbi}{109}{subsubsection.4.7.3.90}%
+\contentsline {subsubsection}{\numberline {4.7.3.91}p\_shmem\_ulong\_atomic\_fetch\_xor}{109}{subsubsection.4.7.3.91}%
+\contentsline {subsubsection}{\numberline {4.7.3.92}p\_shmem\_ulong\_atomic\_fetch\_xor\_nbi}{109}{subsubsection.4.7.3.92}%
+\contentsline {subsubsection}{\numberline {4.7.3.93}p\_shmem\_ulong\_atomic\_inc}{109}{subsubsection.4.7.3.93}%
+\contentsline {subsubsection}{\numberline {4.7.3.94}p\_shmem\_ulong\_atomic\_or}{110}{subsubsection.4.7.3.94}%
+\contentsline {subsubsection}{\numberline {4.7.3.95}p\_shmem\_ulong\_atomic\_set}{110}{subsubsection.4.7.3.95}%
+\contentsline {subsubsection}{\numberline {4.7.3.96}p\_shmem\_ulong\_atomic\_swap}{110}{subsubsection.4.7.3.96}%
+\contentsline {subsubsection}{\numberline {4.7.3.97}p\_shmem\_ulong\_atomic\_swap\_nbi}{110}{subsubsection.4.7.3.97}%
+\contentsline {subsubsection}{\numberline {4.7.3.98}p\_shmem\_ulong\_atomic\_xor}{110}{subsubsection.4.7.3.98}%
+\contentsline {section}{\numberline {4.8}routines.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cpp}{110}{section.4.8}%
+\contentsline {section}{\numberline {4.9}src/tests/atomics/atomics\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.cpp File Reference}{114}{section.4.9}%
+\contentsline {subsection}{\numberline {4.9.1}Detailed Description}{115}{subsection.4.9.1}%
+\contentsline {subsection}{\numberline {4.9.2}Function Documentation}{116}{subsection.4.9.2}%
+\contentsline {subsubsection}{\numberline {4.9.2.1}test\_shmem\_atomic\_add()}{116}{subsubsection.4.9.2.1}%
+\contentsline {subsubsection}{\numberline {4.9.2.2}test\_shmem\_atomic\_and()}{116}{subsubsection.4.9.2.2}%
+\contentsline {subsubsection}{\numberline {4.9.2.3}test\_shmem\_atomic\_compare\_swap()}{117}{subsubsection.4.9.2.3}%
+\contentsline {subsubsection}{\numberline {4.9.2.4}test\_shmem\_atomic\_compare\_swap\_nbi()}{117}{subsubsection.4.9.2.4}%
+\contentsline {subsubsection}{\numberline {4.9.2.5}test\_shmem\_atomic\_fetch()}{118}{subsubsection.4.9.2.5}%
+\contentsline {subsubsection}{\numberline {4.9.2.6}test\_shmem\_atomic\_fetch\_add()}{118}{subsubsection.4.9.2.6}%
+\contentsline {subsubsection}{\numberline {4.9.2.7}test\_shmem\_atomic\_fetch\_add\_nbi()}{119}{subsubsection.4.9.2.7}%
+\contentsline {subsubsection}{\numberline {4.9.2.8}test\_shmem\_atomic\_fetch\_and()}{119}{subsubsection.4.9.2.8}%
+\contentsline {subsubsection}{\numberline {4.9.2.9}test\_shmem\_atomic\_fetch\_and\_nbi()}{120}{subsubsection.4.9.2.9}%
+\contentsline {subsubsection}{\numberline {4.9.2.10}test\_shmem\_atomic\_fetch\_inc()}{120}{subsubsection.4.9.2.10}%
+\contentsline {subsubsection}{\numberline {4.9.2.11}test\_shmem\_atomic\_fetch\_inc\_nbi()}{121}{subsubsection.4.9.2.11}%
+\contentsline {subsubsection}{\numberline {4.9.2.12}test\_shmem\_atomic\_fetch\_nbi()}{121}{subsubsection.4.9.2.12}%
+\contentsline {subsubsection}{\numberline {4.9.2.13}test\_shmem\_atomic\_fetch\_or()}{122}{subsubsection.4.9.2.13}%
+\contentsline {subsubsection}{\numberline {4.9.2.14}test\_shmem\_atomic\_fetch\_or\_nbi()}{122}{subsubsection.4.9.2.14}%
+\contentsline {subsubsection}{\numberline {4.9.2.15}test\_shmem\_atomic\_fetch\_xor()}{123}{subsubsection.4.9.2.15}%
+\contentsline {subsubsection}{\numberline {4.9.2.16}test\_shmem\_atomic\_fetch\_xor\_nbi()}{123}{subsubsection.4.9.2.16}%
+\contentsline {subsubsection}{\numberline {4.9.2.17}test\_shmem\_atomic\_inc()}{124}{subsubsection.4.9.2.17}%
+\contentsline {subsubsection}{\numberline {4.9.2.18}test\_shmem\_atomic\_or()}{124}{subsubsection.4.9.2.18}%
+\contentsline {subsubsection}{\numberline {4.9.2.19}test\_shmem\_atomic\_set()}{125}{subsubsection.4.9.2.19}%
+\contentsline {subsubsection}{\numberline {4.9.2.20}test\_shmem\_atomic\_swap()}{125}{subsubsection.4.9.2.20}%
+\contentsline {subsubsection}{\numberline {4.9.2.21}test\_shmem\_atomic\_swap\_nbi()}{126}{subsubsection.4.9.2.21}%
+\contentsline {subsubsection}{\numberline {4.9.2.22}test\_shmem\_atomic\_xor()}{126}{subsubsection.4.9.2.22}%
+\contentsline {section}{\numberline {4.10}atomics\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cpp}{127}{section.4.10}%
+\contentsline {section}{\numberline {4.11}src/tests/atomics/atomics\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.hpp File Reference}{131}{section.4.11}%
+\contentsline {subsection}{\numberline {4.11.1}Detailed Description}{132}{subsection.4.11.1}%
+\contentsline {subsection}{\numberline {4.11.2}Function Documentation}{132}{subsection.4.11.2}%
+\contentsline {subsubsection}{\numberline {4.11.2.1}test\_shmem\_atomic\_add()}{132}{subsubsection.4.11.2.1}%
+\contentsline {subsubsection}{\numberline {4.11.2.2}test\_shmem\_atomic\_and()}{132}{subsubsection.4.11.2.2}%
+\contentsline {subsubsection}{\numberline {4.11.2.3}test\_shmem\_atomic\_compare\_swap()}{133}{subsubsection.4.11.2.3}%
+\contentsline {subsubsection}{\numberline {4.11.2.4}test\_shmem\_atomic\_compare\_swap\_nbi()}{133}{subsubsection.4.11.2.4}%
+\contentsline {subsubsection}{\numberline {4.11.2.5}test\_shmem\_atomic\_fetch()}{134}{subsubsection.4.11.2.5}%
+\contentsline {subsubsection}{\numberline {4.11.2.6}test\_shmem\_atomic\_fetch\_add()}{134}{subsubsection.4.11.2.6}%
+\contentsline {subsubsection}{\numberline {4.11.2.7}test\_shmem\_atomic\_fetch\_add\_nbi()}{135}{subsubsection.4.11.2.7}%
+\contentsline {subsubsection}{\numberline {4.11.2.8}test\_shmem\_atomic\_fetch\_and()}{135}{subsubsection.4.11.2.8}%
+\contentsline {subsubsection}{\numberline {4.11.2.9}test\_shmem\_atomic\_fetch\_and\_nbi()}{136}{subsubsection.4.11.2.9}%
+\contentsline {subsubsection}{\numberline {4.11.2.10}test\_shmem\_atomic\_fetch\_inc()}{136}{subsubsection.4.11.2.10}%
+\contentsline {subsubsection}{\numberline {4.11.2.11}test\_shmem\_atomic\_fetch\_inc\_nbi()}{137}{subsubsection.4.11.2.11}%
+\contentsline {subsubsection}{\numberline {4.11.2.12}test\_shmem\_atomic\_fetch\_nbi()}{137}{subsubsection.4.11.2.12}%
+\contentsline {subsubsection}{\numberline {4.11.2.13}test\_shmem\_atomic\_fetch\_or()}{138}{subsubsection.4.11.2.13}%
+\contentsline {subsubsection}{\numberline {4.11.2.14}test\_shmem\_atomic\_fetch\_or\_nbi()}{138}{subsubsection.4.11.2.14}%
+\contentsline {subsubsection}{\numberline {4.11.2.15}test\_shmem\_atomic\_fetch\_xor()}{139}{subsubsection.4.11.2.15}%
+\contentsline {subsubsection}{\numberline {4.11.2.16}test\_shmem\_atomic\_fetch\_xor\_nbi()}{139}{subsubsection.4.11.2.16}%
+\contentsline {subsubsection}{\numberline {4.11.2.17}test\_shmem\_atomic\_inc()}{140}{subsubsection.4.11.2.17}%
+\contentsline {subsubsection}{\numberline {4.11.2.18}test\_shmem\_atomic\_or()}{140}{subsubsection.4.11.2.18}%
+\contentsline {subsubsection}{\numberline {4.11.2.19}test\_shmem\_atomic\_set()}{141}{subsubsection.4.11.2.19}%
+\contentsline {subsubsection}{\numberline {4.11.2.20}test\_shmem\_atomic\_swap()}{141}{subsubsection.4.11.2.20}%
+\contentsline {subsubsection}{\numberline {4.11.2.21}test\_shmem\_atomic\_swap\_nbi()}{142}{subsubsection.4.11.2.21}%
+\contentsline {subsubsection}{\numberline {4.11.2.22}test\_shmem\_atomic\_xor()}{142}{subsubsection.4.11.2.22}%
+\contentsline {section}{\numberline {4.12}atomics\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{143}{section.4.12}%
+\contentsline {section}{\numberline {4.13}src/tests/collectives/collectives\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.cpp File Reference}{143}{section.4.13}%
+\contentsline {subsection}{\numberline {4.13.1}Detailed Description}{144}{subsection.4.13.1}%
+\contentsline {subsection}{\numberline {4.13.2}Function Documentation}{144}{subsection.4.13.2}%
+\contentsline {subsubsection}{\numberline {4.13.2.1}test\_shmem\_alltoall()}{144}{subsubsection.4.13.2.1}%
+\contentsline {subsubsection}{\numberline {4.13.2.2}test\_shmem\_alltoalls()}{145}{subsubsection.4.13.2.2}%
+\contentsline {subsubsection}{\numberline {4.13.2.3}test\_shmem\_broadcast()}{145}{subsubsection.4.13.2.3}%
+\contentsline {subsubsection}{\numberline {4.13.2.4}test\_shmem\_collect()}{146}{subsubsection.4.13.2.4}%
+\contentsline {subsubsection}{\numberline {4.13.2.5}test\_shmem\_fcollect()}{147}{subsubsection.4.13.2.5}%
+\contentsline {subsubsection}{\numberline {4.13.2.6}test\_shmem\_max\_reduce()}{147}{subsubsection.4.13.2.6}%
+\contentsline {subsubsection}{\numberline {4.13.2.7}test\_shmem\_min\_reduce()}{148}{subsubsection.4.13.2.7}%
+\contentsline {subsubsection}{\numberline {4.13.2.8}test\_shmem\_prod\_reduce()}{149}{subsubsection.4.13.2.8}%
+\contentsline {subsubsection}{\numberline {4.13.2.9}test\_shmem\_sum\_reduce()}{149}{subsubsection.4.13.2.9}%
+\contentsline {subsubsection}{\numberline {4.13.2.10}test\_shmem\_sync()}{150}{subsubsection.4.13.2.10}%
+\contentsline {subsubsection}{\numberline {4.13.2.11}test\_shmem\_sync\_all()}{150}{subsubsection.4.13.2.11}%
+\contentsline {section}{\numberline {4.14}collectives\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cpp}{151}{section.4.14}%
+\contentsline {section}{\numberline {4.15}src/tests/collectives/collectives\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.hpp File Reference}{153}{section.4.15}%
+\contentsline {subsection}{\numberline {4.15.1}Detailed Description}{154}{subsection.4.15.1}%
+\contentsline {subsection}{\numberline {4.15.2}Function Documentation}{154}{subsection.4.15.2}%
+\contentsline {subsubsection}{\numberline {4.15.2.1}test\_shmem\_alltoall()}{154}{subsubsection.4.15.2.1}%
+\contentsline {subsubsection}{\numberline {4.15.2.2}test\_shmem\_alltoalls()}{155}{subsubsection.4.15.2.2}%
+\contentsline {subsubsection}{\numberline {4.15.2.3}test\_shmem\_and\_reduce()}{156}{subsubsection.4.15.2.3}%
+\contentsline {subsubsection}{\numberline {4.15.2.4}test\_shmem\_broadcast()}{156}{subsubsection.4.15.2.4}%
+\contentsline {subsubsection}{\numberline {4.15.2.5}test\_shmem\_collect()}{157}{subsubsection.4.15.2.5}%
+\contentsline {subsubsection}{\numberline {4.15.2.6}test\_shmem\_fcollect()}{157}{subsubsection.4.15.2.6}%
+\contentsline {subsubsection}{\numberline {4.15.2.7}test\_shmem\_max\_reduce()}{158}{subsubsection.4.15.2.7}%
+\contentsline {subsubsection}{\numberline {4.15.2.8}test\_shmem\_min\_reduce()}{158}{subsubsection.4.15.2.8}%
+\contentsline {subsubsection}{\numberline {4.15.2.9}test\_shmem\_prod\_reduce()}{159}{subsubsection.4.15.2.9}%
+\contentsline {subsubsection}{\numberline {4.15.2.10}test\_shmem\_sum\_reduce()}{160}{subsubsection.4.15.2.10}%
+\contentsline {subsubsection}{\numberline {4.15.2.11}test\_shmem\_sync()}{160}{subsubsection.4.15.2.11}%
+\contentsline {subsubsection}{\numberline {4.15.2.12}test\_shmem\_sync\_all()}{161}{subsubsection.4.15.2.12}%
+\contentsline {section}{\numberline {4.16}collectives\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{161}{section.4.16}%
+\contentsline {section}{\numberline {4.17}src/tests/comms/comms\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.cpp File Reference}{161}{section.4.17}%
+\contentsline {subsection}{\numberline {4.17.1}Detailed Description}{162}{subsection.4.17.1}%
+\contentsline {subsection}{\numberline {4.17.2}Function Documentation}{162}{subsection.4.17.2}%
+\contentsline {subsubsection}{\numberline {4.17.2.1}test\_shmem\_ctx\_create()}{162}{subsubsection.4.17.2.1}%
+\contentsline {subsubsection}{\numberline {4.17.2.2}test\_shmem\_ctx\_destroy()}{163}{subsubsection.4.17.2.2}%
+\contentsline {subsubsection}{\numberline {4.17.2.3}test\_shmem\_ctx\_get\_team()}{163}{subsubsection.4.17.2.3}%
+\contentsline {subsubsection}{\numberline {4.17.2.4}test\_shmem\_team\_create\_ctx()}{164}{subsubsection.4.17.2.4}%
+\contentsline {section}{\numberline {4.18}comms\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cpp}{164}{section.4.18}%
+\contentsline {section}{\numberline {4.19}src/tests/comms/comms\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.hpp File Reference}{165}{section.4.19}%
+\contentsline {subsection}{\numberline {4.19.1}Detailed Description}{165}{subsection.4.19.1}%
+\contentsline {subsection}{\numberline {4.19.2}Function Documentation}{165}{subsection.4.19.2}%
+\contentsline {subsubsection}{\numberline {4.19.2.1}test\_shmem\_ctx\_create()}{165}{subsubsection.4.19.2.1}%
+\contentsline {subsubsection}{\numberline {4.19.2.2}test\_shmem\_ctx\_destroy()}{166}{subsubsection.4.19.2.2}%
+\contentsline {subsubsection}{\numberline {4.19.2.3}test\_shmem\_ctx\_get\_team()}{166}{subsubsection.4.19.2.3}%
+\contentsline {subsubsection}{\numberline {4.19.2.4}test\_shmem\_team\_create\_ctx()}{167}{subsubsection.4.19.2.4}%
+\contentsline {section}{\numberline {4.20}comms\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{167}{section.4.20}%
+\contentsline {section}{\numberline {4.21}src/tests/locking/locking\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.cpp File Reference}{167}{section.4.21}%
+\contentsline {subsection}{\numberline {4.21.1}Detailed Description}{168}{subsection.4.21.1}%
+\contentsline {subsection}{\numberline {4.21.2}Function Documentation}{168}{subsection.4.21.2}%
+\contentsline {subsubsection}{\numberline {4.21.2.1}test\_shmem\_lock\_unlock()}{168}{subsubsection.4.21.2.1}%
+\contentsline {section}{\numberline {4.22}locking\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cpp}{169}{section.4.22}%
+\contentsline {section}{\numberline {4.23}src/tests/locking/locking\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.hpp File Reference}{169}{section.4.23}%
+\contentsline {subsection}{\numberline {4.23.1}Detailed Description}{169}{subsection.4.23.1}%
+\contentsline {subsection}{\numberline {4.23.2}Function Documentation}{170}{subsection.4.23.2}%
+\contentsline {subsubsection}{\numberline {4.23.2.1}test\_shmem\_lock\_unlock()}{170}{subsubsection.4.23.2.1}%
+\contentsline {section}{\numberline {4.24}locking\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{170}{section.4.24}%
+\contentsline {section}{\numberline {4.25}src/tests/mem/mem\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.cpp File Reference}{171}{section.4.25}%
+\contentsline {subsection}{\numberline {4.25.1}Detailed Description}{171}{subsection.4.25.1}%
+\contentsline {subsection}{\numberline {4.25.2}Function Documentation}{171}{subsection.4.25.2}%
+\contentsline {subsubsection}{\numberline {4.25.2.1}test\_shmem\_addr\_accessible()}{171}{subsubsection.4.25.2.1}%
+\contentsline {subsubsection}{\numberline {4.25.2.2}test\_shmem\_align()}{172}{subsubsection.4.25.2.2}%
+\contentsline {subsubsection}{\numberline {4.25.2.3}test\_shmem\_calloc()}{173}{subsubsection.4.25.2.3}%
+\contentsline {subsubsection}{\numberline {4.25.2.4}test\_shmem\_malloc\_free()}{173}{subsubsection.4.25.2.4}%
+\contentsline {subsubsection}{\numberline {4.25.2.5}test\_shmem\_malloc\_with\_hints()}{174}{subsubsection.4.25.2.5}%
+\contentsline {subsubsection}{\numberline {4.25.2.6}test\_shmem\_ptr()}{174}{subsubsection.4.25.2.6}%
+\contentsline {subsubsection}{\numberline {4.25.2.7}test\_shmem\_realloc()}{175}{subsubsection.4.25.2.7}%
+\contentsline {section}{\numberline {4.26}mem\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cpp}{175}{section.4.26}%
+\contentsline {section}{\numberline {4.27}src/tests/mem/mem\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.hpp File Reference}{177}{section.4.27}%
+\contentsline {subsection}{\numberline {4.27.1}Detailed Description}{177}{subsection.4.27.1}%
+\contentsline {subsection}{\numberline {4.27.2}Function Documentation}{177}{subsection.4.27.2}%
+\contentsline {subsubsection}{\numberline {4.27.2.1}test\_shmem\_addr\_accessible()}{177}{subsubsection.4.27.2.1}%
+\contentsline {subsubsection}{\numberline {4.27.2.2}test\_shmem\_align()}{178}{subsubsection.4.27.2.2}%
+\contentsline {subsubsection}{\numberline {4.27.2.3}test\_shmem\_calloc()}{179}{subsubsection.4.27.2.3}%
+\contentsline {subsubsection}{\numberline {4.27.2.4}test\_shmem\_malloc\_free()}{179}{subsubsection.4.27.2.4}%
+\contentsline {subsubsection}{\numberline {4.27.2.5}test\_shmem\_malloc\_with\_hints()}{180}{subsubsection.4.27.2.5}%
+\contentsline {subsubsection}{\numberline {4.27.2.6}test\_shmem\_ptr()}{180}{subsubsection.4.27.2.6}%
+\contentsline {subsubsection}{\numberline {4.27.2.7}test\_shmem\_realloc()}{181}{subsubsection.4.27.2.7}%
+\contentsline {section}{\numberline {4.28}mem\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{181}{section.4.28}%
+\contentsline {section}{\numberline {4.29}src/tests/mem\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ordering/mem\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ordering\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.cpp File Reference}{181}{section.4.29}%
+\contentsline {subsection}{\numberline {4.29.1}Detailed Description}{182}{subsection.4.29.1}%
+\contentsline {subsection}{\numberline {4.29.2}Function Documentation}{182}{subsection.4.29.2}%
+\contentsline {subsubsection}{\numberline {4.29.2.1}test\_shmem\_fence()}{182}{subsubsection.4.29.2.1}%
+\contentsline {subsubsection}{\numberline {4.29.2.2}test\_shmem\_quiet()}{183}{subsubsection.4.29.2.2}%
+\contentsline {section}{\numberline {4.30}mem\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ordering\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cpp}{183}{section.4.30}%
+\contentsline {section}{\numberline {4.31}src/tests/mem\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ordering/mem\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ordering\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.hpp File Reference}{184}{section.4.31}%
+\contentsline {subsection}{\numberline {4.31.1}Detailed Description}{184}{subsection.4.31.1}%
+\contentsline {subsection}{\numberline {4.31.2}Function Documentation}{185}{subsection.4.31.2}%
+\contentsline {subsubsection}{\numberline {4.31.2.1}test\_shmem\_fence()}{185}{subsubsection.4.31.2.1}%
+\contentsline {subsubsection}{\numberline {4.31.2.2}test\_shmem\_quiet()}{185}{subsubsection.4.31.2.2}%
+\contentsline {section}{\numberline {4.32}mem\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ordering\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{186}{section.4.32}%
+\contentsline {section}{\numberline {4.33}src/tests/pt2pt/pt2pt\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.cpp File Reference}{186}{section.4.33}%
+\contentsline {subsection}{\numberline {4.33.1}Detailed Description}{187}{subsection.4.33.1}%
+\contentsline {subsection}{\numberline {4.33.2}Macro Definition Documentation}{187}{subsection.4.33.2}%
+\contentsline {subsubsection}{\numberline {4.33.2.1}TIMEOUT}{187}{subsubsection.4.33.2.1}%
+\contentsline {subsection}{\numberline {4.33.3}Function Documentation}{188}{subsection.4.33.3}%
+\contentsline {subsubsection}{\numberline {4.33.3.1}test\_shmem\_signal\_wait\_until()}{188}{subsubsection.4.33.3.1}%
+\contentsline {subsubsection}{\numberline {4.33.3.2}test\_shmem\_test()}{188}{subsubsection.4.33.3.2}%
+\contentsline {subsubsection}{\numberline {4.33.3.3}test\_shmem\_test\_all()}{189}{subsubsection.4.33.3.3}%
+\contentsline {subsubsection}{\numberline {4.33.3.4}test\_shmem\_test\_all\_vector()}{190}{subsubsection.4.33.3.4}%
+\contentsline {subsubsection}{\numberline {4.33.3.5}test\_shmem\_test\_any()}{191}{subsubsection.4.33.3.5}%
+\contentsline {subsubsection}{\numberline {4.33.3.6}test\_shmem\_test\_any\_vector()}{192}{subsubsection.4.33.3.6}%
+\contentsline {subsubsection}{\numberline {4.33.3.7}test\_shmem\_test\_some()}{192}{subsubsection.4.33.3.7}%
+\contentsline {subsubsection}{\numberline {4.33.3.8}test\_shmem\_test\_some\_vector()}{193}{subsubsection.4.33.3.8}%
+\contentsline {subsubsection}{\numberline {4.33.3.9}test\_shmem\_wait\_until()}{194}{subsubsection.4.33.3.9}%
+\contentsline {subsubsection}{\numberline {4.33.3.10}test\_shmem\_wait\_until\_all()}{195}{subsubsection.4.33.3.10}%
+\contentsline {subsubsection}{\numberline {4.33.3.11}test\_shmem\_wait\_until\_all\_vector()}{195}{subsubsection.4.33.3.11}%
+\contentsline {subsubsection}{\numberline {4.33.3.12}test\_shmem\_wait\_until\_any()}{196}{subsubsection.4.33.3.12}%
+\contentsline {subsubsection}{\numberline {4.33.3.13}test\_shmem\_wait\_until\_any\_vector()}{197}{subsubsection.4.33.3.13}%
+\contentsline {subsubsection}{\numberline {4.33.3.14}test\_shmem\_wait\_until\_some()}{198}{subsubsection.4.33.3.14}%
+\contentsline {subsubsection}{\numberline {4.33.3.15}test\_shmem\_wait\_until\_some\_vector()}{198}{subsubsection.4.33.3.15}%
+\contentsline {section}{\numberline {4.34}pt2pt\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cpp}{199}{section.4.34}%
+\contentsline {section}{\numberline {4.35}src/tests/pt2pt/pt2pt\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.hpp File Reference}{206}{section.4.35}%
+\contentsline {subsection}{\numberline {4.35.1}Detailed Description}{207}{subsection.4.35.1}%
+\contentsline {subsection}{\numberline {4.35.2}Function Documentation}{207}{subsection.4.35.2}%
+\contentsline {subsubsection}{\numberline {4.35.2.1}test\_shmem\_signal\_wait\_until()}{207}{subsubsection.4.35.2.1}%
+\contentsline {subsubsection}{\numberline {4.35.2.2}test\_shmem\_test()}{208}{subsubsection.4.35.2.2}%
+\contentsline {subsubsection}{\numberline {4.35.2.3}test\_shmem\_test\_all()}{208}{subsubsection.4.35.2.3}%
+\contentsline {subsubsection}{\numberline {4.35.2.4}test\_shmem\_test\_all\_vector()}{209}{subsubsection.4.35.2.4}%
+\contentsline {subsubsection}{\numberline {4.35.2.5}test\_shmem\_test\_any()}{210}{subsubsection.4.35.2.5}%
+\contentsline {subsubsection}{\numberline {4.35.2.6}test\_shmem\_test\_any\_vector()}{211}{subsubsection.4.35.2.6}%
+\contentsline {subsubsection}{\numberline {4.35.2.7}test\_shmem\_test\_some()}{212}{subsubsection.4.35.2.7}%
+\contentsline {subsubsection}{\numberline {4.35.2.8}test\_shmem\_test\_some\_vector()}{212}{subsubsection.4.35.2.8}%
+\contentsline {subsubsection}{\numberline {4.35.2.9}test\_shmem\_wait\_until()}{213}{subsubsection.4.35.2.9}%
+\contentsline {subsubsection}{\numberline {4.35.2.10}test\_shmem\_wait\_until\_all()}{214}{subsubsection.4.35.2.10}%
+\contentsline {subsubsection}{\numberline {4.35.2.11}test\_shmem\_wait\_until\_all\_vector()}{215}{subsubsection.4.35.2.11}%
+\contentsline {subsubsection}{\numberline {4.35.2.12}test\_shmem\_wait\_until\_any()}{215}{subsubsection.4.35.2.12}%
+\contentsline {subsubsection}{\numberline {4.35.2.13}test\_shmem\_wait\_until\_any\_vector()}{216}{subsubsection.4.35.2.13}%
+\contentsline {subsubsection}{\numberline {4.35.2.14}test\_shmem\_wait\_until\_some()}{217}{subsubsection.4.35.2.14}%
+\contentsline {subsubsection}{\numberline {4.35.2.15}test\_shmem\_wait\_until\_some\_vector()}{218}{subsubsection.4.35.2.15}%
+\contentsline {section}{\numberline {4.36}pt2pt\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{218}{section.4.36}%
+\contentsline {section}{\numberline {4.37}src/tests/remote/remote\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.cpp File Reference}{219}{section.4.37}%
+\contentsline {subsection}{\numberline {4.37.1}Detailed Description}{220}{subsection.4.37.1}%
+\contentsline {subsection}{\numberline {4.37.2}Function Documentation}{220}{subsection.4.37.2}%
+\contentsline {subsubsection}{\numberline {4.37.2.1}test\_shmem\_g()}{220}{subsubsection.4.37.2.1}%
+\contentsline {subsubsection}{\numberline {4.37.2.2}test\_shmem\_get()}{221}{subsubsection.4.37.2.2}%
+\contentsline {subsubsection}{\numberline {4.37.2.3}test\_shmem\_get\_nbi()}{221}{subsubsection.4.37.2.3}%
+\contentsline {subsubsection}{\numberline {4.37.2.4}test\_shmem\_iget()}{222}{subsubsection.4.37.2.4}%
+\contentsline {subsubsection}{\numberline {4.37.2.5}test\_shmem\_iput()}{223}{subsubsection.4.37.2.5}%
+\contentsline {subsubsection}{\numberline {4.37.2.6}test\_shmem\_p()}{224}{subsubsection.4.37.2.6}%
+\contentsline {subsubsection}{\numberline {4.37.2.7}test\_shmem\_put()}{224}{subsubsection.4.37.2.7}%
+\contentsline {subsubsection}{\numberline {4.37.2.8}test\_shmem\_put\_nbi()}{225}{subsubsection.4.37.2.8}%
+\contentsline {section}{\numberline {4.38}remote\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cpp}{226}{section.4.38}%
+\contentsline {section}{\numberline {4.39}src/tests/remote/remote\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.hpp File Reference}{228}{section.4.39}%
+\contentsline {subsection}{\numberline {4.39.1}Detailed Description}{229}{subsection.4.39.1}%
+\contentsline {subsection}{\numberline {4.39.2}Function Documentation}{229}{subsection.4.39.2}%
+\contentsline {subsubsection}{\numberline {4.39.2.1}test\_shmem\_g()}{229}{subsubsection.4.39.2.1}%
+\contentsline {subsubsection}{\numberline {4.39.2.2}test\_shmem\_get()}{230}{subsubsection.4.39.2.2}%
+\contentsline {subsubsection}{\numberline {4.39.2.3}test\_shmem\_get\_nbi()}{231}{subsubsection.4.39.2.3}%
+\contentsline {subsubsection}{\numberline {4.39.2.4}test\_shmem\_iget()}{232}{subsubsection.4.39.2.4}%
+\contentsline {subsubsection}{\numberline {4.39.2.5}test\_shmem\_iput()}{233}{subsubsection.4.39.2.5}%
+\contentsline {subsubsection}{\numberline {4.39.2.6}test\_shmem\_p()}{234}{subsubsection.4.39.2.6}%
+\contentsline {subsubsection}{\numberline {4.39.2.7}test\_shmem\_put()}{235}{subsubsection.4.39.2.7}%
+\contentsline {subsubsection}{\numberline {4.39.2.8}test\_shmem\_put\_nbi()}{236}{subsubsection.4.39.2.8}%
+\contentsline {section}{\numberline {4.40}remote\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{237}{section.4.40}%
+\contentsline {section}{\numberline {4.41}src/tests/setup/setup\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.cpp File Reference}{237}{section.4.41}%
+\contentsline {subsection}{\numberline {4.41.1}Detailed Description}{238}{subsection.4.41.1}%
+\contentsline {subsection}{\numberline {4.41.2}Function Documentation}{238}{subsection.4.41.2}%
+\contentsline {subsubsection}{\numberline {4.41.2.1}test\_shmem\_barrier()}{238}{subsubsection.4.41.2.1}%
+\contentsline {subsubsection}{\numberline {4.41.2.2}test\_shmem\_barrier\_all()}{238}{subsubsection.4.41.2.2}%
+\contentsline {subsubsection}{\numberline {4.41.2.3}test\_shmem\_fake\_routine()}{239}{subsubsection.4.41.2.3}%
+\contentsline {subsubsection}{\numberline {4.41.2.4}test\_shmem\_finalize()}{239}{subsubsection.4.41.2.4}%
+\contentsline {subsubsection}{\numberline {4.41.2.5}test\_shmem\_global\_exit()}{240}{subsubsection.4.41.2.5}%
+\contentsline {subsubsection}{\numberline {4.41.2.6}test\_shmem\_info\_get\_name()}{240}{subsubsection.4.41.2.6}%
+\contentsline {subsubsection}{\numberline {4.41.2.7}test\_shmem\_info\_get\_version()}{240}{subsubsection.4.41.2.7}%
+\contentsline {subsubsection}{\numberline {4.41.2.8}test\_shmem\_init()}{241}{subsubsection.4.41.2.8}%
+\contentsline {subsubsection}{\numberline {4.41.2.9}test\_shmem\_my\_pe()}{241}{subsubsection.4.41.2.9}%
+\contentsline {subsubsection}{\numberline {4.41.2.10}test\_shmem\_n\_pes()}{241}{subsubsection.4.41.2.10}%
+\contentsline {subsubsection}{\numberline {4.41.2.11}test\_shmem\_pe\_accessible()}{242}{subsubsection.4.41.2.11}%
+\contentsline {section}{\numberline {4.42}setup\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cpp}{242}{section.4.42}%
+\contentsline {section}{\numberline {4.43}src/tests/setup/setup\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.hpp File Reference}{243}{section.4.43}%
+\contentsline {subsection}{\numberline {4.43.1}Detailed Description}{244}{subsection.4.43.1}%
+\contentsline {subsection}{\numberline {4.43.2}Function Documentation}{244}{subsection.4.43.2}%
+\contentsline {subsubsection}{\numberline {4.43.2.1}test\_shmem\_barrier()}{244}{subsubsection.4.43.2.1}%
+\contentsline {subsubsection}{\numberline {4.43.2.2}test\_shmem\_barrier\_all()}{245}{subsubsection.4.43.2.2}%
+\contentsline {subsubsection}{\numberline {4.43.2.3}test\_shmem\_fake\_routine()}{245}{subsubsection.4.43.2.3}%
+\contentsline {subsubsection}{\numberline {4.43.2.4}test\_shmem\_finalize()}{246}{subsubsection.4.43.2.4}%
+\contentsline {subsubsection}{\numberline {4.43.2.5}test\_shmem\_global\_exit()}{246}{subsubsection.4.43.2.5}%
+\contentsline {subsubsection}{\numberline {4.43.2.6}test\_shmem\_info\_get\_name()}{247}{subsubsection.4.43.2.6}%
+\contentsline {subsubsection}{\numberline {4.43.2.7}test\_shmem\_info\_get\_version()}{247}{subsubsection.4.43.2.7}%
+\contentsline {subsubsection}{\numberline {4.43.2.8}test\_shmem\_init()}{248}{subsubsection.4.43.2.8}%
+\contentsline {subsubsection}{\numberline {4.43.2.9}test\_shmem\_my\_pe()}{248}{subsubsection.4.43.2.9}%
+\contentsline {subsubsection}{\numberline {4.43.2.10}test\_shmem\_n\_pes()}{249}{subsubsection.4.43.2.10}%
+\contentsline {subsubsection}{\numberline {4.43.2.11}test\_shmem\_pe\_accessible()}{249}{subsubsection.4.43.2.11}%
+\contentsline {section}{\numberline {4.44}setup\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{250}{section.4.44}%
+\contentsline {section}{\numberline {4.45}src/tests/signaling/signaling\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.cpp File Reference}{250}{section.4.45}%
+\contentsline {subsection}{\numberline {4.45.1}Detailed Description}{250}{subsection.4.45.1}%
+\contentsline {subsection}{\numberline {4.45.2}Function Documentation}{251}{subsection.4.45.2}%
+\contentsline {subsubsection}{\numberline {4.45.2.1}test\_shmem\_put\_signal()}{251}{subsubsection.4.45.2.1}%
+\contentsline {subsubsection}{\numberline {4.45.2.2}test\_shmem\_put\_signal\_nbi()}{251}{subsubsection.4.45.2.2}%
+\contentsline {subsubsection}{\numberline {4.45.2.3}test\_shmem\_signal\_fetch()}{252}{subsubsection.4.45.2.3}%
+\contentsline {section}{\numberline {4.46}signaling\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cpp}{253}{section.4.46}%
+\contentsline {section}{\numberline {4.47}src/tests/signaling/signaling\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.hpp File Reference}{254}{section.4.47}%
+\contentsline {subsection}{\numberline {4.47.1}Detailed Description}{254}{subsection.4.47.1}%
+\contentsline {subsection}{\numberline {4.47.2}Function Documentation}{254}{subsection.4.47.2}%
+\contentsline {subsubsection}{\numberline {4.47.2.1}test\_shmem\_put\_signal()}{254}{subsubsection.4.47.2.1}%
+\contentsline {subsubsection}{\numberline {4.47.2.2}test\_shmem\_put\_signal\_nbi()}{255}{subsubsection.4.47.2.2}%
+\contentsline {subsubsection}{\numberline {4.47.2.3}test\_shmem\_signal\_fetch()}{256}{subsubsection.4.47.2.3}%
+\contentsline {section}{\numberline {4.48}signaling\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{256}{section.4.48}%
+\contentsline {section}{\numberline {4.49}src/tests/teams/teams\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.cpp File Reference}{257}{section.4.49}%
+\contentsline {subsection}{\numberline {4.49.1}Detailed Description}{257}{subsection.4.49.1}%
+\contentsline {subsection}{\numberline {4.49.2}Function Documentation}{257}{subsection.4.49.2}%
+\contentsline {subsubsection}{\numberline {4.49.2.1}test\_shmem\_team\_destroy()}{257}{subsubsection.4.49.2.1}%
+\contentsline {subsubsection}{\numberline {4.49.2.2}test\_shmem\_team\_get\_config()}{258}{subsubsection.4.49.2.2}%
+\contentsline {subsubsection}{\numberline {4.49.2.3}test\_shmem\_team\_my\_pe()}{258}{subsubsection.4.49.2.3}%
+\contentsline {subsubsection}{\numberline {4.49.2.4}test\_shmem\_team\_n\_pes()}{259}{subsubsection.4.49.2.4}%
+\contentsline {subsubsection}{\numberline {4.49.2.5}test\_shmem\_team\_split\_2d()}{259}{subsubsection.4.49.2.5}%
+\contentsline {subsubsection}{\numberline {4.49.2.6}test\_shmem\_team\_split\_strided()}{260}{subsubsection.4.49.2.6}%
+\contentsline {subsubsection}{\numberline {4.49.2.7}test\_shmem\_team\_translate\_pe()}{260}{subsubsection.4.49.2.7}%
+\contentsline {section}{\numberline {4.50}teams\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cpp}{261}{section.4.50}%
+\contentsline {section}{\numberline {4.51}src/tests/teams/teams\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.hpp File Reference}{261}{section.4.51}%
+\contentsline {subsection}{\numberline {4.51.1}Detailed Description}{262}{subsection.4.51.1}%
+\contentsline {subsection}{\numberline {4.51.2}Function Documentation}{262}{subsection.4.51.2}%
+\contentsline {subsubsection}{\numberline {4.51.2.1}test\_shmem\_team\_destroy()}{262}{subsubsection.4.51.2.1}%
+\contentsline {subsubsection}{\numberline {4.51.2.2}test\_shmem\_team\_get\_config()}{263}{subsubsection.4.51.2.2}%
+\contentsline {subsubsection}{\numberline {4.51.2.3}test\_shmem\_team\_my\_pe()}{263}{subsubsection.4.51.2.3}%
+\contentsline {subsubsection}{\numberline {4.51.2.4}test\_shmem\_team\_n\_pes()}{264}{subsubsection.4.51.2.4}%
+\contentsline {subsubsection}{\numberline {4.51.2.5}test\_shmem\_team\_split\_2d()}{264}{subsubsection.4.51.2.5}%
+\contentsline {subsubsection}{\numberline {4.51.2.6}test\_shmem\_team\_split\_strided()}{265}{subsubsection.4.51.2.6}%
+\contentsline {subsubsection}{\numberline {4.51.2.7}test\_shmem\_team\_translate\_pe()}{265}{subsubsection.4.51.2.7}%
+\contentsline {section}{\numberline {4.52}teams\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{266}{section.4.52}%
+\contentsline {section}{\numberline {4.53}src/tests/threads/threads\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.cpp File Reference}{266}{section.4.53}%
+\contentsline {subsection}{\numberline {4.53.1}Detailed Description}{266}{subsection.4.53.1}%
+\contentsline {subsection}{\numberline {4.53.2}Function Documentation}{266}{subsection.4.53.2}%
+\contentsline {subsubsection}{\numberline {4.53.2.1}test\_shmem\_init\_thread()}{266}{subsubsection.4.53.2.1}%
+\contentsline {subsubsection}{\numberline {4.53.2.2}test\_shmem\_query\_thread()}{267}{subsubsection.4.53.2.2}%
+\contentsline {section}{\numberline {4.54}threads\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cpp}{267}{section.4.54}%
+\contentsline {section}{\numberline {4.55}src/tests/threads/threads\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.hpp File Reference}{268}{section.4.55}%
+\contentsline {subsection}{\numberline {4.55.1}Detailed Description}{268}{subsection.4.55.1}%
+\contentsline {subsection}{\numberline {4.55.2}Function Documentation}{268}{subsection.4.55.2}%
+\contentsline {subsubsection}{\numberline {4.55.2.1}test\_shmem\_init\_thread()}{268}{subsubsection.4.55.2.1}%
+\contentsline {subsubsection}{\numberline {4.55.2.2}test\_shmem\_query\_thread()}{269}{subsubsection.4.55.2.2}%
+\contentsline {section}{\numberline {4.56}threads\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tests.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{269}{section.4.56}%
+\contentsline {chapter}{Index}{271}{section*.37}%

@@ -1,0 +1,1001 @@
+\doxysection{src/tests/pt2pt/pt2pt\+\_\+tests.hpp File Reference}
+\hypertarget{pt2pt__tests_8hpp}{}\label{pt2pt__tests_8hpp}\index{src/tests/pt2pt/pt2pt\_tests.hpp@{src/tests/pt2pt/pt2pt\_tests.hpp}}
+
+
+Contains function declarations for the point-\/to-\/point synchronization routines tests.  
+
+
+{\ttfamily \#include "{}routines.\+hpp"{}}\newline
+{\ttfamily \#include $<$shmem.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{pt2pt__tests_8hpp_a4202a4aa5eebd168bbefe34440c430cb}{test\+\_\+shmem\+\_\+wait\+\_\+until}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+wait\+\_\+until() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{pt2pt__tests_8hpp_a8a130348897e35329a6972d3b9fdc612}{test\+\_\+shmem\+\_\+wait\+\_\+until\+\_\+all}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+wait\+\_\+until\+\_\+all() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{pt2pt__tests_8hpp_a7ae63e76905a25a0945f52839cf1c0b6}{test\+\_\+shmem\+\_\+wait\+\_\+until\+\_\+any}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+wait\+\_\+until\+\_\+any() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{pt2pt__tests_8hpp_aa3dd1476ac610d2b5f77c33f50f2c62a}{test\+\_\+shmem\+\_\+wait\+\_\+until\+\_\+some}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+wait\+\_\+until\+\_\+some() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{pt2pt__tests_8hpp_aeafeebf2dca4afb4da7861be7b1e623a}{test\+\_\+shmem\+\_\+wait\+\_\+until\+\_\+all\+\_\+vector}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+wait\+\_\+until\+\_\+all\+\_\+vector() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{pt2pt__tests_8hpp_a895cca63ec0eb669da0e5956f6570d9b}{test\+\_\+shmem\+\_\+wait\+\_\+until\+\_\+any\+\_\+vector}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+wait\+\_\+until\+\_\+any\+\_\+vector() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{pt2pt__tests_8hpp_a2d6f9f170e32cb71c63db6488d0b9823}{test\+\_\+shmem\+\_\+wait\+\_\+until\+\_\+some\+\_\+vector}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+wait\+\_\+until\+\_\+some\+\_\+vector() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{pt2pt__tests_8hpp_ae16c96bfb538390965d9b6c58d6e64fd}{test\+\_\+shmem\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+test() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{pt2pt__tests_8hpp_ab336fcdf68ec190ce89dfead64916e7e}{test\+\_\+shmem\+\_\+test\+\_\+all}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+test\+\_\+all() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{pt2pt__tests_8hpp_a1b27bf47e06984417985d5afc3bfbdcd}{test\+\_\+shmem\+\_\+test\+\_\+any}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+test\+\_\+any() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{pt2pt__tests_8hpp_a77e4dcc38dcf8992c001c2df8b14ba19}{test\+\_\+shmem\+\_\+test\+\_\+some}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+test\+\_\+some() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{pt2pt__tests_8hpp_aad3be7d4fde41aff12bf73ceca1b8032}{test\+\_\+shmem\+\_\+test\+\_\+all\+\_\+vector}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+test\+\_\+all\+\_\+vector() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{pt2pt__tests_8hpp_ac6d30817596acc2ef5df61d606ef9b26}{test\+\_\+shmem\+\_\+test\+\_\+any\+\_\+vector}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+test\+\_\+any\+\_\+vector() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{pt2pt__tests_8hpp_a93e89eb0e1529fc5cf5080a8805cbe5b}{test\+\_\+shmem\+\_\+test\+\_\+some\+\_\+vector}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+test\+\_\+some\+\_\+vector() routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{pt2pt__tests_8hpp_acb015b308d5081dd374fdf6f0a1230d6}{test\+\_\+shmem\+\_\+signal\+\_\+wait\+\_\+until}} (void)
+\begin{DoxyCompactList}\small\item\em Tests the shmem\+\_\+signal\+\_\+wait\+\_\+until() routine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains function declarations for the point-\/to-\/point synchronization routines tests. 
+
+
+
+Definition in file \mbox{\hyperlink{pt2pt__tests_8hpp_source}{pt2pt\+\_\+tests.\+hpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{pt2pt__tests_8hpp_acb015b308d5081dd374fdf6f0a1230d6}\index{pt2pt\_tests.hpp@{pt2pt\_tests.hpp}!test\_shmem\_signal\_wait\_until@{test\_shmem\_signal\_wait\_until}}
+\index{test\_shmem\_signal\_wait\_until@{test\_shmem\_signal\_wait\_until}!pt2pt\_tests.hpp@{pt2pt\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_signal\_wait\_until()}{test\_shmem\_signal\_wait\_until()}}
+{\footnotesize\ttfamily \label{pt2pt__tests_8hpp_acb015b308d5081dd374fdf6f0a1230d6} 
+bool test\+\_\+shmem\+\_\+signal\+\_\+wait\+\_\+until (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+signal\+\_\+wait\+\_\+until() routine. 
+
+This test verifies that the shmem\+\_\+signal\+\_\+wait\+\_\+until() function correctly waits until a signal on a memory location meets a specified condition.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00648}{648}} of file \mbox{\hyperlink{pt2pt__tests_8cpp_source}{pt2pt\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00648\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00649\ \ \ uint64\_t\ *flag\ =\ (uint64\_t\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(uint64\_t));}
+\DoxyCodeLine{00650\ \ \ \textcolor{keywordflow}{if}\ (flag\ ==\ NULL)\ \{}
+\DoxyCodeLine{00651\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00652\ \ \ \}}
+\DoxyCodeLine{00653\ }
+\DoxyCodeLine{00654\ \ \ *flag\ =\ 0;}
+\DoxyCodeLine{00655\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00656\ \ \ uint64\_t\ value\ =\ 1;}
+\DoxyCodeLine{00657\ }
+\DoxyCodeLine{00658\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00659\ }
+\DoxyCodeLine{00660\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00661\ \ \ \ \ shmem\_uint64\_p(flag,\ value,\ 1);}
+\DoxyCodeLine{00662\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{00663\ \ \ \}}
+\DoxyCodeLine{00664\ }
+\DoxyCodeLine{00665\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00666\ }
+\DoxyCodeLine{00667\ \ \ \textcolor{keywordflow}{if}\ (mype\ !=\ 0)\ \{}
+\DoxyCodeLine{00668\ \ \ \ \ time\_t\ start\_time\ =\ time(NULL);}
+\DoxyCodeLine{00669\ \ \ \ \ \textcolor{keywordflow}{while}\ (*flag\ !=\ value\ \&\&\ time(NULL)\ -\/\ start\_time\ <\ \mbox{\hyperlink{pt2pt__tests_8cpp_a45ba202b05caf39795aeca91b0ae547e}{TIMEOUT}})\ \{}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_ac38c88b37a5d16c944cbf7a094ff4c09}{p\_shmem\_signal\_wait\_until}}(flag,\ SHMEM\_CMP\_EQ,\ value);}
+\DoxyCodeLine{00671\ \ \ \ \ \}}
+\DoxyCodeLine{00672\ \ \ \ \ \textcolor{keywordflow}{if}\ (*flag\ !=\ value)\ \{}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flag);}
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00675\ \ \ \ \ \}}
+\DoxyCodeLine{00676\ \ \ \}}
+\DoxyCodeLine{00677\ }
+\DoxyCodeLine{00678\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flag);}
+\DoxyCodeLine{00679\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00680\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, \mbox{\hyperlink{routines_8cpp_source_l00129}{p\+\_\+shmem\+\_\+quiet}}, \mbox{\hyperlink{routines_8cpp_source_l00126}{p\+\_\+shmem\+\_\+signal\+\_\+wait\+\_\+until}}, and \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00008}{TIMEOUT}}.
+
+\Hypertarget{pt2pt__tests_8hpp_ae16c96bfb538390965d9b6c58d6e64fd}\index{pt2pt\_tests.hpp@{pt2pt\_tests.hpp}!test\_shmem\_test@{test\_shmem\_test}}
+\index{test\_shmem\_test@{test\_shmem\_test}!pt2pt\_tests.hpp@{pt2pt\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_test()}{test\_shmem\_test()}}
+{\footnotesize\ttfamily \label{pt2pt__tests_8hpp_ae16c96bfb538390965d9b6c58d6e64fd} 
+bool test\+\_\+shmem\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+test() routine. 
+
+This test verifies that the shmem\+\_\+test() function correctly tests whether a condition on a memory location is met without blocking.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00174}{174}} of file \mbox{\hyperlink{pt2pt__tests_8cpp_source}{pt2pt\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00175\ \ \ \textcolor{keywordtype}{long}\ *flag\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{00176\ \ \ \textcolor{keywordflow}{if}\ (flag\ ==\ NULL)\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00178\ \ \ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ *flag\ =\ 0;}
+\DoxyCodeLine{00181\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ *flag\ =\ 1;}
+\DoxyCodeLine{00187\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{00188\ \ \ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \textcolor{keywordflow}{if}\ (mype\ !=\ 0)\ \{}
+\DoxyCodeLine{00193\ \ \ \ \ time\_t\ start\_time\ =\ time(NULL);}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordflow}{while}\ (!\mbox{\hyperlink{routines_8hpp_a5d557e7e78c91f00556ae822effa8746}{p\_shmem\_long\_test}}(flag,\ SHMEM\_CMP\_EQ,\ 1))\ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (time(NULL)\ -\/\ start\_time\ >\ \mbox{\hyperlink{pt2pt__tests_8cpp_a45ba202b05caf39795aeca91b0ae547e}{TIMEOUT}})\ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ usleep(1000);}
+\DoxyCodeLine{00199\ \ \ \ \ \}}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordflow}{if}\ (*flag\ !=\ 1)\ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flag);}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00203\ \ \ \ \ \}}
+\DoxyCodeLine{00204\ \ \ \}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flag);}
+\DoxyCodeLine{00207\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00208\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00119}{p\+\_\+shmem\+\_\+long\+\_\+test}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, \mbox{\hyperlink{routines_8cpp_source_l00129}{p\+\_\+shmem\+\_\+quiet}}, and \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00008}{TIMEOUT}}.
+
+\Hypertarget{pt2pt__tests_8hpp_ab336fcdf68ec190ce89dfead64916e7e}\index{pt2pt\_tests.hpp@{pt2pt\_tests.hpp}!test\_shmem\_test\_all@{test\_shmem\_test\_all}}
+\index{test\_shmem\_test\_all@{test\_shmem\_test\_all}!pt2pt\_tests.hpp@{pt2pt\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_test\_all()}{test\_shmem\_test\_all()}}
+{\footnotesize\ttfamily \label{pt2pt__tests_8hpp_ab336fcdf68ec190ce89dfead64916e7e} 
+bool test\+\_\+shmem\+\_\+test\+\_\+all (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+test\+\_\+all() routine. 
+
+This test verifies that the shmem\+\_\+test\+\_\+all() function correctly tests whether all specified conditions on an array of memory locations are met without blocking.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00218}{218}} of file \mbox{\hyperlink{pt2pt__tests_8cpp_source}{pt2pt\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00219\ \ \ \textcolor{keywordtype}{long}\ *flags\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(4\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{00220\ \ \ \textcolor{keywordflow}{if}\ (flags\ ==\ NULL)\ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00222\ \ \ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ flags[i]\ =\ 0;}
+\DoxyCodeLine{00226\ \ \ \}}
+\DoxyCodeLine{00227\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)\ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ flags[i]\ =\ 1;}
+\DoxyCodeLine{00234\ \ \ \ \ \}}
+\DoxyCodeLine{00235\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{00236\ \ \ \}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \ \ \textcolor{keywordflow}{if}\ (mype\ !=\ 0)\ \{}
+\DoxyCodeLine{00241\ \ \ \ \ time\_t\ start\_time\ =\ time(NULL);}
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keywordflow}{while}\ (!\mbox{\hyperlink{routines_8hpp_a6a232db440314bf0d03be2f8996e1cc1}{p\_shmem\_long\_test\_all}}(flags,\ 4,\ NULL,\ SHMEM\_CMP\_EQ,\ 1))\ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (time(NULL)\ -\/\ start\_time\ >\ \mbox{\hyperlink{pt2pt__tests_8cpp_a45ba202b05caf39795aeca91b0ae547e}{TIMEOUT}})\ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ usleep(1000);}
+\DoxyCodeLine{00247\ \ \ \ \ \}}
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)\ \{}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (flags[i]\ !=\ 1)\ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00253\ \ \ \ \ \}}
+\DoxyCodeLine{00254\ \ \ \}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00257\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00258\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00120}{p\+\_\+shmem\+\_\+long\+\_\+test\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, \mbox{\hyperlink{routines_8cpp_source_l00129}{p\+\_\+shmem\+\_\+quiet}}, and \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00008}{TIMEOUT}}.
+
+\Hypertarget{pt2pt__tests_8hpp_aad3be7d4fde41aff12bf73ceca1b8032}\index{pt2pt\_tests.hpp@{pt2pt\_tests.hpp}!test\_shmem\_test\_all\_vector@{test\_shmem\_test\_all\_vector}}
+\index{test\_shmem\_test\_all\_vector@{test\_shmem\_test\_all\_vector}!pt2pt\_tests.hpp@{pt2pt\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_test\_all\_vector()}{test\_shmem\_test\_all\_vector()}}
+{\footnotesize\ttfamily \label{pt2pt__tests_8hpp_aad3be7d4fde41aff12bf73ceca1b8032} 
+bool test\+\_\+shmem\+\_\+test\+\_\+all\+\_\+vector (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+test\+\_\+all\+\_\+vector() routine. 
+
+This test verifies that the shmem\+\_\+test\+\_\+all\+\_\+vector() function correctly tests whether all specified conditions on a vector of memory locations are met without blocking.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00492}{492}} of file \mbox{\hyperlink{pt2pt__tests_8cpp_source}{pt2pt\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00493\ \ \ \textcolor{keywordtype}{long}\ *flags\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(4\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{00494\ \ \ \textcolor{keywordflow}{if}\ (flags\ ==\ NULL)\ \{}
+\DoxyCodeLine{00495\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00496\ \ \ \}}
+\DoxyCodeLine{00497\ }
+\DoxyCodeLine{00498\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)\ \{}
+\DoxyCodeLine{00499\ \ \ \ \ flags[i]\ =\ 0;}
+\DoxyCodeLine{00500\ \ \ \}}
+\DoxyCodeLine{00501\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00502\ }
+\DoxyCodeLine{00503\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00504\ }
+\DoxyCodeLine{00505\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00506\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)\ \{}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ flags[i]\ =\ 1;}
+\DoxyCodeLine{00508\ \ \ \ \ \}}
+\DoxyCodeLine{00509\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{00510\ \ \ \}}
+\DoxyCodeLine{00511\ }
+\DoxyCodeLine{00512\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00513\ }
+\DoxyCodeLine{00514\ \ \ \textcolor{keywordflow}{if}\ (mype\ !=\ 0)\ \{}
+\DoxyCodeLine{00515\ \ \ \ \ \textcolor{keywordtype}{long}\ cmp\_values[4]\ =\ \{1,\ 1,\ 1,\ 1\};}
+\DoxyCodeLine{00516\ \ \ \ \ time\_t\ start\_time\ =\ time(NULL);}
+\DoxyCodeLine{00517\ \ \ \ \ \textcolor{keywordflow}{while}\ (!\mbox{\hyperlink{routines_8hpp_a5b1a28c4830350c944e5ce5851a401fc}{p\_shmem\_long\_test\_all\_vector}}(flags,\ 4,\ NULL,\ SHMEM\_CMP\_EQ,\ cmp\_values))\ \{}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (time(NULL)\ -\/\ start\_time\ >\ \mbox{\hyperlink{pt2pt__tests_8cpp_a45ba202b05caf39795aeca91b0ae547e}{TIMEOUT}})\ \{}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ usleep(1000);}
+\DoxyCodeLine{00522\ \ \ \ \ \}}
+\DoxyCodeLine{00523\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)\ \{}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (flags[i]\ !=\ 1)\ \{}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00528\ \ \ \ \ \}}
+\DoxyCodeLine{00529\ \ \ \}}
+\DoxyCodeLine{00530\ }
+\DoxyCodeLine{00531\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00532\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00533\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00123}{p\+\_\+shmem\+\_\+long\+\_\+test\+\_\+all\+\_\+vector}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, \mbox{\hyperlink{routines_8cpp_source_l00129}{p\+\_\+shmem\+\_\+quiet}}, and \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00008}{TIMEOUT}}.
+
+\Hypertarget{pt2pt__tests_8hpp_a1b27bf47e06984417985d5afc3bfbdcd}\index{pt2pt\_tests.hpp@{pt2pt\_tests.hpp}!test\_shmem\_test\_any@{test\_shmem\_test\_any}}
+\index{test\_shmem\_test\_any@{test\_shmem\_test\_any}!pt2pt\_tests.hpp@{pt2pt\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_test\_any()}{test\_shmem\_test\_any()}}
+{\footnotesize\ttfamily \label{pt2pt__tests_8hpp_a1b27bf47e06984417985d5afc3bfbdcd} 
+bool test\+\_\+shmem\+\_\+test\+\_\+any (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+test\+\_\+any() routine. 
+
+This test verifies that the shmem\+\_\+test\+\_\+any() function correctly tests whether any one of the specified conditions on an array of memory locations is met without blocking.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00268}{268}} of file \mbox{\hyperlink{pt2pt__tests_8cpp_source}{pt2pt\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00269\ \ \ \textcolor{keywordtype}{long}\ *flags\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(4\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{00270\ \ \ \textcolor{keywordflow}{if}\ (flags\ ==\ NULL)\ \{}
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00272\ \ \ \}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)\ \{}
+\DoxyCodeLine{00275\ \ \ \ \ flags[i]\ =\ 0;}
+\DoxyCodeLine{00276\ \ \ \}}
+\DoxyCodeLine{00277\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00282\ \ \ \ \ flags[2]\ =\ 1;}
+\DoxyCodeLine{00283\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{00284\ \ \ \}}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \ \ \textcolor{keywordflow}{if}\ (mype\ !=\ 0)\ \{}
+\DoxyCodeLine{00289\ \ \ \ \ time\_t\ start\_time\ =\ time(NULL);}
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keywordflow}{while}\ (!\mbox{\hyperlink{routines_8hpp_ac8396b0dd8881849861e76ddfacf0bbe}{p\_shmem\_long\_test\_any}}(flags,\ 4,\ NULL,\ SHMEM\_CMP\_EQ,\ 1))\ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (time(NULL)\ -\/\ start\_time\ >\ \mbox{\hyperlink{pt2pt__tests_8cpp_a45ba202b05caf39795aeca91b0ae547e}{TIMEOUT}})\ \{}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ usleep(1000);}
+\DoxyCodeLine{00295\ \ \ \ \ \}}
+\DoxyCodeLine{00296\ \ \ \ \ \textcolor{keywordflow}{if}\ (flags[2]\ !=\ 1)\ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00299\ \ \ \ \ \}}
+\DoxyCodeLine{00300\ \ \ \}}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00303\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00304\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00121}{p\+\_\+shmem\+\_\+long\+\_\+test\+\_\+any}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, \mbox{\hyperlink{routines_8cpp_source_l00129}{p\+\_\+shmem\+\_\+quiet}}, and \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00008}{TIMEOUT}}.
+
+\Hypertarget{pt2pt__tests_8hpp_ac6d30817596acc2ef5df61d606ef9b26}\index{pt2pt\_tests.hpp@{pt2pt\_tests.hpp}!test\_shmem\_test\_any\_vector@{test\_shmem\_test\_any\_vector}}
+\index{test\_shmem\_test\_any\_vector@{test\_shmem\_test\_any\_vector}!pt2pt\_tests.hpp@{pt2pt\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_test\_any\_vector()}{test\_shmem\_test\_any\_vector()}}
+{\footnotesize\ttfamily \label{pt2pt__tests_8hpp_ac6d30817596acc2ef5df61d606ef9b26} 
+bool test\+\_\+shmem\+\_\+test\+\_\+any\+\_\+vector (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+test\+\_\+any\+\_\+vector() routine. 
+
+This test verifies that the shmem\+\_\+test\+\_\+any\+\_\+vector() function correctly tests whether any one of the specified conditions on a vector of memory locations is met without blocking.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00543}{543}} of file \mbox{\hyperlink{pt2pt__tests_8cpp_source}{pt2pt\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00544\ \ \ \textcolor{keywordtype}{long}\ *flags\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(4\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{00545\ \ \ \textcolor{keywordflow}{if}\ (flags\ ==\ NULL)\ \{}
+\DoxyCodeLine{00546\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00547\ \ \ \}}
+\DoxyCodeLine{00548\ }
+\DoxyCodeLine{00549\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)\ \{}
+\DoxyCodeLine{00550\ \ \ \ \ flags[i]\ =\ 0;}
+\DoxyCodeLine{00551\ \ \ \}}
+\DoxyCodeLine{00552\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00553\ \ \ \textcolor{keywordtype}{int}\ npes\ =\ \mbox{\hyperlink{routines_8hpp_a484f2849d077f71872553f9c633152a7}{p\_shmem\_n\_pes}}();}
+\DoxyCodeLine{00554\ }
+\DoxyCodeLine{00555\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00556\ }
+\DoxyCodeLine{00557\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00558\ \ \ \ \ \textcolor{keywordtype}{long}\ one\ =\ 1;}
+\DoxyCodeLine{00559\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ pe\ =\ 1;\ pe\ <\ npes;\ ++pe)\ \{}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_af19ada833d008a3d848067a5af8db661}{p\_shmem\_long\_p}}(\&flags[2],\ one,\ pe);}
+\DoxyCodeLine{00561\ \ \ \ \ \}}
+\DoxyCodeLine{00562\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{00563\ \ \ \}}
+\DoxyCodeLine{00564\ }
+\DoxyCodeLine{00565\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00566\ }
+\DoxyCodeLine{00567\ \ \ \textcolor{keywordflow}{if}\ (mype\ !=\ 0)\ \{}
+\DoxyCodeLine{00568\ \ \ \ \ \textcolor{keywordtype}{long}\ cmp\_values[4]\ =\ \{1,\ 1,\ 1,\ 1\};}
+\DoxyCodeLine{00569\ \ \ \ \ time\_t\ start\_time\ =\ time(NULL);}
+\DoxyCodeLine{00570\ \ \ \ \ \textcolor{keywordflow}{while}\ (!\mbox{\hyperlink{routines_8hpp_a4f2b02d98dae8bf848bda58c4d62dd27}{p\_shmem\_long\_test\_any\_vector}}(flags,\ 4,\ NULL,\ SHMEM\_CMP\_EQ,\ cmp\_values))\ \{}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (time(NULL)\ -\/\ start\_time\ >\ \mbox{\hyperlink{pt2pt__tests_8cpp_a45ba202b05caf39795aeca91b0ae547e}{TIMEOUT}})\ \{}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ usleep(1000);}
+\DoxyCodeLine{00575\ \ \ \ \ \}}
+\DoxyCodeLine{00576\ \ \ \ \ \textcolor{keywordflow}{if}\ (flags[2]\ !=\ 1)\ \{}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00579\ \ \ \ \ \}}
+\DoxyCodeLine{00580\ \ \ \}}
+\DoxyCodeLine{00581\ }
+\DoxyCodeLine{00582\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00583\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00584\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00057}{p\+\_\+shmem\+\_\+long\+\_\+p}}, \mbox{\hyperlink{routines_8cpp_source_l00124}{p\+\_\+shmem\+\_\+long\+\_\+test\+\_\+any\+\_\+vector}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, \mbox{\hyperlink{routines_8cpp_source_l00018}{p\+\_\+shmem\+\_\+n\+\_\+pes}}, \mbox{\hyperlink{routines_8cpp_source_l00129}{p\+\_\+shmem\+\_\+quiet}}, and \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00008}{TIMEOUT}}.
+
+\Hypertarget{pt2pt__tests_8hpp_a77e4dcc38dcf8992c001c2df8b14ba19}\index{pt2pt\_tests.hpp@{pt2pt\_tests.hpp}!test\_shmem\_test\_some@{test\_shmem\_test\_some}}
+\index{test\_shmem\_test\_some@{test\_shmem\_test\_some}!pt2pt\_tests.hpp@{pt2pt\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_test\_some()}{test\_shmem\_test\_some()}}
+{\footnotesize\ttfamily \label{pt2pt__tests_8hpp_a77e4dcc38dcf8992c001c2df8b14ba19} 
+bool test\+\_\+shmem\+\_\+test\+\_\+some (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+test\+\_\+some() routine. 
+
+This test verifies that the shmem\+\_\+test\+\_\+some() function correctly tests whether some of the specified conditions on an array of memory locations are met without blocking.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00314}{314}} of file \mbox{\hyperlink{pt2pt__tests_8cpp_source}{pt2pt\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00315\ \ \ \textcolor{keywordtype}{long}\ *flags\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(4\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{00316\ \ \ \textcolor{keywordflow}{if}\ (flags\ ==\ NULL)\ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00318\ \ \ \}}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)\ \{}
+\DoxyCodeLine{00321\ \ \ \ \ flags[i]\ =\ 0;}
+\DoxyCodeLine{00322\ \ \ \}}
+\DoxyCodeLine{00323\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00328\ \ \ \ \ flags[1]\ =\ 1;}
+\DoxyCodeLine{00329\ \ \ \ \ flags[3]\ =\ 1;}
+\DoxyCodeLine{00330\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{00331\ \ \ \}}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \ \ \textcolor{keywordflow}{if}\ (mype\ !=\ 0)\ \{}
+\DoxyCodeLine{00336\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ indices[4];}
+\DoxyCodeLine{00337\ \ \ \ \ time\_t\ start\_time\ =\ time(NULL);}
+\DoxyCodeLine{00338\ \ \ \ \ \textcolor{keywordflow}{while}\ (!\mbox{\hyperlink{routines_8hpp_a7386b550d70970df1926df1a3109b2c8}{p\_shmem\_long\_test\_some}}(flags,\ 4,\ indices,\ NULL,\ SHMEM\_CMP\_EQ,\ 1))\ \{}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (time(NULL)\ -\/\ start\_time\ >\ \mbox{\hyperlink{pt2pt__tests_8cpp_a45ba202b05caf39795aeca91b0ae547e}{TIMEOUT}})\ \{}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ usleep(1000);}
+\DoxyCodeLine{00343\ \ \ \ \ \}}
+\DoxyCodeLine{00344\ \ \ \ \ \textcolor{keywordflow}{if}\ (flags[1]\ !=\ 1\ ||\ flags[3]\ !=\ 1)\ \{}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00347\ \ \ \ \ \}}
+\DoxyCodeLine{00348\ \ \ \}}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00351\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00352\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00122}{p\+\_\+shmem\+\_\+long\+\_\+test\+\_\+some}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, \mbox{\hyperlink{routines_8cpp_source_l00129}{p\+\_\+shmem\+\_\+quiet}}, and \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00008}{TIMEOUT}}.
+
+\Hypertarget{pt2pt__tests_8hpp_a93e89eb0e1529fc5cf5080a8805cbe5b}\index{pt2pt\_tests.hpp@{pt2pt\_tests.hpp}!test\_shmem\_test\_some\_vector@{test\_shmem\_test\_some\_vector}}
+\index{test\_shmem\_test\_some\_vector@{test\_shmem\_test\_some\_vector}!pt2pt\_tests.hpp@{pt2pt\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_test\_some\_vector()}{test\_shmem\_test\_some\_vector()}}
+{\footnotesize\ttfamily \label{pt2pt__tests_8hpp_a93e89eb0e1529fc5cf5080a8805cbe5b} 
+bool test\+\_\+shmem\+\_\+test\+\_\+some\+\_\+vector (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+test\+\_\+some\+\_\+vector() routine. 
+
+This test verifies that the shmem\+\_\+test\+\_\+some\+\_\+vector() function correctly tests whether some of the specified conditions on a vector of memory locations are met without blocking.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00594}{594}} of file \mbox{\hyperlink{pt2pt__tests_8cpp_source}{pt2pt\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00595\ \ \ \textcolor{keywordtype}{long}\ *flags\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(4\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{00596\ \ \ \textcolor{keywordflow}{if}\ (flags\ ==\ NULL)\ \{}
+\DoxyCodeLine{00597\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00598\ \ \ \}}
+\DoxyCodeLine{00599\ }
+\DoxyCodeLine{00600\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)\ \{}
+\DoxyCodeLine{00601\ \ \ \ \ flags[i]\ =\ 0;}
+\DoxyCodeLine{00602\ \ \ \}}
+\DoxyCodeLine{00603\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00604\ \ \ \textcolor{keywordtype}{int}\ npes\ =\ \mbox{\hyperlink{routines_8hpp_a484f2849d077f71872553f9c633152a7}{p\_shmem\_n\_pes}}();}
+\DoxyCodeLine{00605\ }
+\DoxyCodeLine{00606\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00607\ }
+\DoxyCodeLine{00608\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00609\ \ \ \ \ \textcolor{keywordtype}{long}\ one\ =\ 1;}
+\DoxyCodeLine{00610\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ pe\ =\ 1;\ pe\ <\ npes;\ ++pe)\ \{}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_af19ada833d008a3d848067a5af8db661}{p\_shmem\_long\_p}}(\&flags[1],\ one,\ pe);}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_af19ada833d008a3d848067a5af8db661}{p\_shmem\_long\_p}}(\&flags[3],\ one,\ pe);}
+\DoxyCodeLine{00613\ \ \ \ \ \}}
+\DoxyCodeLine{00614\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{00615\ \ \ \}}
+\DoxyCodeLine{00616\ }
+\DoxyCodeLine{00617\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00618\ }
+\DoxyCodeLine{00619\ \ \ \textcolor{keywordflow}{if}\ (mype\ !=\ 0)\ \{}
+\DoxyCodeLine{00620\ \ \ \ \ \textcolor{keywordtype}{long}\ cmp\_values[4]\ =\ \{0,\ 1,\ 0,\ 1\};}
+\DoxyCodeLine{00621\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ indices[4];}
+\DoxyCodeLine{00622\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ num\_indices;}
+\DoxyCodeLine{00623\ \ \ \ \ time\_t\ start\_time\ =\ time(NULL);}
+\DoxyCodeLine{00624\ \ \ \ \ \textcolor{keywordflow}{while}\ ((num\_indices\ =\ \mbox{\hyperlink{routines_8hpp_a17bb6ee4044fca24461a5e640afa010a}{p\_shmem\_long\_test\_some\_vector}}(flags,\ 4,\ indices,\ NULL,\ SHMEM\_CMP\_EQ,\ cmp\_values))\ ==\ 0)\ \{}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (time(NULL)\ -\/\ start\_time\ >\ \mbox{\hyperlink{pt2pt__tests_8cpp_a45ba202b05caf39795aeca91b0ae547e}{TIMEOUT}})\ \{}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ usleep(1000);}
+\DoxyCodeLine{00629\ \ \ \ \ \}}
+\DoxyCodeLine{00630\ \ \ \ \ \textcolor{keywordflow}{if}\ (flags[1]\ !=\ 1\ ||\ flags[3]\ !=\ 1)\ \{}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00633\ \ \ \ \ \}}
+\DoxyCodeLine{00634\ \ \ \}}
+\DoxyCodeLine{00635\ }
+\DoxyCodeLine{00636\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00637\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00638\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00057}{p\+\_\+shmem\+\_\+long\+\_\+p}}, \mbox{\hyperlink{routines_8cpp_source_l00125}{p\+\_\+shmem\+\_\+long\+\_\+test\+\_\+some\+\_\+vector}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, \mbox{\hyperlink{routines_8cpp_source_l00018}{p\+\_\+shmem\+\_\+n\+\_\+pes}}, \mbox{\hyperlink{routines_8cpp_source_l00129}{p\+\_\+shmem\+\_\+quiet}}, and \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00008}{TIMEOUT}}.
+
+\Hypertarget{pt2pt__tests_8hpp_a4202a4aa5eebd168bbefe34440c430cb}\index{pt2pt\_tests.hpp@{pt2pt\_tests.hpp}!test\_shmem\_wait\_until@{test\_shmem\_wait\_until}}
+\index{test\_shmem\_wait\_until@{test\_shmem\_wait\_until}!pt2pt\_tests.hpp@{pt2pt\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_wait\_until()}{test\_shmem\_wait\_until()}}
+{\footnotesize\ttfamily \label{pt2pt__tests_8hpp_a4202a4aa5eebd168bbefe34440c430cb} 
+bool test\+\_\+shmem\+\_\+wait\+\_\+until (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+wait\+\_\+until() routine. 
+
+This test verifies that the shmem\+\_\+wait\+\_\+until() function correctly waits until a condition on a memory location is met.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00018}{18}} of file \mbox{\hyperlink{pt2pt__tests_8cpp_source}{pt2pt\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \textcolor{keywordtype}{long}\ *flag\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{00020\ \ \ *flag\ =\ 0;}
+\DoxyCodeLine{00021\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_af19ada833d008a3d848067a5af8db661}{p\_shmem\_long\_p}}(flag,\ 1,\ 1);}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{00028\ \ \ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \textcolor{keywordflow}{if}\ (mype\ !=\ 0)\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_aa30369fc250be637dccf550bc9461af0}{p\_shmem\_long\_wait\_until}}(flag,\ SHMEM\_CMP\_EQ,\ 1);}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{if}\ (*flag\ !=\ 1)\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flag);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \ \ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flag);}
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00042\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00057}{p\+\_\+shmem\+\_\+long\+\_\+p}}, \mbox{\hyperlink{routines_8cpp_source_l00112}{p\+\_\+shmem\+\_\+long\+\_\+wait\+\_\+until}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, and \mbox{\hyperlink{routines_8cpp_source_l00129}{p\+\_\+shmem\+\_\+quiet}}.
+
+\Hypertarget{pt2pt__tests_8hpp_a8a130348897e35329a6972d3b9fdc612}\index{pt2pt\_tests.hpp@{pt2pt\_tests.hpp}!test\_shmem\_wait\_until\_all@{test\_shmem\_wait\_until\_all}}
+\index{test\_shmem\_wait\_until\_all@{test\_shmem\_wait\_until\_all}!pt2pt\_tests.hpp@{pt2pt\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_wait\_until\_all()}{test\_shmem\_wait\_until\_all()}}
+{\footnotesize\ttfamily \label{pt2pt__tests_8hpp_a8a130348897e35329a6972d3b9fdc612} 
+bool test\+\_\+shmem\+\_\+wait\+\_\+until\+\_\+all (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+wait\+\_\+until\+\_\+all() routine. 
+
+This test verifies that the shmem\+\_\+wait\+\_\+until\+\_\+all() function correctly waits until all specified conditions on an array of memory locations are met.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00052}{52}} of file \mbox{\hyperlink{pt2pt__tests_8cpp_source}{pt2pt\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \textcolor{keywordtype}{long}\ *flags\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(2\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{00054\ \ \ flags[0]\ =\ 0;}
+\DoxyCodeLine{00055\ \ \ flags[1]\ =\ 0;}
+\DoxyCodeLine{00056\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_af19ada833d008a3d848067a5af8db661}{p\_shmem\_long\_p}}(\&flags[0],\ 1,\ 1);}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_af19ada833d008a3d848067a5af8db661}{p\_shmem\_long\_p}}(\&flags[1],\ 1,\ 1);}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{00064\ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \textcolor{keywordflow}{if}\ (mype\ !=\ 0)\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_a048e05a63bc664937b0c2a2a981d09a8}{p\_shmem\_long\_wait\_until\_all}}(flags,\ 2,\ NULL,\ SHMEM\_CMP\_EQ,\ 1);}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{if}\ (flags[0]\ !=\ 1\ ||\ flags[1]\ !=\ 1)\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00077\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00078\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00057}{p\+\_\+shmem\+\_\+long\+\_\+p}}, \mbox{\hyperlink{routines_8cpp_source_l00113}{p\+\_\+shmem\+\_\+long\+\_\+wait\+\_\+until\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, and \mbox{\hyperlink{routines_8cpp_source_l00129}{p\+\_\+shmem\+\_\+quiet}}.
+
+\Hypertarget{pt2pt__tests_8hpp_aeafeebf2dca4afb4da7861be7b1e623a}\index{pt2pt\_tests.hpp@{pt2pt\_tests.hpp}!test\_shmem\_wait\_until\_all\_vector@{test\_shmem\_wait\_until\_all\_vector}}
+\index{test\_shmem\_wait\_until\_all\_vector@{test\_shmem\_wait\_until\_all\_vector}!pt2pt\_tests.hpp@{pt2pt\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_wait\_until\_all\_vector()}{test\_shmem\_wait\_until\_all\_vector()}}
+{\footnotesize\ttfamily \label{pt2pt__tests_8hpp_aeafeebf2dca4afb4da7861be7b1e623a} 
+bool test\+\_\+shmem\+\_\+wait\+\_\+until\+\_\+all\+\_\+vector (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+wait\+\_\+until\+\_\+all\+\_\+vector() routine. 
+
+This test verifies that the shmem\+\_\+wait\+\_\+until\+\_\+all\+\_\+vector() function correctly waits until all specified conditions on a vector of memory locations are met.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00362}{362}} of file \mbox{\hyperlink{pt2pt__tests_8cpp_source}{pt2pt\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00363\ \ \ \textcolor{keywordtype}{long}\ *flags\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(4\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{00364\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)\ \{}
+\DoxyCodeLine{00365\ \ \ \ \ flags[i]\ =\ 0;}
+\DoxyCodeLine{00366\ \ \ \}}
+\DoxyCodeLine{00367\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00369\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)\ \{}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_af19ada833d008a3d848067a5af8db661}{p\_shmem\_long\_p}}(\&flags[i],\ 1,\ 1);}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{00375\ \ \ \ \ \}}
+\DoxyCodeLine{00376\ \ \ \}}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00378\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \ \ \textcolor{keywordflow}{if}\ (mype\ !=\ 0)\ \{}
+\DoxyCodeLine{00381\ \ \ \ \ \textcolor{keywordtype}{int}\ status[4]\ =\ \{SHMEM\_CMP\_EQ,\ SHMEM\_CMP\_EQ,\ SHMEM\_CMP\_EQ,\ SHMEM\_CMP\_EQ\};}
+\DoxyCodeLine{00382\ \ \ \ \ \textcolor{keywordtype}{long}\ cmp\_values[4]\ =\ \{1,\ 1,\ 1,\ 1\};}
+\DoxyCodeLine{00383\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_afa34bd80a365559454fe57d05d173db9}{p\_shmem\_long\_wait\_until\_all\_vector}}(flags,\ 4,\ status,\ SHMEM\_CMP\_EQ,\ cmp\_values);}
+\DoxyCodeLine{00384\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)\ \{}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (flags[i]\ !=\ 1)\ \{}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00389\ \ \ \ \ \}}
+\DoxyCodeLine{00390\ \ \ \}}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00393\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00394\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00057}{p\+\_\+shmem\+\_\+long\+\_\+p}}, \mbox{\hyperlink{routines_8cpp_source_l00116}{p\+\_\+shmem\+\_\+long\+\_\+wait\+\_\+until\+\_\+all\+\_\+vector}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, and \mbox{\hyperlink{routines_8cpp_source_l00129}{p\+\_\+shmem\+\_\+quiet}}.
+
+\Hypertarget{pt2pt__tests_8hpp_a7ae63e76905a25a0945f52839cf1c0b6}\index{pt2pt\_tests.hpp@{pt2pt\_tests.hpp}!test\_shmem\_wait\_until\_any@{test\_shmem\_wait\_until\_any}}
+\index{test\_shmem\_wait\_until\_any@{test\_shmem\_wait\_until\_any}!pt2pt\_tests.hpp@{pt2pt\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_wait\_until\_any()}{test\_shmem\_wait\_until\_any()}}
+{\footnotesize\ttfamily \label{pt2pt__tests_8hpp_a7ae63e76905a25a0945f52839cf1c0b6} 
+bool test\+\_\+shmem\+\_\+wait\+\_\+until\+\_\+any (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+wait\+\_\+until\+\_\+any() routine. 
+
+This test verifies that the shmem\+\_\+wait\+\_\+until\+\_\+any() function correctly waits until any one of the specified conditions on an array of memory locations is met.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00088}{88}} of file \mbox{\hyperlink{pt2pt__tests_8cpp_source}{pt2pt\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \textcolor{keywordtype}{long}\ *flags\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(3\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{00090\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 3;\ i++)\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ flags[i]\ =\ 0;}
+\DoxyCodeLine{00092\ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_af19ada833d008a3d848067a5af8db661}{p\_shmem\_long\_p}}(\&flags[2],\ 1,\ 1);}
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{00100\ \ \ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \textcolor{keywordflow}{if}\ (mype\ !=\ 0)\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{int}\ status[3]\ =\ \{SHMEM\_CMP\_EQ,\ SHMEM\_CMP\_EQ,\ SHMEM\_CMP\_EQ\};}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ index\ =\ \mbox{\hyperlink{routines_8hpp_aa206f7ce3122a6977e0d211712be411d}{p\_shmem\_long\_wait\_until\_any}}(flags,\ 3,\ status,\ SHMEM\_CMP\_EQ,\ 1);}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ ==\ SIZE\_MAX)\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{if}\ (flags[index]\ !=\ 1)\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00114\ \ \ \ \ \}}
+\DoxyCodeLine{00115\ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00118\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00119\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00057}{p\+\_\+shmem\+\_\+long\+\_\+p}}, \mbox{\hyperlink{routines_8cpp_source_l00114}{p\+\_\+shmem\+\_\+long\+\_\+wait\+\_\+until\+\_\+any}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, and \mbox{\hyperlink{routines_8cpp_source_l00129}{p\+\_\+shmem\+\_\+quiet}}.
+
+\Hypertarget{pt2pt__tests_8hpp_a895cca63ec0eb669da0e5956f6570d9b}\index{pt2pt\_tests.hpp@{pt2pt\_tests.hpp}!test\_shmem\_wait\_until\_any\_vector@{test\_shmem\_wait\_until\_any\_vector}}
+\index{test\_shmem\_wait\_until\_any\_vector@{test\_shmem\_wait\_until\_any\_vector}!pt2pt\_tests.hpp@{pt2pt\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_wait\_until\_any\_vector()}{test\_shmem\_wait\_until\_any\_vector()}}
+{\footnotesize\ttfamily \label{pt2pt__tests_8hpp_a895cca63ec0eb669da0e5956f6570d9b} 
+bool test\+\_\+shmem\+\_\+wait\+\_\+until\+\_\+any\+\_\+vector (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+wait\+\_\+until\+\_\+any\+\_\+vector() routine. 
+
+This test verifies that the shmem\+\_\+wait\+\_\+until\+\_\+any\+\_\+vector() function correctly waits until any one of the specified conditions on a vector of memory locations is met.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00404}{404}} of file \mbox{\hyperlink{pt2pt__tests_8cpp_source}{pt2pt\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00405\ \ \ \textcolor{keywordtype}{long}\ *flags\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(4\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{00406\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)\ \{}
+\DoxyCodeLine{00407\ \ \ \ \ flags[i]\ =\ 0;}
+\DoxyCodeLine{00408\ \ \ \}}
+\DoxyCodeLine{00409\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00410\ }
+\DoxyCodeLine{00411\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00413\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00414\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_af19ada833d008a3d848067a5af8db661}{p\_shmem\_long\_p}}(\&flags[2],\ 1,\ 1);}
+\DoxyCodeLine{00415\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{00416\ \ \ \}}
+\DoxyCodeLine{00417\ }
+\DoxyCodeLine{00418\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ \ \ \textcolor{keywordflow}{if}\ (mype\ !=\ 0)\ \{}
+\DoxyCodeLine{00421\ \ \ \ \ \textcolor{keywordtype}{int}\ status[4]\ =\ \{SHMEM\_CMP\_EQ,\ SHMEM\_CMP\_EQ,\ SHMEM\_CMP\_EQ,\ SHMEM\_CMP\_EQ\};}
+\DoxyCodeLine{00422\ \ \ \ \ \textcolor{keywordtype}{long}\ cmp\_values[4]\ =\ \{1,\ 1,\ 1,\ 1\};}
+\DoxyCodeLine{00423\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ index\ =\ \mbox{\hyperlink{routines_8hpp_aa524cf6ff8de0257211960651a8062e2}{p\_shmem\_long\_wait\_until\_any\_vector}}(flags,\ 4,\ status,\ SHMEM\_CMP\_EQ,\ cmp\_values);}
+\DoxyCodeLine{00424\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ ==\ SIZE\_MAX)\ \{}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00427\ \ \ \ \ \}}
+\DoxyCodeLine{00428\ \ \ \ \ \textcolor{keywordflow}{if}\ (flags[index]\ !=\ 1)\ \{}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00431\ \ \ \ \ \}}
+\DoxyCodeLine{00432\ \ \ \}}
+\DoxyCodeLine{00433\ }
+\DoxyCodeLine{00434\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00435\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00436\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00057}{p\+\_\+shmem\+\_\+long\+\_\+p}}, \mbox{\hyperlink{routines_8cpp_source_l00117}{p\+\_\+shmem\+\_\+long\+\_\+wait\+\_\+until\+\_\+any\+\_\+vector}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, and \mbox{\hyperlink{routines_8cpp_source_l00129}{p\+\_\+shmem\+\_\+quiet}}.
+
+\Hypertarget{pt2pt__tests_8hpp_aa3dd1476ac610d2b5f77c33f50f2c62a}\index{pt2pt\_tests.hpp@{pt2pt\_tests.hpp}!test\_shmem\_wait\_until\_some@{test\_shmem\_wait\_until\_some}}
+\index{test\_shmem\_wait\_until\_some@{test\_shmem\_wait\_until\_some}!pt2pt\_tests.hpp@{pt2pt\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_wait\_until\_some()}{test\_shmem\_wait\_until\_some()}}
+{\footnotesize\ttfamily \label{pt2pt__tests_8hpp_aa3dd1476ac610d2b5f77c33f50f2c62a} 
+bool test\+\_\+shmem\+\_\+wait\+\_\+until\+\_\+some (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+wait\+\_\+until\+\_\+some() routine. 
+
+This test verifies that the shmem\+\_\+wait\+\_\+until\+\_\+some() function correctly waits until some of the specified conditions on an array of memory locations are met.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00129}{129}} of file \mbox{\hyperlink{pt2pt__tests_8cpp_source}{pt2pt\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00130\ \ \ \textcolor{keywordtype}{long}\ *flags\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(4\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{00131\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ flags[i]\ =\ 0;}
+\DoxyCodeLine{00133\ \ \ \}}
+\DoxyCodeLine{00134\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_af19ada833d008a3d848067a5af8db661}{p\_shmem\_long\_p}}(\&flags[1],\ 1,\ 1);}
+\DoxyCodeLine{00140\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_af19ada833d008a3d848067a5af8db661}{p\_shmem\_long\_p}}(\&flags[3],\ 1,\ 1);}
+\DoxyCodeLine{00141\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{00142\ \ \ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \textcolor{keywordflow}{if}\ (mype\ !=\ 0)\ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ indices[4];}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordtype}{int}\ status[4]\ =\ \{SHMEM\_CMP\_EQ,\ SHMEM\_CMP\_EQ,\ SHMEM\_CMP\_EQ,\ SHMEM\_CMP\_EQ\};}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ count\ =\ \mbox{\hyperlink{routines_8hpp_a26c9802fe4e6cbee3967d2657c894dfe}{p\_shmem\_long\_wait\_until\_some}}(flags,\ 4,\ indices,\ status,\ SHMEM\_CMP\_EQ,\ 1);}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordflow}{if}\ (count\ <\ 2)\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00153\ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ count;\ ++i)\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (flags[indices[i]]\ !=\ 1)\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \}}
+\DoxyCodeLine{00160\ \ \ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00163\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00164\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00057}{p\+\_\+shmem\+\_\+long\+\_\+p}}, \mbox{\hyperlink{routines_8cpp_source_l00115}{p\+\_\+shmem\+\_\+long\+\_\+wait\+\_\+until\+\_\+some}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, and \mbox{\hyperlink{routines_8cpp_source_l00129}{p\+\_\+shmem\+\_\+quiet}}.
+
+\Hypertarget{pt2pt__tests_8hpp_a2d6f9f170e32cb71c63db6488d0b9823}\index{pt2pt\_tests.hpp@{pt2pt\_tests.hpp}!test\_shmem\_wait\_until\_some\_vector@{test\_shmem\_wait\_until\_some\_vector}}
+\index{test\_shmem\_wait\_until\_some\_vector@{test\_shmem\_wait\_until\_some\_vector}!pt2pt\_tests.hpp@{pt2pt\_tests.hpp}}
+\doxysubsubsection{\texorpdfstring{test\_shmem\_wait\_until\_some\_vector()}{test\_shmem\_wait\_until\_some\_vector()}}
+{\footnotesize\ttfamily \label{pt2pt__tests_8hpp_a2d6f9f170e32cb71c63db6488d0b9823} 
+bool test\+\_\+shmem\+\_\+wait\+\_\+until\+\_\+some\+\_\+vector (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Tests the shmem\+\_\+wait\+\_\+until\+\_\+some\+\_\+vector() routine. 
+
+This test verifies that the shmem\+\_\+wait\+\_\+until\+\_\+some\+\_\+vector() function correctly waits until some of the specified conditions on a vector of memory locations are met.
+
+\begin{DoxyReturn}{Returns}
+True if the test is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00446}{446}} of file \mbox{\hyperlink{pt2pt__tests_8cpp_source}{pt2pt\+\_\+tests.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00447\ \ \ \textcolor{keywordtype}{long}\ *flags\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(4\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{00448\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)\ \{}
+\DoxyCodeLine{00449\ \ \ \ \ flags[i]\ =\ 0;}
+\DoxyCodeLine{00450\ \ \ \}}
+\DoxyCodeLine{00451\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00452\ }
+\DoxyCodeLine{00453\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00454\ }
+\DoxyCodeLine{00455\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00456\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_af19ada833d008a3d848067a5af8db661}{p\_shmem\_long\_p}}(\&flags[1],\ 1,\ 1);}
+\DoxyCodeLine{00457\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_af19ada833d008a3d848067a5af8db661}{p\_shmem\_long\_p}}(\&flags[3],\ 1,\ 1);}
+\DoxyCodeLine{00458\ \ \ \ \ \mbox{\hyperlink{routines_8hpp_adafab1fad4ba11e3aafb1a64d91c6bf2}{p\_shmem\_quiet}}();}
+\DoxyCodeLine{00459\ \ \ \}}
+\DoxyCodeLine{00460\ }
+\DoxyCodeLine{00461\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00463\ \ \ \textcolor{keywordflow}{if}\ (mype\ !=\ 0)\ \{}
+\DoxyCodeLine{00464\ \ \ \ \ \textcolor{keywordtype}{int}\ status[4]\ =\ \{SHMEM\_CMP\_EQ,\ SHMEM\_CMP\_EQ,\ SHMEM\_CMP\_EQ,\ SHMEM\_CMP\_EQ\};}
+\DoxyCodeLine{00465\ \ \ \ \ \textcolor{keywordtype}{long}\ cmp\_values[4]\ =\ \{1,\ 1,\ 1,\ 1\};}
+\DoxyCodeLine{00466\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ indices[4];}
+\DoxyCodeLine{00467\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ num\_indices\ =\ \mbox{\hyperlink{routines_8hpp_a1cc2995c203dda5f8e1464d9a41af4a1}{p\_shmem\_long\_wait\_until\_some\_vector}}(flags,\ 4,\ indices,\ status,\ SHMEM\_CMP\_EQ,\ cmp\_values);}
+\DoxyCodeLine{00468\ \ \ \ \ \textcolor{keywordflow}{if}\ (num\_indices\ <\ 2)\ \{}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00471\ \ \ \ \ \}}
+\DoxyCodeLine{00472\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ num\_indices;\ ++i)\ \{}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (flags[indices[i]]\ !=\ 1)\ \{}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00477\ \ \ \ \ \}}
+\DoxyCodeLine{00478\ \ \ \}}
+\DoxyCodeLine{00479\ }
+\DoxyCodeLine{00480\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(flags);}
+\DoxyCodeLine{00481\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00482\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{routines_8cpp_source_l00020}{p\+\_\+shmem\+\_\+barrier\+\_\+all}}, \mbox{\hyperlink{routines_8cpp_source_l00033}{p\+\_\+shmem\+\_\+free}}, \mbox{\hyperlink{routines_8cpp_source_l00057}{p\+\_\+shmem\+\_\+long\+\_\+p}}, \mbox{\hyperlink{routines_8cpp_source_l00118}{p\+\_\+shmem\+\_\+long\+\_\+wait\+\_\+until\+\_\+some\+\_\+vector}}, \mbox{\hyperlink{routines_8cpp_source_l00032}{p\+\_\+shmem\+\_\+malloc}}, \mbox{\hyperlink{routines_8cpp_source_l00017}{p\+\_\+shmem\+\_\+my\+\_\+pe}}, and \mbox{\hyperlink{routines_8cpp_source_l00129}{p\+\_\+shmem\+\_\+quiet}}.
+

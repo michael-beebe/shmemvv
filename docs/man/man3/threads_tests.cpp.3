@@ -1,0 +1,88 @@
+.TH "src/tests/threads/threads_tests.cpp" 3 "Version 0.1" "shmemvv" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/tests/threads/threads_tests.cpp \- Contains OpenSHMEM threads tests\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'threads_tests\&.hpp'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBtest_shmem_init_thread\fP (void)"
+.br
+.RI "Tests the initialization of OpenSHMEM with threading support\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_query_thread\fP (void)"
+.br
+.RI "Tests querying the level of threading support in OpenSHMEM\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Contains OpenSHMEM threads tests\&. 
+
+
+.PP
+Definition in file \fBthreads_tests\&.cpp\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "bool test_shmem_init_thread (void )"
+
+.PP
+Tests the initialization of OpenSHMEM with threading support\&. This test verifies that OpenSHMEM can be initialized with the specified level of threading support\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the initialization with threading support is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB15\fP of file \fBthreads_tests\&.cpp\fP\&.
+.nf
+15                                   {
+16   int provided;
+17   p_shmem_init_thread(SHMEM_THREAD_MULTIPLE, &provided);
+18   return (provided == SHMEM_THREAD_MULTIPLE);
+19 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_init_thread\fP\&.
+.SS "bool test_shmem_query_thread (void )"
+
+.PP
+Tests querying the level of threading support in OpenSHMEM\&. This test verifies that the \fRp_shmem_query_thread\fP function correctly queries the level of threading support provided by OpenSHMEM\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the query is successful and the level of threading support is one of the valid levels, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB29\fP of file \fBthreads_tests\&.cpp\fP\&.
+.nf
+29                                    {
+30   int provided;
+31   p_shmem_query_thread(&provided);
+32   bool success = (provided == SHMEM_THREAD_SINGLE ||
+33                   provided == SHMEM_THREAD_FUNNELED ||
+34                   provided == SHMEM_THREAD_SERIALIZED ||
+35                   provided == SHMEM_THREAD_MULTIPLE);
+36   return success;
+37 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_query_thread\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for shmemvv from the source code\&.

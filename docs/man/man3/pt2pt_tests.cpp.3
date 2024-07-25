@@ -1,0 +1,923 @@
+.TH "src/tests/pt2pt/pt2pt_tests.cpp" 3 "Version 0.1" "shmemvv" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/tests/pt2pt/pt2pt_tests.cpp \- Contains functions definitions with test functions for the point-to-point synchronization routines\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'pt2pt_tests\&.hpp'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBTIMEOUT\fP   10"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBtest_shmem_wait_until\fP (void)"
+.br
+.RI "Tests the shmem_wait_until() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_wait_until_all\fP (void)"
+.br
+.RI "Tests the shmem_wait_until_all() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_wait_until_any\fP (void)"
+.br
+.RI "Tests the shmem_wait_until_any() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_wait_until_some\fP (void)"
+.br
+.RI "Tests the shmem_wait_until_some() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_test\fP (void)"
+.br
+.RI "Tests the shmem_test() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_test_all\fP (void)"
+.br
+.RI "Tests the shmem_test_all() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_test_any\fP (void)"
+.br
+.RI "Tests the shmem_test_any() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_test_some\fP (void)"
+.br
+.RI "Tests the shmem_test_some() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_wait_until_all_vector\fP (void)"
+.br
+.RI "Tests the shmem_wait_until_all_vector() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_wait_until_any_vector\fP (void)"
+.br
+.RI "Tests the shmem_wait_until_any_vector() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_wait_until_some_vector\fP (void)"
+.br
+.RI "Tests the shmem_wait_until_some_vector() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_test_all_vector\fP (void)"
+.br
+.RI "Tests the shmem_test_all_vector() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_test_any_vector\fP (void)"
+.br
+.RI "Tests the shmem_test_any_vector() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_test_some_vector\fP (void)"
+.br
+.RI "Tests the shmem_test_some_vector() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_signal_wait_until\fP (void)"
+.br
+.RI "Tests the shmem_signal_wait_until() routine\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Contains functions definitions with test functions for the point-to-point synchronization routines\&. 
+
+
+.PP
+Definition in file \fBpt2pt_tests\&.cpp\fP\&.
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define TIMEOUT   10"
+
+.PP
+Definition at line \fB8\fP of file \fBpt2pt_tests\&.cpp\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "bool test_shmem_signal_wait_until (void )"
+
+.PP
+Tests the shmem_signal_wait_until() routine\&. This test verifies that the shmem_signal_wait_until() function correctly waits until a signal on a memory location meets a specified condition\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB648\fP of file \fBpt2pt_tests\&.cpp\fP\&.
+.nf
+648                                         {
+649   uint64_t *flag = (uint64_t *)p_shmem_malloc(sizeof(uint64_t));
+650   if (flag == NULL) {
+651     return false;
+652   }
+653 
+654   *flag = 0;
+655   int mype = p_shmem_my_pe();
+656   uint64_t value = 1;
+657 
+658   p_shmem_barrier_all();
+659 
+660   if (mype == 0) {
+661     shmem_uint64_p(flag, value, 1);
+662     p_shmem_quiet();
+663   }
+664 
+665   p_shmem_barrier_all();
+666 
+667   if (mype != 0) {
+668     time_t start_time = time(NULL);
+669     while (*flag != value && time(NULL) \- start_time < TIMEOUT) {
+670       p_shmem_signal_wait_until(flag, SHMEM_CMP_EQ, value);
+671     }
+672     if (*flag != value) {
+673       p_shmem_free(flag);
+674       return false;
+675     }
+676   }
+677 
+678   p_shmem_free(flag);
+679   return true;
+680 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, \fBp_shmem_quiet\fP, \fBp_shmem_signal_wait_until\fP, and \fBTIMEOUT\fP\&.
+.SS "bool test_shmem_test (void )"
+
+.PP
+Tests the shmem_test() routine\&. This test verifies that the shmem_test() function correctly tests whether a condition on a memory location is met without blocking\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB174\fP of file \fBpt2pt_tests\&.cpp\fP\&.
+.nf
+174                            {
+175   long *flag = (long *)p_shmem_malloc(sizeof(long));
+176   if (flag == NULL) {
+177     return false;
+178   }
+179 
+180   *flag = 0;
+181   int mype = p_shmem_my_pe();
+182 
+183   p_shmem_barrier_all();
+184 
+185   if (mype == 0) {
+186     *flag = 1;
+187     p_shmem_quiet();
+188   }
+189 
+190   p_shmem_barrier_all();
+191 
+192   if (mype != 0) {
+193     time_t start_time = time(NULL);
+194     while (!p_shmem_long_test(flag, SHMEM_CMP_EQ, 1)) {
+195       if (time(NULL) \- start_time > TIMEOUT) {
+196         break;
+197       }
+198       usleep(1000);
+199     }
+200     if (*flag != 1) {
+201       p_shmem_free(flag);
+202       return false;
+203     }
+204   }
+205 
+206   p_shmem_free(flag);
+207   return true;
+208 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_long_test\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, \fBp_shmem_quiet\fP, and \fBTIMEOUT\fP\&.
+.SS "bool test_shmem_test_all (void )"
+
+.PP
+Tests the shmem_test_all() routine\&. This test verifies that the shmem_test_all() function correctly tests whether all specified conditions on an array of memory locations are met without blocking\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB218\fP of file \fBpt2pt_tests\&.cpp\fP\&.
+.nf
+218                                {
+219   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
+220   if (flags == NULL) {
+221     return false;
+222   }
+223 
+224   for (int i = 0; i < 4; ++i) {
+225     flags[i] = 0;
+226   }
+227   int mype = p_shmem_my_pe();
+228 
+229   p_shmem_barrier_all();
+230 
+231   if (mype == 0) {
+232     for (int i = 0; i < 4; ++i) {
+233       flags[i] = 1;
+234     }
+235     p_shmem_quiet();
+236   }
+237 
+238   p_shmem_barrier_all();
+239 
+240   if (mype != 0) {
+241     time_t start_time = time(NULL);
+242     while (!p_shmem_long_test_all(flags, 4, NULL, SHMEM_CMP_EQ, 1)) {
+243       if (time(NULL) \- start_time > TIMEOUT) {
+244         break;
+245       }
+246       usleep(1000);
+247     }
+248     for (int i = 0; i < 4; ++i) {
+249       if (flags[i] != 1) {
+250         p_shmem_free(flags);
+251         return false;
+252       }
+253     }
+254   }
+255 
+256   p_shmem_free(flags);
+257   return true;
+258 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_long_test_all\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, \fBp_shmem_quiet\fP, and \fBTIMEOUT\fP\&.
+.SS "bool test_shmem_test_all_vector (void )"
+
+.PP
+Tests the shmem_test_all_vector() routine\&. This test verifies that the shmem_test_all_vector() function correctly tests whether all specified conditions on a vector of memory locations are met without blocking\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB492\fP of file \fBpt2pt_tests\&.cpp\fP\&.
+.nf
+492                                       {
+493   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
+494   if (flags == NULL) {
+495     return false;
+496   }
+497 
+498   for (int i = 0; i < 4; ++i) {
+499     flags[i] = 0;
+500   }
+501   int mype = p_shmem_my_pe();
+502 
+503   p_shmem_barrier_all();
+504 
+505   if (mype == 0) {
+506     for (int i = 0; i < 4; ++i) {
+507       flags[i] = 1;
+508     }
+509     p_shmem_quiet();
+510   }
+511 
+512   p_shmem_barrier_all();
+513 
+514   if (mype != 0) {
+515     long cmp_values[4] = {1, 1, 1, 1};
+516     time_t start_time = time(NULL);
+517     while (!p_shmem_long_test_all_vector(flags, 4, NULL, SHMEM_CMP_EQ, cmp_values)) {
+518       if (time(NULL) \- start_time > TIMEOUT) {
+519         break;
+520       }
+521       usleep(1000);
+522     }
+523     for (int i = 0; i < 4; ++i) {
+524       if (flags[i] != 1) {
+525         p_shmem_free(flags);
+526         return false;
+527       }
+528     }
+529   }
+530 
+531   p_shmem_free(flags);
+532   return true;
+533 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_long_test_all_vector\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, \fBp_shmem_quiet\fP, and \fBTIMEOUT\fP\&.
+.SS "bool test_shmem_test_any (void )"
+
+.PP
+Tests the shmem_test_any() routine\&. This test verifies that the shmem_test_any() function correctly tests whether any one of the specified conditions on an array of memory locations is met without blocking\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB268\fP of file \fBpt2pt_tests\&.cpp\fP\&.
+.nf
+268                                {
+269   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
+270   if (flags == NULL) {
+271     return false;
+272   }
+273 
+274   for (int i = 0; i < 4; ++i) {
+275     flags[i] = 0;
+276   }
+277   int mype = p_shmem_my_pe();
+278 
+279   p_shmem_barrier_all();
+280 
+281   if (mype == 0) {
+282     flags[2] = 1;
+283     p_shmem_quiet();
+284   }
+285 
+286   p_shmem_barrier_all();
+287 
+288   if (mype != 0) {
+289     time_t start_time = time(NULL);
+290     while (!p_shmem_long_test_any(flags, 4, NULL, SHMEM_CMP_EQ, 1)) {
+291       if (time(NULL) \- start_time > TIMEOUT) {
+292         break;
+293       }
+294       usleep(1000);
+295     }
+296     if (flags[2] != 1) {
+297       p_shmem_free(flags);
+298       return false;
+299     }
+300   }
+301 
+302   p_shmem_free(flags);
+303   return true;
+304 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_long_test_any\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, \fBp_shmem_quiet\fP, and \fBTIMEOUT\fP\&.
+.SS "bool test_shmem_test_any_vector (void )"
+
+.PP
+Tests the shmem_test_any_vector() routine\&. This test verifies that the shmem_test_any_vector() function correctly tests whether any one of the specified conditions on a vector of memory locations is met without blocking\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB543\fP of file \fBpt2pt_tests\&.cpp\fP\&.
+.nf
+543                                       {
+544   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
+545   if (flags == NULL) {
+546     return false;
+547   }
+548 
+549   for (int i = 0; i < 4; ++i) {
+550     flags[i] = 0;
+551   }
+552   int mype = p_shmem_my_pe();
+553   int npes = p_shmem_n_pes();
+554 
+555   p_shmem_barrier_all();
+556 
+557   if (mype == 0) {
+558     long one = 1;
+559     for (int pe = 1; pe < npes; ++pe) {
+560       p_shmem_long_p(&flags[2], one, pe);
+561     }
+562     p_shmem_quiet();
+563   }
+564 
+565   p_shmem_barrier_all();
+566 
+567   if (mype != 0) {
+568     long cmp_values[4] = {1, 1, 1, 1};
+569     time_t start_time = time(NULL);
+570     while (!p_shmem_long_test_any_vector(flags, 4, NULL, SHMEM_CMP_EQ, cmp_values)) {
+571       if (time(NULL) \- start_time > TIMEOUT) {
+572         break;
+573       }
+574       usleep(1000);
+575     }
+576     if (flags[2] != 1) {
+577       p_shmem_free(flags);
+578       return false;
+579     }
+580   }
+581 
+582   p_shmem_free(flags);
+583   return true;
+584 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_long_p\fP, \fBp_shmem_long_test_any_vector\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, \fBp_shmem_n_pes\fP, \fBp_shmem_quiet\fP, and \fBTIMEOUT\fP\&.
+.SS "bool test_shmem_test_some (void )"
+
+.PP
+Tests the shmem_test_some() routine\&. This test verifies that the shmem_test_some() function correctly tests whether some of the specified conditions on an array of memory locations are met without blocking\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB314\fP of file \fBpt2pt_tests\&.cpp\fP\&.
+.nf
+314                                 {
+315   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
+316   if (flags == NULL) {
+317     return false;
+318   }
+319 
+320   for (int i = 0; i < 4; ++i) {
+321     flags[i] = 0;
+322   }
+323   int mype = p_shmem_my_pe();
+324 
+325   p_shmem_barrier_all();
+326 
+327   if (mype == 0) {
+328     flags[1] = 1;
+329     flags[3] = 1;
+330     p_shmem_quiet();
+331   }
+332 
+333   p_shmem_barrier_all();
+334 
+335   if (mype != 0) {
+336     size_t indices[4];
+337     time_t start_time = time(NULL);
+338     while (!p_shmem_long_test_some(flags, 4, indices, NULL, SHMEM_CMP_EQ, 1)) {
+339       if (time(NULL) \- start_time > TIMEOUT) {
+340         break;
+341       }
+342       usleep(1000);
+343     }
+344     if (flags[1] != 1 || flags[3] != 1) {
+345       p_shmem_free(flags);
+346       return false;
+347     }
+348   }
+349 
+350   p_shmem_free(flags);
+351   return true;
+352 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_long_test_some\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, \fBp_shmem_quiet\fP, and \fBTIMEOUT\fP\&.
+.SS "bool test_shmem_test_some_vector (void )"
+
+.PP
+Tests the shmem_test_some_vector() routine\&. This test verifies that the shmem_test_some_vector() function correctly tests whether some of the specified conditions on a vector of memory locations are met without blocking\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB594\fP of file \fBpt2pt_tests\&.cpp\fP\&.
+.nf
+594                                        {
+595   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
+596   if (flags == NULL) {
+597     return false;
+598   }
+599 
+600   for (int i = 0; i < 4; ++i) {
+601     flags[i] = 0;
+602   }
+603   int mype = p_shmem_my_pe();
+604   int npes = p_shmem_n_pes();
+605 
+606   p_shmem_barrier_all();
+607 
+608   if (mype == 0) {
+609     long one = 1;
+610     for (int pe = 1; pe < npes; ++pe) {
+611       p_shmem_long_p(&flags[1], one, pe);
+612       p_shmem_long_p(&flags[3], one, pe);
+613     }
+614     p_shmem_quiet();
+615   }
+616 
+617   p_shmem_barrier_all();
+618 
+619   if (mype != 0) {
+620     long cmp_values[4] = {0, 1, 0, 1};
+621     size_t indices[4];
+622     size_t num_indices;
+623     time_t start_time = time(NULL);
+624     while ((num_indices = p_shmem_long_test_some_vector(flags, 4, indices, NULL, SHMEM_CMP_EQ, cmp_values)) == 0) {
+625       if (time(NULL) \- start_time > TIMEOUT) {
+626         break;
+627       }
+628       usleep(1000);
+629     }
+630     if (flags[1] != 1 || flags[3] != 1) {
+631       p_shmem_free(flags);
+632       return false;
+633     }
+634   }
+635 
+636   p_shmem_free(flags);
+637   return true;
+638 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_long_p\fP, \fBp_shmem_long_test_some_vector\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, \fBp_shmem_n_pes\fP, \fBp_shmem_quiet\fP, and \fBTIMEOUT\fP\&.
+.SS "bool test_shmem_wait_until (void )"
+
+.PP
+Tests the shmem_wait_until() routine\&. This test verifies that the shmem_wait_until() function correctly waits until a condition on a memory location is met\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB18\fP of file \fBpt2pt_tests\&.cpp\fP\&.
+.nf
+18                                  {
+19   long *flag = (long *)p_shmem_malloc(sizeof(long));
+20   *flag = 0;
+21   int mype = p_shmem_my_pe();
+22 
+23   p_shmem_barrier_all();
+24 
+25   if (mype == 0) {
+26     p_shmem_long_p(flag, 1, 1);
+27     p_shmem_quiet();
+28   }
+29 
+30   p_shmem_barrier_all();
+31 
+32   if (mype != 0) {
+33     p_shmem_long_wait_until(flag, SHMEM_CMP_EQ, 1);
+34     if (*flag != 1) {
+35       p_shmem_free(flag);
+36       return false;
+37     }
+38   }
+39 
+40   p_shmem_free(flag);
+41   return true;
+42 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_long_p\fP, \fBp_shmem_long_wait_until\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, and \fBp_shmem_quiet\fP\&.
+.SS "bool test_shmem_wait_until_all (void )"
+
+.PP
+Tests the shmem_wait_until_all() routine\&. This test verifies that the shmem_wait_until_all() function correctly waits until all specified conditions on an array of memory locations are met\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB52\fP of file \fBpt2pt_tests\&.cpp\fP\&.
+.nf
+52                                      {
+53   long *flags = (long *)p_shmem_malloc(2 * sizeof(long));
+54   flags[0] = 0;
+55   flags[1] = 0;
+56   int mype = p_shmem_my_pe();
+57 
+58   p_shmem_barrier_all();
+59 
+60   if (mype == 0) {
+61     p_shmem_long_p(&flags[0], 1, 1);
+62     p_shmem_long_p(&flags[1], 1, 1);
+63     p_shmem_quiet();
+64   }
+65 
+66   p_shmem_barrier_all();
+67 
+68   if (mype != 0) {
+69     p_shmem_long_wait_until_all(flags, 2, NULL, SHMEM_CMP_EQ, 1);
+70     if (flags[0] != 1 || flags[1] != 1) {
+71       p_shmem_free(flags);
+72       return false;
+73     }
+74   }
+75 
+76   p_shmem_free(flags);
+77   return true;
+78 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_long_p\fP, \fBp_shmem_long_wait_until_all\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, and \fBp_shmem_quiet\fP\&.
+.SS "bool test_shmem_wait_until_all_vector (void )"
+
+.PP
+Tests the shmem_wait_until_all_vector() routine\&. This test verifies that the shmem_wait_until_all_vector() function correctly waits until all specified conditions on a vector of memory locations are met\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB362\fP of file \fBpt2pt_tests\&.cpp\fP\&.
+.nf
+362                                             {
+363   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
+364   for (int i = 0; i < 4; ++i) {
+365     flags[i] = 0;
+366   }
+367   int mype = p_shmem_my_pe();
+368 
+369   p_shmem_barrier_all();
+370 
+371   if (mype == 0) {
+372     for (int i = 0; i < 4; ++i) {
+373       p_shmem_long_p(&flags[i], 1, 1);
+374       p_shmem_quiet();
+375     }
+376   }
+377 
+378   p_shmem_barrier_all();
+379 
+380   if (mype != 0) {
+381     int status[4] = {SHMEM_CMP_EQ, SHMEM_CMP_EQ, SHMEM_CMP_EQ, SHMEM_CMP_EQ};
+382     long cmp_values[4] = {1, 1, 1, 1};
+383     p_shmem_long_wait_until_all_vector(flags, 4, status, SHMEM_CMP_EQ, cmp_values);
+384     for (int i = 0; i < 4; ++i) {
+385       if (flags[i] != 1) {
+386         p_shmem_free(flags);
+387         return false;
+388       }
+389     }
+390   }
+391 
+392   p_shmem_free(flags);
+393   return true;
+394 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_long_p\fP, \fBp_shmem_long_wait_until_all_vector\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, and \fBp_shmem_quiet\fP\&.
+.SS "bool test_shmem_wait_until_any (void )"
+
+.PP
+Tests the shmem_wait_until_any() routine\&. This test verifies that the shmem_wait_until_any() function correctly waits until any one of the specified conditions on an array of memory locations is met\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB88\fP of file \fBpt2pt_tests\&.cpp\fP\&.
+.nf
+88                                      {
+89   long *flags = (long *)p_shmem_malloc(3 * sizeof(long));
+90   for (int i = 0; i < 3; i++) {
+91     flags[i] = 0;
+92   }
+93   int mype = p_shmem_my_pe();
+94 
+95   p_shmem_barrier_all();
+96 
+97   if (mype == 0) {
+98     p_shmem_long_p(&flags[2], 1, 1);
+99     p_shmem_quiet();
+100   }
+101 
+102   p_shmem_barrier_all();
+103 
+104   if (mype != 0) {
+105     int status[3] = {SHMEM_CMP_EQ, SHMEM_CMP_EQ, SHMEM_CMP_EQ};
+106     size_t index = p_shmem_long_wait_until_any(flags, 3, status, SHMEM_CMP_EQ, 1);
+107     if (index == SIZE_MAX) {
+108       p_shmem_free(flags);
+109       return false;
+110     }
+111     if (flags[index] != 1) {
+112       p_shmem_free(flags);
+113       return false;
+114     }
+115   }
+116 
+117   p_shmem_free(flags);
+118   return true;
+119 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_long_p\fP, \fBp_shmem_long_wait_until_any\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, and \fBp_shmem_quiet\fP\&.
+.SS "bool test_shmem_wait_until_any_vector (void )"
+
+.PP
+Tests the shmem_wait_until_any_vector() routine\&. This test verifies that the shmem_wait_until_any_vector() function correctly waits until any one of the specified conditions on a vector of memory locations is met\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB404\fP of file \fBpt2pt_tests\&.cpp\fP\&.
+.nf
+404                                             {
+405   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
+406   for (int i = 0; i < 4; ++i) {
+407     flags[i] = 0;
+408   }
+409   int mype = p_shmem_my_pe();
+410 
+411   p_shmem_barrier_all();
+412 
+413   if (mype == 0) {
+414     p_shmem_long_p(&flags[2], 1, 1);
+415     p_shmem_quiet();
+416   }
+417 
+418   p_shmem_barrier_all();
+419 
+420   if (mype != 0) {
+421     int status[4] = {SHMEM_CMP_EQ, SHMEM_CMP_EQ, SHMEM_CMP_EQ, SHMEM_CMP_EQ};
+422     long cmp_values[4] = {1, 1, 1, 1};
+423     size_t index = p_shmem_long_wait_until_any_vector(flags, 4, status, SHMEM_CMP_EQ, cmp_values);
+424     if (index == SIZE_MAX) {
+425       p_shmem_free(flags);
+426       return false;
+427     }
+428     if (flags[index] != 1) {
+429       p_shmem_free(flags);
+430       return false;
+431     }
+432   }
+433 
+434   p_shmem_free(flags);
+435   return true;
+436 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_long_p\fP, \fBp_shmem_long_wait_until_any_vector\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, and \fBp_shmem_quiet\fP\&.
+.SS "bool test_shmem_wait_until_some (void )"
+
+.PP
+Tests the shmem_wait_until_some() routine\&. This test verifies that the shmem_wait_until_some() function correctly waits until some of the specified conditions on an array of memory locations are met\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB129\fP of file \fBpt2pt_tests\&.cpp\fP\&.
+.nf
+129                                       {
+130   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
+131   for (int i = 0; i < 4; ++i) {
+132     flags[i] = 0;
+133   }
+134   int mype = p_shmem_my_pe();
+135 
+136   p_shmem_barrier_all();
+137 
+138   if (mype == 0) {
+139     p_shmem_long_p(&flags[1], 1, 1);
+140     p_shmem_long_p(&flags[3], 1, 1);
+141     p_shmem_quiet();
+142   }
+143 
+144   p_shmem_barrier_all();
+145 
+146   if (mype != 0) {
+147     size_t indices[4];
+148     int status[4] = {SHMEM_CMP_EQ, SHMEM_CMP_EQ, SHMEM_CMP_EQ, SHMEM_CMP_EQ};
+149     size_t count = p_shmem_long_wait_until_some(flags, 4, indices, status, SHMEM_CMP_EQ, 1);
+150     if (count < 2) {
+151       p_shmem_free(flags);
+152       return false;
+153     }
+154     for (size_t i = 0; i < count; ++i) {
+155       if (flags[indices[i]] != 1) {
+156         p_shmem_free(flags);
+157         return false;
+158       }
+159     }
+160   }
+161 
+162   p_shmem_free(flags);
+163   return true;
+164 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_long_p\fP, \fBp_shmem_long_wait_until_some\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, and \fBp_shmem_quiet\fP\&.
+.SS "bool test_shmem_wait_until_some_vector (void )"
+
+.PP
+Tests the shmem_wait_until_some_vector() routine\&. This test verifies that the shmem_wait_until_some_vector() function correctly waits until some of the specified conditions on a vector of memory locations are met\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB446\fP of file \fBpt2pt_tests\&.cpp\fP\&.
+.nf
+446                                              {
+447   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
+448   for (int i = 0; i < 4; ++i) {
+449     flags[i] = 0;
+450   }
+451   int mype = p_shmem_my_pe();
+452 
+453   p_shmem_barrier_all();
+454 
+455   if (mype == 0) {
+456     p_shmem_long_p(&flags[1], 1, 1);
+457     p_shmem_long_p(&flags[3], 1, 1);
+458     p_shmem_quiet();
+459   }
+460 
+461   p_shmem_barrier_all();
+462 
+463   if (mype != 0) {
+464     int status[4] = {SHMEM_CMP_EQ, SHMEM_CMP_EQ, SHMEM_CMP_EQ, SHMEM_CMP_EQ};
+465     long cmp_values[4] = {1, 1, 1, 1};
+466     size_t indices[4];
+467     size_t num_indices = p_shmem_long_wait_until_some_vector(flags, 4, indices, status, SHMEM_CMP_EQ, cmp_values);
+468     if (num_indices < 2) {
+469       p_shmem_free(flags);
+470       return false;
+471     }
+472     for (size_t i = 0; i < num_indices; ++i) {
+473       if (flags[indices[i]] != 1) {
+474         p_shmem_free(flags);
+475         return false;
+476       }
+477     }
+478   }
+479 
+480   p_shmem_free(flags);
+481   return true;
+482 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_barrier_all\fP, \fBp_shmem_free\fP, \fBp_shmem_long_p\fP, \fBp_shmem_long_wait_until_some_vector\fP, \fBp_shmem_malloc\fP, \fBp_shmem_my_pe\fP, and \fBp_shmem_quiet\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for shmemvv from the source code\&.

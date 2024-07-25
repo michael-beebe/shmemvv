@@ -1,0 +1,155 @@
+.TH "src/tests/comms/comms_tests.cpp" 3 "Version 0.1" "shmemvv" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/tests/comms/comms_tests.cpp \- Contains OpenSHMEM communication/context tests\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'comms_tests\&.hpp'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBtest_shmem_ctx_create\fP (void)"
+.br
+.RI "Tests the shmem_ctx_create() function\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_team_create_ctx\fP (void)"
+.br
+.RI "Tests the shmem_team_create_ctx() function\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_ctx_destroy\fP (void)"
+.br
+.RI "Tests the shmem_ctx_destroy() function\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_ctx_get_team\fP (void)"
+.br
+.RI "Tests the shmem_ctx_get_team() function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Contains OpenSHMEM communication/context tests\&. 
+
+
+.PP
+Definition in file \fBcomms_tests\&.cpp\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "bool test_shmem_ctx_create (void )"
+
+.PP
+Tests the shmem_ctx_create() function\&. This test verifies that the shmem_ctx_create() function correctly creates a communication context\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB15\fP of file \fBcomms_tests\&.cpp\fP\&.
+.nf
+15                                  {
+16   shmem_ctx_t ctx;
+17   int ret = p_shmem_ctx_create(0, &ctx);
+18   if (ret != 0) {
+19     return false;
+20   }
+21   p_shmem_ctx_destroy(ctx);
+22   return true;
+23 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_ctx_create\fP, and \fBp_shmem_ctx_destroy\fP\&.
+.SS "bool test_shmem_ctx_destroy (void )"
+
+.PP
+Tests the shmem_ctx_destroy() function\&. This test verifies that the shmem_ctx_destroy() function correctly destroys a communication context\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB53\fP of file \fBcomms_tests\&.cpp\fP\&.
+.nf
+53                                   {
+54   shmem_ctx_t ctx;
+55   p_shmem_ctx_create(0, &ctx);
+56   p_shmem_ctx_destroy(ctx);
+57   return true;
+58 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_ctx_create\fP, and \fBp_shmem_ctx_destroy\fP\&.
+.SS "bool test_shmem_ctx_get_team (void )"
+
+.PP
+Tests the shmem_ctx_get_team() function\&. This test verifies that the shmem_ctx_get_team() function correctly retrieves the team associated with a given communication context\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB68\fP of file \fBcomms_tests\&.cpp\fP\&.
+.nf
+68                                    {
+69   shmem_ctx_t ctx;
+70   shmem_team_t team;
+71   p_shmem_ctx_create(0, &ctx);
+72   int ret = p_shmem_ctx_get_team(ctx, &team);
+73   p_shmem_ctx_destroy(ctx);
+74   return (ret == 0 && team == SHMEM_TEAM_WORLD);
+75 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_ctx_create\fP, \fBp_shmem_ctx_destroy\fP, and \fBp_shmem_ctx_get_team\fP\&.
+.SS "bool test_shmem_team_create_ctx (void )"
+
+.PP
+Tests the shmem_team_create_ctx() function\&. This test verifies that the shmem_team_create_ctx() function correctly creates a context for a specified team\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB33\fP of file \fBcomms_tests\&.cpp\fP\&.
+.nf
+33                                       {
+34   shmem_team_t team;
+35   shmem_ctx_t ctx;
+36   p_shmem_team_split_strided(SHMEM_TEAM_WORLD, 0, 1, p_shmem_n_pes(), NULL, 0, &team);
+37   int ret = shmem_team_create_ctx(team, 0, &ctx);
+38   if (ret != 0) {
+39     return false;
+40   }
+41   p_shmem_ctx_destroy(ctx);
+42   p_shmem_team_destroy(team);
+43   return true;
+44 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_ctx_destroy\fP, \fBp_shmem_n_pes\fP, \fBp_shmem_team_destroy\fP, and \fBp_shmem_team_split_strided\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for shmemvv from the source code\&.

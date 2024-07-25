@@ -1,0 +1,229 @@
+\doxysection{test\+\_\+options Struct Reference}
+\hypertarget{structtest__options}{}\label{structtest__options}\index{test\_options@{test\_options}}
+
+
+Struct to hold selected tests options.  
+
+
+
+
+{\ttfamily \#include $<$shmemvv.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structtest__options_af401044a56dc117e1a0a7774042001b4}{test\+\_\+options}} ()
+\begin{DoxyCompactList}\small\item\em Constructor to initialize all flags to false. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{structtest__options_af3ec57ed306add401e2dd41b9a441e91}{test\+\_\+all}}
+\item 
+bool \mbox{\hyperlink{structtest__options_a330aa30f35165f1da199bf8e766803da}{test\+\_\+setup}}
+\item 
+bool \mbox{\hyperlink{structtest__options_a7a97958fa5f262f7458bb6ae7e5cffe4}{test\+\_\+threads}}
+\item 
+bool \mbox{\hyperlink{structtest__options_a8e013cbf31279419a82755eb4dadc824}{test\+\_\+mem}}
+\item 
+bool \mbox{\hyperlink{structtest__options_a14b0f239bdc0a5cd8b5077594a5b2691}{test\+\_\+teams}}
+\item 
+bool \mbox{\hyperlink{structtest__options_a9af7e596ba25482ce72ff6b95198ccd0}{test\+\_\+ctx}}
+\item 
+bool \mbox{\hyperlink{structtest__options_ab6a1cc49e7ecfb4fe735f50f11d432fe}{test\+\_\+remote}}
+\item 
+bool \mbox{\hyperlink{structtest__options_a34004528ec157da43016ff633ab5f1c4}{test\+\_\+atomics}}
+\item 
+bool \mbox{\hyperlink{structtest__options_a7318289417acbe85601cd31c9556908d}{test\+\_\+signaling}}
+\item 
+bool \mbox{\hyperlink{structtest__options_a0a14b3a0a43cabb293a620ec6a152bf8}{test\+\_\+collectives}}
+\item 
+bool \mbox{\hyperlink{structtest__options_af14948d711605635b8ddf534e18b6139}{test\+\_\+pt2pt\+\_\+synch}}
+\item 
+bool \mbox{\hyperlink{structtest__options_a94e89aaf1b81cb111d630a886236d6d9}{test\+\_\+mem\+\_\+ordering}}
+\item 
+bool \mbox{\hyperlink{structtest__options_a1cd051c8df69a2736066470213d255fc}{test\+\_\+locking}}
+\item 
+bool \mbox{\hyperlink{structtest__options_a3263b245af6a78eb31c1b28b12342b9c}{help}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Struct to hold selected tests options. 
+
+Definition at line \mbox{\hyperlink{shmemvv_8hpp_source_l00044}{44}} of file \mbox{\hyperlink{shmemvv_8hpp_source}{shmemvv.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structtest__options_af401044a56dc117e1a0a7774042001b4}\index{test\_options@{test\_options}!test\_options@{test\_options}}
+\index{test\_options@{test\_options}!test\_options@{test\_options}}
+\doxysubsubsection{\texorpdfstring{test\_options()}{test\_options()}}
+{\footnotesize\ttfamily \label{structtest__options_af401044a56dc117e1a0a7774042001b4} 
+test\+\_\+options\+::test\+\_\+options (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor to initialize all flags to false. 
+
+
+
+Definition at line \mbox{\hyperlink{shmemvv_8hpp_source_l00063}{63}} of file \mbox{\hyperlink{shmemvv_8hpp_source}{shmemvv.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :}
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{structtest__options_af3ec57ed306add401e2dd41b9a441e91}{test\_all}}(\textcolor{keyword}{false}),\ \mbox{\hyperlink{structtest__options_a330aa30f35165f1da199bf8e766803da}{test\_setup}}(\textcolor{keyword}{false}),\ \mbox{\hyperlink{structtest__options_a7a97958fa5f262f7458bb6ae7e5cffe4}{test\_threads}}(\textcolor{keyword}{false}),}
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{structtest__options_a8e013cbf31279419a82755eb4dadc824}{test\_mem}}(\textcolor{keyword}{false}),\ \mbox{\hyperlink{structtest__options_a14b0f239bdc0a5cd8b5077594a5b2691}{test\_teams}}(\textcolor{keyword}{false}),\ \mbox{\hyperlink{structtest__options_a9af7e596ba25482ce72ff6b95198ccd0}{test\_ctx}}(\textcolor{keyword}{false}),}
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{structtest__options_ab6a1cc49e7ecfb4fe735f50f11d432fe}{test\_remote}}(\textcolor{keyword}{false}),\ \mbox{\hyperlink{structtest__options_a34004528ec157da43016ff633ab5f1c4}{test\_atomics}}(\textcolor{keyword}{false}),\ \mbox{\hyperlink{structtest__options_a7318289417acbe85601cd31c9556908d}{test\_signaling}}(\textcolor{keyword}{false}),}
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{structtest__options_a0a14b3a0a43cabb293a620ec6a152bf8}{test\_collectives}}(\textcolor{keyword}{false}),\ \mbox{\hyperlink{structtest__options_af14948d711605635b8ddf534e18b6139}{test\_pt2pt\_synch}}(\textcolor{keyword}{false}),}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{structtest__options_a94e89aaf1b81cb111d630a886236d6d9}{test\_mem\_ordering}}(\textcolor{keyword}{false}),\ \mbox{\hyperlink{structtest__options_a1cd051c8df69a2736066470213d255fc}{test\_locking}}(\textcolor{keyword}{false}),\ \mbox{\hyperlink{structtest__options_a3263b245af6a78eb31c1b28b12342b9c}{help}}(\textcolor{keyword}{false})\ \{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structtest__options_a3263b245af6a78eb31c1b28b12342b9c}\index{test\_options@{test\_options}!help@{help}}
+\index{help@{help}!test\_options@{test\_options}}
+\doxysubsubsection{\texorpdfstring{help}{help}}
+{\footnotesize\ttfamily \label{structtest__options_a3263b245af6a78eb31c1b28b12342b9c} 
+bool test\+\_\+options\+::help}
+
+Flag to display help message 
+
+Definition at line \mbox{\hyperlink{shmemvv_8hpp_source_l00058}{58}} of file \mbox{\hyperlink{shmemvv_8hpp_source}{shmemvv.\+hpp}}.
+
+\Hypertarget{structtest__options_af3ec57ed306add401e2dd41b9a441e91}\index{test\_options@{test\_options}!test\_all@{test\_all}}
+\index{test\_all@{test\_all}!test\_options@{test\_options}}
+\doxysubsubsection{\texorpdfstring{test\_all}{test\_all}}
+{\footnotesize\ttfamily \label{structtest__options_af3ec57ed306add401e2dd41b9a441e91} 
+bool test\+\_\+options\+::test\+\_\+all}
+
+Flag to run all tests 
+
+Definition at line \mbox{\hyperlink{shmemvv_8hpp_source_l00045}{45}} of file \mbox{\hyperlink{shmemvv_8hpp_source}{shmemvv.\+hpp}}.
+
+\Hypertarget{structtest__options_a34004528ec157da43016ff633ab5f1c4}\index{test\_options@{test\_options}!test\_atomics@{test\_atomics}}
+\index{test\_atomics@{test\_atomics}!test\_options@{test\_options}}
+\doxysubsubsection{\texorpdfstring{test\_atomics}{test\_atomics}}
+{\footnotesize\ttfamily \label{structtest__options_a34004528ec157da43016ff633ab5f1c4} 
+bool test\+\_\+options\+::test\+\_\+atomics}
+
+Flag to run atomic memory operations tests 
+
+Definition at line \mbox{\hyperlink{shmemvv_8hpp_source_l00052}{52}} of file \mbox{\hyperlink{shmemvv_8hpp_source}{shmemvv.\+hpp}}.
+
+\Hypertarget{structtest__options_a0a14b3a0a43cabb293a620ec6a152bf8}\index{test\_options@{test\_options}!test\_collectives@{test\_collectives}}
+\index{test\_collectives@{test\_collectives}!test\_options@{test\_options}}
+\doxysubsubsection{\texorpdfstring{test\_collectives}{test\_collectives}}
+{\footnotesize\ttfamily \label{structtest__options_a0a14b3a0a43cabb293a620ec6a152bf8} 
+bool test\+\_\+options\+::test\+\_\+collectives}
+
+Flag to run collective operations tests 
+
+Definition at line \mbox{\hyperlink{shmemvv_8hpp_source_l00054}{54}} of file \mbox{\hyperlink{shmemvv_8hpp_source}{shmemvv.\+hpp}}.
+
+\Hypertarget{structtest__options_a9af7e596ba25482ce72ff6b95198ccd0}\index{test\_options@{test\_options}!test\_ctx@{test\_ctx}}
+\index{test\_ctx@{test\_ctx}!test\_options@{test\_options}}
+\doxysubsubsection{\texorpdfstring{test\_ctx}{test\_ctx}}
+{\footnotesize\ttfamily \label{structtest__options_a9af7e596ba25482ce72ff6b95198ccd0} 
+bool test\+\_\+options\+::test\+\_\+ctx}
+
+Flag to run communication management tests 
+
+Definition at line \mbox{\hyperlink{shmemvv_8hpp_source_l00050}{50}} of file \mbox{\hyperlink{shmemvv_8hpp_source}{shmemvv.\+hpp}}.
+
+\Hypertarget{structtest__options_a1cd051c8df69a2736066470213d255fc}\index{test\_options@{test\_options}!test\_locking@{test\_locking}}
+\index{test\_locking@{test\_locking}!test\_options@{test\_options}}
+\doxysubsubsection{\texorpdfstring{test\_locking}{test\_locking}}
+{\footnotesize\ttfamily \label{structtest__options_a1cd051c8df69a2736066470213d255fc} 
+bool test\+\_\+options\+::test\+\_\+locking}
+
+Flag to run distributed locking tests 
+
+Definition at line \mbox{\hyperlink{shmemvv_8hpp_source_l00057}{57}} of file \mbox{\hyperlink{shmemvv_8hpp_source}{shmemvv.\+hpp}}.
+
+\Hypertarget{structtest__options_a8e013cbf31279419a82755eb4dadc824}\index{test\_options@{test\_options}!test\_mem@{test\_mem}}
+\index{test\_mem@{test\_mem}!test\_options@{test\_options}}
+\doxysubsubsection{\texorpdfstring{test\_mem}{test\_mem}}
+{\footnotesize\ttfamily \label{structtest__options_a8e013cbf31279419a82755eb4dadc824} 
+bool test\+\_\+options\+::test\+\_\+mem}
+
+Flag to run memory management tests 
+
+Definition at line \mbox{\hyperlink{shmemvv_8hpp_source_l00048}{48}} of file \mbox{\hyperlink{shmemvv_8hpp_source}{shmemvv.\+hpp}}.
+
+\Hypertarget{structtest__options_a94e89aaf1b81cb111d630a886236d6d9}\index{test\_options@{test\_options}!test\_mem\_ordering@{test\_mem\_ordering}}
+\index{test\_mem\_ordering@{test\_mem\_ordering}!test\_options@{test\_options}}
+\doxysubsubsection{\texorpdfstring{test\_mem\_ordering}{test\_mem\_ordering}}
+{\footnotesize\ttfamily \label{structtest__options_a94e89aaf1b81cb111d630a886236d6d9} 
+bool test\+\_\+options\+::test\+\_\+mem\+\_\+ordering}
+
+Flag to run memory ordering tests 
+
+Definition at line \mbox{\hyperlink{shmemvv_8hpp_source_l00056}{56}} of file \mbox{\hyperlink{shmemvv_8hpp_source}{shmemvv.\+hpp}}.
+
+\Hypertarget{structtest__options_af14948d711605635b8ddf534e18b6139}\index{test\_options@{test\_options}!test\_pt2pt\_synch@{test\_pt2pt\_synch}}
+\index{test\_pt2pt\_synch@{test\_pt2pt\_synch}!test\_options@{test\_options}}
+\doxysubsubsection{\texorpdfstring{test\_pt2pt\_synch}{test\_pt2pt\_synch}}
+{\footnotesize\ttfamily \label{structtest__options_af14948d711605635b8ddf534e18b6139} 
+bool test\+\_\+options\+::test\+\_\+pt2pt\+\_\+synch}
+
+Flag to run point-\/to-\/point synchronization tests 
+
+Definition at line \mbox{\hyperlink{shmemvv_8hpp_source_l00055}{55}} of file \mbox{\hyperlink{shmemvv_8hpp_source}{shmemvv.\+hpp}}.
+
+\Hypertarget{structtest__options_ab6a1cc49e7ecfb4fe735f50f11d432fe}\index{test\_options@{test\_options}!test\_remote@{test\_remote}}
+\index{test\_remote@{test\_remote}!test\_options@{test\_options}}
+\doxysubsubsection{\texorpdfstring{test\_remote}{test\_remote}}
+{\footnotesize\ttfamily \label{structtest__options_ab6a1cc49e7ecfb4fe735f50f11d432fe} 
+bool test\+\_\+options\+::test\+\_\+remote}
+
+Flag to run remote memory access tests 
+
+Definition at line \mbox{\hyperlink{shmemvv_8hpp_source_l00051}{51}} of file \mbox{\hyperlink{shmemvv_8hpp_source}{shmemvv.\+hpp}}.
+
+\Hypertarget{structtest__options_a330aa30f35165f1da199bf8e766803da}\index{test\_options@{test\_options}!test\_setup@{test\_setup}}
+\index{test\_setup@{test\_setup}!test\_options@{test\_options}}
+\doxysubsubsection{\texorpdfstring{test\_setup}{test\_setup}}
+{\footnotesize\ttfamily \label{structtest__options_a330aa30f35165f1da199bf8e766803da} 
+bool test\+\_\+options\+::test\+\_\+setup}
+
+Flag to run setup tests 
+
+Definition at line \mbox{\hyperlink{shmemvv_8hpp_source_l00046}{46}} of file \mbox{\hyperlink{shmemvv_8hpp_source}{shmemvv.\+hpp}}.
+
+\Hypertarget{structtest__options_a7318289417acbe85601cd31c9556908d}\index{test\_options@{test\_options}!test\_signaling@{test\_signaling}}
+\index{test\_signaling@{test\_signaling}!test\_options@{test\_options}}
+\doxysubsubsection{\texorpdfstring{test\_signaling}{test\_signaling}}
+{\footnotesize\ttfamily \label{structtest__options_a7318289417acbe85601cd31c9556908d} 
+bool test\+\_\+options\+::test\+\_\+signaling}
+
+Flag to run signaling operations tests 
+
+Definition at line \mbox{\hyperlink{shmemvv_8hpp_source_l00053}{53}} of file \mbox{\hyperlink{shmemvv_8hpp_source}{shmemvv.\+hpp}}.
+
+\Hypertarget{structtest__options_a14b0f239bdc0a5cd8b5077594a5b2691}\index{test\_options@{test\_options}!test\_teams@{test\_teams}}
+\index{test\_teams@{test\_teams}!test\_options@{test\_options}}
+\doxysubsubsection{\texorpdfstring{test\_teams}{test\_teams}}
+{\footnotesize\ttfamily \label{structtest__options_a14b0f239bdc0a5cd8b5077594a5b2691} 
+bool test\+\_\+options\+::test\+\_\+teams}
+
+Flag to run team management tests 
+
+Definition at line \mbox{\hyperlink{shmemvv_8hpp_source_l00049}{49}} of file \mbox{\hyperlink{shmemvv_8hpp_source}{shmemvv.\+hpp}}.
+
+\Hypertarget{structtest__options_a7a97958fa5f262f7458bb6ae7e5cffe4}\index{test\_options@{test\_options}!test\_threads@{test\_threads}}
+\index{test\_threads@{test\_threads}!test\_options@{test\_options}}
+\doxysubsubsection{\texorpdfstring{test\_threads}{test\_threads}}
+{\footnotesize\ttfamily \label{structtest__options_a7a97958fa5f262f7458bb6ae7e5cffe4} 
+bool test\+\_\+options\+::test\+\_\+threads}
+
+Flag to run thread support tests 
+
+Definition at line \mbox{\hyperlink{shmemvv_8hpp_source_l00047}{47}} of file \mbox{\hyperlink{shmemvv_8hpp_source}{shmemvv.\+hpp}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/include/\mbox{\hyperlink{shmemvv_8hpp}{shmemvv.\+hpp}}\end{DoxyCompactItemize}

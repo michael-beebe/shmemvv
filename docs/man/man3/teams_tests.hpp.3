@@ -1,0 +1,254 @@
+.TH "src/tests/teams/teams_tests.hpp" 3 "Version 0.1" "shmemvv" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/tests/teams/teams_tests.hpp \- Contains function declarations for the OpenSHMEM teams tests\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'routines\&.hpp'\fP
+.br
+\fR#include <shmem\&.h>\fP
+.br
+\fR#include <iostream>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBtest_shmem_team_my_pe\fP (void)"
+.br
+.RI "Tests the shmem_team_my_pe() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_team_n_pes\fP (void)"
+.br
+.RI "Tests the shmem_team_n_pes() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_team_get_config\fP (void)"
+.br
+.RI "Tests the shmem_team_get_config() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_team_translate_pe\fP (void)"
+.br
+.RI "Tests the shmem_team_translate_pe() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_team_split_strided\fP (void)"
+.br
+.RI "Tests the shmem_team_split_strided() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_team_split_2d\fP (void)"
+.br
+.RI "Tests the shmem_team_split_2d() routine\&. "
+.ti -1c
+.RI "bool \fBtest_shmem_team_destroy\fP (void)"
+.br
+.RI "Tests the shmem_team_destroy() routine\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Contains function declarations for the OpenSHMEM teams tests\&. 
+
+
+.PP
+Definition in file \fBteams_tests\&.hpp\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "bool test_shmem_team_destroy (void )"
+
+.PP
+Tests the shmem_team_destroy() routine\&. This test verifies that the shmem_team_destroy() function correctly destroys a team\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB113\fP of file \fBteams_tests\&.cpp\fP\&.
+.nf
+113                                    {
+114   shmem_team_t team;
+115   p_shmem_team_split_strided(SHMEM_TEAM_WORLD, 0, 1, p_shmem_n_pes(), NULL, 0, &team);
+116   p_shmem_team_destroy(team);
+117   if (!(team == SHMEM_TEAM_INVALID)) {
+118     return true;
+119   }
+120   else {
+121     return false;
+122   }
+123 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_n_pes\fP, \fBp_shmem_team_destroy\fP, and \fBp_shmem_team_split_strided\fP\&.
+.SS "bool test_shmem_team_get_config (void )"
+
+.PP
+Tests the shmem_team_get_config() routine\&. This test verifies that the shmem_team_get_config() function correctly retrieves the team configuration\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB45\fP of file \fBteams_tests\&.cpp\fP\&.
+.nf
+45                                       {
+46   shmem_team_t team;
+47   shmem_team_config_t config;
+48   long config_mask = SHMEM_TEAM_NUM_CONTEXTS;
+49   p_shmem_team_split_strided(SHMEM_TEAM_WORLD, 0, 1, p_shmem_n_pes(), NULL, 0, &team);
+50   if (team == SHMEM_TEAM_INVALID) {
+51     return false;
+52   }
+53   p_shmem_team_get_config(team, config_mask, &config);
+54   bool result = (config\&.num_contexts >= 0);
+55   p_shmem_team_destroy(team);
+56   return result;
+57 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_n_pes\fP, \fBp_shmem_team_destroy\fP, \fBp_shmem_team_get_config\fP, and \fBp_shmem_team_split_strided\fP\&.
+.SS "bool test_shmem_team_my_pe (void )"
+
+.PP
+Tests the shmem_team_my_pe() routine\&. This test verifies that the shmem_team_my_pe() function returns a valid PE number within the team\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB15\fP of file \fBteams_tests\&.cpp\fP\&.
+.nf
+15                                  {
+16   shmem_team_t team;
+17   p_shmem_team_split_strided(SHMEM_TEAM_WORLD, 0, 1, p_shmem_n_pes(), NULL, 0, &team);
+18   int my_pe = p_shmem_team_my_pe(team);
+19   p_shmem_team_destroy(team);
+20   return (my_pe >= 0);
+21 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_n_pes\fP, \fBp_shmem_team_destroy\fP, \fBp_shmem_team_my_pe\fP, and \fBp_shmem_team_split_strided\fP\&.
+.SS "bool test_shmem_team_n_pes (void )"
+
+.PP
+Tests the shmem_team_n_pes() routine\&. This test verifies that the shmem_team_n_pes() function returns the correct number of PEs in the team\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB30\fP of file \fBteams_tests\&.cpp\fP\&.
+.nf
+30                                  {
+31   shmem_team_t team;
+32   p_shmem_team_split_strided(SHMEM_TEAM_WORLD, 0, 1, p_shmem_n_pes(), NULL, 0, &team);
+33   int npes = p_shmem_team_n_pes(team);
+34   p_shmem_team_destroy(team);
+35   return (npes == p_shmem_n_pes());
+36 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_n_pes\fP, \fBp_shmem_team_destroy\fP, \fBp_shmem_team_n_pes\fP, and \fBp_shmem_team_split_strided\fP\&.
+.SS "bool test_shmem_team_split_2d (void )"
+
+.PP
+Tests the shmem_team_split_2d() routine\&. This test verifies that the shmem_team_split_2d() function correctly splits a team into two-dimensional subteams\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB96\fP of file \fBteams_tests\&.cpp\fP\&.
+.nf
+96                                     {
+97   shmem_team_t team_x, team_y;
+98   p_shmem_team_split_2d(SHMEM_TEAM_WORLD, 2, NULL, 0, &team_x, NULL, 0, &team_y);
+99   int npes_x = p_shmem_team_n_pes(team_x);
+100   int npes_y = p_shmem_team_n_pes(team_y);
+101   p_shmem_team_destroy(team_x);
+102   p_shmem_team_destroy(team_y);
+103   return (npes_x > 0 && npes_y > 0);
+104 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_team_destroy\fP, \fBp_shmem_team_n_pes\fP, and \fBp_shmem_team_split_2d\fP\&.
+.SS "bool test_shmem_team_split_strided (void )"
+
+.PP
+Tests the shmem_team_split_strided() routine\&. This test verifies that the shmem_team_split_strided() function correctly splits a team into subteams\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB81\fP of file \fBteams_tests\&.cpp\fP\&.
+.nf
+81                                          {
+82   shmem_team_t team;
+83   p_shmem_team_split_strided(SHMEM_TEAM_WORLD, 0, 1, p_shmem_n_pes(), NULL, 0, &team);
+84   int npes = p_shmem_team_n_pes(team);
+85   p_shmem_team_destroy(team);
+86   return (npes == p_shmem_n_pes());
+87 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_n_pes\fP, \fBp_shmem_team_destroy\fP, \fBp_shmem_team_n_pes\fP, and \fBp_shmem_team_split_strided\fP\&.
+.SS "bool test_shmem_team_translate_pe (void )"
+
+.PP
+Tests the shmem_team_translate_pe() routine\&. This test verifies that the shmem_team_translate_pe() function correctly translates a PE number from one team to another\&.
+.PP
+\fBReturns\fP
+.RS 4
+True if the test is successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB66\fP of file \fBteams_tests\&.cpp\fP\&.
+.nf
+66                                         {
+67   shmem_team_t team;
+68   p_shmem_team_split_strided(SHMEM_TEAM_WORLD, 0, 1, p_shmem_n_pes(), NULL, 0, &team);
+69   int pe_in_team = p_shmem_team_translate_pe(team, 0, SHMEM_TEAM_WORLD);
+70   p_shmem_team_destroy(team);
+71   return (pe_in_team >= 0);
+72 }
+.PP
+.fi
+
+.PP
+References \fBp_shmem_n_pes\fP, \fBp_shmem_team_destroy\fP, \fBp_shmem_team_split_strided\fP, and \fBp_shmem_team_translate_pe\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for shmemvv from the source code\&.

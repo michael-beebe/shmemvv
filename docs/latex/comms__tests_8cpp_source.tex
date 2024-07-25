@@ -1,0 +1,47 @@
+\doxysection{comms\+\_\+tests.\+cpp}
+\hypertarget{comms__tests_8cpp_source}{}\label{comms__tests_8cpp_source}\index{src/tests/comms/comms\_tests.cpp@{src/tests/comms/comms\_tests.cpp}}
+\mbox{\hyperlink{comms__tests_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{comms__tests_8hpp}{comms\_tests.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00015}\mbox{\hyperlink{comms__tests_8cpp_adc3e82e92eb7834be425ee53c7d022f5}{00015}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{comms__tests_8cpp_adc3e82e92eb7834be425ee53c7d022f5}{test\_shmem\_ctx\_create}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00016}00016\ \ \ shmem\_ctx\_t\ ctx;}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00017}00017\ \ \ \textcolor{keywordtype}{int}\ ret\ =\ \mbox{\hyperlink{routines_8hpp_aacfca33c958e2429fb3e2d90fbd1a652}{p\_shmem\_ctx\_create}}(0,\ \&ctx);}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00018}00018\ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00019}00019\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00020}00020\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00021}00021\ \ \ \mbox{\hyperlink{routines_8hpp_ac3b150930e56beaaadb04f648caca131}{p\_shmem\_ctx\_destroy}}(ctx);}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00022}00022\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00023}00023\ \}}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00033}\mbox{\hyperlink{comms__tests_8cpp_a93b873517ee8cf4bda6e3b5501d9a9e2}{00033}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{comms__tests_8cpp_a93b873517ee8cf4bda6e3b5501d9a9e2}{test\_shmem\_team\_create\_ctx}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00034}00034\ \ \ shmem\_team\_t\ team;}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00035}00035\ \ \ shmem\_ctx\_t\ ctx;}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00036}00036\ \ \ \mbox{\hyperlink{routines_8hpp_ac3263277d07b41834d3a33b47b55ee82}{p\_shmem\_team\_split\_strided}}(SHMEM\_TEAM\_WORLD,\ 0,\ 1,\ \mbox{\hyperlink{routines_8hpp_a484f2849d077f71872553f9c633152a7}{p\_shmem\_n\_pes}}(),\ NULL,\ 0,\ \&team);}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00037}00037\ \ \ \textcolor{keywordtype}{int}\ ret\ =\ shmem\_team\_create\_ctx(team,\ 0,\ \&ctx);}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00038}00038\ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00039}00039\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00040}00040\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00041}00041\ \ \ \mbox{\hyperlink{routines_8hpp_ac3b150930e56beaaadb04f648caca131}{p\_shmem\_ctx\_destroy}}(ctx);}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00042}00042\ \ \ \mbox{\hyperlink{routines_8hpp_a829d03e1486552ab7edc81586aff0a83}{p\_shmem\_team\_destroy}}(team);}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00043}00043\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00044}00044\ \}}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00053}\mbox{\hyperlink{comms__tests_8cpp_a03702c6504614588cd228c274040f3b8}{00053}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{comms__tests_8cpp_a03702c6504614588cd228c274040f3b8}{test\_shmem\_ctx\_destroy}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00054}00054\ \ \ shmem\_ctx\_t\ ctx;}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00055}00055\ \ \ \mbox{\hyperlink{routines_8hpp_aacfca33c958e2429fb3e2d90fbd1a652}{p\_shmem\_ctx\_create}}(0,\ \&ctx);}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00056}00056\ \ \ \mbox{\hyperlink{routines_8hpp_ac3b150930e56beaaadb04f648caca131}{p\_shmem\_ctx\_destroy}}(ctx);}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00057}00057\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00058}00058\ \}}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00068}\mbox{\hyperlink{comms__tests_8cpp_ac832bde92615d52d9bf46cfac65afe3a}{00068}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{comms__tests_8cpp_ac832bde92615d52d9bf46cfac65afe3a}{test\_shmem\_ctx\_get\_team}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00069}00069\ \ \ shmem\_ctx\_t\ ctx;}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00070}00070\ \ \ shmem\_team\_t\ team;}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00071}00071\ \ \ \mbox{\hyperlink{routines_8hpp_aacfca33c958e2429fb3e2d90fbd1a652}{p\_shmem\_ctx\_create}}(0,\ \&ctx);}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00072}00072\ \ \ \textcolor{keywordtype}{int}\ ret\ =\ \mbox{\hyperlink{routines_8hpp_ac68a0b97a662315cb0164121fde14710}{p\_shmem\_ctx\_get\_team}}(ctx,\ \&team);}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00073}00073\ \ \ \mbox{\hyperlink{routines_8hpp_ac3b150930e56beaaadb04f648caca131}{p\_shmem\_ctx\_destroy}}(ctx);}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00074}00074\ \ \ \textcolor{keywordflow}{return}\ (ret\ ==\ 0\ \&\&\ team\ ==\ SHMEM\_TEAM\_WORLD);}
+\DoxyCodeLine{\Hypertarget{comms__tests_8cpp_source_l00075}00075\ \}}
+
+\end{DoxyCode}

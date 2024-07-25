@@ -1,0 +1,246 @@
+\doxysection{collectives\+\_\+tests.\+cpp}
+\hypertarget{collectives__tests_8cpp_source}{}\label{collectives__tests_8cpp_source}\index{src/tests/collectives/collectives\_tests.cpp@{src/tests/collectives/collectives\_tests.cpp}}
+\mbox{\hyperlink{collectives__tests_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{collectives__tests_8hpp}{collectives\_tests.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00015}\mbox{\hyperlink{collectives__tests_8cpp_ae54cee0a9a42d2e1c0c46dde2f1f11e4}{00015}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{collectives__tests_8cpp_ae54cee0a9a42d2e1c0c46dde2f1f11e4}{test\_shmem\_sync}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00016}00016\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{long}\ pSync[SHMEM\_SYNC\_SIZE];}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00017}00017\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ SHMEM\_SYNC\_SIZE;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00018}00018\ \ \ \ \ pSync[i]\ =\ SHMEM\_SYNC\_VALUE;}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00019}00019\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00020}00020\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00021}00021\ \ \ \mbox{\hyperlink{routines_8hpp_aae8ba8e5672791670daae1f736655a4f}{p\_shmem\_sync}}(0,\ 0,\ \mbox{\hyperlink{routines_8hpp_a484f2849d077f71872553f9c633152a7}{p\_shmem\_n\_pes}}(),\ pSync);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00022}00022\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00023}00023\ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00032}\mbox{\hyperlink{collectives__tests_8cpp_a2dac100cd19598a5c6533963e9b3b0f7}{00032}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{collectives__tests_8cpp_a2dac100cd19598a5c6533963e9b3b0f7}{test\_shmem\_sync\_all}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00033}00033\ \ \ \mbox{\hyperlink{routines_8hpp_a377452288237835586f1c8a1accbcec8}{p\_shmem\_sync\_all}}();}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00034}00034\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00035}00035\ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00045}\mbox{\hyperlink{collectives__tests_8cpp_af1f712e27b018777258e73dbc7a2d82e}{00045}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{collectives__tests_8cpp_af1f712e27b018777258e73dbc7a2d82e}{test\_shmem\_alltoall}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00046}00046\ \ \ \textcolor{keywordtype}{int}\ npes\ =\ \mbox{\hyperlink{routines_8hpp_a484f2849d077f71872553f9c633152a7}{p\_shmem\_n\_pes}}();}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00047}00047\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00048}00048\ \ \ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00049}00049\ \ \ \textcolor{keywordtype}{long}\ *src\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(npes\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00050}00050\ \ \ \textcolor{keywordtype}{long}\ *dest\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(npes\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00052}00052\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ npes;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00053}00053\ \ \ \ \ src[i]\ =\ mype\ +\ i;}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00054}00054\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00056}00056\ \ \ \mbox{\hyperlink{routines_8hpp_ace7fa778f1038fccdab2ea7595b730c8}{p\_shmem\_long\_alltoall}}(SHMEM\_TEAM\_WORLD,\ dest,\ src,\ 1);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00058}00058\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00059}00059\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ npes;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00060}00060\ \ \ \ \ \textcolor{keywordflow}{if}\ (dest[i]\ !=\ mype\ +\ i)\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00061}00061\ \ \ \ \ \ \ success\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00062}00062\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00063}00063\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00064}00064\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00066}00066\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(src);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00067}00067\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00068}00068\ \ \ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00069}00069\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00070}00070\ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00080}\mbox{\hyperlink{collectives__tests_8cpp_a7530d826fab5bcda2388c076c6e13433}{00080}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{collectives__tests_8cpp_a7530d826fab5bcda2388c076c6e13433}{test\_shmem\_alltoalls}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00081}00081\ \ \ \textcolor{keywordtype}{int}\ npes\ =\ \mbox{\hyperlink{routines_8hpp_a484f2849d077f71872553f9c633152a7}{p\_shmem\_n\_pes}}();}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00082}00082\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00084}00084\ \ \ \textcolor{keywordtype}{long}\ *src\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(npes\ *\ npes\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00085}00085\ \ \ \textcolor{keywordtype}{long}\ *dest\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(npes\ *\ npes\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00087}00087\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ npes;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00088}00088\ \ \ \ \ src[i]\ =\ mype\ +\ i\ *\ npes;}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00089}00089\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00091}00091\ \ \ \mbox{\hyperlink{routines_8hpp_a97fd699e9e746a211df83f631ddac072}{p\_shmem\_long\_alltoalls}}(SHMEM\_TEAM\_WORLD,\ dest,\ src,\ 1,\ 1,\ npes);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00093}00093\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00094}00094\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ npes;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00095}00095\ \ \ \ \ \textcolor{keywordflow}{if}\ (dest[i]\ !=\ i\ *\ npes\ +\ mype)\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00096}00096\ \ \ \ \ \ \ success\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00097}00097\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00098}00098\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00099}00099\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00101}00101\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(src);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00102}00102\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00103}00103\ \ \ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00104}00104\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00105}00105\ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00115}\mbox{\hyperlink{collectives__tests_8cpp_af2d6da936fee0e8617fec16c833c856e}{00115}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{collectives__tests_8cpp_af2d6da936fee0e8617fec16c833c856e}{test\_shmem\_broadcast}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00116}00116\ \ \ \textcolor{keywordtype}{int}\ npes\ =\ \mbox{\hyperlink{routines_8hpp_a484f2849d077f71872553f9c633152a7}{p\_shmem\_n\_pes}}();}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00117}00117\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00118}00118\ \ \ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00119}00119\ \ \ \textcolor{keywordtype}{long}\ *src\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(4\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00120}00120\ \ \ \textcolor{keywordtype}{long}\ *dest\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(4\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00122}00122\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00123}00123\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00124}00124\ \ \ \ \ \ \ src[i]\ =\ i\ +\ 1;}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00125}00125\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00126}00126\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00128}00128\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00129}00129\ \ \ \ \ dest[i]\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00130}00130\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00132}00132\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00134}00134\ \ \ \mbox{\hyperlink{routines_8hpp_a6a3289c5102b396c7316b504a1d34f36}{p\_shmem\_long\_broadcast}}(SHMEM\_TEAM\_WORLD,\ dest,\ src,\ 4,\ 0);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00136}00136\ \ \ \mbox{\hyperlink{routines_8hpp_a63f33939c504d73d6b411a3e14fd08b1}{p\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00138}00138\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00139}00139\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00140}00140\ \ \ \ \ \textcolor{keywordflow}{if}\ (dest[i]\ !=\ i\ +\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00141}00141\ \ \ \ \ \ \ success\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00142}00142\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00143}00143\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00144}00144\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00146}00146\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(src);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00147}00147\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00148}00148\ \ \ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00149}00149\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00150}00150\ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00160}\mbox{\hyperlink{collectives__tests_8cpp_a85f482cb15988a56b759608b59633a40}{00160}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{collectives__tests_8cpp_a85f482cb15988a56b759608b59633a40}{test\_shmem\_collect}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00161}00161\ \ \ \textcolor{keywordtype}{int}\ npes\ =\ \mbox{\hyperlink{routines_8hpp_a484f2849d077f71872553f9c633152a7}{p\_shmem\_n\_pes}}();}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00162}00162\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00163}00163\ \ \ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00164}00164\ \ \ \textcolor{keywordtype}{long}\ *src\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00165}00165\ \ \ \textcolor{keywordtype}{long}\ *dest\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(npes\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00167}00167\ \ \ src[0]\ =\ mype;}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00169}00169\ \ \ \mbox{\hyperlink{routines_8hpp_accbb3aed936e0372f684ba0c19faec0e}{p\_shmem\_long\_collect}}(SHMEM\_TEAM\_WORLD,\ dest,\ src,\ 1);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00171}00171\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00172}00172\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ npes;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00173}00173\ \ \ \ \ \textcolor{keywordflow}{if}\ (dest[i]\ !=\ i)\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00174}00174\ \ \ \ \ \ \ success\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00175}00175\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00176}00176\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00177}00177\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00179}00179\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(src);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00180}00180\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00181}00181\ \ \ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00182}00182\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00183}00183\ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00193}\mbox{\hyperlink{collectives__tests_8cpp_af2a6ebfb26c8109dce274af8e3eb1394}{00193}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{collectives__tests_8cpp_af2a6ebfb26c8109dce274af8e3eb1394}{test\_shmem\_fcollect}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00194}00194\ \ \ \textcolor{keywordtype}{int}\ npes\ =\ \mbox{\hyperlink{routines_8hpp_a484f2849d077f71872553f9c633152a7}{p\_shmem\_n\_pes}}();}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00195}00195\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00196}00196\ \ \ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00197}00197\ \ \ \textcolor{keywordtype}{long}\ *src\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00198}00198\ \ \ \textcolor{keywordtype}{long}\ *dest\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(npes\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00199}00199\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00200}00200\ \ \ src[0]\ =\ mype;}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00201}00201\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00202}00202\ \ \ \mbox{\hyperlink{routines_8hpp_a1869aee6ec593a095280f860e8693adb}{p\_shmem\_long\_fcollect}}(SHMEM\_TEAM\_WORLD,\ dest,\ src,\ 1);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00204}00204\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00205}00205\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ npes;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00206}00206\ \ \ \ \ \textcolor{keywordflow}{if}\ (dest[i]\ !=\ i)\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00207}00207\ \ \ \ \ \ \ success\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00208}00208\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00209}00209\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00210}00210\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00211}00211\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00212}00212\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(src);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00213}00213\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00214}00214\ \ \ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00215}00215\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00216}00216\ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00226}\mbox{\hyperlink{collectives__tests_8cpp_aa652894774237b5db16e39698c53a3d0}{00226}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{collectives__tests_8cpp_aa652894774237b5db16e39698c53a3d0}{test\_shmem\_sum\_reduce}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00227}00227\ \ \ \textcolor{keywordtype}{int}\ npes\ =\ \mbox{\hyperlink{routines_8hpp_a484f2849d077f71872553f9c633152a7}{p\_shmem\_n\_pes}}();}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00228}00228\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00229}00229\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00230}00230\ \ \ \textcolor{keywordtype}{long}\ *src\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00231}00231\ \ \ \textcolor{keywordtype}{long}\ *dest\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00232}00232\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00233}00233\ \ \ *src\ =\ mype;}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00235}00235\ \ \ \mbox{\hyperlink{routines_8hpp_aa9a7a11f32ff31c22010130e5a6d14f3}{p\_shmem\_long\_sum\_reduce}}(SHMEM\_TEAM\_WORLD,\ dest,\ src,\ 1);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00236}00236\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00237}00237\ \ \ \textcolor{keywordtype}{long}\ expected\_sum\ =\ npes\ *\ (npes\ -\/\ 1)\ /\ 2;}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00238}00238\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (*dest\ ==\ expected\_sum);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00239}00239\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00240}00240\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(src);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00241}00241\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00242}00242\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00243}00243\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00244}00244\ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00245}00245\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00254}\mbox{\hyperlink{collectives__tests_8cpp_a0d76d8d7b05f1e81db1b20d65d67b79e}{00254}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{collectives__tests_8cpp_a0d76d8d7b05f1e81db1b20d65d67b79e}{test\_shmem\_prod\_reduce}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00255}00255\ \ \ \textcolor{keywordtype}{int}\ npes\ =\ \mbox{\hyperlink{routines_8hpp_a484f2849d077f71872553f9c633152a7}{p\_shmem\_n\_pes}}();}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00256}00256\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00257}00257\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00258}00258\ \ \ \textcolor{keywordtype}{long}\ *src\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00259}00259\ \ \ \textcolor{keywordtype}{long}\ *dest\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00260}00260\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00261}00261\ \ \ *src\ =\ mype\ +\ 1;}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00262}00262\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00263}00263\ \ \ \mbox{\hyperlink{routines_8hpp_a88ecfdc5cdcbe540495848d4a075523f}{p\_shmem\_long\_prod\_reduce}}(SHMEM\_TEAM\_WORLD,\ dest,\ src,\ 1);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00264}00264\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00265}00265\ \ \ \textcolor{keywordtype}{long}\ expected\_prod\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00266}00266\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <=\ npes;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00267}00267\ \ \ \ \ expected\_prod\ *=\ i;}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00268}00268\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00269}00269\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00270}00270\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (*dest\ ==\ expected\_prod);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00271}00271\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00272}00272\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(src);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00273}00273\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00274}00274\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00275}00275\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00276}00276\ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00277}00277\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00286}\mbox{\hyperlink{collectives__tests_8cpp_a31509ab8ec6053c1f06aaa34e7f16651}{00286}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{collectives__tests_8cpp_a31509ab8ec6053c1f06aaa34e7f16651}{test\_shmem\_min\_reduce}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00287}00287\ \ \ \textcolor{keywordtype}{int}\ npes\ =\ \mbox{\hyperlink{routines_8hpp_a484f2849d077f71872553f9c633152a7}{p\_shmem\_n\_pes}}();}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00288}00288\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00289}00289\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00290}00290\ \ \ \textcolor{keywordtype}{long}\ *src\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00291}00291\ \ \ \textcolor{keywordtype}{long}\ *dest\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00292}00292\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00293}00293\ \ \ *src\ =\ mype;}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00294}00294\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00295}00295\ \ \ \mbox{\hyperlink{routines_8hpp_ae2a72e571192c4648a89f8a43b2c7a0b}{p\_shmem\_long\_min\_reduce}}(SHMEM\_TEAM\_WORLD,\ dest,\ src,\ 1);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00296}00296\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00297}00297\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (*dest\ ==\ 0);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00298}00298\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00299}00299\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(src);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00300}00300\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00301}00301\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00302}00302\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00303}00303\ \}}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00304}00304\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00313}\mbox{\hyperlink{collectives__tests_8cpp_afd1f21a8b7962e9ef1d7d68e90f16eb2}{00313}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{collectives__tests_8cpp_afd1f21a8b7962e9ef1d7d68e90f16eb2}{test\_shmem\_max\_reduce}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00314}00314\ \ \ \textcolor{keywordtype}{int}\ npes\ =\ \mbox{\hyperlink{routines_8hpp_a484f2849d077f71872553f9c633152a7}{p\_shmem\_n\_pes}}();}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00315}00315\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ \mbox{\hyperlink{routines_8hpp_a64991b54fd352db28b7d9637b9defb25}{p\_shmem\_my\_pe}}();}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00316}00316\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00317}00317\ \ \ \textcolor{keywordtype}{long}\ *src\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00318}00318\ \ \ \textcolor{keywordtype}{long}\ *dest\ =\ (\textcolor{keywordtype}{long}\ *)\mbox{\hyperlink{routines_8hpp_acc03f95b6e1b6402f4c4dba60edcf4df}{p\_shmem\_malloc}}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{long}));}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00319}00319\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00320}00320\ \ \ *src\ =\ mype;}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00321}00321\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00322}00322\ \ \ \mbox{\hyperlink{routines_8hpp_a7996a282da79d8757f3dc31237090ea5}{p\_shmem\_long\_max\_reduce}}(SHMEM\_TEAM\_WORLD,\ dest,\ src,\ 1);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00323}00323\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00324}00324\ \ \ \textcolor{keywordtype}{bool}\ success\ =\ (*dest\ ==\ npes\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00325}00325\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00326}00326\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(src);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00327}00327\ \ \ \mbox{\hyperlink{routines_8hpp_acaa8f3c1abd3956c64d772d11a306770}{p\_shmem\_free}}(dest);}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00328}00328\ }
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00329}00329\ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{\Hypertarget{collectives__tests_8cpp_source_l00330}00330\ \}}
+
+\end{DoxyCode}

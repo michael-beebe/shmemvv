@@ -1,0 +1,3116 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.12)  25 JUL 2024 17:44
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**refman
+(./refman.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-02-20>
+(/usr/local/texlive/2024/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2024/texmf-dist/tex/latex/base/bk10.clo
+File: bk10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count188
+\c@chapter=\count189
+\c@section=\count190
+\c@subsection=\count191
+\c@subsubsection=\count192
+\c@paragraph=\count193
+\c@subparagraph=\count194
+\c@figure=\count195
+\c@table=\count196
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\bibindent=\dimen140
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/tools/array.sty
+Rollback for package 'array' requested -> date 2016-10-06.
+         Best approximation is the release introduced on 2016-10-06.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/tools/array-2016-10-06.sty
+Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
+\col@sep=\dimen141
+\extrarowheight=\dimen142
+\NC@list=\toks17
+\extratabsurround=\skip50
+\backup@length=\skip51
+))
+(/usr/local/texlive/2024/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+package info suppressed
+)
+(./doxygen.sty
+Package: doxygen 
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/base/alltt.sty
+Package: alltt 2021/01/29 v2.0g defines alltt environment
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count197
+\calc@Bcount=\count198
+\calc@Adimen=\dimen143
+\calc@Bdimen=\dimen144
+\calc@Askip=\skip52
+\calc@Bskip=\skip53
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count199
+\calc@Cskip=\skip54
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count266
+\float@exts=\toks18
+\float@box=\box51
+\@float@everytoks=\toks19
+\@floatcapt=\box52
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2023-11-06 v1.5v LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks20
+\verbatim@line=\toks21
+\verbatim@in@stream=\read2
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2023/11/15 v3.01 LaTeX color extensions (UK)
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 274.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1350.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1354.
+Package xcolor Info: Model `RGB' extended on input line 1366.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1368.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1371.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1372.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2024/02/20 v1.0g Color table columns (DPC)
+\everycr=\toks22
+\minrowclearance=\skip55
+\rownum=\count267
+)
+(./longtable_doxygen.sty
+Package: longtable_doxygen 2014/10/28 v4.11 Multi-page Table package (DPC) - fr
+ozen version for doxygen
+\LTleft=\skip56
+\LTright=\skip57
+\LTpre=\skip58
+\LTpost=\skip59
+\LTchunksize=\count268
+\LTcapwidth=\dimen145
+\LT@head=\box53
+\LT@firsthead=\box54
+\LT@foot=\box55
+\LT@lastfoot=\box56
+\LT@cols=\count269
+\LT@rows=\count270
+\c@LT@tables=\count271
+\c@LT@chunks=\count272
+\LT@p@ftn=\toks23
+) (./tabu_doxygen.sty
+Package: tabu_doxygen 2011/02/26 v2.8 - flexible LaTeX tabulars (FC), frozen ve
+rsion for doxygen
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box57
+\sift@deathcycles=\count273
+\@vwid@loff=\dimen146
+\@vwid@roff=\dimen147
+)
+\c@taburow=\count274
+\tabu@nbcols=\count275
+\tabu@cnt=\count276
+\tabu@Xcol=\count277
+\tabu@alloc=\count278
+\tabu@nested=\count279
+\tabu@target=\dimen148
+\tabu@spreadtarget=\dimen149
+\tabu@naturalX=\dimen150
+\tabucolX=\dimen151
+\tabu@Xsum=\dimen152
+\extrarowdepth=\dimen153
+\abovetabulinesep=\dimen154
+\belowtabulinesep=\dimen155
+\tabustrutrule=\dimen156
+\tabu@thebody=\toks24
+\tabu@footnotes=\toks25
+\tabu@box=\box58
+\tabu@arstrutbox=\box59
+\tabu@hleads=\box60
+\tabu@vleads=\box61
+\tabu@cellskip=\skip60
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2024/01/20 4.5c verbatim text (tvz,hv)
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks26
+)
+\FV@CodeLineNo=\count280
+\FV@InFile=\read3
+\FV@TabBox=\box62
+\c@FancyVerbLine=\count281
+\FV@StepNumber=\count282
+\FV@OutFile=\write3
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 2023/07/08 v2.11c `tabularx' package (DPC)
+\TX@col@width=\dimen157
+\TX@old@table=\dimen158
+\TX@old@col=\dimen159
+\TX@target=\dimen160
+\TX@delta=\dimen161
+\TX@cols=\count283
+\TX@ftn=\toks27
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2023/03/30 v1.9f multicolumn formatting (FMi)
+\c@tracingmulticols=\count284
+\mult@box=\box63
+\multicol@leftmargin=\dimen162
+\c@unbalance=\count285
+\c@collectmore=\count286
+\doublecol@number=\count287
+\multicoltolerance=\count288
+\multicolpretolerance=\count289
+\full@width=\dimen163
+\page@free=\dimen164
+\premulticols=\dimen165
+\postmulticols=\dimen166
+\multicolsep=\skip61
+\multicolbaselineskip=\skip62
+\partial@page=\box64
+\last@line=\box65
+\mc@boxedresult=\box66
+\maxbalancingoverflow=\dimen167
+\mult@rightbox=\box67
+\mult@grightbox=\box68
+\mult@firstbox=\box69
+\mult@gfirstbox=\box70
+\@tempa=\box71
+\@tempa=\box72
+\@tempa=\box73
+\@tempa=\box74
+\@tempa=\box75
+\@tempa=\box76
+\@tempa=\box77
+\@tempa=\box78
+\@tempa=\box79
+\@tempa=\box80
+\@tempa=\box81
+\@tempa=\box82
+\@tempa=\box83
+\@tempa=\box84
+\@tempa=\box85
+\@tempa=\box86
+\@tempa=\box87
+\@tempa=\box88
+\@tempa=\box89
+\@tempa=\box90
+\@tempa=\box91
+\@tempa=\box92
+\@tempa=\box93
+\@tempa=\box94
+\@tempa=\box95
+\@tempa=\box96
+\@tempa=\box97
+\@tempa=\box98
+\@tempa=\box99
+\@tempa=\box100
+\@tempa=\box101
+\@tempa=\box102
+\@tempa=\box103
+\@tempa=\box104
+\@tempa=\box105
+\@tempa=\box106
+\c@minrows=\count290
+\c@columnbadness=\count291
+\c@finalcolumnbadness=\count292
+\last@try=\dimen168
+\multicolovershoot=\dimen169
+\multicolundershoot=\dimen170
+\mult@nat@firstbox=\box107
+\colbreak@box=\box108
+\mc@col@check@num=\count293
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
+\multirow@colwidth=\skip63
+\multirow@cntb=\count294
+\multirow@dima=\skip64
+\bigstrutjot=\dimen171
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/hanging/hanging.sty
+Package: hanging 2009/09/02 v1.2b hanging paragraphs and punctuation
+\h@ngcommawd=\skip65
+\h@ngfstopwd=\skip66
+\h@ngquotewd=\skip67
+\h@ngdquotewd=\skip68
+\h@ngquerywd=\skip69
+\h@ngexclwd=\skip70
+\h@ngcolonwd=\skip71
+\h@ngscolonwd=\skip72
+)
+(/usr/local/texlive/2024/texmf-dist/tex/generic/iftex/ifpdf.sty
+Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+Package: adjustbox 2022/10/17 v1.3a Adjusting TeX boxes (trim, clip, ...)
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
+
+(/usr/local/texlive/2024/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2024/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks28
+\XKV@tempa@toks=\toks29
+)
+\XKV@depth=\count295
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/local/texlive/2024/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/adjustbox/trimclip.sty
+Package: trimclip 2020/08/19 v1.2 Trim and clip general TeX material
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+)
+\Gin@req@height=\dimen172
+\Gin@req@width=\dimen173
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/collectbox/collectbox.sty
+Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
+\collectedbox=\box109
+)
+\tc@llx=\dimen174
+\tc@lly=\dimen175
+\tc@urx=\dimen176
+\tc@ury=\dimen177
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
+File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
+))
+\adjbox@Width=\dimen178
+\adjbox@Height=\dimen179
+\adjbox@Depth=\dimen180
+\adjbox@Totalheight=\dimen181
+\adjbox@pwidth=\dimen182
+\adjbox@pheight=\dimen183
+\adjbox@pdepth=\dimen184
+\adjbox@ptotalheight=\dimen185
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
+\c@checkoddpage=\count296
+))
+(/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks30
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/local/texlive/2024/texmf-dist/tex/latex/stackengine/stackengine.sty
+Package: stackengine 2021/07/22 v4.11\ Stacking text and objects in convenient 
+ways
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count297
+)
+(/usr/local/texlive/2024/texmf-dist/tex/generic/listofitems/listofitems.sty
+(/usr/local/texlive/2024/texmf-dist/tex/generic/listofitems/listofitems.tex
+\loi_cnt_foreach_nest=\count298
+\loi_nestcnt=\count299
+)
+Package: listofitems 2024/03/09 v1.65 Grab items in lists using user-specified 
+sep char (CT)
+)
+\c@@stackindex=\count300
+\@boxshift=\skip73
+\stack@tmplength=\skip74
+\temp@stkl=\skip75
+\@stackedboxwidth=\skip76
+\@addedbox=\box110
+\@anchorbox=\box111
+\@insetbox=\box112
+\se@backgroundbox=\box113
+\stackedbox=\box114
+\@centerbox=\box115
+\c@ROWcellindex@=\count301
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2019/06/20 v3.9 Customized lists
+\labelindent=\skip77
+\enit@outerparindent=\dimen186
+\enit@toks=\toks31
+\enit@inbox=\box116
+\enit@count@id=\count302
+\enitdp@description=\count303
+)
+(/usr/local/texlive/2024/texmf-dist/tex/generic/alphalph/alphalph.sty
+Package: alphalph 2019/12/09 v2.6 Convert numbers to letters (HO)
+
+(/usr/local/texlive/2024/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+))
+(/usr/local/texlive/2024/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box117
+\UL@hyphenbox=\box118
+\UL@skip=\skip78
+\UL@hook=\toks32
+\UL@height=\dimen187
+\UL@pe=\count304
+\UL@pixel=\dimen188
+\ULC@box=\box119
+Package: ulem 2019/11/18
+\ULdepth=\dimen189
+)
+\xrefbox=\box120
+\xreflength=\skip79
+\CodeWidthChar=\skip80
+\CodeHeightChar=\skip81
+\DoxyCodeWidth=\skip82
+\c@DoxyEnumeratei=\count305
+\c@DoxyEnumerateii=\count306
+\c@DoxyEnumerateiii=\count307
+\c@DoxyEnumerateiv=\count308
+\c@DoxyEnumeratev=\count309
+\c@DoxyEnumeratevi=\count310
+\c@DoxyEnumeratevii=\count311
+\c@DoxyEnumerateviii=\count312
+\c@DoxyEnumerateix=\count313
+\c@DoxyEnumeratex=\count314
+\c@DoxyEnumeratexi=\count315
+\c@DoxyEnumeratexii=\count316
+\enitdp@DoxyEnumerate=\count317
+\enitdp@DoxyItemize=\count318
+\c@subsubsubsection=\count319
+\c@subsubsubsubsection=\count320
+\c@subsubsubsubsubsection=\count321
+\c@subsubsubsubsubsubsection=\count322
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2021/02/14 v1.3d Input encoding file
+\inpenc@prehook=\toks33
+\inpenc@posthook=\toks34
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/base/makeidx.sty
+Package: makeidx 2021/10/04 v1.0m Standard LaTeX package
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/wasysym/wasysym.sty
+Package: wasysym 2020/01/19 v2.4 Wasy-2 symbol support package
+\symwasy=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
+(Font)                  U/wasy/m/n --> U/wasy/b/n on input line 93.
+)
+(/usr/local/texlive/2024/texmf-dist/tex/generic/iftex/ifxetex.sty
+Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/helvet.sty
+Package: helvet 2020/03/25 PSNFSS-v9.3 (WaS) 
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/courier.sty
+Package: courier 2020/03/25 PSNFSS-v9.3 (WaS) 
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/usr/local/texlive/2024/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count323
+\Gm@cntv=\count324
+\c@Gm@tempcnt=\count325
+\Gm@bindingoffset=\dimen190
+\Gm@wd@mp=\dimen191
+\Gm@odd@mp=\dimen192
+\Gm@even@mp=\dimen193
+\Gm@layoutwidth=\dimen194
+\Gm@layoutheight=\dimen195
+\Gm@layouthoffset=\dimen196
+\Gm@layoutvoffset=\dimen197
+\Gm@dimlist=\toks35
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/changepage/changepage.sty
+Package: changepage 2009/10/20 v1.0c check page and change page layout
+\c@cp@cntr=\count326
+\cp@tempcnt=\count327
+LaTeX Info: Redefining \checkoddpage on input line 59.
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
+
+\f@nch@headwidth=\skip83
+\f@nch@O@elh=\skip84
+\f@nch@O@erh=\skip85
+\f@nch@O@olh=\skip86
+\f@nch@O@orh=\skip87
+\f@nch@O@elf=\skip88
+\f@nch@O@erf=\skip89
+\f@nch@O@olf=\skip90
+\f@nch@O@orf=\skip91
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip92
+\bibsep=\skip93
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count328
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/tocloft/tocloft.sty
+Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
+Package tocloft Info: The document has chapter divisions on input line 51.
+\cftparskip=\skip94
+\cftbeforetoctitleskip=\skip95
+\cftaftertoctitleskip=\skip96
+\cftbeforepartskip=\skip97
+\cftpartnumwidth=\skip98
+\cftpartindent=\skip99
+\cftbeforechapskip=\skip100
+\cftchapindent=\skip101
+\cftchapnumwidth=\skip102
+\cftbeforesecskip=\skip103
+\cftsecindent=\skip104
+\cftsecnumwidth=\skip105
+\cftbeforesubsecskip=\skip106
+\cftsubsecindent=\skip107
+\cftsubsecnumwidth=\skip108
+\cftbeforesubsubsecskip=\skip109
+\cftsubsubsecindent=\skip110
+\cftsubsubsecnumwidth=\skip111
+\cftbeforeparaskip=\skip112
+\cftparaindent=\skip113
+\cftparanumwidth=\skip114
+\cftbeforesubparaskip=\skip115
+\cftsubparaindent=\skip116
+\cftsubparanumwidth=\skip117
+\cftbeforeloftitleskip=\skip118
+\cftafterloftitleskip=\skip119
+\cftbeforefigskip=\skip120
+\cftfigindent=\skip121
+\cftfignumwidth=\skip122
+\c@lofdepth=\count329
+\c@lotdepth=\count330
+\cftbeforelottitleskip=\skip123
+\cftafterlottitleskip=\skip124
+\cftbeforetabskip=\skip125
+\cfttabindent=\skip126
+\cfttabnumwidth=\skip127
+)
+\@indexfile=\write4
+\openout4 = `refman.idx'.
+
+
+Writing index file refman.idx
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/newunicodechar/newunicodechar.sty
+Package: newunicodechar 2018/04/08 v1.2 Defining Unicode characters
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2024-01-20 v7.01h Hypertext links for LaTeX
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)
+(/usr/local/texlive/2024/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/usr/local/texlive/2024/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+
+(/usr/local/texlive/2024/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+(/usr/local/texlive/2024/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+))
+(/usr/local/texlive/2024/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/usr/local/texlive/2024/texmf-dist/tex/generic/gettitlestring/gettitlestring.s
+ty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count331
+)
+\@linkdim=\dimen198
+\Hy@linkcounter=\count332
+\Hy@pagecounter=\count333
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2024-01-20 v7.01h Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+\Hy@SavedSpaceFactor=\count334
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2024-01-20 v7.01h Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Hyper figures OFF on input line 4179.
+Package hyperref Info: Link nesting OFF on input line 4184.
+Package hyperref Info: Hyper index ON on input line 4187.
+Package hyperref Info: Plain pages OFF on input line 4194.
+Package hyperref Info: Backreferencing ON on input line 4197.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4446.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/backref.sty
+Package: backref 2023-11-26 v1.44 Bibliographical back referencing
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
+kage
+with kernel methods
+)
+(/usr/local/texlive/2024/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+(/usr/local/texlive/2024/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+85.
+))
+\c@Hy@tempcnt=\count335
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip16
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4784.
+\XeTeXLinkMargin=\dimen199
+
+(/usr/local/texlive/2024/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+)
+\Fld@menulength=\count336
+\Field@Width=\dimen256
+\Fld@charsize=\dimen257
+Package hyperref Info: Hyper figures OFF on input line 6063.
+Package hyperref Info: Link nesting OFF on input line 6068.
+Package hyperref Info: Hyper index ON on input line 6071.
+Package hyperref Info: backreferencing ON on input line 6076.
+Package hyperref Info: Link coloring OFF on input line 6083.
+Package hyperref Info: Link coloring with OCG OFF on input line 6088.
+Package hyperref Info: PDF/A mode OFF on input line 6093.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+\Hy@abspage=\count337
+\c@Item=\count338
+\c@Hfootnote=\count339
+)
+Package hyperref Info: Driver: hpdftex.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2024-01-20 v7.01h Hyperref driver for pdfTeX
+\Fld@listcount=\count340
+\c@bookmark@seq@number=\count341
+\Hy@SectionHShift=\skip128
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 187.
+Package hyperref Info: Option `unicode' set `true' on input line 187.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen258
+\captionmargin=\dimen259
+\caption@leftmargin=\dimen260
+\caption@rightmargin=\dimen261
+\caption@width=\dimen262
+\caption@indent=\dimen263
+\caption@parindent=\dimen264
+\caption@hangindent=\dimen265
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count342
+\c@continuedfloat=\count343
+Package caption Info: changepage package is loaded.
+\caption@adjustwidth@hsize=\dimen266
+\caption@adjustwidth@linewidth=\dimen267
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: longtable package is loaded.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
+))
+(/usr/local/texlive/2024/texmf-dist/tex/latex/etoc/etoc.sty
+Package: etoc 2023/10/29 v1.2d Completely customisable TOCs (JFB)
+\Etoc@toctoks=\toks36
+\c@etoc@tocid=\count344
+\etoc@framed@titlebox=\box121
+\etoc@framed@contentsbox=\box122
+)
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 20
+9.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/t1phv.fd
+File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
+)
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 8.99994pt on input line 209.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count345
+\l__pdf_internal_box=\box123
+)
+(./refman.aux)
+\openout1 = `refman.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+
+(/usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count346
+\scratchdimen=\dimen268
+\scratchbox=\box124
+\nofMPsegments=\count347
+\nofMParguments=\count348
+\everyMPshowfont=\toks37
+\MPscratchCnt=\count349
+\MPscratchDim=\dimen269
+\MPnumerator=\count350
+\makeMPintoPDFobject=\count351
+\everyMPtoPDFconversion=\toks38
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: twoside 
+* h-part:(L,W,R)=(71.13188pt, 455.24411pt, 71.13188pt)
+* v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=455.24411pt
+* \textheight=702.78308pt
+* \oddsidemargin=-1.1381pt
+* \evensidemargin=-1.1381pt
+* \topmargin=-31.2056pt
+* \headheight=12.0pt
+* \headsep=18.06749pt
+* \topskip=10.0pt
+* \footskip=25.29494pt
+* \marginparwidth=125.0pt
+* \marginparsep=7.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package backref Info: ** backref set up for natbib ** on input line 209.
+Package hyperref Info: Link coloring ON on input line 209.
+(./refman.out) (./refman.out)
+\@outlinefile=\write5
+\openout5 = `refman.out'.
+
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+\Etoc@tf=\read4
+Package hyperref Info: Option `pageanchor' set `false' on input line 217.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 217.
+
+Package hyperref Info: Option `unicode' set `true' on input line 217.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 12.9599pt on input line 222.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 10.79993pt on input line 223.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 6.29996pt on input line 223.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 223
+.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 223
+.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for U+wasy on input line 22
+3.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/wasysym/uwasy.fd
+File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
+) [1
+
+
+{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
+al/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}] [2
+
+]
+\tf@toc=\write6
+\openout6 = `refman.toc'.
+
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 8.99994pt on input line 231.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 6.29996pt on input line 231.
+ [1] [2] [3] [4] [5] [6]
+[7] [8] [9] [10] [11] [12] [13] [14] [15] [16]
+Package hyperref Info: Option `pageanchor' set `true' on input line 234.
+
+Chapter 1.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 18.66588pt on input line 236.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 18.66588pt on input line 236.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 22.39185pt on input line 236.
+(./annotated.tex
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 12.9599pt on input line 1.
+) [1
+
+
+] [2
+
+]
+Chapter 2.
+(./files.tex [3]) [4]
+Chapter 3.
+(./structtest__options.tex
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 10
+.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
+LaTeX Font Info:    Trying to load font information for TS1+phv on input line 1
+5.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/ts1phv.fd
+File: ts1phv.fd 2020/03/25 scalable font definitions for TS1/phv.
+)
+LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
+(Font)              scaled to size 8.99994pt on input line 15.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 8.09995pt on input line 16.
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 16.
+LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
+(Font)              scaled to size 8.09995pt on input line 16.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 10.79993pt on input line 50.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 7.19995pt on input line 61.
+ [5
+
+] [6]
+[7]) [8]
+Chapter 4.
+(./routines_8hpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
+
+ []
+
+[9
+
+]
+Underfull \hbox (badness 940) in paragraph at lines 128--130
+[]\T1/phv/m/n/10 typedef void($\OMS/cmsy/m/n/10 ^^C$ []\T1/phv/m/n/10 ) (un-sig
+ned long $\OMS/cmsy/m/n/10 ^^C$\T1/phv/m/n/10 dest, const un-signed long
+ []
+
+[10] [11]
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 212.
+LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
+(Font)              scaled to size 6.29996pt on input line 212.
+ [12] [13] [14] [15]
+Underfull \hbox (badness 10000) in paragraph at lines 608--609
+\T1/pcr/m/n/8 typedef int($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]long[]_
+[]alltoall[]_[]func) (shmem[]_[]team[]_[]t team, long $\OMS/cmsy/m/n/8 ^^C$\T1/
+pcr/m/n/8 dest, const long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 source,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 618--619
+\T1/pcr/m/n/8 typedef int($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]long[]_
+[]alltoalls[]_[]func) (shmem[]_[]team[]_[]t team, long $\OMS/cmsy/m/n/8 ^^C$\T1
+/pcr/m/n/8 dest, const long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 source,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 628--629
+\T1/pcr/m/n/8 typedef int($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]long[]_
+[]and[]_[]reduce[]_[]func) (shmem[]_[]team[]_[]t team, long $\OMS/cmsy/m/n/8 ^^
+C$\T1/pcr/m/n/8 dest, const long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 source,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 638--639
+\T1/pcr/m/n/8 typedef int($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]long[]_
+[]broadcast[]_[]func) (shmem[]_[]team[]_[]t team, long $\OMS/cmsy/m/n/8 ^^C$\T1
+/pcr/m/n/8 dest, const long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 source,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 648--649
+\T1/pcr/m/n/8 typedef int($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]long[]_
+[]collect[]_[]func) (shmem[]_[]team[]_[]t team, long $\OMS/cmsy/m/n/8 ^^C$\T1/p
+cr/m/n/8 dest, const long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 source,
+ []
+
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 658--659
+\T1/pcr/m/n/8 typedef int($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]long[]_
+[]fcollect[]_[]func) (shmem[]_[]team[]_[]t team, long $\OMS/cmsy/m/n/8 ^^C$\T1/
+pcr/m/n/8 dest, const long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 source,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 698--699
+\T1/pcr/m/n/8 typedef void($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]long[]
+_[]iget[]_[]func) (long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 dest, const long $\O
+MS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 src, ptrdiff[]_[]t tst, ptrdiff[]_[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 708--709
+\T1/pcr/m/n/8 typedef void($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]long[]
+_[]iput[]_[]func) (long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 dest, const long $\O
+MS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 src, ptrdiff[]_[]t tst, ptrdiff[]_[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 718--719
+\T1/pcr/m/n/8 typedef int($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]long[]_
+[]max[]_[]reduce[]_[]func) (shmem[]_[]team[]_[]t team, long $\OMS/cmsy/m/n/8 ^^
+C$\T1/pcr/m/n/8 dest, const long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 source,
+ []
+
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 728--729
+\T1/pcr/m/n/8 typedef int($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]long[]_
+[]min[]_[]reduce[]_[]func) (shmem[]_[]team[]_[]t team, long $\OMS/cmsy/m/n/8 ^^
+C$\T1/pcr/m/n/8 dest, const long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 source,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 738--739
+\T1/pcr/m/n/8 typedef int($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]long[]_
+[]or[]_[]reduce[]_[]func) (shmem[]_[]team[]_[]t team, long $\OMS/cmsy/m/n/8 ^^C
+$\T1/pcr/m/n/8 dest, const long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 source,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 758--759
+\T1/pcr/m/n/8 typedef int($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]long[]_
+[]prod[]_[]reduce[]_[]func) (shmem[]_[]team[]_[]t team, long $\OMS/cmsy/m/n/8 ^
+^C$\T1/pcr/m/n/8 dest, const long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 source,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 788--789
+\T1/pcr/m/n/8 typedef void($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]long[]
+_[]put[]_[]signal[]_[]func) (long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 dest, cons
+t long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 source, size[]_[]t nelems,
+ []
+
+[18]
+Underfull \hbox (badness 10000) in paragraph at lines 798--799
+\T1/pcr/m/n/8 typedef void($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]long[]
+_[]put[]_[]signal[]_[]nbi[]_[]func) (long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 de
+st, const long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 source, size[]_[]t nelems,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 808--809
+\T1/pcr/m/n/8 typedef int($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]long[]_
+[]sum[]_[]reduce[]_[]func) (shmem[]_[]team[]_[]t team, long $\OMS/cmsy/m/n/8 ^^
+C$\T1/pcr/m/n/8 dest, const long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 source,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 818--819
+\T1/pcr/m/n/8 typedef int($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]long[]_
+[]test[]_[]all[]_[]func) (long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 ivars, size[]
+_[]t nelems, const int $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 status, int
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 828--829
+\T1/pcr/m/n/8 typedef int($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]long[]_
+[]test[]_[]all[]_[]vector[]_[]func) (long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 iv
+ars, size[]_[]t nelems, const int $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 status,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 838--839
+\T1/pcr/m/n/8 typedef size[]_[]t($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]
+long[]_[]test[]_[]any[]_[]func) (long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 ivars,
+ size[]_[]t nelems, const int $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 status, int
+ []
+
+[19]
+Underfull \hbox (badness 10000) in paragraph at lines 868--869
+\T1/pcr/m/n/8 typedef size[]_[]t($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]
+long[]_[]test[]_[]some[]_[]func) (long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 ivars
+, size[]_[]t nelems, size[]_[]t $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 indices, con
+st
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 888--889
+\T1/pcr/m/n/8 typedef void($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]long[]
+_[]wait[]_[]until[]_[]all[]_[]func) (long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 iv
+ars, size[]_[]t nelems, const int $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 status,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 898--899
+\T1/pcr/m/n/8 typedef void($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]long[]
+_[]wait[]_[]until[]_[]all[]_[]vector[]_[]func) (long $\OMS/cmsy/m/n/8 ^^C$\T1/p
+cr/m/n/8 ivars, size[]_[]t nelems, const int
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 918--919
+\T1/pcr/m/n/8 typedef size[]_[]t($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]
+long[]_[]wait[]_[]until[]_[]any[]_[]vector[]_[]func) (long $\OMS/cmsy/m/n/8 ^^C
+$\T1/pcr/m/n/8 ivars, size[]_[]t nelems, const int
+ []
+
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 938--939
+\T1/pcr/m/n/8 typedef size[]_[]t($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]
+long[]_[]wait[]_[]until[]_[]some[]_[]func) (long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m
+/n/8 ivars, size[]_[]t nelems, size[]_[]t $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 in
+dices,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 948--949
+\T1/pcr/m/n/8 typedef size[]_[]t($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]
+long[]_[]wait[]_[]until[]_[]some[]_[]vector[]_[]func) (long $\OMS/cmsy/m/n/8 ^^
+C$\T1/pcr/m/n/8 ivars, size[]_[]t nelems, size[]_[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 958--959
+\T1/pcr/m/n/8 typedef int($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]long[]_
+[]xor[]_[]reduce[]_[]func) (shmem[]_[]team[]_[]t team, long $\OMS/cmsy/m/n/8 ^^
+C$\T1/pcr/m/n/8 dest, const long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 source,
+ []
+
+[21]
+Underfull \hbox (badness 10000) in paragraph at lines 1078--1079
+\T1/pcr/m/n/8 typedef uint64[]_[]t($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_
+[]signal[]_[]wait[]_[]until[]_[]func) (uint64[]_[]t $\OMS/cmsy/m/n/8 ^^C$\T1/pc
+r/m/n/8 sig[]_[]addr, int cmp, uint64[]_[]t cmp[]_[]
+ []
+
+[22]
+Underfull \hbox (badness 10000) in paragraph at lines 1128--1129
+\T1/pcr/m/n/8 typedef void($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]team[]
+_[]get[]_[]config[]_[]func) (shmem[]_[]team[]_[]t team, long config[]_[]mask, s
+hmem[]_[]team[]_[]
+ []
+
+[23]
+Underfull \hbox (badness 10000) in paragraph at lines 1158--1159
+\T1/pcr/m/n/8 typedef shmem[]_[]team[]_[]t($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 
+shmem[]_[]team[]_[]split[]_[]2d[]_[]func) (shmem[]_[]team[]_[]t parent[]_[]team
+, int xrange, const
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1158--1159
+\T1/pcr/m/n/8 shmem[]_[]team[]_[]config[]_[]t $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/
+8 xaxis[]_[]config, long xaxis[]_[]mask, shmem[]_[]team[]_[]t $\OMS/cmsy/m/n/8 
+^^C$\T1/pcr/m/n/8 xaxis[]_[]team, const shmem[]_[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1168--1169
+\T1/pcr/m/n/8 typedef shmem[]_[]team[]_[]t($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 
+shmem[]_[]team[]_[]split[]_[]strided[]_[]func) (shmem[]_[]team[]_[]t parent[]_[
+]team, int start,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1168--1169
+\T1/pcr/m/n/8 int stride, int size, const shmem[]_[]team[]_[]config[]_[]t $\OMS
+/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 config, long config[]_[]mask, shmem[]_[]team[]_[]
+t $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 new[]_[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1178--1179
+\T1/pcr/m/n/8 typedef int($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]team[]_
+[]translate[]_[]pe[]_[]func) (shmem[]_[]team[]_[]t src[]_[]team, int src[]_[]pe
+, shmem[]_[]team[]_[]t
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1188--1189
+\T1/pcr/m/n/8 typedef void($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]ulong[
+]_[]atomic[]_[]add[]_[]func) (const unsigned long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/
+m/n/8 target, unsigned long value,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1208--1209
+\T1/pcr/m/n/8 typedef unsigned long($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]
+_[]ulong[]_[]atomic[]_[]compare[]_[]swap[]_[]func) (unsigned long $\OMS/cmsy/m/
+n/8 ^^C$\T1/pcr/m/n/8 target, unsigned
+ []
+
+[24]
+Underfull \hbox (badness 10000) in paragraph at lines 1218--1219
+\T1/pcr/m/n/8 typedef void($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]ulong[
+]_[]atomic[]_[]compare[]_[]swap[]_[]nbi[]_[]func) (unsigned long $\OMS/cmsy/m/n
+/8 ^^C$\T1/pcr/m/n/8 dest, unsigned long
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1238--1239
+\T1/pcr/m/n/8 typedef void($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]ulong[
+]_[]atomic[]_[]fetch[]_[]add[]_[]nbi[]_[]func) (unsigned long $\OMS/cmsy/m/n/8 
+^^C$\T1/pcr/m/n/8 dest, const unsigned long
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1248--1249
+\T1/pcr/m/n/8 typedef unsigned long($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]
+_[]ulong[]_[]atomic[]_[]fetch[]_[]and[]_[]func) (unsigned long $\OMS/cmsy/m/n/8
+ ^^C$\T1/pcr/m/n/8 dest, unsigned long
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1258--1259
+\T1/pcr/m/n/8 typedef void($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]ulong[
+]_[]atomic[]_[]fetch[]_[]and[]_[]nbi[]_[]func) (unsigned long $\OMS/cmsy/m/n/8 
+^^C$\T1/pcr/m/n/8 fetch, unsigned long
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1278--1279
+\T1/pcr/m/n/8 typedef unsigned long($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]
+_[]ulong[]_[]atomic[]_[]fetch[]_[]inc[]_[]func) (const unsigned long $\OMS/cmsy
+/m/n/8 ^^C$\T1/pcr/m/n/8 target, int
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1288--1289
+\T1/pcr/m/n/8 typedef void($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]ulong[
+]_[]atomic[]_[]fetch[]_[]inc[]_[]nbi[]_[]func) (unsigned long $\OMS/cmsy/m/n/8 
+^^C$\T1/pcr/m/n/8 dest, const unsigned long
+ []
+
+[25]
+Underfull \hbox (badness 10000) in paragraph at lines 1298--1299
+\T1/pcr/m/n/8 typedef void($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]ulong[
+]_[]atomic[]_[]fetch[]_[]nbi[]_[]func) (unsigned long $\OMS/cmsy/m/n/8 ^^C$\T1/
+pcr/m/n/8 dest, const unsigned long
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1308--1309
+\T1/pcr/m/n/8 typedef unsigned long($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]
+_[]ulong[]_[]atomic[]_[]fetch[]_[]or[]_[]func) (unsigned long $\OMS/cmsy/m/n/8 
+^^C$\T1/pcr/m/n/8 dest, unsigned long
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1318--1319
+\T1/pcr/m/n/8 typedef void($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]ulong[
+]_[]atomic[]_[]fetch[]_[]or[]_[]nbi[]_[]func) (unsigned long $\OMS/cmsy/m/n/8 ^
+^C$\T1/pcr/m/n/8 fetch, unsigned long
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1328--1329
+\T1/pcr/m/n/8 typedef unsigned long($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]
+_[]ulong[]_[]atomic[]_[]fetch[]_[]xor[]_[]func) (unsigned long $\OMS/cmsy/m/n/8
+ ^^C$\T1/pcr/m/n/8 dest, unsigned long
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1338--1339
+\T1/pcr/m/n/8 typedef void($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]ulong[
+]_[]atomic[]_[]fetch[]_[]xor[]_[]nbi[]_[]func) (unsigned long $\OMS/cmsy/m/n/8 
+^^C$\T1/pcr/m/n/8 fetch, unsigned long
+ []
+
+[26]
+Underfull \hbox (badness 10000) in paragraph at lines 1368--1369
+\T1/pcr/m/n/8 typedef void($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]ulong[
+]_[]atomic[]_[]set[]_[]func) (unsigned long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 
+target, unsigned long value, int
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1378--1379
+\T1/pcr/m/n/8 typedef unsigned long($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]
+_[]ulong[]_[]atomic[]_[]swap[]_[]func) (unsigned long $\OMS/cmsy/m/n/8 ^^C$\T1/
+pcr/m/n/8 target, unsigned long
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1388--1389
+\T1/pcr/m/n/8 typedef void($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 shmem[]_[]ulong[
+]_[]atomic[]_[]swap[]_[]nbi[]_[]func) (unsigned long $\OMS/cmsy/m/n/8 ^^C$\T1/p
+cr/m/n/8 dest, unsigned long $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 target,
+ []
+
+LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
+(Font)              scaled to size 8.99994pt on input line 1417.
+
+Underfull \hbox (badness 10000) detected at line 1417
+[][][]
+ []
+
+[27]
+Underfull \hbox (badness 10000) detected at line 1422
+[][][]
+ []
+
+[28] [29]
+Overfull \hbox (18.63191pt too wide) in paragraph at lines 1575--1576
+[]\T1/phv/m/n/10 , [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1575--1576
+[]\T1/phv/m/n/10 , [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1575--1576
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Underfull \hbox (badness 3333) in paragraph at lines 1575--1576
+[]\T1/phv/m/n/10 , [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1575--1576
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1575--1576
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Underfull \hbox (badness 5302) in paragraph at lines 1575--1576
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Overfull \hbox (23.31874pt too wide) in paragraph at lines 1575--1576
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Overfull \hbox (67.17479pt too wide) in paragraph at lines 1575--1576
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1575--1576
+[]\T1/phv/m/n/10 , [], [],
+ []
+
+
+Overfull \hbox (18.63004pt too wide) in paragraph at lines 1575--1576
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1575--1576
+[]\T1/phv/m/n/10 , [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 1320) in paragraph at lines 1575--1576
+[]\T1/phv/m/n/10 , [], [], [], [],
+ []
+
+
+Overfull \hbox (26.26389pt too wide) in paragraph at lines 1575--1576
+[]\T1/phv/m/n/10 , [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1575--1576
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Overfull \hbox (79.55887pt too wide) in paragraph at lines 1575--1576
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Overfull \hbox (17.22388pt too wide) in paragraph at lines 1575--1576
+[]\T1/phv/m/n/10 , [], [],
+ []
+
+
+Underfull \hbox (badness 1331) in paragraph at lines 1575--1576
+[]\T1/phv/m/n/10 , [], [],
+ []
+
+
+Underfull \hbox (badness 6961) in paragraph at lines 1575--1576
+[]\T1/phv/m/n/10 , [], [],
+ []
+
+
+Overfull \hbox (58.26512pt too wide) in paragraph at lines 1575--1576
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+[30] [31] [32] [33] [34] [35] [36] [37] [38] [39] [40] [41] [42])
+(./routines_8hpp_source.tex [43] [44] [45] [46]) (./shmemvv_8hpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--28
+
+ []
+
+[47] [48]
+LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 138.
+LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <7> not available
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 138.
+
+Underfull \hbox (badness 10000) detected at line 149
+[][][]
+ []
+
+[49] [50]
+Underfull \hbox (badness 10000) detected at line 291
+[][][]
+ []
+
+) (./shmemvv_8hpp_source.tex [51]) (./main_8cpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--10
+
+ []
+
+[52]
+Underfull \hbox (badness 10000) detected at line 44
+[][][]
+ []
+
+[53] [54] [55] [56] [57] [58] [59] [60] [61] [62] [63] [64] [65] [66] [67]
+[68] [69] [70] [71]
+Overfull \hbox (51.2003pt too wide) in paragraph at lines 1725--1726
+[]\T1/phv/m/n/10 , [], [], [], [],
+ []
+
+
+Overfull \hbox (39.83452pt too wide) in paragraph at lines 1725--1726
+[]\T1/phv/m/n/10 , [], [], [], [],
+ []
+
+
+Overfull \hbox (95.18268pt too wide) in paragraph at lines 1725--1726
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Overfull \hbox (80.94424pt too wide) in paragraph at lines 1725--1726
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1725--1726
+[]\T1/phv/m/n/10 , [], [],
+ []
+
+
+Overfull \hbox (81.42125pt too wide) in paragraph at lines 1725--1726
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Overfull \hbox (35.1099pt too wide) in paragraph at lines 1725--1726
+[]\T1/phv/m/n/10 , [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 5133) in paragraph at lines 1725--1726
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1725--1726
+[]\T1/phv/m/n/10 , [], [], [], [],
+ []
+
+
+Overfull \hbox (58.2571pt too wide) in paragraph at lines 1725--1726
+[]\T1/phv/m/n/10 , [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 3895) in paragraph at lines 1725--1726
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Overfull \hbox (18.35262pt too wide) in paragraph at lines 1725--1726
+[]\T1/phv/m/n/10 , [], [], [], [],
+ []
+
+
+Overfull \hbox (25.3271pt too wide) in paragraph at lines 1725--1726
+[]\T1/phv/m/n/10 , [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1725--1726
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1725--1726
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Overfull \hbox (24.85744pt too wide) in paragraph at lines 1725--1726
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Overfull \hbox (41.11095pt too wide) in paragraph at lines 1725--1726
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Overfull \hbox (101.73425pt too wide) in paragraph at lines 1725--1726
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+[72]) (./main_8cpp_source.tex [73] [74] [75] [76] [77] [78] [79] [80] [81]
+[82] [83] [84] [85] [86] [87] [88] [89] [90] [91]) (./routines_8cpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--11
+
+ []
+
+[92] [93] [94]
+Underfull \hbox (badness 10000) detected at line 239
+[][][]
+ []
+
+[95] [96]
+Overfull \hbox (18.63191pt too wide) in paragraph at lines 392--393
+[]\T1/phv/m/n/10 , [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 392--393
+[]\T1/phv/m/n/10 , [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 392--393
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Underfull \hbox (badness 3333) in paragraph at lines 392--393
+[]\T1/phv/m/n/10 , [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 392--393
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 392--393
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Underfull \hbox (badness 5302) in paragraph at lines 392--393
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Overfull \hbox (23.31874pt too wide) in paragraph at lines 392--393
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Overfull \hbox (67.17479pt too wide) in paragraph at lines 392--393
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 392--393
+[]\T1/phv/m/n/10 , [], [],
+ []
+
+
+Overfull \hbox (18.63004pt too wide) in paragraph at lines 392--393
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 392--393
+[]\T1/phv/m/n/10 , [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 1320) in paragraph at lines 392--393
+[]\T1/phv/m/n/10 , [], [], [], [],
+ []
+
+
+Overfull \hbox (26.26389pt too wide) in paragraph at lines 392--393
+[]\T1/phv/m/n/10 , [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 392--393
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Overfull \hbox (79.55887pt too wide) in paragraph at lines 392--393
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Overfull \hbox (17.22388pt too wide) in paragraph at lines 392--393
+[]\T1/phv/m/n/10 , [], [],
+ []
+
+
+Underfull \hbox (badness 1331) in paragraph at lines 392--393
+[]\T1/phv/m/n/10 , [], [],
+ []
+
+
+Underfull \hbox (badness 6961) in paragraph at lines 392--393
+[]\T1/phv/m/n/10 , [], [],
+ []
+
+
+Overfull \hbox (58.26512pt too wide) in paragraph at lines 392--393
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+[97] [98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108] [109])
+(./routines_8cpp_source.tex [110] [111] [112] [113]) (./atomics__tests_8cpp.tex
+
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
+
+ []
+
+[114] [115]
+Underfull \hbox (badness 10000) detected at line 80
+[][][]
+ []
+
+
+Overfull \hbox (34.57053pt too wide) in paragraph at lines 106--107
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 120
+[][][]
+ []
+
+
+Overfull \hbox (34.57053pt too wide) in paragraph at lines 146--147
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+[116]
+Underfull \hbox (badness 10000) detected at line 160
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 203
+[][][]
+ []
+
+[117]
+Underfull \hbox (badness 10000) detected at line 246
+[][][]
+ []
+
+
+Overfull \hbox (38.80043pt too wide) in paragraph at lines 273--274
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 287
+[][][]
+ []
+
+
+Overfull \hbox (58.81606pt too wide) in paragraph at lines 314--315
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+[118]
+Underfull \hbox (badness 10000) detected at line 328
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 371
+[][][]
+ []
+
+
+Overfull \hbox (58.81606pt too wide) in paragraph at lines 398--399
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+[119]
+Underfull \hbox (badness 10000) detected at line 412
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 455
+[][][]
+ []
+
+
+Overfull \hbox (55.30617pt too wide) in paragraph at lines 482--483
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+[120]
+Underfull \hbox (badness 10000) detected at line 496
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 539
+[][][]
+ []
+
+[121]
+Underfull \hbox (badness 10000) detected at line 581
+[][][]
+ []
+
+
+Overfull \hbox (51.80518pt too wide) in paragraph at lines 608--609
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 622
+[][][]
+ []
+
+[122]
+Underfull \hbox (badness 10000) detected at line 665
+[][][]
+ []
+
+
+Overfull \hbox (56.30515pt too wide) in paragraph at lines 692--693
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 706
+[][][]
+ []
+
+[123]
+Underfull \hbox (badness 10000) detected at line 749
+[][][]
+ []
+
+
+Overfull \hbox (31.06064pt too wide) in paragraph at lines 775--776
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 789
+[][][]
+ []
+
+
+Overfull \hbox (27.55965pt too wide) in paragraph at lines 815--816
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 829
+[][][]
+ []
+
+[124]
+Overfull \hbox (31.56458pt too wide) in paragraph at lines 854--855
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 868
+[][][]
+ []
+
+
+Overfull \hbox (40.15965pt too wide) in paragraph at lines 894--895
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 908
+[][][]
+ []
+
+[125]
+Underfull \hbox (badness 10000) detected at line 951
+[][][]
+ []
+
+
+Overfull \hbox (32.05962pt too wide) in paragraph at lines 977--978
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+) (./atomics__tests_8cpp_source.tex [126] [127] [128] [129])
+(./atomics__tests_8hpp.tex [130]
+Underfull \hbox (badness 10000) in paragraph at lines 8--11
+
+ []
+
+[131]
+Underfull \hbox (badness 10000) detected at line 82
+[][][]
+ []
+
+
+Overfull \hbox (34.57053pt too wide) in paragraph at lines 108--109
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 122
+[][][]
+ []
+
+
+Overfull \hbox (34.57053pt too wide) in paragraph at lines 148--149
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+[132]
+Underfull \hbox (badness 10000) detected at line 162
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 205
+[][][]
+ []
+
+[133]
+Underfull \hbox (badness 10000) detected at line 248
+[][][]
+ []
+
+
+Overfull \hbox (38.80043pt too wide) in paragraph at lines 275--276
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 289
+[][][]
+ []
+
+
+Overfull \hbox (58.81606pt too wide) in paragraph at lines 316--317
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+[134]
+Underfull \hbox (badness 10000) detected at line 330
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 373
+[][][]
+ []
+
+
+Overfull \hbox (58.81606pt too wide) in paragraph at lines 400--401
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+[135]
+Underfull \hbox (badness 10000) detected at line 414
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 457
+[][][]
+ []
+
+
+Overfull \hbox (55.30617pt too wide) in paragraph at lines 484--485
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+[136]
+Underfull \hbox (badness 10000) detected at line 498
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 541
+[][][]
+ []
+
+[137]
+Underfull \hbox (badness 10000) detected at line 583
+[][][]
+ []
+
+
+Overfull \hbox (51.80518pt too wide) in paragraph at lines 610--611
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 624
+[][][]
+ []
+
+[138]
+Underfull \hbox (badness 10000) detected at line 667
+[][][]
+ []
+
+
+Overfull \hbox (56.30515pt too wide) in paragraph at lines 694--695
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 708
+[][][]
+ []
+
+[139]
+Underfull \hbox (badness 10000) detected at line 751
+[][][]
+ []
+
+
+Overfull \hbox (31.06064pt too wide) in paragraph at lines 777--778
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 791
+[][][]
+ []
+
+
+Overfull \hbox (27.55965pt too wide) in paragraph at lines 817--818
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 831
+[][][]
+ []
+
+[140]
+Overfull \hbox (31.56458pt too wide) in paragraph at lines 856--857
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 870
+[][][]
+ []
+
+
+Overfull \hbox (40.15965pt too wide) in paragraph at lines 896--897
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 910
+[][][]
+ []
+
+[141]
+Underfull \hbox (badness 10000) detected at line 953
+[][][]
+ []
+
+
+Overfull \hbox (32.05962pt too wide) in paragraph at lines 979--980
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+) (./atomics__tests_8hpp_source.tex [142]) (./collectives__tests_8cpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
+
+ []
+
+[143]
+Underfull \hbox (badness 10000) detected at line 58
+[][][]
+ []
+
+[144]
+Underfull \hbox (badness 10000) detected at line 111
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 164
+[][][]
+ []
+
+[145]
+Underfull \hbox (badness 10000) detected at line 227
+[][][]
+ []
+
+[146]
+Underfull \hbox (badness 10000) detected at line 278
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 329
+[][][]
+ []
+
+[147]
+Overfull \hbox (16.94017pt too wide) in paragraph at lines 360--361
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 374
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 419
+[][][]
+ []
+
+[148]
+Overfull \hbox (17.94804pt too wide) in paragraph at lines 455--456
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 469
+[][][]
+ []
+
+
+Overfull \hbox (16.94017pt too wide) in paragraph at lines 501--502
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+[149]
+Underfull \hbox (badness 10000) detected at line 515
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 551
+[][][]
+ []
+
+) (./collectives__tests_8cpp_source.tex [150] [151] [152])
+(./collectives__tests_8hpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--13
+
+ []
+
+[153]
+Underfull \hbox (badness 10000) detected at line 64
+[][][]
+ []
+
+[154]
+Underfull \hbox (badness 10000) detected at line 117
+[][][]
+ []
+
+[155]
+Underfull \hbox (badness 10000) detected at line 170
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 185
+[][][]
+ []
+
+[156]
+Underfull \hbox (badness 10000) detected at line 248
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 299
+[][][]
+ []
+
+[157]
+Underfull \hbox (badness 10000) detected at line 350
+[][][]
+ []
+
+
+Overfull \hbox (16.94017pt too wide) in paragraph at lines 381--382
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 395
+[][][]
+ []
+
+[158]
+Underfull \hbox (badness 10000) detected at line 440
+[][][]
+ []
+
+
+Overfull \hbox (17.94804pt too wide) in paragraph at lines 476--477
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+[159]
+Underfull \hbox (badness 10000) detected at line 490
+[][][]
+ []
+
+
+Overfull \hbox (16.94017pt too wide) in paragraph at lines 522--523
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 536
+[][][]
+ []
+
+[160]
+Underfull \hbox (badness 10000) detected at line 572
+[][][]
+ []
+
+) (./collectives__tests_8hpp_source.tex) (./comms__tests_8cpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
+
+ []
+
+[161]
+Underfull \hbox (badness 10000) detected at line 44
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 80
+[][][]
+ []
+
+[162]
+Underfull \hbox (badness 10000) detected at line 113
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 148
+[][][]
+ []
+
+) (./comms__tests_8cpp_source.tex [163]) (./comms__tests_8hpp.tex [164]
+Underfull \hbox (badness 10000) in paragraph at lines 8--11
+
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 46
+[][][]
+ []
+
+[165]
+Underfull \hbox (badness 10000) detected at line 82
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 115
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 150
+[][][]
+ []
+
+) (./comms__tests_8hpp_source.tex [166]) (./locking__tests_8cpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
+
+ []
+
+[167]
+Underfull \hbox (badness 10000) detected at line 38
+[][][]
+ []
+
+) (./locking__tests_8cpp_source.tex [168]) (./locking__tests_8hpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--13
+
+ []
+
+[169]
+Underfull \hbox (badness 10000) detected at line 42
+[][][]
+ []
+
+) (./locking__tests_8hpp_source.tex) (./mem__tests_8cpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
+
+ []
+
+[170]
+Underfull \hbox (badness 10000) detected at line 50
+[][][]
+ []
+
+[171]
+Underfull \hbox (badness 10000) detected at line 101
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 138
+[][][]
+ []
+
+[172]
+Underfull \hbox (badness 10000) detected at line 181
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 217
+[][][]
+ []
+
+[173]
+Underfull \hbox (badness 10000) detected at line 254
+[][][]
+ []
+
+[174]
+Underfull \hbox (badness 10000) detected at line 312
+[][][]
+ []
+
+) (./mem__tests_8cpp_source.tex [175]) (./mem__tests_8hpp.tex [176]
+Underfull \hbox (badness 10000) in paragraph at lines 8--13
+
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 54
+[][][]
+ []
+
+[177]
+Underfull \hbox (badness 10000) detected at line 105
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 142
+[][][]
+ []
+
+[178]
+Underfull \hbox (badness 10000) detected at line 185
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 221
+[][][]
+ []
+
+[179]
+Underfull \hbox (badness 10000) detected at line 258
+[][][]
+ []
+
+[180]
+Underfull \hbox (badness 10000) detected at line 316
+[][][]
+ []
+
+) (./mem__tests_8hpp_source.tex) (./mem__ordering__tests_8cpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
+
+ []
+
+[181]
+Underfull \hbox (badness 10000) detected at line 40
+[][][]
+ []
+
+[182]
+Underfull \hbox (badness 10000) detected at line 92
+[][][]
+ []
+
+) (./mem__ordering__tests_8cpp_source.tex [183])
+(./mem__ordering__tests_8hpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--13
+
+ []
+
+[184]
+Underfull \hbox (badness 10000) detected at line 44
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 96
+[][][]
+ []
+
+[185]) (./mem__ordering__tests_8hpp_source.tex) (./pt2pt__tests_8cpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
+
+ []
+
+[186] [187]
+Underfull \hbox (badness 10000) detected at line 84
+[][][]
+ []
+
+
+Underfull \hbox (badness 5388) in paragraph at lines 130--131
+[]\T1/phv/m/n/10 References [], [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 144
+[][][]
+ []
+
+[188]
+Underfull \hbox (badness 10000) detected at line 206
+[][][]
+ []
+
+[189]
+Underfull \hbox (badness 10000) detected at line 274
+[][][]
+ []
+
+[190]
+Overfull \hbox (23.92363pt too wide) in paragraph at lines 329--330
+[]\T1/phv/m/n/10 References [], [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 343
+[][][]
+ []
+
+[191]
+Underfull \hbox (badness 10000) detected at line 407
+[][][]
+ []
+
+
+Overfull \hbox (29.44049pt too wide) in paragraph at lines 462--463
+[]\T1/phv/m/n/10 References [], [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 476
+[][][]
+ []
+
+[192]
+Underfull \hbox (badness 10000) detected at line 542
+[][][]
+ []
+
+[193]
+Underfull \hbox (badness 10000) in paragraph at lines 600--601
+[]\T1/phv/m/n/10 References [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 614
+[][][]
+ []
+
+[194]
+Underfull \hbox (badness 10000) detected at line 666
+[][][]
+ []
+
+
+Overfull \hbox (17.65059pt too wide) in paragraph at lines 706--707
+[]\T1/phv/m/n/10 References [], [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 720
+[][][]
+ []
+
+[195]
+Underfull \hbox (badness 4954) in paragraph at lines 766--767
+[]\T1/phv/m/n/10 References [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 780
+[][][]
+ []
+
+[196]
+Overfull \hbox (23.02364pt too wide) in paragraph at lines 825--826
+[]\T1/phv/m/n/10 References [], [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 839
+[][][]
+ []
+
+
+Underfull \hbox (badness 2478) in paragraph at lines 885--886
+[]\T1/phv/m/n/10 References [], [], [], [],
+ []
+
+[197]
+Underfull \hbox (badness 10000) detected at line 899
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 948--949
+[]\T1/phv/m/n/10 References [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 962
+[][][]
+ []
+
+[198]) (./pt2pt__tests_8cpp_source.tex [199] [200] [201] [202] [203] [204]
+[205]) (./pt2pt__tests_8hpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--15
+
+ []
+
+[206]
+Underfull \hbox (badness 10000) detected at line 72
+[][][]
+ []
+
+
+Underfull \hbox (badness 5388) in paragraph at lines 118--119
+[]\T1/phv/m/n/10 References [], [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 132
+[][][]
+ []
+
+[207]
+Underfull \hbox (badness 10000) detected at line 194
+[][][]
+ []
+
+[208]
+Underfull \hbox (badness 10000) detected at line 262
+[][][]
+ []
+
+[209]
+Overfull \hbox (23.92363pt too wide) in paragraph at lines 317--318
+[]\T1/phv/m/n/10 References [], [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 331
+[][][]
+ []
+
+[210]
+Underfull \hbox (badness 10000) detected at line 395
+[][][]
+ []
+
+
+Overfull \hbox (29.44049pt too wide) in paragraph at lines 450--451
+[]\T1/phv/m/n/10 References [], [], [], [], [],
+ []
+
+[211]
+Underfull \hbox (badness 10000) detected at line 464
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 530
+[][][]
+ []
+
+[212]
+Underfull \hbox (badness 10000) in paragraph at lines 588--589
+[]\T1/phv/m/n/10 References [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 602
+[][][]
+ []
+
+[213]
+Underfull \hbox (badness 10000) detected at line 654
+[][][]
+ []
+
+
+Overfull \hbox (17.65059pt too wide) in paragraph at lines 694--695
+[]\T1/phv/m/n/10 References [], [], [], [], [],
+ []
+
+[214]
+Underfull \hbox (badness 10000) detected at line 708
+[][][]
+ []
+
+
+Underfull \hbox (badness 4954) in paragraph at lines 754--755
+[]\T1/phv/m/n/10 References [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 768
+[][][]
+ []
+
+[215]
+Overfull \hbox (23.02364pt too wide) in paragraph at lines 813--814
+[]\T1/phv/m/n/10 References [], [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 827
+[][][]
+ []
+
+[216]
+Underfull \hbox (badness 2478) in paragraph at lines 873--874
+[]\T1/phv/m/n/10 References [], [], [], [],
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 887
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 936--937
+[]\T1/phv/m/n/10 References [], [], [], [],
+ []
+
+[217]
+Underfull \hbox (badness 10000) detected at line 950
+[][][]
+ []
+
+) (./pt2pt__tests_8hpp_source.tex [218]) (./remote__tests_8cpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
+
+ []
+
+[219]
+Underfull \hbox (badness 10000) detected at line 54
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 108
+[][][]
+ []
+
+[220]
+Underfull \hbox (badness 10000) detected at line 166
+[][][]
+ []
+
+[221]
+Overfull \hbox (15.08577pt too wide) in paragraph at lines 209--210
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 225
+[][][]
+ []
+
+[222]
+Underfull \hbox (badness 10000) detected at line 283
+[][][]
+ []
+
+[223]
+Underfull \hbox (badness 10000) detected at line 339
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 391
+[][][]
+ []
+
+[224]
+Underfull \hbox (badness 10000) detected at line 447
+[][][]
+ []
+
+[225]
+Overfull \hbox (15.08577pt too wide) in paragraph at lines 488--489
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+) (./remote__tests_8cpp_source.tex [226] [227]) (./remote__tests_8hpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--11
+
+ []
+
+[228]
+Underfull \hbox (badness 10000) detected at line 54
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 61
+[][][]
+ []
+
+[229]
+Underfull \hbox (badness 10000) detected at line 113
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 120
+[][][]
+ []
+
+[230]
+Underfull \hbox (badness 10000) detected at line 176
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 183
+[][][]
+ []
+
+[231]
+Overfull \hbox (15.08577pt too wide) in paragraph at lines 226--227
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 240
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 247
+[][][]
+ []
+
+[232]
+Underfull \hbox (badness 10000) detected at line 303
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 310
+[][][]
+ []
+
+[233]
+Underfull \hbox (badness 10000) detected at line 364
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 371
+[][][]
+ []
+
+[234]
+Underfull \hbox (badness 10000) detected at line 421
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 428
+[][][]
+ []
+
+[235]
+Underfull \hbox (badness 10000) detected at line 482
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 489
+[][][]
+ []
+
+
+Overfull \hbox (15.08577pt too wide) in paragraph at lines 530--531
+[]\T1/phv/m/n/10 References [], [], [], [], and []. 
+ []
+
+) (./remote__tests_8hpp_source.tex [236]) (./setup__tests_8cpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
+
+ []
+
+[237]
+Underfull \hbox (badness 10000) detected at line 58
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 94
+[][][]
+ []
+
+[238]
+Underfull \hbox (badness 10000) detected at line 140
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 177
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 208
+[][][]
+ []
+
+[239]
+Underfull \hbox (badness 10000) detected at line 239
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 276
+[][][]
+ []
+
+[240]
+Underfull \hbox (badness 10000) detected at line 310
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 341
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 377
+[][][]
+ []
+
+[241]
+Underfull \hbox (badness 10000) detected at line 413
+[][][]
+ []
+
+) (./setup__tests_8cpp_source.tex [242]) (./setup__tests_8hpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--14
+
+ []
+
+LaTeX Font Info:    Font shape `TS1/phv/m/it' in size <9> not available
+(Font)              Font shape `TS1/phv/m/sl' tried instead on input line 18.
+LaTeX Font Info:    Font shape `TS1/phv/m/sl' will be
+(Font)              scaled to size 8.09995pt on input line 18.
+[243]
+Underfull \hbox (badness 10000) detected at line 63
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 68
+[][][]
+ []
+
+[244]
+Underfull \hbox (badness 10000) detected at line 104
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 148
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 155
+[][][]
+ []
+
+[245]
+Underfull \hbox (badness 10000) detected at line 192
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 223
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 228
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 259
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 264
+[][][]
+ []
+
+[246]
+Underfull \hbox (badness 10000) detected at line 301
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 306
+[][][]
+ []
+
+[247]
+Underfull \hbox (badness 10000) detected at line 340
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 371
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 376
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 412
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 417
+[][][]
+ []
+
+[248]
+Underfull \hbox (badness 10000) detected at line 453
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 458
+[][][]
+ []
+
+) (./setup__tests_8hpp_source.tex [249]) (./signaling__tests_8cpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
+
+ []
+
+[250]
+Underfull \hbox (badness 10000) detected at line 42
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 98
+[][][]
+ []
+
+[251]
+Underfull \hbox (badness 1546) in paragraph at lines 141--142
+[]\T1/phv/m/n/10 References [], [], [], [], and
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 155
+[][][]
+ []
+
+) (./signaling__tests_8cpp_source.tex [252] [253]) (./signaling__tests_8hpp.tex
+
+Underfull \hbox (badness 10000) in paragraph at lines 8--10
+
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 43
+[][][]
+ []
+
+[254]
+Underfull \hbox (badness 10000) detected at line 99
+[][][]
+ []
+
+[255]
+Underfull \hbox (badness 1546) in paragraph at lines 142--143
+[]\T1/phv/m/n/10 References [], [], [], [], and
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 156
+[][][]
+ []
+
+) (./signaling__tests_8hpp_source.tex) (./teams__tests_8cpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
+
+ []
+
+[256]
+Underfull \hbox (badness 10000) detected at line 50
+[][][]
+ []
+
+[257]
+Underfull \hbox (badness 10000) detected at line 88
+[][][]
+ []
+
+
+Overfull \hbox (21.93282pt too wide) in paragraph at lines 114--115
+[]\T1/phv/m/n/10 References [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 128
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 162
+[][][]
+ []
+
+[258]
+Underfull \hbox (badness 10000) detected at line 196
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 232
+[][][]
+ []
+
+[259]
+Underfull \hbox (badness 10000) detected at line 266
+[][][]
+ []
+
+
+Overfull \hbox (29.84354pt too wide) in paragraph at lines 286--287
+[]\T1/phv/m/n/10 References [], [], [], and []. 
+ []
+
+) (./teams__tests_8cpp_source.tex [260]) (./teams__tests_8hpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--11
+
+ []
+
+[261]
+Underfull \hbox (badness 10000) detected at line 52
+[][][]
+ []
+
+[262]
+Underfull \hbox (badness 10000) detected at line 90
+[][][]
+ []
+
+
+Overfull \hbox (21.93282pt too wide) in paragraph at lines 116--117
+[]\T1/phv/m/n/10 References [], [], [], and []. 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 130
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 164
+[][][]
+ []
+
+[263]
+Underfull \hbox (badness 10000) detected at line 198
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 234
+[][][]
+ []
+
+[264]
+Underfull \hbox (badness 10000) detected at line 268
+[][][]
+ []
+
+
+Overfull \hbox (29.84354pt too wide) in paragraph at lines 288--289
+[]\T1/phv/m/n/10 References [], [], [], and []. 
+ []
+
+) (./teams__tests_8hpp_source.tex) (./threads__tests_8cpp.tex [265]
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
+
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 40
+[][][]
+ []
+
+[266]
+Underfull \hbox (badness 10000) detected at line 72
+[][][]
+ []
+
+) (./threads__tests_8cpp_source.tex) (./threads__tests_8hpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--12
+
+ []
+
+[267]
+Underfull \hbox (badness 10000) detected at line 43
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 75
+[][][]
+ []
+
+[268]) (./threads__tests_8hpp_source.tex) [269] [270
+
+] (./refman.ind
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 22.39185pt on input line 1.
+ [271
+
+
+]
+[272] [273] [274] [275] [276]
+Underfull \hbox (badness 10000) in paragraph at lines 812--814
+[]| \T1/phv/m/n/10 shmem_ulong_atomic_compare_swap_nbi_func,
+ []
+
+[277] [278] [279]
+Underfull \hbox (badness 1314) in paragraph at lines 1107--1109
+[]\T1/phv/m/n/10 src/tests/mem_ordering/mem_ordering_tests.cpp, [][]181[][],
+ []
+
+
+Underfull \hbox (badness 914) in paragraph at lines 1109--1111
+[]\T1/phv/m/n/10 src/tests/mem_ordering/mem_ordering_tests.hpp, [][]184[][],
+ []
+
+[280] [281] [282] [283
+
+]) (./refman.aux)
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-02-20>
+ ***********
+Package rerunfilecheck Info: File `refman.out' has not changed.
+(rerunfilecheck)             Checksum: 822EC9D88F0004103BF3384FDB6BCFB8;157165.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 25418 strings out of 474116
+ 506290 string characters out of 5743682
+ 2021187 words of memory out of 5000000
+ 41295 multiletter control sequences out of 15000+600000
+ 612764 words of font info for 104 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 101i,16n,117p,11130b,744s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><
+/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
+usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></us
+r/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/
+local/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/te
+xlive/2024/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/local/texlive/2
+024/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2024/tex
+mf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/local/texlive/2024/texmf-dis
+t/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts
+/type1/urw/helvetic/uhvro8a.pfb>
+Output written on refman.pdf (301 pages, 1040229 bytes).
+PDF statistics:
+ 19473 PDF objects out of 22161 (max. 8388607)
+ 18958 compressed objects within 190 object streams
+ 6045 named destinations out of 6186 (max. 500000)
+ 5145 words of extra memory for PDF output out of 10000 (max. 10000000)
+

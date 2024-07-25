@@ -1,0 +1,275 @@
+.TH "src/include/shmemvv.hpp" 3 "Version 0.1" "shmemvv" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/include/shmemvv.hpp \- Contains helper function declarations for the OpenSHMEM verification/validation test suite\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <shmem\&.h>\fP
+.br
+\fR#include <iostream>\fP
+.br
+\fR#include <getopt\&.h>\fP
+.br
+\fR#include <string>\fP
+.br
+\fR#include <cstring>\fP
+.br
+\fR#include <vector>\fP
+.br
+\fR#include <sstream>\fP
+.br
+\fR#include <dlfcn\&.h>\fP
+.br
+\fR#include '\&.\&./tests/setup/setup_tests\&.hpp'\fP
+.br
+\fR#include '\&.\&./tests/threads/threads_tests\&.hpp'\fP
+.br
+\fR#include '\&.\&./tests/mem/mem_tests\&.hpp'\fP
+.br
+\fR#include '\&.\&./tests/teams/teams_tests\&.hpp'\fP
+.br
+\fR#include '\&.\&./tests/comms/comms_tests\&.hpp'\fP
+.br
+\fR#include '\&.\&./tests/remote/remote_tests\&.hpp'\fP
+.br
+\fR#include '\&.\&./tests/atomics/atomics_tests\&.hpp'\fP
+.br
+\fR#include '\&.\&./tests/signaling/signaling_tests\&.hpp'\fP
+.br
+\fR#include '\&.\&./tests/collectives/collectives_tests\&.hpp'\fP
+.br
+\fR#include '\&.\&./tests/pt2pt/pt2pt_tests\&.hpp'\fP
+.br
+\fR#include '\&.\&./tests/mem_ordering/mem_ordering_tests\&.hpp'\fP
+.br
+\fR#include '\&.\&./tests/locking/locking_tests\&.hpp'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBtest_options\fP"
+.br
+.RI "Struct to hold selected tests options\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBRESET_COLOR\fP   '\\033[0m'"
+.br
+.ti -1c
+.RI "#define \fBRED_COLOR\fP   '\\033[31m'"
+.br
+.ti -1c
+.RI "#define \fBGREEN_COLOR\fP   '\\033[32m'"
+.br
+.ti -1c
+.RI "#define \fBYELLOW_COLOR\fP   '\\033[33m'"
+.br
+.ti -1c
+.RI "#define \fBHLINE\fP   '\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-'"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBparse_opts\fP (int argc, char *argv[], \fBtest_options\fP &opts)"
+.br
+.RI "Parses command-line options\&. "
+.ti -1c
+.RI "void \fBdisplay_help\fP ()"
+.br
+.RI "Displays usage information\&. "
+.ti -1c
+.RI "void \fBdisplay_logo\fP ()"
+.br
+.RI "Displays the ASCII art logo\&. "
+.ti -1c
+.RI "void \fBdisplay_test_header\fP (std::string test_name)"
+.br
+.RI "Displays a header for the test category\&. "
+.ti -1c
+.RI "void \fBdisplay_test_info\fP (std::string shmem_name, std::string shmem_version, int npes)"
+.br
+.RI "Displays information about the test suite\&. "
+.ti -1c
+.RI "bool \fBcheck_if_exists\fP (const std::string &routine_name)"
+.br
+.RI "Checks whether the tested OpenSHMEM implementation has a given routine\&. "
+.ti -1c
+.RI "void \fBdisplay_not_found_warning\fP (std::string routine_name, bool required)"
+.br
+.RI "Displays a warning message that the given routine is not avaible in the tested OpenSHMEM library\&. "
+.ti -1c
+.RI "void \fBdisplay_not_enough_pes\fP (std::string test_type)"
+.br
+.RI "Print error message saying that there needs to be at least 2 PEs for the given test type\&. "
+.ti -1c
+.RI "void \fBdisplay_test_result\fP (std::string routine_name, bool passed, bool required)"
+.br
+.RI "Displays whether the test passed\&. "
+.ti -1c
+.RI "void \fBfinalize_shmemvv\fP (int mype)"
+.br
+.RI "Run finalization test\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Contains helper function declarations for the OpenSHMEM verification/validation test suite\&. 
+
+
+.PP
+Definition in file \fBshmemvv\&.hpp\fP\&.
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define GREEN_COLOR   '\\033[32m'"
+
+.PP
+Definition at line \fB35\fP of file \fBshmemvv\&.hpp\fP\&.
+.SS "#define HLINE   '\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-'"
+
+.PP
+Definition at line \fB38\fP of file \fBshmemvv\&.hpp\fP\&.
+.SS "#define RED_COLOR   '\\033[31m'"
+
+.PP
+Definition at line \fB34\fP of file \fBshmemvv\&.hpp\fP\&.
+.SS "#define RESET_COLOR   '\\033[0m'"
+
+.PP
+Definition at line \fB33\fP of file \fBshmemvv\&.hpp\fP\&.
+.SS "#define YELLOW_COLOR   '\\033[33m'"
+
+.PP
+Definition at line \fB36\fP of file \fBshmemvv\&.hpp\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "bool check_if_exists (const std::string & routine_name)"
+
+.PP
+Checks whether the tested OpenSHMEM implementation has a given routine\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIroutine_name\fP OpenSHMEM routine that we are making sure is present 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if it exists, false otherwise 
+.RE
+.PP
+
+.SS "void display_help ()"
+
+.PP
+Displays usage information\&. 
+.SS "void display_logo ()"
+
+.PP
+Displays the ASCII art logo\&. 
+.SS "void display_not_enough_pes (std::string test_type)"
+
+.PP
+Print error message saying that there needs to be at least 2 PEs for the given test type\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItest_type\fP Category of tests 
+.RE
+.PP
+
+.SS "void display_not_found_warning (std::string routine_name, bool required)"
+
+.PP
+Displays a warning message that the given routine is not avaible in the tested OpenSHMEM library\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIroutine_name\fP OpenSHMEM routine 
+.br
+\fIrequired\fP True if test is required, false otherwise 
+.RE
+.PP
+
+.SS "void display_test_header (std::string test_name)"
+
+.PP
+Displays a header for the test category\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItest_name\fP Name of the test category\&. 
+.RE
+.PP
+
+.SS "void display_test_info (std::string shmem_name, std::string shmem_version, int npes)"
+
+.PP
+Displays information about the test suite\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIshmem_name\fP Name of the OpenSHMEM library\&. 
+.br
+\fIshmem_version\fP Version of the OpenSHMEM library\&. 
+.br
+\fInpes\fP Number of PEs (Processing Elements)\&. 
+.RE
+.PP
+
+.SS "void display_test_result (std::string routine_name, bool passed, bool required)"
+
+.PP
+Displays whether the test passed\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIroutine_name\fP OpenSHMEM routine that was tested 
+.br
+\fIpassed\fP True if the test passed, false if the test failed 
+.br
+\fIrequired\fP True if the test is required, false otherwise 
+.RE
+.PP
+
+.SS "void finalize_shmemvv (int mype)"
+
+.PP
+Run finalization test\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImype\fP Current PE 
+.RE
+.PP
+
+.SS "bool parse_opts (int argc, char * argv[], \fBtest_options\fP & opts)"
+
+.PP
+Parses command-line options\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIargc\fP Number of command-line arguments\&. 
+.br
+\fIargv\fP Array of command-line argument strings\&. 
+.br
+\fIopts\fP Reference to the test options structure\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+True if parsing is successful, false otherwise\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for shmemvv from the source code\&.

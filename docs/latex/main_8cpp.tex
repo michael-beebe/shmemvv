@@ -1,0 +1,1726 @@
+\doxysection{src/main.cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+
+
+Driver file for the test suite.  
+
+
+{\ttfamily \#include "{}shmemvv.\+hpp"{}}\newline
+{\ttfamily \#include "{}routines.\+hpp"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Main function for running the test suite. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver file for the test suite. 
+
+
+
+Definition in file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97} 
+int main (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Main function for running the test suite. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Number of command-\/line arguments. \\
+\hline
+{\em argv} & Array of command-\/line argument strings. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+EXIT\+\_\+\+SUCCESS on success, EXIT\+\_\+\+FAILURE on failure. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00015}{15}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordtype}{int}\ mype\ =\ 0;}
+\DoxyCodeLine{00017\ \ \ \textcolor{keywordtype}{int}\ npes\ =\ 0;}
+\DoxyCodeLine{00018\ \ \ std::string\ version\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00019\ \ \ std::string\ name\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00020\ \ \ \mbox{\hyperlink{structtest__options}{test\_options}}\ opts;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \textcolor{comment}{/*\ Variables\ to\ hold\ test\ results\ */}}
+\DoxyCodeLine{00023\ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_init\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00024\ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_init\_thread\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_barrier\_all\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_barrier\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_my\_pe\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00028\ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_n\_pes\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00029\ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_pe\_accessible\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00030\ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_info\_get\_version\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_info\_get\_name\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ /*************************\ SETUP\ **************************/}}
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordtype}{void}\ *handle\ =\ dlopen(NULL,\ RTLD\_LAZY);}
+\DoxyCodeLine{00035\ \ \ \textcolor{keywordflow}{if}\ (!handle)\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Failed\ to\ open\ handle:\ "{}}\ <<\ dlerror()\ <<\ std::endl;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \textcolor{comment}{/*\ Load\ OpenSHMEM\ routines\ */}}
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{routines_8hpp_a0301032d993478a4f7f4338b62d3ae6f}{load\_routines}}())\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Failed\ to\ load\ OpenSHMEM\ routines"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{00046\ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \textcolor{comment}{/*\ Initialize\ with\ shmem\_init\_thread()\ if\ THREADS\ tests\ were\ enabled\ */}}
+\DoxyCodeLine{00049\ \ \ \textcolor{keywordflow}{if}\ (opts.\mbox{\hyperlink{structtest__options_a7a97958fa5f262f7458bb6ae7e5cffe4}{test\_threads}})\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_init\_thread"{}}))\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_init\_thread()"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ result\_shmem\_init\_thread\ =\ \mbox{\hyperlink{threads__tests_8cpp_a7aaa9b1a4175434e2a08b8fe2c140f85}{test\_shmem\_init\_thread}}();}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!result\_shmem\_init\_thread)\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_init\_thread()"{}},\ result\_shmem\_init\_thread,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{/*\ Initialize\ with\ regular\ shmem\_init()\ if\ THREADS\ tests\ are\ not\ enabled\ */}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_init"{}}))\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_init()"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ result\_shmem\_init\ =\ \mbox{\hyperlink{setup__tests_8cpp_ac1ec6482b074be9b1396461d4e820b98}{test\_shmem\_init}}();}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!result\_shmem\_init)\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_init()"{}},\ result\_shmem\_init,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \textcolor{comment}{/*\ Run\ shmem\_barrier\_all()\ test\ */}}
+\DoxyCodeLine{00082\ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_barrier\_all"{}}))\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_barrier\_all()"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ shmem\_finalize();}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{00088\ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ result\_shmem\_barrier\_all\ =\ \mbox{\hyperlink{setup__tests_8cpp_a1595a94a0d8272cab5b80012e869b40e}{test\_shmem\_barrier\_all}}();}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{if}\ (!result\_shmem\_barrier\_all)\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (shmem\_my\_pe()\ ==\ 0)\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_barrier\_all()"{}},\ result\_shmem\_barrier\_all,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ shmem\_finalize();}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \textcolor{comment}{/*\ Run\ shmem\_my\_pe()\ test\ */}}
+\DoxyCodeLine{00101\ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00102\ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_my\_pe"{}}))\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_my\_pe()"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ shmem\_finalize();}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{00108\ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ mype\ =\ \mbox{\hyperlink{setup__tests_8cpp_ac5878aac965fd1cded039a6f28f0dbf6}{test\_shmem\_my\_pe}}();}
+\DoxyCodeLine{00111\ \ \ \ \ result\_shmem\_my\_pe\ =\ mype\ >=\ 0;}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{if}\ (!result\_shmem\_my\_pe)\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_my\_pe()"{}},\ result\_shmem\_my\_pe,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ shmem\_finalize();}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{00118\ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \textcolor{comment}{/*\ Run\ shmem\_n\_pes()\ test\ */}}
+\DoxyCodeLine{00122\ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00123\ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_n\_pes"{}}))\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_n\_pes"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00126\ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ shmem\_finalize();}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{00129\ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{comment}{/*\ Set\ npes\ */}}
+\DoxyCodeLine{00132\ \ \ \ \ npes\ =\ \mbox{\hyperlink{setup__tests_8cpp_a793e5b04775713d9678e1b6f319669e7}{test\_shmem\_n\_pes}}();}
+\DoxyCodeLine{00133\ \ \ \ \ result\_shmem\_n\_pes\ =\ npes\ >\ 0;}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordflow}{if}\ (!result\_shmem\_n\_pes)\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_n\_pes()"{}},\ result\_shmem\_n\_pes,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ shmem\_finalize();}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{00140\ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \textcolor{comment}{/*\ Run\ shmem\_pe\_accessible()\ test\ */}}
+\DoxyCodeLine{00144\ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00145\ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_pe\_accessible"{}}))\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_pe\_accessible()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00148\ \ \ \ \ \}}
+\DoxyCodeLine{00149\ \ \ \}}
+\DoxyCodeLine{00150\ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ result\_shmem\_pe\_accessible\ =\ \mbox{\hyperlink{setup__tests_8cpp_afbe414657e9d45ffc88a486c96ae7690}{test\_shmem\_pe\_accessible}}();}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordflow}{if}\ (!result\_shmem\_pe\_accessible)\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_pe\_accessible()"{}},\ result\_shmem\_pe\_accessible,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ shmem\_finalize();}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{00158\ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00162\ \textcolor{comment}{\ \ \ \ Run\ test\ to\ make\ sure\ OpenSHMEM\ routines\ that\ aren't\ implemented}}
+\DoxyCodeLine{00163\ \textcolor{comment}{\ \ \ \ don't\ throw\ compiler\ errors}}
+\DoxyCodeLine{00164\ \textcolor{comment}{\ \ */}}
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\ \ \#ifdef\ \_DEBUG\_}}
+\DoxyCodeLine{00166\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_fake\_routine"{}}))\ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_fake\_routine()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ \}}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \mbox{\hyperlink{setup__tests_8cpp_aa6c8f665f8a7459517b6964b3b2ad9ca}{test\_shmem\_fake\_routine}}();}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \textcolor{comment}{/*\ Display\ help\ if\ requested\ */}}
+\DoxyCodeLine{00178\ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00179\ \ \ \textcolor{keywordflow}{if}\ (opts.\mbox{\hyperlink{structtest__options_a3263b245af6a78eb31c1b28b12342b9c}{help}})\ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_a8f0b63bf650a5ceefc36d7e3bcb02f63}{display\_help}}();}
+\DoxyCodeLine{00182\ \ \ \ \ \}}
+\DoxyCodeLine{00183\ \ \ \ \ shmem\_finalize();}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_SUCCESS;}
+\DoxyCodeLine{00185\ \ \ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \textcolor{comment}{/*\ Display\ ASCII\ art\ logo\ */}}
+\DoxyCodeLine{00188\ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00189\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_afbe17f94210e7ceb339630701ea3cafe}{display\_logo}}();}
+\DoxyCodeLine{00191\ \ \ \}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \textcolor{comment}{/*\ Run\ shmem\_barrier()\ test\ */}}
+\DoxyCodeLine{00194\ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00195\ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_barrier"{}}))\ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_barrier()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00198\ \ \ \ \ \}}
+\DoxyCodeLine{00199\ \ \ \}}
+\DoxyCodeLine{00200\ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00201\ \ \ \ \ result\_shmem\_barrier\ =\ \mbox{\hyperlink{setup__tests_8cpp_a9d03fa0c3989d5e249afb9f043df4ba7}{test\_shmem\_barrier}}();}
+\DoxyCodeLine{00202\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00203\ \ \ \}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \textcolor{comment}{/*\ Run\ shmem\_info\_get\_version()\ test\ */}}
+\DoxyCodeLine{00206\ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00207\ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_info\_get\_version"{}}))\ \{}
+\DoxyCodeLine{00208\ \ \ \ \ result\_shmem\_info\_get\_version\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_info\_get\_version()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00211\ \ \ \ \ \}}
+\DoxyCodeLine{00212\ \ \ \}}
+\DoxyCodeLine{00213\ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00214\ \ \ \ \ version\ =\ \mbox{\hyperlink{setup__tests_8cpp_a861d191e137f4f307062d3c0667e2f2c}{test\_shmem\_info\_get\_version}}();}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordflow}{if}\ (version\ ==\ \textcolor{stringliteral}{"{}"{}})\ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ result\_shmem\_info\_get\_version\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00217\ \ \ \ \ \}}
+\DoxyCodeLine{00218\ \ \ \}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \textcolor{comment}{/*\ Run\ shmem\_info\_get\_name()\ test\ */}}
+\DoxyCodeLine{00221\ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00222\ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_info\_get\_name"{}}))\ \{}
+\DoxyCodeLine{00223\ \ \ \ \ result\_shmem\_info\_get\_name\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_info\_get\_name()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00226\ \ \ \ \ \}}
+\DoxyCodeLine{00227\ \ \ \}}
+\DoxyCodeLine{00228\ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00229\ \ \ \ \ name\ =\ \mbox{\hyperlink{setup__tests_8cpp_a052130f59f2eb2e52741c30adfe44811}{test\_shmem\_info\_get\_name}}();}
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keywordflow}{if}\ (name\ ==\ \textcolor{stringliteral}{"{}"{}})\ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ result\_shmem\_info\_get\_name\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00232\ \ \ \ \ \}}
+\DoxyCodeLine{00233\ \ \ \}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \textcolor{comment}{/*\ Parse\ command-\/line\ options\ */}}
+\DoxyCodeLine{00236\ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a248192d977bc6592f4abd79caa38e05e}{parse\_opts}}(argc,\ argv,\ opts))\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_a8f0b63bf650a5ceefc36d7e3bcb02f63}{display\_help}}();}
+\DoxyCodeLine{00239\ \ \ \ \ \}}
+\DoxyCodeLine{00240\ \ \ \ \ shmem\_finalize();}
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{00242\ \ \ \}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \textcolor{comment}{/*\ Enable\ all\ tests\ if\ -\/-\/all\ is\ specified\ or\ no\ specific\ test\ is\ selected\ */}}
+\DoxyCodeLine{00247\ \ \ \textcolor{keywordflow}{if}\ (opts.\mbox{\hyperlink{structtest__options_af3ec57ed306add401e2dd41b9a441e91}{test\_all}}\ ||}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ !(opts.\mbox{\hyperlink{structtest__options_a330aa30f35165f1da199bf8e766803da}{test\_setup}}\ ||\ opts.\mbox{\hyperlink{structtest__options_a7a97958fa5f262f7458bb6ae7e5cffe4}{test\_threads}}\ ||\ opts.\mbox{\hyperlink{structtest__options_a8e013cbf31279419a82755eb4dadc824}{test\_mem}}\ ||\ opts.\mbox{\hyperlink{structtest__options_a14b0f239bdc0a5cd8b5077594a5b2691}{test\_teams}}\ ||}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ opts.\mbox{\hyperlink{structtest__options_a9af7e596ba25482ce72ff6b95198ccd0}{test\_ctx}}\ ||\ opts.\mbox{\hyperlink{structtest__options_ab6a1cc49e7ecfb4fe735f50f11d432fe}{test\_remote}}\ ||\ opts.\mbox{\hyperlink{structtest__options_a34004528ec157da43016ff633ab5f1c4}{test\_atomics}}\ ||\ opts.\mbox{\hyperlink{structtest__options_a7318289417acbe85601cd31c9556908d}{test\_signaling}}\ ||}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ opts.\mbox{\hyperlink{structtest__options_a0a14b3a0a43cabb293a620ec6a152bf8}{test\_collectives}}\ ||\ opts.\mbox{\hyperlink{structtest__options_af14948d711605635b8ddf534e18b6139}{test\_pt2pt\_synch}}\ ||\ opts.\mbox{\hyperlink{structtest__options_a94e89aaf1b81cb111d630a886236d6d9}{test\_mem\_ordering}}\ ||\ opts.\mbox{\hyperlink{structtest__options_a1cd051c8df69a2736066470213d255fc}{test\_locking}}))}
+\DoxyCodeLine{00251\ \ \ \{}
+\DoxyCodeLine{00252\ \ \ \ \ opts.\mbox{\hyperlink{structtest__options_a330aa30f35165f1da199bf8e766803da}{test\_setup}}\ =\ \textcolor{keyword}{true};\ opts.\mbox{\hyperlink{structtest__options_a7a97958fa5f262f7458bb6ae7e5cffe4}{test\_threads}}\ =\ \textcolor{keyword}{true};\ opts.\mbox{\hyperlink{structtest__options_a8e013cbf31279419a82755eb4dadc824}{test\_mem}}\ =\ \textcolor{keyword}{true};\ opts.\mbox{\hyperlink{structtest__options_a14b0f239bdc0a5cd8b5077594a5b2691}{test\_teams}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00253\ \ \ \ \ opts.\mbox{\hyperlink{structtest__options_a9af7e596ba25482ce72ff6b95198ccd0}{test\_ctx}}\ =\ \textcolor{keyword}{true};\ opts.\mbox{\hyperlink{structtest__options_ab6a1cc49e7ecfb4fe735f50f11d432fe}{test\_remote}}\ =\ \textcolor{keyword}{true};\ opts.\mbox{\hyperlink{structtest__options_a34004528ec157da43016ff633ab5f1c4}{test\_atomics}}\ =\ \textcolor{keyword}{true};\ opts.\mbox{\hyperlink{structtest__options_a7318289417acbe85601cd31c9556908d}{test\_signaling}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00254\ \ \ \ \ opts.\mbox{\hyperlink{structtest__options_a0a14b3a0a43cabb293a620ec6a152bf8}{test\_collectives}}\ =\ \textcolor{keyword}{true};\ opts.\mbox{\hyperlink{structtest__options_af14948d711605635b8ddf534e18b6139}{test\_pt2pt\_synch}}\ =\ \textcolor{keyword}{true};\ opts.\mbox{\hyperlink{structtest__options_a94e89aaf1b81cb111d630a886236d6d9}{test\_mem\_ordering}}\ =\ \textcolor{keyword}{true};\ opts.\mbox{\hyperlink{structtest__options_a1cd051c8df69a2736066470213d255fc}{test\_locking}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00255\ \ \ \}}
+\DoxyCodeLine{00256\ \ \ }
+\DoxyCodeLine{00257\ \ \ \textcolor{comment}{/*\ Display\ test\ information\ */}}
+\DoxyCodeLine{00258\ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00259\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00260\ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_a9f322f8967d1b4179a54dad321c94889}{display\_test\_info}}(name,\ version,\ npes);}
+\DoxyCodeLine{00261\ \ \ \}\ }
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \ \ \textcolor{comment}{/*\ Print\ setup\ tests\ header\ */}}
+\DoxyCodeLine{00264\ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00265\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_a06eae8577451a4800aa038a6beae5da5}{display\_test\_header}}(\textcolor{stringliteral}{"{}SETUP"{}});}
+\DoxyCodeLine{00267\ \ \ \}}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \textcolor{comment}{/*\ shmem\_init()\ and\ shmem\_my\_pe()\ tests\ passed\ */}}
+\DoxyCodeLine{00270\ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00271\ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keywordflow}{if}\ (!opts.\mbox{\hyperlink{structtest__options_a7a97958fa5f262f7458bb6ae7e5cffe4}{test\_threads}})\ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_init()"{}},\ result\_shmem\_init,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00274\ \ \ \ \ \}}
+\DoxyCodeLine{00275\ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_barrier\_all()"{}},\ result\_shmem\_barrier\_all,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00276\ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_barrier()"{}},\ result\_shmem\_barrier,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00277\ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_my\_pe()"{}},\ result\_shmem\_my\_pe,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00278\ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_n\_pes()"{}},\ result\_shmem\_n\_pes,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00279\ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_pe\_accessible()"{}},\ result\_shmem\_pe\_accessible,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keywordflow}{if}\ (version\ !=\ \textcolor{stringliteral}{"{}1.5"{}}\ \&\&\ version\ !=\ \textcolor{stringliteral}{"{}1.50"{}})\ \{}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ std::cerr\ <<\ \mbox{\hyperlink{shmemvv_8hpp_a35a34f2f8dca5dd35f23c60054b18887}{YELLOW\_COLOR}}\ <<\ \textcolor{stringliteral}{"{}shmem\_info\_get\_version()\ test\ did\ not\ return\ 1.5...\ Returned\ "{}}\ <<\ version\ <<\ std::endl;}
+\DoxyCodeLine{00282\ \ \ \ \ \}}
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_info\_get\_version()"{}},\ result\_shmem\_info\_get\_version,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00285\ \ \ \ \ \}}
+\DoxyCodeLine{00286\ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_info\_get\_name()"{}},\ result\_shmem\_info\_get\_name,\textcolor{keyword}{false});}
+\DoxyCodeLine{00287\ \ \ \}}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \textcolor{comment}{\ \ /*************************\ THREADS\ TESTS\ **************************/}}
+\DoxyCodeLine{00290\ \ \ \textcolor{keywordflow}{if}\ (opts.\mbox{\hyperlink{structtest__options_a7a97958fa5f262f7458bb6ae7e5cffe4}{test\_threads}})\ \{}
+\DoxyCodeLine{00291\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00292\ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_a06eae8577451a4800aa038a6beae5da5}{display\_test\_header}}(\textcolor{stringliteral}{"{}THREADS"{}});\ }
+\DoxyCodeLine{00294\ \ \ \ \ \}}
+\DoxyCodeLine{00295\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00296\ \ }
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{comment}{/*\ If\ we\ made\ it\ here\ shmem\_init\_thread()\ passed\ */}}
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_init\_thread()"{}},\ result\_shmem\_init\_thread,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00300\ \ \ \ \ \}}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{comment}{/*\ Test\ shmem\_query\_thread()\ */}}
+\DoxyCodeLine{00303\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_query\_thread"{}})\ )\ \{}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_query\_thread()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00308\ \ \ \ \ \}}
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_query\_thread\ =\ \mbox{\hyperlink{threads__tests_8cpp_abff321650e898124f44e95867cfb889f}{test\_shmem\_query\_thread}}();}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_query\_thread()"{}},\ result\_shmem\_query\_thread,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00315\ \ \ \ \ \}}
+\DoxyCodeLine{00316\ \ \ \}}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \textcolor{comment}{\ \ /*************************\ MEMORY\ TESTS\ **************************/}}
+\DoxyCodeLine{00319\ \ \ \textcolor{keywordflow}{if}\ (opts.\mbox{\hyperlink{structtest__options_a8e013cbf31279419a82755eb4dadc824}{test\_mem}})\ \{}
+\DoxyCodeLine{00320\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_a06eae8577451a4800aa038a6beae5da5}{display\_test\_header}}(\textcolor{stringliteral}{"{}MEMORY\ MANAGEMENT"{}});\ }
+\DoxyCodeLine{00323\ \ \ \ \ \}}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{comment}{/*\ Test\ shmem\_malloc()\ and\ shmem\_free()\ */}}
+\DoxyCodeLine{00326\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_malloc"{}})\ \&\&\ \mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_free"{}})\ )\ \{}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_malloc\_free\ =\ \mbox{\hyperlink{mem__tests_8cpp_a4fbdc66e5461f9991786d67169465393}{test\_shmem\_malloc\_free}}();}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_malloc()"{}},\ result\_shmem\_malloc\_free,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_free()"{}},\ result\_shmem\_malloc\_free,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00334\ \ \ \ \ \}}
+\DoxyCodeLine{00335\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_malloc"{}})\ )\ \{}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_malloc()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_free"{}})\ )\ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_free()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00346\ \ \ \ \ \}\ }
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \ \ \ \ \textcolor{comment}{/*\ Test\ shmem\_ptr()\ */}}
+\DoxyCodeLine{00349\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ptr"{}})\ )\ \{}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_ptr()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00354\ \ \ \ \ \}}
+\DoxyCodeLine{00355\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_ptr\ =\ \mbox{\hyperlink{mem__tests_8cpp_ac5b8334d7fc17a4285a4ff8c76afc325}{test\_shmem\_ptr}}();}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_ptr()"{}},\ result\_shmem\_ptr,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00361\ \ \ \ \ \}}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00363\ \ \ \ \ \textcolor{comment}{/*\ Test\ shmem\_addr\_accessible\ */}}
+\DoxyCodeLine{00364\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00365\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_addr\_accessible"{}})\ )\ \{}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_addr\_accessible"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00369\ \ \ \ \ \}}
+\DoxyCodeLine{00370\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_addr\_accessible\ =\ \mbox{\hyperlink{mem__tests_8cpp_ae8f324c1a476f9b7b427c1a924ec1778}{test\_shmem\_addr\_accessible}}();}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_addr\_accessible()"{}},\ result\_shmem\_addr\_accessible,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00376\ \ \ \ \ \}}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00378\ \ \ \ \ \textcolor{comment}{/*\ Test\ shmem\_realloc()\ */}}
+\DoxyCodeLine{00379\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00380\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_realloc"{}})\ )\ \{}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shme\_realloc()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00384\ \ \ \ \ \}}
+\DoxyCodeLine{00385\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_realloc\ =\ \mbox{\hyperlink{mem__tests_8cpp_a1b32cb45146e483ad417f3e278ca46f2}{test\_shmem\_realloc}}();}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_realloc()"{}},\ result\_shmem\_realloc,\ \textcolor{keyword}{false});\ }
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00391\ \ \ \ \ \}}
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00393\ \ \ \ \ \textcolor{comment}{/*\ Test\ shmem\_align()\ */}}
+\DoxyCodeLine{00394\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00395\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_align"{}})\ )\ \{}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_align()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00399\ \ \ \ \ \}}
+\DoxyCodeLine{00400\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_align\ =\ \mbox{\hyperlink{mem__tests_8cpp_a754242752d7a0d635ad4d2d023aa8f32}{test\_shmem\_align}}();}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_align()"{}},\ result\_shmem\_align,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00406\ \ \ \ \ \}}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00408\ \ \ \ \ \textcolor{comment}{/*\ Test\ shmem\_malloc\_with\_hints()\ */}\ }
+\DoxyCodeLine{00409\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00410\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_malloc\_with\_hints"{}})\ )\ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_malloc\_with\_hints()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00414\ \ \ \ \ \}}
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_malloc\_with\_hints\ =\ \mbox{\hyperlink{mem__tests_8cpp_a1290afd5cc23fba4b72134b345b9bec9}{test\_shmem\_malloc\_with\_hints}}();}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_malloc\_with\_hints()"{}},\ result\_shmem\_malloc\_with\_hints,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00421\ \ \ \ \ \}}
+\DoxyCodeLine{00422\ }
+\DoxyCodeLine{00423\ \ \ \ \ \textcolor{comment}{/*\ Test\ shmem\_calloc()\ */}}
+\DoxyCodeLine{00424\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00425\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_calloc"{}})\ )\ \{}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_calloc()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00429\ \ \ \ \ \}}
+\DoxyCodeLine{00430\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_calloc\ =\ \mbox{\hyperlink{mem__tests_8cpp_a8184757fab0af8b8537a0081e36f703b}{test\_shmem\_calloc}}();}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_calloc()"{}},\ result\_shmem\_calloc,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00436\ \ \ \ \ \}}
+\DoxyCodeLine{00437\ \ \ \}}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00439\ \textcolor{comment}{\ \ /*************************\ TEAMS\ TESTS\ **************************/}}
+\DoxyCodeLine{00440\ \ \ \textcolor{keywordflow}{if}\ (opts.\mbox{\hyperlink{structtest__options_a14b0f239bdc0a5cd8b5077594a5b2691}{test\_teams}})\ \{}
+\DoxyCodeLine{00441\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00442\ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_a06eae8577451a4800aa038a6beae5da5}{display\_test\_header}}(\textcolor{stringliteral}{"{}TEAMS\ MANAGEMENT"{}});\ }
+\DoxyCodeLine{00444\ \ \ \ \ \}}
+\DoxyCodeLine{00445\ }
+\DoxyCodeLine{00446\ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_team\_my\_pe()\ test\ */}}
+\DoxyCodeLine{00447\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00448\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_team\_my\_pe"{}})\ )\ \{}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_team\_my\_pe()"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00452\ \ \ \ \ \}}
+\DoxyCodeLine{00453\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_team\_my\_pe\ =\ \mbox{\hyperlink{teams__tests_8cpp_ad23a036a2f09301ee9d931646c8e1743}{test\_shmem\_team\_my\_pe}}();}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_team\_my\_pe()"{}},\ result\_shmem\_team\_my\_pe,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00459\ \ \ \ \ \}}
+\DoxyCodeLine{00460\ }
+\DoxyCodeLine{00461\ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_team\_n\_pes()\ test\ */}}
+\DoxyCodeLine{00462\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00463\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_team\_n\_pes"{}})\ )\ \{}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_team\_n\_pes()"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00467\ \ \ \ \ \}}
+\DoxyCodeLine{00468\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_team\_n\_pes\ =\ \mbox{\hyperlink{teams__tests_8cpp_ae5b98a6df9bd5882c1384b3e5bea9706}{test\_shmem\_team\_n\_pes}}();}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_team\_n\_pes()"{}},\ result\_shmem\_team\_n\_pes,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00474\ \ \ \ \ \}}
+\DoxyCodeLine{00475\ }
+\DoxyCodeLine{00476\ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_team\_get\_config()\ test\ */}}
+\DoxyCodeLine{00477\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00478\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_team\_get\_config"{}})\ )\ \{}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_team\_get\_config()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00482\ \ \ \ \ \}}
+\DoxyCodeLine{00483\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_team\_get\_config\ =\ \mbox{\hyperlink{teams__tests_8cpp_ae87303ad0c878c54aa1c9b82dcb956b6}{test\_shmem\_team\_get\_config}}();}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_team\_get\_config()"{}},\ result\_shmem\_team\_get\_config,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00489\ \ \ \ \ \}}
+\DoxyCodeLine{00490\ }
+\DoxyCodeLine{00491\ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_team\_translate\_pe()\ test\ */}}
+\DoxyCodeLine{00492\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00493\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_team\_translate\_pe"{}})\ )\ \{}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_team\_translate\_pe()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00497\ \ \ \ \ \}}
+\DoxyCodeLine{00498\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_team\_translate\_pe\ =\ \mbox{\hyperlink{teams__tests_8cpp_a4bb9d77a57d9a4f66ccfd618db3d58ec}{test\_shmem\_team\_translate\_pe}}();}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_team\_translate\_pe()"{}},\ result\_shmem\_team\_translate\_pe,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00504\ \ \ \ \ \}}
+\DoxyCodeLine{00505\ }
+\DoxyCodeLine{00506\ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_team\_split\_strided()\ test\ */}}
+\DoxyCodeLine{00507\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00508\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_team\_split\_strided"{}})\ )\ \{}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_team\_split\_strided()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00512\ \ \ \ \ \}}
+\DoxyCodeLine{00513\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_team\_split\_strided\ =\ \mbox{\hyperlink{teams__tests_8cpp_a693f34700307a59ca284ed013bc232e6}{test\_shmem\_team\_split\_strided}}();}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_team\_split\_strided()"{}},\ result\_shmem\_team\_split\_strided,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00519\ \ \ \ \ \}}
+\DoxyCodeLine{00520\ }
+\DoxyCodeLine{00521\ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_team\_split\_2d()\ test\ */}}
+\DoxyCodeLine{00522\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00523\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_team\_split\_2d"{}})\ )\ \{}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_team\_split\_2d()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00527\ \ \ \ \ \}}
+\DoxyCodeLine{00528\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_team\_split\_2d\ =\ \mbox{\hyperlink{teams__tests_8cpp_a5d5301f7dcb9c3723a85d779a170863b}{test\_shmem\_team\_split\_2d}}();}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_team\_split\_2d()"{}},\ result\_shmem\_team\_split\_2d,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00534\ \ \ \ \ \}}
+\DoxyCodeLine{00535\ }
+\DoxyCodeLine{00536\ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_team\_destroy()\ test\ */}}
+\DoxyCodeLine{00537\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00538\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_team\_destroy"{}})\ )\ \{}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_team\_destroy()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00542\ \ \ \ \ \}}
+\DoxyCodeLine{00543\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_team\_destroy\ =\ \mbox{\hyperlink{teams__tests_8cpp_a79d2f3f5d71dfcab7c2afeb407c1b5cc}{test\_shmem\_team\_destroy}}();}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_team\_destroy()"{}},\ result\_shmem\_team\_destroy,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00549\ \ \ \ \ \}}
+\DoxyCodeLine{00550\ \ \ \}}
+\DoxyCodeLine{00551\ }
+\DoxyCodeLine{00552\ \textcolor{comment}{\ \ /*************************\ CTX\ TESTS\ **************************/}}
+\DoxyCodeLine{00553\ \ \ \textcolor{keywordflow}{if}\ (opts.\mbox{\hyperlink{structtest__options_a9af7e596ba25482ce72ff6b95198ccd0}{test\_ctx}})\ \{}
+\DoxyCodeLine{00554\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00555\ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_a06eae8577451a4800aa038a6beae5da5}{display\_test\_header}}(\textcolor{stringliteral}{"{}COMMUNICATION\ /\ CONTEXT"{}});\ }
+\DoxyCodeLine{00557\ \ \ \ \ \}}
+\DoxyCodeLine{00558\ }
+\DoxyCodeLine{00559\ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_ctx\_create()\ test\ */}}
+\DoxyCodeLine{00560\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00561\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ctx\_create"{}}))\ \{}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_ctx\_create()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00565\ \ \ \ \ \}}
+\DoxyCodeLine{00566\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_ctx\_create\ =\ \mbox{\hyperlink{comms__tests_8cpp_adc3e82e92eb7834be425ee53c7d022f5}{test\_shmem\_ctx\_create}}();}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_ctx\_create()"{}},\ result\_shmem\_ctx\_create,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00572\ \ \ \ \ \}}
+\DoxyCodeLine{00573\ }
+\DoxyCodeLine{00574\ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_team\_create\_ctx()\ test\ */}}
+\DoxyCodeLine{00575\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00576\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_team\_create\_ctx"{}}))\ \{}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_team\_create\_ctx()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00580\ \ \ \ \ \}}
+\DoxyCodeLine{00581\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_team\_create\_ctx\ =\ \mbox{\hyperlink{comms__tests_8cpp_a93b873517ee8cf4bda6e3b5501d9a9e2}{test\_shmem\_team\_create\_ctx}}();}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_team\_create\_ctx()"{}},\ result\_shmem\_team\_create\_ctx,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00586\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00587\ \ \ \ \ \}}
+\DoxyCodeLine{00588\ }
+\DoxyCodeLine{00589\ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_ctx\_destroy()\ test\ */}}
+\DoxyCodeLine{00590\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00591\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ctx\_destroy"{}}))\ \{}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_ctx\_destroy()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00595\ \ \ \ \ \}}
+\DoxyCodeLine{00596\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_ctx\_destroy\ =\ \mbox{\hyperlink{comms__tests_8cpp_a03702c6504614588cd228c274040f3b8}{test\_shmem\_ctx\_destroy}}();}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_ctx\_destroy()"{}},\ result\_shmem\_ctx\_destroy,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00602\ \ \ \ \ \}}
+\DoxyCodeLine{00603\ }
+\DoxyCodeLine{00604\ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_ctx\_get\_team()\ test\ */}}
+\DoxyCodeLine{00605\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00606\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ctx\_get\_team"{}}))\ \{}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_ctx\_get\_team()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00610\ \ \ \ \ \}}
+\DoxyCodeLine{00611\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_ctx\_get\_team\ =\ \mbox{\hyperlink{comms__tests_8cpp_ac832bde92615d52d9bf46cfac65afe3a}{test\_shmem\_ctx\_get\_team}}();}
+\DoxyCodeLine{00613\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_ctx\_get\_team()"{}},\ result\_shmem\_ctx\_get\_team,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00617\ \ \ \ \ \}}
+\DoxyCodeLine{00618\ \ \ \}}
+\DoxyCodeLine{00619\ }
+\DoxyCodeLine{00620\ \textcolor{comment}{\ \ /*************************\ REMOTE\ TESTS\ **************************/}}
+\DoxyCodeLine{00621\ \ \ \textcolor{keywordflow}{if}\ (opts.\mbox{\hyperlink{structtest__options_ab6a1cc49e7ecfb4fe735f50f11d432fe}{test\_remote}})\ \{}
+\DoxyCodeLine{00622\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00623\ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_a06eae8577451a4800aa038a6beae5da5}{display\_test\_header}}(\textcolor{stringliteral}{"{}REMOTE\ MEMORY\ ACCESS"{}});\ }
+\DoxyCodeLine{00625\ \ \ \ \ \}}
+\DoxyCodeLine{00626\ }
+\DoxyCodeLine{00627\ \ \ \ \ \textcolor{comment}{/*\ Check\ to\ make\ sure\ there\ are\ at\ least\ 2\ PEs\ */}}
+\DoxyCodeLine{00628\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !(npes\ >\ 1)\ )\ \{}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_a0b87be5ceb3ec9cd8fe88dc9d091621b}{display\_not\_enough\_pes}}(\textcolor{stringliteral}{"{}REMOTE\ MEMORY\ ACCESS"{}});\ }
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00632\ \ \ \ \ \}}
+\DoxyCodeLine{00633\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_put()\ test\ */}}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_put"{}}))\ \{}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_put()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_put\ =\ \mbox{\hyperlink{remote__tests_8cpp_a47d66637ac6a0704a02817eb6b2b6144}{test\_shmem\_put}}();}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_put()"{}},\ result\_shmem\_put,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00647\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00648\ }
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_p()\ test\ */}}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00651\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_p"{}}))\ \{}
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_p()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_p\ =\ \mbox{\hyperlink{remote__tests_8cpp_aab140d88b21b6c1fdd017633738e1f31}{test\_shmem\_p}}();}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_p()"{}},\ result\_shmem\_p,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00663\ }
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_iput()\ test\ */}}
+\DoxyCodeLine{00665\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_iput"{}}))\ \{}
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_iput()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_iput\ =\ \mbox{\hyperlink{remote__tests_8cpp_a939bd3b78f28cb538a242840b9d92da4}{test\_shmem\_iput}}();}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_iput()"{}},\ result\_shmem\_iput,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00676\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00678\ }
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_get()\ test\ */}}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_get"{}}))\ \{}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_get()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00686\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_get\ =\ \mbox{\hyperlink{remote__tests_8cpp_ab7c3bf8230ef30f94e50a694ba155969}{test\_shmem\_get}}();}
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00690\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_get()"{}},\ result\_shmem\_get,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00692\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00693\ }
+\DoxyCodeLine{00694\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_g()\ test\ */}}
+\DoxyCodeLine{00695\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00696\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_g"{}}))\ \{}
+\DoxyCodeLine{00697\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00698\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_g()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00699\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00700\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_g\ =\ \mbox{\hyperlink{remote__tests_8cpp_a2ccc84af4e377b7811be62874aba6f37}{test\_shmem\_g}}();}
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00704\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00705\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_g()"{}},\ result\_shmem\_g,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00706\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00707\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00708\ }
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_iget()\ test\ */}}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_iget"{}}))\ \{}
+\DoxyCodeLine{00712\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00713\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_iget()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00714\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00715\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00716\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00717\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_iget\ =\ \mbox{\hyperlink{remote__tests_8cpp_afc48e8d5e6dc27f7af4098b46fcdaac6}{test\_shmem\_iget}}();}
+\DoxyCodeLine{00718\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00719\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00720\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_iget()"{}},\ result\_shmem\_iget,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00721\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00722\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00723\ }
+\DoxyCodeLine{00724\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_put\_nbi()\ test\ */}}
+\DoxyCodeLine{00725\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00726\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_put\_nbi"{}}))\ \{}
+\DoxyCodeLine{00727\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00728\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_put\_nbi()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00729\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00730\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00731\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00732\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_put\_nbi\ =\ \mbox{\hyperlink{remote__tests_8cpp_ad1e6db48646279bfc2af0b4a17811c5b}{test\_shmem\_put\_nbi}}();}
+\DoxyCodeLine{00733\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00734\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00735\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_put\_nbi()"{}},\ result\_shmem\_put\_nbi,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00736\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00737\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00738\ }
+\DoxyCodeLine{00739\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_get\_nbi()\ test\ */}}
+\DoxyCodeLine{00740\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00741\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_get\_nbi"{}}))\ \{}
+\DoxyCodeLine{00742\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00743\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_get\_nbi()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00744\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00745\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00746\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00747\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_get\_nbi\ =\ \mbox{\hyperlink{remote__tests_8cpp_acd2b1b51bda13e15c0aa4fc150339361}{test\_shmem\_get\_nbi}}();}
+\DoxyCodeLine{00748\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00749\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00750\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_get\_nbi()"{}},\ result\_shmem\_get\_nbi,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00751\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00752\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00753\ \ \ \ \ \}}
+\DoxyCodeLine{00754\ \ \ \}}
+\DoxyCodeLine{00755\ \textcolor{comment}{\ \ /*************************\ ATOMICS\ TESTS\ **************************/}}
+\DoxyCodeLine{00756\ \ \ \textcolor{keywordflow}{if}\ (opts.\mbox{\hyperlink{structtest__options_a34004528ec157da43016ff633ab5f1c4}{test\_atomics}})\ \{}
+\DoxyCodeLine{00757\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00758\ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00759\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_a06eae8577451a4800aa038a6beae5da5}{display\_test\_header}}(\textcolor{stringliteral}{"{}ATOMIC\ MEMORY\ OPS"{}});\ }
+\DoxyCodeLine{00760\ \ \ \ \ \}}
+\DoxyCodeLine{00761\ }
+\DoxyCodeLine{00762\ \ \ \ \ \textcolor{comment}{/*\ Make\ sure\ there\ are\ at\ least\ 2\ PEs\ */}}
+\DoxyCodeLine{00763\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !(npes\ >\ 1)\ )\ \{}
+\DoxyCodeLine{00764\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00765\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_a0b87be5ceb3ec9cd8fe88dc9d091621b}{display\_not\_enough\_pes}}(\textcolor{stringliteral}{"{}ATOMIC\ MEMORY\ OPS"{}});}
+\DoxyCodeLine{00766\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00767\ \ \ \ \ \}}
+\DoxyCodeLine{00768\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00769\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_atomic\_fetch()\ test\ */}}
+\DoxyCodeLine{00770\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00771\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ulong\_atomic\_fetch"{}}))\ \{}
+\DoxyCodeLine{00772\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00773\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00774\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00775\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00776\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00777\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_atomic\_fetch\ =\ \mbox{\hyperlink{atomics__tests_8cpp_a616c0902793334520341968ce053bff1}{test\_shmem\_atomic\_fetch}}();}
+\DoxyCodeLine{00778\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00779\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00780\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch()"{}},\ result\_shmem\_atomic\_fetch,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00781\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00783\ }
+\DoxyCodeLine{00784\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_atomic\_set()\ test\ */}}
+\DoxyCodeLine{00785\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00786\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ulong\_atomic\_set"{}}))\ \{}
+\DoxyCodeLine{00787\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00788\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_atomic\_set()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00789\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00790\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00791\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00792\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_atomic\_set\ =\ \mbox{\hyperlink{atomics__tests_8cpp_ab4f006904a77c7c60f5f428dc93638f2}{test\_shmem\_atomic\_set}}();}
+\DoxyCodeLine{00793\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00794\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00795\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_atomic\_set()"{}},\ result\_shmem\_atomic\_set,\ \textcolor{keyword}{false});\ }
+\DoxyCodeLine{00796\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00797\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00798\ }
+\DoxyCodeLine{00799\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_atomic\_compare\_swap()\ test\ */}}
+\DoxyCodeLine{00800\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00801\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ulong\_atomic\_compare\_swap"{}}))\ \{}
+\DoxyCodeLine{00802\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_atomic\_compare\_swap()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00804\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00805\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00806\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00807\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_atomic\_compare\_swap\ =\ \mbox{\hyperlink{atomics__tests_8cpp_a733cba8da621d5ad878ad91732938553}{test\_shmem\_atomic\_compare\_swap}}();}
+\DoxyCodeLine{00808\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00809\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00810\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_atomic\_compare\_swap()"{}},\ result\_shmem\_atomic\_compare\_swap,\ \textcolor{keyword}{false});\ }
+\DoxyCodeLine{00811\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00812\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00813\ }
+\DoxyCodeLine{00814\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_atomic\_swap()\ test\ */}}
+\DoxyCodeLine{00815\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00816\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ulong\_atomic\_swap"{}}))\ \{}
+\DoxyCodeLine{00817\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00818\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_atomic\_swap()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00819\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00820\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00821\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00822\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_atomic\_swap\ =\ \mbox{\hyperlink{atomics__tests_8cpp_a00425252860e1f6a0039851c86b39466}{test\_shmem\_atomic\_swap}}();}
+\DoxyCodeLine{00823\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00824\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00825\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_atomic\_swap()"{}},\ result\_shmem\_atomic\_swap,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00826\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00827\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00828\ }
+\DoxyCodeLine{00829\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_atomic\_fetch\_inc()\ test\ */}}
+\DoxyCodeLine{00830\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00831\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ulong\_atomic\_fetch\_inc"{}}))\ \{}
+\DoxyCodeLine{00832\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00833\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch\_inc()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00834\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00835\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00836\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00837\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_atomic\_fetch\_inc\ =\ \mbox{\hyperlink{atomics__tests_8cpp_aeae17d042bca1842b6b158862e2c733a}{test\_shmem\_atomic\_fetch\_inc}}();}
+\DoxyCodeLine{00838\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00839\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00840\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch\_inc()"{}},\ result\_shmem\_atomic\_fetch\_inc,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00841\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00842\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00843\ }
+\DoxyCodeLine{00844\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_atomic\_inc()\ test\ */}}
+\DoxyCodeLine{00845\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00846\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ulong\_atomic\_inc"{}}))\ \{}
+\DoxyCodeLine{00847\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00848\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_atomic\_inc()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00849\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00850\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00851\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00852\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_atomic\_inc\ =\ \mbox{\hyperlink{atomics__tests_8cpp_afcf8b4408700e8967c898c94d542ced4}{test\_shmem\_atomic\_inc}}();}
+\DoxyCodeLine{00853\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00854\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00855\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_atomic\_inc()"{}},\ result\_shmem\_atomic\_inc,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00856\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00857\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00858\ }
+\DoxyCodeLine{00859\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_atomic\_fetch\_add()\ test\ */}}
+\DoxyCodeLine{00860\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00861\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ulong\_atomic\_fetch\_add"{}}))\ \{}
+\DoxyCodeLine{00862\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00863\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch\_add()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00864\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00865\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00866\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00867\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_atomic\_fetch\_add\ =\ \mbox{\hyperlink{atomics__tests_8cpp_aa93497fde605c46e8e370d5e3181a690}{test\_shmem\_atomic\_fetch\_add}}();}
+\DoxyCodeLine{00868\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00869\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00870\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch\_add()"{}},\ result\_shmem\_atomic\_fetch\_add,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00871\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00872\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00873\ }
+\DoxyCodeLine{00874\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_atomic\_add()\ test\ */}}
+\DoxyCodeLine{00875\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00876\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ulong\_atomic\_add"{}}))\ \{}
+\DoxyCodeLine{00877\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00878\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_atomic\_add()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00879\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00880\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00881\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00882\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_atomic\_add\ =\ \mbox{\hyperlink{atomics__tests_8cpp_a1607bbaece5a55c2865d2ffa1cfdc1b4}{test\_shmem\_atomic\_add}}();}
+\DoxyCodeLine{00883\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00884\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00885\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_atomic\_add()"{}},\ result\_shmem\_atomic\_add,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00886\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00887\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00888\ }
+\DoxyCodeLine{00889\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_atomic\_fetch\_and()\ test\ */}}
+\DoxyCodeLine{00890\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00891\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ulong\_atomic\_fetch\_and"{}}))\ \{}
+\DoxyCodeLine{00892\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00893\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch\_and()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00894\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00895\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00896\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00897\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_atomic\_fetch\_and\ =\ \mbox{\hyperlink{atomics__tests_8cpp_a3a120039253b9851c1268f386b679bdc}{test\_shmem\_atomic\_fetch\_and}}();}
+\DoxyCodeLine{00898\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00899\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00900\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch\_and()"{}},\ result\_shmem\_atomic\_fetch\_and,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00901\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00902\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00903\ }
+\DoxyCodeLine{00904\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_atomic\_and()\ test\ */}}
+\DoxyCodeLine{00905\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00906\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ulong\_atomic\_and"{}}))\ \{}
+\DoxyCodeLine{00907\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00908\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_atomic\_and()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00909\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00910\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00911\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00912\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_atomic\_and\ =\ \mbox{\hyperlink{atomics__tests_8cpp_a034f61bd1903a3b15b8a33d4b89be1cc}{test\_shmem\_atomic\_and}}();}
+\DoxyCodeLine{00913\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00914\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00915\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_atomic\_and()"{}},\ result\_shmem\_atomic\_and,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00916\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00917\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00918\ }
+\DoxyCodeLine{00919\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_atomic\_fetch\_or()\ test\ */}}
+\DoxyCodeLine{00920\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00921\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ulong\_atomic\_fetch\_or"{}}))\ \{}
+\DoxyCodeLine{00922\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00923\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch\_or()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00924\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00925\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00926\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00927\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_atomic\_fetch\_or\ =\ \mbox{\hyperlink{atomics__tests_8cpp_a8cf86942eb58417f1a1ef08946c01076}{test\_shmem\_atomic\_fetch\_or}}();}
+\DoxyCodeLine{00928\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00929\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00930\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch\_or()"{}},\ result\_shmem\_atomic\_fetch\_or,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00931\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00932\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00933\ }
+\DoxyCodeLine{00934\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_atomic\_or()\ test\ */}}
+\DoxyCodeLine{00935\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00936\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ulong\_atomic\_or"{}}))\ \{}
+\DoxyCodeLine{00937\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00938\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_atomic\_or()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00939\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00940\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00941\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00942\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_atomic\_or\ =\ \mbox{\hyperlink{atomics__tests_8cpp_acad327f5aa62c947df0a460c379a88e3}{test\_shmem\_atomic\_or}}();}
+\DoxyCodeLine{00943\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00944\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00945\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_atomic\_or()"{}},\ result\_shmem\_atomic\_or,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00946\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00947\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00948\ }
+\DoxyCodeLine{00949\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_atomic\_fetch\_xor()\ test\ */}}
+\DoxyCodeLine{00950\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00951\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ulong\_atomic\_fetch\_xor"{}}))\ \{}
+\DoxyCodeLine{00952\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00953\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch\_xor()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00954\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00955\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00956\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00957\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_atomic\_fetch\_xor\ =\ \mbox{\hyperlink{atomics__tests_8cpp_a9db204a30bbca1acdbb8d41858a36b64}{test\_shmem\_atomic\_fetch\_xor}}();}
+\DoxyCodeLine{00958\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00959\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00960\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch\_xor()"{}},\ result\_shmem\_atomic\_fetch\_xor,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00961\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00962\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00963\ }
+\DoxyCodeLine{00964\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_atomic\_xor()\ test\ */}}
+\DoxyCodeLine{00965\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00966\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ulong\_atomic\_xor"{}}))\ \{}
+\DoxyCodeLine{00967\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00968\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_atomic\_xor()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00969\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00970\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00971\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00972\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_atomic\_xor\ =\ \mbox{\hyperlink{atomics__tests_8cpp_ab574ad049680dba0ed450a540f9ad73e}{test\_shmem\_atomic\_xor}}();}
+\DoxyCodeLine{00973\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00974\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00975\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_atomic\_xor()"{}},\ result\_shmem\_atomic\_xor,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00976\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00977\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00978\ }
+\DoxyCodeLine{00979\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_atomic\_fetch\_nbi()\ test\ */}}
+\DoxyCodeLine{00980\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00981\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ulong\_atomic\_fetch\_nbi"{}}))\ \{}
+\DoxyCodeLine{00982\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00983\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch\_nbi()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00984\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00985\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00986\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00987\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_atomic\_fetch\_nbi\ =\ \mbox{\hyperlink{atomics__tests_8cpp_a16b179488801690ca562883971b1708f}{test\_shmem\_atomic\_fetch\_nbi}}();}
+\DoxyCodeLine{00988\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00989\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00990\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch\_nbi()"{}},\ result\_shmem\_atomic\_fetch\_nbi,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00991\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00992\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00993\ }
+\DoxyCodeLine{00994\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_atomic\_compare\_swap\_nbi()\ test\ */}}
+\DoxyCodeLine{00995\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{00996\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ulong\_atomic\_compare\_swap\_nbi"{}}))\ \{}
+\DoxyCodeLine{00997\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{00998\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_atomic\_compare\_swap\_nbi()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00999\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01000\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01001\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01002\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_atomic\_compare\_swap\_nbi\ =\ \mbox{\hyperlink{atomics__tests_8cpp_af84492d30e02733f385dbe61ad38eb75}{test\_shmem\_atomic\_compare\_swap\_nbi}}();}
+\DoxyCodeLine{01003\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01004\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01005\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_atomic\_compare\_swap\_nbi()"{}},\ result\_shmem\_atomic\_compare\_swap\_nbi,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01006\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01007\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01008\ }
+\DoxyCodeLine{01009\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_atomic\_swap\_nbi()\ test\ */}}
+\DoxyCodeLine{01010\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01011\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ulong\_atomic\_swap\_nbi"{}}))\ \{}
+\DoxyCodeLine{01012\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01013\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_atomic\_swap\_nbi()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01014\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01015\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01016\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01017\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_atomic\_swap\_nbi\ =\ \mbox{\hyperlink{atomics__tests_8cpp_ae6796f558cf8f8e42aea74faa729bab5}{test\_shmem\_atomic\_swap\_nbi}}();}
+\DoxyCodeLine{01018\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01020\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_atomic\_swap\_nbi()"{}},\ result\_shmem\_atomic\_swap\_nbi,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01021\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01022\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01023\ }
+\DoxyCodeLine{01024\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_atomic\_fetch\_inc\_nbi()\ test\ */}}
+\DoxyCodeLine{01025\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01026\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ulong\_atomic\_fetch\_inc\_nbi"{}}))\ \{}
+\DoxyCodeLine{01027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01028\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch\_inc\_nbi()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01029\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01030\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01031\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_atomic\_fetch\_inc\_nbi\ =\ \mbox{\hyperlink{atomics__tests_8cpp_ae27dcfa7029acb70a6c779c28ffc36f5}{test\_shmem\_atomic\_fetch\_inc\_nbi}}();}
+\DoxyCodeLine{01033\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01035\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch\_inc\_nbi()"{}},\ result\_shmem\_atomic\_fetch\_inc\_nbi,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01037\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01038\ }
+\DoxyCodeLine{01039\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_atomic\_fetch\_add\_nbi()\ test\ */}}
+\DoxyCodeLine{01040\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01041\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ulong\_atomic\_fetch\_add\_nbi"{}}))\ \{}
+\DoxyCodeLine{01042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01043\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch\_add\_nbi()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01044\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01045\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01046\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01047\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_atomic\_fetch\_add\_nbi\ =\ \mbox{\hyperlink{atomics__tests_8cpp_a09e22ced4fd3da4b61406c9ec54e5f57}{test\_shmem\_atomic\_fetch\_add\_nbi}}();}
+\DoxyCodeLine{01048\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01050\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch\_add\_nbi()"{}},\ result\_shmem\_atomic\_fetch\_add\_nbi,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01052\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01053\ }
+\DoxyCodeLine{01054\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_atomic\_fetch\_and\_nbi()\ test\ */}}
+\DoxyCodeLine{01055\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01056\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ulong\_atomic\_fetch\_and\_nbi"{}}))\ \{}
+\DoxyCodeLine{01057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01058\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch\_and\_nbi()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01060\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01061\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01062\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_atomic\_fetch\_and\_nbi\ =\ \mbox{\hyperlink{atomics__tests_8cpp_a112bc93a95596ebbc8596cc01ba1c287}{test\_shmem\_atomic\_fetch\_and\_nbi}}();}
+\DoxyCodeLine{01063\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01065\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch\_and\_nbi()"{}},\ result\_shmem\_atomic\_fetch\_and\_nbi,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01066\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01067\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01068\ }
+\DoxyCodeLine{01069\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_atomic\_fetch\_or\_nbi()\ test\ */}}
+\DoxyCodeLine{01070\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01071\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ulong\_atomic\_fetch\_or\_nbi"{}}))\ \{}
+\DoxyCodeLine{01072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01073\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch\_or\_nbi()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01075\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01076\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01077\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_atomic\_fetch\_or\_nbi\ =\ \mbox{\hyperlink{atomics__tests_8cpp_a42b4a20be9fe0f9968d485a554f0e09c}{test\_shmem\_atomic\_fetch\_or\_nbi}}();}
+\DoxyCodeLine{01078\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01080\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch\_or\_nbi()"{}},\ result\_shmem\_atomic\_fetch\_or\_nbi,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01081\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01082\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01083\ }
+\DoxyCodeLine{01084\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_atomic\_fetch\_xor\_nbi()\ test\ */}}
+\DoxyCodeLine{01085\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01086\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_ulong\_atomic\_fetch\_xor\_nbi"{}}))\ \{}
+\DoxyCodeLine{01087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01088\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch\_xor\_nbi()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01090\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01091\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01092\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_atomic\_fetch\_xor\_nbi\ =\ \mbox{\hyperlink{atomics__tests_8cpp_a8640b1a4512c88afa36b4ce59041e474}{test\_shmem\_atomic\_fetch\_xor\_nbi}}();}
+\DoxyCodeLine{01093\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01095\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_atomic\_fetch\_xor\_nbi()"{}},\ result\_shmem\_atomic\_fetch\_xor\_nbi,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01097\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01098\ \ \ \ \ \}}
+\DoxyCodeLine{01099\ \ \ \}}
+\DoxyCodeLine{01100\ \ \ }
+\DoxyCodeLine{01101\ \textcolor{comment}{\ \ /*************************\ SIGNALING\ TESTS\ **************************/}}
+\DoxyCodeLine{01102\ \ \ \textcolor{keywordflow}{if}\ (opts.\mbox{\hyperlink{structtest__options_a7318289417acbe85601cd31c9556908d}{test\_signaling}})\ \{}
+\DoxyCodeLine{01103\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01104\ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01105\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_a06eae8577451a4800aa038a6beae5da5}{display\_test\_header}}(\textcolor{stringliteral}{"{}SIGNALING\ OPS"{}});}
+\DoxyCodeLine{01106\ \ \ \ \ \}}
+\DoxyCodeLine{01107\ }
+\DoxyCodeLine{01108\ \ \ \ \ \textcolor{keywordflow}{if}\ (!(npes\ >\ 1))\ \{}
+\DoxyCodeLine{01109\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_a0b87be5ceb3ec9cd8fe88dc9d091621b}{display\_not\_enough\_pes}}(\textcolor{stringliteral}{"{}SIGNALING\ OPS"{}});}
+\DoxyCodeLine{01110\ \ \ \ \ \}}
+\DoxyCodeLine{01111\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01112\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_put\_signal()\ test\ */}}
+\DoxyCodeLine{01113\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01114\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_put\_signal"{}}))\ \{}
+\DoxyCodeLine{01115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01116\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_put\_signal()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01118\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01119\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01120\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_put\_signal\ =\ \mbox{\hyperlink{signaling__tests_8cpp_a941c163b3faa3e4d2d54598563095aa8}{test\_shmem\_put\_signal}}();}
+\DoxyCodeLine{01121\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01123\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_put\_signal()"{}},\ result\_shmem\_put\_signal,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01124\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01125\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01126\ }
+\DoxyCodeLine{01127\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_put\_signal\_nbi()\ test\ */}}
+\DoxyCodeLine{01128\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01129\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_put\_signal\_nbi"{}}))\ \{}
+\DoxyCodeLine{01130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01131\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_put\_signal\_nbi()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01132\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01133\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01134\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01135\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_put\_signal\_nbi\ =\ \mbox{\hyperlink{signaling__tests_8cpp_a68a349cc672c8b2e71695a9460a82fdd}{test\_shmem\_put\_signal\_nbi}}();}
+\DoxyCodeLine{01136\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01138\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_put\_signal\_nbi()"{}},\ result\_shmem\_put\_signal\_nbi,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01139\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01140\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01141\ }
+\DoxyCodeLine{01142\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_signal\_fetch()\ test\ */}}
+\DoxyCodeLine{01143\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01144\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_signal\_fetch"{}}))\ \{}
+\DoxyCodeLine{01145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01146\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_signal\_fetch()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01147\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01148\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01149\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01150\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_signal\_fetch\ =\ \mbox{\hyperlink{signaling__tests_8cpp_a614a74ca727de456c19a1e9b0522bdda}{test\_shmem\_signal\_fetch}}();}
+\DoxyCodeLine{01151\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01153\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_signal\_fetch()"{}},\ result\_shmem\_signal\_fetch,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01154\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01155\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01156\ \ \ \ \ \}}
+\DoxyCodeLine{01157\ \ \ \}}
+\DoxyCodeLine{01158\ }
+\DoxyCodeLine{01159\ \textcolor{comment}{\ \ /*************************\ COLLECTIVES\ TESTS\ **************************/}}
+\DoxyCodeLine{01160\ \ \ \textcolor{keywordflow}{if}\ (opts.\mbox{\hyperlink{structtest__options_a0a14b3a0a43cabb293a620ec6a152bf8}{test\_collectives}})\ \{}
+\DoxyCodeLine{01161\ \ \ \ \ \textcolor{comment}{/*\ Print\ project\ header\ */}}
+\DoxyCodeLine{01162\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01163\ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01164\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_a06eae8577451a4800aa038a6beae5da5}{display\_test\_header}}(\textcolor{stringliteral}{"{}COLLECTIVE\ OPS"{}});}
+\DoxyCodeLine{01165\ \ \ \ \ \}}
+\DoxyCodeLine{01166\ }
+\DoxyCodeLine{01167\ \ \ \ \ \textcolor{comment}{/*\ Check\ to\ make\ sure\ there\ are\ at\ least\ 2\ PEs\ */}}
+\DoxyCodeLine{01168\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !(npes\ >\ 1)\ )\ \{}
+\DoxyCodeLine{01169\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01170\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_a0b87be5ceb3ec9cd8fe88dc9d091621b}{display\_not\_enough\_pes}}(\textcolor{stringliteral}{"{}COLLECTIVE\ OPS"{}});}
+\DoxyCodeLine{01171\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01172\ \ \ \ \ \}}
+\DoxyCodeLine{01173\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01174\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_sync()\ test\ */}}
+\DoxyCodeLine{01175\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01176\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_sync"{}}))\ \{}
+\DoxyCodeLine{01177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01178\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_sync()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01179\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01180\ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{01181\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01182\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_sync\ =\ \mbox{\hyperlink{collectives__tests_8cpp_ae54cee0a9a42d2e1c0c46dde2f1f11e4}{test\_shmem\_sync}}();}
+\DoxyCodeLine{01183\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01185\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_sync()"{}},\ result\_shmem\_sync,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01186\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01187\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01188\ }
+\DoxyCodeLine{01189\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_sync\_all()\ test\ */}}
+\DoxyCodeLine{01190\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01191\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_sync\_all"{}}))\ \{}
+\DoxyCodeLine{01192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01193\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_sync\_all()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01194\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01195\ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{01196\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01197\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_sync\_all\ =\ \mbox{\hyperlink{collectives__tests_8cpp_a2dac100cd19598a5c6533963e9b3b0f7}{test\_shmem\_sync\_all}}();}
+\DoxyCodeLine{01198\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01199\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01200\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_sync\_all()"{}},\ result\_shmem\_sync\_all,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01201\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01202\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01203\ }
+\DoxyCodeLine{01204\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_alltoall()\ test\ */}}
+\DoxyCodeLine{01205\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01206\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_alltoall"{}}))\ \{}
+\DoxyCodeLine{01207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01208\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_alltoall()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01209\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01210\ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{01211\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01212\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_alltoall\ =\ \mbox{\hyperlink{collectives__tests_8cpp_af1f712e27b018777258e73dbc7a2d82e}{test\_shmem\_alltoall}}();}
+\DoxyCodeLine{01213\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01214\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01215\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_alltoall()"{}},\ result\_shmem\_alltoall,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01216\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01217\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01218\ }
+\DoxyCodeLine{01219\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_alltoalls()\ test\ */}}
+\DoxyCodeLine{01220\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01221\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_alltoalls"{}}))\ \{}
+\DoxyCodeLine{01222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01223\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_alltoalls()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01224\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01225\ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{01226\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01227\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_alltoalls\ =\ \mbox{\hyperlink{collectives__tests_8cpp_a7530d826fab5bcda2388c076c6e13433}{test\_shmem\_alltoalls}}();}
+\DoxyCodeLine{01228\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01230\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_alltoalls()"{}},\ result\_shmem\_alltoalls,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01231\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01232\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01233\ }
+\DoxyCodeLine{01234\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_broadcast()\ test\ */}}
+\DoxyCodeLine{01235\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01236\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_broadcast"{}}))\ \{}
+\DoxyCodeLine{01237\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01238\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_broadcast()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01239\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01240\ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{01241\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01242\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_broadcast\ =\ \mbox{\hyperlink{collectives__tests_8cpp_af2d6da936fee0e8617fec16c833c856e}{test\_shmem\_broadcast}}();}
+\DoxyCodeLine{01243\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01244\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01245\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_broadcast()"{}},\ result\_shmem\_broadcast,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01246\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01247\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01248\ }
+\DoxyCodeLine{01249\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_collect()\ test\ */}}
+\DoxyCodeLine{01250\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01251\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_collect"{}}))\ \{}
+\DoxyCodeLine{01252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01253\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_collect()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01254\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01255\ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{01256\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01257\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_collect\ =\ \mbox{\hyperlink{collectives__tests_8cpp_a85f482cb15988a56b759608b59633a40}{test\_shmem\_collect}}();}
+\DoxyCodeLine{01258\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01259\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01260\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_collect()"{}},\ result\_shmem\_collect,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01261\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01262\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01263\ }
+\DoxyCodeLine{01264\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_fcollect()\ test\ */}}
+\DoxyCodeLine{01265\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01266\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_fcollect"{}}))\ \{}
+\DoxyCodeLine{01267\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01268\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_fcollect()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01269\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01270\ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{01271\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01272\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_fcollect\ =\ \mbox{\hyperlink{collectives__tests_8cpp_af2a6ebfb26c8109dce274af8e3eb1394}{test\_shmem\_fcollect}}();}
+\DoxyCodeLine{01273\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01274\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01275\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_fcollect()"{}},\ result\_shmem\_fcollect,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01276\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01277\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01278\ }
+\DoxyCodeLine{01279\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_max\_reduce()\ test\ */}}
+\DoxyCodeLine{01280\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01281\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_max\_reduce"{}}))\ \{}
+\DoxyCodeLine{01282\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01283\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_max\_reduce()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01284\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01285\ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{01286\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01287\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_max\_reduce\ =\ \mbox{\hyperlink{collectives__tests_8cpp_afd1f21a8b7962e9ef1d7d68e90f16eb2}{test\_shmem\_max\_reduce}}();}
+\DoxyCodeLine{01288\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01289\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01290\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_max\_reduce()"{}},\ result\_shmem\_max\_reduce,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01291\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01292\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01293\ }
+\DoxyCodeLine{01294\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_min\_reduce()\ test\ */}}
+\DoxyCodeLine{01295\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01296\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_min\_reduce"{}}))\ \{}
+\DoxyCodeLine{01297\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01298\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_min\_reduce()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01299\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01300\ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{01301\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01302\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_min\_reduce\ =\ \mbox{\hyperlink{collectives__tests_8cpp_a31509ab8ec6053c1f06aaa34e7f16651}{test\_shmem\_min\_reduce}}();}
+\DoxyCodeLine{01303\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01304\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01305\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_min\_reduce()"{}},\ result\_shmem\_min\_reduce,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01306\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01307\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01308\ }
+\DoxyCodeLine{01309\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_sum\_reduce()\ test\ */}}
+\DoxyCodeLine{01310\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01311\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_sum\_reduce"{}}))\ \{}
+\DoxyCodeLine{01312\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01313\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_sum\_reduce()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01314\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01315\ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{01316\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01317\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_sum\_reduce\ =\ \mbox{\hyperlink{collectives__tests_8cpp_aa652894774237b5db16e39698c53a3d0}{test\_shmem\_sum\_reduce}}();}
+\DoxyCodeLine{01318\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01319\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01320\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_sum\_reduce()"{}},\ result\_shmem\_sum\_reduce,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01321\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01322\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01323\ }
+\DoxyCodeLine{01324\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_prod\_reduce()\ test\ */}}
+\DoxyCodeLine{01325\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01326\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_prod\_reduce"{}}))\ \{}
+\DoxyCodeLine{01327\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01328\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_prod\_reduce()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01329\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01330\ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{01331\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01332\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_prod\_reduce\ =\ \mbox{\hyperlink{collectives__tests_8cpp_a0d76d8d7b05f1e81db1b20d65d67b79e}{test\_shmem\_prod\_reduce}}();}
+\DoxyCodeLine{01333\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01334\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01335\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_prod\_reduce()"{}},\ result\_shmem\_prod\_reduce,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01336\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01337\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01338\ \ \ \ \ \}}
+\DoxyCodeLine{01339\ \ \ \}}
+\DoxyCodeLine{01340\ }
+\DoxyCodeLine{01341\ \textcolor{comment}{\ \ /*************************\ PT2PT\ TESTS\ **************************/}}
+\DoxyCodeLine{01342\ \ \ \textcolor{keywordflow}{if}\ (opts.\mbox{\hyperlink{structtest__options_af14948d711605635b8ddf534e18b6139}{test\_pt2pt\_synch}})\ \{}
+\DoxyCodeLine{01343\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01344\ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01345\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_a06eae8577451a4800aa038a6beae5da5}{display\_test\_header}}(\textcolor{stringliteral}{"{}POINT-\/TO-\/POINT\ SYNC\ OPS"{}});}
+\DoxyCodeLine{01346\ \ \ \ \ \}}
+\DoxyCodeLine{01347\ }
+\DoxyCodeLine{01348\ \ \ \ \ \textcolor{keywordflow}{if}\ (!(npes\ >\ 1))\ \{}
+\DoxyCodeLine{01349\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_a0b87be5ceb3ec9cd8fe88dc9d091621b}{display\_not\_enough\_pes}}(\textcolor{stringliteral}{"{}POINT-\/TO-\/POINT\ SYNCH\ OPS"{}});}
+\DoxyCodeLine{01350\ \ \ \ \ \}}
+\DoxyCodeLine{01351\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01352\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_wait\_until()\ test\ */}}
+\DoxyCodeLine{01353\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01354\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_wait\_until"{}}))\ \{}
+\DoxyCodeLine{01355\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01356\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_wait\_until()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01357\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01358\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01359\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01360\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_wait\_until\ =\ \mbox{\hyperlink{pt2pt__tests_8cpp_a4202a4aa5eebd168bbefe34440c430cb}{test\_shmem\_wait\_until}}();}
+\DoxyCodeLine{01361\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01362\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01363\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_wait\_until()"{}},\ result\_shmem\_wait\_until,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01364\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01365\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01366\ }
+\DoxyCodeLine{01367\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_wait\_until\_all()\ test\ */}}
+\DoxyCodeLine{01368\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01369\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_wait\_until\_all"{}}))\ \{}
+\DoxyCodeLine{01370\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01371\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_wait\_until\_all()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01372\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01373\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01374\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01375\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_wait\_until\_all\ =\ \mbox{\hyperlink{pt2pt__tests_8cpp_a8a130348897e35329a6972d3b9fdc612}{test\_shmem\_wait\_until\_all}}();}
+\DoxyCodeLine{01376\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01377\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01378\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_wait\_until\_all()"{}},\ result\_shmem\_wait\_until\_all,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01379\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01380\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01381\ }
+\DoxyCodeLine{01382\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_wait\_until\_any()\ test\ */}}
+\DoxyCodeLine{01383\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01384\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_wait\_until\_any"{}}))\ \{}
+\DoxyCodeLine{01385\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01386\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_wait\_until\_any()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01387\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01388\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01389\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01390\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_wait\_until\_any\ =\ \mbox{\hyperlink{pt2pt__tests_8cpp_a7ae63e76905a25a0945f52839cf1c0b6}{test\_shmem\_wait\_until\_any}}();}
+\DoxyCodeLine{01391\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01392\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01393\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_wait\_until\_any()"{}},\ result\_shmem\_wait\_until\_any,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01394\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01395\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01396\ }
+\DoxyCodeLine{01397\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_wait\_until\_some()\ test\ */}}
+\DoxyCodeLine{01398\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01399\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_wait\_until\_some"{}}))\ \{}
+\DoxyCodeLine{01400\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01401\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_wait\_until\_some()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01402\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01403\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01404\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01405\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_wait\_until\_some\ =\ \mbox{\hyperlink{pt2pt__tests_8cpp_aa3dd1476ac610d2b5f77c33f50f2c62a}{test\_shmem\_wait\_until\_some}}();}
+\DoxyCodeLine{01406\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01407\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01408\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_wait\_until\_some()"{}},\ result\_shmem\_wait\_until\_some,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01409\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01410\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01411\ }
+\DoxyCodeLine{01412\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_wait\_until\_all\_vector()\ test\ */}}
+\DoxyCodeLine{01413\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01414\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_wait\_until\_all\_vector"{}}))\ \{}
+\DoxyCodeLine{01415\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01416\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_wait\_until\_all\_vector()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01417\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01418\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01419\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01420\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_wait\_until\_all\_vector\ =\ \mbox{\hyperlink{pt2pt__tests_8cpp_aeafeebf2dca4afb4da7861be7b1e623a}{test\_shmem\_wait\_until\_all\_vector}}();}
+\DoxyCodeLine{01421\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01422\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01423\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_wait\_until\_all\_vector()"{}},\ result\_shmem\_wait\_until\_all\_vector,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01424\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01425\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01426\ }
+\DoxyCodeLine{01427\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_wait\_until\_any\_vector()\ test\ */}}
+\DoxyCodeLine{01428\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01429\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_wait\_until\_any\_vector"{}}))\ \{}
+\DoxyCodeLine{01430\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01431\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_wait\_until\_any\_vector()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01432\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01433\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01434\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01435\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_wait\_until\_any\_vector\ =\ \mbox{\hyperlink{pt2pt__tests_8cpp_a895cca63ec0eb669da0e5956f6570d9b}{test\_shmem\_wait\_until\_any\_vector}}();}
+\DoxyCodeLine{01436\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01437\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01438\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_wait\_until\_any\_vector()"{}},\ result\_shmem\_wait\_until\_any\_vector,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01439\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01440\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01441\ }
+\DoxyCodeLine{01442\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_wait\_until\_some\_vector()\ test\ */}}
+\DoxyCodeLine{01443\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01444\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_wait\_until\_some\_vector"{}}))\ \{}
+\DoxyCodeLine{01445\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01446\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_wait\_until\_some\_vector()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01447\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01448\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01449\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01450\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_wait\_until\_some\_vector\ =\ \mbox{\hyperlink{pt2pt__tests_8cpp_a2d6f9f170e32cb71c63db6488d0b9823}{test\_shmem\_wait\_until\_some\_vector}}();}
+\DoxyCodeLine{01451\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01452\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01453\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_wait\_until\_some\_vector()"{}},\ result\_shmem\_wait\_until\_some\_vector,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01454\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01455\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01456\ }
+\DoxyCodeLine{01457\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_test()\ test\ */}}
+\DoxyCodeLine{01458\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01459\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_test"{}}))\ \{}
+\DoxyCodeLine{01460\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01461\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_test()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01462\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01463\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01464\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01465\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_test\ =\ \mbox{\hyperlink{pt2pt__tests_8cpp_ae16c96bfb538390965d9b6c58d6e64fd}{test\_shmem\_test}}();}
+\DoxyCodeLine{01466\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01467\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01468\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_test()"{}},\ result\_shmem\_test,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01469\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01470\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01471\ }
+\DoxyCodeLine{01472\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_test\_all()\ test\ */}}
+\DoxyCodeLine{01473\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01474\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_test\_all"{}}))\ \{}
+\DoxyCodeLine{01475\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01476\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_test\_all()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01477\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01478\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01479\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01480\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_test\_all\ =\ \mbox{\hyperlink{pt2pt__tests_8cpp_ab336fcdf68ec190ce89dfead64916e7e}{test\_shmem\_test\_all}}();}
+\DoxyCodeLine{01481\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01482\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01483\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_test\_all()"{}},\ result\_shmem\_test\_all,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01484\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01485\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01486\ }
+\DoxyCodeLine{01487\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_test\_any()\ test\ */}}
+\DoxyCodeLine{01488\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01489\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_test\_any"{}}))\ \{}
+\DoxyCodeLine{01490\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01491\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_test\_any()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01492\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01493\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01494\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01495\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_test\_any\ =\ \mbox{\hyperlink{pt2pt__tests_8cpp_a1b27bf47e06984417985d5afc3bfbdcd}{test\_shmem\_test\_any}}();}
+\DoxyCodeLine{01496\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01497\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01498\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_test\_any()"{}},\ result\_shmem\_test\_any,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01499\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01500\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01501\ }
+\DoxyCodeLine{01502\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_test\_some()\ test\ */}}
+\DoxyCodeLine{01503\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01504\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_test\_some"{}}))\ \{}
+\DoxyCodeLine{01505\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01506\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_test\_some()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01507\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01508\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01509\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01510\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_test\_some\ =\ \mbox{\hyperlink{pt2pt__tests_8cpp_a77e4dcc38dcf8992c001c2df8b14ba19}{test\_shmem\_test\_some}}();}
+\DoxyCodeLine{01511\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01512\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01513\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_test\_some()"{}},\ result\_shmem\_test\_some,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01514\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01515\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01516\ }
+\DoxyCodeLine{01517\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_test\_all\_vector()\ test\ */}}
+\DoxyCodeLine{01518\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01519\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_test\_all\_vector"{}}))\ \{}
+\DoxyCodeLine{01520\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01521\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_test\_all\_vector()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01522\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01523\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01524\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01525\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_test\_all\_vector\ =\ \mbox{\hyperlink{pt2pt__tests_8cpp_aad3be7d4fde41aff12bf73ceca1b8032}{test\_shmem\_test\_all\_vector}}();}
+\DoxyCodeLine{01526\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01527\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01528\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_test\_all\_vector()"{}},\ result\_shmem\_test\_all\_vector,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01529\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01530\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01531\ }
+\DoxyCodeLine{01532\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_test\_any\_vector()\ test\ */}}
+\DoxyCodeLine{01533\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01534\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_test\_any\_vector"{}}))\ \{}
+\DoxyCodeLine{01535\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01536\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_test\_any\_vector()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01537\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01538\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01539\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01540\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_test\_any\_vector\ =\ \mbox{\hyperlink{pt2pt__tests_8cpp_ac6d30817596acc2ef5df61d606ef9b26}{test\_shmem\_test\_any\_vector}}();}
+\DoxyCodeLine{01541\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01542\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01543\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_test\_any\_vector()"{}},\ result\_shmem\_test\_any\_vector,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01544\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01545\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01546\ }
+\DoxyCodeLine{01547\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_test\_some\_vector()\ test\ */}}
+\DoxyCodeLine{01548\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01549\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_long\_test\_some\_vector"{}}))\ \{}
+\DoxyCodeLine{01550\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01551\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_long\_test\_some\_vector()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01552\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01553\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01554\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01555\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_test\_some\_vector\ =\ \mbox{\hyperlink{pt2pt__tests_8cpp_a93e89eb0e1529fc5cf5080a8805cbe5b}{test\_shmem\_test\_some\_vector}}();}
+\DoxyCodeLine{01556\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01557\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01558\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_test\_some\_vector()"{}},\ result\_shmem\_test\_some\_vector,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01559\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01560\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01561\ }
+\DoxyCodeLine{01562\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ shmem\_signal\_wait\_until()\ test\ */}}
+\DoxyCodeLine{01563\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01564\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_signal\_wait\_until"{}}))\ \{}
+\DoxyCodeLine{01565\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01566\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_signal\_wait\_until()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01567\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01568\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01569\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01570\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_signal\_wait\_until\ =\ \mbox{\hyperlink{pt2pt__tests_8cpp_acb015b308d5081dd374fdf6f0a1230d6}{test\_shmem\_signal\_wait\_until}}();}
+\DoxyCodeLine{01571\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01572\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01573\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_signal\_wait\_until()"{}},\ result\_shmem\_signal\_wait\_until,\ \textcolor{keyword}{false});\ }
+\DoxyCodeLine{01574\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01575\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01576\ \ \ \ \ \}}
+\DoxyCodeLine{01577\ \ \ \}}
+\DoxyCodeLine{01578\ }
+\DoxyCodeLine{01579\ \textcolor{comment}{\ \ /*************************\ MEM\ ORDERING\ TESTS\ **************************/}}
+\DoxyCodeLine{01580\ \ \ \textcolor{keywordflow}{if}\ (opts.\mbox{\hyperlink{structtest__options_a94e89aaf1b81cb111d630a886236d6d9}{test\_mem\_ordering}})\ \{}
+\DoxyCodeLine{01581\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01582\ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01583\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_a06eae8577451a4800aa038a6beae5da5}{display\_test\_header}}(\textcolor{stringliteral}{"{}MEMORY\ ORDERING"{}});}
+\DoxyCodeLine{01584\ \ \ \ \ \}}
+\DoxyCodeLine{01585\ }
+\DoxyCodeLine{01586\ \ \ \ \ \textcolor{comment}{/*\ Make\ sure\ there\ are\ at\ least\ 2\ PEs\ */}}
+\DoxyCodeLine{01587\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !(npes\ >\ 1)\ )\ \{}
+\DoxyCodeLine{01588\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01589\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_a0b87be5ceb3ec9cd8fe88dc9d091621b}{display\_not\_enough\_pes}}(\textcolor{stringliteral}{"{}MEMORY\ ORDERING"{}});}
+\DoxyCodeLine{01590\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01591\ \ \ \ \ \}}
+\DoxyCodeLine{01592\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01593\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ the\ shmem\_fence()\ test\ */}}
+\DoxyCodeLine{01594\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01595\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_fence"{}})\ )\ \{}
+\DoxyCodeLine{01596\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01597\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_fence()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01598\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01599\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01600\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01601\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_fence\ =\ \mbox{\hyperlink{mem__ordering__tests_8cpp_a57aa681975a27166585f0f8020097c7e}{test\_shmem\_fence}}();}
+\DoxyCodeLine{01602\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01603\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01604\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_fence()"{}},\ result\_shmem\_fence,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01605\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01606\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01607\ }
+\DoxyCodeLine{01608\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ the\ shmem\_quiet()\ test\ */}}
+\DoxyCodeLine{01609\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01610\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_quiet"{}})\ )\ \{}
+\DoxyCodeLine{01611\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01612\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_quiet()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01613\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01614\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01615\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01616\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_quiet\ =\ \mbox{\hyperlink{mem__ordering__tests_8cpp_a2e0ad81b698baea5af4538658ec5e324}{test\_shmem\_quiet}}();}
+\DoxyCodeLine{01617\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01618\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01619\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_quiet()"{}},\ result\_shmem\_quiet,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01620\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01621\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01622\ \ \ \ \ \}}
+\DoxyCodeLine{01623\ \ \ \}}
+\DoxyCodeLine{01624\ }
+\DoxyCodeLine{01625\ \textcolor{comment}{\ \ /*************************\ DISTRIBUTED\ LOCKING\ TESTS\ **************************/}}
+\DoxyCodeLine{01626\ \ \ \textcolor{keywordflow}{if}\ (opts.\mbox{\hyperlink{structtest__options_a1cd051c8df69a2736066470213d255fc}{test\_locking}})\ \{}
+\DoxyCodeLine{01627\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01628\ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01629\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_a06eae8577451a4800aa038a6beae5da5}{display\_test\_header}}(\textcolor{stringliteral}{"{}DISTRIBUTED\ LOCKING"{}});}
+\DoxyCodeLine{01630\ \ \ \ \ \}}
+\DoxyCodeLine{01631\ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01632\ }
+\DoxyCodeLine{01633\ \ \ \ \ \textcolor{comment}{/*\ Make\ sure\ there\ are\ at\ least\ 2\ PEs\ */}}
+\DoxyCodeLine{01634\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !(npes\ >\ 1)\ )\ \{}
+\DoxyCodeLine{01635\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01636\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_a0b87be5ceb3ec9cd8fe88dc9d091621b}{display\_not\_enough\_pes}}(\textcolor{stringliteral}{"{}DISTRIBUTED\ LOCKING"{}});}
+\DoxyCodeLine{01637\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01638\ \ \ \ \ \}}
+\DoxyCodeLine{01639\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01640\ \ \ \ \ \ \ \textcolor{comment}{/*\ Run\ the\ shmem\_set\_lock\ and\ shmem\_clear\_lock\ tests\ */}}
+\DoxyCodeLine{01641\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01642\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_set\_lock"{}})\ )\ \{}
+\DoxyCodeLine{01643\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01644\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_set\_lock()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01645\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01646\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01647\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_clear\_lock"{}}\ ))\ \{}
+\DoxyCodeLine{01648\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01649\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_clear\_lock()"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01650\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01651\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01652\ \ \ \ \ \ \ }
+\DoxyCodeLine{01653\ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01654\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_set\_lock"{}})\ \&\&\ \mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_clear\_lock"{}})\ )\ \{}
+\DoxyCodeLine{01655\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\_shmem\_lock\_unlock\ =\ \mbox{\hyperlink{locking__tests_8cpp_aaab1bb5ebdf480e9e72b026e293fa146}{test\_shmem\_lock\_unlock}}();}
+\DoxyCodeLine{01656\ \ \ \ \ \ \ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01657\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01658\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_set\_lock()"{}},\ result\_shmem\_lock\_unlock,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01659\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_clear\_lock()"{}},\ result\_shmem\_lock\_unlock,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01660\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01661\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01662\ \ \ \ \ \}}
+\DoxyCodeLine{01663\ \ \ \}}
+\DoxyCodeLine{01664\ }
+\DoxyCodeLine{01665\ \textcolor{comment}{\ \ /*************************\ FINALIZATION\ **************************/}}
+\DoxyCodeLine{01666\ \ \ \textcolor{comment}{/*\ Run\ shmem\_finalize()\ test\ */}}
+\DoxyCodeLine{01667\ \ \ shmem\_barrier\_all();}
+\DoxyCodeLine{01668\ }
+\DoxyCodeLine{01669\ \ \ \textcolor{keywordflow}{if}\ (\ !\mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\_if\_exists}}(\textcolor{stringliteral}{"{}shmem\_finalize"{}})\ )\ \{}
+\DoxyCodeLine{01670\ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\_not\_found\_warning}}(\textcolor{stringliteral}{"{}shmem\_finalize()"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{01671\ \ \ \}}
+\DoxyCodeLine{01672\ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01673\ \ \ \ \ \textcolor{keywordflow}{if}\ (mype\ ==\ 0)\ \{}
+\DoxyCodeLine{01674\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_a06eae8577451a4800aa038a6beae5da5}{display\_test\_header}}(\textcolor{stringliteral}{"{}FINALIZATION"{}});}
+\DoxyCodeLine{01675\ \ \ \ \ \ \ \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\_test\_result}}(\textcolor{stringliteral}{"{}shmem\_finalize()"{}},\ \mbox{\hyperlink{setup__tests_8cpp_a177db96ce5c617c291adcff83fcae5f1}{test\_shmem\_finalize}}(),\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01676\ \ \ \ \ \ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{01677\ \ \ \ \ \}}
+\DoxyCodeLine{01678\ \ \ \}}
+\DoxyCodeLine{01679\ }
+\DoxyCodeLine{01680\ \ \ \textcolor{comment}{/*\ We\ made\ it!\ End\ the\ program.\ */}}
+\DoxyCodeLine{01681\ \ \ \textcolor{keywordflow}{return}\ EXIT\_SUCCESS;}
+\DoxyCodeLine{01682\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{shmemvv_8hpp_a55f25907a68cb47cdf708ea15f7f68aa}{check\+\_\+if\+\_\+exists()}}, \mbox{\hyperlink{shmemvv_8hpp_a8f0b63bf650a5ceefc36d7e3bcb02f63}{display\+\_\+help()}}, \mbox{\hyperlink{shmemvv_8hpp_afbe17f94210e7ceb339630701ea3cafe}{display\+\_\+logo()}}, \mbox{\hyperlink{shmemvv_8hpp_a0b87be5ceb3ec9cd8fe88dc9d091621b}{display\+\_\+not\+\_\+enough\+\_\+pes()}}, \mbox{\hyperlink{shmemvv_8hpp_aa5395bcb7c5e375f9da4f6ecffe778c4}{display\+\_\+not\+\_\+found\+\_\+warning()}}, \mbox{\hyperlink{shmemvv_8hpp_a06eae8577451a4800aa038a6beae5da5}{display\+\_\+test\+\_\+header()}}, \mbox{\hyperlink{shmemvv_8hpp_a9f322f8967d1b4179a54dad321c94889}{display\+\_\+test\+\_\+info()}}, \mbox{\hyperlink{shmemvv_8hpp_acde92749a5795f8e12fca17596e5bc14}{display\+\_\+test\+\_\+result()}}, \mbox{\hyperlink{shmemvv_8hpp_source_l00058}{test\+\_\+options\+::help}}, \mbox{\hyperlink{routines_8cpp_source_l00143}{load\+\_\+routines()}}, \mbox{\hyperlink{shmemvv_8hpp_a248192d977bc6592f4abd79caa38e05e}{parse\+\_\+opts()}}, \mbox{\hyperlink{shmemvv_8hpp_source_l00045}{test\+\_\+options\+::test\+\_\+all}}, \mbox{\hyperlink{shmemvv_8hpp_source_l00052}{test\+\_\+options\+::test\+\_\+atomics}}, \mbox{\hyperlink{shmemvv_8hpp_source_l00054}{test\+\_\+options\+::test\+\_\+collectives}}, \mbox{\hyperlink{shmemvv_8hpp_source_l00050}{test\+\_\+options\+::test\+\_\+ctx}}, \mbox{\hyperlink{shmemvv_8hpp_source_l00057}{test\+\_\+options\+::test\+\_\+locking}}, \mbox{\hyperlink{shmemvv_8hpp_source_l00048}{test\+\_\+options\+::test\+\_\+mem}}, \mbox{\hyperlink{shmemvv_8hpp_source_l00056}{test\+\_\+options\+::test\+\_\+mem\+\_\+ordering}}, \mbox{\hyperlink{shmemvv_8hpp_source_l00055}{test\+\_\+options\+::test\+\_\+pt2pt\+\_\+synch}}, \mbox{\hyperlink{shmemvv_8hpp_source_l00051}{test\+\_\+options\+::test\+\_\+remote}}, \mbox{\hyperlink{shmemvv_8hpp_source_l00046}{test\+\_\+options\+::test\+\_\+setup}}, \mbox{\hyperlink{mem__tests_8cpp_source_l00074}{test\+\_\+shmem\+\_\+addr\+\_\+accessible()}}, \mbox{\hyperlink{mem__tests_8cpp_source_l00131}{test\+\_\+shmem\+\_\+align()}}, \mbox{\hyperlink{collectives__tests_8cpp_source_l00045}{test\+\_\+shmem\+\_\+alltoall()}}, \mbox{\hyperlink{collectives__tests_8cpp_source_l00080}{test\+\_\+shmem\+\_\+alltoalls()}}, \mbox{\hyperlink{atomics__tests_8cpp_source_l00175}{test\+\_\+shmem\+\_\+atomic\+\_\+add()}}, \mbox{\hyperlink{atomics__tests_8cpp_source_l00220}{test\+\_\+shmem\+\_\+atomic\+\_\+and()}}, \mbox{\hyperlink{atomics__tests_8cpp_source_l00060}{test\+\_\+shmem\+\_\+atomic\+\_\+compare\+\_\+swap()}}, \mbox{\hyperlink{atomics__tests_8cpp_source_l00356}{test\+\_\+shmem\+\_\+atomic\+\_\+compare\+\_\+swap\+\_\+nbi()}}, \mbox{\hyperlink{atomics__tests_8cpp_source_l00016}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch()}}, \mbox{\hyperlink{atomics__tests_8cpp_source_l00152}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+add()}}, \mbox{\hyperlink{atomics__tests_8cpp_source_l00431}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+add\+\_\+nbi()}}, \mbox{\hyperlink{atomics__tests_8cpp_source_l00197}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+and()}}, \mbox{\hyperlink{atomics__tests_8cpp_source_l00456}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+and\+\_\+nbi()}}, \mbox{\hyperlink{atomics__tests_8cpp_source_l00107}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+inc()}}, \mbox{\hyperlink{atomics__tests_8cpp_source_l00406}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+inc\+\_\+nbi()}}, \mbox{\hyperlink{atomics__tests_8cpp_source_l00332}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+nbi()}}, \mbox{\hyperlink{atomics__tests_8cpp_source_l00242}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+or()}}, \mbox{\hyperlink{atomics__tests_8cpp_source_l00481}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+or\+\_\+nbi()}}, \mbox{\hyperlink{atomics__tests_8cpp_source_l00287}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+xor()}}, \mbox{\hyperlink{atomics__tests_8cpp_source_l00506}{test\+\_\+shmem\+\_\+atomic\+\_\+fetch\+\_\+xor\+\_\+nbi()}}, \mbox{\hyperlink{atomics__tests_8cpp_source_l00130}{test\+\_\+shmem\+\_\+atomic\+\_\+inc()}}, \mbox{\hyperlink{atomics__tests_8cpp_source_l00265}{test\+\_\+shmem\+\_\+atomic\+\_\+or()}}, \mbox{\hyperlink{atomics__tests_8cpp_source_l00039}{test\+\_\+shmem\+\_\+atomic\+\_\+set()}}, \mbox{\hyperlink{atomics__tests_8cpp_source_l00085}{test\+\_\+shmem\+\_\+atomic\+\_\+swap()}}, \mbox{\hyperlink{atomics__tests_8cpp_source_l00381}{test\+\_\+shmem\+\_\+atomic\+\_\+swap\+\_\+nbi()}}, \mbox{\hyperlink{atomics__tests_8cpp_source_l00310}{test\+\_\+shmem\+\_\+atomic\+\_\+xor()}}, \mbox{\hyperlink{setup__tests_8cpp_source_l00070}{test\+\_\+shmem\+\_\+barrier()}}, \mbox{\hyperlink{setup__tests_8cpp_source_l00045}{test\+\_\+shmem\+\_\+barrier\+\_\+all()}}, \mbox{\hyperlink{collectives__tests_8cpp_source_l00115}{test\+\_\+shmem\+\_\+broadcast()}}, \mbox{\hyperlink{mem__tests_8cpp_source_l00169}{test\+\_\+shmem\+\_\+calloc()}}, \mbox{\hyperlink{collectives__tests_8cpp_source_l00160}{test\+\_\+shmem\+\_\+collect()}}, \mbox{\hyperlink{comms__tests_8cpp_source_l00015}{test\+\_\+shmem\+\_\+ctx\+\_\+create()}}, \mbox{\hyperlink{comms__tests_8cpp_source_l00053}{test\+\_\+shmem\+\_\+ctx\+\_\+destroy()}}, \mbox{\hyperlink{comms__tests_8cpp_source_l00068}{test\+\_\+shmem\+\_\+ctx\+\_\+get\+\_\+team()}}, \mbox{\hyperlink{setup__tests_8cpp_source_l00015}{test\+\_\+shmem\+\_\+fake\+\_\+routine()}}, \mbox{\hyperlink{collectives__tests_8cpp_source_l00193}{test\+\_\+shmem\+\_\+fcollect()}}, \mbox{\hyperlink{mem__ordering__tests_8cpp_source_l00017}{test\+\_\+shmem\+\_\+fence()}}, \mbox{\hyperlink{setup__tests_8cpp_source_l00171}{test\+\_\+shmem\+\_\+finalize()}}, \mbox{\hyperlink{remote__tests_8cpp_source_l00158}{test\+\_\+shmem\+\_\+g()}}, \mbox{\hyperlink{remote__tests_8cpp_source_l00120}{test\+\_\+shmem\+\_\+get()}}, \mbox{\hyperlink{remote__tests_8cpp_source_l00267}{test\+\_\+shmem\+\_\+get\+\_\+nbi()}}, \mbox{\hyperlink{remote__tests_8cpp_source_l00192}{test\+\_\+shmem\+\_\+iget()}}, \mbox{\hyperlink{setup__tests_8cpp_source_l00153}{test\+\_\+shmem\+\_\+info\+\_\+get\+\_\+name()}}, \mbox{\hyperlink{setup__tests_8cpp_source_l00138}{test\+\_\+shmem\+\_\+info\+\_\+get\+\_\+version()}}, \mbox{\hyperlink{setup__tests_8cpp_source_l00033}{test\+\_\+shmem\+\_\+init()}}, \mbox{\hyperlink{threads__tests_8cpp_source_l00015}{test\+\_\+shmem\+\_\+init\+\_\+thread()}}, \mbox{\hyperlink{remote__tests_8cpp_source_l00084}{test\+\_\+shmem\+\_\+iput()}}, \mbox{\hyperlink{locking__tests_8cpp_source_l00017}{test\+\_\+shmem\+\_\+lock\+\_\+unlock()}}, \mbox{\hyperlink{mem__tests_8cpp_source_l00016}{test\+\_\+shmem\+\_\+malloc\+\_\+free()}}, \mbox{\hyperlink{mem__tests_8cpp_source_l00150}{test\+\_\+shmem\+\_\+malloc\+\_\+with\+\_\+hints()}}, \mbox{\hyperlink{collectives__tests_8cpp_source_l00313}{test\+\_\+shmem\+\_\+max\+\_\+reduce()}}, \mbox{\hyperlink{collectives__tests_8cpp_source_l00286}{test\+\_\+shmem\+\_\+min\+\_\+reduce()}}, \mbox{\hyperlink{setup__tests_8cpp_source_l00087}{test\+\_\+shmem\+\_\+my\+\_\+pe()}}, \mbox{\hyperlink{setup__tests_8cpp_source_l00104}{test\+\_\+shmem\+\_\+n\+\_\+pes()}}, \mbox{\hyperlink{remote__tests_8cpp_source_l00052}{test\+\_\+shmem\+\_\+p()}}, \mbox{\hyperlink{setup__tests_8cpp_source_l00121}{test\+\_\+shmem\+\_\+pe\+\_\+accessible()}}, \mbox{\hyperlink{collectives__tests_8cpp_source_l00254}{test\+\_\+shmem\+\_\+prod\+\_\+reduce()}}, \mbox{\hyperlink{mem__tests_8cpp_source_l00034}{test\+\_\+shmem\+\_\+ptr()}}, \mbox{\hyperlink{remote__tests_8cpp_source_l00016}{test\+\_\+shmem\+\_\+put()}}, \mbox{\hyperlink{remote__tests_8cpp_source_l00230}{test\+\_\+shmem\+\_\+put\+\_\+nbi()}}, \mbox{\hyperlink{signaling__tests_8cpp_source_l00016}{test\+\_\+shmem\+\_\+put\+\_\+signal()}}, \mbox{\hyperlink{signaling__tests_8cpp_source_l00054}{test\+\_\+shmem\+\_\+put\+\_\+signal\+\_\+nbi()}}, \mbox{\hyperlink{threads__tests_8cpp_source_l00029}{test\+\_\+shmem\+\_\+query\+\_\+thread()}}, \mbox{\hyperlink{mem__ordering__tests_8cpp_source_l00052}{test\+\_\+shmem\+\_\+quiet()}}, \mbox{\hyperlink{mem__tests_8cpp_source_l00107}{test\+\_\+shmem\+\_\+realloc()}}, \mbox{\hyperlink{signaling__tests_8cpp_source_l00093}{test\+\_\+shmem\+\_\+signal\+\_\+fetch()}}, \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00648}{test\+\_\+shmem\+\_\+signal\+\_\+wait\+\_\+until()}}, \mbox{\hyperlink{collectives__tests_8cpp_source_l00226}{test\+\_\+shmem\+\_\+sum\+\_\+reduce()}}, \mbox{\hyperlink{collectives__tests_8cpp_source_l00015}{test\+\_\+shmem\+\_\+sync()}}, \mbox{\hyperlink{collectives__tests_8cpp_source_l00032}{test\+\_\+shmem\+\_\+sync\+\_\+all()}}, \mbox{\hyperlink{comms__tests_8cpp_source_l00033}{test\+\_\+shmem\+\_\+team\+\_\+create\+\_\+ctx()}}, \mbox{\hyperlink{teams__tests_8cpp_source_l00113}{test\+\_\+shmem\+\_\+team\+\_\+destroy()}}, \mbox{\hyperlink{teams__tests_8cpp_source_l00045}{test\+\_\+shmem\+\_\+team\+\_\+get\+\_\+config()}}, \mbox{\hyperlink{teams__tests_8cpp_source_l00015}{test\+\_\+shmem\+\_\+team\+\_\+my\+\_\+pe()}}, \mbox{\hyperlink{teams__tests_8cpp_source_l00030}{test\+\_\+shmem\+\_\+team\+\_\+n\+\_\+pes()}}, \mbox{\hyperlink{teams__tests_8cpp_source_l00096}{test\+\_\+shmem\+\_\+team\+\_\+split\+\_\+2d()}}, \mbox{\hyperlink{teams__tests_8cpp_source_l00081}{test\+\_\+shmem\+\_\+team\+\_\+split\+\_\+strided()}}, \mbox{\hyperlink{teams__tests_8cpp_source_l00066}{test\+\_\+shmem\+\_\+team\+\_\+translate\+\_\+pe()}}, \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00174}{test\+\_\+shmem\+\_\+test()}}, \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00218}{test\+\_\+shmem\+\_\+test\+\_\+all()}}, \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00492}{test\+\_\+shmem\+\_\+test\+\_\+all\+\_\+vector()}}, \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00268}{test\+\_\+shmem\+\_\+test\+\_\+any()}}, \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00543}{test\+\_\+shmem\+\_\+test\+\_\+any\+\_\+vector()}}, \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00314}{test\+\_\+shmem\+\_\+test\+\_\+some()}}, \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00594}{test\+\_\+shmem\+\_\+test\+\_\+some\+\_\+vector()}}, \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00018}{test\+\_\+shmem\+\_\+wait\+\_\+until()}}, \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00052}{test\+\_\+shmem\+\_\+wait\+\_\+until\+\_\+all()}}, \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00362}{test\+\_\+shmem\+\_\+wait\+\_\+until\+\_\+all\+\_\+vector()}}, \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00088}{test\+\_\+shmem\+\_\+wait\+\_\+until\+\_\+any()}}, \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00404}{test\+\_\+shmem\+\_\+wait\+\_\+until\+\_\+any\+\_\+vector()}}, \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00129}{test\+\_\+shmem\+\_\+wait\+\_\+until\+\_\+some()}}, \mbox{\hyperlink{pt2pt__tests_8cpp_source_l00446}{test\+\_\+shmem\+\_\+wait\+\_\+until\+\_\+some\+\_\+vector()}}, \mbox{\hyperlink{shmemvv_8hpp_source_l00053}{test\+\_\+options\+::test\+\_\+signaling}}, \mbox{\hyperlink{shmemvv_8hpp_source_l00049}{test\+\_\+options\+::test\+\_\+teams}}, \mbox{\hyperlink{shmemvv_8hpp_source_l00047}{test\+\_\+options\+::test\+\_\+threads}}, and \mbox{\hyperlink{shmemvv_8hpp_source_l00036}{YELLOW\+\_\+\+COLOR}}.
+
