@@ -1,24 +1,33 @@
 # SHMEMVV
-Validation/Verification test suite for OpenSHMEM (v1.5)
+Verification & Validation (V&V) suite for the [OpenSHMEM v1.5 specification](http://www.openshmem.org/site/sites/default/site_files/OpenSHMEM-1.5.pdf)
 
 <!-- ![Logo](assets/DALL·E%202024-06-26%2016.04.50%20-%20Create%20a%20logo%20for%20an%20OpenSHMEM%20verification_validation%20test%20suite%20called%20SHMEMVV.%20The%20logo%20should%20incorporate%20the%20same%20colors%20as%20the%20OpenSHMEM%20logo,%20w.webp) -->
 
 ![Logo](extra/logo.png)
 
 ## Requirements
+
 - Implementation of the OpenSHMEM v1.5 specification
-- CMake
+- CMake 3.10 or greater
+
+## Limitations
+There are a few limitations to SHMEMVV that will be addressed in the future:
+
+- ONLY supports the implementations that adhere to the 1.5 specification, if you try to run this on an older OpenSHMEM implementation, you WILL get compiler errors
+
+- ONLY supports tests for C++ bindings
+
+- For typed routines, such as `shmem_<type>_put` the only `<type>` that is supported is `long`.
 
 ## Building
 ```bash
-mkdir -p build
-cd build
-cmake \
-  -DCMAKE_INCLUDE_PATH=</path/to/openshmem/include/dir>  \
-  -DCMAKE_LIBRARY_PATH=</path/to/openshmem/lib/dir>      \
-  -DCMAKE_C_LINKER_FLAGS="<linker flags, such as -lsma>" \
-  -DDEBUG=<OFF/ON>                                       \
-  ../
+$ mkdir build
+$ cd build
+$ cmake \
+    -DCMAKE_LIBRARY_PATH=</path/to/openshmem/lib/dir>      \
+    -DCMAKE_C_LINKER_FLAGS="<linker flags, such as -lsma>" \
+    -DDEBUG=<OFF/ON>                                       \
+    ../
 ```
 
 ## Tests
@@ -29,7 +38,7 @@ oshrun -np 2 shmemvv --test_comms
 
 Since all the tests need the items within the setup routines, those will be run no matter, regardless of which tests you select.
 
-```bash
+```
 Usage: shmemvv [options]
 Options:
   --test_setup         Run setup tests
