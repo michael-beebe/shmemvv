@@ -24,7 +24,7 @@ bool test_shmem_team_my_pe(void) {
 bool test_shmem_team_n_pes(void) {
   shmem_team_t team;
   p_shmem_team_split_strided(SHMEM_TEAM_WORLD, 0, 1, p_shmem_n_pes(), NULL, 0, &team);
-  int npes = shmem_team_n_pes(team);
+  int npes = p_shmem_team_n_pes(team);
   p_shmem_team_destroy(team);
   return (npes == p_shmem_n_pes());
 }
