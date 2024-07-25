@@ -44,7 +44,7 @@ typedef int (*shmem_addr_accessible_func)(const void *addr, int pe);
 /* Team Management Routines */
 typedef int (*shmem_team_my_pe_func)(shmem_team_t team);
 typedef int (*shmem_team_n_pes_func)(shmem_team_t team);
-typedef void (*shmem_team_get_config_func)(shmem_team_t team, shmem_team_config_t *config);
+typedef void (*shmem_team_get_config_func)(shmem_team_t team, long config_mask, shmem_team_config_t *config);
 typedef int (*shmem_team_translate_pe_func)(shmem_team_t src_team, int src_pe, shmem_team_t dest_team);
 typedef shmem_team_t (*shmem_team_split_strided_func)(shmem_team_t parent_team, int start, int stride, int size, const shmem_team_config_t *config, long config_mask, shmem_team_t *new_team);
 typedef shmem_team_t (*shmem_team_split_2d_func)(shmem_team_t parent_team, int xrange, const shmem_team_config_t *xaxis_config, long xaxis_mask, shmem_team_t *xaxis_team, const shmem_team_config_t *yaxis_config, long yaxis_mask, shmem_team_t *yaxis_team);

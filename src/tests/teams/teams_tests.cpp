@@ -35,11 +35,16 @@ bool test_shmem_team_n_pes(void) {
  */
 bool test_shmem_team_get_config(void) {
   shmem_team_t team;
-  p_shmem_team_split_strided(SHMEM_TEAM_WORLD, 0, 1, p_shmem_n_pes(), NULL, 0, &team);
   shmem_team_config_t config;
-  p_shmem_team_get_config(team, &config);
+  long config_mask = SHMEM_TEAM_NUM_CONTEXTS;
+  p_shmem_team_split_strided(SHMEM_TEAM_WORLD, 0, 1, p_shmem_n_pes(), NULL, 0, &team);
+  if (team == SHMEM_TEAM_INVALID) {
+    return false;
+  }
+  p_shmem_team_get_config(team, config_mask, &config);
+  bool result = (config.num_contexts >= 0);
   p_shmem_team_destroy(team);
-  return (config.num_contexts >= 0);
+  return result;
 }
 
 /**
@@ -87,9 +92,7 @@ bool test_shmem_team_split_2d(void) {
 bool test_shmem_team_destroy(void) {
   shmem_team_t team;
   p_shmem_team_split_strided(SHMEM_TEAM_WORLD, 0, 1, p_shmem_n_pes(), NULL, 0, &team);
-
-  p_shmem_team_destroy(team); /* Destroy the created team */
-
+  p_shmem_team_destroy(team);
   if ( !(team == SHMEM_TEAM_INVALID) ) {
     return true;
   }
