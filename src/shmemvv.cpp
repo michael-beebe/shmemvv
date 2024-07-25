@@ -1,12 +1,15 @@
 /**
-  @file shmemvv.cpp
-  @brief Contains helper functions for the OpenSHMEM verification/validation test suite.
+ * @file shmemvv.cpp
+ * @brief Contains helper functions for the OpenSHMEM verification/validation test suite.
  */
 
 #include "shmemvv.hpp"
 
 /**
-  @brief Displays usage information for the test suite.
+ * @brief Displays usage information for the test suite.
+ *
+ * This function prints out the usage information and available options for the OpenSHMEM
+ * verification/validation test suite.
  */
 void display_help() {
   std::cout << "\nThis program is a verification/validation test suite for OpenSHMEM implementations.\n";
@@ -24,17 +27,21 @@ void display_help() {
   std::cout << "  --test_pt2pt_synch   Run point-to-point synchronization tests\n";
   std::cout << "  --test_mem_ordering  Run memory ordering tests\n";
   std::cout << "  --test_locking       Run distributed locking tests\n";
-  std::cout << "  --all                (default) Run all tests\n";
+  std::cout << "  --test_all           (default) Run all tests\n";
   std::cout << "  --help               Display this help message\n";
   std::cout << std::endl;
 }
 
 /**
-  @brief Parses command-line options.
-  @param argc Number of command-line arguments.
-  @param argv Array of command-line argument strings.
-  @param opts Reference to the test options structure.
-  @return True if parsing is successful, false otherwise.
+ * @brief Parses command-line options.
+ *
+ * This function parses the command-line arguments and sets the corresponding options
+ * in the provided test_options structure.
+ *
+ * @param argc Number of command-line arguments.
+ * @param argv Array of command-line argument strings.
+ * @param opts Reference to the test options structure.
+ * @return True if parsing is successful, false otherwise.
  */
 bool parse_opts(int argc, char *argv[], test_options &opts) {
   /* Define command-line options */
@@ -52,7 +59,7 @@ bool parse_opts(int argc, char *argv[], test_options &opts) {
     {"test_mem_ordering", no_argument, 0, 'k'},
     {"test_locking", no_argument, 0, 'l'},
     {"help", no_argument, 0, 'm'},
-    {"all", no_argument, 0, 'n'},
+    {"test_all", no_argument, 0, 'n'},
     {0, 0, 0, 0}
   };
 
@@ -100,7 +107,7 @@ bool parse_opts(int argc, char *argv[], test_options &opts) {
         opts.help = true;
         break;
       case 'n':
-        opts.all = true;
+        opts.test_all = true;
         break;
       default:
         return false;
@@ -110,15 +117,17 @@ bool parse_opts(int argc, char *argv[], test_options &opts) {
   /* If no specific tests are selected and --all is not specified, enable all tests */
   if (!(opts.test_setup || opts.test_threads || opts.test_mem || opts.test_teams ||
         opts.test_ctx || opts.test_remote || opts.test_atomics || opts.test_signaling ||
-        opts.test_collectives || opts.test_pt2pt_synch || opts.test_mem_ordering || opts.test_locking || opts.all)) {
-    opts.all = true;
+        opts.test_collectives || opts.test_pt2pt_synch || opts.test_mem_ordering || opts.test_locking || opts.test_all)) {
+    opts.test_all = true;
   }
 
   return true;
 }
 
 /**
-  @brief Displays the ASCII art logo.
+ * @brief Displays the ASCII art logo.
+ *
+ * This function prints out the ASCII art logo for the test suite.
  */
 void display_logo() {
   std::cout << R"(
@@ -127,13 +136,15 @@ void display_logo() {
   ▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒ ▒▒ ▒▒▒▒ ▒▒ ▒▒▒▒▒   ▒▒ ▒▒▒▒ ▒▒ ▒▒    ▒▒ ▒▒    ▒▒ 
        ▓▓ ▓▓   ▓▓ ▓▓  ▓▓  ▓▓ ▓▓      ▓▓  ▓▓  ▓▓  ▓▓  ▓▓   ▓▓  ▓▓  
   ███████ ██   ██ ██      ██ ███████ ██      ██   ████     ████   
-
 )";
 }
 
 /**
-  @brief Displays a header for the test category.
-  @param test_name Name of the test category.
+ * @brief Displays a header for the test category.
+ *
+ * This function prints out a header indicating the start of a specific test category.
+ *
+ * @param test_name Name of the test category.
  */
 void display_test_header(std::string test_name) {
   if (test_name == "FINALIZATION") {
@@ -149,16 +160,16 @@ void display_test_header(std::string test_name) {
 }
 
 /**
-  @brief Displays information about the test suite.
-  @param shmem_name Name of the OpenSHMEM library.
-  @param shmem_version Version of the OpenSHMEM library.
-  @param npes Number of PEs (Processing Elements).
+ * @brief Displays information about the test suite.
+ *
+ * This function prints out information about the OpenSHMEM library being tested, including
+ * the library name, version, and the number of PEs (Processing Elements).
+ *
+ * @param shmem_name Name of the OpenSHMEM library.
+ * @param shmem_version Version of the OpenSHMEM library.
+ * @param npes Number of PEs (Processing Elements).
  */
-void display_test_info(
-  std::string shmem_name,
-  std::string shmem_version,
-  int npes
-) {
+void display_test_info(std::string shmem_name, std::string shmem_version, int npes) {
   std::cout << "\n==================================================================" << std::endl;
   std::cout << "===                   Test Information                         ===" << std::endl;
   std::cout << "==================================================================" << std::endl;
@@ -168,9 +179,12 @@ void display_test_info(
 }
 
 /**
- * @brief Function to check if a routine exists
- * @param routine_name Name of the OpenSHMEM routine to check
- * @return True if the routine exists, false otherwise
+ * @brief Function to check if a routine exists.
+ *
+ * This function checks if a given OpenSHMEM routine exists in the currently loaded library.
+ *
+ * @param routine_name Name of the OpenSHMEM routine to check.
+ * @return True if the routine exists, false otherwise.
  */
 bool check_if_exists(const std::string& routine_name) {
   void *handle = dlopen(NULL, RTLD_LAZY);
@@ -190,11 +204,15 @@ bool check_if_exists(const std::string& routine_name) {
 }
 
 /**
-  @brief Displays a warning message that the given routine is not avaible in the
-        tested OpenSHMEM library
-  @param routine_name OpenSHMEM routine
-  @param required True if test is required, false otherwise
-*/
+ * @brief Displays a warning message that the given routine is not available in the
+ *        tested OpenSHMEM library.
+ *
+ * This function prints a warning message indicating that a specific OpenSHMEM routine
+ * is not available in the library being tested.
+ *
+ * @param routine_name Name of the OpenSHMEM routine.
+ * @param required True if the test is required, false otherwise.
+ */
 void display_not_found_warning(std::string routine_name, bool required) {
   if (required) {
     std::cerr << RED_COLOR << "NOT FOUND - required to continue" << RESET_COLOR << ": " << routine_name << std::endl;
@@ -205,19 +223,26 @@ void display_not_found_warning(std::string routine_name, bool required) {
 }
 
 /**
-  @brief Print error message saying that there needs to be at least
-         2 PEs for the given test type
-  @param test_type Category of tests
+ * @brief Print error message saying that there needs to be at least
+ *        2 PEs for the given test type.
+ *
+ * This function prints an error message indicating that at least 2 PEs
+ * are required to run the specified test type.
+ *
+ * @param test_type Category of tests.
  */
 void display_not_enough_pes(std::string test_type) {
   std::cerr << RED_COLOR << "ERROR" << RESET_COLOR << ": The " << test_type << " tests require at least 2 PEs!" << std::endl;
 }
 
 /**
-  @brief Displays the result of a test.
-  @param routine_name Name of the OpenSHMEM routine that was tested.
-  @param passed True if the test passed, false if the test failed.
-  @param required True if the test is required, false otherwise.
+ * @brief Displays the result of a test.
+ *
+ * This function prints out the result of a specific OpenSHMEM routine test.
+ *
+ * @param routine_name Name of the OpenSHMEM routine that was tested.
+ * @param passed True if the test passed, false if the test failed.
+ * @param required True if the test is required, false otherwise.
  */
 void display_test_result(std::string routine_name, bool passed, bool required) {
   if (passed) {
@@ -234,8 +259,11 @@ void display_test_result(std::string routine_name, bool passed, bool required) {
 }
 
 /**
-  @brief Run finalization test
-  @param mype Current PE
+ * @brief Runs the finalization test.
+ *
+ * This function runs the finalization test for OpenSHMEM and displays the results.
+ *
+ * @param mype Current PE.
  */
 void finalize_shmemvv(int mype) {
   if (mype == 0) { display_test_header("FINALIZATION"); }

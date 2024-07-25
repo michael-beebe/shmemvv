@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <shmem.h> /* Include OpenSHMEM header for types and constants */
+#include <shmem.h>
 
 /************* Define function pointers for OpenSHMEM routines *************/
 

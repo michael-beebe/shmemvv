@@ -1,8 +1,16 @@
+/**
+ * @file collectives_tests.cpp
+ * @brief Contains tests for various OpenSHMEM collective routines.
+ */
+
 #include "collectives_tests.hpp"
 
 /**
-  @brief Tests the shmem_sync() routine.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_sync() routine.
+ *
+ * This test verifies that the shmem_sync() routine correctly synchronizes all PEs.
+ *
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_sync(void) {
   static long pSync[SHMEM_SYNC_SIZE];
@@ -15,8 +23,11 @@ bool test_shmem_sync(void) {
 }
 
 /**
-  @brief Tests the shmem_sync_all() routine.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_sync_all() routine.
+ *
+ * This test verifies that the shmem_sync_all() routine correctly synchronizes all PEs.
+ *
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_sync_all(void) {
   p_shmem_sync_all();
@@ -24,8 +35,12 @@ bool test_shmem_sync_all(void) {
 }
 
 /**
-  @brief Tests the shmem_alltoall() routine.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_alltoall() routine.
+ *
+ * This test verifies that the shmem_alltoall() routine correctly performs an all-to-all
+ * data exchange among all PEs.
+ *
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_alltoall(void) {
   int npes = p_shmem_n_pes();
@@ -55,26 +70,26 @@ bool test_shmem_alltoall(void) {
 }
 
 /**
-  @brief Tests the shmem_alltoalls() routine.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_alltoalls() routine.
+ *
+ * This test verifies that the shmem_alltoalls() routine correctly performs a strided all-to-all
+ * data exchange among all PEs.
+ *
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_alltoalls(void) {
-  int npes = p_shmem_n_pes();  /* Get the number of PEs */
-  int mype = p_shmem_my_pe();  /* Get the current PE number */
+  int npes = p_shmem_n_pes();
+  int mype = p_shmem_my_pe();
 
-  /* Allocate memory for source and destination arrays */
   long *src = (long *)p_shmem_malloc(npes * npes * sizeof(long));
   long *dest = (long *)p_shmem_malloc(npes * npes * sizeof(long));
 
-  /* Initialize the source array with unique values for each PE */
   for (int i = 0; i < npes; ++i) {
     src[i] = mype + i * npes;
   }
 
-  /* Perform the all-to-alls collective operation */
   p_shmem_long_alltoalls(SHMEM_TEAM_WORLD, dest, src, 1, 1, npes);
 
-  /* Verify that the destination array contains the expected values */
   bool success = true;
   for (int i = 0; i < npes; ++i) {
     if (dest[i] != i * npes + mype) {
@@ -83,7 +98,6 @@ bool test_shmem_alltoalls(void) {
     }
   }
 
-  /* Free the allocated memory */
   p_shmem_free(src);
   p_shmem_free(dest);
   
@@ -91,46 +105,36 @@ bool test_shmem_alltoalls(void) {
 }
 
 /**
-  @brief Tests the shmem_broadcast() routine.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_broadcast() routine.
+ *
+ * This test verifies that the shmem_broadcast() routine correctly broadcasts data
+ * from the root PE to all other PEs.
+ *
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_broadcast(void) {
-  int npes = p_shmem_n_pes();  /* Get the number of PEs */
-  int mype = p_shmem_my_pe();  /* Get the current PE number */
+  int npes = p_shmem_n_pes();
+  int mype = p_shmem_my_pe();
   
-  /* Allocate memory for source and destination arrays */
   long *src = (long *)p_shmem_malloc(4 * sizeof(long));
   long *dest = (long *)p_shmem_malloc(4 * sizeof(long));
 
-  /* Initialize the source array with unique values for the root PE */
   if (mype == 0) {
     for (int i = 0; i < 4; ++i) {
-      src[i] = i + 1;  /* Root PE sets source values */
+      src[i] = i + 1;
     }
   }
 
-  /* Initialize the destination array with a sentinel value for all PEs */
   for (int i = 0; i < 4; ++i) {
-    dest[i] = -1;  /* Sentinel value to verify the broadcast */
+    dest[i] = -1;
   }
 
-  /* Synchronize PEs before broadcast */
   p_shmem_barrier_all();
 
-  /* Perform the broadcast collective operation */
   p_shmem_long_broadcast(SHMEM_TEAM_WORLD, dest, src, 4, 0);
 
-  /* Synchronize PEs after broadcast */
   p_shmem_barrier_all();
 
-  /* Ensure the root PE's destination array is updated correctly */
-  if (mype == 0) {
-    for (int i = 0; i < 4; ++i) {
-      dest[i] = src[i];
-    }
-  }
-
-  /* Verify that the destination array contains the expected values */
   bool success = true;
   for (int i = 0; i < 4; ++i) {
     if (dest[i] != i + 1) {
@@ -139,7 +143,6 @@ bool test_shmem_broadcast(void) {
     }
   }
 
-  /* Free the allocated memory */
   p_shmem_free(src);
   p_shmem_free(dest);
   
@@ -147,8 +150,12 @@ bool test_shmem_broadcast(void) {
 }
 
 /**
-  @brief Tests the shmem_collect() routine.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_collect() routine.
+ *
+ * This test verifies that the shmem_collect() routine correctly collects data
+ * from all PEs to a single PE.
+ *
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_collect(void) {
   int npes = p_shmem_n_pes();
@@ -176,8 +183,12 @@ bool test_shmem_collect(void) {
 }
 
 /**
-  @brief Tests the shmem_fcollect() routine.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_fcollect() routine.
+ *
+ * This test verifies that the shmem_fcollect() routine correctly collects data
+ * from all PEs to a single PE in a more efficient manner than shmem_collect().
+ *
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_fcollect(void) {
   int npes = p_shmem_n_pes();
@@ -205,8 +216,12 @@ bool test_shmem_fcollect(void) {
 }
 
 /**
-  @brief Tests the shmem_sum_reduce() routine.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_sum_reduce() routine.
+ *
+ * This test verifies that the shmem_sum_reduce() routine correctly computes the sum
+ * of data from all PEs and stores it on the root PE.
+ *
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_sum_reduce(void) {
   int npes = p_shmem_n_pes();
@@ -219,7 +234,7 @@ bool test_shmem_sum_reduce(void) {
 
   p_shmem_long_sum_reduce(SHMEM_TEAM_WORLD, dest, src, 1);
 
-  long expected_sum = npes * (npes - 1) / 2; // Sum of PE ranks from 0 to (npes-1)
+  long expected_sum = npes * (npes - 1) / 2;
   bool success = (*dest == expected_sum);
 
   p_shmem_free(src);
@@ -229,8 +244,12 @@ bool test_shmem_sum_reduce(void) {
 }
 
 /**
-  @brief Tests the shmem_prod_reduce() routine.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_prod_reduce() routine.
+ *
+ * This test verifies that the shmem_prod_reduce() routine correctly computes the product
+ * of data from all PEs and stores it on the root PE.
+ *
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_prod_reduce(void) {
   int npes = p_shmem_n_pes();
@@ -239,7 +258,7 @@ bool test_shmem_prod_reduce(void) {
   long *src = (long *)p_shmem_malloc(sizeof(long));
   long *dest = (long *)p_shmem_malloc(sizeof(long));
 
-  *src = mype + 1; // To avoid zero which will make the product zero
+  *src = mype + 1;
 
   p_shmem_long_prod_reduce(SHMEM_TEAM_WORLD, dest, src, 1);
 
@@ -257,8 +276,12 @@ bool test_shmem_prod_reduce(void) {
 }
 
 /**
-  @brief Tests the shmem_min_reduce() routine.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_min_reduce() routine.
+ *
+ * This test verifies that the shmem_min_reduce() routine correctly computes the minimum
+ * of data from all PEs and stores it on the root PE.
+ *
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_min_reduce(void) {
   int npes = p_shmem_n_pes();
@@ -280,12 +303,16 @@ bool test_shmem_min_reduce(void) {
 }
 
 /**
-  @brief Tests the shmem_max_reduce() routine.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_max_reduce() routine.
+ *
+ * This test verifies that the shmem_max_reduce() routine correctly computes the maximum
+ * of data from all PEs and stores it on the root PE.
+ *
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_max_reduce(void) {
-  int npes = shmem_n_pes();
-  int mype = shmem_my_pe();
+  int npes = p_shmem_n_pes();
+  int mype = p_shmem_my_pe();
 
   long *src = (long *)p_shmem_malloc(sizeof(long));
   long *dest = (long *)p_shmem_malloc(sizeof(long));

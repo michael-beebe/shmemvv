@@ -7,7 +7,7 @@ Verification & Validation (V&V) suite for the [OpenSHMEM v1.5 specification](htt
 
 ## Requirements
 
-- Implementation of the OpenSHMEM v1.5 specification
+- Implementation of the OpenSHMEM v1.5
 - CMake 3.10 or greater
 
 ## Limitations
@@ -53,7 +53,7 @@ Options:
   --test_pt2pt_synch   Run point-to-point synchronization tests
   --test_mem_ordering  Run memory ordering tests
   --test_locking       Run distributed locking tests
-  --all                (default) Run all tests
+  --test_all           (default) Run all tests
   --help               Display help message
 ```
 
@@ -228,7 +228,7 @@ Will test the following routines:
 
 #### All tests
 ```
---all
+--test_all
 ```
 Will run all the tests
 

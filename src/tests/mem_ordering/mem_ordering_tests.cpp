@@ -1,13 +1,18 @@
 /**
-  @file mem_ordering_tests.cpp
-  @brief Contains OpenSHMEM memory ordering tests.
+ * @file mem_ordering_tests.cpp
+ * @brief Contains OpenSHMEM memory ordering tests.
  */
 
 #include "mem_ordering_tests.hpp"
 
 /**
-  @brief Tests the shmem_fence() routine.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_fence() routine.
+ *
+ * This test verifies that the shmem_fence() routine correctly ensures the ordering of memory
+ * operations by checking that the memory store operation on one PE is seen by another PE
+ * in the correct order.
+ *
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_fence(void) {
   long *flag = (long *)p_shmem_malloc(sizeof(long));
@@ -36,8 +41,13 @@ bool test_shmem_fence(void) {
 }
 
 /**
-  @brief Tests the shmem_quiet() routine.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_quiet() routine.
+ *
+ * This test verifies that the shmem_quiet() routine correctly ensures the completion of
+ * all outstanding memory operations by checking that a memory store operation on one PE
+ * is completed before proceeding.
+ *
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_quiet(void) {
   long *flag = (long *)p_shmem_malloc(sizeof(long));

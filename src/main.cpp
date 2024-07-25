@@ -244,7 +244,7 @@ int main(int argc, char *argv[]) {
   shmem_barrier_all();
 
   /* Enable all tests if --all is specified or no specific test is selected */
-  if (opts.all ||
+  if (opts.test_all ||
       !(opts.test_setup || opts.test_threads || opts.test_mem || opts.test_teams ||
         opts.test_ctx || opts.test_remote || opts.test_atomics || opts.test_signaling ||
         opts.test_collectives || opts.test_pt2pt_synch || opts.test_mem_ordering || opts.test_locking))

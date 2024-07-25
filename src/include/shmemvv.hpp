@@ -42,7 +42,7 @@
   @brief Struct to hold selected tests options.
  */
 struct test_options {
-  bool all;                    /**< Flag to run all tests */
+  bool test_all;               /**< Flag to run all tests */
   bool test_setup;             /**< Flag to run setup tests */
   bool test_threads;           /**< Flag to run thread support tests */
   bool test_mem;               /**< Flag to run memory management tests */
@@ -61,7 +61,7 @@ struct test_options {
     @brief Constructor to initialize all flags to false.
    */
   test_options() :
-    all(false), test_setup(false), test_threads(false),
+    test_all(false), test_setup(false), test_threads(false),
     test_mem(false), test_teams(false), test_ctx(false),
     test_remote(false), test_atomics(false), test_signaling(false),
     test_collectives(false), test_pt2pt_synch(false),

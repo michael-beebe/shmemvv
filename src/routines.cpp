@@ -1,5 +1,6 @@
 /**
-  @file routines.cpp
+ * @file routines.cpp
+ * @brief Contains function pointer declarations and routine loading function for the OpenSHMEM library.
  */
 
 #include "routines.hpp"
@@ -133,8 +134,11 @@ shmem_set_lock_func p_shmem_set_lock = nullptr;
 shmem_clear_lock_func p_shmem_clear_lock = nullptr;
 
 /**
-  @brief Loads the OpenSHMEM routines dynamically.
-  @return True if successful, false if otherwise
+ * @brief Loads the OpenSHMEM routines dynamically.
+ *
+ * This function loads the OpenSHMEM routines at runtime using dynamic linking.
+ *
+ * @return True if successful, false otherwise.
  */
 bool load_routines() {
   void *handle = dlopen(NULL, RTLD_LAZY);

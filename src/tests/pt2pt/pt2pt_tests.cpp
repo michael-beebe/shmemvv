@@ -1,16 +1,20 @@
 /**
-  @file pt2pt_tests.cpp
-  @brief Contains functions definitions with test functions for the pt2pt synchronization routines
-*/
+ * @file pt2pt_tests.cpp
+ * @brief Contains functions definitions with test functions for the point-to-point synchronization routines.
+ */
 
 #include "pt2pt_tests.hpp"
 
 #define TIMEOUT 10
 
 /**
-  @brief Tests the shmem_wait_until() routine.
-  @return True if the test is successful, false otherwise.
-*/
+ * @brief Tests the shmem_wait_until() routine.
+ *
+ * This test verifies that the shmem_wait_until() function correctly waits until a condition
+ * on a memory location is met.
+ *
+ * @return True if the test is successful, false otherwise.
+ */
 bool test_shmem_wait_until(void) {
   long *flag = (long *)p_shmem_malloc(sizeof(long));
   *flag = 0;
@@ -38,9 +42,13 @@ bool test_shmem_wait_until(void) {
 }
 
 /**
-  @brief Tests the shmem_wait_until_all() routine.
-  @return True if the test is successful, false otherwise.
-*/
+ * @brief Tests the shmem_wait_until_all() routine.
+ *
+ * This test verifies that the shmem_wait_until_all() function correctly waits until all specified
+ * conditions on an array of memory locations are met.
+ *
+ * @return True if the test is successful, false otherwise.
+ */
 bool test_shmem_wait_until_all(void) {
   long *flags = (long *)p_shmem_malloc(2 * sizeof(long));
   flags[0] = 0;
@@ -70,9 +78,13 @@ bool test_shmem_wait_until_all(void) {
 }
 
 /**
-  @brief Tests the shmem_wait_until_any() routine.
-  @return True if the test is successful, false otherwise.
-*/
+ * @brief Tests the shmem_wait_until_any() routine.
+ *
+ * This test verifies that the shmem_wait_until_any() function correctly waits until any one
+ * of the specified conditions on an array of memory locations is met.
+ *
+ * @return True if the test is successful, false otherwise.
+ */
 bool test_shmem_wait_until_any(void) {
   long *flags = (long *)p_shmem_malloc(3 * sizeof(long));
   for (int i = 0; i < 3; i++) {
@@ -107,9 +119,13 @@ bool test_shmem_wait_until_any(void) {
 }
 
 /**
-  @brief Tests the shmem_wait_until_some() routine.
-  @return True if the test is successful, false otherwise.
-*/
+ * @brief Tests the shmem_wait_until_some() routine.
+ *
+ * This test verifies that the shmem_wait_until_some() function correctly waits until some
+ * of the specified conditions on an array of memory locations are met.
+ *
+ * @return True if the test is successful, false otherwise.
+ */
 bool test_shmem_wait_until_some(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   for (int i = 0; i < 4; ++i) {
@@ -148,9 +164,13 @@ bool test_shmem_wait_until_some(void) {
 }
 
 /**
-  @brief Tests the shmem_test() routine.
-  @return True if the test is successful, false otherwise.
-*/
+ * @brief Tests the shmem_test() routine.
+ *
+ * This test verifies that the shmem_test() function correctly tests whether a condition
+ * on a memory location is met without blocking.
+ *
+ * @return True if the test is successful, false otherwise.
+ */
 bool test_shmem_test(void) {
   long *flag = (long *)p_shmem_malloc(sizeof(long));
   if (flag == NULL) {
@@ -188,9 +208,13 @@ bool test_shmem_test(void) {
 }
 
 /**
-  @brief Tests the shmem_test_all() routine.
-  @return True if the test is successful, false otherwise.
-*/
+ * @brief Tests the shmem_test_all() routine.
+ *
+ * This test verifies that the shmem_test_all() function correctly tests whether all specified
+ * conditions on an array of memory locations are met without blocking.
+ *
+ * @return True if the test is successful, false otherwise.
+ */
 bool test_shmem_test_all(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   if (flags == NULL) {
@@ -234,9 +258,13 @@ bool test_shmem_test_all(void) {
 }
 
 /**
-  @brief Tests the shmem_test_any() routine.
-  @return True if the test is successful, false otherwise.
-*/
+ * @brief Tests the shmem_test_any() routine.
+ *
+ * This test verifies that the shmem_test_any() function correctly tests whether any one
+ * of the specified conditions on an array of memory locations is met without blocking.
+ *
+ * @return True if the test is successful, false otherwise.
+ */
 bool test_shmem_test_any(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   if (flags == NULL) {
@@ -276,9 +304,13 @@ bool test_shmem_test_any(void) {
 }
 
 /**
-  @brief Tests the shmem_test_some() routine.
-  @return True if the test is successful, false otherwise.
-*/
+ * @brief Tests the shmem_test_some() routine.
+ *
+ * This test verifies that the shmem_test_some() function correctly tests whether some
+ * of the specified conditions on an array of memory locations are met without blocking.
+ *
+ * @return True if the test is successful, false otherwise.
+ */
 bool test_shmem_test_some(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   if (flags == NULL) {
@@ -320,9 +352,13 @@ bool test_shmem_test_some(void) {
 }
 
 /**
-  @brief Tests the shmem_wait_until_all_vector() routine.
-  @return True if the test is successful, false otherwise.
-*/
+ * @brief Tests the shmem_wait_until_all_vector() routine.
+ *
+ * This test verifies that the shmem_wait_until_all_vector() function correctly waits until all specified
+ * conditions on a vector of memory locations are met.
+ *
+ * @return True if the test is successful, false otherwise.
+ */
 bool test_shmem_wait_until_all_vector(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   for (int i = 0; i < 4; ++i) {
@@ -358,9 +394,13 @@ bool test_shmem_wait_until_all_vector(void) {
 }
 
 /**
-  @brief Tests the shmem_wait_until_any_vector() routine.
-  @return True if the test is successful, false otherwise.
-*/
+ * @brief Tests the shmem_wait_until_any_vector() routine.
+ *
+ * This test verifies that the shmem_wait_until_any_vector() function correctly waits until any one
+ * of the specified conditions on a vector of memory locations is met.
+ *
+ * @return True if the test is successful, false otherwise.
+ */
 bool test_shmem_wait_until_any_vector(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   for (int i = 0; i < 4; ++i) {
@@ -396,9 +436,13 @@ bool test_shmem_wait_until_any_vector(void) {
 }
 
 /**
-  @brief Tests the shmem_wait_until_some_vector() routine.
-  @return True if the test is successful, false otherwise.
-*/
+ * @brief Tests the shmem_wait_until_some_vector() routine.
+ *
+ * This test verifies that the shmem_wait_until_some_vector() function correctly waits until some
+ * of the specified conditions on a vector of memory locations are met.
+ *
+ * @return True if the test is successful, false otherwise.
+ */
 bool test_shmem_wait_until_some_vector(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   for (int i = 0; i < 4; ++i) {
@@ -438,9 +482,13 @@ bool test_shmem_wait_until_some_vector(void) {
 }
 
 /**
-  @brief Tests the shmem_test_all_vector() routine.
-  @return True if the test is successful, false otherwise.
-*/
+ * @brief Tests the shmem_test_all_vector() routine.
+ *
+ * This test verifies that the shmem_test_all_vector() function correctly tests whether all specified
+ * conditions on a vector of memory locations are met without blocking.
+ *
+ * @return True if the test is successful, false otherwise.
+ */
 bool test_shmem_test_all_vector(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   if (flags == NULL) {
@@ -485,9 +533,13 @@ bool test_shmem_test_all_vector(void) {
 }
 
 /**
-  @brief Tests the shmem_test_any_vector() routine.
-  @return True if the test is successful, false otherwise.
-*/
+ * @brief Tests the shmem_test_any_vector() routine.
+ *
+ * This test verifies that the shmem_test_any_vector() function correctly tests whether any one
+ * of the specified conditions on a vector of memory locations is met without blocking.
+ *
+ * @return True if the test is successful, false otherwise.
+ */
 bool test_shmem_test_any_vector(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   if (flags == NULL) {
@@ -532,9 +584,13 @@ bool test_shmem_test_any_vector(void) {
 }
 
 /**
-  @brief Tests the shmem_test_some_vector() routine.
-  @return True if the test is successful, false otherwise.
-*/
+ * @brief Tests the shmem_test_some_vector() routine.
+ *
+ * This test verifies that the shmem_test_some_vector() function correctly tests whether some
+ * of the specified conditions on a vector of memory locations are met without blocking.
+ *
+ * @return True if the test is successful, false otherwise.
+ */
 bool test_shmem_test_some_vector(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   if (flags == NULL) {
@@ -582,9 +638,13 @@ bool test_shmem_test_some_vector(void) {
 }
 
 /**
-  @brief Tests the shmem_signal_wait_until() routine.
-  @return True if the test is successful, false otherwise.
-*/
+ * @brief Tests the shmem_signal_wait_until() routine.
+ *
+ * This test verifies that the shmem_signal_wait_until() function correctly waits until a signal
+ * on a memory location meets a specified condition.
+ *
+ * @return True if the test is successful, false otherwise.
+ */
 bool test_shmem_signal_wait_until(void) {
   uint64_t *flag = (uint64_t *)p_shmem_malloc(sizeof(uint64_t));
   if (flag == NULL) {

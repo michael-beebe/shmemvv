@@ -1,10 +1,17 @@
 /**
-  @file setup_tests.cpp
-  @brief Contains OpenSHMEM setup tests.
+ * @file setup_tests.cpp
+ * @brief Contains OpenSHMEM setup tests.
  */
 
 #include "setup_tests.hpp"
 
+/**
+ * @brief Tests the presence of a fake routine for demonstration purposes.
+ *
+ * This test checks if the `p_shmem_fake_routine` function is available and calls it if so.
+ * 
+ * @return True if the routine is available and called, false otherwise.
+ */
 bool test_shmem_fake_routine(void) {
   if (p_shmem_fake_routine) {
     p_shmem_fake_routine();
@@ -17,8 +24,11 @@ bool test_shmem_fake_routine(void) {
 }
 
 /**
-  @brief Tests the initialization of OpenSHMEM.
-  @return True if the initialization is successful, false otherwise.
+ * @brief Tests the initialization of OpenSHMEM.
+ *
+ * This test verifies that the OpenSHMEM library initializes successfully.
+ * 
+ * @return True if the initialization is successful, false otherwise.
  */
 bool test_shmem_init() {
   p_shmem_init();
@@ -26,8 +36,11 @@ bool test_shmem_init() {
 }
 
 /**
-  @brief Tests the barrier synchronization across all PEs.
-  @return True if the barrier synchronization is successful, false otherwise.
+ * @brief Tests the barrier synchronization across all PEs.
+ *
+ * This test verifies that the barrier synchronization across all PEs is successful.
+ * 
+ * @return True if the barrier synchronization is successful, false otherwise.
  */
 bool test_shmem_barrier_all() {
   int mype = p_shmem_my_pe();
@@ -48,8 +61,11 @@ bool test_shmem_barrier_all() {
 }
 
 /**
-  @brief Tests the shmem_barrier() routine.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_barrier() routine.
+ *
+ * This test verifies that the `shmem_barrier` routine functions correctly.
+ * 
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_barrier(void) {
   static long pSync[SHMEM_BARRIER_SYNC_SIZE];
@@ -62,8 +78,11 @@ bool test_shmem_barrier(void) {
 }
 
 /**
-  @brief Tests retrieving the PE number of the calling PE.
-  @return The PE number on success, -1 on failure.
+ * @brief Tests retrieving the PE number of the calling PE.
+ *
+ * This test verifies that the `shmem_my_pe` function returns a valid PE number.
+ * 
+ * @return The PE number on success, -1 on failure.
  */
 int test_shmem_my_pe() {
   int mype = p_shmem_my_pe();
@@ -76,8 +95,11 @@ int test_shmem_my_pe() {
 }
 
 /**
-  @brief Tests retrieving the number of PEs.
-  @return The number of PEs if greater than 0, otherwise 0.
+ * @brief Tests retrieving the number of PEs.
+ *
+ * This test verifies that the `shmem_n_pes` function returns a valid number of PEs.
+ * 
+ * @return The number of PEs if greater than 0, otherwise 0.
  */
 int test_shmem_n_pes() {
   int npes = p_shmem_n_pes();
@@ -90,8 +112,11 @@ int test_shmem_n_pes() {
 }
 
 /**
-  @brief Tests if a PE is accessible from the calling PE.
-  @return True if all PEs are accessible, false otherwise.
+ * @brief Tests if a PE is accessible from the calling PE.
+ *
+ * This test verifies that the `shmem_pe_accessible` function correctly reports accessibility of all PEs.
+ * 
+ * @return True if all PEs are accessible, false otherwise.
  */
 bool test_shmem_pe_accessible() {
   int npes = p_shmem_n_pes();
@@ -104,8 +129,11 @@ bool test_shmem_pe_accessible() {
 }
 
 /**
-  @brief Tests retrieving the OpenSHMEM library version.
-  @return The version as a string in the format "major.minor".
+ * @brief Tests retrieving the OpenSHMEM library version.
+ *
+ * This test verifies that the `shmem_info_get_version` function returns the correct version of the OpenSHMEM library.
+ * 
+ * @return The version as a string in the format "major.minor".
  */
 std::string test_shmem_info_get_version() {
   int major, minor;
@@ -116,8 +144,11 @@ std::string test_shmem_info_get_version() {
 }
 
 /**
-  @brief Tests retrieving the name of the OpenSHMEM library.
-  @return The name of the library as a string if successful, otherwise an empty string.
+ * @brief Tests retrieving the name of the OpenSHMEM library.
+ *
+ * This test verifies that the `shmem_info_get_name` function returns the correct name of the OpenSHMEM library.
+ * 
+ * @return The name of the library as a string if successful, otherwise an empty string.
  */
 std::string test_shmem_info_get_name() {
   char name[SHMEM_MAX_NAME_LEN];
@@ -131,8 +162,11 @@ std::string test_shmem_info_get_name() {
 }
 
 /**
-  @brief Tests the finalization of OpenSHMEM.
-  @return True if the finalization is successful, false otherwise.
+ * @brief Tests the finalization of OpenSHMEM.
+ *
+ * This test verifies that the OpenSHMEM library finalizes successfully.
+ * 
+ * @return True if the finalization is successful, false otherwise.
  */
 bool test_shmem_finalize() {
   p_shmem_finalize();
@@ -140,8 +174,11 @@ bool test_shmem_finalize() {
 }
 
 /**
-  @brief Tests the global exit functionality of OpenSHMEM.
-  @return True if the global exit is successful, false otherwise.
+ * @brief Tests the global exit functionality of OpenSHMEM.
+ *
+ * This test verifies that the `shmem_global_exit` function successfully performs a global exit.
+ * 
+ * @return True if the global exit is successful, false otherwise.
  */
 bool test_shmem_global_exit() {
   p_shmem_global_exit(0);

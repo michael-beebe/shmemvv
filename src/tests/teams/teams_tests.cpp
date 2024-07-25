@@ -1,13 +1,16 @@
 /**
-  @file teams_tests.cpp
-  @brief Contains OpenSHMEM teams tests.
+ * @file teams_tests.cpp
+ * @brief Contains OpenSHMEM teams tests.
  */
 
 #include "teams_tests.hpp"
 
 /**
-  @brief Tests the shmem_team_my_pe() routine.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_team_my_pe() routine.
+ *
+ * This test verifies that the shmem_team_my_pe() function returns a valid PE number within the team.
+ *
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_team_my_pe(void) {
   shmem_team_t team;
@@ -18,8 +21,11 @@ bool test_shmem_team_my_pe(void) {
 }
 
 /**
-  @brief Tests the shmem_team_n_pes() routine.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_team_n_pes() routine.
+ *
+ * This test verifies that the shmem_team_n_pes() function returns the correct number of PEs in the team.
+ *
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_team_n_pes(void) {
   shmem_team_t team;
@@ -30,8 +36,11 @@ bool test_shmem_team_n_pes(void) {
 }
 
 /**
-  @brief Tests the shmem_team_get_config() routine.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_team_get_config() routine.
+ *
+ * This test verifies that the shmem_team_get_config() function correctly retrieves the team configuration.
+ *
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_team_get_config(void) {
   shmem_team_t team;
@@ -48,8 +57,11 @@ bool test_shmem_team_get_config(void) {
 }
 
 /**
-  @brief Tests the shmem_team_translate_pe() routine.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_team_translate_pe() routine.
+ *
+ * This test verifies that the shmem_team_translate_pe() function correctly translates a PE number from one team to another.
+ *
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_team_translate_pe(void) {
   shmem_team_t team;
@@ -60,8 +72,11 @@ bool test_shmem_team_translate_pe(void) {
 }
 
 /**
-  @brief Tests the shmem_team_split_strided() routine.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_team_split_strided() routine.
+ *
+ * This test verifies that the shmem_team_split_strided() function correctly splits a team into subteams.
+ *
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_team_split_strided(void) {
   shmem_team_t team;
@@ -72,8 +87,11 @@ bool test_shmem_team_split_strided(void) {
 }
 
 /**
-  @brief Tests the shmem_team_split_2d() routine.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_team_split_2d() routine.
+ *
+ * This test verifies that the shmem_team_split_2d() function correctly splits a team into two-dimensional subteams.
+ *
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_team_split_2d(void) {
   shmem_team_t team_x, team_y;
@@ -86,18 +104,20 @@ bool test_shmem_team_split_2d(void) {
 }
 
 /**
-  @brief Tests the shmem_team_destroy() routine.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_team_destroy() routine.
+ *
+ * This test verifies that the shmem_team_destroy() function correctly destroys a team.
+ *
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_team_destroy(void) {
   shmem_team_t team;
   p_shmem_team_split_strided(SHMEM_TEAM_WORLD, 0, 1, p_shmem_n_pes(), NULL, 0, &team);
   p_shmem_team_destroy(team);
-  if ( !(team == SHMEM_TEAM_INVALID) ) {
+  if (!(team == SHMEM_TEAM_INVALID)) {
     return true;
   }
   else {
     return false;
   }
 }
-

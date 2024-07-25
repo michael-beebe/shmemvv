@@ -18,17 +18,8 @@ cmake \
   -DVERBOSE=ON \
   ../
 
-# --- Configure build with Open MPI
-# cmake \
-#   -DCMAKE_LIBRARY_PATH=$OMPI_LIB         \
-#   -DCMAKE_C_LINKER_FLAGS="" \
-#   -DCMAKE_INSTALL_PREFIX=$SWHOME/shmemvv \
-#   -DDEBUG=OFF \
-#   -DVERBOSE=ON \
-#   ../
-
 # --- Compile
-make -j 50
+make
 
 # --- Move back to project root
 echo ; echo
@@ -66,4 +57,6 @@ if [ "$(which oshcc)" == "$HOME/sw/el9-x86_64/ompi/bin/oshcc" ]; then
   flags+=" --mca btl ^openib"
 fi
 
-oshrun $flags -np 2 $exe --all
+oshrun $flags -np 2 $exe --test_all
+
+

@@ -1,14 +1,17 @@
 /**
-  @file remote_tests.cpp
-  @brief Contains OpenSHMEM remote memory access tests.
+ * @file remote_tests.cpp
+ * @brief Contains OpenSHMEM remote memory access tests.
  */
 
 #include "remote_tests.hpp"
 
 /**
-  @brief Tests the shmem_put() function.
-  @details PE 0 puts data into an array on PE 1.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_put() function.
+ *
+ * This test verifies that the shmem_put() function correctly transfers data from PE 0 to PE 1.
+ *
+ * @details PE 0 puts data into an array on PE 1.
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_put(void) {
   static long src[10], dest[10];
@@ -39,9 +42,12 @@ bool test_shmem_put(void) {
 }
 
 /**
-  @brief Tests the shmem_p() function.
-  @details PE 0 puts a single data element into PE 1.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_p() function.
+ *
+ * This test verifies that the shmem_p() function correctly transfers a single data element from PE 0 to PE 1.
+ *
+ * @details PE 0 puts a single data element into PE 1.
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_p(void) {
   static long src, dest;
@@ -68,9 +74,12 @@ bool test_shmem_p(void) {
 }
 
 /**
-  @brief Tests the shmem_iput() function.
-  @details PE 0 puts data into an array on PE 1 using an indirect stride.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_iput() function.
+ *
+ * This test verifies that the shmem_iput() function correctly transfers data from PE 0 to PE 1 using an indirect stride.
+ *
+ * @details PE 0 puts data into an array on PE 1 using an indirect stride.
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_iput(void) {
   static long src[10], dest[10];
@@ -101,9 +110,12 @@ bool test_shmem_iput(void) {
 }
 
 /**
-  @brief Tests the shmem_get() function.
-  @details PE 1 gets data from an array on PE 0.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_get() function.
+ *
+ * This test verifies that the shmem_get() function correctly retrieves data from PE 0 to PE 1.
+ *
+ * @details PE 1 gets data from an array on PE 0.
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_get(void) {
   static long src[10], dest[10];
@@ -136,9 +148,12 @@ bool test_shmem_get(void) {
 }
 
 /**
-  @brief Tests the shmem_g() function.
-  @details PE 1 gets a single data element from PE 0.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_g() function.
+ *
+ * This test verifies that the shmem_g() function correctly retrieves a single data element from PE 0 to PE 1.
+ *
+ * @details PE 1 gets a single data element from PE 0.
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_g(void) {
   static long src, dest;
@@ -167,9 +182,12 @@ bool test_shmem_g(void) {
 }
 
 /**
-  @brief Tests the shmem_iget() function.
-  @details PE 1 gets data from an array on PE 0 using an indirect stride.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_iget() function.
+ *
+ * This test verifies that the shmem_iget() function correctly retrieves data from PE 0 to PE 1 using an indirect stride.
+ *
+ * @details PE 1 gets data from an array on PE 0 using an indirect stride.
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_iget(void) {
   static long src[10], dest[10];
@@ -202,9 +220,12 @@ bool test_shmem_iget(void) {
 }
 
 /**
-  @brief Tests the shmem_put_nbi() function.
-  @details PE 0 puts data into an array on PE 1 using non-blocking operations.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_put_nbi() function.
+ *
+ * This test verifies that the shmem_put_nbi() function correctly transfers data from PE 0 to PE 1 using non-blocking operations.
+ *
+ * @details PE 0 puts data into an array on PE 1 using non-blocking operations.
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_put_nbi(void) {
   static long src[10], dest[10];
@@ -236,9 +257,12 @@ bool test_shmem_put_nbi(void) {
 }
 
 /**
-  @brief Tests the shmem_get_nbi() function.
-  @details PE 1 gets data from an array on PE 0 using non-blocking operations.
-  @return True if the test is successful, false otherwise.
+ * @brief Tests the shmem_get_nbi() function.
+ *
+ * This test verifies that the shmem_get_nbi() function correctly retrieves data from PE 0 to PE 1 using non-blocking operations.
+ *
+ * @details PE 1 gets data from an array on PE 0 using non-blocking operations.
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_get_nbi(void) {
   static long src[10], dest[10];

@@ -1,16 +1,17 @@
 /**
-  @file signaling_tests.cpp
-  @brief Contains OpenSHMEM signaling tests.
+ * @file signaling_tests.cpp
+ * @brief Contains OpenSHMEM signaling tests.
  */
 
 #include "signaling_tests.hpp"
 
 /**
-  @brief Tests the shmem_put_signal() routine.
-  @details This function tests the shmem_put_signal() routine by putting a value
-           and a signal to a target PE and verifying the results.
-  @return True if the test passes, false otherwise.
-  @note Requires more than one PE.
+ * @brief Tests the shmem_put_signal() routine.
+ *
+ * This test verifies that the shmem_put_signal() function correctly transfers a value
+ * and sets a signal on the target PE.
+ *
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_put_signal(void) {
   static long dest = 0;
@@ -20,7 +21,7 @@ bool test_shmem_put_signal(void) {
   int npes = p_shmem_n_pes();
 
   if (npes < 2) {
-    return false;  /* Test requires more than one PE */
+    return false;
   }
 
   int target_pe = (mype + 1) % npes;
@@ -43,11 +44,12 @@ bool test_shmem_put_signal(void) {
 }
 
 /**
-  @brief Tests the shmem_put_signal_nbi() routine.
-  @details This function tests the shmem_put_signal_nbi() routine by putting a value
-           and a signal to a target PE in a non-blocking manner and verifying the results.
-  @return True if the test passes, false otherwise.
-  @note Requires more than one PE.
+ * @brief Tests the shmem_put_signal_nbi() routine.
+ *
+ * This test verifies that the shmem_put_signal_nbi() function correctly transfers a value
+ * and sets a signal on the target PE using non-blocking operations.
+ *
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_put_signal_nbi(void) {
   static long dest = 0;
@@ -57,7 +59,7 @@ bool test_shmem_put_signal_nbi(void) {
   int npes = p_shmem_n_pes();
 
   if (npes < 2) {
-    return false;  /* Test requires more than one PE */
+    return false;
   }
 
   int target_pe = (mype + 1) % npes;
@@ -81,11 +83,12 @@ bool test_shmem_put_signal_nbi(void) {
 }
 
 /**
-  @brief Tests the shmem_signal_fetch() routine.
-  @details This function tests the shmem_signal_fetch() routine by fetching a signal
-           from a target PE and verifying the result.
-  @return True if the test passes, false otherwise.
-  @note Requires more than one PE.
+ * @brief Tests the shmem_signal_fetch() routine.
+ *
+ * This test verifies that the shmem_signal_fetch() function correctly fetches the signal value
+ * from the target PE.
+ *
+ * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_signal_fetch(void) {
   static uint64_t signal = 1;
@@ -94,7 +97,7 @@ bool test_shmem_signal_fetch(void) {
   int npes = p_shmem_n_pes();
 
   if (npes < 2) {
-    return false;  /* Test requires more than one PE */
+    return false;
   }
 
   p_shmem_barrier_all();
