@@ -1,5 +1,5 @@
 /**
-  @file routines.hpp
+  @file routines.h
   @brief Contains routine pointers to avoid compiler errors if a routine is not
          implemented
  */

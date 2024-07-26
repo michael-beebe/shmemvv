@@ -1,5 +1,5 @@
 /**
- * @file locking_tests.hpp
+ * @file locking_tests.h
  * @brief Contains function declarations for the OpenSHMEM distributed locking tests.
  */
 
@@ -23,4 +23,4 @@
  */
 bool test_shmem_lock_unlock(void);
 
-#endif /* LOCKING_TESTS_HPP */
+#endif /* LOCKING_TESTS_H */

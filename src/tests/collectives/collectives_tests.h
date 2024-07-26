@@ -1,5 +1,5 @@
 /**
- * @file collectives_tests.hpp
+ * @file collectives_tests.h
  * @brief Contains function declarations for the OpenSHMEM collectives tests.
  */
 
@@ -130,4 +130,4 @@ bool test_shmem_sum_reduce(void);
  */
 bool test_shmem_prod_reduce(void);
 
-#endif /* COLLECTIVES_TESTS_HPP */
+#endif /* COLLECTIVES_TESTS_H */

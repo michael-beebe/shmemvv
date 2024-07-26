@@ -1,5 +1,5 @@
 /**
- * @file remote_tests.hpp
+ * @file remote_tests.h
  * @brief Contains function declarations for the OpenSHMEM remote memory access tests.
  */
 
@@ -82,4 +82,4 @@ bool test_shmem_put_nbi(void);
  */
 bool test_shmem_get_nbi(void);
 
-#endif /* REMOTE_TESTS_HPP */
+#endif /* REMOTE_TESTS_H */

@@ -230,4 +230,4 @@ bool test_shmem_atomic_fetch_or_nbi(void);
  */
 bool test_shmem_atomic_fetch_xor_nbi(void);
 
-#endif /* ATOMICS_TESTS_HPP */
+#endif /* ATOMICS_TESTS_H */

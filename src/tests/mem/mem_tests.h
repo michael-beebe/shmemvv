@@ -1,5 +1,5 @@
 /**
- * @file mem_tests.hpp
+ * @file mem_tests.h
  * @brief Contains function declarations for the OpenSHMEM memory management tests.
  */
 
@@ -82,4 +82,4 @@ bool test_shmem_malloc_with_hints(void);
  */
 bool test_shmem_calloc(void);
 
-#endif /* MEM_TESTS_HPP */
+#endif /* MEM_TESTS_H */

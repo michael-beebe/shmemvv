@@ -1,5 +1,5 @@
 /**
- * @file pt2pt_tests.hpp
+ * @file pt2pt_tests.h
  * @brief Contains function declarations for the point-to-point synchronization routines tests.
  */
 
@@ -165,4 +165,4 @@ bool test_shmem_test_some_vector(void);
  */
 bool test_shmem_signal_wait_until(void);
 
-#endif /* PT2PT_TESTS_HPP */
+#endif /* PT2PT_TESTS_H */

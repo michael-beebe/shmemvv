@@ -1,5 +1,5 @@
 /**
- * @file mem_ordering_tests.hpp
+ * @file mem_ordering_tests.h
  * @brief Contains function declarations for the OpenSHMEM memory ordering tests.
  */
 
@@ -34,4 +34,4 @@ bool test_shmem_fence(void);
  */
 bool test_shmem_quiet(void);
 
-#endif /* MEM_ORDERING_TESTS_HPP */
+#endif /* MEM_ORDERING_TESTS_H */

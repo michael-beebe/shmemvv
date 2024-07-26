@@ -1,5 +1,5 @@
 /**
- * @file comms_tests.hpp
+ * @file comms_tests.h
  * @brief Contains function declarations for the OpenSHMEM communication/context tests.
  */
 
@@ -48,4 +48,4 @@ bool test_shmem_ctx_destroy(void);
  */
 bool test_shmem_ctx_get_team(void);
 
-#endif /* COMMS_TESTS_HPP */
+#endif /* COMMS_TESTS_H */
