@@ -3,7 +3,7 @@
  * @brief Contains OpenSHMEM memory management tests.
  */
 
-#include "mem_tests.hpp"
+#include "mem_tests.h"
 
 /**
  * @brief Tests the shmem_malloc() and shmem_free() functions.

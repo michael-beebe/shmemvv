@@ -3,7 +3,7 @@
  * @brief Contains OpenSHMEM setup tests.
  */
 
-#include "setup_tests.hpp"
+#include "setup_tests.h"
 
 /**
  * @brief Tests the presence of a fake routine for demonstration purposes.

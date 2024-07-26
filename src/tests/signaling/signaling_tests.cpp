@@ -3,7 +3,7 @@
  * @brief Contains OpenSHMEM signaling tests.
  */
 
-#include "signaling_tests.hpp"
+#include "signaling_tests.h"
 
 /**
  * @brief Tests the shmem_put_signal() routine.

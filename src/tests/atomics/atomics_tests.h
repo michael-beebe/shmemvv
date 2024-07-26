@@ -1,12 +1,12 @@
 /**
- * @file atomics_tests.hpp
+ * @file atomics_tests.h
  * @brief Contains function declarations for the OpenSHMEM atomic memory operations tests.
  */
 
-#ifndef ATOMICS_TESTS_HPP
-#define ATOMICS_TESTS_HPP
+#ifndef ATOMICS_TESTS_H
+#define ATOMICS_TESTS_H
 
-#include "routines.hpp"
+#include "routines.h"
 #include <shmem.h>
 #include <iostream>
 

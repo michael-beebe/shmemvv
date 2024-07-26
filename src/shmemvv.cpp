@@ -3,7 +3,7 @@
  * @brief Contains helper functions for the OpenSHMEM verification/validation test suite.
  */
 
-#include "shmemvv.hpp"
+#include "shmemvv.h"
 
 /**
  * @brief Displays usage information for the test suite.

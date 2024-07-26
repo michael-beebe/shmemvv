@@ -3,10 +3,10 @@
  * @brief Contains function declarations for the OpenSHMEM remote memory access tests.
  */
 
-#ifndef REMOTE_TESTS_HPP
-#define REMOTE_TESTS_HPP
+#ifndef REMOTE_TESTS_H
+#define REMOTE_TESTS_H
 
-#include "routines.hpp"
+#include "routines.h"
 #include <shmem.h>
 #include <iostream>
 

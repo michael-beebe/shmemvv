@@ -3,10 +3,10 @@
  * @brief Contains function declarations for the OpenSHMEM collectives tests.
  */
 
-#ifndef COLLECTIVES_TESTS_HPP
-#define COLLECTIVES_TESTS_HPP
+#ifndef COLLECTIVES_TESTS_H
+#define COLLECTIVES_TESTS_H
 
-#include "routines.hpp"
+#include "routines.h"
 #include <shmem.h>
 #include <cstring>
 #include <stdbool.h>

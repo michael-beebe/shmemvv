@@ -1,12 +1,12 @@
 /**
- * @file teams_tests.hpp
+ * @file teams_tests.h
  * @brief Contains function declarations for the OpenSHMEM teams tests.
  */
 
-#ifndef TEAMS_TESTS_HPP
-#define TEAMS_TESTS_HPP
+#ifndef TEAMS_TESTS_H
+#define TEAMS_TESTS_H
 
-#include "routines.hpp"
+#include "routines.h"
 #include <shmem.h>
 #include <iostream>
 
@@ -73,4 +73,4 @@ bool test_shmem_team_split_2d(void);
  */
 bool test_shmem_team_destroy(void);
 
-#endif /* TEAMS_TESTS_HPP */
+#endif /* TEAMS_TESTS_H */

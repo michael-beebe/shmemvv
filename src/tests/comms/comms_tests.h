@@ -3,10 +3,10 @@
  * @brief Contains function declarations for the OpenSHMEM communication/context tests.
  */
 
-#ifndef COMMS_TESTS_HPP
-#define COMMS_TESTS_HPP
+#ifndef COMMS_TESTS_H
+#define COMMS_TESTS_H
 
-#include "routines.hpp"
+#include "routines.h"
 #include <shmem.h>
 #include <iostream>
 

@@ -3,7 +3,7 @@
  * @brief Contains OpenSHMEM communication/context tests.
  */
 
-#include "comms_tests.hpp"
+#include "comms_tests.h"
 
 /**
  * @brief Tests the shmem_ctx_create() function.

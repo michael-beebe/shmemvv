@@ -3,10 +3,10 @@
  * @brief Contains function declarations for the OpenSHMEM distributed locking tests.
  */
 
-#ifndef LOCKING_TESTS_HPP
-#define LOCKING_TESTS_HPP
+#ifndef LOCKING_TESTS_H
+#define LOCKING_TESTS_H
 
-#include "routines.hpp"
+#include "routines.h"
 #include <shmem.h>
 #include <iostream>
 #include <cstdlib>

@@ -3,7 +3,7 @@
  * @brief Contains OpenSHMEM remote memory access tests.
  */
 
-#include "remote_tests.hpp"
+#include "remote_tests.h"
 
 /**
  * @brief Tests the shmem_put() function.

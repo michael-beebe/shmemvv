@@ -3,10 +3,10 @@
  * @brief Contains function declarations for the OpenSHMEM memory management tests.
  */
 
-#ifndef MEM_TESTS_HPP
-#define MEM_TESTS_HPP
+#ifndef MEM_TESTS_H
+#define MEM_TESTS_H
 
-#include "routines.hpp"
+#include "routines.h"
 #include <shmem.h>
 #include <iostream>
 #include <cstdlib>

@@ -3,7 +3,7 @@
  * @brief Contains OpenSHMEM memory ordering tests.
  */
 
-#include "mem_ordering_tests.hpp"
+#include "mem_ordering_tests.h"
 
 /**
  * @brief Tests the shmem_fence() routine.

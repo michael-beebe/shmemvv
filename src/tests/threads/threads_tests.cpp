@@ -3,7 +3,7 @@
  * @brief Contains OpenSHMEM threads tests.
  */
 
-#include "threads_tests.hpp"
+#include "threads_tests.h"
 
 /**
  * @brief Tests the initialization of OpenSHMEM with threading support.

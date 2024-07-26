@@ -3,7 +3,7 @@
  * @brief Contains function pointer declarations and routine loading function for the OpenSHMEM library.
  */
 
-#include "routines.hpp"
+#include "routines.h"
 
 #include <iostream>
 #include <dlfcn.h>

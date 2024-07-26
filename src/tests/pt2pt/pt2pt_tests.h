@@ -3,10 +3,10 @@
  * @brief Contains function declarations for the point-to-point synchronization routines tests.
  */
 
-#ifndef PT2PT_TESTS_HPP
-#define PT2PT_TESTS_HPP
+#ifndef PT2PT_TESTS_H
+#define PT2PT_TESTS_H
 
-#include "routines.hpp"
+#include "routines.h"
 #include <shmem.h>
 #include <iostream>
 #include <stdio.h>

@@ -3,7 +3,7 @@
  * @brief Contains OpenSHMEM teams tests.
  */
 
-#include "teams_tests.hpp"
+#include "teams_tests.h"
 
 /**
  * @brief Tests the shmem_team_my_pe() routine.

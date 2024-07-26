@@ -3,10 +3,10 @@
  * @brief Contains function declarations for the OpenSHMEM memory ordering tests.
  */
 
-#ifndef MEM_ORDERING_TESTS_HPP
-#define MEM_ORDERING_TESTS_HPP
+#ifndef MEM_ORDERING_TESTS_H
+#define MEM_ORDERING_TESTS_H
 
-#include "routines.hpp"
+#include "routines.h"
 #include <shmem.h>
 #include <iostream>
 #include <cstdlib>

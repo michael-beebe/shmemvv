@@ -1,12 +1,12 @@
 /**
- * @file signaling_tests.hpp
+ * @file signaling_tests.h
  * @brief Contains function declarations for the OpenSHMEM signaling tests.
  */
 
-#ifndef SIGNALING_TESTS_HPP
-#define SIGNALING_TESTS_HPP
+#ifndef SIGNALING_TESTS_H
+#define SIGNALING_TESTS_H
 
-#include "routines.hpp"
+#include "routines.h"
 #include <shmem.h>
 
 /**
@@ -39,4 +39,4 @@ bool test_shmem_put_signal_nbi(void);
  */
 bool test_shmem_signal_fetch(void);
 
-#endif /* SIGNALING_TESTS_HPP */
+#endif /* SIGNALING_TESTS_H */

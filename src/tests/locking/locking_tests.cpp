@@ -3,7 +3,7 @@
  * @brief Contains OpenSHMEM distributed locking tests.
  */
 
-#include "locking_tests.hpp"
+#include "locking_tests.h"
 
 /**
  * @brief Tests the shmem_set_lock() and shmem_clear_lock() routines.

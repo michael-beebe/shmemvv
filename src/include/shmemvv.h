@@ -1,10 +1,10 @@
 /**
-  @file shmemvv.hpp
+  @file shmemvv.h
   @brief Contains helper function declarations for the OpenSHMEM verification/validation test suite.
  */
 
-#ifndef SHMEMVV_HPP
-#define SHMEMVV_HPP
+#ifndef SHMEMVV_H
+#define SHMEMVV_H
 
 #include <shmem.h>
 
@@ -16,18 +16,18 @@
 #include <sstream>
 #include <dlfcn.h>
 
-#include "../tests/setup/setup_tests.hpp"
-#include "../tests/threads/threads_tests.hpp"
-#include "../tests/mem/mem_tests.hpp"
-#include "../tests/teams/teams_tests.hpp"
-#include "../tests/comms/comms_tests.hpp"
-#include "../tests/remote/remote_tests.hpp"
-#include "../tests/atomics/atomics_tests.hpp"
-#include "../tests/signaling/signaling_tests.hpp"
-#include "../tests/collectives/collectives_tests.hpp"
-#include "../tests/pt2pt/pt2pt_tests.hpp"
-#include "../tests/mem_ordering/mem_ordering_tests.hpp"
-#include "../tests/locking/locking_tests.hpp"
+#include "../tests/setup/setup_tests.h"
+#include "../tests/threads/threads_tests.h"
+#include "../tests/mem/mem_tests.h"
+#include "../tests/teams/teams_tests.h"
+#include "../tests/comms/comms_tests.h"
+#include "../tests/remote/remote_tests.h"
+#include "../tests/atomics/atomics_tests.h"
+#include "../tests/signaling/signaling_tests.h"
+#include "../tests/collectives/collectives_tests.h"
+#include "../tests/pt2pt/pt2pt_tests.h"
+#include "../tests/mem_ordering/mem_ordering_tests.h"
+#include "../tests/locking/locking_tests.h"
 
 /* ANSI color codes for pretty output */
 #define RESET_COLOR "\033[0m"
@@ -142,4 +142,4 @@ void display_test_result(std::string routine_name, bool passed, bool required);
  void finalize_shmemvv(int mype);
 
 
-#endif /* SHMEMVV_HPP */
+#endif /* SHMEMVV_H */

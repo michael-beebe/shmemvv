@@ -3,7 +3,7 @@
  * @brief Contains tests for various OpenSHMEM collective routines.
  */
 
-#include "collectives_tests.hpp"
+#include "collectives_tests.h"
 
 /**
  * @brief Tests the shmem_sync() routine.

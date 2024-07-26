@@ -3,7 +3,7 @@
  * @brief Contains functions definitions with test functions for the point-to-point synchronization routines.
  */
 
-#include "pt2pt_tests.hpp"
+#include "pt2pt_tests.h"
 
 #define TIMEOUT 10
 

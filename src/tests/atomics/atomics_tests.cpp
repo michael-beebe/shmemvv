@@ -3,7 +3,7 @@
  * @brief Contains tests for OpenSHMEM atomic routines.
  */
 
-#include "atomics_tests.hpp"
+#include "atomics_tests.h"
 
 /**
  * @brief Tests the shmem_atomic_fetch() routine.

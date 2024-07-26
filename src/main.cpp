@@ -3,8 +3,8 @@
   @brief Driver file for the test suite.
 */
 
-#include "shmemvv.hpp"
-#include "routines.hpp"
+#include "shmemvv.h"
+#include "routines.h"
 
 /**
   @brief Main function for running the test suite.
