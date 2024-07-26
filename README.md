@@ -1,8 +1,6 @@
 # SHMEMVV
 Verification & Validation (V&V) suite for the [OpenSHMEM v1.5 specification](http://www.openshmem.org/site/sites/default/site_files/OpenSHMEM-1.5.pdf)
 
-<!-- ![Logo](assets/DALL·E%202024-06-26%2016.04.50%20-%20Create%20a%20logo%20for%20an%20OpenSHMEM%20verification_validation%20test%20suite%20called%20SHMEMVV.%20The%20logo%20should%20incorporate%20the%20same%20colors%20as%20the%20OpenSHMEM%20logo,%20w.webp) -->
-
 ![Logo](extra/logo.png)
 
 ## Requirements
@@ -11,13 +9,15 @@ Verification & Validation (V&V) suite for the [OpenSHMEM v1.5 specification](htt
 - CMake 3.10 or greater
 
 ## Limitations
-There are a few limitations to SHMEMVV that will be addressed in the future:
+There are a few limitations to SHMEMVV that are currently being addressed:
 
-- ONLY supports the implementations that adhere to the 1.5 specification, if you try to run this on an older OpenSHMEM implementation, you WILL get compiler errors
+- ONLY supports the implementations that adhere to the 1.5 specification, if you try to run this on an older OpenSHMEM implementation, you WILL get compiler errors.
 
-- ONLY supports tests for C++ bindings
+- ONLY supports tests for C++ bindings.
 
 - For typed routines, such as `shmem_<type>_put` the only `<type>` that is supported is `long`.
+
+- No debug output or logging.
 
 ## Building
 ```bash

@@ -1649,7 +1649,6 @@ int main(int argc, char *argv[]) {
           display_not_found_warning("shmem_clear_lock()", false);
         }
       }
-      
       shmem_barrier_all();
       if ( check_if_exists("shmem_set_lock") && check_if_exists("shmem_clear_lock") ) {
         bool result_shmem_lock_unlock = test_shmem_lock_unlock();
