@@ -1,9 +1,9 @@
 /**
- * @file remote_tests.cpp
+ * @file cxx_remote_tests.cpp
  * @brief Contains OpenSHMEM remote memory access tests.
  */
 
-#include "remote_tests.h"
+#include "cxx_remote_tests.h"
 
 /**
  * @brief Tests the shmem_put() function.

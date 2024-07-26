@@ -1,9 +1,9 @@
 /**
- * @file pt2pt_tests.cpp
+ * @file cxx_pt2pt_tests.cpp
  * @brief Contains functions definitions with test functions for the point-to-point synchronization routines.
  */
 
-#include "pt2pt_tests.h"
+#include "cxx_pt2pt_tests.h"
 
 #define TIMEOUT 10
 

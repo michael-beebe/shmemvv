@@ -1,9 +1,9 @@
 /**
- * @file teams_tests.cpp
+ * @file cxx_teams_tests.cpp
  * @brief Contains OpenSHMEM teams tests.
  */
 
-#include "teams_tests.h"
+#include "cxx_teams_tests.h"
 
 /**
  * @brief Tests the shmem_team_my_pe() routine.

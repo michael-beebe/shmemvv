@@ -1,9 +1,9 @@
 /**
- * @file atomics_tests.cpp
+ * @file cxx_atomics_tests.cpp
  * @brief Contains tests for OpenSHMEM atomic routines.
  */
 
-#include "atomics_tests.h"
+#include "cxx_atomics_tests.h"
 
 /**
  * @brief Tests the shmem_atomic_fetch() routine.

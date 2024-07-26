@@ -1,9 +1,9 @@
 /**
- * @file collectives_tests.cpp
+ * @file cxx_collectives_tests.cpp
  * @brief Contains tests for various OpenSHMEM collective routines.
  */
 
-#include "collectives_tests.h"
+#include "cxx_collectives_tests.h"
 
 /**
  * @brief Tests the shmem_sync() routine.

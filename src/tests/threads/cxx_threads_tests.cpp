@@ -1,9 +1,9 @@
 /**
- * @file threads_tests.cpp
+ * @file cxx_threads_tests.cpp
  * @brief Contains OpenSHMEM threads tests.
  */
 
-#include "threads_tests.h"
+#include "cxx_threads_tests.h"
 
 /**
  * @brief Tests the initialization of OpenSHMEM with threading support.

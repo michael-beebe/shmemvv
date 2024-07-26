@@ -1,9 +1,9 @@
 /**
- * @file signaling_tests.cpp
+ * @file cxx_signaling_tests.cpp
  * @brief Contains OpenSHMEM signaling tests.
  */
 
-#include "signaling_tests.h"
+#include "cxx_signaling_tests.h"
 
 /**
  * @brief Tests the shmem_put_signal() routine.

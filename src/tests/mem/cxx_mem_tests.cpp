@@ -1,9 +1,9 @@
 /**
- * @file mem_tests.cpp
+ * @file cxx_mem_tests.cpp
  * @brief Contains OpenSHMEM memory management tests.
  */
 
-#include "mem_tests.h"
+#include "cxx_mem_tests.h"
 
 /**
  * @brief Tests the shmem_malloc() and shmem_free() functions.

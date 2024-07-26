@@ -1,9 +1,9 @@
 /**
- * @file locking_tests.cpp
+ * @file cxx_locking_tests.cpp
  * @brief Contains OpenSHMEM distributed locking tests.
  */
 
-#include "locking_tests.h"
+#include "cxx_locking_tests.h"
 
 /**
  * @brief Tests the shmem_set_lock() and shmem_clear_lock() routines.

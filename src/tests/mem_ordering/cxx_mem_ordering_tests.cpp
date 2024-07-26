@@ -1,9 +1,9 @@
 /**
- * @file mem_ordering_tests.cpp
+ * @file cxx_mem_ordering_tests.cpp
  * @brief Contains OpenSHMEM memory ordering tests.
  */
 
-#include "mem_ordering_tests.h"
+#include "cxx_mem_ordering_tests.h"
 
 /**
  * @brief Tests the shmem_fence() routine.

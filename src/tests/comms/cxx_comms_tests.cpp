@@ -1,9 +1,9 @@
 /**
- * @file comms_tests.cpp
+ * @file cxx_comms_tests.cpp
  * @brief Contains OpenSHMEM communication/context tests.
  */
 
-#include "comms_tests.h"
+#include "cxx_comms_tests.h"
 
 /**
  * @brief Tests the shmem_ctx_create() function.

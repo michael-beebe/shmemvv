@@ -3,8 +3,8 @@
  * @brief Contains function declarations for the OpenSHMEM setup tests.
  */
 
-#ifndef SETUP_TESTS_H
-#define SETUP_TESTS_H
+#ifndef SETUP_TESTS_h
+#define SETUP_TESTS_h
 
 #include "routines.h"
 #include "shmemvv.h"
@@ -116,4 +116,4 @@ bool test_shmem_finalize(void);
  */
 bool test_shmem_global_exit(void);
 
-#endif /* SETUP_TESTS_H */
+#endif /* SETUP_TESTS_h */
