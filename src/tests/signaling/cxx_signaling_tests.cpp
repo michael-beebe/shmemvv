@@ -13,7 +13,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_put_signal(void) {
+bool text_cxx_shmem_put_signal(void) {
   static long dest = 0;
   static long value = 12345;
   static uint64_t signal = 0;
@@ -51,7 +51,7 @@ bool test_shmem_put_signal(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_put_signal_nbi(void) {
+bool text_cxx_shmem_put_signal_nbi(void) {
   static long dest = 0;
   static long value = 67890;
   static uint64_t signal = 0;
@@ -90,7 +90,7 @@ bool test_shmem_put_signal_nbi(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_signal_fetch(void) {
+bool text_cxx_shmem_signal_fetch(void) {
   static uint64_t signal = 1;
   uint64_t fetched_signal = 0;
   int mype = p_shmem_my_pe();

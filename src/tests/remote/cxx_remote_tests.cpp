@@ -13,7 +13,7 @@
  * @details PE 0 puts data into an array on PE 1.
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_put(void) {
+bool text_cxx_shmem_put(void) {
   static long src[10], dest[10];
   int mype = p_shmem_my_pe();
   int npes = p_shmem_n_pes();
@@ -49,7 +49,7 @@ bool test_shmem_put(void) {
  * @details PE 0 puts a single data element into PE 1.
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_p(void) {
+bool text_cxx_shmem_p(void) {
   static long src, dest;
   int mype = p_shmem_my_pe();
   int npes = p_shmem_n_pes();
@@ -81,7 +81,7 @@ bool test_shmem_p(void) {
  * @details PE 0 puts data into an array on PE 1 using an indirect stride.
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_iput(void) {
+bool text_cxx_shmem_iput(void) {
   static long src[10], dest[10];
   int mype = p_shmem_my_pe();
   int npes = p_shmem_n_pes();
@@ -117,7 +117,7 @@ bool test_shmem_iput(void) {
  * @details PE 1 gets data from an array on PE 0.
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_get(void) {
+bool text_cxx_shmem_get(void) {
   static long src[10], dest[10];
   int mype = p_shmem_my_pe();
   int npes = p_shmem_n_pes();
@@ -155,7 +155,7 @@ bool test_shmem_get(void) {
  * @details PE 1 gets a single data element from PE 0.
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_g(void) {
+bool text_cxx_shmem_g(void) {
   static long src, dest;
   int mype = p_shmem_my_pe();
   int npes = p_shmem_n_pes();
@@ -189,7 +189,7 @@ bool test_shmem_g(void) {
  * @details PE 1 gets data from an array on PE 0 using an indirect stride.
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_iget(void) {
+bool text_cxx_shmem_iget(void) {
   static long src[10], dest[10];
   int mype = p_shmem_my_pe();
   int npes = p_shmem_n_pes();
@@ -227,7 +227,7 @@ bool test_shmem_iget(void) {
  * @details PE 0 puts data into an array on PE 1 using non-blocking operations.
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_put_nbi(void) {
+bool text_cxx_shmem_put_nbi(void) {
   static long src[10], dest[10];
   int mype = p_shmem_my_pe();
   int npes = p_shmem_n_pes();
@@ -264,7 +264,7 @@ bool test_shmem_put_nbi(void) {
  * @details PE 1 gets data from an array on PE 0 using non-blocking operations.
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_get_nbi(void) {
+bool text_cxx_shmem_get_nbi(void) {
   static long src[10], dest[10];
   int mype = p_shmem_my_pe();
   int npes = p_shmem_n_pes();

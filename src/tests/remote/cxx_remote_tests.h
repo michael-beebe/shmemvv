@@ -17,7 +17,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_put(void);
+bool text_cxx_shmem_put(void);
 
 /**
  * @brief Tests the shmem_p() routine.
@@ -26,7 +26,7 @@ bool test_shmem_put(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_p(void);
+bool text_cxx_shmem_p(void);
 
 /**
  * @brief Tests the shmem_iput() routine.
@@ -35,7 +35,7 @@ bool test_shmem_p(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_iput(void);
+bool text_cxx_shmem_iput(void);
 
 /**
  * @brief Tests the shmem_get() routine.
@@ -44,7 +44,7 @@ bool test_shmem_iput(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_get(void);
+bool text_cxx_shmem_get(void);
 
 /**
  * @brief Tests the shmem_g() routine.
@@ -53,7 +53,7 @@ bool test_shmem_get(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_g(void);
+bool text_cxx_shmem_g(void);
 
 /**
  * @brief Tests the shmem_iget() routine.
@@ -62,7 +62,7 @@ bool test_shmem_g(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_iget(void);
+bool text_cxx_shmem_iget(void);
 
 /**
  * @brief Tests the shmem_put_nbi() routine.
@@ -71,7 +71,7 @@ bool test_shmem_iget(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_put_nbi(void);
+bool text_cxx_shmem_put_nbi(void);
 
 /**
  * @brief Tests the shmem_get_nbi() routine.
@@ -80,6 +80,6 @@ bool test_shmem_put_nbi(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_get_nbi(void);
+bool text_cxx_shmem_get_nbi(void);
 
 #endif /* REMOTE_TESTS_H */

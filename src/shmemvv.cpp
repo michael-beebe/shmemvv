@@ -267,6 +267,6 @@ void display_test_result(std::string routine_name, bool passed, bool required) {
  */
 void finalize_shmemvv(int mype) {
   if (mype == 0) { display_test_header("FINALIZATION"); }
-  if (mype == 0) { display_test_result("shmem_finalize()", test_shmem_finalize(), false); }
+  if (mype == 0) { display_test_result("shmem_finalize()", text_cxx_shmem_finalize(), false); }
   if (mype == 0) { std::cout << std::endl; }
 }

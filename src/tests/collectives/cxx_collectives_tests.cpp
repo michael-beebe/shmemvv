@@ -12,7 +12,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_sync(void) {
+bool text_cxx_shmem_sync(void) {
   static long pSync[SHMEM_SYNC_SIZE];
   for (int i = 0; i < SHMEM_SYNC_SIZE; i++) {
     pSync[i] = SHMEM_SYNC_VALUE;
@@ -29,7 +29,7 @@ bool test_shmem_sync(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_sync_all(void) {
+bool text_cxx_shmem_sync_all(void) {
   p_shmem_sync_all();
   return true;
 }
@@ -42,7 +42,7 @@ bool test_shmem_sync_all(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_alltoall(void) {
+bool text_cxx_shmem_alltoall(void) {
   int npes = p_shmem_n_pes();
   int mype = p_shmem_my_pe();
   
@@ -77,7 +77,7 @@ bool test_shmem_alltoall(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_alltoalls(void) {
+bool text_cxx_shmem_alltoalls(void) {
   int npes = p_shmem_n_pes();
   int mype = p_shmem_my_pe();
 
@@ -112,7 +112,7 @@ bool test_shmem_alltoalls(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_broadcast(void) {
+bool text_cxx_shmem_broadcast(void) {
   int npes = p_shmem_n_pes();
   int mype = p_shmem_my_pe();
   
@@ -157,7 +157,7 @@ bool test_shmem_broadcast(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_collect(void) {
+bool text_cxx_shmem_collect(void) {
   int npes = p_shmem_n_pes();
   int mype = p_shmem_my_pe();
   
@@ -190,7 +190,7 @@ bool test_shmem_collect(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_fcollect(void) {
+bool text_cxx_shmem_fcollect(void) {
   int npes = p_shmem_n_pes();
   int mype = p_shmem_my_pe();
   
@@ -223,7 +223,7 @@ bool test_shmem_fcollect(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_sum_reduce(void) {
+bool text_cxx_shmem_sum_reduce(void) {
   int npes = p_shmem_n_pes();
   int mype = p_shmem_my_pe();
 
@@ -251,7 +251,7 @@ bool test_shmem_sum_reduce(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_prod_reduce(void) {
+bool text_cxx_shmem_prod_reduce(void) {
   int npes = p_shmem_n_pes();
   int mype = p_shmem_my_pe();
 
@@ -283,7 +283,7 @@ bool test_shmem_prod_reduce(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_min_reduce(void) {
+bool text_cxx_shmem_min_reduce(void) {
   int npes = p_shmem_n_pes();
   int mype = p_shmem_my_pe();
 
@@ -310,7 +310,7 @@ bool test_shmem_min_reduce(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_max_reduce(void) {
+bool text_cxx_shmem_max_reduce(void) {
   int npes = p_shmem_n_pes();
   int mype = p_shmem_my_pe();
 

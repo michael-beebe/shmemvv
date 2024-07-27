@@ -17,7 +17,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_put_signal(void);
+bool text_cxx_shmem_put_signal(void);
 
 /**
  * @brief Tests the shmem_put_signal_nbi() routine.
@@ -27,7 +27,7 @@ bool test_shmem_put_signal(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_put_signal_nbi(void);
+bool text_cxx_shmem_put_signal_nbi(void);
 
 /**
  * @brief Tests the shmem_signal_fetch() routine.
@@ -37,6 +37,6 @@ bool test_shmem_put_signal_nbi(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_signal_fetch(void);
+bool text_cxx_shmem_signal_fetch(void);
 
 #endif /* SIGNALING_TESTS_H */

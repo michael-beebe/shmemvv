@@ -23,7 +23,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_wait_until(void);
+bool text_cxx_shmem_wait_until(void);
 
 /**
  * @brief Tests the shmem_wait_until_all() routine.
@@ -33,7 +33,7 @@ bool test_shmem_wait_until(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_wait_until_all(void);
+bool text_cxx_shmem_wait_until_all(void);
 
 /**
  * @brief Tests the shmem_wait_until_any() routine.
@@ -43,7 +43,7 @@ bool test_shmem_wait_until_all(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_wait_until_any(void);
+bool text_cxx_shmem_wait_until_any(void);
 
 /**
  * @brief Tests the shmem_wait_until_some() routine.
@@ -53,7 +53,7 @@ bool test_shmem_wait_until_any(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_wait_until_some(void);
+bool text_cxx_shmem_wait_until_some(void);
 
 /**
  * @brief Tests the shmem_wait_until_all_vector() routine.
@@ -63,7 +63,7 @@ bool test_shmem_wait_until_some(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_wait_until_all_vector(void);
+bool text_cxx_shmem_wait_until_all_vector(void);
 
 /**
  * @brief Tests the shmem_wait_until_any_vector() routine.
@@ -73,7 +73,7 @@ bool test_shmem_wait_until_all_vector(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_wait_until_any_vector(void);
+bool text_cxx_shmem_wait_until_any_vector(void);
 
 /**
  * @brief Tests the shmem_wait_until_some_vector() routine.
@@ -83,7 +83,7 @@ bool test_shmem_wait_until_any_vector(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_wait_until_some_vector(void);
+bool text_cxx_shmem_wait_until_some_vector(void);
 
 /**
  * @brief Tests the shmem_test() routine.
@@ -93,7 +93,7 @@ bool test_shmem_wait_until_some_vector(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_test(void);
+bool text_cxx_shmem_test(void);
 
 /**
  * @brief Tests the shmem_test_all() routine.
@@ -103,7 +103,7 @@ bool test_shmem_test(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_test_all(void);
+bool text_cxx_shmem_test_all(void);
 
 /**
  * @brief Tests the shmem_test_any() routine.
@@ -113,7 +113,7 @@ bool test_shmem_test_all(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_test_any(void);
+bool text_cxx_shmem_test_any(void);
 
 /**
  * @brief Tests the shmem_test_some() routine.
@@ -123,7 +123,7 @@ bool test_shmem_test_any(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_test_some(void);
+bool text_cxx_shmem_test_some(void);
 
 /**
  * @brief Tests the shmem_test_all_vector() routine.
@@ -133,7 +133,7 @@ bool test_shmem_test_some(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_test_all_vector(void);
+bool text_cxx_shmem_test_all_vector(void);
 
 /**
  * @brief Tests the shmem_test_any_vector() routine.
@@ -143,7 +143,7 @@ bool test_shmem_test_all_vector(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_test_any_vector(void);
+bool text_cxx_shmem_test_any_vector(void);
 
 /**
  * @brief Tests the shmem_test_some_vector() routine.
@@ -153,7 +153,7 @@ bool test_shmem_test_any_vector(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_test_some_vector(void);
+bool text_cxx_shmem_test_some_vector(void);
 
 /**
  * @brief Tests the shmem_signal_wait_until() routine.
@@ -163,6 +163,6 @@ bool test_shmem_test_some_vector(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_signal_wait_until(void);
+bool text_cxx_shmem_signal_wait_until(void);
 
 #endif /* PT2PT_TESTS_H */

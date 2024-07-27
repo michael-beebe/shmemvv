@@ -20,7 +20,7 @@
  *
  * @return True if the pointer is accessible, false otherwise.
  */
-bool test_shmem_ptr(void);
+bool text_cxx_shmem_ptr(void);
 
 /**
  * @brief Tests the shmem_malloc() and shmem_free() functions.
@@ -30,7 +30,7 @@ bool test_shmem_ptr(void);
  *
  * @return True if the tests are successful, false otherwise.
  */
-bool test_shmem_malloc_free(void);
+bool text_cxx_shmem_malloc_free(void);
 
 /**
  * @brief Tests the shmem_addr_accessible() routine.
@@ -40,7 +40,7 @@ bool test_shmem_malloc_free(void);
  *
  * @return True if the address is accessible from all PEs, false otherwise.
  */
-bool test_shmem_addr_accessible(void);
+bool text_cxx_shmem_addr_accessible(void);
 
 /**
  * @brief Tests the shmem_realloc() routine.
@@ -50,7 +50,7 @@ bool test_shmem_addr_accessible(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_realloc(void);
+bool text_cxx_shmem_realloc(void);
 
 /**
  * @brief Tests the shmem_align() routine.
@@ -60,7 +60,7 @@ bool test_shmem_realloc(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_align(void);
+bool text_cxx_shmem_align(void);
 
 /**
  * @brief Tests the shmem_malloc_with_hints() routine.
@@ -70,7 +70,7 @@ bool test_shmem_align(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_malloc_with_hints(void);
+bool text_cxx_shmem_malloc_with_hints(void);
 
 /**
  * @brief Tests the shmem_calloc() routine.
@@ -80,6 +80,6 @@ bool test_shmem_malloc_with_hints(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_calloc(void);
+bool text_cxx_shmem_calloc(void);
 
 #endif /* MEM_TESTS_H */

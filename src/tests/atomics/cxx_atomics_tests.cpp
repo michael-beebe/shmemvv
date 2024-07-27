@@ -13,7 +13,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch() {
+bool text_cxx_shmem_atomic_fetch() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -36,7 +36,7 @@ bool test_shmem_atomic_fetch() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_set() {
+bool text_cxx_shmem_atomic_set() {
   static ulong *dest;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
   ulong value = 42;
@@ -57,7 +57,7 @@ bool test_shmem_atomic_set() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_compare_swap() {
+bool text_cxx_shmem_atomic_compare_swap() {
   static ulong *dest;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
   ulong old = 42, new_val = 43;
@@ -82,7 +82,7 @@ bool test_shmem_atomic_compare_swap() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_swap() {
+bool text_cxx_shmem_atomic_swap() {
   static ulong *dest;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
   ulong value = 42, new_val = 43;
@@ -104,7 +104,7 @@ bool test_shmem_atomic_swap() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch_inc() {
+bool text_cxx_shmem_atomic_fetch_inc() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -127,7 +127,7 @@ bool test_shmem_atomic_fetch_inc() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_inc() {
+bool text_cxx_shmem_atomic_inc() {
   static ulong *dest;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
   ulong value = 42;
@@ -149,7 +149,7 @@ bool test_shmem_atomic_inc() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch_add() {
+bool text_cxx_shmem_atomic_fetch_add() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -172,7 +172,7 @@ bool test_shmem_atomic_fetch_add() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_add() {
+bool text_cxx_shmem_atomic_add() {
   static ulong *dest;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
   ulong value = 42, add_val = 10;
@@ -194,7 +194,7 @@ bool test_shmem_atomic_add() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch_and() {
+bool text_cxx_shmem_atomic_fetch_and() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -217,7 +217,7 @@ bool test_shmem_atomic_fetch_and() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_and() {
+bool text_cxx_shmem_atomic_and() {
   static ulong *dest;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
   ulong value = 42, and_val = 15;
@@ -239,7 +239,7 @@ bool test_shmem_atomic_and() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch_or() {
+bool text_cxx_shmem_atomic_fetch_or() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -262,7 +262,7 @@ bool test_shmem_atomic_fetch_or() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_or() {
+bool text_cxx_shmem_atomic_or() {
   static ulong *dest;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
   ulong value = 42, or_val = 15;
@@ -284,7 +284,7 @@ bool test_shmem_atomic_or() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch_xor() {
+bool text_cxx_shmem_atomic_fetch_xor() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -307,7 +307,7 @@ bool test_shmem_atomic_fetch_xor() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_xor() {
+bool text_cxx_shmem_atomic_xor() {
   static ulong *dest;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
   ulong value = 42, xor_val = 15;
@@ -329,7 +329,7 @@ bool test_shmem_atomic_xor() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch_nbi() {
+bool text_cxx_shmem_atomic_fetch_nbi() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -353,7 +353,7 @@ bool test_shmem_atomic_fetch_nbi() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_compare_swap_nbi() {
+bool text_cxx_shmem_atomic_compare_swap_nbi() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -378,7 +378,7 @@ bool test_shmem_atomic_compare_swap_nbi() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_swap_nbi() {
+bool text_cxx_shmem_atomic_swap_nbi() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -403,7 +403,7 @@ bool test_shmem_atomic_swap_nbi() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch_inc_nbi() {
+bool text_cxx_shmem_atomic_fetch_inc_nbi() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -428,7 +428,7 @@ bool test_shmem_atomic_fetch_inc_nbi() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch_add_nbi() {
+bool text_cxx_shmem_atomic_fetch_add_nbi() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -453,7 +453,7 @@ bool test_shmem_atomic_fetch_add_nbi() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch_and_nbi() {
+bool text_cxx_shmem_atomic_fetch_and_nbi() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -478,7 +478,7 @@ bool test_shmem_atomic_fetch_and_nbi() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch_or_nbi() {
+bool text_cxx_shmem_atomic_fetch_or_nbi() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -503,7 +503,7 @@ bool test_shmem_atomic_fetch_or_nbi() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch_xor_nbi() {
+bool text_cxx_shmem_atomic_fetch_xor_nbi() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));

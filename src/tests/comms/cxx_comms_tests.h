@@ -17,7 +17,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_ctx_create(void);
+bool text_cxx_shmem_ctx_create(void);
 
 /**
  * @brief Tests the shmem_team_create_ctx() function.
@@ -27,7 +27,7 @@ bool test_shmem_ctx_create(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_team_create_ctx(void);
+bool text_cxx_shmem_team_create_ctx(void);
 
 /**
  * @brief Tests the shmem_ctx_destroy() function.
@@ -36,7 +36,7 @@ bool test_shmem_team_create_ctx(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_ctx_destroy(void);
+bool text_cxx_shmem_ctx_destroy(void);
 
 /**
  * @brief Tests the shmem_ctx_get_team() function.
@@ -46,6 +46,6 @@ bool test_shmem_ctx_destroy(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_ctx_get_team(void);
+bool text_cxx_shmem_ctx_get_team(void);
 
 #endif /* COMMS_TESTS_H */

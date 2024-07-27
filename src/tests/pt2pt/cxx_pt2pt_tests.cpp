@@ -15,7 +15,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_wait_until(void) {
+bool text_cxx_shmem_wait_until(void) {
   long *flag = (long *)p_shmem_malloc(sizeof(long));
   *flag = 0;
   int mype = p_shmem_my_pe();
@@ -49,7 +49,7 @@ bool test_shmem_wait_until(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_wait_until_all(void) {
+bool text_cxx_shmem_wait_until_all(void) {
   long *flags = (long *)p_shmem_malloc(2 * sizeof(long));
   flags[0] = 0;
   flags[1] = 0;
@@ -85,7 +85,7 @@ bool test_shmem_wait_until_all(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_wait_until_any(void) {
+bool text_cxx_shmem_wait_until_any(void) {
   long *flags = (long *)p_shmem_malloc(3 * sizeof(long));
   for (int i = 0; i < 3; i++) {
     flags[i] = 0;
@@ -126,7 +126,7 @@ bool test_shmem_wait_until_any(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_wait_until_some(void) {
+bool text_cxx_shmem_wait_until_some(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   for (int i = 0; i < 4; ++i) {
     flags[i] = 0;
@@ -171,7 +171,7 @@ bool test_shmem_wait_until_some(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_test(void) {
+bool text_cxx_shmem_test(void) {
   long *flag = (long *)p_shmem_malloc(sizeof(long));
   if (flag == NULL) {
     return false;
@@ -215,7 +215,7 @@ bool test_shmem_test(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_test_all(void) {
+bool text_cxx_shmem_test_all(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   if (flags == NULL) {
     return false;
@@ -265,7 +265,7 @@ bool test_shmem_test_all(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_test_any(void) {
+bool text_cxx_shmem_test_any(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   if (flags == NULL) {
     return false;
@@ -311,7 +311,7 @@ bool test_shmem_test_any(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_test_some(void) {
+bool text_cxx_shmem_test_some(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   if (flags == NULL) {
     return false;
@@ -359,7 +359,7 @@ bool test_shmem_test_some(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_wait_until_all_vector(void) {
+bool text_cxx_shmem_wait_until_all_vector(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   for (int i = 0; i < 4; ++i) {
     flags[i] = 0;
@@ -401,7 +401,7 @@ bool test_shmem_wait_until_all_vector(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_wait_until_any_vector(void) {
+bool text_cxx_shmem_wait_until_any_vector(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   for (int i = 0; i < 4; ++i) {
     flags[i] = 0;
@@ -443,7 +443,7 @@ bool test_shmem_wait_until_any_vector(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_wait_until_some_vector(void) {
+bool text_cxx_shmem_wait_until_some_vector(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   for (int i = 0; i < 4; ++i) {
     flags[i] = 0;
@@ -489,7 +489,7 @@ bool test_shmem_wait_until_some_vector(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_test_all_vector(void) {
+bool text_cxx_shmem_test_all_vector(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   if (flags == NULL) {
     return false;
@@ -540,7 +540,7 @@ bool test_shmem_test_all_vector(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_test_any_vector(void) {
+bool text_cxx_shmem_test_any_vector(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   if (flags == NULL) {
     return false;
@@ -591,7 +591,7 @@ bool test_shmem_test_any_vector(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_test_some_vector(void) {
+bool text_cxx_shmem_test_some_vector(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   if (flags == NULL) {
     return false;
@@ -645,7 +645,7 @@ bool test_shmem_test_some_vector(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_signal_wait_until(void) {
+bool text_cxx_shmem_signal_wait_until(void) {
   uint64_t *flag = (uint64_t *)p_shmem_malloc(sizeof(uint64_t));
   if (flag == NULL) {
     return false;

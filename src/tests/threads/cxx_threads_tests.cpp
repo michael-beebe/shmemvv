@@ -12,7 +12,7 @@
  *
  * @return True if the initialization with threading support is successful, false otherwise.
  */
-bool test_shmem_init_thread(void) {
+bool text_cxx_shmem_init_thread(void) {
   int provided;
   p_shmem_init_thread(SHMEM_THREAD_MULTIPLE, &provided);
   return (provided == SHMEM_THREAD_MULTIPLE);
@@ -26,7 +26,7 @@ bool test_shmem_init_thread(void) {
  *
  * @return True if the query is successful and the level of threading support is one of the valid levels, false otherwise.
  */
-bool test_shmem_query_thread(void) {
+bool text_cxx_shmem_query_thread(void) {
   int provided;
   p_shmem_query_thread(&provided);
   bool success = (provided == SHMEM_THREAD_SINGLE ||

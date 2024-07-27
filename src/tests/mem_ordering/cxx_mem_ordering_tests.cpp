@@ -14,7 +14,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_fence(void) {
+bool text_cxx_shmem_fence(void) {
   long *flag = (long *)p_shmem_malloc(sizeof(long));
   *flag = 0;
   int mype = p_shmem_my_pe();
@@ -49,7 +49,7 @@ bool test_shmem_fence(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_quiet(void) {
+bool text_cxx_shmem_quiet(void) {
   long *flag = (long *)p_shmem_malloc(sizeof(long));
   *flag = 0;
   int mype = p_shmem_my_pe();

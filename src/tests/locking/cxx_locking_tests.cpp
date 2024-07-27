@@ -14,7 +14,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_lock_unlock(void) {
+bool text_cxx_shmem_lock_unlock(void) {
   long *lock = (long *)p_shmem_malloc(sizeof(long));
   *lock = 0;
   int mype = p_shmem_my_pe();

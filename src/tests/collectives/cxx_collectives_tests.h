@@ -19,7 +19,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_sync(void);
+bool text_cxx_shmem_sync(void);
 
 /**
  * @brief Tests the shmem_sync_all() routine.
@@ -28,7 +28,7 @@ bool test_shmem_sync(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_sync_all(void);
+bool text_cxx_shmem_sync_all(void);
 
 /**
  * @brief Tests the shmem_alltoall() routine.
@@ -38,7 +38,7 @@ bool test_shmem_sync_all(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_alltoall(void);
+bool text_cxx_shmem_alltoall(void);
 
 /**
  * @brief Tests the shmem_alltoalls() routine.
@@ -48,7 +48,7 @@ bool test_shmem_alltoall(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_alltoalls(void);
+bool text_cxx_shmem_alltoalls(void);
 
 /**
  * @brief Tests the shmem_broadcast() routine.
@@ -58,7 +58,7 @@ bool test_shmem_alltoalls(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_broadcast(void);
+bool text_cxx_shmem_broadcast(void);
 
 /**
  * @brief Tests the shmem_collect() routine.
@@ -68,7 +68,7 @@ bool test_shmem_broadcast(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_collect(void);
+bool text_cxx_shmem_collect(void);
 
 /**
  * @brief Tests the shmem_fcollect() routine.
@@ -78,7 +78,7 @@ bool test_shmem_collect(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_fcollect(void);
+bool text_cxx_shmem_fcollect(void);
 
 /**
  * @brief Tests the shmem_and_reduce() routine.
@@ -88,7 +88,7 @@ bool test_shmem_fcollect(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_and_reduce(void);
+bool text_cxx_shmem_and_reduce(void);
 
 /**
  * @brief Tests the shmem_max_reduce() routine.
@@ -98,7 +98,7 @@ bool test_shmem_and_reduce(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_max_reduce(void);
+bool text_cxx_shmem_max_reduce(void);
 
 /**
  * @brief Tests the shmem_min_reduce() routine.
@@ -108,7 +108,7 @@ bool test_shmem_max_reduce(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_min_reduce(void);
+bool text_cxx_shmem_min_reduce(void);
 
 /**
  * @brief Tests the shmem_sum_reduce() routine.
@@ -118,7 +118,7 @@ bool test_shmem_min_reduce(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_sum_reduce(void);
+bool text_cxx_shmem_sum_reduce(void);
 
 /**
  * @brief Tests the shmem_prod_reduce() routine.
@@ -128,6 +128,6 @@ bool test_shmem_sum_reduce(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_prod_reduce(void);
+bool text_cxx_shmem_prod_reduce(void);
 
 #endif /* COLLECTIVES_TESTS_H */
