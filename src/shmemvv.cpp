@@ -257,16 +257,3 @@ void display_test_result(std::string routine_name, bool passed, bool required) {
     }
   }
 }
-
-/**
- * @brief Runs the finalization test.
- *
- * This function runs the finalization test for OpenSHMEM and displays the results.
- *
- * @param mype Current PE.
- */
-void finalize_shmemvv(int mype) {
-  if (mype == 0) { display_test_header("FINALIZATION"); }
-  if (mype == 0) { display_test_result("shmem_finalize()", text_cxx_shmem_finalize(), false); }
-  if (mype == 0) { std::cout << std::endl; }
-}

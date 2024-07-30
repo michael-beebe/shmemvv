@@ -3,7 +3,7 @@
  * @brief Contains OpenSHMEM memory management tests.
  */
 
-#include "cxx_mem_tests.h"
+#include "mem_tests.h"
 
 /**
  * @brief Tests the shmem_malloc() and shmem_free() functions.
@@ -13,7 +13,7 @@
  *
  * @return True if the tests are successful, false otherwise.
  */
-bool text_cxx_shmem_malloc_free(void) {
+bool text_shmem_malloc_free(void) {
   size_t size = 1024;
   void *ptr = p_shmem_malloc(size);
   if (ptr == nullptr) {
@@ -31,7 +31,7 @@ bool text_cxx_shmem_malloc_free(void) {
  *
  * @return True if the pointer is accessible, false otherwise.
  */
-bool text_cxx_shmem_ptr() {
+bool text_shmem_ptr() {
   int mype = p_shmem_my_pe();
   int npes = p_shmem_n_pes();
   int *ptr = (int *)p_shmem_malloc(sizeof(int));
@@ -71,7 +71,7 @@ bool text_cxx_shmem_ptr() {
  *
  * @return True if the address is accessible from all PEs, false otherwise.
  */
-bool text_cxx_shmem_addr_accessible() {
+bool text_shmem_addr_accessible() {
   int mype = p_shmem_my_pe();
   int npes = p_shmem_n_pes();
   int *ptr = (int *)p_shmem_malloc(sizeof(int));
@@ -104,7 +104,7 @@ bool text_cxx_shmem_addr_accessible() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_realloc(void) {
+bool text_shmem_realloc(void) {
   size_t size = 1024;
   void *ptr = p_shmem_malloc(size);
   if (ptr == nullptr) {
@@ -128,7 +128,7 @@ bool text_cxx_shmem_realloc(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_align(void) {
+bool text_shmem_align(void) {
   size_t alignment = 64;
   size_t size = 1024;
   void *ptr = p_shmem_align(alignment, size);
@@ -147,7 +147,7 @@ bool text_cxx_shmem_align(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_malloc_with_hints(void) {
+bool text_shmem_malloc_with_hints(void) {
   size_t size = 1024;
   long hints = SHMEM_MALLOC_ATOMICS_REMOTE;
   void *ptr = p_shmem_malloc_with_hints(size, hints);
@@ -166,7 +166,7 @@ bool text_cxx_shmem_malloc_with_hints(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_calloc(void) {
+bool text_shmem_calloc(void) {
   size_t count = 256;
   size_t size = sizeof(int);
   int *ptr = (int *)p_shmem_calloc(count, size);

@@ -3,7 +3,7 @@
  * @brief Contains OpenSHMEM communication/context tests.
  */
 
-#include "cxx_comms_tests.h"
+#include "comms_tests.h"
 
 /**
  * @brief Tests the shmem_ctx_create() function.
@@ -12,7 +12,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_ctx_create(void) {
+bool text_shmem_ctx_create(void) {
   shmem_ctx_t ctx;
   int ret = p_shmem_ctx_create(0, &ctx);
   if (ret != 0) {
@@ -30,7 +30,7 @@ bool text_cxx_shmem_ctx_create(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_team_create_ctx(void) {
+bool text_shmem_team_create_ctx(void) {
   shmem_team_t team;
   shmem_ctx_t ctx;
   p_shmem_team_split_strided(SHMEM_TEAM_WORLD, 0, 1, p_shmem_n_pes(), NULL, 0, &team);
@@ -50,7 +50,7 @@ bool text_cxx_shmem_team_create_ctx(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_ctx_destroy(void) {
+bool text_shmem_ctx_destroy(void) {
   shmem_ctx_t ctx;
   p_shmem_ctx_create(0, &ctx);
   p_shmem_ctx_destroy(ctx);
@@ -65,7 +65,7 @@ bool text_cxx_shmem_ctx_destroy(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_ctx_get_team(void) {
+bool text_shmem_ctx_get_team(void) {
   shmem_ctx_t ctx;
   shmem_team_t team;
   p_shmem_ctx_create(0, &ctx);

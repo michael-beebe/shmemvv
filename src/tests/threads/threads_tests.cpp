@@ -3,7 +3,7 @@
  * @brief Contains OpenSHMEM threads tests.
  */
 
-#include "cxx_threads_tests.h"
+#include "threads_tests.h"
 
 /**
  * @brief Tests the initialization of OpenSHMEM with threading support.
@@ -12,7 +12,7 @@
  *
  * @return True if the initialization with threading support is successful, false otherwise.
  */
-bool text_cxx_shmem_init_thread(void) {
+bool text_shmem_init_thread(void) {
   int provided;
   p_shmem_init_thread(SHMEM_THREAD_MULTIPLE, &provided);
   return (provided == SHMEM_THREAD_MULTIPLE);
@@ -26,7 +26,7 @@ bool text_cxx_shmem_init_thread(void) {
  *
  * @return True if the query is successful and the level of threading support is one of the valid levels, false otherwise.
  */
-bool text_cxx_shmem_query_thread(void) {
+bool text_shmem_query_thread(void) {
   int provided;
   p_shmem_query_thread(&provided);
   bool success = (provided == SHMEM_THREAD_SINGLE ||

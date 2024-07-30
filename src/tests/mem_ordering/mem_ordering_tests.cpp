@@ -3,7 +3,7 @@
  * @brief Contains OpenSHMEM memory ordering tests.
  */
 
-#include "cxx_mem_ordering_tests.h"
+#include "mem_ordering_tests.h"
 
 /**
  * @brief Tests the shmem_fence() routine.
@@ -14,7 +14,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_fence(void) {
+bool text_shmem_fence(void) {
   long *flag = (long *)p_shmem_malloc(sizeof(long));
   *flag = 0;
   int mype = p_shmem_my_pe();
@@ -49,7 +49,7 @@ bool text_cxx_shmem_fence(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_quiet(void) {
+bool text_shmem_quiet(void) {
   long *flag = (long *)p_shmem_malloc(sizeof(long));
   *flag = 0;
   int mype = p_shmem_my_pe();

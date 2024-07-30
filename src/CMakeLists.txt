@@ -22,19 +22,23 @@ add_executable(shmemvv ${SOURCES})
 target_link_libraries(
   shmemvv ${CMAKE_C_LINKER_FLAGS}
   
+  # --- Agnostic tests
   setup_tests
+  threads_tests
+  mem_tests
+  comms_tests
+  teams_tests
+  mem_ordering_tests
+  locking_tests
 
-  cxx_threads_tests
-  cxx_mem_tests
-  cxx_teams_tests
-  cxx_comms_tests
+  # --- C/C++ tests
   cxx_remote_tests
   cxx_atomics_tests
   cxx_signaling_tests
   cxx_collectives_tests
   cxx_pt2pt_tests
-  cxx_mem_ordering_tests
-  cxx_locking_tests
+
+  # --- C11 tests
 )
 
 # ---- Specify the output directory for the executable

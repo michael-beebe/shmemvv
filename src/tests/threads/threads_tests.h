@@ -19,7 +19,7 @@
  *
  * @return True if the initialization with threading support is successful, false otherwise.
  */
-bool text_cxx_shmem_init_thread(void);
+bool text_shmem_init_thread(void);
 
 /**
  * @brief Tests querying the level of threading support in OpenSHMEM.
@@ -30,6 +30,6 @@ bool text_cxx_shmem_init_thread(void);
  * @return True if the query is successful and the level of threading
  *         support is one of the valid levels, false otherwise.
  */
-bool text_cxx_shmem_query_thread(void);
+bool text_shmem_query_thread(void);
 
 #endif /* THREADS_TESTS_H */

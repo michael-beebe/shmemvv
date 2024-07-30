@@ -21,6 +21,6 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_lock_unlock(void);
+bool text_shmem_lock_unlock(void);
 
 #endif /* LOCKING_TESTS_H */

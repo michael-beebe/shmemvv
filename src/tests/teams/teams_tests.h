@@ -17,7 +17,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_team_my_pe(void);
+bool text_shmem_team_my_pe(void);
 
 /**
  * @brief Tests the shmem_team_n_pes() routine.
@@ -26,7 +26,7 @@ bool text_cxx_shmem_team_my_pe(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_team_n_pes(void);
+bool text_shmem_team_n_pes(void);
 
 /**
  * @brief Tests the shmem_team_get_config() routine.
@@ -35,7 +35,7 @@ bool text_cxx_shmem_team_n_pes(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_team_get_config(void);
+bool text_shmem_team_get_config(void);
 
 /**
  * @brief Tests the shmem_team_translate_pe() routine.
@@ -44,7 +44,7 @@ bool text_cxx_shmem_team_get_config(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_team_translate_pe(void);
+bool text_shmem_team_translate_pe(void);
 
 /**
  * @brief Tests the shmem_team_split_strided() routine.
@@ -53,7 +53,7 @@ bool text_cxx_shmem_team_translate_pe(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_team_split_strided(void);
+bool text_shmem_team_split_strided(void);
 
 /**
  * @brief Tests the shmem_team_split_2d() routine.
@@ -62,7 +62,7 @@ bool text_cxx_shmem_team_split_strided(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_team_split_2d(void);
+bool text_shmem_team_split_2d(void);
 
 /**
  * @brief Tests the shmem_team_destroy() routine.
@@ -71,6 +71,6 @@ bool text_cxx_shmem_team_split_2d(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_team_destroy(void);
+bool text_shmem_team_destroy(void);
 
 #endif /* TEAMS_TESTS_H */

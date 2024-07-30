@@ -21,7 +21,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_fence(void);
+bool text_shmem_fence(void);
 
 /**
  * @brief Tests the shmem_quiet() routine.
@@ -32,6 +32,6 @@ bool text_cxx_shmem_fence(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_quiet(void);
+bool text_shmem_quiet(void);
 
 #endif /* MEM_ORDERING_TESTS_H */

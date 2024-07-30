@@ -12,7 +12,7 @@
  * 
  * @return True if the routine is available and called, false otherwise.
  */
-bool text_cxx_shmem_fake_routine(void) {
+bool text_shmem_fake_routine(void) {
   if (p_shmem_fake_routine) {
     p_shmem_fake_routine();
     return true;
@@ -30,7 +30,7 @@ bool text_cxx_shmem_fake_routine(void) {
  * 
  * @return True if the initialization is successful, false otherwise.
  */
-bool text_cxx_shmem_init() {
+bool text_shmem_init() {
   p_shmem_init();
   return true;
 }
@@ -42,7 +42,7 @@ bool text_cxx_shmem_init() {
  * 
  * @return True if the barrier synchronization is successful, false otherwise.
  */
-bool text_cxx_shmem_barrier_all() {
+bool text_shmem_barrier_all() {
   int mype = p_shmem_my_pe();
   int npes = p_shmem_n_pes();
 
@@ -67,7 +67,7 @@ bool text_cxx_shmem_barrier_all() {
  * 
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_barrier(void) {
+bool text_shmem_barrier(void) {
   static long pSync[SHMEM_BARRIER_SYNC_SIZE];
   for (int i = 0; i < SHMEM_BARRIER_SYNC_SIZE; i++) {
     pSync[i] = SHMEM_SYNC_VALUE;
@@ -84,7 +84,7 @@ bool text_cxx_shmem_barrier(void) {
  * 
  * @return The PE number on success, -1 on failure.
  */
-int text_cxx_shmem_my_pe() {
+int text_shmem_my_pe() {
   int mype = p_shmem_my_pe();
   if (mype >= 0) {
     return mype;
@@ -101,7 +101,7 @@ int text_cxx_shmem_my_pe() {
  * 
  * @return The number of PEs if greater than 0, otherwise 0.
  */
-int text_cxx_shmem_n_pes() {
+int text_shmem_n_pes() {
   int npes = p_shmem_n_pes();
   if (!(npes > 0)) {
     return 0;
@@ -118,7 +118,7 @@ int text_cxx_shmem_n_pes() {
  * 
  * @return True if all PEs are accessible, false otherwise.
  */
-bool text_cxx_shmem_pe_accessible() {
+bool text_shmem_pe_accessible() {
   int npes = p_shmem_n_pes();
   for (int pe = 0; pe < npes; ++pe) {
     if (!p_shmem_pe_accessible(pe)) {
@@ -135,7 +135,7 @@ bool text_cxx_shmem_pe_accessible() {
  * 
  * @return The version as a string in the format "major.minor".
  */
-std::string text_cxx_shmem_info_get_version() {
+std::string text_shmem_info_get_version() {
   int major, minor;
   p_shmem_info_get_version(&major, &minor);
   
@@ -150,7 +150,7 @@ std::string text_cxx_shmem_info_get_version() {
  * 
  * @return The name of the library as a string if successful, otherwise an empty string.
  */
-std::string text_cxx_shmem_info_get_name() {
+std::string text_shmem_info_get_name() {
   char name[SHMEM_MAX_NAME_LEN];
   p_shmem_info_get_name(name);
   if (strlen(name) > 0) {
@@ -168,7 +168,7 @@ std::string text_cxx_shmem_info_get_name() {
  * 
  * @return True if the finalization is successful, false otherwise.
  */
-bool text_cxx_shmem_finalize() {
+bool text_shmem_finalize() {
   p_shmem_finalize();
   return true;
 }
@@ -180,7 +180,7 @@ bool text_cxx_shmem_finalize() {
  * 
  * @return True if the global exit is successful, false otherwise.
  */
-bool text_cxx_shmem_global_exit() {
+bool text_shmem_global_exit() {
   p_shmem_global_exit(0);
   return true;
 }
