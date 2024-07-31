@@ -15,11 +15,11 @@
  */
 bool test_shmem_malloc_free(void) {
   size_t size = 1024;
-  void *ptr = p_shmem_malloc(size);
+  void *ptr = shmem_malloc(size);
   if (ptr == nullptr) {
     return false;
   }
-  p_shmem_free(ptr);
+  shmem_free(ptr);
   return true;
 }
 
@@ -32,9 +32,9 @@ bool test_shmem_malloc_free(void) {
  * @return True if the pointer is accessible, false otherwise.
  */
 bool test_shmem_ptr() {
-  int mype = p_shmem_my_pe();
-  int npes = p_shmem_n_pes();
-  int *ptr = (int *)p_shmem_malloc(sizeof(int));
+  int mype = shmem_my_pe();
+  int npes = shmem_n_pes();
+  int *ptr = (int *)shmem_malloc(sizeof(int));
 
   if (ptr == nullptr) {
     return false;
@@ -42,12 +42,12 @@ bool test_shmem_ptr() {
 
   *ptr = mype;
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   bool test_passed = true;
 
   for (int pe = 0; pe < npes; ++pe) {
-    int *remote_ptr = (int *)p_shmem_ptr(ptr, pe);
+    int *remote_ptr = (int *)shmem_ptr(ptr, pe);
 
     if (remote_ptr != nullptr) {
       int remote_val = *remote_ptr;
@@ -59,7 +59,7 @@ bool test_shmem_ptr() {
     }
   }
 
-  p_shmem_free(ptr);
+  shmem_free(ptr);
   return test_passed;
 }
 
@@ -72,9 +72,9 @@ bool test_shmem_ptr() {
  * @return True if the address is accessible from all PEs, false otherwise.
  */
 bool test_shmem_addr_accessible() {
-  int mype = p_shmem_my_pe();
-  int npes = p_shmem_n_pes();
-  int *ptr = (int *)p_shmem_malloc(sizeof(int));
+  int mype = shmem_my_pe();
+  int npes = shmem_n_pes();
+  int *ptr = (int *)shmem_malloc(sizeof(int));
 
   if (ptr == nullptr) {
     return false;
@@ -82,17 +82,17 @@ bool test_shmem_addr_accessible() {
 
   *ptr = mype;
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   bool test_passed = true;
 
   for (int pe = 0; pe < npes; ++pe) {
-    if (p_shmem_addr_accessible(ptr, pe) != 1) {
+    if (shmem_addr_accessible(ptr, pe) != 1) {
       test_passed = false;
     }
   }
 
-  p_shmem_free(ptr);
+  shmem_free(ptr);
   return test_passed;
 }
 
@@ -106,17 +106,17 @@ bool test_shmem_addr_accessible() {
  */
 bool test_shmem_realloc(void) {
   size_t size = 1024;
-  void *ptr = p_shmem_malloc(size);
+  void *ptr = shmem_malloc(size);
   if (ptr == nullptr) {
     return false;
   }
   size_t new_size = 2048;
-  void *new_ptr = p_shmem_realloc(ptr, new_size);
+  void *new_ptr = shmem_realloc(ptr, new_size);
   if (new_ptr == nullptr) {
-    p_shmem_free(ptr);
+    shmem_free(ptr);
     return false;
   }
-  p_shmem_free(new_ptr);
+  shmem_free(new_ptr);
   return true;
 }
 
@@ -131,11 +131,11 @@ bool test_shmem_realloc(void) {
 bool test_shmem_align(void) {
   size_t alignment = 64;
   size_t size = 1024;
-  void *ptr = p_shmem_align(alignment, size);
+  void *ptr = shmem_align(alignment, size);
   if (ptr == nullptr) {
     return false;
   }
-  p_shmem_free(ptr);
+  shmem_free(ptr);
   return true;
 }
 
@@ -150,11 +150,11 @@ bool test_shmem_align(void) {
 bool test_shmem_malloc_with_hints(void) {
   size_t size = 1024;
   long hints = SHMEM_MALLOC_ATOMICS_REMOTE;
-  void *ptr = p_shmem_malloc_with_hints(size, hints);
+  void *ptr = shmem_malloc_with_hints(size, hints);
   if (ptr == nullptr) {
     return false;
   }
-  p_shmem_free(ptr);
+  shmem_free(ptr);
   return true;
 }
 
@@ -169,17 +169,17 @@ bool test_shmem_malloc_with_hints(void) {
 bool test_shmem_calloc(void) {
   size_t count = 256;
   size_t size = sizeof(int);
-  int *ptr = (int *)p_shmem_calloc(count, size);
+  int *ptr = (int *)shmem_calloc(count, size);
   if (ptr == nullptr) {
     return false;
   }
   for (size_t i = 0; i < count; ++i) {
     if (ptr[i] != 0) {
-      p_shmem_free(ptr);
+      shmem_free(ptr);
       return false;
     }
   }
-  p_shmem_free(ptr);
+  shmem_free(ptr);
   return true;
 }
 

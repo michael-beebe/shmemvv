@@ -15,20 +15,20 @@
  */
 bool test_cxx_shmem_put(void) {
   static long src[10], dest[10];
-  int mype = p_shmem_my_pe();
-  int npes = p_shmem_n_pes();
+  int mype = shmem_my_pe();
+  int npes = shmem_n_pes();
 
   for (int i = 0; i < 10; i++) {
     src[i] = i + mype;
   }
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   if (mype == 0) {
-    p_shmem_long_put(dest, src, 10, 1);
+    shmem_long_put(dest, src, 10, 1);
   }
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   if (mype == 1) {
     for (int i = 0; i < 10; i++) {
@@ -51,18 +51,18 @@ bool test_cxx_shmem_put(void) {
  */
 bool test_cxx_shmem_p(void) {
   static long src, dest;
-  int mype = p_shmem_my_pe();
-  int npes = p_shmem_n_pes();
+  int mype = shmem_my_pe();
+  int npes = shmem_n_pes();
 
   src = mype;
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   if (mype == 0) {
-    p_shmem_long_p(&dest, src, 1);
+    shmem_long_p(&dest, src, 1);
   }
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   if (mype == 1) {
     if (dest != 0) {
@@ -83,20 +83,20 @@ bool test_cxx_shmem_p(void) {
  */
 bool test_cxx_shmem_iput(void) {
   static long src[10], dest[10];
-  int mype = p_shmem_my_pe();
-  int npes = p_shmem_n_pes();
+  int mype = shmem_my_pe();
+  int npes = shmem_n_pes();
 
   for (int i = 0; i < 10; i++) {
     src[i] = i + mype;
   }
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   if (mype == 0) {
-    p_shmem_long_iput(dest, src, 2, 2, 5, 1);
+    shmem_long_iput(dest, src, 2, 2, 5, 1);
   }
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   if (mype == 1) {
     for (int i = 0; i < 10; i += 2) {
@@ -119,8 +119,8 @@ bool test_cxx_shmem_iput(void) {
  */
 bool test_cxx_shmem_get(void) {
   static long src[10], dest[10];
-  int mype = p_shmem_my_pe();
-  int npes = p_shmem_n_pes();
+  int mype = shmem_my_pe();
+  int npes = shmem_n_pes();
 
   if (mype == 0) {
     for (int i = 0; i < 10; i++) {
@@ -128,13 +128,13 @@ bool test_cxx_shmem_get(void) {
     }
   }
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   if (mype == 1) {
-    p_shmem_long_get(dest, src, 10, 0);
+    shmem_long_get(dest, src, 10, 0);
   }
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   if (mype == 1) {
     for (int i = 0; i < 10; i++) {
@@ -157,20 +157,20 @@ bool test_cxx_shmem_get(void) {
  */
 bool test_cxx_shmem_g(void) {
   static long src, dest;
-  int mype = p_shmem_my_pe();
-  int npes = p_shmem_n_pes();
+  int mype = shmem_my_pe();
+  int npes = shmem_n_pes();
 
   if (mype == 0) {
     src = 10;
   }
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   if (mype == 1) {
-    dest = p_shmem_long_g(&src, 0);
+    dest = shmem_long_g(&src, 0);
   }
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   if (mype == 1) {
     if (dest != 10) {
@@ -191,8 +191,8 @@ bool test_cxx_shmem_g(void) {
  */
 bool test_cxx_shmem_iget(void) {
   static long src[10], dest[10];
-  int mype = p_shmem_my_pe();
-  int npes = p_shmem_n_pes();
+  int mype = shmem_my_pe();
+  int npes = shmem_n_pes();
 
   if (mype == 0) {
     for (int i = 0; i < 10; i++) {
@@ -200,13 +200,13 @@ bool test_cxx_shmem_iget(void) {
     }
   }
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   if (mype == 1) {
-    p_shmem_long_iget(dest, src, 2, 2, 5, 0);
+    shmem_long_iget(dest, src, 2, 2, 5, 0);
   }
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   if (mype == 1) {
     for (int i = 0; i < 10; i += 2) {
@@ -229,21 +229,21 @@ bool test_cxx_shmem_iget(void) {
  */
 bool test_cxx_shmem_put_nbi(void) {
   static long src[10], dest[10];
-  int mype = p_shmem_my_pe();
-  int npes = p_shmem_n_pes();
+  int mype = shmem_my_pe();
+  int npes = shmem_n_pes();
 
   for (int i = 0; i < 10; i++) {
     src[i] = i + mype;
   }
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   if (mype == 0) {
-    p_shmem_long_put_nbi(dest, src, 10, 1);
-    p_shmem_quiet();
+    shmem_long_put_nbi(dest, src, 10, 1);
+    shmem_quiet();
   }
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   if (mype == 1) {
     for (int i = 0; i < 10; i++) {
@@ -266,8 +266,8 @@ bool test_cxx_shmem_put_nbi(void) {
  */
 bool test_cxx_shmem_get_nbi(void) {
   static long src[10], dest[10];
-  int mype = p_shmem_my_pe();
-  int npes = p_shmem_n_pes();
+  int mype = shmem_my_pe();
+  int npes = shmem_n_pes();
 
   if (mype == 0) {
     for (int i = 0; i < 10; i++) {
@@ -275,14 +275,14 @@ bool test_cxx_shmem_get_nbi(void) {
     }
   }
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   if (mype == 1) {
-    p_shmem_long_get_nbi(dest, src, 10, 0);
-    p_shmem_quiet();
+    shmem_long_get_nbi(dest, src, 10, 0);
+    shmem_quiet();
   }
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   if (mype == 1) {
     for (int i = 0; i < 10; i++) {

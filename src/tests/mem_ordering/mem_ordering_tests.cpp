@@ -15,19 +15,19 @@
  * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_fence(void) {
-  long *flag = (long *)p_shmem_malloc(sizeof(long));
+  long *flag = (long *)shmem_malloc(sizeof(long));
   *flag = 0;
-  int mype = p_shmem_my_pe();
+  int mype = shmem_my_pe();
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   if (mype == 0) {
-    p_shmem_long_p(flag, 1, 1);
-    p_shmem_fence();
+    shmem_long_p(flag, 1, 1);
+    shmem_fence();
     *flag = 2;
   }
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   bool result = true;
   if (mype == 1) {
@@ -36,7 +36,7 @@ bool test_shmem_fence(void) {
     }
   }
 
-  p_shmem_free(flag);
+  shmem_free(flag);
   return result;
 }
 
@@ -50,18 +50,18 @@ bool test_shmem_fence(void) {
  * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_quiet(void) {
-  long *flag = (long *)p_shmem_malloc(sizeof(long));
+  long *flag = (long *)shmem_malloc(sizeof(long));
   *flag = 0;
-  int mype = p_shmem_my_pe();
+  int mype = shmem_my_pe();
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   if (mype == 0) {
-    p_shmem_long_p(flag, 1, 1);
-    p_shmem_quiet();
+    shmem_long_p(flag, 1, 1);
+    shmem_quiet();
   }
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   bool result = true;
   if (mype == 1) {
@@ -70,7 +70,7 @@ bool test_shmem_quiet(void) {
     }
   }
 
-  p_shmem_free(flag);
+  shmem_free(flag);
   return result;
 }
 
