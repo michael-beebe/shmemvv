@@ -7,6 +7,8 @@
 #define SIGNALING_TESTS_H
 
 #include "routines.h"
+#include "shmemvv.h"
+
 #include <shmem.h>
 
 /**
@@ -17,7 +19,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_put_signal(void);
+bool test_cxx_shmem_put_signal(void);
 
 /**
  * @brief Tests the shmem_put_signal_nbi() routine.
@@ -27,7 +29,7 @@ bool text_cxx_shmem_put_signal(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_put_signal_nbi(void);
+bool test_cxx_shmem_put_signal_nbi(void);
 
 /**
  * @brief Tests the shmem_signal_fetch() routine.
@@ -37,6 +39,13 @@ bool text_cxx_shmem_put_signal_nbi(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_signal_fetch(void);
+bool test_cxx_shmem_signal_fetch(void);
+
+/**
+ * TODO: write docs
+ * 
+ */
+void run_cxx_signaling_tests(int mype, int npes);
 
 #endif /* SIGNALING_TESTS_H */
+

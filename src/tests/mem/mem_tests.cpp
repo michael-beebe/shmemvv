@@ -13,7 +13,7 @@
  *
  * @return True if the tests are successful, false otherwise.
  */
-bool text_shmem_malloc_free(void) {
+bool test_shmem_malloc_free(void) {
   size_t size = 1024;
   void *ptr = p_shmem_malloc(size);
   if (ptr == nullptr) {
@@ -31,7 +31,7 @@ bool text_shmem_malloc_free(void) {
  *
  * @return True if the pointer is accessible, false otherwise.
  */
-bool text_shmem_ptr() {
+bool test_shmem_ptr() {
   int mype = p_shmem_my_pe();
   int npes = p_shmem_n_pes();
   int *ptr = (int *)p_shmem_malloc(sizeof(int));
@@ -71,7 +71,7 @@ bool text_shmem_ptr() {
  *
  * @return True if the address is accessible from all PEs, false otherwise.
  */
-bool text_shmem_addr_accessible() {
+bool test_shmem_addr_accessible() {
   int mype = p_shmem_my_pe();
   int npes = p_shmem_n_pes();
   int *ptr = (int *)p_shmem_malloc(sizeof(int));
@@ -104,7 +104,7 @@ bool text_shmem_addr_accessible() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_shmem_realloc(void) {
+bool test_shmem_realloc(void) {
   size_t size = 1024;
   void *ptr = p_shmem_malloc(size);
   if (ptr == nullptr) {
@@ -128,7 +128,7 @@ bool text_shmem_realloc(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_shmem_align(void) {
+bool test_shmem_align(void) {
   size_t alignment = 64;
   size_t size = 1024;
   void *ptr = p_shmem_align(alignment, size);
@@ -147,7 +147,7 @@ bool text_shmem_align(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_shmem_malloc_with_hints(void) {
+bool test_shmem_malloc_with_hints(void) {
   size_t size = 1024;
   long hints = SHMEM_MALLOC_ATOMICS_REMOTE;
   void *ptr = p_shmem_malloc_with_hints(size, hints);
@@ -166,7 +166,7 @@ bool text_shmem_malloc_with_hints(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_shmem_calloc(void) {
+bool test_shmem_calloc(void) {
   size_t count = 256;
   size_t size = sizeof(int);
   int *ptr = (int *)p_shmem_calloc(count, size);
@@ -181,4 +181,128 @@ bool text_shmem_calloc(void) {
   }
   p_shmem_free(ptr);
   return true;
+}
+
+/**
+ * TODO: write docs
+ * 
+ */
+void run_mem_tests(int mype, int npes) {
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_header("MEMORY MANAGEMENT"); 
+  }
+
+  /* Test shmem_malloc() and shmem_free() */
+  shmem_barrier_all();
+  if ( check_if_exists("shmem_malloc") && check_if_exists("shmem_free") ) {
+    bool result_shmem_malloc_free = test_shmem_malloc_free();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("shmem_malloc()", result_shmem_malloc_free, false);
+      display_test_result("shmem_free()", result_shmem_malloc_free, false);
+    }
+  }
+  else {
+    if ( !check_if_exists("shmem_malloc") ) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_malloc()", false);
+      }
+    }
+    if ( !check_if_exists("shmem_free") ) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_free()", false);
+      }
+    }
+  } 
+
+  /* Test shmem_ptr() */
+  shmem_barrier_all();
+  if ( !check_if_exists("shmem_ptr") ) {
+    if (mype == 0) {
+      display_not_found_warning("shmem_ptr()", false);
+    }
+  }
+  else {
+    bool result_shmem_ptr = test_shmem_ptr();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("shmem_ptr()", result_shmem_ptr, false);
+    }
+  }
+
+  /* Test shmem_addr_accessible */
+  shmem_barrier_all();
+  if ( !check_if_exists("shmem_addr_accessible") ) {
+    if (mype == 0) {
+      display_not_found_warning("shmem_addr_accessible", false);
+    }
+  }
+  else {
+    bool result_shmem_addr_accessible = test_shmem_addr_accessible();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("shmem_addr_accessible()", result_shmem_addr_accessible, false);
+    }
+  }
+
+  /* Test shmem_realloc() */
+  shmem_barrier_all();
+  if ( !check_if_exists("shmem_realloc") ) {
+    if (mype == 0) {
+      display_not_found_warning("shme_realloc()", false);
+    }
+  }
+  else {
+    bool result_shmem_realloc = test_shmem_realloc();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("shmem_realloc()", result_shmem_realloc, false); 
+    }
+  }
+
+  /* Test shmem_align() */
+  shmem_barrier_all();
+  if ( !check_if_exists("shmem_align") ) {
+    if (mype == 0) {
+      display_not_found_warning("shmem_align()", false);
+    }
+  }
+  else {
+    bool result_shmem_align = test_shmem_align();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("shmem_align()", result_shmem_align, false);
+    }
+  }
+
+  /* Test shmem_malloc_with_hints() */ 
+  shmem_barrier_all();
+  if ( !check_if_exists("shmem_malloc_with_hints") ) {
+    if (mype == 0) {
+      display_not_found_warning("shmem_malloc_with_hints()", false);
+    }
+  }
+  else {
+    bool result_shmem_malloc_with_hints = test_shmem_malloc_with_hints();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("shmem_malloc_with_hints()", result_shmem_malloc_with_hints, false);
+    }
+  }
+
+  /* Test shmem_calloc() */
+  shmem_barrier_all();
+  if ( !check_if_exists("shmem_calloc") ) {
+    if (mype == 0) {
+      display_not_found_warning("shmem_calloc()", false);
+    }
+  }
+  else {
+    bool result_shmem_calloc = test_shmem_calloc();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("shmem_calloc()", result_shmem_calloc, false);
+    }
+  }
 }

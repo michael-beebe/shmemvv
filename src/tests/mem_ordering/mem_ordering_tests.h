@@ -7,6 +7,8 @@
 #define MEM_ORDERING_TESTS_H
 
 #include "routines.h"
+#include "shmemvv.h"
+
 #include <shmem.h>
 #include <iostream>
 #include <cstdlib>
@@ -21,7 +23,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_shmem_fence(void);
+bool test_shmem_fence(void);
 
 /**
  * @brief Tests the shmem_quiet() routine.
@@ -32,6 +34,12 @@ bool text_shmem_fence(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_shmem_quiet(void);
+bool test_shmem_quiet(void);
+
+/**
+ * TODO: write docs
+ * 
+ */
+void run_mem_ordering_tests(int mype, int npes);
 
 #endif /* MEM_ORDERING_TESTS_H */

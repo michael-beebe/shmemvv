@@ -12,7 +12,7 @@
  *
  * @return True if the initialization with threading support is successful, false otherwise.
  */
-bool text_shmem_init_thread(void) {
+bool test_shmem_init_thread(void) {
   int provided;
   p_shmem_init_thread(SHMEM_THREAD_MULTIPLE, &provided);
   return (provided == SHMEM_THREAD_MULTIPLE);
@@ -26,7 +26,7 @@ bool text_shmem_init_thread(void) {
  *
  * @return True if the query is successful and the level of threading support is one of the valid levels, false otherwise.
  */
-bool text_shmem_query_thread(void) {
+bool test_shmem_query_thread(void) {
   int provided;
   p_shmem_query_thread(&provided);
   bool success = (provided == SHMEM_THREAD_SINGLE ||
@@ -34,4 +34,36 @@ bool text_shmem_query_thread(void) {
                   provided == SHMEM_THREAD_SERIALIZED ||
                   provided == SHMEM_THREAD_MULTIPLE);
   return success;
+}
+
+/**
+ * TODO: write docs
+ * 
+ */
+void run_threads_tests(int mype, int npes) {
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_header("THREADS"); 
+  }
+  shmem_barrier_all();
+
+  /* If we made it here shmem_init_thread() passed */
+  if (mype == 0) {
+    display_test_result("shmem_init_thread()", true, true);
+  }
+
+  /* Test shmem_query_thread() */
+  shmem_barrier_all();
+  if ( !check_if_exists("shmem_query_thread") ) {
+    if (mype == 0) {
+      display_not_found_warning("shmem_query_thread()", false);
+    }
+  }
+  else {
+    bool result_shmem_query_thread = test_shmem_query_thread();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("shmem_query_thread()", result_shmem_query_thread, false);
+    }
+  }
 }

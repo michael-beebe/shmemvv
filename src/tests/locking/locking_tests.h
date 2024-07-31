@@ -7,6 +7,8 @@
 #define LOCKING_TESTS_H
 
 #include "routines.h"
+#include "shmemvv.h"
+
 #include <shmem.h>
 #include <iostream>
 #include <cstdlib>
@@ -21,6 +23,12 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_shmem_lock_unlock(void);
+bool test_shmem_lock_unlock(void);
+
+/**
+ * TODO: write docs
+ * 
+ */
+void run_locking_tests(int mype, int npes);
 
 #endif /* LOCKING_TESTS_H */

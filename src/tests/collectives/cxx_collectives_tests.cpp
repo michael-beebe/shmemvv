@@ -12,7 +12,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_sync(void) {
+bool test_cxx_shmem_sync(void) { // FIXME: should this be shmem_team_sync() for C++?
   static long pSync[SHMEM_SYNC_SIZE];
   for (int i = 0; i < SHMEM_SYNC_SIZE; i++) {
     pSync[i] = SHMEM_SYNC_VALUE;
@@ -29,7 +29,7 @@ bool text_cxx_shmem_sync(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_sync_all(void) {
+bool test_cxx_shmem_sync_all(void) {
   p_shmem_sync_all();
   return true;
 }
@@ -42,7 +42,7 @@ bool text_cxx_shmem_sync_all(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_alltoall(void) {
+bool test_cxx_shmem_alltoall(void) {
   int npes = p_shmem_n_pes();
   int mype = p_shmem_my_pe();
   
@@ -77,7 +77,7 @@ bool text_cxx_shmem_alltoall(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_alltoalls(void) {
+bool test_cxx_shmem_alltoalls(void) {
   int npes = p_shmem_n_pes();
   int mype = p_shmem_my_pe();
 
@@ -112,7 +112,7 @@ bool text_cxx_shmem_alltoalls(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_broadcast(void) {
+bool test_cxx_shmem_broadcast(void) {
   int npes = p_shmem_n_pes();
   int mype = p_shmem_my_pe();
   
@@ -157,7 +157,7 @@ bool text_cxx_shmem_broadcast(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_collect(void) {
+bool test_cxx_shmem_collect(void) {
   int npes = p_shmem_n_pes();
   int mype = p_shmem_my_pe();
   
@@ -190,7 +190,7 @@ bool text_cxx_shmem_collect(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_fcollect(void) {
+bool test_cxx_shmem_fcollect(void) {
   int npes = p_shmem_n_pes();
   int mype = p_shmem_my_pe();
   
@@ -223,7 +223,7 @@ bool text_cxx_shmem_fcollect(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_sum_reduce(void) {
+bool test_cxx_shmem_sum_reduce(void) {
   int npes = p_shmem_n_pes();
   int mype = p_shmem_my_pe();
 
@@ -251,7 +251,7 @@ bool text_cxx_shmem_sum_reduce(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_prod_reduce(void) {
+bool test_cxx_shmem_prod_reduce(void) {
   int npes = p_shmem_n_pes();
   int mype = p_shmem_my_pe();
 
@@ -283,7 +283,7 @@ bool text_cxx_shmem_prod_reduce(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_min_reduce(void) {
+bool test_cxx_shmem_min_reduce(void) {
   int npes = p_shmem_n_pes();
   int mype = p_shmem_my_pe();
 
@@ -310,7 +310,7 @@ bool text_cxx_shmem_min_reduce(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_max_reduce(void) {
+bool test_cxx_shmem_max_reduce(void) {
   int npes = p_shmem_n_pes();
   int mype = p_shmem_my_pe();
 
@@ -327,4 +327,189 @@ bool text_cxx_shmem_max_reduce(void) {
   p_shmem_free(dest);
 
   return success;
+}
+
+/**
+ * TODO: write docs
+ * 
+ */
+void run_cxx_collectives_tests(int mype, int npes) {
+  /* Print test header */
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_header("COLLECTIVE OPS");
+  }
+
+  /* Check to make sure there are at least 2 PEs */
+  if ( !(npes > 1) ) {
+    if (mype == 0) {
+      display_not_enough_pes("COLLECTIVE OPS");
+    }
+  }
+  else {
+    /* Run shmem_sync() test */ // FIXME: should this be shmem_team_sync() for C++?
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_sync")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_sync()", false);
+      }
+    } 
+    else {
+      bool result_shmem_sync = test_cxx_shmem_sync();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("shmem_sync()", result_shmem_sync, false);
+      }
+    }
+
+    /* Run shmem_sync_all() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_sync_all")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_sync_all()", false);
+      }
+    } 
+    else {
+      bool result_shmem_sync_all = test_cxx_shmem_sync_all();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("shmem_sync_all()", result_shmem_sync_all, false);
+      }
+    }
+
+    /* Run shmem_alltoall() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_long_alltoall")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_long_alltoall()", false);
+      }
+    } 
+    else {
+      bool result_shmem_alltoall = test_cxx_shmem_alltoall();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_alltoall()", result_shmem_alltoall, false);
+      }
+    }
+
+    /* Run shmem_alltoalls() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_long_alltoalls")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_long_alltoalls()", false);
+      }
+    } 
+    else {
+      bool result_shmem_alltoalls = test_cxx_shmem_alltoalls();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_alltoalls()", result_shmem_alltoalls, false);
+      }
+    }
+
+    /* Run shmem_broadcast() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_long_broadcast")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_long_broadcast()", false);
+      }
+    } 
+    else {
+      bool result_shmem_broadcast = test_cxx_shmem_broadcast();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_broadcast()", result_shmem_broadcast, false);
+      }
+    }
+
+    /* Run shmem_collect() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_long_collect")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_long_collect()", false);
+      }
+    } 
+    else {
+      bool result_shmem_collect = test_cxx_shmem_collect();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_collect()", result_shmem_collect, false);
+      }
+    }
+
+    /* Run shmem_fcollect() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_long_fcollect")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_long_fcollect()", false);
+      }
+    } 
+    else {
+      bool result_shmem_fcollect = test_cxx_shmem_fcollect();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_fcollect()", result_shmem_fcollect, false);
+      }
+    }
+
+    /* Run shmem_max_reduce() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_long_max_reduce")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_long_max_reduce()", false);
+      }
+    } 
+    else {
+      bool result_shmem_max_reduce = test_cxx_shmem_max_reduce();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_max_reduce()", result_shmem_max_reduce, false);
+      }
+    }
+
+    /* Run shmem_min_reduce() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_long_min_reduce")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_long_min_reduce()", false);
+      }
+    } 
+    else {
+      bool result_shmem_min_reduce = test_cxx_shmem_min_reduce();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_min_reduce()", result_shmem_min_reduce, false);
+      }
+    }
+
+    /* Run shmem_sum_reduce() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_long_sum_reduce")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_long_sum_reduce()", false);
+      }
+    } 
+    else {
+      bool result_shmem_sum_reduce = test_cxx_shmem_sum_reduce();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_sum_reduce()", result_shmem_sum_reduce, false);
+      }
+    }
+
+    /* Run shmem_prod_reduce() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_long_prod_reduce")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_long_prod_reduce()", false);
+      }
+    } 
+    else {
+      bool result_shmem_prod_reduce = test_cxx_shmem_prod_reduce();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_prod_reduce()", result_shmem_prod_reduce, false);
+      }
+    }
+  }
 }

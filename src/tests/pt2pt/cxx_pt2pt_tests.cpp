@@ -15,7 +15,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_wait_until(void) {
+bool test_cxx_shmem_wait_until(void) {
   long *flag = (long *)p_shmem_malloc(sizeof(long));
   *flag = 0;
   int mype = p_shmem_my_pe();
@@ -49,7 +49,7 @@ bool text_cxx_shmem_wait_until(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_wait_until_all(void) {
+bool test_cxx_shmem_wait_until_all(void) {
   long *flags = (long *)p_shmem_malloc(2 * sizeof(long));
   flags[0] = 0;
   flags[1] = 0;
@@ -85,7 +85,7 @@ bool text_cxx_shmem_wait_until_all(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_wait_until_any(void) {
+bool test_cxx_shmem_wait_until_any(void) {
   long *flags = (long *)p_shmem_malloc(3 * sizeof(long));
   for (int i = 0; i < 3; i++) {
     flags[i] = 0;
@@ -126,7 +126,7 @@ bool text_cxx_shmem_wait_until_any(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_wait_until_some(void) {
+bool test_cxx_shmem_wait_until_some(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   for (int i = 0; i < 4; ++i) {
     flags[i] = 0;
@@ -171,7 +171,7 @@ bool text_cxx_shmem_wait_until_some(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_test(void) {
+bool test_cxx_shmem_test(void) {
   long *flag = (long *)p_shmem_malloc(sizeof(long));
   if (flag == NULL) {
     return false;
@@ -215,7 +215,7 @@ bool text_cxx_shmem_test(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_test_all(void) {
+bool test_cxx_shmem_test_all(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   if (flags == NULL) {
     return false;
@@ -265,7 +265,7 @@ bool text_cxx_shmem_test_all(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_test_any(void) {
+bool test_cxx_shmem_test_any(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   if (flags == NULL) {
     return false;
@@ -311,7 +311,7 @@ bool text_cxx_shmem_test_any(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_test_some(void) {
+bool test_cxx_shmem_test_some(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   if (flags == NULL) {
     return false;
@@ -359,7 +359,7 @@ bool text_cxx_shmem_test_some(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_wait_until_all_vector(void) {
+bool test_cxx_shmem_wait_until_all_vector(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   for (int i = 0; i < 4; ++i) {
     flags[i] = 0;
@@ -401,7 +401,7 @@ bool text_cxx_shmem_wait_until_all_vector(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_wait_until_any_vector(void) {
+bool test_cxx_shmem_wait_until_any_vector(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   for (int i = 0; i < 4; ++i) {
     flags[i] = 0;
@@ -443,7 +443,7 @@ bool text_cxx_shmem_wait_until_any_vector(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_wait_until_some_vector(void) {
+bool test_cxx_shmem_wait_until_some_vector(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   for (int i = 0; i < 4; ++i) {
     flags[i] = 0;
@@ -489,7 +489,7 @@ bool text_cxx_shmem_wait_until_some_vector(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_test_all_vector(void) {
+bool test_cxx_shmem_test_all_vector(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   if (flags == NULL) {
     return false;
@@ -540,7 +540,7 @@ bool text_cxx_shmem_test_all_vector(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_test_any_vector(void) {
+bool test_cxx_shmem_test_any_vector(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   if (flags == NULL) {
     return false;
@@ -591,7 +591,7 @@ bool text_cxx_shmem_test_any_vector(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_test_some_vector(void) {
+bool test_cxx_shmem_test_some_vector(void) {
   long *flags = (long *)p_shmem_malloc(4 * sizeof(long));
   if (flags == NULL) {
     return false;
@@ -645,7 +645,7 @@ bool text_cxx_shmem_test_some_vector(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_signal_wait_until(void) {
+bool test_cxx_shmem_signal_wait_until(void) {
   uint64_t *flag = (uint64_t *)p_shmem_malloc(sizeof(uint64_t));
   if (flag == NULL) {
     return false;
@@ -678,3 +678,245 @@ bool text_cxx_shmem_signal_wait_until(void) {
   p_shmem_free(flag);
   return true;
 }
+
+/**
+ * TODO: write docs
+ * 
+ */
+void run_cxx_pt2pt_synch_tests(int mype, int npes) {
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_header("POINT-TO-POINT SYNC OPS");
+  }
+
+  if (!(npes > 1)) {
+    display_not_enough_pes("POINT-TO-POINT SYNCH OPS");
+  }
+  else {
+    /* Run shmem_wait_until() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_long_wait_until")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_long_wait_until()", false);
+      }
+    }
+    else {
+      bool result_shmem_wait_until = test_cxx_shmem_wait_until();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_wait_until()", result_shmem_wait_until, false);
+      }
+    }
+
+    /* Run shmem_wait_until_all() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_long_wait_until_all")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_long_wait_until_all()", false);
+      }
+    }
+    else {
+      bool result_shmem_wait_until_all = test_cxx_shmem_wait_until_all();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_wait_until_all()", result_shmem_wait_until_all, false);
+      }
+    }
+
+    /* Run shmem_wait_until_any() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_long_wait_until_any")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_long_wait_until_any()", false);
+      }
+    }
+    else {
+      bool result_shmem_wait_until_any = test_cxx_shmem_wait_until_any();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_wait_until_any()", result_shmem_wait_until_any, false);
+      }
+    }
+
+    /* Run shmem_wait_until_some() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_long_wait_until_some")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_long_wait_until_some()", false);
+      }
+    }
+    else {
+      bool result_shmem_wait_until_some = test_cxx_shmem_wait_until_some();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_wait_until_some()", result_shmem_wait_until_some, false);
+      }
+    }
+
+    /* Run shmem_wait_until_all_vector() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_long_wait_until_all_vector")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_long_wait_until_all_vector()", false);
+      }
+    }
+    else {
+      bool result_shmem_wait_until_all_vector = test_cxx_shmem_wait_until_all_vector();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_wait_until_all_vector()", result_shmem_wait_until_all_vector, false);
+      }
+    }
+
+    /* Run shmem_wait_until_any_vector() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_long_wait_until_any_vector")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_long_wait_until_any_vector()", false);
+      }
+    }
+    else {
+      bool result_shmem_wait_until_any_vector = test_cxx_shmem_wait_until_any_vector();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_wait_until_any_vector()", result_shmem_wait_until_any_vector, false);
+      }
+    }
+
+    /* Run shmem_wait_until_some_vector() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_long_wait_until_some_vector")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_long_wait_until_some_vector()", false);
+      }
+    }
+    else {
+      bool result_shmem_wait_until_some_vector = test_cxx_shmem_wait_until_some_vector();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_wait_until_some_vector()", result_shmem_wait_until_some_vector, false);
+      }
+    }
+
+    /* Run shmem_test() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_long_test")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_long_test()", false);
+      }
+    }
+    else {
+      bool result_shmem_test = test_cxx_shmem_test();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_test()", result_shmem_test, false);
+      }
+    }
+
+    /* Run shmem_test_all() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_long_test_all")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_long_test_all()", false);
+      }
+    }
+    else {
+      bool result_shmem_test_all = test_cxx_shmem_test_all();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_test_all()", result_shmem_test_all, false);
+      }
+    }
+
+    /* Run shmem_test_any() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_long_test_any")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_long_test_any()", false);
+      }
+    }
+    else {
+      bool result_shmem_test_any = test_cxx_shmem_test_any();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_test_any()", result_shmem_test_any, false);
+      }
+    }
+
+    /* Run shmem_test_some() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_long_test_some")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_long_test_some()", false);
+      }
+    }
+    else {
+      bool result_shmem_test_some = test_cxx_shmem_test_some();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_test_some()", result_shmem_test_some, false);
+      }
+    }
+
+    /* Run shmem_test_all_vector() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_long_test_all_vector")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_long_test_all_vector()", false);
+      }
+    }
+    else {
+      bool result_shmem_test_all_vector = test_cxx_shmem_test_all_vector();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_test_all_vector()", result_shmem_test_all_vector, false);
+      }
+    }
+
+    /* Run shmem_test_any_vector() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_long_test_any_vector")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_long_test_any_vector()", false);
+      }
+    }
+    else {
+      bool result_shmem_test_any_vector = test_cxx_shmem_test_any_vector();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_test_any_vector()", result_shmem_test_any_vector, false);
+      }
+    }
+
+    /* Run shmem_test_some_vector() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_long_test_some_vector")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_long_test_some_vector()", false);
+      }
+    }
+    else {
+      bool result_shmem_test_some_vector = test_cxx_shmem_test_some_vector();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_test_some_vector()", result_shmem_test_some_vector, false);
+      }
+    }
+
+    /* Run shmem_signal_wait_until() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_signal_wait_until")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_signal_wait_until()", false);
+      }
+    }
+    else {
+      bool result_shmem_signal_wait_until = test_cxx_shmem_signal_wait_until();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_signal_wait_until()", result_shmem_signal_wait_until, false); 
+      }
+    }
+  }
+}
+

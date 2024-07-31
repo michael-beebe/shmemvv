@@ -7,6 +7,8 @@
 #define MEM_TESTS_H
 
 #include "routines.h"
+#include "shmemvv.h"
+
 #include <shmem.h>
 #include <iostream>
 #include <cstdlib>
@@ -20,7 +22,7 @@
  *
  * @return True if the pointer is accessible, false otherwise.
  */
-bool text_shmem_ptr(void);
+bool test_shmem_ptr(void);
 
 /**
  * @brief Tests the shmem_malloc() and shmem_free() functions.
@@ -30,7 +32,7 @@ bool text_shmem_ptr(void);
  *
  * @return True if the tests are successful, false otherwise.
  */
-bool text_shmem_malloc_free(void);
+bool test_shmem_malloc_free(void);
 
 /**
  * @brief Tests the shmem_addr_accessible() routine.
@@ -40,7 +42,7 @@ bool text_shmem_malloc_free(void);
  *
  * @return True if the address is accessible from all PEs, false otherwise.
  */
-bool text_shmem_addr_accessible(void);
+bool test_shmem_addr_accessible(void);
 
 /**
  * @brief Tests the shmem_realloc() routine.
@@ -50,7 +52,7 @@ bool text_shmem_addr_accessible(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_shmem_realloc(void);
+bool test_shmem_realloc(void);
 
 /**
  * @brief Tests the shmem_align() routine.
@@ -60,7 +62,7 @@ bool text_shmem_realloc(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_shmem_align(void);
+bool test_shmem_align(void);
 
 /**
  * @brief Tests the shmem_malloc_with_hints() routine.
@@ -70,7 +72,7 @@ bool text_shmem_align(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_shmem_malloc_with_hints(void);
+bool test_shmem_malloc_with_hints(void);
 
 /**
  * @brief Tests the shmem_calloc() routine.
@@ -80,6 +82,12 @@ bool text_shmem_malloc_with_hints(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_shmem_calloc(void);
+bool test_shmem_calloc(void);
+
+/**
+ * TODO: write docs
+ * 
+ */
+void run_mem_tests(int mype, int npes);
 
 #endif /* MEM_TESTS_H */

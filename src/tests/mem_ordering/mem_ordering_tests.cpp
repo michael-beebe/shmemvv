@@ -14,7 +14,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_shmem_fence(void) {
+bool test_shmem_fence(void) {
   long *flag = (long *)p_shmem_malloc(sizeof(long));
   *flag = 0;
   int mype = p_shmem_my_pe();
@@ -49,7 +49,7 @@ bool text_shmem_fence(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_shmem_quiet(void) {
+bool test_shmem_quiet(void) {
   long *flag = (long *)p_shmem_malloc(sizeof(long));
   *flag = 0;
   int mype = p_shmem_my_pe();
@@ -72,4 +72,53 @@ bool text_shmem_quiet(void) {
 
   p_shmem_free(flag);
   return result;
+}
+
+/**
+ * TODO: write docs
+ * 
+ */
+void run_mem_ordering_tests(int mype, int npes) {
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_header("MEMORY ORDERING");
+  }
+
+  /* Make sure there are at least 2 PEs */
+  if ( !(npes > 1) ) {
+    if (mype == 0) {
+      display_not_enough_pes("MEMORY ORDERING");
+    }
+  }
+  else {
+    /* Run the shmem_fence() test */
+    shmem_barrier_all();
+    if ( !check_if_exists("shmem_fence") ) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_fence()", false);
+      }
+    }
+    else {
+      bool result_shmem_fence = test_shmem_fence();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("shmem_fence()", result_shmem_fence, false);
+      }
+    }
+
+    /* Run the shmem_quiet() test */
+    shmem_barrier_all();
+    if ( !check_if_exists("shmem_quiet") ) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_quiet()", false);
+      }
+    }
+    else {
+      bool result_shmem_quiet = test_shmem_quiet();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("shmem_quiet()", result_shmem_quiet, false);
+      }
+    }
+  }
 }

@@ -7,6 +7,8 @@
 #define REMOTE_TESTS_H
 
 #include "routines.h"
+#include "shmemvv.h"
+
 #include <shmem.h>
 #include <iostream>
 
@@ -17,7 +19,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_put(void);
+bool test_cxx_shmem_put(void);
 
 /**
  * @brief Tests the shmem_p() routine.
@@ -26,7 +28,7 @@ bool text_cxx_shmem_put(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_p(void);
+bool test_cxx_shmem_p(void);
 
 /**
  * @brief Tests the shmem_iput() routine.
@@ -35,7 +37,7 @@ bool text_cxx_shmem_p(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_iput(void);
+bool test_cxx_shmem_iput(void);
 
 /**
  * @brief Tests the shmem_get() routine.
@@ -44,7 +46,7 @@ bool text_cxx_shmem_iput(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_get(void);
+bool test_cxx_shmem_get(void);
 
 /**
  * @brief Tests the shmem_g() routine.
@@ -53,7 +55,7 @@ bool text_cxx_shmem_get(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_g(void);
+bool test_cxx_shmem_g(void);
 
 /**
  * @brief Tests the shmem_iget() routine.
@@ -62,7 +64,7 @@ bool text_cxx_shmem_g(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_iget(void);
+bool test_cxx_shmem_iget(void);
 
 /**
  * @brief Tests the shmem_put_nbi() routine.
@@ -71,7 +73,7 @@ bool text_cxx_shmem_iget(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_put_nbi(void);
+bool test_cxx_shmem_put_nbi(void);
 
 /**
  * @brief Tests the shmem_get_nbi() routine.
@@ -80,6 +82,12 @@ bool text_cxx_shmem_put_nbi(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_get_nbi(void);
+bool test_cxx_shmem_get_nbi(void);
+
+/**
+ * TODO: write docs
+ * 
+ */
+void run_cxx_remote_tests(int mype, int npes);
 
 #endif /* REMOTE_TESTS_H */

@@ -12,7 +12,7 @@
  * 
  * @return True if the routine is available and called, false otherwise.
  */
-bool text_shmem_fake_routine(void) {
+bool test_shmem_fake_routine(void) {
   if (p_shmem_fake_routine) {
     p_shmem_fake_routine();
     return true;
@@ -30,7 +30,7 @@ bool text_shmem_fake_routine(void) {
  * 
  * @return True if the initialization is successful, false otherwise.
  */
-bool text_shmem_init() {
+bool test_shmem_init() {
   p_shmem_init();
   return true;
 }
@@ -42,7 +42,7 @@ bool text_shmem_init() {
  * 
  * @return True if the barrier synchronization is successful, false otherwise.
  */
-bool text_shmem_barrier_all() {
+bool test_shmem_barrier_all() {
   int mype = p_shmem_my_pe();
   int npes = p_shmem_n_pes();
 
@@ -67,7 +67,7 @@ bool text_shmem_barrier_all() {
  * 
  * @return True if the test is successful, false otherwise.
  */
-bool text_shmem_barrier(void) {
+bool test_shmem_barrier(void) {
   static long pSync[SHMEM_BARRIER_SYNC_SIZE];
   for (int i = 0; i < SHMEM_BARRIER_SYNC_SIZE; i++) {
     pSync[i] = SHMEM_SYNC_VALUE;
@@ -84,7 +84,7 @@ bool text_shmem_barrier(void) {
  * 
  * @return The PE number on success, -1 on failure.
  */
-int text_shmem_my_pe() {
+int test_shmem_my_pe() {
   int mype = p_shmem_my_pe();
   if (mype >= 0) {
     return mype;
@@ -101,7 +101,7 @@ int text_shmem_my_pe() {
  * 
  * @return The number of PEs if greater than 0, otherwise 0.
  */
-int text_shmem_n_pes() {
+int test_shmem_n_pes() {
   int npes = p_shmem_n_pes();
   if (!(npes > 0)) {
     return 0;
@@ -118,7 +118,7 @@ int text_shmem_n_pes() {
  * 
  * @return True if all PEs are accessible, false otherwise.
  */
-bool text_shmem_pe_accessible() {
+bool test_shmem_pe_accessible() {
   int npes = p_shmem_n_pes();
   for (int pe = 0; pe < npes; ++pe) {
     if (!p_shmem_pe_accessible(pe)) {
@@ -135,7 +135,7 @@ bool text_shmem_pe_accessible() {
  * 
  * @return The version as a string in the format "major.minor".
  */
-std::string text_shmem_info_get_version() {
+std::string test_shmem_info_get_version() {
   int major, minor;
   p_shmem_info_get_version(&major, &minor);
   
@@ -150,7 +150,7 @@ std::string text_shmem_info_get_version() {
  * 
  * @return The name of the library as a string if successful, otherwise an empty string.
  */
-std::string text_shmem_info_get_name() {
+std::string test_shmem_info_get_name() {
   char name[SHMEM_MAX_NAME_LEN];
   p_shmem_info_get_name(name);
   if (strlen(name) > 0) {
@@ -168,7 +168,7 @@ std::string text_shmem_info_get_name() {
  * 
  * @return True if the finalization is successful, false otherwise.
  */
-bool text_shmem_finalize() {
+bool test_shmem_finalize() {
   p_shmem_finalize();
   return true;
 }
@@ -180,7 +180,7 @@ bool text_shmem_finalize() {
  * 
  * @return True if the global exit is successful, false otherwise.
  */
-bool text_shmem_global_exit() {
+bool test_shmem_global_exit() {
   p_shmem_global_exit(0);
   return true;
 }
@@ -211,7 +211,7 @@ bool run_setup_tests(test_options opts, int &mype, int &npes, std::string &versi
       return false;
     }
     else {
-      result_shmem_init_thread = text_shmem_init_thread();
+      result_shmem_init_thread = test_shmem_init_thread();
       if (!result_shmem_init_thread) {
         display_test_result("shmem_init_thread()", result_shmem_init_thread, true);
         return false;
@@ -227,7 +227,7 @@ bool run_setup_tests(test_options opts, int &mype, int &npes, std::string &versi
       return false;
     }
     else {
-      result_shmem_init = text_shmem_init();
+      result_shmem_init = test_shmem_init();
       if (!result_shmem_init) {
         display_test_result("shmem_init()", result_shmem_init, true);
         return false;
@@ -244,7 +244,7 @@ bool run_setup_tests(test_options opts, int &mype, int &npes, std::string &versi
     return false;
   }
   else {
-    result_shmem_barrier_all = text_shmem_barrier_all();
+    result_shmem_barrier_all = test_shmem_barrier_all();
     if (!result_shmem_barrier_all) {
       if (shmem_my_pe() == 0) {
         display_test_result("shmem_barrier_all()", result_shmem_barrier_all, true);
@@ -264,7 +264,7 @@ bool run_setup_tests(test_options opts, int &mype, int &npes, std::string &versi
     return false;
   }
   else {
-    mype = text_shmem_my_pe();
+    mype = test_shmem_my_pe();
     result_shmem_my_pe = mype >= 0;
     if (!result_shmem_my_pe) {
       if (mype == 0) {
@@ -286,7 +286,7 @@ bool run_setup_tests(test_options opts, int &mype, int &npes, std::string &versi
   }
   else {
     /* Set npes */
-    npes = text_shmem_n_pes();
+    npes = test_shmem_n_pes();
     result_shmem_n_pes = npes > 0;
     if (!result_shmem_n_pes) {
       if (mype == 0) {
@@ -305,7 +305,7 @@ bool run_setup_tests(test_options opts, int &mype, int &npes, std::string &versi
     }
   }
   else {
-    result_shmem_pe_accessible = text_shmem_pe_accessible();
+    result_shmem_pe_accessible = test_shmem_pe_accessible();
     if (!result_shmem_pe_accessible) {
       if (mype == 0) {
         display_test_result("shmem_pe_accessible()", result_shmem_pe_accessible, true);
@@ -327,7 +327,7 @@ bool run_setup_tests(test_options opts, int &mype, int &npes, std::string &versi
       }
     }
     else {
-      text_shmem_fake_routine();
+      test_shmem_fake_routine();
     }
   #endif
 
@@ -345,7 +345,7 @@ bool run_setup_tests(test_options opts, int &mype, int &npes, std::string &versi
     }
   }
   else {
-    result_shmem_barrier = text_shmem_barrier();
+    result_shmem_barrier = test_shmem_barrier();
     shmem_barrier_all();
   }
 
@@ -358,7 +358,7 @@ bool run_setup_tests(test_options opts, int &mype, int &npes, std::string &versi
     }
   }
   else {
-    version = text_shmem_info_get_version();
+    version = test_shmem_info_get_version();
     if (version == "") {
       result_shmem_info_get_version = false;
     }
@@ -373,7 +373,7 @@ bool run_setup_tests(test_options opts, int &mype, int &npes, std::string &versi
     }
   }
   else {
-    name = text_shmem_info_get_name();
+    name = test_shmem_info_get_name();
     if (name == "") {
       result_shmem_info_get_name = false;
     }

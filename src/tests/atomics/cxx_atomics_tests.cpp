@@ -13,7 +13,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_atomic_fetch() {
+bool test_cxx_shmem_atomic_fetch() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -36,7 +36,7 @@ bool text_cxx_shmem_atomic_fetch() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_atomic_set() {
+bool test_cxx_shmem_atomic_set() {
   static ulong *dest;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
   ulong value = 42;
@@ -57,7 +57,7 @@ bool text_cxx_shmem_atomic_set() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_atomic_compare_swap() {
+bool test_cxx_shmem_atomic_compare_swap() {
   static ulong *dest;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
   ulong old = 42, new_val = 43;
@@ -82,7 +82,7 @@ bool text_cxx_shmem_atomic_compare_swap() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_atomic_swap() {
+bool test_cxx_shmem_atomic_swap() {
   static ulong *dest;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
   ulong value = 42, new_val = 43;
@@ -104,7 +104,7 @@ bool text_cxx_shmem_atomic_swap() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_atomic_fetch_inc() {
+bool test_cxx_shmem_atomic_fetch_inc() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -127,7 +127,7 @@ bool text_cxx_shmem_atomic_fetch_inc() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_atomic_inc() {
+bool test_cxx_shmem_atomic_inc() {
   static ulong *dest;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
   ulong value = 42;
@@ -149,7 +149,7 @@ bool text_cxx_shmem_atomic_inc() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_atomic_fetch_add() {
+bool test_cxx_shmem_atomic_fetch_add() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -172,7 +172,7 @@ bool text_cxx_shmem_atomic_fetch_add() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_atomic_add() {
+bool test_cxx_shmem_atomic_add() {
   static ulong *dest;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
   ulong value = 42, add_val = 10;
@@ -194,7 +194,7 @@ bool text_cxx_shmem_atomic_add() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_atomic_fetch_and() {
+bool test_cxx_shmem_atomic_fetch_and() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -217,7 +217,7 @@ bool text_cxx_shmem_atomic_fetch_and() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_atomic_and() {
+bool test_cxx_shmem_atomic_and() {
   static ulong *dest;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
   ulong value = 42, and_val = 15;
@@ -239,7 +239,7 @@ bool text_cxx_shmem_atomic_and() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_atomic_fetch_or() {
+bool test_cxx_shmem_atomic_fetch_or() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -262,7 +262,7 @@ bool text_cxx_shmem_atomic_fetch_or() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_atomic_or() {
+bool test_cxx_shmem_atomic_or() {
   static ulong *dest;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
   ulong value = 42, or_val = 15;
@@ -284,7 +284,7 @@ bool text_cxx_shmem_atomic_or() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_atomic_fetch_xor() {
+bool test_cxx_shmem_atomic_fetch_xor() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -307,7 +307,7 @@ bool text_cxx_shmem_atomic_fetch_xor() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_atomic_xor() {
+bool test_cxx_shmem_atomic_xor() {
   static ulong *dest;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
   ulong value = 42, xor_val = 15;
@@ -329,7 +329,7 @@ bool text_cxx_shmem_atomic_xor() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_atomic_fetch_nbi() {
+bool test_cxx_shmem_atomic_fetch_nbi() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -353,7 +353,7 @@ bool text_cxx_shmem_atomic_fetch_nbi() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_atomic_compare_swap_nbi() {
+bool test_cxx_shmem_atomic_compare_swap_nbi() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -378,7 +378,7 @@ bool text_cxx_shmem_atomic_compare_swap_nbi() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_atomic_swap_nbi() {
+bool test_cxx_shmem_atomic_swap_nbi() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -403,7 +403,7 @@ bool text_cxx_shmem_atomic_swap_nbi() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_atomic_fetch_inc_nbi() {
+bool test_cxx_shmem_atomic_fetch_inc_nbi() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -428,7 +428,7 @@ bool text_cxx_shmem_atomic_fetch_inc_nbi() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_atomic_fetch_add_nbi() {
+bool test_cxx_shmem_atomic_fetch_add_nbi() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -453,7 +453,7 @@ bool text_cxx_shmem_atomic_fetch_add_nbi() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_atomic_fetch_and_nbi() {
+bool test_cxx_shmem_atomic_fetch_and_nbi() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -478,7 +478,7 @@ bool text_cxx_shmem_atomic_fetch_and_nbi() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_atomic_fetch_or_nbi() {
+bool test_cxx_shmem_atomic_fetch_or_nbi() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -503,7 +503,7 @@ bool text_cxx_shmem_atomic_fetch_or_nbi() {
  *
  * @return True if the test is successful, false otherwise.
  */
-bool text_cxx_shmem_atomic_fetch_xor_nbi() {
+bool test_cxx_shmem_atomic_fetch_xor_nbi() {
   static ulong *dest;
   static ulong fetch;
   dest = (ulong *)p_shmem_malloc(sizeof(ulong));
@@ -518,4 +518,353 @@ bool text_cxx_shmem_atomic_fetch_xor_nbi() {
   bool success = (fetch == value && *dest == (value ^ xor_val));
   p_shmem_free(dest);
   return success;
+}
+
+/**
+ * TODO: write docs
+ * 
+ */
+void run_cxx_atomics_tests(int mype, int npes) {
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_header("ATOMIC MEMORY OPS"); 
+  }
+
+  /* Make sure there are at least 2 PEs */
+  if ( !(npes > 1) ) {
+    if (mype == 0) {
+      display_not_enough_pes("ATOMIC MEMORY OPS");
+    }
+  }
+  else {
+    /* Run shmem_atomic_fetch() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_ulong_atomic_fetch")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_ulong_atomic_fetch()", false);
+      }
+    }
+    else {
+      bool result_shmem_atomic_fetch = test_cxx_shmem_atomic_fetch();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_atomic_fetch()", result_shmem_atomic_fetch, false);
+      }
+    }
+
+    /* Run shmem_atomic_set() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_ulong_atomic_set")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_ulong_atomic_set()", false);
+      }
+    }
+    else {
+      bool result_shmem_atomic_set = test_cxx_shmem_atomic_set();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_atomic_set()", result_shmem_atomic_set, false); 
+      }
+    }
+
+    /* Run shmem_atomic_compare_swap() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_ulong_atomic_compare_swap")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_ulong_atomic_compare_swap()", false);
+      }
+    }
+    else {
+      bool result_shmem_atomic_compare_swap = test_cxx_shmem_atomic_compare_swap();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_atomic_compare_swap()", result_shmem_atomic_compare_swap, false); 
+      }
+    }
+
+    /* Run shmem_atomic_swap() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_ulong_atomic_swap")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_ulong_atomic_swap()", false);
+      }
+    }
+    else {
+      bool result_shmem_atomic_swap = test_cxx_shmem_atomic_swap();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_atomic_swap()", result_shmem_atomic_swap, false);
+      }
+    }
+
+    /* Run shmem_atomic_fetch_inc() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_ulong_atomic_fetch_inc")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_ulong_atomic_fetch_inc()", false);
+      }
+    }
+    else {
+      bool result_shmem_atomic_fetch_inc = test_cxx_shmem_atomic_fetch_inc();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_atomic_fetch_inc()", result_shmem_atomic_fetch_inc, false);
+      }
+    }
+
+    /* Run shmem_atomic_inc() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_ulong_atomic_inc")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_ulong_atomic_inc()", false);
+      }
+    }
+    else {
+      bool result_shmem_atomic_inc = test_cxx_shmem_atomic_inc();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_atomic_inc()", result_shmem_atomic_inc, false);
+      }
+    }
+
+    /* Run shmem_atomic_fetch_add() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_ulong_atomic_fetch_add")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_ulong_atomic_fetch_add()", false);
+      }
+    }
+    else {
+      bool result_shmem_atomic_fetch_add = test_cxx_shmem_atomic_fetch_add();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_atomic_fetch_add()", result_shmem_atomic_fetch_add, false);
+      }
+    }
+
+    /* Run shmem_atomic_add() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_ulong_atomic_add")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_ulong_atomic_add()", false);
+      }
+    }
+    else {
+      bool result_shmem_atomic_add = test_cxx_shmem_atomic_add();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_atomic_add()", result_shmem_atomic_add, false);
+      }
+    }
+
+    /* Run shmem_atomic_fetch_and() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_ulong_atomic_fetch_and")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_ulong_atomic_fetch_and()", false);
+      }
+    }
+    else {
+      bool result_shmem_atomic_fetch_and = test_cxx_shmem_atomic_fetch_and();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_atomic_fetch_and()", result_shmem_atomic_fetch_and, false);
+      }
+    }
+
+    /* Run shmem_atomic_and() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_ulong_atomic_and")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_ulong_atomic_and()", false);
+      }
+    }
+    else {
+      bool result_shmem_atomic_and = test_cxx_shmem_atomic_and();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_atomic_and()", result_shmem_atomic_and, false);
+      }
+    }
+
+    /* Run shmem_atomic_fetch_or() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_ulong_atomic_fetch_or")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_ulong_atomic_fetch_or()", false);
+      }
+    }
+    else {
+      bool result_shmem_atomic_fetch_or = test_cxx_shmem_atomic_fetch_or();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_atomic_fetch_or()", result_shmem_atomic_fetch_or, false);
+      }
+    }
+
+    /* Run shmem_atomic_or() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_ulong_atomic_or")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_ulong_atomic_or()", false);
+      }
+    }
+    else {
+      bool result_shmem_atomic_or = test_cxx_shmem_atomic_or();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_atomic_or()", result_shmem_atomic_or, false);
+      }
+    }
+
+    /* Run shmem_atomic_fetch_xor() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_ulong_atomic_fetch_xor")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_ulong_atomic_fetch_xor()", false);
+      }
+    }
+    else {
+      bool result_shmem_atomic_fetch_xor = test_cxx_shmem_atomic_fetch_xor();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_atomic_fetch_xor()", result_shmem_atomic_fetch_xor, false);
+      }
+    }
+
+    /* Run shmem_atomic_xor() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_ulong_atomic_xor")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_ulong_atomic_xor()", false);
+      }
+    }
+    else {
+      bool result_shmem_atomic_xor = test_cxx_shmem_atomic_xor();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_atomic_xor()", result_shmem_atomic_xor, false);
+      }
+    }
+
+    /* Run shmem_atomic_fetch_nbi() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_ulong_atomic_fetch_nbi")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_ulong_atomic_fetch_nbi()", false);
+      }
+    }
+    else {
+      bool result_shmem_atomic_fetch_nbi = test_cxx_shmem_atomic_fetch_nbi();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_atomic_fetch_nbi()", result_shmem_atomic_fetch_nbi, false);
+      }
+    }
+
+    /* Run shmem_atomic_compare_swap_nbi() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_ulong_atomic_compare_swap_nbi")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_ulong_atomic_compare_swap_nbi()", false);
+      }
+    }
+    else {
+      bool result_shmem_atomic_compare_swap_nbi = test_cxx_shmem_atomic_compare_swap_nbi();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_atomic_compare_swap_nbi()", result_shmem_atomic_compare_swap_nbi, false);
+      }
+    }
+
+    /* Run shmem_atomic_swap_nbi() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_ulong_atomic_swap_nbi")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_ulong_atomic_swap_nbi()", false);
+      }
+    }
+    else {
+      bool result_shmem_atomic_swap_nbi = test_cxx_shmem_atomic_swap_nbi();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_atomic_swap_nbi()", result_shmem_atomic_swap_nbi, false);
+      }
+    }
+
+    /* Run shmem_atomic_fetch_inc_nbi() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_ulong_atomic_fetch_inc_nbi")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_ulong_atomic_fetch_inc_nbi()", false);
+      }
+    }
+    else {
+      bool result_shmem_atomic_fetch_inc_nbi = test_cxx_shmem_atomic_fetch_inc_nbi();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_atomic_fetch_inc_nbi()", result_shmem_atomic_fetch_inc_nbi, false);
+      }
+    }
+
+    /* Run shmem_atomic_fetch_add_nbi() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_ulong_atomic_fetch_add_nbi")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_ulong_atomic_fetch_add_nbi()", false);
+      }
+    }
+    else {
+      bool result_shmem_atomic_fetch_add_nbi = test_cxx_shmem_atomic_fetch_add_nbi();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_atomic_fetch_add_nbi()", result_shmem_atomic_fetch_add_nbi, false);
+      }
+    }
+
+    /* Run shmem_atomic_fetch_and_nbi() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_ulong_atomic_fetch_and_nbi")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_ulong_atomic_fetch_and_nbi()", false);
+      }
+    }
+    else {
+      bool result_shmem_atomic_fetch_and_nbi = test_cxx_shmem_atomic_fetch_and_nbi();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_atomic_fetch_and_nbi()", result_shmem_atomic_fetch_and_nbi, false);
+      }
+    }
+
+    /* Run shmem_atomic_fetch_or_nbi() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_ulong_atomic_fetch_or_nbi")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_ulong_atomic_fetch_or_nbi()", false);
+      }
+    }
+    else {
+      bool result_shmem_atomic_fetch_or_nbi = test_cxx_shmem_atomic_fetch_or_nbi();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_atomic_fetch_or_nbi()", result_shmem_atomic_fetch_or_nbi, false);
+      }
+    }
+
+    /* Run shmem_atomic_fetch_xor_nbi() test */
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_ulong_atomic_fetch_xor_nbi")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_ulong_atomic_fetch_xor_nbi()", false);
+      }
+    }
+    else {
+      bool result_shmem_atomic_fetch_xor_nbi = test_cxx_shmem_atomic_fetch_xor_nbi();
+      shmem_barrier_all();
+      if (mype == 0) {
+        display_test_result("CXX shmem_atomic_fetch_xor_nbi()", result_shmem_atomic_fetch_xor_nbi, false);
+      }
+    }
+  }
 }
