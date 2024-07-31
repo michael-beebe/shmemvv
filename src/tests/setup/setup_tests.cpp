@@ -184,3 +184,233 @@ bool text_shmem_global_exit() {
   p_shmem_global_exit(0);
   return true;
 }
+
+/**
+ * @brief Perform all setup tests
+ * 
+ * @return True if successful false otherwise
+ */
+bool run_setup_tests(test_options opts, int &mype, int &npes, std::string &version, std::string name) {
+  /* Variables to hold test results */
+  bool result_shmem_init = true;
+  bool result_shmem_init_thread = true;
+  bool result_shmem_barrier_all = true;
+  bool result_shmem_barrier = true;
+  bool result_shmem_my_pe = true;
+  bool result_shmem_n_pes = true;
+  bool result_shmem_pe_accessible = true;
+  bool result_shmem_info_get_version = true;
+  bool result_shmem_info_get_name = true;
+  
+  /* Initialize with shmem_init_thread() if THREADS tests were enabled */
+  if (opts.test_threads) {
+    if (!check_if_exists("shmem_init_thread")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_init_thread()", true);
+      }
+      return false;
+    }
+    else {
+      result_shmem_init_thread = text_shmem_init_thread();
+      if (!result_shmem_init_thread) {
+        display_test_result("shmem_init_thread()", result_shmem_init_thread, true);
+        return false;
+      }
+    }
+  }
+  else {
+    /* Initialize with regular shmem_init() if THREADS tests are not enabled */
+    if (!check_if_exists("shmem_init")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_init()", true);
+      }
+      return false;
+    }
+    else {
+      result_shmem_init = text_shmem_init();
+      if (!result_shmem_init) {
+        display_test_result("shmem_init()", result_shmem_init, true);
+        return false;
+      }
+    }
+  }
+
+  /* Run shmem_barrier_all() test */
+  if (!check_if_exists("shmem_barrier_all")) {
+    if (mype == 0) {
+      display_not_found_warning("shmem_barrier_all()", true);
+    }
+    shmem_finalize();
+    return false;
+  }
+  else {
+    result_shmem_barrier_all = text_shmem_barrier_all();
+    if (!result_shmem_barrier_all) {
+      if (shmem_my_pe() == 0) {
+        display_test_result("shmem_barrier_all()", result_shmem_barrier_all, true);
+      }
+      shmem_finalize();
+      return false;
+    }
+  }
+
+  /* Run shmem_my_pe() test */
+  shmem_barrier_all();
+  if (!check_if_exists("shmem_my_pe")) {
+    if (mype == 0) {
+      display_not_found_warning("shmem_my_pe()", true);
+    }
+    shmem_finalize();
+    return false;
+  }
+  else {
+    mype = text_shmem_my_pe();
+    result_shmem_my_pe = mype >= 0;
+    if (!result_shmem_my_pe) {
+      if (mype == 0) {
+        display_test_result("shmem_my_pe()", result_shmem_my_pe, true);
+      }
+      shmem_finalize();
+      return false;
+    }
+  }
+
+  /* Run shmem_n_pes() test */
+  shmem_barrier_all();
+  if (!check_if_exists("shmem_n_pes")) {
+    if (mype == 0) {
+      display_not_found_warning("shmem_n_pes", true);
+    }
+    shmem_finalize();
+    return false;
+  }
+  else {
+    /* Set npes */
+    npes = text_shmem_n_pes();
+    result_shmem_n_pes = npes > 0;
+    if (!result_shmem_n_pes) {
+      if (mype == 0) {
+        display_test_result("shmem_n_pes()", result_shmem_n_pes, true);
+      }
+      shmem_finalize();
+      return false;
+    }
+  }
+
+  /* Run shmem_pe_accessible() test */
+  shmem_barrier_all();
+  if (!check_if_exists("shmem_pe_accessible")) {
+    if (mype == 0) {
+      display_not_found_warning("shmem_pe_accessible()", false);
+    }
+  }
+  else {
+    result_shmem_pe_accessible = text_shmem_pe_accessible();
+    if (!result_shmem_pe_accessible) {
+      if (mype == 0) {
+        display_test_result("shmem_pe_accessible()", result_shmem_pe_accessible, true);
+      }
+      shmem_finalize();
+      return false;
+    }
+  }
+
+  /*
+    Run test to make sure OpenSHMEM routines that aren't implemented
+    don't throw compiler errors
+  */
+  #ifdef _DEBUG_
+    shmem_barrier_all();
+    if (!check_if_exists("shmem_fake_routine")) {
+      if (mype == 0) {
+        display_not_found_warning("shmem_fake_routine()", false);
+      }
+    }
+    else {
+      text_shmem_fake_routine();
+    }
+  #endif
+
+  /* Display ASCII art logo */
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_logo();
+  }
+
+  /* Run shmem_barrier() test */
+  shmem_barrier_all();
+  if (!check_if_exists("shmem_barrier")) {
+    if (mype == 0) {
+      display_not_found_warning("shmem_barrier()", false);
+    }
+  }
+  else {
+    result_shmem_barrier = text_shmem_barrier();
+    shmem_barrier_all();
+  }
+
+  /* Run shmem_info_get_version() test */
+  shmem_barrier_all();
+  if (!check_if_exists("shmem_info_get_version")) {
+    result_shmem_info_get_version = false;
+    if (mype == 0) {
+      display_not_found_warning("shmem_info_get_version()", false);
+    }
+  }
+  else {
+    version = text_shmem_info_get_version();
+    if (version == "") {
+      result_shmem_info_get_version = false;
+    }
+  }
+
+  /* Run shmem_info_get_name() test */
+  shmem_barrier_all();
+  if (!check_if_exists("shmem_info_get_name")) {
+    result_shmem_info_get_name = false;
+    if (mype == 0) {
+      display_not_found_warning("shmem_info_get_name()", false);
+    }
+  }
+  else {
+    name = text_shmem_info_get_name();
+    if (name == "") {
+      result_shmem_info_get_name = false;
+    }
+  }
+  
+  /* Display test information */
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_info(name, version, npes);
+  } 
+
+  /* Print setup tests header */
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_header("SETUP");
+  }
+
+  /* shmem_init() and shmem_my_pe() tests passed */
+  shmem_barrier_all();
+  if (mype == 0) {
+    if (!opts.test_threads) {
+      display_test_result("shmem_init()", result_shmem_init, true);
+    }
+    display_test_result("shmem_barrier_all()", result_shmem_barrier_all, true);
+    display_test_result("shmem_barrier()", result_shmem_barrier, false);
+    display_test_result("shmem_my_pe()", result_shmem_my_pe, true);
+    display_test_result("shmem_n_pes()", result_shmem_n_pes, true);
+    display_test_result("shmem_pe_accessible()", result_shmem_pe_accessible, true);
+    if (version != "1.5" && version != "1.50") {
+      std::cerr << YELLOW_COLOR << "shmem_info_get_version() test did not return 1.5... Returned " << version << std::endl;
+    }
+    else {
+      display_test_result("shmem_info_get_version()", result_shmem_info_get_version, false);
+    }
+    display_test_result("shmem_info_get_name()", result_shmem_info_get_name,false);
+  }
+
+  return true;
+}
+

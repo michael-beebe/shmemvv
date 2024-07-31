@@ -17,3 +17,6 @@ build
 # BUILD.sh
 NM.*
 TODO.txt
+.vscode
+
+

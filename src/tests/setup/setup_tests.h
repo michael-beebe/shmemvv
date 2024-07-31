@@ -3,11 +3,13 @@
  * @brief Contains function declarations for the OpenSHMEM setup tests.
  */
 
-#ifndef SETUP_TESTS_h
-#define SETUP_TESTS_h
+#ifndef SETUP_TESTS_H
+#define SETUP_TESTS_H
 
-#include "routines.h"
 #include "shmemvv.h"
+#include "routines.h"
+
+#include "tests.h"
 
 #include <shmem.h>
 #include <iostream>
@@ -115,5 +117,12 @@ bool text_shmem_finalize(void);
  * @return True if the global exit is successful, false otherwise.
  */
 bool text_shmem_global_exit(void);
+
+/**
+ * @brief Perform all setup tests
+ * 
+ * @return True if successful false otherwise
+ */
+bool run_setup_tests(test_options opts, int &mype, int &npes, std::string &version, std::string name);
 
 #endif /* SETUP_TESTS_h */
