@@ -1,3 +1,7 @@
+#####################################
+# src/tests/teams/CMakeLists.txt
+#####################################
+
 # ---- Add the source files for team tests
 add_library(teams_tests teams_tests.cpp teams_tests.h)
 

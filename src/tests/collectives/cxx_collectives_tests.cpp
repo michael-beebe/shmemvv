@@ -334,12 +334,6 @@ bool test_cxx_shmem_max_reduce(void) {
  * 
  */
 void run_cxx_collectives_tests(int mype, int npes) {
-  /* Print test header */
-  shmem_barrier_all();
-  if (mype == 0) {
-    display_test_header("COLLECTIVE OPS");
-  }
-
   /* Check to make sure there are at least 2 PEs */
   if ( !(npes > 1) ) {
     if (mype == 0) {

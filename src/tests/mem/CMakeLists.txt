@@ -1,3 +1,7 @@
+#####################################
+# src/tests/mem/CMakeLists.txt
+#####################################
+
 # ---- Add the source files for memory tests
 add_library(mem_tests mem_tests.cpp mem_tests.h)
 

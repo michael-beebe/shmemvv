@@ -16,7 +16,7 @@
 bool test_shmem_malloc_free(void) {
   size_t size = 1024;
   void *ptr = shmem_malloc(size);
-  if (ptr == nullptr) {
+  if (ptr == NULL) {
     return false;
   }
   shmem_free(ptr);
@@ -36,7 +36,7 @@ bool test_shmem_ptr() {
   int npes = shmem_n_pes();
   int *ptr = (int *)shmem_malloc(sizeof(int));
 
-  if (ptr == nullptr) {
+  if (ptr == NULL) {
     return false;
   }
 
@@ -49,7 +49,7 @@ bool test_shmem_ptr() {
   for (int pe = 0; pe < npes; ++pe) {
     int *remote_ptr = (int *)shmem_ptr(ptr, pe);
 
-    if (remote_ptr != nullptr) {
+    if (remote_ptr != NULL) {
       int remote_val = *remote_ptr;
       if (remote_val != pe) {
         test_passed = false;
@@ -76,7 +76,7 @@ bool test_shmem_addr_accessible() {
   int npes = shmem_n_pes();
   int *ptr = (int *)shmem_malloc(sizeof(int));
 
-  if (ptr == nullptr) {
+  if (ptr == NULL) {
     return false;
   }
 
@@ -107,12 +107,12 @@ bool test_shmem_addr_accessible() {
 bool test_shmem_realloc(void) {
   size_t size = 1024;
   void *ptr = shmem_malloc(size);
-  if (ptr == nullptr) {
+  if (ptr == NULL) {
     return false;
   }
   size_t new_size = 2048;
   void *new_ptr = shmem_realloc(ptr, new_size);
-  if (new_ptr == nullptr) {
+  if (new_ptr == NULL) {
     shmem_free(ptr);
     return false;
   }
@@ -132,7 +132,7 @@ bool test_shmem_align(void) {
   size_t alignment = 64;
   size_t size = 1024;
   void *ptr = shmem_align(alignment, size);
-  if (ptr == nullptr) {
+  if (ptr == NULL) {
     return false;
   }
   shmem_free(ptr);
@@ -151,7 +151,7 @@ bool test_shmem_malloc_with_hints(void) {
   size_t size = 1024;
   long hints = SHMEM_MALLOC_ATOMICS_REMOTE;
   void *ptr = shmem_malloc_with_hints(size, hints);
-  if (ptr == nullptr) {
+  if (ptr == NULL) {
     return false;
   }
   shmem_free(ptr);
@@ -170,7 +170,7 @@ bool test_shmem_calloc(void) {
   size_t count = 256;
   size_t size = sizeof(int);
   int *ptr = (int *)shmem_calloc(count, size);
-  if (ptr == nullptr) {
+  if (ptr == NULL) {
     return false;
   }
   for (size_t i = 0; i < count; ++i) {
@@ -188,13 +188,7 @@ bool test_shmem_calloc(void) {
  * 
  */
 void run_mem_tests(int mype, int npes) {
-  shmem_barrier_all();
-  if (mype == 0) {
-    display_test_header("MEMORY MANAGEMENT"); 
-  }
-
   /* Test shmem_malloc() and shmem_free() */
-  shmem_barrier_all();
   if ( check_if_exists("shmem_malloc") && check_if_exists("shmem_free") ) {
     bool result_shmem_malloc_free = test_shmem_malloc_free();
     shmem_barrier_all();

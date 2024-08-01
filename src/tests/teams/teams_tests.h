@@ -10,7 +10,7 @@
 #include "shmemvv.h"
 
 #include <shmem.h>
-#include <iostream>
+#include <stdlib.h>
 
 /**
  * @brief Tests the shmem_team_my_pe() routine.

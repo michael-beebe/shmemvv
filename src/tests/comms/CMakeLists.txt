@@ -1,3 +1,7 @@
+#####################################
+# src/tests/comms/CMakeLists.txt
+#####################################
+
 # ---- Add the source files for communication tests
 add_library(comms_tests comms_tests.cpp comms_tests.h)
 

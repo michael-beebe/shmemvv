@@ -49,12 +49,6 @@ bool test_shmem_lock_unlock(void) {
  * 
  */
 void run_locking_tests(int mype, int npes) {
-  shmem_barrier_all();
-  if (mype == 0) {
-    display_test_header("DISTRIBUTED LOCKING");
-  }
-  shmem_barrier_all();
-
   /* Make sure there are at least 2 PEs */
   if ( !(npes > 1) ) {
     if (mype == 0) {

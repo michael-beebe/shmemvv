@@ -19,7 +19,7 @@ cmake \
   ../
 
 # --- Compile
-make -j 50
+make -j 50 VERBOSE=1
 
 # --- Move back to project root
 echo ; echo

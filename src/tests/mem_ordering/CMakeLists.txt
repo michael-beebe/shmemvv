@@ -1,3 +1,7 @@
+#####################################
+# src/tests/mem_ordering/CMakeLists.txt
+#####################################
+
 # ---- Add the source files for memory ordering tests
 add_library(mem_ordering_tests mem_ordering_tests.cpp mem_ordering_tests.h)
 

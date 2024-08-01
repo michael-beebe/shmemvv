@@ -10,9 +10,7 @@
 #include "shmemvv.h"
 
 #include <shmem.h>
-#include <iostream>
-#include <cstdlib>
-#include <cstring>
+#include <stdlib.h>
 
 /**
  * @brief Tests the shmem_fence() routine.

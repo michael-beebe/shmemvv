@@ -525,11 +525,6 @@ bool test_cxx_shmem_atomic_fetch_xor_nbi() {
  * 
  */
 void run_cxx_atomics_tests(int mype, int npes) {
-  shmem_barrier_all();
-  if (mype == 0) {
-    display_test_header("ATOMIC MEMORY OPS"); 
-  }
-
   /* Make sure there are at least 2 PEs */
   if ( !(npes > 1) ) {
     if (mype == 0) {

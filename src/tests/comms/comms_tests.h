@@ -10,7 +10,6 @@
 #include "shmemvv.h"
 
 #include <shmem.h>
-#include <iostream>
 
 /**
  * @brief Tests the shmem_ctx_create() function.

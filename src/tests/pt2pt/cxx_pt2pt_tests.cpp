@@ -684,11 +684,6 @@ bool test_cxx_shmem_signal_wait_until(void) {
  * 
  */
 void run_cxx_pt2pt_synch_tests(int mype, int npes) {
-  shmem_barrier_all();
-  if (mype == 0) {
-    display_test_header("POINT-TO-POINT SYNC OPS");
-  }
-
   if (!(npes > 1)) {
     display_not_enough_pes("POINT-TO-POINT SYNCH OPS");
   }

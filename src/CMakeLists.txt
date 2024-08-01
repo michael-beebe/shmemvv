@@ -1,6 +1,14 @@
+#####################################
+# src/CMakeLists.txt
+#####################################
+
 # ---- Specify C++ standard
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
+# set(CMAKE_CXX_STANDARD 11)
+# set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+# --- Specify C standard
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED True)
 
 # ---- Add include directories
 include_directories(${CMAKE_SOURCE_DIR}/src/include)
@@ -12,7 +20,6 @@ link_directories(${CMAKE_LIBRARY_PATH})
 set(SOURCES
   main.cpp
   shmemvv.cpp
-  routines.cpp
 )
 
 # ---- Add the main executable
@@ -39,6 +46,8 @@ target_link_libraries(
   cxx_pt2pt_tests
 
   # --- C11 tests
+  c11_remote_tests
+  c11_atomics_tests
 )
 
 # ---- Specify the output directory for the executable

@@ -1,3 +1,7 @@
+#####################################
+# src/tests/collectives/CMakeLists.txt
+#####################################
+
 # ---- Add the source files for collective operation tests
 add_library(cxx_collectives_tests cxx_collectives_tests.cpp cxx_collectives_tests.h)
 

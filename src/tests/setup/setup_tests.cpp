@@ -6,24 +6,6 @@
 #include "setup_tests.h"
 
 /**
- * @brief Tests the presence of a fake routine for demonstration purposes.
- *
- * This test checks if the `shmem_fake_routine` function is available and calls it if so.
- * 
- * @return True if the routine is available and called, false otherwise.
- */
-bool test_shmem_fake_routine(void) {
-  if (p_shmem_fake_routine) {
-    p_shmem_fake_routine();
-    return true;
-  }
-  else {
-    std::cerr << "shmem_fake_routine is not available." << std::endl;
-    return false;
-  }
-}
-
-/**
  * @brief Tests the initialization of OpenSHMEM.
  *
  * This test verifies that the OpenSHMEM library initializes successfully.
@@ -133,13 +115,17 @@ bool test_shmem_pe_accessible() {
  *
  * This test verifies that the `shmem_info_get_version` function returns the correct version of the OpenSHMEM library.
  * 
- * @return The version as a string in the format "major.minor".
+ * @return A pointer to the version string in the format "major.minor".
  */
-std::string test_shmem_info_get_version() {
+char* test_shmem_info_get_version(void) {
   int major, minor;
   shmem_info_get_version(&major, &minor);
-  
-  std::string version = std::to_string(major) + "." + std::to_string(minor);
+
+  char *version = (char *)malloc(16 * sizeof(char));
+  if (version != NULL) {
+    snprintf(version, 16, "%d.%d", major, minor);
+  }
+
   return version;
 }
 
@@ -148,17 +134,15 @@ std::string test_shmem_info_get_version() {
  *
  * This test verifies that the `shmem_info_get_name` function returns the correct name of the OpenSHMEM library.
  * 
- * @return The name of the library as a string if successful, otherwise an empty string.
+ * @return A pointer to the name of the library.
  */
-std::string test_shmem_info_get_name() {
-  char name[SHMEM_MAX_NAME_LEN];
-  shmem_info_get_name(name);
-  if (strlen(name) > 0) {
-    return std::string(name);
+char* test_shmem_info_get_name(void) {
+  char *name = (char *)malloc(SHMEM_MAX_NAME_LEN * sizeof(char)); // allocate memory for name string
+  if (name != NULL) {
+    shmem_info_get_name(name);
   }
-  else {
-    return "";
-  }
+
+  return name;
 }
 
 /**
@@ -190,7 +174,7 @@ bool test_shmem_global_exit() {
  * 
  * @return True if successful false otherwise
  */
-bool run_setup_tests(test_options opts, int &mype, int &npes, std::string &version, std::string name) {
+bool run_setup_tests(test_options opts, int &mype, int &npes, char *version, char *name) {
   /* Variables to hold test results */
   bool result_shmem_init = true;
   bool result_shmem_init_thread = true;
@@ -315,22 +299,6 @@ bool run_setup_tests(test_options opts, int &mype, int &npes, std::string &versi
     }
   }
 
-  /*
-    Run test to make sure OpenSHMEM routines that aren't implemented
-    don't throw compiler errors
-  */
-  #ifdef _DEBUG_
-    shmem_barrier_all();
-    if (!check_if_exists("shmem_fake_routine")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_fake_routine()", false);
-      }
-    }
-    else {
-      test_shmem_fake_routine();
-    }
-  #endif
-
   /* Display ASCII art logo */
   shmem_barrier_all();
   if (mype == 0) {
@@ -358,9 +326,13 @@ bool run_setup_tests(test_options opts, int &mype, int &npes, std::string &versi
     }
   }
   else {
-    version = test_shmem_info_get_version();
-    if (version == "") {
+    char* version_str = test_shmem_info_get_version();
+    if (version_str == NULL || strlen(version_str) == 0) {
       result_shmem_info_get_version = false;
+    }
+    else {
+      strcpy(version, version_str);
+      free(version_str);
     }
   }
 
@@ -373,9 +345,13 @@ bool run_setup_tests(test_options opts, int &mype, int &npes, std::string &versi
     }
   }
   else {
-    name = test_shmem_info_get_name();
-    if (name == "") {
+    char* name_str = test_shmem_info_get_name();
+    if (name_str == NULL || strlen(name_str) == 0) {
       result_shmem_info_get_name = false;
+    }
+    else {
+      strcpy(name, name_str);
+      free(name_str);
     }
   }
   
@@ -402,15 +378,14 @@ bool run_setup_tests(test_options opts, int &mype, int &npes, std::string &versi
     display_test_result("shmem_my_pe()", result_shmem_my_pe, true);
     display_test_result("shmem_n_pes()", result_shmem_n_pes, true);
     display_test_result("shmem_pe_accessible()", result_shmem_pe_accessible, true);
-    if (version != "1.5" && version != "1.50") {
-      std::cerr << YELLOW_COLOR << "shmem_info_get_version() test did not return 1.5... Returned " << version << std::endl;
+    if (strcmp(version, "1.5") != 0 && strcmp(version, "1.50") != 0) {
+      std::cerr << YELLOW_COLOR << "shmem_info_get_version() test did not return 1.5... Returned " << version << RESET_COLOR << std::endl;
     }
     else {
       display_test_result("shmem_info_get_version()", result_shmem_info_get_version, false);
     }
-    display_test_result("shmem_info_get_name()", result_shmem_info_get_name,false);
+    display_test_result("shmem_info_get_name()", result_shmem_info_get_name, false);
   }
 
   return true;
 }
-

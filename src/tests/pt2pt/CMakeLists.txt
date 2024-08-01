@@ -1,3 +1,7 @@
+#####################################
+# src/tests/pt2pt/CMakeLists.txt
+#####################################
+
 # ---- Add the source files for point-to-point synchronization tests
 add_library(cxx_pt2pt_tests cxx_pt2pt_tests.cpp cxx_pt2pt_tests.h)
 

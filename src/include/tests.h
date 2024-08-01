@@ -15,3 +15,5 @@
 #include "../tests/pt2pt/cxx_pt2pt_tests.h"
 
 /* C11 tests */
+#include "../tests/remote/c11_remote_tests.h"
+#include "../tests/atomics/c11_atomics_tests.h"

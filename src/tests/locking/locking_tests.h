@@ -10,9 +10,6 @@
 #include "shmemvv.h"
 
 #include <shmem.h>
-#include <iostream>
-#include <cstdlib>
-#include <cstring>
 
 /**
  * @brief Tests the shmem_set_lock() and shmem_clear_lock() routines.

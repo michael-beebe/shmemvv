@@ -41,12 +41,6 @@ bool test_shmem_query_thread(void) {
  * 
  */
 void run_threads_tests(int mype, int npes) {
-  shmem_barrier_all();
-  if (mype == 0) {
-    display_test_header("THREADS"); 
-  }
-  shmem_barrier_all();
-
   /* If we made it here shmem_init_thread() passed */
   if (mype == 0) {
     display_test_result("shmem_init_thread()", true, true);

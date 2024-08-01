@@ -4,18 +4,18 @@ cmake_minimum_required(VERSION 3.10)
 # ---- Project name and version
 project(shmemvv VERSION 1.0)
 
-# --- Enable Testing 
+# ---- Enable Testing 
 enable_testing()
 
 # ---- Add debug option
 option(DEBUG "Enable debugging output" OFF)
 
-# --- Add debug definition
+# ---- Add debug definition
 if (DEBUG)
   add_definitions(-D_DEBUG_)
 endif()
 
-# --- Add verbose definition
+# ---- Add verbose definition
 if (VERBOSE)
   add_definitions(-D_VERBOSE_)
 endif()
@@ -28,7 +28,7 @@ if (NOT HAVE_DLFCN_H)
   message(FATAL_ERROR "dlfcn.h not found, but required!")
 endif()
 
-# --- Add include directory
+# ---- Add include directory
 include_directories(${CMAKE_SOURCE_DIR}/src/include)
 
 # ---- Add subdirectory for src

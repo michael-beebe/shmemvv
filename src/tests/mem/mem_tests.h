@@ -11,8 +11,6 @@
 
 #include <shmem.h>
 #include <iostream>
-#include <cstdlib>
-#include <cstring>
 
 /**
  * @brief Tests the shmem_ptr() routine.

@@ -16,8 +16,8 @@
 int main(int argc, char *argv[]) {
   int mype = 0;
   int npes = 0;
-  std::string version = "";
-  std::string name = "";
+  char version[100] = "";
+  char name[100] = "";
   test_options opts;
 
   void *handle = dlopen(NULL, RTLD_LAZY);
@@ -28,14 +28,17 @@ int main(int argc, char *argv[]) {
     }
   }
 
-  /* Load OpenSHMEM routines */
-  if (!load_routines()) {
-    std::cerr << "Failed to load OpenSHMEM routines" << std::endl;
-    return EXIT_FAILURE;
-  }
+////////////////////////////////////////////////////////////////////////
+  // /* Load OpenSHMEM routines */
+  // if (!load_routines()) {
+  //   std::cerr << "Failed to load OpenSHMEM routines" << std::endl;
+  //   return EXIT_FAILURE;
+  // }
+////////////////////////////////////////////////////////////////////////
 
   /* Parse command-line options */
-  if (!parse_opts(argc, argv, opts)) {
+  if (!parse_opts(argc, argv, &opts)) {
+    printf("UNABLE TO PARSE OPTS\n ");
     if (mype == 0) {
       display_help();
     }
@@ -55,6 +58,7 @@ int main(int argc, char *argv[]) {
 
   /* Display help if requested */
   if (opts.help) {
+    printf("HELP FLAG IS ENABLED\n ");
     if (mype == 0) {
       display_help();
     }
@@ -68,61 +72,119 @@ int main(int argc, char *argv[]) {
 
   /************************* THREADS TESTS **************************/
   if (opts.test_threads) {
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_header("THREADS"); 
+    }
+    shmem_barrier_all();
     run_threads_tests(mype, npes);
   }
 
   /************************* MEMORY TESTS **************************/
   if (opts.test_mem) {
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_header("MEMORY MANAGEMENT"); 
+    }
+    shmem_barrier_all();
     run_mem_tests(mype, npes);
   }
 
   /************************* TEAMS TESTS **************************/
   if (opts.test_teams) {
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_header("TEAMS MANAGEMENT"); 
+    }
+    shmem_barrier_all();
     run_teams_tests(mype, npes);
   }
 
   /************************* CTX TESTS **************************/
   if (opts.test_ctx) {
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_header("COMMUNICATION / CONTEXT"); 
+    }
+    shmem_barrier_all();
     run_comms_tests(mype, npes);
   }
 
   /************************* REMOTE TESTS **************************/
   if (opts.test_remote) {
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_header("REMOTE MEMORY ACCESS"); 
+    }
+    shmem_barrier_all();
     run_cxx_remote_tests(mype, npes);
-    // TODO: run_c11_remote_tests(mype, npes);
+    if (mype == 0) { printf("\n"); }
+    run_c11_remote_tests(mype, npes);
   }
 
   /************************* ATOMICS TESTS **************************/
   if (opts.test_atomics) {
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_header("ATOMIC MEMORY OPS"); 
+    }
     run_cxx_atomics_tests(mype, npes);
-    // TODO: run_c11_atomics_tests(mype, npes);
+    if (mype == 0) { printf("\n"); }
+    run_c11_atomics_tests(mype, npes);
   }
   
   /************************* SIGNALING TESTS **************************/
   if (opts.test_signaling) {
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_header("SIGNALING OPS");
+    }
     run_cxx_signaling_tests(mype, npes);
+    if (mype == 0) { printf("\n"); }
     // TODO: run_c11_signaling_tests(mype, npes);
   }
 
   /************************* COLLECTIVES TESTS **************************/
   if (opts.test_collectives) {
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_header("COLLECTIVE OPS");
+    }
+    shmem_barrier_all();
     run_cxx_collectives_tests(mype, npes);
+    if (mype == 0) { printf("\n"); }
     // TODO: run_c11_collectives_tests(mype, npes);
   }
 
   /************************* PT2PT TESTS **************************/
   if (opts.test_pt2pt_synch) {
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_header("POINT-TO-POINT SYNC OPS");
+    }
+    shmem_barrier_all();
     run_cxx_pt2pt_synch_tests(mype, npes);
+    if (mype == 0) { printf("\n"); }
     // TODO: run_c11_pt2pt_synch_tests(mype, npes);
   }
 
   /************************* MEM ORDERING TESTS **************************/
   if (opts.test_mem_ordering) {
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_header("MEMORY ORDERING");
+    }
+    shmem_barrier_all();
     run_mem_ordering_tests(mype, npes);
   }
 
   /************************* DISTRIBUTED LOCKING TESTS **************************/
   if (opts.test_locking) {
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_header("DISTRIBUTED LOCKING");
+    }
+    shmem_barrier_all();
     run_locking_tests(mype, npes);
   }
 

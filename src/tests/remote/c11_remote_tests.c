@@ -1,9 +1,13 @@
 /**
- * @file cxx_remote_tests.cpp
+ * @file c11_remote_tests.cpp
  * @brief Contains OpenSHMEM remote memory access tests.
  */
 
-#include "cxx_remote_tests.h"
+#include "c11_remote_tests.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /**
  * @brief Tests the shmem_put() function.
@@ -13,7 +17,7 @@
  * @details PE 0 puts data into an array on PE 1.
  * @return True if the test is successful, false otherwise.
  */
-bool test_cxx_shmem_put(void) {
+bool test_c11_shmem_put(void) {
   static long src[10], dest[10];
   int mype = shmem_my_pe();
   int npes = shmem_n_pes();
@@ -25,7 +29,7 @@ bool test_cxx_shmem_put(void) {
   shmem_barrier_all();
 
   if (mype == 0) {
-    shmem_long_put(dest, src, 10, 1);
+    shmem_put(dest, src, 10, 1);
   }
 
   shmem_barrier_all();
@@ -49,7 +53,7 @@ bool test_cxx_shmem_put(void) {
  * @details PE 0 puts a single data element into PE 1.
  * @return True if the test is successful, false otherwise.
  */
-bool test_cxx_shmem_p(void) {
+bool test_c11_shmem_p(void) {
   static long src, dest;
   int mype = shmem_my_pe();
   int npes = shmem_n_pes();
@@ -59,7 +63,7 @@ bool test_cxx_shmem_p(void) {
   shmem_barrier_all();
 
   if (mype == 0) {
-    shmem_long_p(&dest, src, 1);
+    shmem_p(&dest, src, 1);
   }
 
   shmem_barrier_all();
@@ -81,7 +85,7 @@ bool test_cxx_shmem_p(void) {
  * @details PE 0 puts data into an array on PE 1 using an indirect stride.
  * @return True if the test is successful, false otherwise.
  */
-bool test_cxx_shmem_iput(void) {
+bool test_c11_shmem_iput(void) {
   static long src[10], dest[10];
   int mype = shmem_my_pe();
   int npes = shmem_n_pes();
@@ -93,7 +97,7 @@ bool test_cxx_shmem_iput(void) {
   shmem_barrier_all();
 
   if (mype == 0) {
-    shmem_long_iput(dest, src, 2, 2, 5, 1);
+    shmem_iput(dest, src, 2, 2, 5, 1);
   }
 
   shmem_barrier_all();
@@ -117,7 +121,7 @@ bool test_cxx_shmem_iput(void) {
  * @details PE 1 gets data from an array on PE 0.
  * @return True if the test is successful, false otherwise.
  */
-bool test_cxx_shmem_get(void) {
+bool test_c11_shmem_get(void) {
   static long src[10], dest[10];
   int mype = shmem_my_pe();
   int npes = shmem_n_pes();
@@ -131,7 +135,7 @@ bool test_cxx_shmem_get(void) {
   shmem_barrier_all();
 
   if (mype == 1) {
-    shmem_long_get(dest, src, 10, 0);
+    shmem_get(dest, src, 10, 0);
   }
 
   shmem_barrier_all();
@@ -155,7 +159,7 @@ bool test_cxx_shmem_get(void) {
  * @details PE 1 gets a single data element from PE 0.
  * @return True if the test is successful, false otherwise.
  */
-bool test_cxx_shmem_g(void) {
+bool test_c11_shmem_g(void) {
   static long src, dest;
   int mype = shmem_my_pe();
   int npes = shmem_n_pes();
@@ -167,7 +171,7 @@ bool test_cxx_shmem_g(void) {
   shmem_barrier_all();
 
   if (mype == 1) {
-    dest = shmem_long_g(&src, 0);
+    dest = shmem_g(&src, 0);
   }
 
   shmem_barrier_all();
@@ -189,7 +193,7 @@ bool test_cxx_shmem_g(void) {
  * @details PE 1 gets data from an array on PE 0 using an indirect stride.
  * @return True if the test is successful, false otherwise.
  */
-bool test_cxx_shmem_iget(void) {
+bool test_c11_shmem_iget(void) {
   static long src[10], dest[10];
   int mype = shmem_my_pe();
   int npes = shmem_n_pes();
@@ -203,7 +207,7 @@ bool test_cxx_shmem_iget(void) {
   shmem_barrier_all();
 
   if (mype == 1) {
-    shmem_long_iget(dest, src, 2, 2, 5, 0);
+    shmem_iget(dest, src, 2, 2, 5, 0);
   }
 
   shmem_barrier_all();
@@ -227,7 +231,7 @@ bool test_cxx_shmem_iget(void) {
  * @details PE 0 puts data into an array on PE 1 using non-blocking operations.
  * @return True if the test is successful, false otherwise.
  */
-bool test_cxx_shmem_put_nbi(void) {
+bool test_c11_shmem_put_nbi(void) {
   static long src[10], dest[10];
   int mype = shmem_my_pe();
   int npes = shmem_n_pes();
@@ -239,7 +243,7 @@ bool test_cxx_shmem_put_nbi(void) {
   shmem_barrier_all();
 
   if (mype == 0) {
-    shmem_long_put_nbi(dest, src, 10, 1);
+    shmem_put_nbi(dest, src, 10, 1);
     shmem_quiet();
   }
 
@@ -264,7 +268,7 @@ bool test_cxx_shmem_put_nbi(void) {
  * @details PE 1 gets data from an array on PE 0 using non-blocking operations.
  * @return True if the test is successful, false otherwise.
  */
-bool test_cxx_shmem_get_nbi(void) {
+bool test_c11_shmem_get_nbi(void) {
   static long src[10], dest[10];
   int mype = shmem_my_pe();
   int npes = shmem_n_pes();
@@ -278,7 +282,7 @@ bool test_cxx_shmem_get_nbi(void) {
   shmem_barrier_all();
 
   if (mype == 1) {
-    shmem_long_get_nbi(dest, src, 10, 0);
+    shmem_get_nbi(dest, src, 10, 0);
     shmem_quiet();
   }
 
@@ -299,7 +303,7 @@ bool test_cxx_shmem_get_nbi(void) {
  * TODO: write docs
  * 
  */
-void run_cxx_remote_tests(int mype, int npes) {
+void run_c11_remote_tests(int mype, int npes) {
   /* Check to make sure there are at least 2 PEs */
   if ( !(npes > 1) ) {
     if (mype == 0) {
@@ -309,123 +313,70 @@ void run_cxx_remote_tests(int mype, int npes) {
   else {
     /* Run shmem_put() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_long_put")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_long_put()", false);
-      }
-    }
-    else {
-      bool result_shmem_put = test_cxx_shmem_put();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_put()", result_shmem_put, false);
-      }
+    bool result_shmem_put = test_c11_shmem_put();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C11 shmem_put()", result_shmem_put, false);
     }
 
     /* Run shmem_p() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_long_p")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_long_p()", false);
-      }
-    }
-    else {
-      bool result_shmem_p = test_cxx_shmem_p();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_p()", result_shmem_p, false);
-      }
+    bool result_shmem_p = test_c11_shmem_p();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C11 shmem_p()", result_shmem_p, false);
     }
 
     /* Run shmem_iput() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_long_iput")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_long_iput()", false);
-      }
-    }
-    else {
-      bool result_shmem_iput = test_cxx_shmem_iput();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_iput()", result_shmem_iput, false);
-      }
+    bool result_shmem_iput = test_c11_shmem_iput();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C11 shmem_iput()", result_shmem_iput, false);
     }
 
     /* Run shmem_get() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_long_get")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_long_get()", false);
-      }
-    }
-    else {
-      bool result_shmem_get = test_cxx_shmem_get();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_get()", result_shmem_get, false);
-      }
+    bool result_shmem_get = test_c11_shmem_get();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C11 shmem_get()", result_shmem_get, false);
     }
 
     /* Run shmem_g() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_long_g")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_long_g()", false);
-      }
-    }
-    else {
-      bool result_shmem_g = test_cxx_shmem_g();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_g()", result_shmem_g, false);
-      }
+    bool result_shmem_g = test_c11_shmem_g();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C11 shmem_g()", result_shmem_g, false);
     }
 
     /* Run shmem_iget() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_long_iget")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_long_iget()", false);
-      }
-    }
-    else {
-      bool result_shmem_iget = test_cxx_shmem_iget();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_iget()", result_shmem_iget, false);
-      }
+    bool result_shmem_iget = test_c11_shmem_iget();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C11 shmem_iget()", result_shmem_iget, false);
     }
 
     /* Run shmem_put_nbi() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_long_put_nbi")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_long_put_nbi()", false);
-      }
-    }
-    else {
-      bool result_shmem_put_nbi = test_cxx_shmem_put_nbi();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_put_nbi()", result_shmem_put_nbi, false);
-      }
+    bool result_shmem_put_nbi = test_c11_shmem_put_nbi();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C11 shmem_put_nbi()", result_shmem_put_nbi, false);
     }
 
     /* Run shmem_get_nbi() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_long_get_nbi")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_long_get_nbi()", false);
-      }
-    }
-    else {
-      bool result_shmem_get_nbi = test_cxx_shmem_get_nbi();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_get_nbi()", result_shmem_get_nbi, false);
-      }
+    bool result_shmem_get_nbi = test_c11_shmem_get_nbi();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C11 shmem_get_nbi()", result_shmem_get_nbi, false);
     }
   }
 }
 
+#ifdef __cplusplus
+}
+#endif

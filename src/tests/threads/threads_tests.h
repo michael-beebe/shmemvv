@@ -10,7 +10,7 @@
 #include "shmemvv.h"
 
 #include <shmem.h>
-#include <iostream>
+#include <stdio.h>
 
 /**
  * @brief Tests the initialization of OpenSHMEM with threading support.

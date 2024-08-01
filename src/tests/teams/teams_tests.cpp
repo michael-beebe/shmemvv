@@ -127,13 +127,7 @@ bool test_shmem_team_destroy(void) {
  * 
  */
 void run_teams_tests(int mype, int npes) {
-  shmem_barrier_all();
-  if (mype == 0) {
-    display_test_header("TEAMS MANAGEMENT"); 
-  }
-
   /* Run shmem_team_my_pe() test */
-  shmem_barrier_all();
   if ( !check_if_exists("shmem_team_my_pe") ) {
     if (mype == 0) {
       display_not_found_warning("shmem_team_my_pe()", true);

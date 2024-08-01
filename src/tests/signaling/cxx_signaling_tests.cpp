@@ -117,11 +117,7 @@ bool test_cxx_shmem_signal_fetch(void) {
  * 
  */
 void run_cxx_signaling_tests(int mype, int npes) {
-  shmem_barrier_all();
-  if (mype == 0) {
-    display_test_header("SIGNALING OPS");
-  }
-
+  /* Check to make sure there are at least 2 PEs */
   if (!(npes > 1)) {
     display_not_enough_pes("SIGNALING OPS");
   }

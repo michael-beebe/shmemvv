@@ -79,13 +79,7 @@ bool test_shmem_ctx_get_team(void) {
  * 
  */
 void run_comms_tests(int mype, int npes) {
-  shmem_barrier_all();
-  if (mype == 0) {
-    display_test_header("COMMUNICATION / CONTEXT"); 
-  }
-
   /* Run shmem_ctx_create() test */
-  shmem_barrier_all();
   if (!check_if_exists("shmem_ctx_create")) {
     if (mype == 0) {
       display_not_found_warning("shmem_ctx_create()", false);
