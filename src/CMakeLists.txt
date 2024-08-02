@@ -48,6 +48,9 @@ target_link_libraries(
   # --- C11 tests
   c11_remote_tests
   c11_atomics_tests
+  c11_signaling_tests
+  c11_collectives_tests
+  c11_pt2pt_tests
 )
 
 # ---- Specify the output directory for the executable

@@ -1,10 +1,10 @@
 /**
- * @file signaling_tests.h
+ * @file cxx_signaling_tests.h
  * @brief Contains function declarations for the OpenSHMEM signaling tests.
  */
 
-#ifndef SIGNALING_TESTS_H
-#define SIGNALING_TESTS_H
+#ifndef CXX_SIGNALING_TESTS_H
+#define CXX_SIGNALING_TESTS_H
 
 #include "routines.h"
 #include "shmemvv.h"

@@ -17,3 +17,6 @@
 /* C11 tests */
 #include "../tests/remote/c11_remote_tests.h"
 #include "../tests/atomics/c11_atomics_tests.h"
+#include "../tests/signaling/c11_signaling_tests.h"
+#include "../tests/collectives/c11_collectives_tests.h"
+#include "../tests/pt2pt/c11_pt2pt_tests.h"

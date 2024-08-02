@@ -38,7 +38,6 @@ int main(int argc, char *argv[]) {
 
   /* Parse command-line options */
   if (!parse_opts(argc, argv, &opts)) {
-    printf("UNABLE TO PARSE OPTS\n ");
     if (mype == 0) {
       display_help();
     }
@@ -47,18 +46,19 @@ int main(int argc, char *argv[]) {
 
   /* Enable all tests if --all is specified or no specific test is selected */
   if (opts.test_all ||
-      !(opts.test_setup || opts.test_threads || opts.test_mem || opts.test_teams ||
-        opts.test_ctx || opts.test_remote || opts.test_atomics || opts.test_signaling ||
-        opts.test_collectives || opts.test_pt2pt_synch || opts.test_mem_ordering || opts.test_locking))
-  {
-    opts.test_setup = true; opts.test_threads = true; opts.test_mem = true; opts.test_teams = true;
-    opts.test_ctx = true; opts.test_remote = true; opts.test_atomics = true; opts.test_signaling = true;
-    opts.test_collectives = true; opts.test_pt2pt_synch = true; opts.test_mem_ordering = true; opts.test_locking = true;
+      !(opts.test_setup || opts.test_threads || opts.test_mem ||
+        opts.test_teams || opts.test_ctx || opts.test_remote ||
+        opts.test_atomics || opts.test_signaling || opts.test_collectives ||
+        opts.test_pt2pt_synch || opts.test_mem_ordering || opts.test_locking)
+  ) {
+    opts.test_setup = true; opts.test_threads = true; opts.test_mem = true;
+    opts.test_teams = true; opts.test_ctx = true; opts.test_remote = true;
+    opts.test_atomics = true; opts.test_signaling = true; opts.test_collectives = true;
+    opts.test_pt2pt_synch = true; opts.test_mem_ordering = true; opts.test_locking = true;
   }
 
   /* Display help if requested */
   if (opts.help) {
-    printf("HELP FLAG IS ENABLED\n ");
     if (mype == 0) {
       display_help();
     }
@@ -117,9 +117,9 @@ int main(int argc, char *argv[]) {
       display_test_header("REMOTE MEMORY ACCESS"); 
     }
     shmem_barrier_all();
-    run_cxx_remote_tests(mype, npes);
-    if (mype == 0) { printf("\n"); }
     run_c11_remote_tests(mype, npes);
+    if (mype == 0) { printf("\n"); }
+    run_cxx_remote_tests(mype, npes);
   }
 
   /************************* ATOMICS TESTS **************************/
@@ -128,9 +128,9 @@ int main(int argc, char *argv[]) {
     if (mype == 0) {
       display_test_header("ATOMIC MEMORY OPS"); 
     }
-    run_cxx_atomics_tests(mype, npes);
-    if (mype == 0) { printf("\n"); }
     run_c11_atomics_tests(mype, npes);
+    if (mype == 0) { printf("\n"); }
+    run_cxx_atomics_tests(mype, npes);
   }
   
   /************************* SIGNALING TESTS **************************/
@@ -139,9 +139,9 @@ int main(int argc, char *argv[]) {
     if (mype == 0) {
       display_test_header("SIGNALING OPS");
     }
-    run_cxx_signaling_tests(mype, npes);
+    run_c11_signaling_tests(mype, npes);
     if (mype == 0) { printf("\n"); }
-    // TODO: run_c11_signaling_tests(mype, npes);
+    run_cxx_signaling_tests(mype, npes);
   }
 
   /************************* COLLECTIVES TESTS **************************/
@@ -151,9 +151,9 @@ int main(int argc, char *argv[]) {
       display_test_header("COLLECTIVE OPS");
     }
     shmem_barrier_all();
-    run_cxx_collectives_tests(mype, npes);
+    run_c11_collectives_tests(mype, npes);
     if (mype == 0) { printf("\n"); }
-    // TODO: run_c11_collectives_tests(mype, npes);
+    run_cxx_collectives_tests(mype, npes);
   }
 
   /************************* PT2PT TESTS **************************/
@@ -163,9 +163,9 @@ int main(int argc, char *argv[]) {
       display_test_header("POINT-TO-POINT SYNC OPS");
     }
     shmem_barrier_all();
-    run_cxx_pt2pt_synch_tests(mype, npes);
+    run_c11_pt2pt_synch_tests(mype, npes);
     if (mype == 0) { printf("\n"); }
-    // TODO: run_c11_pt2pt_synch_tests(mype, npes);
+    run_cxx_pt2pt_synch_tests(mype, npes);
   }
 
   /************************* MEM ORDERING TESTS **************************/

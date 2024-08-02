@@ -1,36 +1,30 @@
 /**
- * @file cxx_collectives_tests.h
+ * @file c11_collectives_tests.h
  * @brief Contains function declarations for the OpenSHMEM collectives tests.
  */
 
-#ifndef CXX_COLLECTIVES_TESTS_H
-#define CXX_COLLECTIVES_TESTS_H
+#ifndef C11_COLLECTIVES_TESTS_H
+#define C11_COLLECTIVES_TESTS_H
 
 #include "routines.h"
 #include "shmemvv.h"
 
 #include <shmem.h>
-#include <cstring>
 #include <stdbool.h>
 #include <stdio.h>
 
-/**
- * @brief Tests the shmem_team_sync() routine.
- *
- * This test verifies that the shmem_team_sync() routine correctly synchronizes all PEs within a team.
- *
- * @return True if the test is successful, false otherwise.
- */
-bool test_shmem_team_sync(void);
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /**
- * @brief Tests the shmem_sync_all() routine.
+ * @brief Tests the shmem_sync() routine.
  *
- * This test verifies that the shmem_sync_all() routine correctly synchronizes all PEs.
+ * This test verifies that the shmem_sync() routine correctly synchronizes all PEs.
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_cxx_shmem_sync_all(void);
+bool test_c11_shmem_sync(void);
 
 /**
  * @brief Tests the shmem_alltoall() routine.
@@ -40,7 +34,7 @@ bool test_cxx_shmem_sync_all(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_cxx_shmem_alltoall(void);
+bool test_c11_shmem_alltoall(void);
 
 /**
  * @brief Tests the shmem_alltoalls() routine.
@@ -50,7 +44,7 @@ bool test_cxx_shmem_alltoall(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_cxx_shmem_alltoalls(void);
+bool test_c11_shmem_alltoalls(void);
 
 /**
  * @brief Tests the shmem_broadcast() routine.
@@ -60,7 +54,7 @@ bool test_cxx_shmem_alltoalls(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_cxx_shmem_broadcast(void);
+bool test_c11_shmem_broadcast(void);
 
 /**
  * @brief Tests the shmem_collect() routine.
@@ -70,7 +64,7 @@ bool test_cxx_shmem_broadcast(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_cxx_shmem_collect(void);
+bool test_c11_shmem_collect(void);
 
 /**
  * @brief Tests the shmem_fcollect() routine.
@@ -80,7 +74,7 @@ bool test_cxx_shmem_collect(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_cxx_shmem_fcollect(void);
+bool test_c11_shmem_fcollect(void);
 
 /**
  * @brief Tests the shmem_and_reduce() routine.
@@ -90,7 +84,7 @@ bool test_cxx_shmem_fcollect(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_cxx_shmem_and_reduce(void);
+bool test_c11_shmem_and_reduce(void);
 
 /**
  * @brief Tests the shmem_max_reduce() routine.
@@ -100,7 +94,7 @@ bool test_cxx_shmem_and_reduce(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_cxx_shmem_max_reduce(void);
+bool test_c11_shmem_max_reduce(void);
 
 /**
  * @brief Tests the shmem_min_reduce() routine.
@@ -110,7 +104,7 @@ bool test_cxx_shmem_max_reduce(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_cxx_shmem_min_reduce(void);
+bool test_c11_shmem_min_reduce(void);
 
 /**
  * @brief Tests the shmem_sum_reduce() routine.
@@ -120,7 +114,7 @@ bool test_cxx_shmem_min_reduce(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_cxx_shmem_sum_reduce(void);
+bool test_c11_shmem_sum_reduce(void);
 
 /**
  * @brief Tests the shmem_prod_reduce() routine.
@@ -130,13 +124,17 @@ bool test_cxx_shmem_sum_reduce(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_cxx_shmem_prod_reduce(void);
+bool test_c11_shmem_prod_reduce(void);
 
 /**
  * TODO: write docs
  * 
  */
-void run_cxx_collectives_tests(int mype, int npes);
+void run_c11_collectives_tests(int mype, int npes);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* COLLECTIVES_TESTS_H */
 

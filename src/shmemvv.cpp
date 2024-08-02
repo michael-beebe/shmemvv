@@ -67,57 +67,30 @@ bool parse_opts(int argc, char *argv[], test_options *opts) {
   int c;
   while ((c = getopt_long(argc, argv, "abcdefghijklmn", long_options, &option_index)) != -1) {
     switch (c) {
-      case 'a':
-        opts->test_setup = true;
-        break;
-      case 'b':
-        opts->test_threads = true;
-        break;
-      case 'c':
-        opts->test_mem = true;
-        break;
-      case 'd':
-        opts->test_teams = true;
-        break;
-      case 'e':
-        opts->test_ctx = true;
-        break;
-      case 'f':
-        opts->test_remote = true;
-        break;
-      case 'g':
-        opts->test_atomics = true;
-        break;
-      case 'h':
-        opts->test_signaling = true;
-        break;
-      case 'i':
-        opts->test_collectives = true;
-        break;
-      case 'j':
-        opts->test_pt2pt_synch = true;
-        break;
-      case 'k':
-        opts->test_mem_ordering = true;
-        break;
-      case 'l':
-        opts->test_locking = true;
-        break;
-      case 'm':
-        opts->help = true;
-        break;
-      case 'n':
-        opts->test_all = true;
-        break;
-      default:
-        return false;
+      case 'a': opts->test_setup = true; break;
+      case 'b': opts->test_threads = true; break;
+      case 'c': opts->test_mem = true; break;
+      case 'd': opts->test_teams = true; break;
+      case 'e': opts->test_ctx = true; break;
+      case 'f': opts->test_remote = true; break;
+      case 'g': opts->test_atomics = true; break;
+      case 'h': opts->test_signaling = true; break;
+      case 'i': opts->test_collectives = true; break;
+      case 'j': opts->test_pt2pt_synch = true; break;
+      case 'k': opts->test_mem_ordering = true; break;
+      case 'l': opts->test_locking = true; break;
+      case 'm': opts->help = true; break;
+      case 'n': opts->test_all = true; break;
+      default: return false;
     }
   }
 
   /* If no specific tests are selected and --all is not specified, enable all tests */
   if (!(opts->test_setup || opts->test_threads || opts->test_mem || opts->test_teams ||
         opts->test_ctx || opts->test_remote || opts->test_atomics || opts->test_signaling ||
-        opts->test_collectives || opts->test_pt2pt_synch || opts->test_mem_ordering || opts->test_locking || opts->test_all)) {
+        opts->test_collectives || opts->test_pt2pt_synch || opts->test_mem_ordering ||
+        opts->test_locking || opts->test_all))
+  {
     opts->test_all = true;
   }
 

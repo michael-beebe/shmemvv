@@ -1,10 +1,10 @@
 /**
- * @file pt2pt_tests.h
+ * @file cxx_pt2pt_tests.h
  * @brief Contains function declarations for the point-to-point synchronization routines tests.
  */
 
-#ifndef PT2PT_TESTS_H
-#define PT2PT_TESTS_H
+#ifndef CXX_PT2PT_TESTS_H
+#define CXX_PT2PT_TESTS_H
 
 #include "routines.h"
 #include "shmemvv.h"
