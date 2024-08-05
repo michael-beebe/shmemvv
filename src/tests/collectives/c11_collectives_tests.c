@@ -322,7 +322,7 @@ bool test_c11_shmem_max_reduce(void) {
 }
 
 /**
- * TODO: write docs
+ * @brief Run all C11 collectives tests
  * 
  */
 void run_c11_collectives_tests(int mype, int npes) {

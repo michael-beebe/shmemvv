@@ -46,8 +46,7 @@ bool test_c11_shmem_put_signal_nbi(void);
 bool test_c11_shmem_signal_fetch(void);
 
 /**
- * TODO: write docs
- * 
+ * @brief Run all C11 signaling tests
  */
 void run_c11_signaling_tests(int mype, int npes);
 

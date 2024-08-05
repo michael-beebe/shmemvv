@@ -168,8 +168,7 @@ bool test_cxx_shmem_test_some_vector(void);
 bool test_cxx_shmem_signal_wait_until(void);
 
 /**
- * TODO: write docs
- * 
+ * @brief Run all C/CXX pt2pt synchronization tests
  */
 void run_cxx_pt2pt_synch_tests(int mype, int npes);
 

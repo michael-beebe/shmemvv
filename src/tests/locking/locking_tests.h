@@ -23,8 +23,7 @@
 bool test_shmem_lock_unlock(void);
 
 /**
- * TODO: write docs
- * 
+ * @brief Run all locking tests
  */
 void run_locking_tests(int mype, int npes);
 

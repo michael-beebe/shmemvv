@@ -50,7 +50,7 @@ bool test_shmem_ctx_destroy(void);
 bool test_shmem_ctx_get_team(void);
 
 /**
- * TODO:
+* @brief Run all comms/ctx tests
  * 
  */
 void run_comms_tests(int mype, int npes);

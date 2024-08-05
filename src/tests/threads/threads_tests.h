@@ -33,8 +33,7 @@ bool test_shmem_init_thread(void);
 bool test_shmem_query_thread(void);
 
 /**
- * TODO: write docs
- * 
+ * @brief Run all threads tests
  */
 void run_threads_tests(int mype, int npes);
 

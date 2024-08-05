@@ -83,8 +83,7 @@ bool test_shmem_malloc_with_hints(void);
 bool test_shmem_calloc(void);
 
 /**
- * TODO: write docs
- * 
+ * @brief Run all memory tests
  */
 void run_mem_tests(int mype, int npes);
 

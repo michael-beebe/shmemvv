@@ -35,8 +35,7 @@ bool test_shmem_fence(void);
 bool test_shmem_quiet(void);
 
 /**
- * TODO: write docs
- * 
+ * @brief Run all memory ordering tests
  */
 void run_mem_ordering_tests(int mype, int npes);
 

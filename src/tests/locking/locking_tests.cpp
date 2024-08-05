@@ -45,8 +45,7 @@ bool test_shmem_lock_unlock(void) {
 }
 
 /**
- * TODO: write docs
- * 
+ * @brief Run all locking tests
  */
 void run_locking_tests(int mype, int npes) {
   /* Make sure there are at least 2 PEs */
@@ -58,24 +57,11 @@ void run_locking_tests(int mype, int npes) {
   else {
     /* Run the shmem_set_lock and shmem_clear_lock tests */
     shmem_barrier_all();
-    if ( !check_if_exists("shmem_set_lock") ) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_set_lock()", false);
-      }
-    }
-    if ( !check_if_exists("shmem_clear_lock" )) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_clear_lock()", false);
-      }
-    }
+    bool result_shmem_lock_unlock = test_shmem_lock_unlock();
     shmem_barrier_all();
-    if ( check_if_exists("shmem_set_lock") && check_if_exists("shmem_clear_lock") ) {
-      bool result_shmem_lock_unlock = test_shmem_lock_unlock();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("shmem_set_lock()", result_shmem_lock_unlock, false);
-        display_test_result("shmem_clear_lock()", result_shmem_lock_unlock, false);
-      }
+    if (mype == 0) {
+      display_test_result("shmem_set_lock()", result_shmem_lock_unlock, false);
+      display_test_result("shmem_clear_lock()", result_shmem_lock_unlock, false);
     }
   }
 }

@@ -133,8 +133,7 @@ bool test_cxx_shmem_sum_reduce(void);
 bool test_cxx_shmem_prod_reduce(void);
 
 /**
- * TODO: write docs
- * 
+ * @brief Run all C/CXX collectives tests
  */
 void run_cxx_collectives_tests(int mype, int npes);
 

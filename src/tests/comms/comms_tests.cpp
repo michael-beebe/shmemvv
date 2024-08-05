@@ -75,66 +75,39 @@ bool test_shmem_ctx_get_team(void) {
 }
 
 /**
- * TODO: write docs
+ * @brief Run all comms/ctx tests
  * 
  */
 void run_comms_tests(int mype, int npes) {
   /* Run shmem_ctx_create() test */
-  if (!check_if_exists("shmem_ctx_create")) {
-    if (mype == 0) {
-      display_not_found_warning("shmem_ctx_create()", false);
-    }
-  }
-  else {
-    bool result_shmem_ctx_create = test_shmem_ctx_create();
-    shmem_barrier_all();
-    if (mype == 0) {
-      display_test_result("shmem_ctx_create()", result_shmem_ctx_create, false);
-    }
+  bool result_shmem_ctx_create = test_shmem_ctx_create();
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_result("shmem_ctx_create()", result_shmem_ctx_create, false);
   }
 
   /* Run shmem_team_create_ctx() test */
   shmem_barrier_all();
-  if (!check_if_exists("shmem_team_create_ctx")) {
-    if (mype == 0) {
-      display_not_found_warning("shmem_team_create_ctx()", false);
-    }
-  }
-  else {
-    bool result_shmem_team_create_ctx = test_shmem_team_create_ctx();
-    shmem_barrier_all();
-    if (mype == 0) {
-      display_test_result("shmem_team_create_ctx()", result_shmem_team_create_ctx, false);
-    }
+  bool result_shmem_team_create_ctx = test_shmem_team_create_ctx();
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_result("shmem_team_create_ctx()", result_shmem_team_create_ctx, false);
   }
 
   /* Run shmem_ctx_destroy() test */
   shmem_barrier_all();
-  if (!check_if_exists("shmem_ctx_destroy")) {
-    if (mype == 0) {
-      display_not_found_warning("shmem_ctx_destroy()", false);
-    }
-  }
-  else {
-    bool result_shmem_ctx_destroy = test_shmem_ctx_destroy();
-    shmem_barrier_all();
-    if (mype == 0) {
-      display_test_result("shmem_ctx_destroy()", result_shmem_ctx_destroy, false);
-    }
+  bool result_shmem_ctx_destroy = test_shmem_ctx_destroy();
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_result("shmem_ctx_destroy()", result_shmem_ctx_destroy, false);
   }
 
   /* Run shmem_ctx_get_team() test */
   shmem_barrier_all();
-  if (!check_if_exists("shmem_ctx_get_team")) {
-    if (mype == 0) {
-      display_not_found_warning("shmem_ctx_get_team()", false);
-    }
-  }
-  else {
-    bool result_shmem_ctx_get_team = test_shmem_ctx_get_team();
-    shmem_barrier_all();
-    if (mype == 0) {
-      display_test_result("shmem_ctx_get_team()", result_shmem_ctx_get_team, false);
-    }
+  bool result_shmem_ctx_get_team = test_shmem_ctx_get_team();
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_result("shmem_ctx_get_team()", result_shmem_ctx_get_team, false);
   }
 }
+

@@ -85,8 +85,7 @@ bool test_cxx_shmem_put_nbi(void);
 bool test_cxx_shmem_get_nbi(void);
 
 /**
- * TODO: write docs
- * 
+ * @brief Run all C/CXX RMA tests
  */
 void run_cxx_remote_tests(int mype, int npes);
 

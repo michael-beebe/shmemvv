@@ -14,37 +14,57 @@
   @return EXIT_SUCCESS on success, EXIT_FAILURE on failure.
 */
 int main(int argc, char *argv[]) {
-  int mype = 0;
-  int npes = 0;
-  char version[100] = "";
-  char name[100] = "";
-  test_options opts;
-
-  void *handle = dlopen(NULL, RTLD_LAZY);
-  if (!handle) {
-    if (mype == 0) {
-      std::cerr << "Failed to open handle: " << dlerror() << std::endl;
-      return EXIT_FAILURE;
-    }
-  }
+  shmem_init();
 
 ////////////////////////////////////////////////////////////////////////
   // /* Load OpenSHMEM routines */
+  // void *handle = dlopen(NULL, RTLD_LAZY);
+  // if (!handle) {
+  //   if (mype == 0) {
+  //     std::cerr << "Failed to open handle: " << dlerror() << std::endl;
+  //     return EXIT_FAILURE;
+  //   }
+  // }
+
   // if (!load_routines()) {
   //   std::cerr << "Failed to load OpenSHMEM routines" << std::endl;
   //   return EXIT_FAILURE;
   // }
 ////////////////////////////////////////////////////////////////////////
 
+  int mype = shmem_my_pe();
+  int npes = shmem_n_pes();
+  char version[100] = "";
+  char name[100] = "";
+  test_options opts = {
+    false, false, false, false, false, false,
+    false, false, false, false, false, false, false
+  };
+
   /* Parse command-line options */
+  shmem_barrier_all();
   if (!parse_opts(argc, argv, &opts)) {
     if (mype == 0) {
+      std::cout << RED_COLOR << "ERROR: Unable to parse options\n" << RESET_COLOR << std::endl;
       display_help();
     }
+    shmem_finalize();
     return EXIT_FAILURE;
   }
 
+  /* Display help if requested */
+  shmem_barrier_all();
+  if (opts.help) {
+    if (mype == 0) {
+      std::cout << "HELP REQUESTED\n" << std::endl;
+      display_help();
+    }
+    shmem_finalize();
+    return EXIT_SUCCESS;
+  }
+
   /* Enable all tests if --all is specified or no specific test is selected */
+  shmem_barrier_all();
   if (opts.test_all ||
       !(opts.test_setup || opts.test_threads || opts.test_mem ||
         opts.test_teams || opts.test_ctx || opts.test_remote ||
@@ -56,17 +76,13 @@ int main(int argc, char *argv[]) {
     opts.test_atomics = true; opts.test_signaling = true; opts.test_collectives = true;
     opts.test_pt2pt_synch = true; opts.test_mem_ordering = true; opts.test_locking = true;
   }
-
-  /* Display help if requested */
-  if (opts.help) {
-    if (mype == 0) {
-      display_help();
-    }
-    return EXIT_SUCCESS;
-  }
   
   /************************* SETUP **************************/
-  if ( !run_setup_tests(opts, mype, npes, version, name) ) {
+  if ( !run_setup_tests(mype, npes, version, name) ) {
+    if (mype == 0) {
+      std::cout << RED_COLOR << "ERROR: FAILED CRITICAL SETUP TESTS" << std::endl; 
+    }
+    shmem_finalize();
     return EXIT_FAILURE;
   }
 
@@ -157,6 +173,7 @@ int main(int argc, char *argv[]) {
   }
 
   /************************* PT2PT TESTS **************************/
+  // FIXME: if we run these with more than 2 PEs, it gets stuck
   if (opts.test_pt2pt_synch) {
     shmem_barrier_all();
     if (mype == 0) {
@@ -205,3 +222,5 @@ int main(int argc, char *argv[]) {
   /* We made it! End the program. */
   return EXIT_SUCCESS;
 }
+
+

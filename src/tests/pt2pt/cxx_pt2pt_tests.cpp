@@ -680,8 +680,7 @@ bool test_cxx_shmem_signal_wait_until(void) {
 }
 
 /**
- * TODO: write docs
- * 
+ * @brief Run all C/CXX pt2pt synchronization tests
  */
 void run_cxx_pt2pt_synch_tests(int mype, int npes) {
   if (!(npes > 1)) {
@@ -690,228 +689,124 @@ void run_cxx_pt2pt_synch_tests(int mype, int npes) {
   else {
     /* Run shmem_wait_until() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_long_wait_until")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_long_wait_until()", false);
-      }
-    }
-    else {
-      bool result_shmem_wait_until = test_cxx_shmem_wait_until();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_wait_until()", result_shmem_wait_until, false);
-      }
+    bool result_shmem_wait_until = test_cxx_shmem_wait_until();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_wait_until()", result_shmem_wait_until, false);
     }
 
     /* Run shmem_wait_until_all() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_long_wait_until_all")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_long_wait_until_all()", false);
-      }
-    }
-    else {
-      bool result_shmem_wait_until_all = test_cxx_shmem_wait_until_all();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_wait_until_all()", result_shmem_wait_until_all, false);
-      }
+    bool result_shmem_wait_until_all = test_cxx_shmem_wait_until_all();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_wait_until_all()", result_shmem_wait_until_all, false);
     }
 
     /* Run shmem_wait_until_any() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_long_wait_until_any")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_long_wait_until_any()", false);
-      }
-    }
-    else {
-      bool result_shmem_wait_until_any = test_cxx_shmem_wait_until_any();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_wait_until_any()", result_shmem_wait_until_any, false);
-      }
+    bool result_shmem_wait_until_any = test_cxx_shmem_wait_until_any();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_wait_until_any()", result_shmem_wait_until_any, false);
     }
 
     /* Run shmem_wait_until_some() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_long_wait_until_some")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_long_wait_until_some()", false);
-      }
-    }
-    else {
-      bool result_shmem_wait_until_some = test_cxx_shmem_wait_until_some();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_wait_until_some()", result_shmem_wait_until_some, false);
-      }
+    bool result_shmem_wait_until_some = test_cxx_shmem_wait_until_some();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_wait_until_some()", result_shmem_wait_until_some, false);
     }
 
     /* Run shmem_wait_until_all_vector() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_long_wait_until_all_vector")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_long_wait_until_all_vector()", false);
-      }
-    }
-    else {
-      bool result_shmem_wait_until_all_vector = test_cxx_shmem_wait_until_all_vector();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_wait_until_all_vector()", result_shmem_wait_until_all_vector, false);
-      }
+    bool result_shmem_wait_until_all_vector = test_cxx_shmem_wait_until_all_vector();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_wait_until_all_vector()", result_shmem_wait_until_all_vector, false);
     }
 
     /* Run shmem_wait_until_any_vector() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_long_wait_until_any_vector")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_long_wait_until_any_vector()", false);
-      }
-    }
-    else {
-      bool result_shmem_wait_until_any_vector = test_cxx_shmem_wait_until_any_vector();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_wait_until_any_vector()", result_shmem_wait_until_any_vector, false);
-      }
+    bool result_shmem_wait_until_any_vector = test_cxx_shmem_wait_until_any_vector();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_wait_until_any_vector()", result_shmem_wait_until_any_vector, false);
     }
 
     /* Run shmem_wait_until_some_vector() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_long_wait_until_some_vector")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_long_wait_until_some_vector()", false);
-      }
-    }
-    else {
-      bool result_shmem_wait_until_some_vector = test_cxx_shmem_wait_until_some_vector();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_wait_until_some_vector()", result_shmem_wait_until_some_vector, false);
-      }
+    bool result_shmem_wait_until_some_vector = test_cxx_shmem_wait_until_some_vector();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_wait_until_some_vector()", result_shmem_wait_until_some_vector, false);
     }
 
     /* Run shmem_test() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_long_test")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_long_test()", false);
-      }
-    }
-    else {
-      bool result_shmem_test = test_cxx_shmem_test();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_test()", result_shmem_test, false);
-      }
+    bool result_shmem_test = test_cxx_shmem_test();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_test()", result_shmem_test, false);
     }
 
     /* Run shmem_test_all() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_long_test_all")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_long_test_all()", false);
-      }
-    }
-    else {
-      bool result_shmem_test_all = test_cxx_shmem_test_all();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_test_all()", result_shmem_test_all, false);
-      }
+    bool result_shmem_test_all = test_cxx_shmem_test_all();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_test_all()", result_shmem_test_all, false);
     }
 
     /* Run shmem_test_any() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_long_test_any")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_long_test_any()", false);
-      }
-    }
-    else {
-      bool result_shmem_test_any = test_cxx_shmem_test_any();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_test_any()", result_shmem_test_any, false);
-      }
+    bool result_shmem_test_any = test_cxx_shmem_test_any();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_test_any()", result_shmem_test_any, false);
     }
 
     /* Run shmem_test_some() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_long_test_some")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_long_test_some()", false);
-      }
-    }
-    else {
-      bool result_shmem_test_some = test_cxx_shmem_test_some();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_test_some()", result_shmem_test_some, false);
-      }
+    bool result_shmem_test_some = test_cxx_shmem_test_some();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_test_some()", result_shmem_test_some, false);
     }
 
     /* Run shmem_test_all_vector() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_long_test_all_vector")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_long_test_all_vector()", false);
-      }
-    }
-    else {
-      bool result_shmem_test_all_vector = test_cxx_shmem_test_all_vector();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_test_all_vector()", result_shmem_test_all_vector, false);
-      }
+    bool result_shmem_test_all_vector = test_cxx_shmem_test_all_vector();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_test_all_vector()", result_shmem_test_all_vector, false);
     }
 
     /* Run shmem_test_any_vector() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_long_test_any_vector")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_long_test_any_vector()", false);
-      }
-    }
-    else {
-      bool result_shmem_test_any_vector = test_cxx_shmem_test_any_vector();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_test_any_vector()", result_shmem_test_any_vector, false);
-      }
+    bool result_shmem_test_any_vector = test_cxx_shmem_test_any_vector();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_test_any_vector()", result_shmem_test_any_vector, false);
     }
 
     /* Run shmem_test_some_vector() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_long_test_some_vector")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_long_test_some_vector()", false);
-      }
-    }
-    else {
-      bool result_shmem_test_some_vector = test_cxx_shmem_test_some_vector();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_test_some_vector()", result_shmem_test_some_vector, false);
-      }
+    bool result_shmem_test_some_vector = test_cxx_shmem_test_some_vector();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_test_some_vector()", result_shmem_test_some_vector, false);
     }
 
     /* Run shmem_signal_wait_until() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_signal_wait_until")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_signal_wait_until()", false);
-      }
-    }
-    else {
-      bool result_shmem_signal_wait_until = test_cxx_shmem_signal_wait_until();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_signal_wait_until()", result_shmem_signal_wait_until, false); 
-      }
+    bool result_shmem_signal_wait_until = test_cxx_shmem_signal_wait_until();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_signal_wait_until()", result_shmem_signal_wait_until, false); 
     }
   }
 }
+
 

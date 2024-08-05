@@ -521,8 +521,7 @@ bool test_cxx_shmem_atomic_fetch_xor_nbi() {
 }
 
 /**
- * TODO: write docs
- * 
+ * @brief Run all C/CXX atomics tests
  */
 void run_cxx_atomics_tests(int mype, int npes) {
   /* Make sure there are at least 2 PEs */
@@ -534,332 +533,179 @@ void run_cxx_atomics_tests(int mype, int npes) {
   else {
     /* Run shmem_atomic_fetch() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_ulong_atomic_fetch")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_ulong_atomic_fetch()", false);
-      }
-    }
-    else {
-      bool result_shmem_atomic_fetch = test_cxx_shmem_atomic_fetch();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_atomic_fetch()", result_shmem_atomic_fetch, false);
-      }
+    bool result_shmem_atomic_fetch = test_cxx_shmem_atomic_fetch();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_atomic_fetch()", result_shmem_atomic_fetch, false);
     }
 
     /* Run shmem_atomic_set() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_ulong_atomic_set")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_ulong_atomic_set()", false);
-      }
-    }
-    else {
-      bool result_shmem_atomic_set = test_cxx_shmem_atomic_set();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_atomic_set()", result_shmem_atomic_set, false); 
-      }
+    bool result_shmem_atomic_set = test_cxx_shmem_atomic_set();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_atomic_set()", result_shmem_atomic_set, false); 
     }
 
     /* Run shmem_atomic_compare_swap() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_ulong_atomic_compare_swap")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_ulong_atomic_compare_swap()", false);
-      }
-    }
-    else {
-      bool result_shmem_atomic_compare_swap = test_cxx_shmem_atomic_compare_swap();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_atomic_compare_swap()", result_shmem_atomic_compare_swap, false); 
-      }
+    bool result_shmem_atomic_compare_swap = test_cxx_shmem_atomic_compare_swap();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_atomic_compare_swap()", result_shmem_atomic_compare_swap, false); 
     }
 
     /* Run shmem_atomic_swap() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_ulong_atomic_swap")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_ulong_atomic_swap()", false);
-      }
-    }
-    else {
-      bool result_shmem_atomic_swap = test_cxx_shmem_atomic_swap();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_atomic_swap()", result_shmem_atomic_swap, false);
-      }
+    bool result_shmem_atomic_swap = test_cxx_shmem_atomic_swap();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_atomic_swap()", result_shmem_atomic_swap, false);
     }
 
     /* Run shmem_atomic_fetch_inc() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_ulong_atomic_fetch_inc")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_ulong_atomic_fetch_inc()", false);
-      }
-    }
-    else {
-      bool result_shmem_atomic_fetch_inc = test_cxx_shmem_atomic_fetch_inc();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_atomic_fetch_inc()", result_shmem_atomic_fetch_inc, false);
-      }
+    bool result_shmem_atomic_fetch_inc = test_cxx_shmem_atomic_fetch_inc();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_atomic_fetch_inc()", result_shmem_atomic_fetch_inc, false);
     }
 
     /* Run shmem_atomic_inc() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_ulong_atomic_inc")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_ulong_atomic_inc()", false);
-      }
-    }
-    else {
-      bool result_shmem_atomic_inc = test_cxx_shmem_atomic_inc();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_atomic_inc()", result_shmem_atomic_inc, false);
-      }
+    bool result_shmem_atomic_inc = test_cxx_shmem_atomic_inc();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_atomic_inc()", result_shmem_atomic_inc, false);
     }
 
     /* Run shmem_atomic_fetch_add() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_ulong_atomic_fetch_add")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_ulong_atomic_fetch_add()", false);
-      }
-    }
-    else {
-      bool result_shmem_atomic_fetch_add = test_cxx_shmem_atomic_fetch_add();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_atomic_fetch_add()", result_shmem_atomic_fetch_add, false);
-      }
+    bool result_shmem_atomic_fetch_add = test_cxx_shmem_atomic_fetch_add();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_atomic_fetch_add()", result_shmem_atomic_fetch_add, false);
     }
 
     /* Run shmem_atomic_add() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_ulong_atomic_add")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_ulong_atomic_add()", false);
-      }
-    }
-    else {
-      bool result_shmem_atomic_add = test_cxx_shmem_atomic_add();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_atomic_add()", result_shmem_atomic_add, false);
-      }
+    bool result_shmem_atomic_add = test_cxx_shmem_atomic_add();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_atomic_add()", result_shmem_atomic_add, false);
     }
 
     /* Run shmem_atomic_fetch_and() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_ulong_atomic_fetch_and")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_ulong_atomic_fetch_and()", false);
-      }
-    }
-    else {
-      bool result_shmem_atomic_fetch_and = test_cxx_shmem_atomic_fetch_and();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_atomic_fetch_and()", result_shmem_atomic_fetch_and, false);
-      }
+    bool result_shmem_atomic_fetch_and = test_cxx_shmem_atomic_fetch_and();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_atomic_fetch_and()", result_shmem_atomic_fetch_and, false);
     }
 
     /* Run shmem_atomic_and() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_ulong_atomic_and")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_ulong_atomic_and()", false);
-      }
-    }
-    else {
-      bool result_shmem_atomic_and = test_cxx_shmem_atomic_and();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_atomic_and()", result_shmem_atomic_and, false);
-      }
+    bool result_shmem_atomic_and = test_cxx_shmem_atomic_and();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_atomic_and()", result_shmem_atomic_and, false);
     }
 
     /* Run shmem_atomic_fetch_or() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_ulong_atomic_fetch_or")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_ulong_atomic_fetch_or()", false);
-      }
-    }
-    else {
-      bool result_shmem_atomic_fetch_or = test_cxx_shmem_atomic_fetch_or();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_atomic_fetch_or()", result_shmem_atomic_fetch_or, false);
-      }
+    bool result_shmem_atomic_fetch_or = test_cxx_shmem_atomic_fetch_or();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_atomic_fetch_or()", result_shmem_atomic_fetch_or, false);
     }
 
     /* Run shmem_atomic_or() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_ulong_atomic_or")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_ulong_atomic_or()", false);
-      }
-    }
-    else {
-      bool result_shmem_atomic_or = test_cxx_shmem_atomic_or();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_atomic_or()", result_shmem_atomic_or, false);
-      }
+    bool result_shmem_atomic_or = test_cxx_shmem_atomic_or();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_atomic_or()", result_shmem_atomic_or, false);
     }
 
     /* Run shmem_atomic_fetch_xor() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_ulong_atomic_fetch_xor")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_ulong_atomic_fetch_xor()", false);
-      }
-    }
-    else {
-      bool result_shmem_atomic_fetch_xor = test_cxx_shmem_atomic_fetch_xor();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_atomic_fetch_xor()", result_shmem_atomic_fetch_xor, false);
-      }
+    bool result_shmem_atomic_fetch_xor = test_cxx_shmem_atomic_fetch_xor();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_atomic_fetch_xor()", result_shmem_atomic_fetch_xor, false);
     }
 
     /* Run shmem_atomic_xor() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_ulong_atomic_xor")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_ulong_atomic_xor()", false);
-      }
-    }
-    else {
-      bool result_shmem_atomic_xor = test_cxx_shmem_atomic_xor();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_atomic_xor()", result_shmem_atomic_xor, false);
-      }
+    bool result_shmem_atomic_xor = test_cxx_shmem_atomic_xor();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_atomic_xor()", result_shmem_atomic_xor, false);
     }
 
     /* Run shmem_atomic_fetch_nbi() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_ulong_atomic_fetch_nbi")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_ulong_atomic_fetch_nbi()", false);
-      }
-    }
-    else {
-      bool result_shmem_atomic_fetch_nbi = test_cxx_shmem_atomic_fetch_nbi();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_atomic_fetch_nbi()", result_shmem_atomic_fetch_nbi, false);
-      }
+    bool result_shmem_atomic_fetch_nbi = test_cxx_shmem_atomic_fetch_nbi();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_atomic_fetch_nbi()", result_shmem_atomic_fetch_nbi, false);
     }
 
     /* Run shmem_atomic_compare_swap_nbi() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_ulong_atomic_compare_swap_nbi")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_ulong_atomic_compare_swap_nbi()", false);
-      }
-    }
-    else {
-      bool result_shmem_atomic_compare_swap_nbi = test_cxx_shmem_atomic_compare_swap_nbi();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_atomic_compare_swap_nbi()", result_shmem_atomic_compare_swap_nbi, false);
-      }
+    bool result_shmem_atomic_compare_swap_nbi = test_cxx_shmem_atomic_compare_swap_nbi();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_atomic_compare_swap_nbi()", result_shmem_atomic_compare_swap_nbi, false);
     }
 
     /* Run shmem_atomic_swap_nbi() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_ulong_atomic_swap_nbi")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_ulong_atomic_swap_nbi()", false);
-      }
-    }
-    else {
-      bool result_shmem_atomic_swap_nbi = test_cxx_shmem_atomic_swap_nbi();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_atomic_swap_nbi()", result_shmem_atomic_swap_nbi, false);
-      }
+    bool result_shmem_atomic_swap_nbi = test_cxx_shmem_atomic_swap_nbi();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_atomic_swap_nbi()", result_shmem_atomic_swap_nbi, false);
     }
 
     /* Run shmem_atomic_fetch_inc_nbi() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_ulong_atomic_fetch_inc_nbi")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_ulong_atomic_fetch_inc_nbi()", false);
-      }
-    }
-    else {
-      bool result_shmem_atomic_fetch_inc_nbi = test_cxx_shmem_atomic_fetch_inc_nbi();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_atomic_fetch_inc_nbi()", result_shmem_atomic_fetch_inc_nbi, false);
-      }
+    bool result_shmem_atomic_fetch_inc_nbi = test_cxx_shmem_atomic_fetch_inc_nbi();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_atomic_fetch_inc_nbi()", result_shmem_atomic_fetch_inc_nbi, false);
     }
 
     /* Run shmem_atomic_fetch_add_nbi() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_ulong_atomic_fetch_add_nbi")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_ulong_atomic_fetch_add_nbi()", false);
-      }
-    }
-    else {
-      bool result_shmem_atomic_fetch_add_nbi = test_cxx_shmem_atomic_fetch_add_nbi();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_atomic_fetch_add_nbi()", result_shmem_atomic_fetch_add_nbi, false);
-      }
+    bool result_shmem_atomic_fetch_add_nbi = test_cxx_shmem_atomic_fetch_add_nbi();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_atomic_fetch_add_nbi()", result_shmem_atomic_fetch_add_nbi, false);
     }
 
     /* Run shmem_atomic_fetch_and_nbi() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_ulong_atomic_fetch_and_nbi")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_ulong_atomic_fetch_and_nbi()", false);
-      }
-    }
-    else {
-      bool result_shmem_atomic_fetch_and_nbi = test_cxx_shmem_atomic_fetch_and_nbi();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_atomic_fetch_and_nbi()", result_shmem_atomic_fetch_and_nbi, false);
-      }
+    bool result_shmem_atomic_fetch_and_nbi = test_cxx_shmem_atomic_fetch_and_nbi();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_atomic_fetch_and_nbi()", result_shmem_atomic_fetch_and_nbi, false);
     }
 
     /* Run shmem_atomic_fetch_or_nbi() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_ulong_atomic_fetch_or_nbi")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_ulong_atomic_fetch_or_nbi()", false);
-      }
-    }
-    else {
-      bool result_shmem_atomic_fetch_or_nbi = test_cxx_shmem_atomic_fetch_or_nbi();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_atomic_fetch_or_nbi()", result_shmem_atomic_fetch_or_nbi, false);
-      }
+    bool result_shmem_atomic_fetch_or_nbi = test_cxx_shmem_atomic_fetch_or_nbi();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_atomic_fetch_or_nbi()", result_shmem_atomic_fetch_or_nbi, false);
     }
 
     /* Run shmem_atomic_fetch_xor_nbi() test */
     shmem_barrier_all();
-    if (!check_if_exists("shmem_ulong_atomic_fetch_xor_nbi")) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_ulong_atomic_fetch_xor_nbi()", false);
-      }
-    }
-    else {
-      bool result_shmem_atomic_fetch_xor_nbi = test_cxx_shmem_atomic_fetch_xor_nbi();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("CXX shmem_atomic_fetch_xor_nbi()", result_shmem_atomic_fetch_xor_nbi, false);
-      }
+    bool result_shmem_atomic_fetch_xor_nbi = test_cxx_shmem_atomic_fetch_xor_nbi();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("C/CXX shmem_atomic_fetch_xor_nbi()", result_shmem_atomic_fetch_xor_nbi, false);
     }
   }
 }
+

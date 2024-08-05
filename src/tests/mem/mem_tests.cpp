@@ -184,119 +184,62 @@ bool test_shmem_calloc(void) {
 }
 
 /**
- * TODO: write docs
- * 
+ * @brief Run all memory tests
  */
 void run_mem_tests(int mype, int npes) {
   /* Test shmem_malloc() and shmem_free() */
-  if ( check_if_exists("shmem_malloc") && check_if_exists("shmem_free") ) {
-    bool result_shmem_malloc_free = test_shmem_malloc_free();
-    shmem_barrier_all();
-    if (mype == 0) {
-      display_test_result("shmem_malloc()", result_shmem_malloc_free, false);
-      display_test_result("shmem_free()", result_shmem_malloc_free, false);
-    }
+  bool result_shmem_malloc_free = test_shmem_malloc_free();
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_result("shmem_malloc()", result_shmem_malloc_free, false);
+    display_test_result("shmem_free()", result_shmem_malloc_free, false);
   }
-  else {
-    if ( !check_if_exists("shmem_malloc") ) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_malloc()", false);
-      }
-    }
-    if ( !check_if_exists("shmem_free") ) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_free()", false);
-      }
-    }
-  } 
 
   /* Test shmem_ptr() */
   shmem_barrier_all();
-  if ( !check_if_exists("shmem_ptr") ) {
-    if (mype == 0) {
-      display_not_found_warning("shmem_ptr()", false);
-    }
-  }
-  else {
-    bool result_shmem_ptr = test_shmem_ptr();
-    shmem_barrier_all();
-    if (mype == 0) {
-      display_test_result("shmem_ptr()", result_shmem_ptr, false);
-    }
+  bool result_shmem_ptr = test_shmem_ptr();
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_result("shmem_ptr()", result_shmem_ptr, false);
   }
 
-  /* Test shmem_addr_accessible */
+  /* Test shmem_addr_accessible() */
   shmem_barrier_all();
-  if ( !check_if_exists("shmem_addr_accessible") ) {
-    if (mype == 0) {
-      display_not_found_warning("shmem_addr_accessible", false);
-    }
-  }
-  else {
-    bool result_shmem_addr_accessible = test_shmem_addr_accessible();
-    shmem_barrier_all();
-    if (mype == 0) {
-      display_test_result("shmem_addr_accessible()", result_shmem_addr_accessible, false);
-    }
+  bool result_shmem_addr_accessible = test_shmem_addr_accessible();
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_result("shmem_addr_accessible()", result_shmem_addr_accessible, false);
   }
 
   /* Test shmem_realloc() */
   shmem_barrier_all();
-  if ( !check_if_exists("shmem_realloc") ) {
-    if (mype == 0) {
-      display_not_found_warning("shme_realloc()", false);
-    }
-  }
-  else {
-    bool result_shmem_realloc = test_shmem_realloc();
-    shmem_barrier_all();
-    if (mype == 0) {
-      display_test_result("shmem_realloc()", result_shmem_realloc, false); 
-    }
+  bool result_shmem_realloc = test_shmem_realloc();
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_result("shmem_realloc()", result_shmem_realloc, false);
   }
 
   /* Test shmem_align() */
   shmem_barrier_all();
-  if ( !check_if_exists("shmem_align") ) {
-    if (mype == 0) {
-      display_not_found_warning("shmem_align()", false);
-    }
-  }
-  else {
-    bool result_shmem_align = test_shmem_align();
-    shmem_barrier_all();
-    if (mype == 0) {
-      display_test_result("shmem_align()", result_shmem_align, false);
-    }
+  bool result_shmem_align = test_shmem_align();
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_result("shmem_align()", result_shmem_align, false);
   }
 
-  /* Test shmem_malloc_with_hints() */ 
+  /* Test shmem_malloc_with_hints() */
   shmem_barrier_all();
-  if ( !check_if_exists("shmem_malloc_with_hints") ) {
-    if (mype == 0) {
-      display_not_found_warning("shmem_malloc_with_hints()", false);
-    }
-  }
-  else {
-    bool result_shmem_malloc_with_hints = test_shmem_malloc_with_hints();
-    shmem_barrier_all();
-    if (mype == 0) {
-      display_test_result("shmem_malloc_with_hints()", result_shmem_malloc_with_hints, false);
-    }
+  bool result_shmem_malloc_with_hints = test_shmem_malloc_with_hints();
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_result("shmem_malloc_with_hints()", result_shmem_malloc_with_hints, false);
   }
 
   /* Test shmem_calloc() */
   shmem_barrier_all();
-  if ( !check_if_exists("shmem_calloc") ) {
-    if (mype == 0) {
-      display_not_found_warning("shmem_calloc()", false);
-    }
-  }
-  else {
-    bool result_shmem_calloc = test_shmem_calloc();
-    shmem_barrier_all();
-    if (mype == 0) {
-      display_test_result("shmem_calloc()", result_shmem_calloc, false);
-    }
+  bool result_shmem_calloc = test_shmem_calloc();
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_result("shmem_calloc()", result_shmem_calloc, false);
   }
 }

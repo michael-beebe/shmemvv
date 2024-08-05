@@ -111,6 +111,7 @@ bool test_shmem_global_exit(void);
  * 
  * @return True if successful false otherwise
  */
-bool run_setup_tests(test_options opts, int &mype, int &npes, char *version, char *name);
+bool run_setup_tests(int &mype, int &npes, char *version, char *name);
+// bool run_setup_tests(test_options opts, int &mype, int &npes, char *version, char *name);
 
 #endif /* SETUP_TESTS_h */

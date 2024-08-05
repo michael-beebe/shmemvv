@@ -123,111 +123,62 @@ bool test_shmem_team_destroy(void) {
 }
 
 /**
- * TODO: write docs
- * 
+ * @brief Run all teams tests
  */
 void run_teams_tests(int mype, int npes) {
   /* Run shmem_team_my_pe() test */
-  if ( !check_if_exists("shmem_team_my_pe") ) {
-    if (mype == 0) {
-      display_not_found_warning("shmem_team_my_pe()", true);
-    }
-  }
-  else {
-    bool result_shmem_team_my_pe = test_shmem_team_my_pe();
-    shmem_barrier_all();
-    if (mype == 0) {
-      display_test_result("shmem_team_my_pe()", result_shmem_team_my_pe, false);
-    }
+  bool result_shmem_team_my_pe = test_shmem_team_my_pe();
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_result("shmem_team_my_pe()", result_shmem_team_my_pe, false);
   }
 
   /* Run shmem_team_n_pes() test */
   shmem_barrier_all();
-  if ( !check_if_exists("shmem_team_n_pes") ) {
-    if (mype == 0) {
-      display_not_found_warning("shmem_team_n_pes()", true);
-    }
-  }
-  else {
-    bool result_shmem_team_n_pes = test_shmem_team_n_pes();
-    shmem_barrier_all();
-    if (mype == 0) {
-      display_test_result("shmem_team_n_pes()", result_shmem_team_n_pes, false);
-    }
+  bool result_shmem_team_n_pes = test_shmem_team_n_pes();
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_result("shmem_team_n_pes()", result_shmem_team_n_pes, false);
   }
 
   /* Run shmem_team_get_config() test */
   shmem_barrier_all();
-  if ( !check_if_exists("shmem_team_get_config") ) {
-    if (mype == 0) {
-      display_not_found_warning("shmem_team_get_config()", false);
-    }
-  }
-  else {
-    bool result_shmem_team_get_config = test_shmem_team_get_config();
-    shmem_barrier_all();
-    if (mype == 0) {
-      display_test_result("shmem_team_get_config()", result_shmem_team_get_config, false);
-    }
+  bool result_shmem_team_get_config = test_shmem_team_get_config();
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_result("shmem_team_get_config()", result_shmem_team_get_config, false);
   }
 
   /* Run shmem_team_translate_pe() test */
   shmem_barrier_all();
-  if ( !check_if_exists("shmem_team_translate_pe") ) {
-    if (mype == 0) {
-      display_not_found_warning("shmem_team_translate_pe()", false);
-    }
-  }
-  else {
-    bool result_shmem_team_translate_pe = test_shmem_team_translate_pe();
-    shmem_barrier_all();
-    if (mype == 0) {
-      display_test_result("shmem_team_translate_pe()", result_shmem_team_translate_pe, false);
-    }
+  bool result_shmem_team_translate_pe = test_shmem_team_translate_pe();
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_result("shmem_team_translate_pe()", result_shmem_team_translate_pe, false);
   }
 
   /* Run shmem_team_split_strided() test */
   shmem_barrier_all();
-  if ( !check_if_exists("shmem_team_split_strided") ) {
-    if (mype == 0) {
-      display_not_found_warning("shmem_team_split_strided()", false);
-    }
-  }
-  else {
-    bool result_shmem_team_split_strided = test_shmem_team_split_strided();
-    shmem_barrier_all();
-    if (mype == 0) {
-      display_test_result("shmem_team_split_strided()", result_shmem_team_split_strided, false);
-    }
+  bool result_shmem_team_split_strided = test_shmem_team_split_strided();
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_result("shmem_team_split_strided()", result_shmem_team_split_strided, false);
   }
 
   /* Run shmem_team_split_2d() test */
   shmem_barrier_all();
-  if ( !check_if_exists("shmem_team_split_2d") ) {
-    if (mype == 0) {
-      display_not_found_warning("shmem_team_split_2d()", false);
-    }
-  }
-  else {
-    bool result_shmem_team_split_2d = test_shmem_team_split_2d();
-    shmem_barrier_all();
-    if (mype == 0) {
-      display_test_result("shmem_team_split_2d()", result_shmem_team_split_2d, false);
-    }
+  bool result_shmem_team_split_2d = test_shmem_team_split_2d();
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_result("shmem_team_split_2d()", result_shmem_team_split_2d, false);
   }
 
   /* Run shmem_team_destroy() test */
   shmem_barrier_all();
-  if ( !check_if_exists("shmem_team_destroy") ) {
-    if (mype == 0) {
-      display_not_found_warning("shmem_team_destroy()", false);
-    }
-  }
-  else {
-    bool result_shmem_team_destroy = test_shmem_team_destroy();
-    shmem_barrier_all();
-    if (mype == 0) {
-      display_test_result("shmem_team_destroy()", result_shmem_team_destroy, false);
-    }
+  bool result_shmem_team_destroy = test_shmem_team_destroy();
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_result("shmem_team_destroy()", result_shmem_team_destroy, false);
   }
 }
+

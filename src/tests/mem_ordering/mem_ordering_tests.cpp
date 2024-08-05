@@ -75,8 +75,7 @@ bool test_shmem_quiet(void) {
 }
 
 /**
- * TODO: write docs
- * 
+ * @brief Run all memory ordering tests
  */
 void run_mem_ordering_tests(int mype, int npes) {
   /* Make sure there are at least 2 PEs */
@@ -88,32 +87,19 @@ void run_mem_ordering_tests(int mype, int npes) {
   else {
     /* Run the shmem_fence() test */
     shmem_barrier_all();
-    if ( !check_if_exists("shmem_fence") ) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_fence()", false);
-      }
-    }
-    else {
-      bool result_shmem_fence = test_shmem_fence();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("shmem_fence()", result_shmem_fence, false);
-      }
+    bool result_shmem_fence = test_shmem_fence();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("shmem_fence()", result_shmem_fence, false);
     }
 
     /* Run the shmem_quiet() test */
     shmem_barrier_all();
-    if ( !check_if_exists("shmem_quiet") ) {
-      if (mype == 0) {
-        display_not_found_warning("shmem_quiet()", false);
-      }
-    }
-    else {
-      bool result_shmem_quiet = test_shmem_quiet();
-      shmem_barrier_all();
-      if (mype == 0) {
-        display_test_result("shmem_quiet()", result_shmem_quiet, false);
-      }
+    bool result_shmem_quiet = test_shmem_quiet();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("shmem_quiet()", result_shmem_quiet, false);
     }
   }
 }
+

@@ -171,8 +171,7 @@ bool test_c11_shmem_test_some_vector(void);
 bool test_c11_shmem_signal_wait_until(void);
 
 /**
- * TODO: write docs
- * 
+ * @brief Run all C11 tests
  */
 void run_c11_pt2pt_synch_tests(int mype, int npes);
 

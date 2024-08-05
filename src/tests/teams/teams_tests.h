@@ -76,8 +76,7 @@ bool test_shmem_team_split_2d(void);
 bool test_shmem_team_destroy(void);
 
 /**
- * TODO: write docs
- * 
+ * @brief Run all teams tests
  */
 void run_teams_tests(int mype, int npes);
 

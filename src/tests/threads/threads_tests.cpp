@@ -37,27 +37,19 @@ bool test_shmem_query_thread(void) {
 }
 
 /**
- * TODO: write docs
- * 
+ * @brief Run all threads tests
  */
 void run_threads_tests(int mype, int npes) {
-  /* If we made it here shmem_init_thread() passed */
-  if (mype == 0) {
-    display_test_result("shmem_init_thread()", true, true);
-  }
+  // /* If we made it here shmem_init_thread() passed */
+  // if (mype == 0) {
+  //   display_test_result("shmem_init_thread()", true, true);
+  // }
 
   /* Test shmem_query_thread() */
   shmem_barrier_all();
-  if ( !check_if_exists("shmem_query_thread") ) {
-    if (mype == 0) {
-      display_not_found_warning("shmem_query_thread()", false);
-    }
-  }
-  else {
-    bool result_shmem_query_thread = test_shmem_query_thread();
-    shmem_barrier_all();
-    if (mype == 0) {
-      display_test_result("shmem_query_thread()", result_shmem_query_thread, false);
-    }
+  bool result_shmem_query_thread = test_shmem_query_thread();
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_result("shmem_query_thread()", result_shmem_query_thread, false);
   }
 }

@@ -300,8 +300,7 @@ bool test_c11_shmem_get_nbi(void) {
 }
 
 /**
- * TODO: write docs
- * 
+ * @brief Run all C11 RMA tests
  */
 void run_c11_remote_tests(int mype, int npes) {
   /* Check to make sure there are at least 2 PEs */

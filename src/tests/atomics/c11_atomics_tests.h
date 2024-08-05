@@ -237,8 +237,7 @@ bool test_c11_shmem_atomic_fetch_or_nbi(void);
 bool test_c11_shmem_atomic_fetch_xor_nbi(void);
 
 /**
- * TODO: write docs
- * 
+ * @brief Run all C11 atomics tests
  */
 void run_c11_atomics_tests(int mype, int npes);
 

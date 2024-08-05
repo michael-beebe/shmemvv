@@ -42,8 +42,7 @@ bool test_cxx_shmem_put_signal_nbi(void);
 bool test_cxx_shmem_signal_fetch(void);
 
 /**
- * TODO: write docs
- * 
+ * @brief Run all C/CXX signaling tests
  */
 void run_cxx_signaling_tests(int mype, int npes);
 

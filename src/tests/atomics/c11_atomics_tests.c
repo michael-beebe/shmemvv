@@ -527,8 +527,7 @@ bool test_c11_shmem_atomic_fetch_xor_nbi() {
 
 
 /**
- * TODO: write docs
- * 
+ * @brief Run all c11 atomics tests
  */
 void run_c11_atomics_tests(int mype, int npes) {
   /* Make sure there are at least 2 PEs */
