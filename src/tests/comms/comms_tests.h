@@ -1,14 +1,15 @@
 /**
- * @file comms_tests.hpp
+ * @file comms_tests.h
  * @brief Contains function declarations for the OpenSHMEM communication/context tests.
  */
 
-#ifndef COMMS_TESTS_HPP
-#define COMMS_TESTS_HPP
+#ifndef COMMS_TESTS_H
+#define COMMS_TESTS_H
 
-#include "routines.hpp"
+#include "routines.h"
+#include "shmemvv.h"
+
 #include <shmem.h>
-#include <iostream>
 
 /**
  * @brief Tests the shmem_ctx_create() function.
@@ -48,4 +49,10 @@ bool test_shmem_ctx_destroy(void);
  */
 bool test_shmem_ctx_get_team(void);
 
-#endif /* COMMS_TESTS_HPP */
+/**
+* @brief Run all comms/ctx tests
+ * 
+ */
+void run_comms_tests(int mype, int npes);
+
+#endif /* COMMS_TESTS_H */

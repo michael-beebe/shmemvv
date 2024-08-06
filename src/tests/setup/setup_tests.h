@@ -1,30 +1,20 @@
 /**
- * @file setup_tests.hpp
+ * @file setup_tests.h
  * @brief Contains function declarations for the OpenSHMEM setup tests.
  */
 
-#ifndef SETUP_TESTS_HPP
-#define SETUP_TESTS_HPP
+#ifndef SETUP_TESTS_H
+#define SETUP_TESTS_H
 
-#include "routines.hpp"
-#include "shmemvv.hpp"
+#include "shmemvv.h"
+#include "routines.h"
+
+#include "tests.h"
 
 #include <shmem.h>
 #include <iostream>
 #include <cstring>
 #include <string>
-
-/**
- * @brief Tests to make sure routines that aren't
- *        implemented in the tested OpenSHMEM library don't throw
- *        compiler errors.
- * 
- * This test verifies that calling an unimplemented routine in the
- * OpenSHMEM library does not result in compiler errors.
- * 
- * @return True if the routine does not throw compiler errors, false otherwise.
- */
-bool test_shmem_fake_routine(void);
 
 /**
  * @brief Tests the initialization of OpenSHMEM.
@@ -87,7 +77,7 @@ bool test_shmem_pe_accessible(void);
  * 
  * @return The version as a string in the format "major.minor".
  */
-std::string test_shmem_info_get_version(void);
+char* test_shmem_info_get_version(void);
 
 /**
  * @brief Tests retrieving the name of the OpenSHMEM library.
@@ -96,7 +86,7 @@ std::string test_shmem_info_get_version(void);
  * 
  * @return The name of the library as a string if successful, otherwise an empty string.
  */
-std::string test_shmem_info_get_name(void);
+char* test_shmem_info_get_name(void);
 
 /**
  * @brief Tests the finalization of OpenSHMEM.
@@ -116,4 +106,12 @@ bool test_shmem_finalize(void);
  */
 bool test_shmem_global_exit(void);
 
-#endif /* SETUP_TESTS_HPP */
+/**
+ * @brief Perform all setup tests
+ * 
+ * @return True if successful false otherwise
+ */
+bool run_setup_tests(int &mype, int &npes, char *version, char *name);
+// bool run_setup_tests(test_options opts, int &mype, int &npes, char *version, char *name);
+
+#endif /* SETUP_TESTS_h */

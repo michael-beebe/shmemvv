@@ -1,12 +1,14 @@
 /**
- * @file signaling_tests.hpp
+ * @file cxx_signaling_tests.h
  * @brief Contains function declarations for the OpenSHMEM signaling tests.
  */
 
-#ifndef SIGNALING_TESTS_HPP
-#define SIGNALING_TESTS_HPP
+#ifndef CXX_SIGNALING_TESTS_H
+#define CXX_SIGNALING_TESTS_H
 
-#include "routines.hpp"
+#include "routines.h"
+#include "shmemvv.h"
+
 #include <shmem.h>
 
 /**
@@ -17,7 +19,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_put_signal(void);
+bool test_cxx_shmem_put_signal(void);
 
 /**
  * @brief Tests the shmem_put_signal_nbi() routine.
@@ -27,7 +29,7 @@ bool test_shmem_put_signal(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_put_signal_nbi(void);
+bool test_cxx_shmem_put_signal_nbi(void);
 
 /**
  * @brief Tests the shmem_signal_fetch() routine.
@@ -37,6 +39,12 @@ bool test_shmem_put_signal_nbi(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_signal_fetch(void);
+bool test_cxx_shmem_signal_fetch(void);
 
-#endif /* SIGNALING_TESTS_HPP */
+/**
+ * @brief Run all C/CXX signaling tests
+ */
+void run_cxx_signaling_tests(int mype, int npes);
+
+#endif /* SIGNALING_TESTS_H */
+

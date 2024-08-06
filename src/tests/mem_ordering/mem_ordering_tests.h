@@ -1,16 +1,16 @@
 /**
- * @file mem_ordering_tests.hpp
+ * @file mem_ordering_tests.h
  * @brief Contains function declarations for the OpenSHMEM memory ordering tests.
  */
 
-#ifndef MEM_ORDERING_TESTS_HPP
-#define MEM_ORDERING_TESTS_HPP
+#ifndef MEM_ORDERING_TESTS_H
+#define MEM_ORDERING_TESTS_H
 
-#include "routines.hpp"
+#include "routines.h"
+#include "shmemvv.h"
+
 #include <shmem.h>
-#include <iostream>
-#include <cstdlib>
-#include <cstring>
+#include <stdlib.h>
 
 /**
  * @brief Tests the shmem_fence() routine.
@@ -34,4 +34,9 @@ bool test_shmem_fence(void);
  */
 bool test_shmem_quiet(void);
 
-#endif /* MEM_ORDERING_TESTS_HPP */
+/**
+ * @brief Run all memory ordering tests
+ */
+void run_mem_ordering_tests(int mype, int npes);
+
+#endif /* MEM_ORDERING_TESTS_H */

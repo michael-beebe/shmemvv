@@ -1,33 +1,18 @@
 /**
-  @file shmemvv.hpp
-  @brief Contains helper function declarations for the OpenSHMEM verification/validation test suite.
+ * @file shmemvv.h 
+ * 
  */
 
-#ifndef SHMEMVV_HPP
-#define SHMEMVV_HPP
+#ifndef SHMEMVV_H
+#define SHMEMVV_H
 
 #include <shmem.h>
-
-#include <iostream>
 #include <getopt.h>
-#include <string>
-#include <cstring>
-#include <vector>
-#include <sstream>
+#include <stdbool.h>
 #include <dlfcn.h>
-
-#include "../tests/setup/setup_tests.hpp"
-#include "../tests/threads/threads_tests.hpp"
-#include "../tests/mem/mem_tests.hpp"
-#include "../tests/teams/teams_tests.hpp"
-#include "../tests/comms/comms_tests.hpp"
-#include "../tests/remote/remote_tests.hpp"
-#include "../tests/atomics/atomics_tests.hpp"
-#include "../tests/signaling/signaling_tests.hpp"
-#include "../tests/collectives/collectives_tests.hpp"
-#include "../tests/pt2pt/pt2pt_tests.hpp"
-#include "../tests/mem_ordering/mem_ordering_tests.hpp"
-#include "../tests/locking/locking_tests.hpp"
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 /* ANSI color codes for pretty output */
 #define RESET_COLOR "\033[0m"
@@ -37,11 +22,15 @@
 
 #define HLINE "--------------------------------------------"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
   @struct test_options
   @brief Struct to hold selected tests options.
  */
-struct test_options {
+typedef struct {
   bool test_all;               /**< Flag to run all tests */
   bool test_setup;             /**< Flag to run setup tests */
   bool test_threads;           /**< Flag to run thread support tests */
@@ -56,17 +45,7 @@ struct test_options {
   bool test_mem_ordering;      /**< Flag to run memory ordering tests */
   bool test_locking;           /**< Flag to run distributed locking tests */
   bool help;                   /**< Flag to display help message */
-
-  /**
-    @brief Constructor to initialize all flags to false.
-   */
-  test_options() :
-    test_all(false), test_setup(false), test_threads(false),
-    test_mem(false), test_teams(false), test_ctx(false),
-    test_remote(false), test_atomics(false), test_signaling(false),
-    test_collectives(false), test_pt2pt_synch(false),
-    test_mem_ordering(false), test_locking(false), help(false) {}
-};
+} test_options;
 
 /**
   @brief Parses command-line options.
@@ -75,23 +54,25 @@ struct test_options {
   @param opts Reference to the test options structure.
   @return True if parsing is successful, false otherwise.
  */
-bool parse_opts(int argc, char *argv[], test_options &opts);
+bool parse_opts(int argc, char *argv[], test_options *opts);
 
 /**
   @brief Displays usage information.
  */
-void display_help();
+void display_help(void);
 
 /**
-  @brief Displays the ASCII art logo.
+ * @brief Displays the ASCII art logo.
+ *
+ * This function prints out the ASCII art logo for the test suite.
  */
-void display_logo();
+void display_logo(void);
 
 /**
   @brief Displays a header for the test category.
   @param test_name Name of the test category.
  */
-void display_test_header(std::string test_name);
+void display_test_header(const char *test_name);
 
 /**
   @brief Displays information about the test suite.
@@ -99,33 +80,29 @@ void display_test_header(std::string test_name);
   @param shmem_version Version of the OpenSHMEM library.
   @param npes Number of PEs (Processing Elements).
  */
-void display_test_info(
-  std::string shmem_name,
-  std::string shmem_version,
-  int npes
-);
+void display_test_info(const char *shmem_name, const char *shmem_version, int npes);
 
 /**
   @brief Checks whether the tested OpenSHMEM implementation has a given routine
   @param routine_name OpenSHMEM routine that we are making sure is present
   @return true if it exists, false otherwise
  */
-bool check_if_exists(const std::string& routine_name);
+bool check_if_exists(const char *routine_name);
 
 /**
-  @brief Displays a warning message that the given routine is not avaible in the
+  @brief Displays a warning message that the given routine is not available in the
         tested OpenSHMEM library
   @param routine_name OpenSHMEM routine
   @param required True if test is required, false otherwise
-*/
-void display_not_found_warning(std::string routine_name, bool required);
+ */
+void display_not_found_warning(const char *routine_name, bool required);
 
 /**
   @brief Print error message saying that there needs to be at least
          2 PEs for the given test type
   @param test_type Category of tests
  */
-void display_not_enough_pes(std::string test_type);
+void display_not_enough_pes(const char *test_type);
 
 /**
   @brief Displays whether the test passed
@@ -133,13 +110,10 @@ void display_not_enough_pes(std::string test_type);
   @param passed True if the test passed, false if the test failed
   @param required True if the test is required, false otherwise
  */
-void display_test_result(std::string routine_name, bool passed, bool required);
+void display_test_result(const char *routine_name, bool passed, bool required);
 
-/**
-  @brief Run finalization test
-  @param mype Current PE
- */
- void finalize_shmemvv(int mype);
+#ifdef __cplusplus
+}
+#endif
 
-
-#endif /* SHMEMVV_HPP */
+#endif /* SHMEMVV_H */

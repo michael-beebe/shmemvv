@@ -1,16 +1,15 @@
 /**
- * @file locking_tests.hpp
+ * @file locking_tests.h
  * @brief Contains function declarations for the OpenSHMEM distributed locking tests.
  */
 
-#ifndef LOCKING_TESTS_HPP
-#define LOCKING_TESTS_HPP
+#ifndef LOCKING_TESTS_H
+#define LOCKING_TESTS_H
 
-#include "routines.hpp"
+#include "routines.h"
+#include "shmemvv.h"
+
 #include <shmem.h>
-#include <iostream>
-#include <cstdlib>
-#include <cstring>
 
 /**
  * @brief Tests the shmem_set_lock() and shmem_clear_lock() routines.
@@ -23,4 +22,9 @@
  */
 bool test_shmem_lock_unlock(void);
 
-#endif /* LOCKING_TESTS_HPP */
+/**
+ * @brief Run all locking tests
+ */
+void run_locking_tests(int mype, int npes);
+
+#endif /* LOCKING_TESTS_H */

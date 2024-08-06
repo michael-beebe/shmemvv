@@ -1,16 +1,16 @@
 /**
- * @file threads_tests.hpp
+ * @file threads_tests.h
  * @brief Contains function declarations for the OpenSHMEM threads tests.
  */
 
-#ifndef THREADS_TESTS_HPP
-#define THREADS_TESTS_HPP
+#ifndef THREADS_TESTS_H
+#define THREADS_TESTS_H
 
-#include "routines.hpp"
-#include "shmemvv.hpp"
+#include "routines.h"
+#include "shmemvv.h"
 
 #include <shmem.h>
-#include <iostream>
+#include <stdio.h>
 
 /**
  * @brief Tests the initialization of OpenSHMEM with threading support.
@@ -32,4 +32,9 @@ bool test_shmem_init_thread(void);
  */
 bool test_shmem_query_thread(void);
 
-#endif /* THREADS_TESTS_HPP */
+/**
+ * @brief Run all threads tests
+ */
+void run_threads_tests(int mype, int npes);
+
+#endif /* THREADS_TESTS_H */

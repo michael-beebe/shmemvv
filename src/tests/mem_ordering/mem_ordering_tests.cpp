@@ -1,9 +1,9 @@
 /**
- * @file mem_ordering_tests.cpp
+ * @file cxx_mem_ordering_tests.cpp
  * @brief Contains OpenSHMEM memory ordering tests.
  */
 
-#include "mem_ordering_tests.hpp"
+#include "mem_ordering_tests.h"
 
 /**
  * @brief Tests the shmem_fence() routine.
@@ -15,19 +15,19 @@
  * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_fence(void) {
-  long *flag = (long *)p_shmem_malloc(sizeof(long));
+  long *flag = (long *)shmem_malloc(sizeof(long));
   *flag = 0;
-  int mype = p_shmem_my_pe();
+  int mype = shmem_my_pe();
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   if (mype == 0) {
-    p_shmem_long_p(flag, 1, 1);
-    p_shmem_fence();
+    shmem_long_p(flag, 1, 1);
+    shmem_fence();
     *flag = 2;
   }
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   bool result = true;
   if (mype == 1) {
@@ -36,7 +36,7 @@ bool test_shmem_fence(void) {
     }
   }
 
-  p_shmem_free(flag);
+  shmem_free(flag);
   return result;
 }
 
@@ -50,18 +50,18 @@ bool test_shmem_fence(void) {
  * @return True if the test is successful, false otherwise.
  */
 bool test_shmem_quiet(void) {
-  long *flag = (long *)p_shmem_malloc(sizeof(long));
+  long *flag = (long *)shmem_malloc(sizeof(long));
   *flag = 0;
-  int mype = p_shmem_my_pe();
+  int mype = shmem_my_pe();
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   if (mype == 0) {
-    p_shmem_long_p(flag, 1, 1);
-    p_shmem_quiet();
+    shmem_long_p(flag, 1, 1);
+    shmem_quiet();
   }
 
-  p_shmem_barrier_all();
+  shmem_barrier_all();
 
   bool result = true;
   if (mype == 1) {
@@ -70,6 +70,36 @@ bool test_shmem_quiet(void) {
     }
   }
 
-  p_shmem_free(flag);
+  shmem_free(flag);
   return result;
 }
+
+/**
+ * @brief Run all memory ordering tests
+ */
+void run_mem_ordering_tests(int mype, int npes) {
+  /* Make sure there are at least 2 PEs */
+  if ( !(npes > 1) ) {
+    if (mype == 0) {
+      display_not_enough_pes("MEMORY ORDERING");
+    }
+  }
+  else {
+    /* Run the shmem_fence() test */
+    shmem_barrier_all();
+    bool result_shmem_fence = test_shmem_fence();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("shmem_fence()", result_shmem_fence, false);
+    }
+
+    /* Run the shmem_quiet() test */
+    shmem_barrier_all();
+    bool result_shmem_quiet = test_shmem_quiet();
+    shmem_barrier_all();
+    if (mype == 0) {
+      display_test_result("shmem_quiet()", result_shmem_quiet, false);
+    }
+  }
+}
+

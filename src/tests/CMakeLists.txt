@@ -1,3 +1,7 @@
+#####################################
+# src/tests/CMakeLists.txt
+#####################################
+
 # ---- Add subdirectories for each test category
 add_subdirectory(atomics)
 add_subdirectory(collectives)
@@ -11,18 +15,3 @@ add_subdirectory(setup)
 add_subdirectory(signaling)
 add_subdirectory(teams)
 add_subdirectory(threads)
-
-# ---- Add tests for each category
-add_test(NAME SetupTests COMMAND $<TARGET_FILE:shmemvv> --test_setup)
-add_test(NAME ThreadTests COMMAND $<TARGET_FILE:shmemvv> --test_threads)
-add_test(NAME MemTests COMMAND $<TARGET_FILE:shmemvv> --test_mem)
-add_test(NAME TeamsTests COMMAND $<TARGET_FILE:shmemvv> --test_teams)
-add_test(NAME CommsTests COMMAND $<TARGET_FILE:shmemvv> --test_comms)
-add_test(NAME RemoteTests COMMAND $<TARGET_FILE:shmemvv> --test_remote)
-add_test(NAME AtomicsTests COMMAND $<TARGET_FILE:shmemvv> --test_atomics)
-add_test(NAME SignalingTests COMMAND $<TARGET_FILE:shmemvv> --test_signaling)
-add_test(NAME CollectivesTests COMMAND $<TARGET_FILE:shmemvv> --test_collectives)
-add_test(NAME Pt2PtSynchTests COMMAND $<TARGET_FILE:shmemvv> --test_pt2pt_synch)
-add_test(NAME MemOrderingTests COMMAND $<TARGET_FILE:shmemvv> --test_mem_ordering)
-add_test(NAME LockingTests COMMAND $<TARGET_FILE:shmemvv> --test_locking)
-add_test(NAME AllTests COMMAND $<TARGET_FILE:shmemvv> --all)

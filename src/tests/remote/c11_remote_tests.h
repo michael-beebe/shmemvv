@@ -1,14 +1,20 @@
 /**
- * @file remote_tests.hpp
+ * @file c11_remote_tests.h
  * @brief Contains function declarations for the OpenSHMEM remote memory access tests.
  */
 
-#ifndef REMOTE_TESTS_HPP
-#define REMOTE_TESTS_HPP
+#ifndef C11_REMOTE_TESTS_H
+#define C11_REMOTE_TESTS_H
 
-#include "routines.hpp"
+#include "routines.h"
+#include "shmemvv.h"
+
 #include <shmem.h>
-#include <iostream>
+#include <stdlib.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /**
  * @brief Tests the shmem_put() routine.
@@ -17,7 +23,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_put(void);
+bool test_c11_shmem_put(void);
 
 /**
  * @brief Tests the shmem_p() routine.
@@ -26,7 +32,7 @@ bool test_shmem_put(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_p(void);
+bool test_c11_shmem_p(void);
 
 /**
  * @brief Tests the shmem_iput() routine.
@@ -35,7 +41,7 @@ bool test_shmem_p(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_iput(void);
+bool test_c11_shmem_iput(void);
 
 /**
  * @brief Tests the shmem_get() routine.
@@ -44,7 +50,7 @@ bool test_shmem_iput(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_get(void);
+bool test_c11_shmem_get(void);
 
 /**
  * @brief Tests the shmem_g() routine.
@@ -53,7 +59,7 @@ bool test_shmem_get(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_g(void);
+bool test_c11_shmem_g(void);
 
 /**
  * @brief Tests the shmem_iget() routine.
@@ -62,7 +68,7 @@ bool test_shmem_g(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_iget(void);
+bool test_c11_shmem_iget(void);
 
 /**
  * @brief Tests the shmem_put_nbi() routine.
@@ -71,7 +77,7 @@ bool test_shmem_iget(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_put_nbi(void);
+bool test_c11_shmem_put_nbi(void);
 
 /**
  * @brief Tests the shmem_get_nbi() routine.
@@ -80,6 +86,15 @@ bool test_shmem_put_nbi(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_get_nbi(void);
+bool test_c11_shmem_get_nbi(void);
 
-#endif /* REMOTE_TESTS_HPP */
+/**
+ * @brief Run all C11 RMA tests
+ */
+void run_c11_remote_tests(int mype, int npes);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* REMOTE_TESTS_H */

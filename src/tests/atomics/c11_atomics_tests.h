@@ -1,14 +1,20 @@
 /**
- * @file atomics_tests.hpp
+ * @file c11_atomics_tests.h
  * @brief Contains function declarations for the OpenSHMEM atomic memory operations tests.
  */
 
-#ifndef ATOMICS_TESTS_HPP
-#define ATOMICS_TESTS_HPP
+#ifndef C11_ATOMICS_TESTS_H
+#define C11_ATOMICS_TESTS_H
 
-#include "routines.hpp"
+#include "routines.h"
+#include "shmemvv.h"
+
 #include <shmem.h>
-#include <iostream>
+#include <stdio.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /**
  * @brief Tests the shmem_atomic_fetch() routine.
@@ -18,7 +24,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch(void);
+bool test_c11_shmem_atomic_fetch(void);
 
 /**
  * @brief Tests the shmem_atomic_set() routine.
@@ -28,7 +34,7 @@ bool test_shmem_atomic_fetch(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_set(void);
+bool test_c11_shmem_atomic_set(void);
 
 /**
  * @brief Tests the shmem_atomic_compare_swap() routine.
@@ -38,7 +44,7 @@ bool test_shmem_atomic_set(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_compare_swap(void);
+bool test_c11_shmem_atomic_compare_swap(void);
 
 /**
  * @brief Tests the shmem_atomic_swap() routine.
@@ -48,7 +54,7 @@ bool test_shmem_atomic_compare_swap(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_swap(void);
+bool test_c11_shmem_atomic_swap(void);
 
 /**
  * @brief Tests the shmem_atomic_fetch_inc() routine.
@@ -58,7 +64,7 @@ bool test_shmem_atomic_swap(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch_inc(void);
+bool test_c11_shmem_atomic_fetch_inc(void);
 
 /**
  * @brief Tests the shmem_atomic_inc() routine.
@@ -68,7 +74,7 @@ bool test_shmem_atomic_fetch_inc(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_inc(void);
+bool test_c11_shmem_atomic_inc(void);
 
 /**
  * @brief Tests the shmem_atomic_fetch_add() routine.
@@ -78,7 +84,7 @@ bool test_shmem_atomic_inc(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch_add(void);
+bool test_c11_shmem_atomic_fetch_add(void);
 
 /**
  * @brief Tests the shmem_atomic_add() routine.
@@ -88,7 +94,7 @@ bool test_shmem_atomic_fetch_add(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_add(void);
+bool test_c11_shmem_atomic_add(void);
 
 /**
  * @brief Tests the shmem_atomic_fetch_and() routine.
@@ -98,7 +104,7 @@ bool test_shmem_atomic_add(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch_and(void);
+bool test_c11_shmem_atomic_fetch_and(void);
 
 /**
  * @brief Tests the shmem_atomic_and() routine.
@@ -108,7 +114,7 @@ bool test_shmem_atomic_fetch_and(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_and(void);
+bool test_c11_shmem_atomic_and(void);
 
 /**
  * @brief Tests the shmem_atomic_fetch_or() routine.
@@ -118,7 +124,7 @@ bool test_shmem_atomic_and(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch_or(void);
+bool test_c11_shmem_atomic_fetch_or(void);
 
 /**
  * @brief Tests the shmem_atomic_or() routine.
@@ -128,7 +134,7 @@ bool test_shmem_atomic_fetch_or(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_or(void);
+bool test_c11_shmem_atomic_or(void);
 
 /**
  * @brief Tests the shmem_atomic_fetch_xor() routine.
@@ -138,7 +144,7 @@ bool test_shmem_atomic_or(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch_xor(void);
+bool test_c11_shmem_atomic_fetch_xor(void);
 
 /**
  * @brief Tests the shmem_atomic_xor() routine.
@@ -148,7 +154,7 @@ bool test_shmem_atomic_fetch_xor(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_xor(void);
+bool test_c11_shmem_atomic_xor(void);
 
 /**
  * @brief Tests the shmem_atomic_fetch_nbi() routine.
@@ -158,7 +164,7 @@ bool test_shmem_atomic_xor(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch_nbi(void);
+bool test_c11_shmem_atomic_fetch_nbi(void);
 
 /**
  * @brief Tests the shmem_atomic_compare_swap_nbi() routine.
@@ -168,7 +174,7 @@ bool test_shmem_atomic_fetch_nbi(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_compare_swap_nbi(void);
+bool test_c11_shmem_atomic_compare_swap_nbi(void);
 
 /**
  * @brief Tests the shmem_atomic_swap_nbi() routine.
@@ -178,7 +184,7 @@ bool test_shmem_atomic_compare_swap_nbi(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_swap_nbi(void);
+bool test_c11_shmem_atomic_swap_nbi(void);
 
 /**
  * @brief Tests the shmem_atomic_fetch_inc_nbi() routine.
@@ -188,7 +194,7 @@ bool test_shmem_atomic_swap_nbi(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch_inc_nbi(void);
+bool test_c11_shmem_atomic_fetch_inc_nbi(void);
 
 /**
  * @brief Tests the shmem_atomic_fetch_add_nbi() routine.
@@ -198,7 +204,7 @@ bool test_shmem_atomic_fetch_inc_nbi(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch_add_nbi(void);
+bool test_c11_shmem_atomic_fetch_add_nbi(void);
 
 /**
  * @brief Tests the shmem_atomic_fetch_and_nbi() routine.
@@ -208,7 +214,7 @@ bool test_shmem_atomic_fetch_add_nbi(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch_and_nbi(void);
+bool test_c11_shmem_atomic_fetch_and_nbi(void);
 
 /**
  * @brief Tests the shmem_atomic_fetch_or_nbi() routine.
@@ -218,7 +224,7 @@ bool test_shmem_atomic_fetch_and_nbi(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch_or_nbi(void);
+bool test_c11_shmem_atomic_fetch_or_nbi(void);
 
 /**
  * @brief Tests the shmem_atomic_fetch_xor_nbi() routine.
@@ -228,6 +234,15 @@ bool test_shmem_atomic_fetch_or_nbi(void);
  *
  * @return True if the test is successful, false otherwise.
  */
-bool test_shmem_atomic_fetch_xor_nbi(void);
+bool test_c11_shmem_atomic_fetch_xor_nbi(void);
 
-#endif /* ATOMICS_TESTS_HPP */
+/**
+ * @brief Run all C11 atomics tests
+ */
+void run_c11_atomics_tests(int mype, int npes);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* C11_ATOMICS_TESTS_H */

@@ -1,16 +1,16 @@
 /**
- * @file mem_tests.hpp
+ * @file mem_tests.h
  * @brief Contains function declarations for the OpenSHMEM memory management tests.
  */
 
-#ifndef MEM_TESTS_HPP
-#define MEM_TESTS_HPP
+#ifndef MEM_TESTS_H
+#define MEM_TESTS_H
 
-#include "routines.hpp"
+#include "routines.h"
+#include "shmemvv.h"
+
 #include <shmem.h>
 #include <iostream>
-#include <cstdlib>
-#include <cstring>
 
 /**
  * @brief Tests the shmem_ptr() routine.
@@ -82,4 +82,9 @@ bool test_shmem_malloc_with_hints(void);
  */
 bool test_shmem_calloc(void);
 
-#endif /* MEM_TESTS_HPP */
+/**
+ * @brief Run all memory tests
+ */
+void run_mem_tests(int mype, int npes);
+
+#endif /* MEM_TESTS_H */
