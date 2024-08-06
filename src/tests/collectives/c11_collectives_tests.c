@@ -1,5 +1,5 @@
 /**
- * @file c11_collectives_tests.cpp
+ * @file c11_collectives_tests.c
  * @brief Contains tests for various OpenSHMEM collective routines.
  */
 

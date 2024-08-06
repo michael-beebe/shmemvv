@@ -1,5 +1,5 @@
 /**
- * @file c11_pt2pt_tests.cpp
+ * @file c11_pt2pt_tests.c 
  * @brief Contains functions definitions with test functions for the point-to-point synchronization routines.
  */
 
@@ -21,13 +21,20 @@ extern "C" {
  */
 bool test_c11_shmem_wait_until(void) {
   long *flag = (long *)shmem_malloc(sizeof(long));
+  if (flag == NULL) {
+    return false;
+  }
+
   *flag = 0;
   int mype = shmem_my_pe();
+  int npes = shmem_n_pes();
 
   shmem_barrier_all();
 
   if (mype == 0) {
-    shmem_p(flag, 1, 1);
+    for (int pe = 1; pe < npes; ++pe) {
+      shmem_p(flag, 1, pe);
+    }
     shmem_quiet();
   }
 
@@ -55,15 +62,22 @@ bool test_c11_shmem_wait_until(void) {
  */
 bool test_c11_shmem_wait_until_all(void) {
   long *flags = (long *)shmem_malloc(2 * sizeof(long));
+  if (flags == NULL) {
+    return false;
+  }
+
   flags[0] = 0;
   flags[1] = 0;
   int mype = shmem_my_pe();
+  int npes = shmem_n_pes();
 
   shmem_barrier_all();
 
   if (mype == 0) {
-    shmem_p(&flags[0], 1, 1);
-    shmem_p(&flags[1], 1, 1);
+    for (int pe = 1; pe < npes; ++pe) {
+      shmem_p(&flags[0], 1, pe);
+      shmem_p(&flags[1], 1, pe);
+    }
     shmem_quiet();
   }
 
@@ -657,12 +671,15 @@ bool test_c11_shmem_signal_wait_until(void) {
 
   *flag = 0;
   int mype = shmem_my_pe();
+  int npes = shmem_n_pes();
   uint64_t value = 1;
 
   shmem_barrier_all();
 
   if (mype == 0) {
-    shmem_uint64_p(flag, value, 1);
+    for (int pe = 1; pe < npes; ++pe) {
+      shmem_uint64_p(flag, value, pe);
+    }
     shmem_quiet();
   }
 
@@ -670,7 +687,7 @@ bool test_c11_shmem_signal_wait_until(void) {
 
   if (mype != 0) {
     time_t start_time = time(NULL);
-    while (*flag != value && time(NULL) - start_time < TIMEOUT) {
+    while (!shmem_test(flag, SHMEM_CMP_EQ, value) && time(NULL) - start_time < TIMEOUT) {
       shmem_signal_wait_until(flag, SHMEM_CMP_EQ, value);
     }
     if (*flag != value) {

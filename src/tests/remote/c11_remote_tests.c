@@ -1,5 +1,5 @@
 /**
- * @file c11_remote_tests.cpp
+ * @file c11_remote_tests.c
  * @brief Contains OpenSHMEM remote memory access tests.
  */
 

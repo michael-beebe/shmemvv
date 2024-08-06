@@ -57,4 +57,4 @@ if [ "$(which oshcc)" == "$HOME/sw/el9-x86_64/ompi/bin/oshcc" ]; then
   flags+=" --mca btl ^openib"
 fi
 
-oshrun $flags -np 2 $exe --test_all
+oshrun $flags -np 6 $exe --test_all

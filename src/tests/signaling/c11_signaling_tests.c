@@ -1,5 +1,5 @@
 /**
- * @file c11_signaling_tests.cpp
+ * @file c11_signaling_tests.c
  * @brief Contains OpenSHMEM signaling tests.
  */
 
@@ -150,7 +150,6 @@ void run_c11_signaling_tests(int mype, int npes) {
     }
   }
 }
-
 
 #ifdef __cplusplus
 }
