@@ -117,6 +117,29 @@ bool test_cxx_shmem_put(void) {
 bool test_cxx_shmem_p(void) {
   bool result = true;
   result &= TEST_CXX_SHMEM_P(long, long);
+  result &= TEST_CXX_SHMEM_P(double, double);
+  result &= TEST_CXX_SHMEM_P(long double, longdouble);
+  result &= TEST_CXX_SHMEM_P(char, char);
+  result &= TEST_CXX_SHMEM_P(signed char, schar);
+  result &= TEST_CXX_SHMEM_P(short, short);
+  result &= TEST_CXX_SHMEM_P(int, int);
+  result &= TEST_CXX_SHMEM_P(long, long);
+  result &= TEST_CXX_SHMEM_P(long long, longlong);
+  result &= TEST_CXX_SHMEM_P(unsigned char, uchar);
+  result &= TEST_CXX_SHMEM_P(unsigned short, ushort);
+  result &= TEST_CXX_SHMEM_P(unsigned int, uint);
+  result &= TEST_CXX_SHMEM_P(unsigned long, ulong);
+  result &= TEST_CXX_SHMEM_P(unsigned long long, ulonglong);
+  result &= TEST_CXX_SHMEM_P(int8_t, int8);
+  result &= TEST_CXX_SHMEM_P(int16_t, int16);
+  result &= TEST_CXX_SHMEM_P(int32_t, int32);
+  result &= TEST_CXX_SHMEM_P(int64_t, int64);
+  result &= TEST_CXX_SHMEM_P(uint8_t, uint8);
+  result &= TEST_CXX_SHMEM_P(uint16_t, uint16);
+  result &= TEST_CXX_SHMEM_P(uint32_t, uint32);
+  result &= TEST_CXX_SHMEM_P(uint64_t, uint64);
+  result &= TEST_CXX_SHMEM_P(size_t, size);
+  result &= TEST_CXX_SHMEM_P(ptrdiff_t, ptrdiff);
   return result;
 }
 
@@ -165,6 +188,29 @@ bool test_cxx_shmem_p(void) {
 bool test_cxx_shmem_iput(void) {
   bool result = true;
   result &= TEST_CXX_SHMEM_IPUT(long, long);
+  result &= TEST_CXX_SHMEM_IPUT(double, double);
+  result &= TEST_CXX_SHMEM_IPUT(long double, longdouble);
+  result &= TEST_CXX_SHMEM_IPUT(char, char);
+  result &= TEST_CXX_SHMEM_IPUT(signed char, schar);
+  result &= TEST_CXX_SHMEM_IPUT(short, short);
+  result &= TEST_CXX_SHMEM_IPUT(int, int);
+  result &= TEST_CXX_SHMEM_IPUT(long, long);
+  result &= TEST_CXX_SHMEM_IPUT(long long, longlong);
+  result &= TEST_CXX_SHMEM_IPUT(unsigned char, uchar);
+  result &= TEST_CXX_SHMEM_IPUT(unsigned short, ushort);
+  result &= TEST_CXX_SHMEM_IPUT(unsigned int, uint);
+  result &= TEST_CXX_SHMEM_IPUT(unsigned long, ulong);
+  result &= TEST_CXX_SHMEM_IPUT(unsigned long long, ulonglong);
+  result &= TEST_CXX_SHMEM_IPUT(int8_t, int8);
+  result &= TEST_CXX_SHMEM_IPUT(int16_t, int16);
+  result &= TEST_CXX_SHMEM_IPUT(int32_t, int32);
+  result &= TEST_CXX_SHMEM_IPUT(int64_t, int64);
+  result &= TEST_CXX_SHMEM_IPUT(uint8_t, uint8);
+  result &= TEST_CXX_SHMEM_IPUT(uint16_t, uint16);
+  result &= TEST_CXX_SHMEM_IPUT(uint32_t, uint32);
+  result &= TEST_CXX_SHMEM_IPUT(uint64_t, uint64);
+  result &= TEST_CXX_SHMEM_IPUT(size_t, size);
+  result &= TEST_CXX_SHMEM_IPUT(ptrdiff_t, ptrdiff);
   return result;
 }
 
@@ -215,6 +261,29 @@ bool test_cxx_shmem_iput(void) {
 bool test_cxx_shmem_get(void) {
   bool result = true;
   result &= TEST_CXX_SHMEM_GET(long, long);
+  result &= TEST_CXX_SHMEM_GET(double, double);
+  result &= TEST_CXX_SHMEM_GET(long double, longdouble);
+  result &= TEST_CXX_SHMEM_GET(char, char);
+  result &= TEST_CXX_SHMEM_GET(signed char, schar);
+  result &= TEST_CXX_SHMEM_GET(short, short);
+  result &= TEST_CXX_SHMEM_GET(int, int);
+  result &= TEST_CXX_SHMEM_GET(long, long);
+  result &= TEST_CXX_SHMEM_GET(long long, longlong);
+  result &= TEST_CXX_SHMEM_GET(unsigned char, uchar);
+  result &= TEST_CXX_SHMEM_GET(unsigned short, ushort);
+  result &= TEST_CXX_SHMEM_GET(unsigned int, uint);
+  result &= TEST_CXX_SHMEM_GET(unsigned long, ulong);
+  result &= TEST_CXX_SHMEM_GET(unsigned long long, ulonglong);
+  result &= TEST_CXX_SHMEM_GET(int8_t, int8);
+  result &= TEST_CXX_SHMEM_GET(int16_t, int16);
+  result &= TEST_CXX_SHMEM_GET(int32_t, int32);
+  result &= TEST_CXX_SHMEM_GET(int64_t, int64);
+  result &= TEST_CXX_SHMEM_GET(uint8_t, uint8);
+  result &= TEST_CXX_SHMEM_GET(uint16_t, uint16);
+  result &= TEST_CXX_SHMEM_GET(uint32_t, uint32);
+  result &= TEST_CXX_SHMEM_GET(uint64_t, uint64);
+  result &= TEST_CXX_SHMEM_GET(size_t, size);
+  result &= TEST_CXX_SHMEM_GET(ptrdiff_t, ptrdiff);
   return result;
 }
 
@@ -260,6 +329,29 @@ bool test_cxx_shmem_get(void) {
 bool test_cxx_shmem_g(void) {
   bool result = true;
   result &= TEST_CXX_SHMEM_G(long, long);
+  result &= TEST_CXX_SHMEM_G(double, double);
+  result &= TEST_CXX_SHMEM_G(long double, longdouble);
+  result &= TEST_CXX_SHMEM_G(char, char);
+  result &= TEST_CXX_SHMEM_G(signed char, schar);
+  result &= TEST_CXX_SHMEM_G(short, short);
+  result &= TEST_CXX_SHMEM_G(int, int);
+  result &= TEST_CXX_SHMEM_G(long, long);
+  result &= TEST_CXX_SHMEM_G(long long, longlong);
+  result &= TEST_CXX_SHMEM_G(unsigned char, uchar);
+  result &= TEST_CXX_SHMEM_G(unsigned short, ushort);
+  result &= TEST_CXX_SHMEM_G(unsigned int, uint);
+  result &= TEST_CXX_SHMEM_G(unsigned long, ulong);
+  result &= TEST_CXX_SHMEM_G(unsigned long long, ulonglong);
+  result &= TEST_CXX_SHMEM_G(int8_t, int8);
+  result &= TEST_CXX_SHMEM_G(int16_t, int16);
+  result &= TEST_CXX_SHMEM_G(int32_t, int32);
+  result &= TEST_CXX_SHMEM_G(int64_t, int64);
+  result &= TEST_CXX_SHMEM_G(uint8_t, uint8);
+  result &= TEST_CXX_SHMEM_G(uint16_t, uint16);
+  result &= TEST_CXX_SHMEM_G(uint32_t, uint32);
+  result &= TEST_CXX_SHMEM_G(uint64_t, uint64);
+  result &= TEST_CXX_SHMEM_G(size_t, size);
+  result &= TEST_CXX_SHMEM_G(ptrdiff_t, ptrdiff);
   return result;
 }
 
@@ -310,6 +402,29 @@ bool test_cxx_shmem_g(void) {
 bool test_cxx_shmem_iget(void) {
   bool result = true;
   result &= TEST_CXX_SHMEM_IGET(long, long);
+  result &= TEST_CXX_SHMEM_IGET(double, double);
+  result &= TEST_CXX_SHMEM_IGET(long double, longdouble);
+  result &= TEST_CXX_SHMEM_IGET(char, char);
+  result &= TEST_CXX_SHMEM_IGET(signed char, schar);
+  result &= TEST_CXX_SHMEM_IGET(short, short);
+  result &= TEST_CXX_SHMEM_IGET(int, int);
+  result &= TEST_CXX_SHMEM_IGET(long, long);
+  result &= TEST_CXX_SHMEM_IGET(long long, longlong);
+  result &= TEST_CXX_SHMEM_IGET(unsigned char, uchar);
+  result &= TEST_CXX_SHMEM_IGET(unsigned short, ushort);
+  result &= TEST_CXX_SHMEM_IGET(unsigned int, uint);
+  result &= TEST_CXX_SHMEM_IGET(unsigned long, ulong);
+  result &= TEST_CXX_SHMEM_IGET(unsigned long long, ulonglong);
+  result &= TEST_CXX_SHMEM_IGET(int8_t, int8);
+  result &= TEST_CXX_SHMEM_IGET(int16_t, int16);
+  result &= TEST_CXX_SHMEM_IGET(int32_t, int32);
+  result &= TEST_CXX_SHMEM_IGET(int64_t, int64);
+  result &= TEST_CXX_SHMEM_IGET(uint8_t, uint8);
+  result &= TEST_CXX_SHMEM_IGET(uint16_t, uint16);
+  result &= TEST_CXX_SHMEM_IGET(uint32_t, uint32);
+  result &= TEST_CXX_SHMEM_IGET(uint64_t, uint64);
+  result &= TEST_CXX_SHMEM_IGET(size_t, size);
+  result &= TEST_CXX_SHMEM_IGET(ptrdiff_t, ptrdiff);
   return result;
 }
 
@@ -359,6 +474,29 @@ bool test_cxx_shmem_iget(void) {
 bool test_cxx_shmem_put_nbi(void) {
   bool result = true;
   result &= TEST_CXX_SHMEM_PUT_NBI(long, long);
+  result &= TEST_CXX_SHMEM_PUT_NBI(double, double);
+  result &= TEST_CXX_SHMEM_PUT_NBI(long double, longdouble);
+  result &= TEST_CXX_SHMEM_PUT_NBI(char, char);
+  result &= TEST_CXX_SHMEM_PUT_NBI(signed char, schar);
+  result &= TEST_CXX_SHMEM_PUT_NBI(short, short);
+  result &= TEST_CXX_SHMEM_PUT_NBI(int, int);
+  result &= TEST_CXX_SHMEM_PUT_NBI(long, long);
+  result &= TEST_CXX_SHMEM_PUT_NBI(long long, longlong);
+  result &= TEST_CXX_SHMEM_PUT_NBI(unsigned char, uchar);
+  result &= TEST_CXX_SHMEM_PUT_NBI(unsigned short, ushort);
+  result &= TEST_CXX_SHMEM_PUT_NBI(unsigned int, uint);
+  result &= TEST_CXX_SHMEM_PUT_NBI(unsigned long, ulong);
+  result &= TEST_CXX_SHMEM_PUT_NBI(unsigned long long, ulonglong);
+  result &= TEST_CXX_SHMEM_PUT_NBI(int8_t, int8);
+  result &= TEST_CXX_SHMEM_PUT_NBI(int16_t, int16);
+  result &= TEST_CXX_SHMEM_PUT_NBI(int32_t, int32);
+  result &= TEST_CXX_SHMEM_PUT_NBI(int64_t, int64);
+  result &= TEST_CXX_SHMEM_PUT_NBI(uint8_t, uint8);
+  result &= TEST_CXX_SHMEM_PUT_NBI(uint16_t, uint16);
+  result &= TEST_CXX_SHMEM_PUT_NBI(uint32_t, uint32);
+  result &= TEST_CXX_SHMEM_PUT_NBI(uint64_t, uint64);
+  result &= TEST_CXX_SHMEM_PUT_NBI(size_t, size);
+  result &= TEST_CXX_SHMEM_PUT_NBI(ptrdiff_t, ptrdiff);
   return result;
 }
 
@@ -410,6 +548,29 @@ bool test_cxx_shmem_put_nbi(void) {
 bool test_cxx_shmem_get_nbi(void) {
   bool result = true;
   result &= TEST_CXX_SHMEM_GET_NBI(long, long);
+  result &= TEST_CXX_SHMEM_GET_NBI(double, double);
+  result &= TEST_CXX_SHMEM_GET_NBI(long double, longdouble);
+  result &= TEST_CXX_SHMEM_GET_NBI(char, char);
+  result &= TEST_CXX_SHMEM_GET_NBI(signed char, schar);
+  result &= TEST_CXX_SHMEM_GET_NBI(short, short);
+  result &= TEST_CXX_SHMEM_GET_NBI(int, int);
+  result &= TEST_CXX_SHMEM_GET_NBI(long, long);
+  result &= TEST_CXX_SHMEM_GET_NBI(long long, longlong);
+  result &= TEST_CXX_SHMEM_GET_NBI(unsigned char, uchar);
+  result &= TEST_CXX_SHMEM_GET_NBI(unsigned short, ushort);
+  result &= TEST_CXX_SHMEM_GET_NBI(unsigned int, uint);
+  result &= TEST_CXX_SHMEM_GET_NBI(unsigned long, ulong);
+  result &= TEST_CXX_SHMEM_GET_NBI(unsigned long long, ulonglong);
+  result &= TEST_CXX_SHMEM_GET_NBI(int8_t, int8);
+  result &= TEST_CXX_SHMEM_GET_NBI(int16_t, int16);
+  result &= TEST_CXX_SHMEM_GET_NBI(int32_t, int32);
+  result &= TEST_CXX_SHMEM_GET_NBI(int64_t, int64);
+  result &= TEST_CXX_SHMEM_GET_NBI(uint8_t, uint8);
+  result &= TEST_CXX_SHMEM_GET_NBI(uint16_t, uint16);
+  result &= TEST_CXX_SHMEM_GET_NBI(uint32_t, uint32);
+  result &= TEST_CXX_SHMEM_GET_NBI(uint64_t, uint64);
+  result &= TEST_CXX_SHMEM_GET_NBI(size_t, size);
+  result &= TEST_CXX_SHMEM_GET_NBI(ptrdiff_t, ptrdiff);
   return result;
 }
 

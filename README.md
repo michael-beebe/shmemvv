@@ -13,10 +13,6 @@ There are a few limitations to SHMEMVV that are currently being addressed:
 
 - ONLY supports the implementations that adhere to the 1.5 specification, if you try to run this on an older OpenSHMEM implementation, you WILL get compiler errors.
 
-- ONLY supports tests for C++ bindings.
-
-- For typed routines, such as `shmem_<type>_put` the only `<type>` that is supported is `long`.
-
 - No debug output or logging.
 
 ## Building
