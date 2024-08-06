@@ -173,7 +173,6 @@ int main(int argc, char *argv[]) {
   }
 
   /************************* PT2PT TESTS **************************/
-  // FIXME: if we run these with more than 2 PEs, it gets stuck
   if (opts.test_pt2pt_synch) {
     shmem_barrier_all();
     if (mype == 0) {
