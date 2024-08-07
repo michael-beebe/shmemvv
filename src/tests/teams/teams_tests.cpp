@@ -123,10 +123,53 @@ bool test_shmem_team_destroy(void) {
 }
 
 /**
+ * @brief Tests the shmem_team_sync() routine.
+ *
+ * This test verifies that the shmem_team_sync() routine correctly synchronizes all PEs within a team.
+ *
+ * @return True if the test is successful, false otherwise.
+ */
+bool test_shmem_team_sync(void) {
+  static long pSync[SHMEM_SYNC_SIZE];
+  static long shared_counter;
+  bool success = true;
+
+  for (int i = 0; i < SHMEM_SYNC_SIZE; i++) {
+    pSync[i] = SHMEM_SYNC_VALUE;
+  }
+
+  shared_counter = 0;
+  shmem_barrier_all();
+
+  shmem_team_t team;
+  shmem_team_split_strided(SHMEM_TEAM_WORLD, 0, 1, shmem_n_pes(), NULL, 0, &team);
+
+  shmem_atomic_inc(&shared_counter, 0);
+
+  shmem_team_sync(team);
+
+  if (shared_counter != shmem_n_pes()) {
+    success = false;
+  }
+
+  shmem_team_destroy(team);
+  return success;
+}
+
+
+/**
  * @brief Run all teams tests
  */
 void run_teams_tests(int mype, int npes) {
+  /* Run shmem_team_sync() test */
+  bool result_shmem_team_sync = test_shmem_team_sync();
+  shmem_barrier_all();
+  if (mype == 0) {
+    display_test_result("shmem_team_sync()", result_shmem_team_sync, false);
+  }
+
   /* Run shmem_team_my_pe() test */
+  shmem_barrier_all();
   bool result_shmem_team_my_pe = test_shmem_team_my_pe();
   shmem_barrier_all();
   if (mype == 0) {
