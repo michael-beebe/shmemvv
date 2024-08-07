@@ -15,37 +15,36 @@
  * @return True if the test is successful, false otherwise.
  */
 /****************************************************************/
-#define TEST_CXX_SHMEM_PUT_SIGNAL(TYPE, TYPENAME)                   \
-  ({                                                                \
-    bool success = true;                                            \
-    static TYPE dest = 0;                                           \
-    static TYPE value = (TYPE)123;                                  \
-    static uint64_t signal = 0;                                     \
-    int mype = shmem_my_pe();                                       \
-    int npes = shmem_n_pes();                                       \
-                                                                    \
-    if (npes < 2) {                                                 \
-      success = false;                                              \
-    } else {                                                        \
-      int target_pe = (mype + 1) % npes;                            \
-                                                                    \
-      shmem_barrier_all();                                          \
-                                                                    \
-      if (mype == 0) {                                              \
-        shmem_##TYPENAME##_put_signal(&dest, &value, 1, &signal,    \
-                                      1, target_pe,                 \
-                                      SHMEM_SIGNAL_SET);            \
-      }                                                             \
-                                                                    \
-      shmem_barrier_all();                                          \
-                                                                    \
-      if (mype == 1) {                                              \
-        if (dest != 123 || signal != 1) {                           \
-          success = false;                                          \
-        }                                                           \
-      }                                                             \
-    }                                                               \
-    success;                                                        \
+#define TEST_CXX_SHMEM_PUT_SIGNAL(TYPE, TYPENAME)                              \
+  ({                                                                           \
+    bool success = true;                                                       \
+    static TYPE dest = 0;                                                      \
+    static TYPE value = (TYPE)123;                                             \
+    static uint64_t signal = 0;                                                \
+    int mype = shmem_my_pe();                                                  \
+    int npes = shmem_n_pes();                                                  \
+                                                                               \
+    if (npes < 2) {                                                            \
+      success = false;                                                         \
+    } else {                                                                   \
+      int target_pe = (mype + 1) % npes;                                       \
+                                                                               \
+      shmem_barrier_all();                                                     \
+                                                                               \
+      if (mype == 0) {                                                         \
+        shmem_##TYPENAME##_put_signal(&dest, &value, 1, &signal, 1, target_pe, \
+                                      SHMEM_SIGNAL_SET);                       \
+      }                                                                        \
+                                                                               \
+      shmem_barrier_all();                                                     \
+                                                                               \
+      if (mype == 1) {                                                         \
+        if (dest != 123 || signal != 1) {                                      \
+          success = false;                                                     \
+        }                                                                      \
+      }                                                                        \
+    }                                                                          \
+    success;                                                                   \
   })
 
 bool test_cxx_shmem_put_signal(void) {
@@ -88,38 +87,37 @@ bool test_cxx_shmem_put_signal(void) {
  * @return True if the test is successful, false otherwise.
  */
 /****************************************************************/
-#define TEST_CXX_SHMEM_PUT_SIGNAL_NBI(TYPE, TYPENAME)               \
-  ({                                                                \
-    bool success = true;                                            \
-    static TYPE dest = 0;                                           \
-    static TYPE value = (TYPE)123;                                  \
-    static uint64_t signal = 0;                                     \
-    int mype = shmem_my_pe();                                       \
-    int npes = shmem_n_pes();                                       \
-                                                                    \
-    if (npes < 2) {                                                 \
-      success = false;                                              \
-    } else {                                                        \
-      int target_pe = (mype + 1) % npes;                            \
-                                                                    \
-      shmem_barrier_all();                                          \
-                                                                    \
-      if (mype == 0) {                                              \
-        shmem_##TYPENAME##_put_signal_nbi(&dest, &value, 1,         \
-                                          &signal, 1, target_pe,    \
-                                          SHMEM_SIGNAL_SET);        \
-        shmem_quiet();                                              \
-      }                                                             \
-                                                                    \
-      shmem_barrier_all();                                          \
-                                                                    \
-      if (mype == 1) {                                              \
-        if (dest != 123 || signal != 1) {                           \
-          success = false;                                          \
-        }                                                           \
-      }                                                             \
-    }                                                               \
-    success;                                                        \
+#define TEST_CXX_SHMEM_PUT_SIGNAL_NBI(TYPE, TYPENAME)                          \
+  ({                                                                           \
+    bool success = true;                                                       \
+    static TYPE dest = 0;                                                      \
+    static TYPE value = (TYPE)123;                                             \
+    static uint64_t signal = 0;                                                \
+    int mype = shmem_my_pe();                                                  \
+    int npes = shmem_n_pes();                                                  \
+                                                                               \
+    if (npes < 2) {                                                            \
+      success = false;                                                         \
+    } else {                                                                   \
+      int target_pe = (mype + 1) % npes;                                       \
+                                                                               \
+      shmem_barrier_all();                                                     \
+                                                                               \
+      if (mype == 0) {                                                         \
+        shmem_##TYPENAME##_put_signal_nbi(&dest, &value, 1, &signal, 1,        \
+                                          target_pe, SHMEM_SIGNAL_SET);        \
+        shmem_quiet();                                                         \
+      }                                                                        \
+                                                                               \
+      shmem_barrier_all();                                                     \
+                                                                               \
+      if (mype == 1) {                                                         \
+        if (dest != 123 || signal != 1) {                                      \
+          success = false;                                                     \
+        }                                                                      \
+      }                                                                        \
+    }                                                                          \
+    success;                                                                   \
   })
 
 bool test_cxx_shmem_put_signal_nbi(void) {
@@ -161,27 +159,27 @@ bool test_cxx_shmem_put_signal_nbi(void) {
  * @return True if the test is successful, false otherwise.
  */
 /****************************************************************/
-#define TEST_CXX_SHMEM_SIGNAL_FETCH()                               \
-  ({                                                                \
-    bool success = true;                                            \
-    static uint64_t signal = 1;                                     \
-    uint64_t fetched_signal = 0;                                    \
-    int mype = shmem_my_pe();                                       \
-    int npes = shmem_n_pes();                                       \
-                                                                    \
-    if (npes < 2) {                                                 \
-      success = false;                                              \
-    } else {                                                        \
-      shmem_barrier_all();                                          \
-                                                                    \
-      if (mype == 1) {                                              \
-        fetched_signal = shmem_signal_fetch(&signal);               \
-        if (fetched_signal != 1) {                                  \
-          success = false;                                          \
-        }                                                           \
-      }                                                             \
-    }                                                               \
-    success;                                                        \
+#define TEST_CXX_SHMEM_SIGNAL_FETCH()                                          \
+  ({                                                                           \
+    bool success = true;                                                       \
+    static uint64_t signal = 1;                                                \
+    uint64_t fetched_signal = 0;                                               \
+    int mype = shmem_my_pe();                                                  \
+    int npes = shmem_n_pes();                                                  \
+                                                                               \
+    if (npes < 2) {                                                            \
+      success = false;                                                         \
+    } else {                                                                   \
+      shmem_barrier_all();                                                     \
+                                                                               \
+      if (mype == 1) {                                                         \
+        fetched_signal = shmem_signal_fetch(&signal);                          \
+        if (fetched_signal != 1) {                                             \
+          success = false;                                                     \
+        }                                                                      \
+      }                                                                        \
+    }                                                                          \
+    success;                                                                   \
   })
 
 bool test_cxx_shmem_signal_fetch(void) {
@@ -207,8 +205,8 @@ void run_cxx_signaling_tests(int mype, int npes) {
     bool result_shmem_put_signal = test_cxx_shmem_put_signal();
     shmem_barrier_all();
     if (mype == 0) {
-      display_test_result("C/CXX shmem_put_signal()",
-                          result_shmem_put_signal, false);
+      display_test_result("C/CXX shmem_put_signal()", result_shmem_put_signal,
+                          false);
     }
 
     /* Run shmem_put_signal_nbi() test */

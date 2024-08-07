@@ -8,9 +8,11 @@
 /**
  * @brief Tests the initialization of OpenSHMEM with threading support.
  *
- * This test verifies that OpenSHMEM can be initialized with the specified level of threading support.
+ * This test verifies that OpenSHMEM can be initialized with the specified level
+ * of threading support.
  *
- * @return True if the initialization with threading support is successful, false otherwise.
+ * @return True if the initialization with threading support is successful,
+ * false otherwise.
  */
 bool test_shmem_init_thread(void) {
   int provided;
@@ -24,15 +26,16 @@ bool test_shmem_init_thread(void) {
  * This test verifies that the `shmem_query_thread` function
  * correctly queries the level of threading support provided by OpenSHMEM.
  *
- * @return True if the query is successful and the level of threading support is one of the valid levels, false otherwise.
+ * @return True if the query is successful and the level of threading support is
+ * one of the valid levels, false otherwise.
  */
 bool test_shmem_query_thread(void) {
   int provided;
   shmem_query_thread(&provided);
-  bool success = (provided == SHMEM_THREAD_SINGLE ||
-                  provided == SHMEM_THREAD_FUNNELED ||
-                  provided == SHMEM_THREAD_SERIALIZED ||
-                  provided == SHMEM_THREAD_MULTIPLE);
+  bool success =
+      (provided == SHMEM_THREAD_SINGLE || provided == SHMEM_THREAD_FUNNELED ||
+       provided == SHMEM_THREAD_SERIALIZED ||
+       provided == SHMEM_THREAD_MULTIPLE);
   return success;
 }
 
@@ -50,6 +53,7 @@ void run_threads_tests(int mype, int npes) {
   bool result_shmem_query_thread = test_shmem_query_thread();
   shmem_barrier_all();
   if (mype == 0) {
-    display_test_result("shmem_query_thread()", result_shmem_query_thread, false);
+    display_test_result("shmem_query_thread()", result_shmem_query_thread,
+                        false);
   }
 }

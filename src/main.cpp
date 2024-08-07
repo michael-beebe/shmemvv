@@ -3,8 +3,8 @@
   @brief Driver file for the test suite.
 */
 
-#include "shmemvv.h"
 #include "routines.h"
+#include "shmemvv.h"
 #include "tests.h"
 
 /**
@@ -16,7 +16,7 @@
 int main(int argc, char *argv[]) {
   shmem_init();
 
-////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////
   // /* Load OpenSHMEM routines */
   // void *handle = dlopen(NULL, RTLD_LAZY);
   // if (!handle) {
@@ -30,22 +30,21 @@ int main(int argc, char *argv[]) {
   //   std::cerr << "Failed to load OpenSHMEM routines" << std::endl;
   //   return EXIT_FAILURE;
   // }
-////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////
 
   int mype = shmem_my_pe();
   int npes = shmem_n_pes();
   char version[100] = "";
   char name[100] = "";
-  test_options opts = {
-    false, false, false, false, false, false,
-    false, false, false, false, false, false, false
-  };
+  test_options opts = {false, false, false, false, false, false, false,
+                       false, false, false, false, false, false};
 
   /* Parse command-line options */
   shmem_barrier_all();
   if (!parse_opts(argc, argv, &opts)) {
     if (mype == 0) {
-      std::cout << RED_COLOR << "ERROR: Unable to parse options\n" << RESET_COLOR << std::endl;
+      std::cout << RED_COLOR << "ERROR: Unable to parse options\n"
+                << RESET_COLOR << std::endl;
       display_help();
     }
     shmem_finalize();
@@ -69,18 +68,26 @@ int main(int argc, char *argv[]) {
       !(opts.test_setup || opts.test_threads || opts.test_mem ||
         opts.test_teams || opts.test_ctx || opts.test_remote ||
         opts.test_atomics || opts.test_signaling || opts.test_collectives ||
-        opts.test_pt2pt_synch || opts.test_mem_ordering || opts.test_locking)
-  ) {
-    opts.test_setup = true; opts.test_threads = true; opts.test_mem = true;
-    opts.test_teams = true; opts.test_ctx = true; opts.test_remote = true;
-    opts.test_atomics = true; opts.test_signaling = true; opts.test_collectives = true;
-    opts.test_pt2pt_synch = true; opts.test_mem_ordering = true; opts.test_locking = true;
+        opts.test_pt2pt_synch || opts.test_mem_ordering || opts.test_locking)) {
+    opts.test_setup = true;
+    opts.test_threads = true;
+    opts.test_mem = true;
+    opts.test_teams = true;
+    opts.test_ctx = true;
+    opts.test_remote = true;
+    opts.test_atomics = true;
+    opts.test_signaling = true;
+    opts.test_collectives = true;
+    opts.test_pt2pt_synch = true;
+    opts.test_mem_ordering = true;
+    opts.test_locking = true;
   }
-  
+
   /************************* SETUP **************************/
-  if ( !run_setup_tests(mype, npes, version, name) ) {
+  if (!run_setup_tests(mype, npes, version, name)) {
     if (mype == 0) {
-      std::cout << RED_COLOR << "ERROR: FAILED CRITICAL SETUP TESTS" << std::endl; 
+      std::cout << RED_COLOR << "ERROR: FAILED CRITICAL SETUP TESTS"
+                << std::endl;
     }
     shmem_finalize();
     return EXIT_FAILURE;
@@ -90,7 +97,7 @@ int main(int argc, char *argv[]) {
   if (opts.test_threads) {
     shmem_barrier_all();
     if (mype == 0) {
-      display_test_header("THREADS"); 
+      display_test_header("THREADS");
     }
     shmem_barrier_all();
     run_threads_tests(mype, npes);
@@ -100,7 +107,7 @@ int main(int argc, char *argv[]) {
   if (opts.test_mem) {
     shmem_barrier_all();
     if (mype == 0) {
-      display_test_header("MEMORY MANAGEMENT"); 
+      display_test_header("MEMORY MANAGEMENT");
     }
     shmem_barrier_all();
     run_mem_tests(mype, npes);
@@ -110,7 +117,7 @@ int main(int argc, char *argv[]) {
   if (opts.test_teams) {
     shmem_barrier_all();
     if (mype == 0) {
-      display_test_header("TEAMS MANAGEMENT"); 
+      display_test_header("TEAMS MANAGEMENT");
     }
     shmem_barrier_all();
     run_teams_tests(mype, npes);
@@ -120,7 +127,7 @@ int main(int argc, char *argv[]) {
   if (opts.test_ctx) {
     shmem_barrier_all();
     if (mype == 0) {
-      display_test_header("COMMUNICATION / CONTEXT"); 
+      display_test_header("COMMUNICATION / CONTEXT");
     }
     shmem_barrier_all();
     run_comms_tests(mype, npes);
@@ -130,11 +137,13 @@ int main(int argc, char *argv[]) {
   if (opts.test_remote) {
     shmem_barrier_all();
     if (mype == 0) {
-      display_test_header("REMOTE MEMORY ACCESS"); 
+      display_test_header("REMOTE MEMORY ACCESS");
     }
     shmem_barrier_all();
     run_c11_remote_tests(mype, npes);
-    if (mype == 0) { printf("\n"); }
+    if (mype == 0) {
+      printf("\n");
+    }
     run_cxx_remote_tests(mype, npes);
   }
 
@@ -142,13 +151,15 @@ int main(int argc, char *argv[]) {
   if (opts.test_atomics) {
     shmem_barrier_all();
     if (mype == 0) {
-      display_test_header("ATOMIC MEMORY OPS"); 
+      display_test_header("ATOMIC MEMORY OPS");
     }
     run_c11_atomics_tests(mype, npes);
-    if (mype == 0) { printf("\n"); }
+    if (mype == 0) {
+      printf("\n");
+    }
     run_cxx_atomics_tests(mype, npes);
   }
-  
+
   /************************* SIGNALING TESTS **************************/
   if (opts.test_signaling) {
     shmem_barrier_all();
@@ -156,7 +167,9 @@ int main(int argc, char *argv[]) {
       display_test_header("SIGNALING OPS");
     }
     run_c11_signaling_tests(mype, npes);
-    if (mype == 0) { printf("\n"); }
+    if (mype == 0) {
+      printf("\n");
+    }
     run_cxx_signaling_tests(mype, npes);
   }
 
@@ -168,7 +181,9 @@ int main(int argc, char *argv[]) {
     }
     shmem_barrier_all();
     run_c11_collectives_tests(mype, npes);
-    if (mype == 0) { printf("\n"); }
+    if (mype == 0) {
+      printf("\n");
+    }
     run_cxx_collectives_tests(mype, npes);
   }
 
@@ -180,7 +195,9 @@ int main(int argc, char *argv[]) {
     }
     shmem_barrier_all();
     run_c11_pt2pt_synch_tests(mype, npes);
-    if (mype == 0) { printf("\n"); }
+    if (mype == 0) {
+      printf("\n");
+    }
     run_cxx_pt2pt_synch_tests(mype, npes);
   }
 
@@ -194,7 +211,8 @@ int main(int argc, char *argv[]) {
     run_mem_ordering_tests(mype, npes);
   }
 
-  /************************* DISTRIBUTED LOCKING TESTS **************************/
+  /************************* DISTRIBUTED LOCKING TESTS
+   * **************************/
   if (opts.test_locking) {
     shmem_barrier_all();
     if (mype == 0) {
@@ -207,10 +225,9 @@ int main(int argc, char *argv[]) {
   /************************* FINALIZATION **************************/
   shmem_barrier_all();
 
-  if ( !check_if_exists("shmem_finalize") ) {
+  if (!check_if_exists("shmem_finalize")) {
     display_not_found_warning("shmem_finalize()", true);
-  }
-  else {
+  } else {
     if (mype == 0) {
       display_test_header("FINALIZATION");
       display_test_result("shmem_finalize()", test_shmem_finalize(), false);
