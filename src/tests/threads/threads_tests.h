@@ -15,9 +15,11 @@
 /**
  * @brief Tests the initialization of OpenSHMEM with threading support.
  *
- * This test verifies that OpenSHMEM can be initialized with the specified level of threading support.
+ * This test verifies that OpenSHMEM can be initialized with the specified level
+ * of threading support.
  *
- * @return True if the initialization with threading support is successful, false otherwise.
+ * @return True if the initialization with threading support is successful,
+ * false otherwise.
  */
 bool test_shmem_init_thread(void);
 

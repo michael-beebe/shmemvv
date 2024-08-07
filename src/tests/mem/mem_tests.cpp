@@ -9,8 +9,9 @@
 /**
  * @brief Tests the shmem_malloc() and shmem_free() functions.
  *
- * This test verifies that the shmem_malloc() function allocates memory correctly and that
- * the shmem_free() function deallocates the memory correctly.
+ * This test verifies that the shmem_malloc() function allocates memory
+ * correctly and that the shmem_free() function deallocates the memory
+ * correctly.
  *
  * @return True if the tests are successful, false otherwise.
  */
@@ -29,8 +30,9 @@ bool test_shmem_malloc_free(void) {
 /**
  * @brief Tests the shmem_ptr() routine.
  *
- * This test verifies that the shmem_ptr() function correctly provides access to the memory
- * of another PE and that the memory content is accessible and correct.
+ * This test verifies that the shmem_ptr() function correctly provides access to
+ * the memory of another PE and that the memory content is accessible and
+ * correct.
  *
  * @return True if the pointer is accessible, false otherwise.
  */
@@ -71,8 +73,8 @@ bool test_shmem_ptr() {
 /**
  * @brief Tests the shmem_addr_accessible() routine.
  *
- * This test verifies that the shmem_addr_accessible() function correctly checks whether
- * a memory address is accessible from all PEs.
+ * This test verifies that the shmem_addr_accessible() function correctly checks
+ * whether a memory address is accessible from all PEs.
  *
  * @return True if the address is accessible from all PEs, false otherwise.
  */
@@ -106,8 +108,8 @@ bool test_shmem_addr_accessible() {
 /**
  * @brief Tests the shmem_realloc() routine.
  *
- * This test verifies that the shmem_realloc() function correctly reallocates memory
- * and that the new memory block is usable.
+ * This test verifies that the shmem_realloc() function correctly reallocates
+ * memory and that the new memory block is usable.
  *
  * @return True if the test is successful, false otherwise.
  */
@@ -132,8 +134,8 @@ bool test_shmem_realloc(void) {
 /**
  * @brief Tests the shmem_align() routine.
  *
- * This test verifies that the shmem_align() function correctly allocates memory with
- * the specified alignment.
+ * This test verifies that the shmem_align() function correctly allocates memory
+ * with the specified alignment.
  *
  * @return True if the test is successful, false otherwise.
  */
@@ -153,8 +155,8 @@ bool test_shmem_align(void) {
 /**
  * @brief Tests the shmem_malloc_with_hints() routine.
  *
- * This test verifies that the shmem_malloc_with_hints() function correctly allocates memory
- * with the specified hints.
+ * This test verifies that the shmem_malloc_with_hints() function correctly
+ * allocates memory with the specified hints.
  *
  * @return True if the test is successful, false otherwise.
  */
@@ -174,8 +176,8 @@ bool test_shmem_malloc_with_hints(void) {
 /**
  * @brief Tests the shmem_calloc() routine.
  *
- * This test verifies that the shmem_calloc() function correctly allocates and initializes
- * memory to zero.
+ * This test verifies that the shmem_calloc() function correctly allocates and
+ * initializes memory to zero.
  *
  * @return True if the test is successful, false otherwise.
  */
@@ -224,7 +226,8 @@ void run_mem_tests(int mype, int npes) {
   bool result_shmem_addr_accessible = test_shmem_addr_accessible();
   shmem_barrier_all();
   if (mype == 0) {
-    display_test_result("shmem_addr_accessible()", result_shmem_addr_accessible, false);
+    display_test_result("shmem_addr_accessible()", result_shmem_addr_accessible,
+                        false);
   }
 
   /* Test shmem_realloc() */
@@ -248,7 +251,8 @@ void run_mem_tests(int mype, int npes) {
   bool result_shmem_malloc_with_hints = test_shmem_malloc_with_hints();
   shmem_barrier_all();
   if (mype == 0) {
-    display_test_result("shmem_malloc_with_hints()", result_shmem_malloc_with_hints, false);
+    display_test_result("shmem_malloc_with_hints()",
+                        result_shmem_malloc_with_hints, false);
   }
 
   /* Test shmem_calloc() */

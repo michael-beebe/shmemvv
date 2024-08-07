@@ -10,7 +10,7 @@
  * @brief Tests the initialization of OpenSHMEM.
  *
  * This test verifies that the OpenSHMEM library initializes successfully.
- * 
+ *
  * @return True if the initialization is successful, false otherwise.
  */
 /****************************************************************/
@@ -23,8 +23,9 @@ bool test_shmem_init() {
 /**
  * @brief Tests the barrier synchronization across all PEs.
  *
- * This test verifies that the barrier synchronization across all PEs is successful.
- * 
+ * This test verifies that the barrier synchronization across all PEs is
+ * successful.
+ *
  * @return True if the barrier synchronization is successful, false otherwise.
  */
 /****************************************************************/
@@ -51,7 +52,7 @@ bool test_shmem_barrier_all() {
  * @brief Tests retrieving the PE number of the calling PE.
  *
  * This test verifies that the `shmem_my_pe` function returns a valid PE number.
- * 
+ *
  * @return The PE number on success, -1 on failure.
  */
 /****************************************************************/
@@ -59,8 +60,7 @@ int test_shmem_my_pe() {
   int mype = shmem_my_pe();
   if (mype >= 0) {
     return mype;
-  }
-  else {
+  } else {
     return -1;
   }
 }
@@ -69,8 +69,9 @@ int test_shmem_my_pe() {
 /**
  * @brief Tests retrieving the number of PEs.
  *
- * This test verifies that the `shmem_n_pes` function returns a valid number of PEs.
- * 
+ * This test verifies that the `shmem_n_pes` function returns a valid number of
+ * PEs.
+ *
  * @return The number of PEs if greater than 0, otherwise 0.
  */
 /****************************************************************/
@@ -78,8 +79,7 @@ int test_shmem_n_pes() {
   int npes = shmem_n_pes();
   if (!(npes > 0)) {
     return 0;
-  }
-  else {
+  } else {
     return npes;
   }
 }
@@ -88,8 +88,9 @@ int test_shmem_n_pes() {
 /**
  * @brief Tests if a PE is accessible from the calling PE.
  *
- * This test verifies that the `shmem_pe_accessible` function correctly reports accessibility of all PEs.
- * 
+ * This test verifies that the `shmem_pe_accessible` function correctly reports
+ * accessibility of all PEs.
+ *
  * @return True if all PEs are accessible, false otherwise.
  */
 /****************************************************************/
@@ -107,12 +108,13 @@ bool test_shmem_pe_accessible() {
 /**
  * @brief Tests retrieving the OpenSHMEM library version.
  *
- * This test verifies that the `shmem_info_get_version` function returns the correct version of the OpenSHMEM library.
- * 
+ * This test verifies that the `shmem_info_get_version` function returns the
+ * correct version of the OpenSHMEM library.
+ *
  * @return A pointer to the version string in the format "major.minor".
  */
 /****************************************************************/
-char* test_shmem_info_get_version(void) {
+char *test_shmem_info_get_version(void) {
   int major, minor;
   shmem_info_get_version(&major, &minor);
 
@@ -128,13 +130,15 @@ char* test_shmem_info_get_version(void) {
 /**
  * @brief Tests retrieving the name of the OpenSHMEM library.
  *
- * This test verifies that the `shmem_info_get_name` function returns the correct name of the OpenSHMEM library.
- * 
+ * This test verifies that the `shmem_info_get_name` function returns the
+ * correct name of the OpenSHMEM library.
+ *
  * @return A pointer to the name of the library.
  */
 /****************************************************************/
-char* test_shmem_info_get_name(void) {
-  char *name = (char *)malloc(SHMEM_MAX_NAME_LEN * sizeof(char)); // allocate memory for name string
+char *test_shmem_info_get_name(void) {
+  char *name = (char *)malloc(SHMEM_MAX_NAME_LEN *
+                              sizeof(char)); // allocate memory for name string
   if (name != NULL) {
     shmem_info_get_name(name);
   }
@@ -147,7 +151,7 @@ char* test_shmem_info_get_name(void) {
  * @brief Tests the finalization of OpenSHMEM.
  *
  * This test verifies that the OpenSHMEM library finalizes successfully.
- * 
+ *
  * @return True if the finalization is successful, false otherwise.
  */
 /****************************************************************/
@@ -160,8 +164,9 @@ bool test_shmem_finalize() {
 /**
  * @brief Tests the global exit functionality of OpenSHMEM.
  *
- * This test verifies that the `shmem_global_exit` function successfully performs a global exit.
- * 
+ * This test verifies that the `shmem_global_exit` function successfully
+ * performs a global exit.
+ *
  * @return True if the global exit is successful, false otherwise.
  */
 /****************************************************************/
@@ -173,7 +178,7 @@ bool test_shmem_global_exit() {
 /****************************************************************/
 /**
  * @brief Perform all setup tests
- * 
+ *
  * @return True if successful false otherwise
  */
 /****************************************************************/
@@ -199,7 +204,8 @@ bool run_setup_tests(int &mype, int &npes, char *version, char *name) {
   result_shmem_barrier_all = test_shmem_barrier_all();
   if (!result_shmem_barrier_all) {
     if (shmem_my_pe() == 0) {
-      display_test_result("shmem_barrier_all()", result_shmem_barrier_all, true);
+      display_test_result("shmem_barrier_all()", result_shmem_barrier_all,
+                          true);
     }
     shmem_finalize();
     return false;
@@ -234,7 +240,8 @@ bool run_setup_tests(int &mype, int &npes, char *version, char *name) {
   result_shmem_pe_accessible = test_shmem_pe_accessible();
   if (!result_shmem_pe_accessible) {
     if (mype == 0) {
-      display_test_result("shmem_pe_accessible()", result_shmem_pe_accessible, true);
+      display_test_result("shmem_pe_accessible()", result_shmem_pe_accessible,
+                          true);
     }
     shmem_finalize();
     return false;
@@ -248,7 +255,7 @@ bool run_setup_tests(int &mype, int &npes, char *version, char *name) {
 
   /* Run shmem_info_get_version() test */
   shmem_barrier_all();
-  char* version_str = test_shmem_info_get_version();
+  char *version_str = test_shmem_info_get_version();
   if (version_str == NULL || strlen(version_str) == 0) {
     result_shmem_info_get_version = false;
   } else {
@@ -258,19 +265,19 @@ bool run_setup_tests(int &mype, int &npes, char *version, char *name) {
 
   /* Run shmem_info_get_name() test */
   shmem_barrier_all();
-  char* name_str = test_shmem_info_get_name();
+  char *name_str = test_shmem_info_get_name();
   if (name_str == NULL || strlen(name_str) == 0) {
     result_shmem_info_get_name = false;
   } else {
     strcpy(name, name_str);
     free(name_str);
   }
-  
+
   /* Display test information */
   shmem_barrier_all();
   if (mype == 0) {
     display_test_info(name, version, npes);
-  } 
+  }
 
   /* Print setup tests header */
   shmem_barrier_all();
@@ -285,13 +292,19 @@ bool run_setup_tests(int &mype, int &npes, char *version, char *name) {
     display_test_result("shmem_barrier_all()", result_shmem_barrier_all, true);
     display_test_result("shmem_my_pe()", result_shmem_my_pe, true);
     display_test_result("shmem_n_pes()", result_shmem_n_pes, true);
-    display_test_result("shmem_pe_accessible()", result_shmem_pe_accessible, true);
+    display_test_result("shmem_pe_accessible()", result_shmem_pe_accessible,
+                        true);
     if (strcmp(version, "1.5") != 0 && strcmp(version, "1.50") != 0) {
-      std::cerr << YELLOW_COLOR << "shmem_info_get_version() test did not return 1.5... Returned " << version << RESET_COLOR << std::endl;
+      std::cerr
+          << YELLOW_COLOR
+          << "shmem_info_get_version() test did not return 1.5... Returned "
+          << version << RESET_COLOR << std::endl;
     } else {
-      display_test_result("shmem_info_get_version()", result_shmem_info_get_version, false);
+      display_test_result("shmem_info_get_version()",
+                          result_shmem_info_get_version, false);
     }
-    display_test_result("shmem_info_get_name()", result_shmem_info_get_name, false);
+    display_test_result("shmem_info_get_name()", result_shmem_info_get_name,
+                        false);
   }
 
   return true;

@@ -1,6 +1,7 @@
 /**
  * @file locking_tests.h
- * @brief Contains function declarations for the OpenSHMEM distributed locking tests.
+ * @brief Contains function declarations for the OpenSHMEM distributed locking
+ * tests.
  */
 
 #ifndef LOCKING_TESTS_H
@@ -14,9 +15,9 @@
 /**
  * @brief Tests the shmem_set_lock() and shmem_clear_lock() routines.
  *
- * This test verifies that the shmem_set_lock() and shmem_clear_lock() routines correctly
- * set and clear a distributed lock. It ensures that the lock is properly set by one PE
- * and the state is correctly observed by another PE.
+ * This test verifies that the shmem_set_lock() and shmem_clear_lock() routines
+ * correctly set and clear a distributed lock. It ensures that the lock is
+ * properly set by one PE and the state is correctly observed by another PE.
  *
  * @return True if the test is successful, false otherwise.
  */

@@ -20,35 +20,35 @@ extern "C" {
  * @return True if the test is successful, false otherwise.
  */
 /****************************************************************/
-#define TEST_C11_SHMEM_PUT(TYPE, TYPENAME)        \
-  ({                                              \
-    bool success = true;                          \
-    static TYPE src[10], dest[10];                \
-    int mype = shmem_my_pe();                     \
-    int npes = shmem_n_pes();                     \
-                                                  \
-    for (int i = 0; i < 10; i++) {                \
-      src[i] = i + mype;                          \
-    }                                             \
-                                                  \
-    shmem_barrier_all();                          \
-                                                  \
-    if (mype == 0) {                              \
-      shmem_put(dest, src, 10, 1);                \
-    }                                             \
-                                                  \
-    shmem_barrier_all();                          \
-                                                  \
-    if (mype == 1) {                              \
-      for (int i = 0; i < 10; i++) {              \
-        if (dest[i] != i) {                       \
-          success = false;                        \
-          break;                                  \
-        }                                         \
-      }                                           \
-    }                                             \
-                                                  \
-    success;                                      \
+#define TEST_C11_SHMEM_PUT(TYPE, TYPENAME)                                     \
+  ({                                                                           \
+    bool success = true;                                                       \
+    static TYPE src[10], dest[10];                                             \
+    int mype = shmem_my_pe();                                                  \
+    int npes = shmem_n_pes();                                                  \
+                                                                               \
+    for (int i = 0; i < 10; i++) {                                             \
+      src[i] = i + mype;                                                       \
+    }                                                                          \
+                                                                               \
+    shmem_barrier_all();                                                       \
+                                                                               \
+    if (mype == 0) {                                                           \
+      shmem_put(dest, src, 10, 1);                                             \
+    }                                                                          \
+                                                                               \
+    shmem_barrier_all();                                                       \
+                                                                               \
+    if (mype == 1) {                                                           \
+      for (int i = 0; i < 10; i++) {                                           \
+        if (dest[i] != i) {                                                    \
+          success = false;                                                     \
+          break;                                                               \
+        }                                                                      \
+      }                                                                        \
+    }                                                                          \
+                                                                               \
+    success;                                                                   \
   })
 
 bool test_c11_shmem_put(void) {
@@ -92,30 +92,30 @@ bool test_c11_shmem_put(void) {
  * @return True if the test is successful, false otherwise.
  */
 /****************************************************************/
-#define TEST_C11_SHMEM_P(TYPE, TYPENAME)           \
-  ({                                               \
-    bool success = true;                           \
-    static TYPE src, dest;                         \
-    int mype = shmem_my_pe();                      \
-    int npes = shmem_n_pes();                      \
-                                                   \
-    src = mype;                                    \
-                                                   \
-    shmem_barrier_all();                           \
-                                                   \
-    if (mype == 0) {                               \
-      shmem_p(&dest, src, 1);                      \
-    }                                              \
-                                                   \
-    shmem_barrier_all();                           \
-                                                   \
-    if (mype == 1) {                               \
-      if (dest != 0) {                             \
-        success = false;                           \
-      }                                            \
-    }                                              \
-                                                   \
-    success;                                       \
+#define TEST_C11_SHMEM_P(TYPE, TYPENAME)                                       \
+  ({                                                                           \
+    bool success = true;                                                       \
+    static TYPE src, dest;                                                     \
+    int mype = shmem_my_pe();                                                  \
+    int npes = shmem_n_pes();                                                  \
+                                                                               \
+    src = mype;                                                                \
+                                                                               \
+    shmem_barrier_all();                                                       \
+                                                                               \
+    if (mype == 0) {                                                           \
+      shmem_p(&dest, src, 1);                                                  \
+    }                                                                          \
+                                                                               \
+    shmem_barrier_all();                                                       \
+                                                                               \
+    if (mype == 1) {                                                           \
+      if (dest != 0) {                                                         \
+        success = false;                                                       \
+      }                                                                        \
+    }                                                                          \
+                                                                               \
+    success;                                                                   \
   })
 
 bool test_c11_shmem_p(void) {
@@ -158,35 +158,35 @@ bool test_c11_shmem_p(void) {
  * @return True if the test is successful, false otherwise.
  */
 /****************************************************************/
-#define TEST_C11_SHMEM_IPUT(TYPE, TYPENAME)        \
-  ({                                               \
-    bool success = true;                           \
-    static TYPE src[10], dest[10];                 \
-    int mype = shmem_my_pe();                      \
-    int npes = shmem_n_pes();                      \
-                                                   \
-    for (int i = 0; i < 10; i++) {                 \
-      src[i] = i + mype;                           \
-    }                                              \
-                                                   \
-    shmem_barrier_all();                           \
-                                                   \
-    if (mype == 0) {                               \
-      shmem_iput(dest, src, 2, 2, 5, 1);           \
-    }                                              \
-                                                   \
-    shmem_barrier_all();                           \
-                                                   \
-    if (mype == 1) {                               \
-      for (int i = 0; i < 10; i += 2) {            \
-        if (dest[i] != i / 2) {                    \
-          success = false;                         \
-          break;                                   \
-        }                                          \
-      }                                            \
-    }                                              \
-                                                   \
-    success;                                       \
+#define TEST_C11_SHMEM_IPUT(TYPE, TYPENAME)                                    \
+  ({                                                                           \
+    bool success = true;                                                       \
+    static TYPE src[10], dest[10];                                             \
+    int mype = shmem_my_pe();                                                  \
+    int npes = shmem_n_pes();                                                  \
+                                                                               \
+    for (int i = 0; i < 10; i++) {                                             \
+      src[i] = i + mype;                                                       \
+    }                                                                          \
+                                                                               \
+    shmem_barrier_all();                                                       \
+                                                                               \
+    if (mype == 0) {                                                           \
+      shmem_iput(dest, src, 2, 2, 5, 1);                                       \
+    }                                                                          \
+                                                                               \
+    shmem_barrier_all();                                                       \
+                                                                               \
+    if (mype == 1) {                                                           \
+      for (int i = 0; i < 10; i += 2) {                                        \
+        if (dest[i] != i / 2) {                                                \
+          success = false;                                                     \
+          break;                                                               \
+        }                                                                      \
+      }                                                                        \
+    }                                                                          \
+                                                                               \
+    success;                                                                   \
   })
 
 bool test_c11_shmem_iput(void) {
@@ -229,37 +229,37 @@ bool test_c11_shmem_iput(void) {
  * @return True if the test is successful, false otherwise.
  */
 /****************************************************************/
-#define TEST_C11_SHMEM_GET(TYPE, TYPENAME)        \
-  ({                                              \
-    bool success = true;                          \
-    static TYPE src[10], dest[10];                \
-    int mype = shmem_my_pe();                     \
-    int npes = shmem_n_pes();                     \
-                                                  \
-    if (mype == 0) {                              \
-      for (int i = 0; i < 10; i++) {              \
-        src[i] = i;                               \
-      }                                           \
-    }                                             \
-                                                  \
-    shmem_barrier_all();                          \
-                                                  \
-    if (mype == 1) {                              \
-      shmem_get(dest, src, 10, 0);                \
-    }                                             \
-                                                  \
-    shmem_barrier_all();                          \
-                                                  \
-    if (mype == 1) {                              \
-      for (int i = 0; i < 10; i++) {              \
-        if (dest[i] != i) {                       \
-          success = false;                        \
-          break;                                  \
-        }                                         \
-      }                                           \
-    }                                             \
-                                                  \
-    success;                                      \
+#define TEST_C11_SHMEM_GET(TYPE, TYPENAME)                                     \
+  ({                                                                           \
+    bool success = true;                                                       \
+    static TYPE src[10], dest[10];                                             \
+    int mype = shmem_my_pe();                                                  \
+    int npes = shmem_n_pes();                                                  \
+                                                                               \
+    if (mype == 0) {                                                           \
+      for (int i = 0; i < 10; i++) {                                           \
+        src[i] = i;                                                            \
+      }                                                                        \
+    }                                                                          \
+                                                                               \
+    shmem_barrier_all();                                                       \
+                                                                               \
+    if (mype == 1) {                                                           \
+      shmem_get(dest, src, 10, 0);                                             \
+    }                                                                          \
+                                                                               \
+    shmem_barrier_all();                                                       \
+                                                                               \
+    if (mype == 1) {                                                           \
+      for (int i = 0; i < 10; i++) {                                           \
+        if (dest[i] != i) {                                                    \
+          success = false;                                                     \
+          break;                                                               \
+        }                                                                      \
+      }                                                                        \
+    }                                                                          \
+                                                                               \
+    success;                                                                   \
   })
 
 bool test_c11_shmem_get(void) {
@@ -302,32 +302,32 @@ bool test_c11_shmem_get(void) {
  * @return True if the test is successful, false otherwise.
  */
 /****************************************************************/
-#define TEST_C11_SHMEM_G(TYPE, TYPENAME)          \
-  ({                                              \
-    bool success = true;                          \
-    static TYPE src, dest;                        \
-    int mype = shmem_my_pe();                     \
-    int npes = shmem_n_pes();                     \
-                                                  \
-    if (mype == 0) {                              \
-      src = 10;                                   \
-    }                                             \
-                                                  \
-    shmem_barrier_all();                          \
-                                                  \
-    if (mype == 1) {                              \
-      dest = shmem_g(&src, 0);                    \
-    }                                             \
-                                                  \
-    shmem_barrier_all();                          \
-                                                  \
-    if (mype == 1) {                              \
-      if (dest != 10) {                           \
-        success = false;                          \
-      }                                           \
-    }                                             \
-                                                  \
-    success;                                      \
+#define TEST_C11_SHMEM_G(TYPE, TYPENAME)                                       \
+  ({                                                                           \
+    bool success = true;                                                       \
+    static TYPE src, dest;                                                     \
+    int mype = shmem_my_pe();                                                  \
+    int npes = shmem_n_pes();                                                  \
+                                                                               \
+    if (mype == 0) {                                                           \
+      src = 10;                                                                \
+    }                                                                          \
+                                                                               \
+    shmem_barrier_all();                                                       \
+                                                                               \
+    if (mype == 1) {                                                           \
+      dest = shmem_g(&src, 0);                                                 \
+    }                                                                          \
+                                                                               \
+    shmem_barrier_all();                                                       \
+                                                                               \
+    if (mype == 1) {                                                           \
+      if (dest != 10) {                                                        \
+        success = false;                                                       \
+      }                                                                        \
+    }                                                                          \
+                                                                               \
+    success;                                                                   \
   })
 
 bool test_c11_shmem_g(void) {
@@ -370,37 +370,37 @@ bool test_c11_shmem_g(void) {
  * @return True if the test is successful, false otherwise.
  */
 /****************************************************************/
-#define TEST_C11_SHMEM_IGET(TYPE, TYPENAME)       \
-  ({                                              \
-    bool success = true;                          \
-    static TYPE src[10], dest[10];                \
-    int mype = shmem_my_pe();                     \
-    int npes = shmem_n_pes();                     \
-                                                  \
-    if (mype == 0) {                              \
-      for (int i = 0; i < 10; i++) {              \
-        src[i] = i;                               \
-      }                                           \
-    }                                             \
-                                                  \
-    shmem_barrier_all();                          \
-                                                  \
-    if (mype == 1) {                              \
-      shmem_iget(dest, src, 2, 2, 5, 0);          \
-    }                                             \
-                                                  \
-    shmem_barrier_all();                          \
-                                                  \
-    if (mype == 1) {                              \
-      for (int i = 0; i < 10; i += 2) {           \
-        if (dest[i] != i / 2) {                   \
-          success = false;                        \
-          break;                                  \
-        }                                         \
-      }                                           \
-    }                                             \
-                                                  \
-    success;                                      \
+#define TEST_C11_SHMEM_IGET(TYPE, TYPENAME)                                    \
+  ({                                                                           \
+    bool success = true;                                                       \
+    static TYPE src[10], dest[10];                                             \
+    int mype = shmem_my_pe();                                                  \
+    int npes = shmem_n_pes();                                                  \
+                                                                               \
+    if (mype == 0) {                                                           \
+      for (int i = 0; i < 10; i++) {                                           \
+        src[i] = i;                                                            \
+      }                                                                        \
+    }                                                                          \
+                                                                               \
+    shmem_barrier_all();                                                       \
+                                                                               \
+    if (mype == 1) {                                                           \
+      shmem_iget(dest, src, 2, 2, 5, 0);                                       \
+    }                                                                          \
+                                                                               \
+    shmem_barrier_all();                                                       \
+                                                                               \
+    if (mype == 1) {                                                           \
+      for (int i = 0; i < 10; i += 2) {                                        \
+        if (dest[i] != i / 2) {                                                \
+          success = false;                                                     \
+          break;                                                               \
+        }                                                                      \
+      }                                                                        \
+    }                                                                          \
+                                                                               \
+    success;                                                                   \
   })
 
 bool test_c11_shmem_iget(void) {
@@ -443,36 +443,36 @@ bool test_c11_shmem_iget(void) {
  * @return True if the test is successful, false otherwise.
  */
 /****************************************************************/
-#define TEST_C11_SHMEM_PUT_NBI(TYPE, TYPENAME)    \
-  ({                                              \
-    bool success = true;                          \
-    static TYPE src[10], dest[10];                \
-    int mype = shmem_my_pe();                     \
-    int npes = shmem_n_pes();                     \
-                                                  \
-    for (int i = 0; i < 10; i++) {                \
-      src[i] = i + mype;                          \
-    }                                             \
-                                                  \
-    shmem_barrier_all();                          \
-                                                  \
-    if (mype == 0) {                              \
-      shmem_put_nbi(dest, src, 10, 1);            \
-      shmem_quiet();                              \
-    }                                             \
-                                                  \
-    shmem_barrier_all();                          \
-                                                  \
-    if (mype == 1) {                              \
-      for (int i = 0; i < 10; i++) {              \
-        if (dest[i] != i) {                       \
-          success = false;                        \
-          break;                                  \
-        }                                         \
-      }                                           \
-    }                                             \
-                                                  \
-    success;                                      \
+#define TEST_C11_SHMEM_PUT_NBI(TYPE, TYPENAME)                                 \
+  ({                                                                           \
+    bool success = true;                                                       \
+    static TYPE src[10], dest[10];                                             \
+    int mype = shmem_my_pe();                                                  \
+    int npes = shmem_n_pes();                                                  \
+                                                                               \
+    for (int i = 0; i < 10; i++) {                                             \
+      src[i] = i + mype;                                                       \
+    }                                                                          \
+                                                                               \
+    shmem_barrier_all();                                                       \
+                                                                               \
+    if (mype == 0) {                                                           \
+      shmem_put_nbi(dest, src, 10, 1);                                         \
+      shmem_quiet();                                                           \
+    }                                                                          \
+                                                                               \
+    shmem_barrier_all();                                                       \
+                                                                               \
+    if (mype == 1) {                                                           \
+      for (int i = 0; i < 10; i++) {                                           \
+        if (dest[i] != i) {                                                    \
+          success = false;                                                     \
+          break;                                                               \
+        }                                                                      \
+      }                                                                        \
+    }                                                                          \
+                                                                               \
+    success;                                                                   \
   })
 
 bool test_c11_shmem_put_nbi(void) {
@@ -515,38 +515,38 @@ bool test_c11_shmem_put_nbi(void) {
  * @return True if the test is successful, false otherwise.
  */
 /****************************************************************/
-#define TEST_C11_SHMEM_GET_NBI(TYPE, TYPENAME)    \
-  ({                                              \
-    bool success = true;                          \
-    static TYPE src[10], dest[10];                \
-    int mype = shmem_my_pe();                     \
-    int npes = shmem_n_pes();                     \
-                                                  \
-    if (mype == 0) {                              \
-      for (int i = 0; i < 10; i++) {              \
-        src[i] = i;                               \
-      }                                           \
-    }                                             \
-                                                  \
-    shmem_barrier_all();                          \
-                                                  \
-    if (mype == 1) {                              \
-      shmem_get_nbi(dest, src, 10, 0);            \
-      shmem_quiet();                              \
-    }                                             \
-                                                  \
-    shmem_barrier_all();                          \
-                                                  \
-    if (mype == 1) {                              \
-      for (int i = 0; i < 10; i++) {              \
-        if (dest[i] != i) {                       \
-          success = false;                        \
-          break;                                  \
-        }                                         \
-      }                                           \
-    }                                             \
-                                                  \
-    success;                                      \
+#define TEST_C11_SHMEM_GET_NBI(TYPE, TYPENAME)                                 \
+  ({                                                                           \
+    bool success = true;                                                       \
+    static TYPE src[10], dest[10];                                             \
+    int mype = shmem_my_pe();                                                  \
+    int npes = shmem_n_pes();                                                  \
+                                                                               \
+    if (mype == 0) {                                                           \
+      for (int i = 0; i < 10; i++) {                                           \
+        src[i] = i;                                                            \
+      }                                                                        \
+    }                                                                          \
+                                                                               \
+    shmem_barrier_all();                                                       \
+                                                                               \
+    if (mype == 1) {                                                           \
+      shmem_get_nbi(dest, src, 10, 0);                                         \
+      shmem_quiet();                                                           \
+    }                                                                          \
+                                                                               \
+    shmem_barrier_all();                                                       \
+                                                                               \
+    if (mype == 1) {                                                           \
+      for (int i = 0; i < 10; i++) {                                           \
+        if (dest[i] != i) {                                                    \
+          success = false;                                                     \
+          break;                                                               \
+        }                                                                      \
+      }                                                                        \
+    }                                                                          \
+                                                                               \
+    success;                                                                   \
   })
 
 bool test_c11_shmem_get_nbi(void) {
@@ -585,12 +585,11 @@ bool test_c11_shmem_get_nbi(void) {
 /****************************************************************/
 void run_c11_remote_tests(int mype, int npes) {
   /* Check to make sure there are at least 2 PEs */
-  if ( !(npes > 1) ) {
+  if (!(npes > 1)) {
     if (mype == 0) {
-      display_not_enough_pes("REMOTE MEMORY ACCESS"); 
+      display_not_enough_pes("REMOTE MEMORY ACCESS");
     }
-  }
-  else {
+  } else {
     /* Run shmem_put() test */
     shmem_barrier_all();
     bool result_shmem_put = test_c11_shmem_put();
