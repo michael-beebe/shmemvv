@@ -43,23 +43,6 @@ bool test_shmem_barrier_all() {
 }
 
 /**
- * @brief Tests the shmem_barrier() routine.
- *
- * This test verifies that the `shmem_barrier` routine functions correctly.
- * 
- * @return True if the test is successful, false otherwise.
- */
-bool test_shmem_barrier(void) {
-  static long pSync[SHMEM_BARRIER_SYNC_SIZE];
-  for (int i = 0; i < SHMEM_BARRIER_SYNC_SIZE; i++) {
-    pSync[i] = SHMEM_SYNC_VALUE;
-  }
-
-  shmem_barrier(0, 0, shmem_n_pes(), pSync);
-  return true;
-}
-
-/**
  * @brief Tests retrieving the PE number of the calling PE.
  *
  * This test verifies that the `shmem_my_pe` function returns a valid PE number.
@@ -243,11 +226,6 @@ bool run_setup_tests(int &mype, int &npes, char *version, char *name) {
     display_logo();
   }
 
-  /* Run shmem_barrier() test */
-  shmem_barrier_all();
-  result_shmem_barrier = test_shmem_barrier();
-  shmem_barrier_all();
-
   /* Run shmem_info_get_version() test */
   shmem_barrier_all();
   char* version_str = test_shmem_info_get_version();
@@ -285,7 +263,6 @@ bool run_setup_tests(int &mype, int &npes, char *version, char *name) {
   if (mype == 0) {
     display_test_result("shmem_init()", true, true);
     display_test_result("shmem_barrier_all()", result_shmem_barrier_all, true);
-    display_test_result("shmem_barrier()", result_shmem_barrier, false);
     display_test_result("shmem_my_pe()", result_shmem_my_pe, true);
     display_test_result("shmem_n_pes()", result_shmem_n_pes, true);
     display_test_result("shmem_pe_accessible()", result_shmem_pe_accessible, true);

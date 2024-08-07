@@ -900,23 +900,25 @@ bool test_cxx_shmem_atomic_fetch_and_nbi(void) {
  * @return True if the test is successful, false otherwise.
  */
 /****************************************************************/
-#define TEST_CXX_SHMEM_ATOMIC_FETCH_OR_NBI(TYPE, TYPENAME) \
-  ({                                                       \
-    bool success = true;                                   \
-    static TYPE *dest;                                     \
-    static TYPE fetch;                                     \
-    dest = (TYPE *)shmem_malloc(sizeof(TYPE));             \
-    fetch = 0;                                             \
-    TYPE value = 42, or_val = 15;                          \
-    *dest = value;                                         \
-    shmem_barrier_all();                                   \
-    int mype = shmem_my_pe();                              \
-    shmem_##TYPENAME##_atomic_fetch_or_nbi(&fetch, dest, or_val, mype); \
-    shmem_quiet();                                         \
-    shmem_barrier_all();                                   \
-    success = (fetch == value && *dest == (value | or_val)); \
-    shmem_free(dest);                                      \
-    success;                                               \
+#define TEST_CXX_SHMEM_ATOMIC_FETCH_OR_NBI(TYPE, TYPENAME)    \
+  ({                                                          \
+    bool success = true;                                      \
+    static TYPE *dest;                                        \
+    static TYPE fetch;                                        \
+    dest = (TYPE *)shmem_malloc(sizeof(TYPE));                \
+    fetch = 0;                                                \
+    TYPE value = 42, or_val = 15;                             \
+    *dest = value;                                            \
+    shmem_barrier_all();                                      \
+    int mype = shmem_my_pe();                                 \
+    shmem_##TYPENAME##_atomic_fetch_or_nbi(                   \
+      &fetch, dest, or_val, mype                              \
+    );                                                        \
+    shmem_quiet();                                            \
+    shmem_barrier_all();                                      \
+    success = (fetch == value && *dest == (value | or_val));  \
+    shmem_free(dest);                                         \
+    success;                                                  \
   })
 
 bool test_cxx_shmem_atomic_fetch_or_nbi(void) {
@@ -946,23 +948,25 @@ bool test_cxx_shmem_atomic_fetch_or_nbi(void) {
  * @return True if the test is successful, false otherwise.
  */
 /****************************************************************/
-#define TEST_CXX_SHMEM_ATOMIC_FETCH_XOR_NBI(TYPE, TYPENAME) \
-  ({                                                        \
-    bool success = true;                                    \
-    static TYPE *dest;                                      \
-    static TYPE fetch;                                      \
-    dest = (TYPE *)shmem_malloc(sizeof(TYPE));              \
-    fetch = 0;                                              \
-    TYPE value = 42, xor_val = 15;                          \
-    *dest = value;                                          \
-    shmem_barrier_all();                                    \
-    int mype = shmem_my_pe();                               \
-    shmem_##TYPENAME##_atomic_fetch_xor_nbi(&fetch, dest, xor_val, mype); \
-    shmem_quiet();                                          \
-    shmem_barrier_all();                                    \
+#define TEST_CXX_SHMEM_ATOMIC_FETCH_XOR_NBI(TYPE, TYPENAME)   \
+  ({                                                          \
+    bool success = true;                                      \
+    static TYPE *dest;                                        \
+    static TYPE fetch;                                        \
+    dest = (TYPE *)shmem_malloc(sizeof(TYPE));                \
+    fetch = 0;                                                \
+    TYPE value = 42, xor_val = 15;                            \
+    *dest = value;                                            \
+    shmem_barrier_all();                                      \
+    int mype = shmem_my_pe();                                 \
+    shmem_##TYPENAME##_atomic_fetch_xor_nbi(                  \
+      &fetch, dest, xor_val, mype                             \
+    );                                                        \
+    shmem_quiet();                                            \
+    shmem_barrier_all();                                      \
     success = (fetch == value && *dest == (value ^ xor_val)); \
-    shmem_free(dest);                                       \
-    success;                                                \
+    shmem_free(dest);                                         \
+    success;                                                  \
   })
 
 bool test_cxx_shmem_atomic_fetch_xor_nbi(void) {
