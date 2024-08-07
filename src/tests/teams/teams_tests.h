@@ -76,6 +76,15 @@ bool test_shmem_team_split_2d(void);
 bool test_shmem_team_destroy(void);
 
 /**
+ * @brief Tests the shmem_team_sync() routine.
+ *
+ * This test verifies that the shmem_team_sync() routine correctly synchronizes all PEs within a team.
+ *
+ * @return True if the test is successful, false otherwise.
+ */
+bool test_shmem_team_sync(void);
+
+/**
  * @brief Run all teams tests
  */
 void run_teams_tests(int mype, int npes);

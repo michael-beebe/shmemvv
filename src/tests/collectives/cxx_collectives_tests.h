@@ -15,15 +15,6 @@
 #include <stdio.h>
 
 /**
- * @brief Tests the shmem_team_sync() routine.
- *
- * This test verifies that the shmem_team_sync() routine correctly synchronizes all PEs within a team.
- *
- * @return True if the test is successful, false otherwise.
- */
-bool test_shmem_team_sync(void);
-
-/**
  * @brief Tests the shmem_sync_all() routine.
  *
  * This test verifies that the shmem_sync_all() routine correctly synchronizes all PEs.

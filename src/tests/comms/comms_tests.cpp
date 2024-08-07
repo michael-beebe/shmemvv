@@ -5,6 +5,7 @@
 
 #include "comms_tests.h"
 
+/****************************************************************/
 /**
  * @brief Tests the shmem_ctx_create() function.
  *
@@ -12,6 +13,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
+/****************************************************************/
 bool test_shmem_ctx_create(void) {
   shmem_ctx_t ctx;
   int ret = shmem_ctx_create(0, &ctx);
@@ -22,6 +24,7 @@ bool test_shmem_ctx_create(void) {
   return true;
 }
 
+/****************************************************************/
 /**
  * @brief Tests the shmem_team_create_ctx() function.
  *
@@ -30,6 +33,7 @@ bool test_shmem_ctx_create(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
+/****************************************************************/
 bool test_shmem_team_create_ctx(void) {
   shmem_team_t team;
   shmem_ctx_t ctx;
@@ -43,6 +47,7 @@ bool test_shmem_team_create_ctx(void) {
   return true;
 }
 
+/****************************************************************/
 /**
  * @brief Tests the shmem_ctx_destroy() function.
  *
@@ -50,6 +55,7 @@ bool test_shmem_team_create_ctx(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
+/****************************************************************/
 bool test_shmem_ctx_destroy(void) {
   shmem_ctx_t ctx;
   shmem_ctx_create(0, &ctx);
@@ -57,6 +63,7 @@ bool test_shmem_ctx_destroy(void) {
   return true;
 }
 
+/****************************************************************/
 /**
  * @brief Tests the shmem_ctx_get_team() function.
  *
@@ -65,6 +72,7 @@ bool test_shmem_ctx_destroy(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
+/****************************************************************/
 bool test_shmem_ctx_get_team(void) {
   shmem_ctx_t ctx;
   shmem_team_t team;
@@ -74,10 +82,11 @@ bool test_shmem_ctx_get_team(void) {
   return (ret == 0 && team == SHMEM_TEAM_WORLD);
 }
 
+/****************************************************************/
 /**
  * @brief Run all comms/ctx tests
- * 
  */
+/****************************************************************/
 void run_comms_tests(int mype, int npes) {
   /* Run shmem_ctx_create() test */
   bool result_shmem_ctx_create = test_shmem_ctx_create();

@@ -5,6 +5,7 @@
 
 #include "mem_ordering_tests.h"
 
+/****************************************************************/
 /**
  * @brief Tests the shmem_fence() routine.
  *
@@ -14,6 +15,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
+/****************************************************************/
 bool test_shmem_fence(void) {
   long *flag = (long *)shmem_malloc(sizeof(long));
   *flag = 0;
@@ -40,6 +42,7 @@ bool test_shmem_fence(void) {
   return result;
 }
 
+/****************************************************************/
 /**
  * @brief Tests the shmem_quiet() routine.
  *
@@ -49,6 +52,7 @@ bool test_shmem_fence(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
+/****************************************************************/
 bool test_shmem_quiet(void) {
   long *flag = (long *)shmem_malloc(sizeof(long));
   *flag = 0;
@@ -74,9 +78,11 @@ bool test_shmem_quiet(void) {
   return result;
 }
 
+/****************************************************************/
 /**
  * @brief Run all memory ordering tests
  */
+/****************************************************************/
 void run_mem_ordering_tests(int mype, int npes) {
   /* Make sure there are at least 2 PEs */
   if ( !(npes > 1) ) {

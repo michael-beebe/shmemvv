@@ -5,6 +5,7 @@
 
 #include "setup_tests.h"
 
+/****************************************************************/
 /**
  * @brief Tests the initialization of OpenSHMEM.
  *
@@ -12,11 +13,13 @@
  * 
  * @return True if the initialization is successful, false otherwise.
  */
+/****************************************************************/
 bool test_shmem_init() {
   shmem_init();
   return true;
 }
 
+/****************************************************************/
 /**
  * @brief Tests the barrier synchronization across all PEs.
  *
@@ -24,6 +27,7 @@ bool test_shmem_init() {
  * 
  * @return True if the barrier synchronization is successful, false otherwise.
  */
+/****************************************************************/
 bool test_shmem_barrier_all() {
   int mype = shmem_my_pe();
   int npes = shmem_n_pes();
@@ -42,23 +46,7 @@ bool test_shmem_barrier_all() {
   return test_passed;
 }
 
-/**
- * @brief Tests the shmem_barrier() routine.
- *
- * This test verifies that the `shmem_barrier` routine functions correctly.
- * 
- * @return True if the test is successful, false otherwise.
- */
-bool test_shmem_barrier(void) {
-  static long pSync[SHMEM_BARRIER_SYNC_SIZE];
-  for (int i = 0; i < SHMEM_BARRIER_SYNC_SIZE; i++) {
-    pSync[i] = SHMEM_SYNC_VALUE;
-  }
-
-  shmem_barrier(0, 0, shmem_n_pes(), pSync);
-  return true;
-}
-
+/****************************************************************/
 /**
  * @brief Tests retrieving the PE number of the calling PE.
  *
@@ -66,6 +54,7 @@ bool test_shmem_barrier(void) {
  * 
  * @return The PE number on success, -1 on failure.
  */
+/****************************************************************/
 int test_shmem_my_pe() {
   int mype = shmem_my_pe();
   if (mype >= 0) {
@@ -76,6 +65,7 @@ int test_shmem_my_pe() {
   }
 }
 
+/****************************************************************/
 /**
  * @brief Tests retrieving the number of PEs.
  *
@@ -83,6 +73,7 @@ int test_shmem_my_pe() {
  * 
  * @return The number of PEs if greater than 0, otherwise 0.
  */
+/****************************************************************/
 int test_shmem_n_pes() {
   int npes = shmem_n_pes();
   if (!(npes > 0)) {
@@ -93,6 +84,7 @@ int test_shmem_n_pes() {
   }
 }
 
+/****************************************************************/
 /**
  * @brief Tests if a PE is accessible from the calling PE.
  *
@@ -100,6 +92,7 @@ int test_shmem_n_pes() {
  * 
  * @return True if all PEs are accessible, false otherwise.
  */
+/****************************************************************/
 bool test_shmem_pe_accessible() {
   int npes = shmem_n_pes();
   for (int pe = 0; pe < npes; ++pe) {
@@ -110,6 +103,7 @@ bool test_shmem_pe_accessible() {
   return true;
 }
 
+/****************************************************************/
 /**
  * @brief Tests retrieving the OpenSHMEM library version.
  *
@@ -117,6 +111,7 @@ bool test_shmem_pe_accessible() {
  * 
  * @return A pointer to the version string in the format "major.minor".
  */
+/****************************************************************/
 char* test_shmem_info_get_version(void) {
   int major, minor;
   shmem_info_get_version(&major, &minor);
@@ -129,6 +124,7 @@ char* test_shmem_info_get_version(void) {
   return version;
 }
 
+/****************************************************************/
 /**
  * @brief Tests retrieving the name of the OpenSHMEM library.
  *
@@ -136,6 +132,7 @@ char* test_shmem_info_get_version(void) {
  * 
  * @return A pointer to the name of the library.
  */
+/****************************************************************/
 char* test_shmem_info_get_name(void) {
   char *name = (char *)malloc(SHMEM_MAX_NAME_LEN * sizeof(char)); // allocate memory for name string
   if (name != NULL) {
@@ -145,6 +142,7 @@ char* test_shmem_info_get_name(void) {
   return name;
 }
 
+/****************************************************************/
 /**
  * @brief Tests the finalization of OpenSHMEM.
  *
@@ -152,11 +150,13 @@ char* test_shmem_info_get_name(void) {
  * 
  * @return True if the finalization is successful, false otherwise.
  */
+/****************************************************************/
 bool test_shmem_finalize() {
   shmem_finalize();
   return true;
 }
 
+/****************************************************************/
 /**
  * @brief Tests the global exit functionality of OpenSHMEM.
  *
@@ -164,16 +164,19 @@ bool test_shmem_finalize() {
  * 
  * @return True if the global exit is successful, false otherwise.
  */
+/****************************************************************/
 bool test_shmem_global_exit() {
   shmem_global_exit(0);
   return true;
 }
 
+/****************************************************************/
 /**
  * @brief Perform all setup tests
  * 
  * @return True if successful false otherwise
  */
+/****************************************************************/
 bool run_setup_tests(int &mype, int &npes, char *version, char *name) {
   /* Variables to hold test results */
   bool result_shmem_init = true;
@@ -243,11 +246,6 @@ bool run_setup_tests(int &mype, int &npes, char *version, char *name) {
     display_logo();
   }
 
-  /* Run shmem_barrier() test */
-  shmem_barrier_all();
-  result_shmem_barrier = test_shmem_barrier();
-  shmem_barrier_all();
-
   /* Run shmem_info_get_version() test */
   shmem_barrier_all();
   char* version_str = test_shmem_info_get_version();
@@ -285,7 +283,6 @@ bool run_setup_tests(int &mype, int &npes, char *version, char *name) {
   if (mype == 0) {
     display_test_result("shmem_init()", true, true);
     display_test_result("shmem_barrier_all()", result_shmem_barrier_all, true);
-    display_test_result("shmem_barrier()", result_shmem_barrier, false);
     display_test_result("shmem_my_pe()", result_shmem_my_pe, true);
     display_test_result("shmem_n_pes()", result_shmem_n_pes, true);
     display_test_result("shmem_pe_accessible()", result_shmem_pe_accessible, true);

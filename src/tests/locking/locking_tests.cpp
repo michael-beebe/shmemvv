@@ -5,6 +5,7 @@
 
 #include "locking_tests.h"
 
+/****************************************************************/
 /**
  * @brief Tests the shmem_set_lock() and shmem_clear_lock() routines.
  *
@@ -14,6 +15,7 @@
  *
  * @return True if the test is successful, false otherwise.
  */
+/****************************************************************/
 bool test_shmem_lock_unlock(void) {
   long *lock = (long *)shmem_malloc(sizeof(long));
   *lock = 0;
@@ -44,9 +46,11 @@ bool test_shmem_lock_unlock(void) {
   return result;
 }
 
+/****************************************************************/
 /**
  * @brief Run all locking tests
  */
+/****************************************************************/
 void run_locking_tests(int mype, int npes) {
   /* Make sure there are at least 2 PEs */
   if ( !(npes > 1) ) {

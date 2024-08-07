@@ -221,5 +221,3 @@ int main(int argc, char *argv[]) {
   /* We made it! End the program. */
   return EXIT_SUCCESS;
 }
-
-
