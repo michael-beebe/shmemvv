@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 
-#define TIMEOUT 10
+#define TIMEOUT 1
 
 /**
  * @brief Tests the shmem_wait_until() routine.
