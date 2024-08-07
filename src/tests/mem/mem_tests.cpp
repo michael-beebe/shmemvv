@@ -5,6 +5,7 @@
 
 #include "mem_tests.h"
 
+/****************************************************************/
 /**
  * @brief Tests the shmem_malloc() and shmem_free() functions.
  *
@@ -13,6 +14,7 @@
  *
  * @return True if the tests are successful, false otherwise.
  */
+/****************************************************************/
 bool test_shmem_malloc_free(void) {
   size_t size = 1024;
   void *ptr = shmem_malloc(size);
@@ -23,6 +25,7 @@ bool test_shmem_malloc_free(void) {
   return true;
 }
 
+/****************************************************************/
 /**
  * @brief Tests the shmem_ptr() routine.
  *
@@ -31,6 +34,7 @@ bool test_shmem_malloc_free(void) {
  *
  * @return True if the pointer is accessible, false otherwise.
  */
+/****************************************************************/
 bool test_shmem_ptr() {
   int mype = shmem_my_pe();
   int npes = shmem_n_pes();
@@ -63,6 +67,7 @@ bool test_shmem_ptr() {
   return test_passed;
 }
 
+/****************************************************************/
 /**
  * @brief Tests the shmem_addr_accessible() routine.
  *
@@ -71,6 +76,7 @@ bool test_shmem_ptr() {
  *
  * @return True if the address is accessible from all PEs, false otherwise.
  */
+/****************************************************************/
 bool test_shmem_addr_accessible() {
   int mype = shmem_my_pe();
   int npes = shmem_n_pes();
@@ -96,6 +102,7 @@ bool test_shmem_addr_accessible() {
   return test_passed;
 }
 
+/****************************************************************/
 /**
  * @brief Tests the shmem_realloc() routine.
  *
@@ -104,6 +111,7 @@ bool test_shmem_addr_accessible() {
  *
  * @return True if the test is successful, false otherwise.
  */
+/****************************************************************/
 bool test_shmem_realloc(void) {
   size_t size = 1024;
   void *ptr = shmem_malloc(size);
@@ -120,6 +128,7 @@ bool test_shmem_realloc(void) {
   return true;
 }
 
+/****************************************************************/
 /**
  * @brief Tests the shmem_align() routine.
  *
@@ -128,6 +137,7 @@ bool test_shmem_realloc(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
+/****************************************************************/
 bool test_shmem_align(void) {
   size_t alignment = 64;
   size_t size = 1024;
@@ -139,6 +149,7 @@ bool test_shmem_align(void) {
   return true;
 }
 
+/****************************************************************/
 /**
  * @brief Tests the shmem_malloc_with_hints() routine.
  *
@@ -147,6 +158,7 @@ bool test_shmem_align(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
+/****************************************************************/
 bool test_shmem_malloc_with_hints(void) {
   size_t size = 1024;
   long hints = SHMEM_MALLOC_ATOMICS_REMOTE;
@@ -158,6 +170,7 @@ bool test_shmem_malloc_with_hints(void) {
   return true;
 }
 
+/****************************************************************/
 /**
  * @brief Tests the shmem_calloc() routine.
  *
@@ -166,6 +179,7 @@ bool test_shmem_malloc_with_hints(void) {
  *
  * @return True if the test is successful, false otherwise.
  */
+/****************************************************************/
 bool test_shmem_calloc(void) {
   size_t count = 256;
   size_t size = sizeof(int);
@@ -183,9 +197,11 @@ bool test_shmem_calloc(void) {
   return true;
 }
 
+/****************************************************************/
 /**
  * @brief Run all memory tests
  */
+/****************************************************************/
 void run_mem_tests(int mype, int npes) {
   /* Test shmem_malloc() and shmem_free() */
   bool result_shmem_malloc_free = test_shmem_malloc_free();
