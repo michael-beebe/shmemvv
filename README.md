@@ -19,11 +19,8 @@ There are a few limitations to SHMEMVV that are currently being addressed:
 ```bash
 $ mkdir build
 $ cd build
-$ cmake \
-    -DCMAKE_LIBRARY_PATH=</path/to/openshmem/lib/dir>      \
-    -DCMAKE_C_LINKER_FLAGS="<linker flags, such as -lsma>" \
-    -DDEBUG=<OFF/ON>                                       \
-    ../
+$ export CC=`which oshcc` ; export CXX=`which oshc++`
+$ cmake ../
 ```
 
 ## Tests
