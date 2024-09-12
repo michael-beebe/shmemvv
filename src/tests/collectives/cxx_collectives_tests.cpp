@@ -46,19 +46,23 @@ bool test_cxx_shmem_sync_all(void) { return TEST_CXX_SHMEM_SYNC_ALL(); }
  * @return True if the test is successful, false otherwise.
  */
 /****************************************************************/
-#define TEST_CXX_SHMEM_ALLTOALL(TYPE, TYPENAME)                                \
+#define TEST_CXX_SHMEM_ALLTOALL(BITS)                                \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
-                                                                               \
-    TYPE *src = (TYPE *)shmem_malloc(npes * sizeof(TYPE));                     \
-    TYPE *dest = (TYPE *)shmem_malloc(npes * sizeof(TYPE));                    \
+    long *pSync = (long *) shmem_malloc(SHMEM_ALLTOALL_SYNC_SIZE); \
+    for (size_t i = 0; i < SHMEM_ALLTOALL_SYNC_SIZE / sizeof(long); ++i) { \
+      pSync[i] = SHMEM_SYNC_VALUE;                                      \
+    }                                                                          \
+                                                                        \
+    uint ## BITS ## _t *src = (uint ## BITS ## _t *)shmem_malloc(npes * sizeof(uint ## BITS ## _t));                     \
+    uint ## BITS ## _t *dest = (uint ## BITS ## _t *)shmem_malloc(npes * sizeof(uint ## BITS ## _t));                    \
                                                                                \
     for (int i = 0; i < npes; ++i) {                                           \
       src[i] = mype + i;                                                       \
     }                                                                          \
                                                                                \
-    shmem_##TYPENAME##_alltoall(SHMEM_TEAM_WORLD, dest, src, 1);               \
+    shmem_alltoall ## BITS (dest, src, 1, 0, 0, npes, pSync);               \
                                                                                \
     bool success = true;                                                       \
     for (int i = 0; i < npes; ++i) {                                           \
@@ -76,10 +80,8 @@ bool test_cxx_shmem_sync_all(void) { return TEST_CXX_SHMEM_SYNC_ALL(); }
 
 bool test_cxx_shmem_alltoall(void) {
   bool result = true;
-  result &= TEST_CXX_SHMEM_ALLTOALL(long, long);
-  result &= TEST_CXX_SHMEM_ALLTOALL(int, int);
-  result &= TEST_CXX_SHMEM_ALLTOALL(float, float);
-  result &= TEST_CXX_SHMEM_ALLTOALL(double, double);
+  result &= TEST_CXX_SHMEM_ALLTOALL(64);
+  result &= TEST_CXX_SHMEM_ALLTOALL(32);
   return result;
 }
 
@@ -93,19 +95,23 @@ bool test_cxx_shmem_alltoall(void) {
  * @return True if the test is successful, false otherwise.
  */
 /****************************************************************/
-#define TEST_CXX_SHMEM_ALLTOALLS(TYPE, TYPENAME)                               \
+#define TEST_CXX_SHMEM_ALLTOALLS(BITS)                               \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
-                                                                               \
-    TYPE *src = (TYPE *)shmem_malloc(npes * npes * sizeof(TYPE));              \
-    TYPE *dest = (TYPE *)shmem_malloc(npes * npes * sizeof(TYPE));             \
+    long *pSync = (long *) shmem_malloc(SHMEM_ALLTOALLS_SYNC_SIZE); \
+    for (size_t i = 0; i < SHMEM_ALLTOALLS_SYNC_SIZE / sizeof(long); ++i) { \
+      pSync[i] = SHMEM_SYNC_VALUE;                                      \
+    }                                                                          \
+                                                                        \
+    uint ## BITS ## _t *src = (uint ## BITS ## _t *)shmem_malloc(npes * sizeof(uint ## BITS ## _t));                     \
+    uint ## BITS ## _t *dest = (uint ## BITS ## _t *)shmem_malloc(npes * sizeof(uint ## BITS ## _t));                    \
                                                                                \
     for (int i = 0; i < npes; ++i) {                                           \
       src[i] = mype + i * npes;                                                \
     }                                                                          \
                                                                                \
-    shmem_##TYPENAME##_alltoalls(SHMEM_TEAM_WORLD, dest, src, 1, 1, npes);     \
+    shmem_alltoalls ## BITS (dest, src, 1, 1, npes, 0, 0, npes, pSync);     \
                                                                                \
     bool success = true;                                                       \
     for (int i = 0; i < npes; ++i) {                                           \
@@ -123,10 +129,8 @@ bool test_cxx_shmem_alltoall(void) {
 
 bool test_cxx_shmem_alltoalls(void) {
   bool result = true;
-  result &= TEST_CXX_SHMEM_ALLTOALLS(long, long);
-  result &= TEST_CXX_SHMEM_ALLTOALLS(int, int);
-  result &= TEST_CXX_SHMEM_ALLTOALLS(float, float);
-  result &= TEST_CXX_SHMEM_ALLTOALLS(double, double);
+  result &= TEST_CXX_SHMEM_ALLTOALLS(64);
+  result &= TEST_CXX_SHMEM_ALLTOALLS(32);
   return result;
 }
 
@@ -140,13 +144,17 @@ bool test_cxx_shmem_alltoalls(void) {
  * @return True if the test is successful, false otherwise.
  */
 /****************************************************************/
-#define TEST_CXX_SHMEM_BROADCAST(TYPE, TYPENAME)                               \
+#define TEST_CXX_SHMEM_BROADCAST(BITS)                               \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
+    long *pSync = (long *) shmem_malloc(SHMEM_BCAST_SYNC_SIZE); \
+    for (size_t i = 0; i < SHMEM_BCAST_SYNC_SIZE / sizeof(long); ++i) { \
+      pSync[i] = SHMEM_SYNC_VALUE;                                      \
+    }                                                                          \
                                                                                \
-    TYPE *src = (TYPE *)shmem_malloc(4 * sizeof(TYPE));                        \
-    TYPE *dest = (TYPE *)shmem_malloc(4 * sizeof(TYPE));                       \
+    uint ## BITS ## _t *src = (uint ## BITS ## _t *)shmem_malloc(4 * sizeof(uint ## BITS ## _t));                        \
+    uint ## BITS ## _t *dest = (uint ## BITS ## _t *)shmem_malloc(4 * sizeof(uint ## BITS ## _t));                       \
                                                                                \
     if (mype == 0) {                                                           \
       for (int i = 0; i < 4; ++i) {                                            \
@@ -160,7 +168,7 @@ bool test_cxx_shmem_alltoalls(void) {
                                                                                \
     shmem_barrier_all();                                                       \
                                                                                \
-    shmem_##TYPENAME##_broadcast(SHMEM_TEAM_WORLD, dest, src, 4, 0);           \
+    shmem_broadcast ## BITS (dest, src, 4, 0, 0, 0, npes, pSync);           \
                                                                                \
     shmem_barrier_all();                                                       \
                                                                                \
@@ -180,10 +188,8 @@ bool test_cxx_shmem_alltoalls(void) {
 
 bool test_cxx_shmem_broadcast(void) {
   bool result = true;
-  result &= TEST_CXX_SHMEM_BROADCAST(long, long);
-  result &= TEST_CXX_SHMEM_BROADCAST(int, int);
-  result &= TEST_CXX_SHMEM_BROADCAST(float, float);
-  result &= TEST_CXX_SHMEM_BROADCAST(double, double);
+  result &= TEST_CXX_SHMEM_BROADCAST(64);
+  result &= TEST_CXX_SHMEM_BROADCAST(32);
   return result;
 }
 
@@ -197,17 +203,21 @@ bool test_cxx_shmem_broadcast(void) {
  * @return True if the test is successful, false otherwise.
  */
 /****************************************************************/
-#define TEST_CXX_SHMEM_COLLECT(TYPE, TYPENAME)                                 \
+#define TEST_CXX_SHMEM_COLLECT(BITS)                                 \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
+    long *pSync = (long *) shmem_malloc(SHMEM_COLLECT_SYNC_SIZE); \
+    for (size_t i = 0; i < (SHMEM_COLLECT_SYNC_SIZE / sizeof(long) ); ++i) { \
+      pSync[i] = SHMEM_SYNC_VALUE;                                      \
+    }                                                                          \
                                                                                \
-    TYPE *src = (TYPE *)shmem_malloc(sizeof(TYPE));                            \
-    TYPE *dest = (TYPE *)shmem_malloc(npes * sizeof(TYPE));                    \
+    uint ## BITS ## _t *src = (uint ## BITS ## _t *)shmem_malloc(sizeof(uint ## BITS ## _t));                            \
+    uint ## BITS ## _t *dest = (uint ## BITS ## _t *)shmem_malloc(npes * sizeof(uint ## BITS ## _t));                    \
                                                                                \
     src[0] = mype;                                                             \
                                                                                \
-    shmem_##TYPENAME##_collect(SHMEM_TEAM_WORLD, dest, src, 1);                \
+    shmem_collect ## BITS (dest, src, 1, 0, 0, npes, pSync);                \
                                                                                \
     bool success = true;                                                       \
     for (int i = 0; i < npes; ++i) {                                           \
@@ -225,10 +235,8 @@ bool test_cxx_shmem_broadcast(void) {
 
 bool test_cxx_shmem_collect(void) {
   bool result = true;
-  result &= TEST_CXX_SHMEM_COLLECT(long, long);
-  result &= TEST_CXX_SHMEM_COLLECT(int, int);
-  result &= TEST_CXX_SHMEM_COLLECT(float, float);
-  result &= TEST_CXX_SHMEM_COLLECT(double, double);
+  result &= TEST_CXX_SHMEM_COLLECT(64);
+  result &= TEST_CXX_SHMEM_COLLECT(32);
   return result;
 }
 
@@ -243,17 +251,20 @@ bool test_cxx_shmem_collect(void) {
  * @return True if the test is successful, false otherwise.
  */
 /****************************************************************/
-#define TEST_CXX_SHMEM_FCOLLECT(TYPE, TYPENAME)                                \
+#define TEST_CXX_SHMEM_FCOLLECT(BITS)                                \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
-                                                                               \
-    TYPE *src = (TYPE *)shmem_malloc(sizeof(TYPE));                            \
-    TYPE *dest = (TYPE *)shmem_malloc(npes * sizeof(TYPE));                    \
+    long *pSync = (long *) shmem_malloc(SHMEM_COLLECT_SYNC_SIZE); \
+    for (size_t i = 0; i < SHMEM_COLLECT_SYNC_SIZE / sizeof(long); ++i) { \
+      pSync[i] = SHMEM_SYNC_VALUE;                                      \
+    }                                                                          \
+    uint ## BITS ## _t *src = (uint ## BITS ## _t *)shmem_malloc(sizeof(uint ## BITS ## _t));                            \
+    uint ## BITS ## _t *dest = (uint ## BITS ## _t *)shmem_malloc(npes * sizeof(uint ## BITS ## _t));                    \
                                                                                \
     src[0] = mype;                                                             \
                                                                                \
-    shmem_##TYPENAME##_fcollect(SHMEM_TEAM_WORLD, dest, src, 1);               \
+    shmem_fcollect ## BITS (dest, src, 1, 0, 0, npes, pSync);               \
                                                                                \
     bool success = true;                                                       \
     for (int i = 0; i < npes; ++i) {                                           \
@@ -271,10 +282,8 @@ bool test_cxx_shmem_collect(void) {
 
 bool test_cxx_shmem_fcollect(void) {
   bool result = true;
-  result &= TEST_CXX_SHMEM_FCOLLECT(long, long);
-  result &= TEST_CXX_SHMEM_FCOLLECT(int, int);
-  result &= TEST_CXX_SHMEM_FCOLLECT(float, float);
-  result &= TEST_CXX_SHMEM_FCOLLECT(double, double);
+  result &= TEST_CXX_SHMEM_FCOLLECT(64);
+  result &= TEST_CXX_SHMEM_FCOLLECT(32);
   return result;
 }
 
@@ -293,13 +302,18 @@ bool test_cxx_shmem_fcollect(void) {
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
+    long *pSync = (long *) shmem_malloc(SHMEM_REDUCE_SYNC_SIZE); \
+    TYPE *pWrk = (TYPE *) shmem_malloc(sizeof(TYPE) * npes); \
+    for (size_t i = 0; i < SHMEM_REDUCE_SYNC_SIZE / sizeof(long); ++i) { \
+      pSync[i] = SHMEM_SYNC_VALUE;                                      \
+    }                                                                          \
                                                                                \
     TYPE *src = (TYPE *)shmem_malloc(sizeof(TYPE));                            \
     TYPE *dest = (TYPE *)shmem_malloc(sizeof(TYPE));                           \
                                                                                \
     *src = mype;                                                               \
                                                                                \
-    shmem_##TYPENAME##_sum_reduce(SHMEM_TEAM_WORLD, dest, src, 1);             \
+    shmem_##TYPENAME##_sum_to_all(dest, src, 1, 0, 0, npes, pWrk, pSync);             \
                                                                                \
     TYPE expected_sum = npes * (npes - 1) / 2;                                 \
     bool success = (*dest == expected_sum);                                    \
@@ -334,13 +348,18 @@ bool test_cxx_shmem_sum_reduce(void) {
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
+    long *pSync = (long *) shmem_malloc(SHMEM_REDUCE_SYNC_SIZE); \
+    TYPE *pWrk = (TYPE *) shmem_malloc(sizeof(TYPE) * npes); \
+    for (size_t i = 0; i < SHMEM_REDUCE_SYNC_SIZE / sizeof(long); ++i) { \
+      pSync[i] = SHMEM_SYNC_VALUE;                                      \
+    }                                                                          \
                                                                                \
     TYPE *src = (TYPE *)shmem_malloc(sizeof(TYPE));                            \
     TYPE *dest = (TYPE *)shmem_malloc(sizeof(TYPE));                           \
                                                                                \
     *src = mype + 1;                                                           \
                                                                                \
-    shmem_##TYPENAME##_prod_reduce(SHMEM_TEAM_WORLD, dest, src, 1);            \
+    shmem_##TYPENAME##_prod_to_all(dest, src, 1, 0, 0, npes, pWrk, pSync);            \
                                                                                \
     TYPE expected_prod = 1;                                                    \
     for (int i = 1; i <= npes; i++) {                                          \
@@ -378,13 +397,18 @@ bool test_cxx_shmem_prod_reduce(void) {
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
+    long *pSync = (long *) shmem_malloc(SHMEM_REDUCE_SYNC_SIZE); \
+    TYPE *pWrk = (TYPE *) shmem_malloc(sizeof(TYPE) * npes); \
+    for (size_t i = 0; i < SHMEM_REDUCE_SYNC_SIZE / sizeof(long); ++i) { \
+      pSync[i] = SHMEM_SYNC_VALUE;                                      \
+    }                                                                          \
                                                                                \
     TYPE *src = (TYPE *)shmem_malloc(sizeof(TYPE));                            \
     TYPE *dest = (TYPE *)shmem_malloc(sizeof(TYPE));                           \
                                                                                \
     *src = mype;                                                               \
                                                                                \
-    shmem_##TYPENAME##_min_reduce(SHMEM_TEAM_WORLD, dest, src, 1);             \
+    shmem_##TYPENAME##_min_to_all(dest, src, 1, 0, 0, npes, pWrk, pSync);             \
                                                                                \
     bool success = (*dest == 0);                                               \
                                                                                \
@@ -418,13 +442,18 @@ bool test_cxx_shmem_min_reduce(void) {
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
+    long *pSync = (long *) shmem_malloc(SHMEM_REDUCE_SYNC_SIZE); \
+    TYPE *pWrk = (TYPE *) shmem_malloc(sizeof(TYPE) * npes); \
+    for (size_t i = 0; i < SHMEM_REDUCE_SYNC_SIZE / sizeof(long); ++i) { \
+      pSync[i] = SHMEM_SYNC_VALUE;                                      \
+    }                                                                          \
                                                                                \
     TYPE *src = (TYPE *)shmem_malloc(sizeof(TYPE));                            \
     TYPE *dest = (TYPE *)shmem_malloc(sizeof(TYPE));                           \
                                                                                \
     *src = mype;                                                               \
                                                                                \
-    shmem_##TYPENAME##_max_reduce(SHMEM_TEAM_WORLD, dest, src, 1);             \
+    shmem_##TYPENAME##_max_to_all(dest, src, 1, 0, 0, npes, pWrk, pSync);             \
                                                                                \
     bool success = (*dest == npes - 1);                                        \
                                                                                \

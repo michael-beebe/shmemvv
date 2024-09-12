@@ -153,27 +153,6 @@ bool test_shmem_align(void) {
 
 /****************************************************************/
 /**
- * @brief Tests the shmem_malloc_with_hints() routine.
- *
- * This test verifies that the shmem_malloc_with_hints() function correctly
- * allocates memory with the specified hints.
- *
- * @return True if the test is successful, false otherwise.
- */
-/****************************************************************/
-bool test_shmem_malloc_with_hints(void) {
-  size_t size = 1024;
-  long hints = SHMEM_MALLOC_ATOMICS_REMOTE;
-  void *ptr = shmem_malloc_with_hints(size, hints);
-  if (ptr == NULL) {
-    return false;
-  }
-  shmem_free(ptr);
-  return true;
-}
-
-/****************************************************************/
-/**
  * @brief Tests the shmem_calloc() routine.
  *
  * This test verifies that the shmem_calloc() function correctly allocates and
@@ -244,15 +223,6 @@ void run_mem_tests(int mype, int npes) {
   shmem_barrier_all();
   if (mype == 0) {
     display_test_result("shmem_align()", result_shmem_align, false);
-  }
-
-  /* Test shmem_malloc_with_hints() */
-  shmem_barrier_all();
-  bool result_shmem_malloc_with_hints = test_shmem_malloc_with_hints();
-  shmem_barrier_all();
-  if (mype == 0) {
-    display_test_result("shmem_malloc_with_hints()",
-                        result_shmem_malloc_with_hints, false);
   }
 
   /* Test shmem_calloc() */

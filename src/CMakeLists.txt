@@ -34,22 +34,18 @@ target_link_libraries(
   threads_tests
   mem_tests
   comms_tests
-  teams_tests
   mem_ordering_tests
   locking_tests
 
   # --- C/C++ tests
   cxx_remote_tests
   cxx_atomics_tests
-  cxx_signaling_tests
   cxx_collectives_tests
   cxx_pt2pt_tests
 
   # --- C11 tests
   c11_remote_tests
   c11_atomics_tests
-  c11_signaling_tests
-  c11_collectives_tests
   c11_pt2pt_tests
 )
 

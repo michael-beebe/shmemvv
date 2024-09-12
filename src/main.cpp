@@ -66,13 +66,12 @@ int main(int argc, char *argv[]) {
   shmem_barrier_all();
   if (opts.test_all ||
       !(opts.test_setup || opts.test_threads || opts.test_mem ||
-        opts.test_teams || opts.test_ctx || opts.test_remote ||
+        opts.test_ctx || opts.test_remote ||
         opts.test_atomics || opts.test_signaling || opts.test_collectives ||
         opts.test_pt2pt_synch || opts.test_mem_ordering || opts.test_locking)) {
     opts.test_setup = true;
     opts.test_threads = true;
     opts.test_mem = true;
-    opts.test_teams = true;
     opts.test_ctx = true;
     opts.test_remote = true;
     opts.test_atomics = true;
@@ -113,16 +112,6 @@ int main(int argc, char *argv[]) {
     run_mem_tests(mype, npes);
   }
 
-  /************************* TEAMS TESTS **************************/
-  if (opts.test_teams) {
-    shmem_barrier_all();
-    if (mype == 0) {
-      display_test_header("TEAMS MANAGEMENT");
-    }
-    shmem_barrier_all();
-    run_teams_tests(mype, npes);
-  }
-
   /************************* CTX TESTS **************************/
   if (opts.test_ctx) {
     shmem_barrier_all();
@@ -160,19 +149,6 @@ int main(int argc, char *argv[]) {
     run_cxx_atomics_tests(mype, npes);
   }
 
-  /************************* SIGNALING TESTS **************************/
-  if (opts.test_signaling) {
-    shmem_barrier_all();
-    if (mype == 0) {
-      display_test_header("SIGNALING OPS");
-    }
-    run_c11_signaling_tests(mype, npes);
-    if (mype == 0) {
-      printf("\n");
-    }
-    run_cxx_signaling_tests(mype, npes);
-  }
-
   /************************* COLLECTIVES TESTS **************************/
   if (opts.test_collectives) {
     shmem_barrier_all();
@@ -180,10 +156,6 @@ int main(int argc, char *argv[]) {
       display_test_header("COLLECTIVE OPS");
     }
     shmem_barrier_all();
-    run_c11_collectives_tests(mype, npes);
-    if (mype == 0) {
-      printf("\n");
-    }
     run_cxx_collectives_tests(mype, npes);
   }
 
