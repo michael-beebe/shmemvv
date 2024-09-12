@@ -294,10 +294,10 @@ bool run_setup_tests(int &mype, int &npes, char *version, char *name) {
     display_test_result("shmem_n_pes()", result_shmem_n_pes, true);
     display_test_result("shmem_pe_accessible()", result_shmem_pe_accessible,
                         true);
-    if (strcmp(version, "1.5") != 0 && strcmp(version, "1.50") != 0) {
+    if (strcmp(version, "1.4") != 0 && strcmp(version, "1.40") != 0) {
       std::cerr
           << YELLOW_COLOR
-          << "shmem_info_get_version() test did not return 1.5... Returned "
+          << "shmem_info_get_version() test did not return 1.4... Returned "
           << version << RESET_COLOR << std::endl;
     } else {
       display_test_result("shmem_info_get_version()",
