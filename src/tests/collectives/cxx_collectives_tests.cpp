@@ -47,23 +47,26 @@ bool test_cxx_shmem_sync_all(void) { return TEST_CXX_SHMEM_SYNC_ALL(); }
  * @return True if the test is successful, false otherwise.
  */
 /****************************************************************/
-#define TEST_CXX_SHMEM_ALLTOALL(BITS)                                \
+#define TEST_CXX_SHMEM_ALLTOALL(BITS)                                          \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
-    long *pSync = (long *) shmem_malloc(sizeof(long) * SHMEM_ALLTOALL_SYNC_SIZE); \
-    for (size_t i = 0; i < SHMEM_ALLTOALL_SYNC_SIZE; ++i) { \
-      pSync[i] = SHMEM_SYNC_VALUE;                                      \
+    long *pSync =                                                              \
+        (long *)shmem_malloc(sizeof(long) * SHMEM_ALLTOALL_SYNC_SIZE);         \
+    for (size_t i = 0; i < SHMEM_ALLTOALL_SYNC_SIZE; ++i) {                    \
+      pSync[i] = SHMEM_SYNC_VALUE;                                             \
     }                                                                          \
-                                                                        \
-    uint ## BITS ## _t *src = (uint ## BITS ## _t *)shmem_malloc(npes * sizeof(uint ## BITS ## _t));                     \
-    uint ## BITS ## _t *dest = (uint ## BITS ## _t *)shmem_malloc(npes * sizeof(uint ## BITS ## _t));                    \
+                                                                               \
+    uint##BITS##_t *src =                                                      \
+        (uint##BITS##_t *)shmem_malloc(npes * sizeof(uint##BITS##_t));         \
+    uint##BITS##_t *dest =                                                     \
+        (uint##BITS##_t *)shmem_malloc(npes * sizeof(uint##BITS##_t));         \
                                                                                \
     for (int i = 0; i < npes; ++i) {                                           \
       src[i] = mype + i;                                                       \
     }                                                                          \
                                                                                \
-    shmem_alltoall ## BITS (dest, src, 1, 0, 0, npes, pSync);               \
+    shmem_alltoall##BITS(dest, src, 1, 0, 0, npes, pSync);                     \
                                                                                \
     bool success = true;                                                       \
     for (int i = 0; i < npes; ++i) {                                           \
@@ -75,7 +78,7 @@ bool test_cxx_shmem_sync_all(void) { return TEST_CXX_SHMEM_SYNC_ALL(); }
                                                                                \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
-    shmem_free(pSync); \
+    shmem_free(pSync);                                                         \
                                                                                \
     success;                                                                   \
   })
@@ -97,23 +100,26 @@ bool test_cxx_shmem_alltoall(void) {
  * @return True if the test is successful, false otherwise.
  */
 /****************************************************************/
-#define TEST_CXX_SHMEM_ALLTOALLS(BITS)                               \
+#define TEST_CXX_SHMEM_ALLTOALLS(BITS)                                         \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
-    long *pSync = (long *) shmem_malloc(sizeof(long) * SHMEM_ALLTOALLS_SYNC_SIZE); \
-    for (size_t i = 0; i < SHMEM_ALLTOALLS_SYNC_SIZE; ++i) { \
-      pSync[i] = SHMEM_SYNC_VALUE;                                      \
+    long *pSync =                                                              \
+        (long *)shmem_malloc(sizeof(long) * SHMEM_ALLTOALLS_SYNC_SIZE);        \
+    for (size_t i = 0; i < SHMEM_ALLTOALLS_SYNC_SIZE; ++i) {                   \
+      pSync[i] = SHMEM_SYNC_VALUE;                                             \
     }                                                                          \
-                                                                        \
-    uint ## BITS ## _t *src = (uint ## BITS ## _t *)shmem_malloc(npes * sizeof(uint ## BITS ## _t));                     \
-    uint ## BITS ## _t *dest = (uint ## BITS ## _t *)shmem_malloc(npes * sizeof(uint ## BITS ## _t));                    \
+                                                                               \
+    uint##BITS##_t *src =                                                      \
+        (uint##BITS##_t *)shmem_malloc(npes * sizeof(uint##BITS##_t));         \
+    uint##BITS##_t *dest =                                                     \
+        (uint##BITS##_t *)shmem_malloc(npes * sizeof(uint##BITS##_t));         \
                                                                                \
     for (int i = 0; i < npes; ++i) {                                           \
       src[i] = mype + i * npes;                                                \
     }                                                                          \
                                                                                \
-    shmem_alltoalls ## BITS (dest, src, 1, 1, npes, 0, 0, npes, pSync);     \
+    shmem_alltoalls##BITS(dest, src, 1, 1, npes, 0, 0, npes, pSync);           \
                                                                                \
     bool success = true;                                                       \
     for (int i = 0; i < npes; ++i) {                                           \
@@ -125,7 +131,7 @@ bool test_cxx_shmem_alltoall(void) {
                                                                                \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
-    shmem_free(pSync); \
+    shmem_free(pSync);                                                         \
                                                                                \
     success;                                                                   \
   })
@@ -147,44 +153,44 @@ bool test_cxx_shmem_alltoalls(void) {
  * @return True if the test is successful, false otherwise.
  */
 /****************************************************************/
-#define TEST_CXX_SHMEM_BROADCAST(BITS)                               \
+#define TEST_CXX_SHMEM_BROADCAST(BITS)                                         \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
-    long *pSync = (long *) shmem_malloc(sizeof(long) * SHMEM_BCAST_SYNC_SIZE); \
-    for (size_t i = 0; i < SHMEM_BCAST_SYNC_SIZE; ++i) { \
-      pSync[i] = SHMEM_SYNC_VALUE;                                      \
+    long *pSync = (long *)shmem_malloc(sizeof(long) * SHMEM_BCAST_SYNC_SIZE);  \
+    for (size_t i = 0; i < SHMEM_BCAST_SYNC_SIZE; ++i) {                       \
+      pSync[i] = SHMEM_SYNC_VALUE;                                             \
     }                                                                          \
                                                                                \
-    int ## BITS ## _t *src = (int ## BITS ## _t *)shmem_malloc(4 * sizeof(int ## BITS ## _t));                        \
+    int##BITS##_t *src =                                                       \
+        (int##BITS##_t *)shmem_malloc(4 * sizeof(int##BITS##_t));              \
                                                                                \
     if (mype == 0) {                                                           \
       for (int i = 0; i < 4; ++i) {                                            \
         src[i] = i + 1;                                                        \
       }                                                                        \
-    } else { \
-    for (int i = 0; i < 4; ++i) {                                              \
-      src[i] = -1;                                                            \
+    } else {                                                                   \
+      for (int i = 0; i < 4; ++i) {                                            \
+        src[i] = -1;                                                           \
+      }                                                                        \
     }                                                                          \
-    }                                                                   \
-                                                                               \
                                                                                \
     shmem_barrier_all();                                                       \
                                                                                \
-    shmem_broadcast ## BITS (src, src, 4, 0, 0, 0, npes, pSync);           \
+    shmem_broadcast##BITS(src, src, 4, 0, 0, 0, npes, pSync);                  \
                                                                                \
     shmem_barrier_all();                                                       \
                                                                                \
-    bool success = true;                                                    \
-    for (int i = 0; i < 4; ++i) {                                           \
-      if (src[i] != i + 1) {                                           \
-                success = false;                                        \
-                    break;                                              \
-          }                                                             \
-    }                                                                   \
+    bool success = true;                                                       \
+    for (int i = 0; i < 4; ++i) {                                              \
+      if (src[i] != i + 1) {                                                   \
+        success = false;                                                       \
+        break;                                                                 \
+      }                                                                        \
+    }                                                                          \
                                                                                \
     shmem_free(src);                                                           \
-    shmem_free(pSync); \
+    shmem_free(pSync);                                                         \
                                                                                \
     success;                                                                   \
   })
@@ -206,21 +212,24 @@ bool test_cxx_shmem_broadcast(void) {
  * @return True if the test is successful, false otherwise.
  */
 /****************************************************************/
-#define TEST_CXX_SHMEM_COLLECT(BITS)                                 \
+#define TEST_CXX_SHMEM_COLLECT(BITS)                                           \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
-    long *pSync = (long *) shmem_malloc(sizeof(long) * SHMEM_COLLECT_SYNC_SIZE); \
-    for (size_t i = 0; i < (SHMEM_COLLECT_SYNC_SIZE / sizeof(long) ); ++i) { \
-      pSync[i] = SHMEM_SYNC_VALUE;                                      \
+    long *pSync =                                                              \
+        (long *)shmem_malloc(sizeof(long) * SHMEM_COLLECT_SYNC_SIZE);          \
+    for (size_t i = 0; i < (SHMEM_COLLECT_SYNC_SIZE / sizeof(long)); ++i) {    \
+      pSync[i] = SHMEM_SYNC_VALUE;                                             \
     }                                                                          \
                                                                                \
-    uint ## BITS ## _t *src = (uint ## BITS ## _t *)shmem_malloc(sizeof(uint ## BITS ## _t));                            \
-    uint ## BITS ## _t *dest = (uint ## BITS ## _t *)shmem_malloc(npes * sizeof(uint ## BITS ## _t));                    \
+    uint##BITS##_t *src =                                                      \
+        (uint##BITS##_t *)shmem_malloc(sizeof(uint##BITS##_t));                \
+    uint##BITS##_t *dest =                                                     \
+        (uint##BITS##_t *)shmem_malloc(npes * sizeof(uint##BITS##_t));         \
                                                                                \
     src[0] = mype;                                                             \
                                                                                \
-    shmem_collect ## BITS (dest, src, 1, 0, 0, npes, pSync);                \
+    shmem_collect##BITS(dest, src, 1, 0, 0, npes, pSync);                      \
                                                                                \
     bool success = true;                                                       \
     for (int i = 0; i < npes; ++i) {                                           \
@@ -232,7 +241,7 @@ bool test_cxx_shmem_broadcast(void) {
                                                                                \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
-    shmem_free(pSync); \
+    shmem_free(pSync);                                                         \
                                                                                \
     success;                                                                   \
   })
@@ -255,20 +264,23 @@ bool test_cxx_shmem_collect(void) {
  * @return True if the test is successful, false otherwise.
  */
 /****************************************************************/
-#define TEST_CXX_SHMEM_FCOLLECT(BITS)                                \
+#define TEST_CXX_SHMEM_FCOLLECT(BITS)                                          \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
-    long *pSync = (long *) shmem_malloc(sizeof(long) * SHMEM_COLLECT_SYNC_SIZE); \
-    for (size_t i = 0; i < SHMEM_COLLECT_SYNC_SIZE; ++i) { \
-      pSync[i] = SHMEM_SYNC_VALUE;                                      \
+    long *pSync =                                                              \
+        (long *)shmem_malloc(sizeof(long) * SHMEM_COLLECT_SYNC_SIZE);          \
+    for (size_t i = 0; i < SHMEM_COLLECT_SYNC_SIZE; ++i) {                     \
+      pSync[i] = SHMEM_SYNC_VALUE;                                             \
     }                                                                          \
-    uint ## BITS ## _t *src = (uint ## BITS ## _t *)shmem_malloc(sizeof(uint ## BITS ## _t));                            \
-    uint ## BITS ## _t *dest = (uint ## BITS ## _t *)shmem_malloc(npes * sizeof(uint ## BITS ## _t));                    \
+    uint##BITS##_t *src =                                                      \
+        (uint##BITS##_t *)shmem_malloc(sizeof(uint##BITS##_t));                \
+    uint##BITS##_t *dest =                                                     \
+        (uint##BITS##_t *)shmem_malloc(npes * sizeof(uint##BITS##_t));         \
                                                                                \
     src[0] = mype;                                                             \
                                                                                \
-    shmem_fcollect ## BITS (dest, src, 1, 0, 0, npes, pSync);               \
+    shmem_fcollect##BITS(dest, src, 1, 0, 0, npes, pSync);                     \
                                                                                \
     bool success = true;                                                       \
     for (int i = 0; i < npes; ++i) {                                           \
@@ -280,7 +292,7 @@ bool test_cxx_shmem_collect(void) {
                                                                                \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
-    shmem_free(pSync); \
+    shmem_free(pSync);                                                         \
                                                                                \
     success;                                                                   \
   })
@@ -307,10 +319,10 @@ bool test_cxx_shmem_fcollect(void) {
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
-    long *pSync = (long *) shmem_malloc(sizeof(long) * SHMEM_REDUCE_SYNC_SIZE); \
-    TYPE *pWrk = (TYPE *) shmem_malloc(sizeof(TYPE) * npes); \
-    for (size_t i = 0; i < SHMEM_REDUCE_SYNC_SIZE; ++i) { \
-      pSync[i] = SHMEM_SYNC_VALUE;                                      \
+    long *pSync = (long *)shmem_malloc(sizeof(long) * SHMEM_REDUCE_SYNC_SIZE); \
+    TYPE *pWrk = (TYPE *)shmem_malloc(sizeof(TYPE) * npes);                    \
+    for (size_t i = 0; i < SHMEM_REDUCE_SYNC_SIZE; ++i) {                      \
+      pSync[i] = SHMEM_SYNC_VALUE;                                             \
     }                                                                          \
                                                                                \
     TYPE *src = (TYPE *)shmem_malloc(sizeof(TYPE));                            \
@@ -318,15 +330,15 @@ bool test_cxx_shmem_fcollect(void) {
                                                                                \
     *src = mype;                                                               \
                                                                                \
-    shmem_##TYPENAME##_sum_to_all(dest, src, 1, 0, 0, npes, pWrk, pSync);             \
+    shmem_##TYPENAME##_sum_to_all(dest, src, 1, 0, 0, npes, pWrk, pSync);      \
                                                                                \
     TYPE expected_sum = npes * (npes - 1) / 2;                                 \
     bool success = (*dest == expected_sum);                                    \
                                                                                \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
-    shmem_free(pSync); \
-    shmem_free(pWrk); \
+    shmem_free(pSync);                                                         \
+    shmem_free(pWrk);                                                          \
                                                                                \
     success;                                                                   \
   })
@@ -355,10 +367,10 @@ bool test_cxx_shmem_sum_reduce(void) {
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
-    long *pSync = (long *) shmem_malloc(sizeof(long) * SHMEM_REDUCE_SYNC_SIZE); \
-    TYPE *pWrk = (TYPE *) shmem_malloc(sizeof(TYPE) * npes); \
-    for (size_t i = 0; i < SHMEM_REDUCE_SYNC_SIZE; ++i) { \
-      pSync[i] = SHMEM_SYNC_VALUE;                                      \
+    long *pSync = (long *)shmem_malloc(sizeof(long) * SHMEM_REDUCE_SYNC_SIZE); \
+    TYPE *pWrk = (TYPE *)shmem_malloc(sizeof(TYPE) * npes);                    \
+    for (size_t i = 0; i < SHMEM_REDUCE_SYNC_SIZE; ++i) {                      \
+      pSync[i] = SHMEM_SYNC_VALUE;                                             \
     }                                                                          \
                                                                                \
     TYPE *src = (TYPE *)shmem_malloc(sizeof(TYPE));                            \
@@ -366,7 +378,7 @@ bool test_cxx_shmem_sum_reduce(void) {
                                                                                \
     *src = mype + 1;                                                           \
                                                                                \
-    shmem_##TYPENAME##_prod_to_all(dest, src, 1, 0, 0, npes, pWrk, pSync);            \
+    shmem_##TYPENAME##_prod_to_all(dest, src, 1, 0, 0, npes, pWrk, pSync);     \
                                                                                \
     TYPE expected_prod = 1;                                                    \
     for (int i = 1; i <= npes; i++) {                                          \
@@ -377,8 +389,8 @@ bool test_cxx_shmem_sum_reduce(void) {
                                                                                \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
-    shmem_free(pSync); \
-    shmem_free(pWrk); \
+    shmem_free(pSync);                                                         \
+    shmem_free(pWrk);                                                          \
                                                                                \
     success;                                                                   \
   })
@@ -406,10 +418,10 @@ bool test_cxx_shmem_prod_reduce(void) {
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
-    long *pSync = (long *) shmem_malloc(sizeof(long) * SHMEM_REDUCE_SYNC_SIZE); \
-    TYPE *pWrk = (TYPE *) shmem_malloc(sizeof(TYPE) * npes); \
-    for (size_t i = 0; i < SHMEM_REDUCE_SYNC_SIZE; ++i) { \
-      pSync[i] = SHMEM_SYNC_VALUE;                                      \
+    long *pSync = (long *)shmem_malloc(sizeof(long) * SHMEM_REDUCE_SYNC_SIZE); \
+    TYPE *pWrk = (TYPE *)shmem_malloc(sizeof(TYPE) * npes);                    \
+    for (size_t i = 0; i < SHMEM_REDUCE_SYNC_SIZE; ++i) {                      \
+      pSync[i] = SHMEM_SYNC_VALUE;                                             \
     }                                                                          \
                                                                                \
     TYPE *src = (TYPE *)shmem_malloc(sizeof(TYPE));                            \
@@ -417,14 +429,14 @@ bool test_cxx_shmem_prod_reduce(void) {
                                                                                \
     *src = mype;                                                               \
                                                                                \
-    shmem_##TYPENAME##_min_to_all(dest, src, 1, 0, 0, npes, pWrk, pSync);             \
+    shmem_##TYPENAME##_min_to_all(dest, src, 1, 0, 0, npes, pWrk, pSync);      \
                                                                                \
     bool success = (*dest == 0);                                               \
                                                                                \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
-    shmem_free(pSync); \
-    shmem_free(pWrk); \
+    shmem_free(pSync);                                                         \
+    shmem_free(pWrk);                                                          \
                                                                                \
     success;                                                                   \
   })
@@ -453,9 +465,9 @@ bool test_cxx_shmem_min_reduce(void) {
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
-    long *pSync = (long *) shmem_malloc(sizeof(long) * SHMEM_REDUCE_SYNC_SIZE);               \
-    TYPE *pWrk = (TYPE *) shmem_malloc(sizeof(TYPE) * npes);                   \
-    for (size_t i = 0; i < SHMEM_REDUCE_SYNC_SIZE; ++i) {       \
+    long *pSync = (long *)shmem_malloc(sizeof(long) * SHMEM_REDUCE_SYNC_SIZE); \
+    TYPE *pWrk = (TYPE *)shmem_malloc(sizeof(TYPE) * npes);                    \
+    for (size_t i = 0; i < SHMEM_REDUCE_SYNC_SIZE; ++i) {                      \
       pSync[i] = SHMEM_SYNC_VALUE;                                             \
     }                                                                          \
                                                                                \
@@ -470,8 +482,8 @@ bool test_cxx_shmem_min_reduce(void) {
                                                                                \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
-    shmem_free(pSync); \
-    shmem_free(pWrk); \
+    shmem_free(pSync);                                                         \
+    shmem_free(pWrk);                                                          \
                                                                                \
     success;                                                                   \
   })
