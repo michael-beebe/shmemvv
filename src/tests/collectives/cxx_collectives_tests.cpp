@@ -4,6 +4,7 @@
  */
 
 #include "cxx_collectives_tests.h"
+#include <iostream>
 
 /****************************************************************/
 /**
@@ -74,6 +75,7 @@ bool test_cxx_shmem_sync_all(void) { return TEST_CXX_SHMEM_SYNC_ALL(); }
                                                                                \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
+    shmem_free(pSync); \
                                                                                \
     success;                                                                   \
   })
@@ -123,6 +125,7 @@ bool test_cxx_shmem_alltoall(void) {
                                                                                \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
+    shmem_free(pSync); \
                                                                                \
     success;                                                                   \
   })
@@ -153,35 +156,35 @@ bool test_cxx_shmem_alltoalls(void) {
       pSync[i] = SHMEM_SYNC_VALUE;                                      \
     }                                                                          \
                                                                                \
-    uint ## BITS ## _t *src = (uint ## BITS ## _t *)shmem_malloc(4 * sizeof(uint ## BITS ## _t));                        \
-    uint ## BITS ## _t *dest = (uint ## BITS ## _t *)shmem_malloc(4 * sizeof(uint ## BITS ## _t));                       \
+    int ## BITS ## _t *src = (int ## BITS ## _t *)shmem_malloc(4 * sizeof(int ## BITS ## _t));                        \
                                                                                \
     if (mype == 0) {                                                           \
       for (int i = 0; i < 4; ++i) {                                            \
         src[i] = i + 1;                                                        \
       }                                                                        \
-    }                                                                          \
-                                                                               \
+    } else { \
     for (int i = 0; i < 4; ++i) {                                              \
-      dest[i] = -1;                                                            \
+      src[i] = -1;                                                            \
     }                                                                          \
+    }                                                                   \
+                                                                               \
                                                                                \
     shmem_barrier_all();                                                       \
                                                                                \
-    shmem_broadcast ## BITS (dest, src, 4, 0, 0, 0, npes, pSync);           \
+    shmem_broadcast ## BITS (src, src, 4, 0, 0, 0, npes, pSync);           \
                                                                                \
     shmem_barrier_all();                                                       \
                                                                                \
-    bool success = true;                                                       \
-    for (int i = 0; i < 4; ++i) {                                              \
-      if (dest[i] != i + 1) {                                                  \
-        success = false;                                                       \
-        break;                                                                 \
-      }                                                                        \
-    }                                                                          \
+    bool success = true;                                                    \
+    for (int i = 0; i < 4; ++i) {                                           \
+      if (src[i] != i + 1) {                                           \
+                success = false;                                        \
+                    break;                                              \
+          }                                                             \
+    }                                                                   \
                                                                                \
     shmem_free(src);                                                           \
-    shmem_free(dest);                                                          \
+    shmem_free(pSync); \
                                                                                \
     success;                                                                   \
   })
@@ -229,6 +232,7 @@ bool test_cxx_shmem_broadcast(void) {
                                                                                \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
+    shmem_free(pSync); \
                                                                                \
     success;                                                                   \
   })
@@ -276,6 +280,7 @@ bool test_cxx_shmem_collect(void) {
                                                                                \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
+    shmem_free(pSync); \
                                                                                \
     success;                                                                   \
   })
@@ -320,6 +325,8 @@ bool test_cxx_shmem_fcollect(void) {
                                                                                \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
+    shmem_free(pSync); \
+    shmem_free(pWrk); \
                                                                                \
     success;                                                                   \
   })
@@ -370,6 +377,8 @@ bool test_cxx_shmem_sum_reduce(void) {
                                                                                \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
+    shmem_free(pSync); \
+    shmem_free(pWrk); \
                                                                                \
     success;                                                                   \
   })
@@ -414,6 +423,8 @@ bool test_cxx_shmem_prod_reduce(void) {
                                                                                \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
+    shmem_free(pSync); \
+    shmem_free(pWrk); \
                                                                                \
     success;                                                                   \
   })
@@ -459,6 +470,8 @@ bool test_cxx_shmem_min_reduce(void) {
                                                                                \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
+    shmem_free(pSync); \
+    shmem_free(pWrk); \
                                                                                \
     success;                                                                   \
   })
