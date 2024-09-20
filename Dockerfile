@@ -33,8 +33,8 @@ WORKDIR /scratch
 RUN git clone https://github.com/Sandia-OpenSHMEM/SOS.git sos
 WORKDIR /scratch/sos
 #RUN git submodule update --init # for trunk
-#RUN git checkout e616ba00c21fe7983840527ec3abea0672fdf003 # for shmem 1.5
-RUN git checkout 1f89a0f04f1e303c09b3f482d1476adab1c21691 # for shmem 1.4
+RUN git checkout e616ba00c21fe7983840527ec3abea0672fdf003 # for shmem 1.5
+#RUN git checkout 1f89a0f04f1e303c09b3f482d1476adab1c21691 # for shmem 1.4
 RUN ./autogen.sh
 RUN ./configure --prefix=/scratch/sos-bin         \
                 --with-ofi=/scratch/libfabric-bin \
