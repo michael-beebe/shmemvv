@@ -1,17 +1,23 @@
+## NOTICE
+
+This branch of SHMEMVV will ONLY test OpenSHMEM 1.4 routines. You probably want the main branch, which will
+follow OpenSHMEM's latest version.
+
 # SHMEMVV
-Verification & Validation (V&V) suite for the [OpenSHMEM v1.5 specification](http://www.openshmem.org/site/sites/default/site_files/OpenSHMEM-1.5.pdf)
+Verification & Validation (V&V) suite for the [OpenSHMEM v1.4 specification](http://www.openshmem.org/site/sites/default/site_files/OpenSHMEM-1.4.pdf)
 
 ![Logo](extra/logo.png)
 
 ## Requirements
 
-- Implementation of the OpenSHMEM v1.5
+- Implementation of the OpenSHMEM v1.4
 - CMake 3.10 or greater
 
 ## Limitations
 There are a few limitations to SHMEMVV that are currently being addressed:
 
-- ONLY supports the implementations that adhere to the 1.5 specification, if you try to run this on an older OpenSHMEM implementation, you WILL get compiler errors.
+- ONLY supports the implementations that adhere to the 1.4 specification, if you try to run this on an older OpenSHMEM implementation, you WILL get compiler errors.
+  May build on newer implementations, but you WILL get warnings.
 
 - No debug output or logging.
 
@@ -22,6 +28,8 @@ $ cd build
 $ export CC=`which oshcc` ; export CXX=`which oshc++`
 $ cmake ../
 ```
+
+For a more comphrehensive build environment, see the [Dockerfile](Dockerfile).
 
 ## Tests
 By default, SHMEMVV will run all the tests, but if you want to only run a specific set or sets of tests, you can use one of these runtime flags. For example, this command will run the tests for the communication/context management routines.
@@ -37,7 +45,6 @@ Options:
   --test_setup         Run setup tests
   --test_threads       Run thread support tests
   --test_mem           Run memory management tests
-  --test_teams         Run team management tests
   --test_ctx           Run communication management tests
   --test_remote        Run remote memory access tests
   --test_atomics       Run atomic memory operations tests
@@ -88,26 +95,12 @@ Will test the following routines:
 - shmem_malloc_with_hints()
 - shmem_calloc()
 
-#### Team Managment Routines
-```
---test_teams
-```
-Will test the following routines:
-- shmem_team_my_pe()
-- shmem_team_n_pes()
-- shmem_team_get_config()
-- shmem_team_translate_pe()
-- shmem_team_split_strided()
-- shmem_team_split_2d()
-- shmem_team_destroy()
-
 #### Communication/Context Management Routines
 ```
 --test_ctx
 ```
 Will test the following routines:
 - shmem_ctx_create()
-- shmem_team_create_ctx()
 - shmem_ctx_destroy()
 - shmem_ctx_get_team()
 

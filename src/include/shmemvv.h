@@ -35,7 +35,7 @@ typedef struct {
   bool test_setup;             /**< Flag to run setup tests */
   bool test_threads;           /**< Flag to run thread support tests */
   bool test_mem;               /**< Flag to run memory management tests */
-  bool test_teams;             /**< Flag to run team management tests */
+  bool test_teams;             /**< Flag to run team management tests. No-op. */
   bool test_ctx;               /**< Flag to run communication management tests */
   bool test_remote;            /**< Flag to run remote memory access tests */
   bool test_atomics;           /**< Flag to run atomic memory operations tests */

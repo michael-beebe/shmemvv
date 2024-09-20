@@ -19,7 +19,6 @@ void display_help() {
   printf("  --test_setup         Run setup tests\n");
   printf("  --test_threads       Run thread support tests\n");
   printf("  --test_mem           Run memory management tests\n");
-  printf("  --test_teams         Run team management tests\n");
   printf("  --test_ctx           Run communication/context management tests\n");
   printf("  --test_remote        Run remote memory access tests\n");
   printf("  --test_atomics       Run atomic memory operations tests\n");
