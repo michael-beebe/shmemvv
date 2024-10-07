@@ -3,8 +3,8 @@
 #####################################
 
 # ---- Specify C++ standard
-# set(CMAKE_CXX_STANDARD 11)
-# set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # --- Specify C standard
 set(CMAKE_C_STANDARD 11)
@@ -51,6 +51,10 @@ target_link_libraries(
   c11_signaling_tests
   c11_collectives_tests
   c11_pt2pt_tests
+
+  # --- Link against libdl
+  # FIXME: didn't need this before, possibly take out
+  dl
 )
 
 # ---- Specify the output directory for the executable
@@ -58,8 +62,9 @@ set_target_properties(shmemvv PROPERTIES
   RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
 )
 
-# ---- Add the tests directory
+# ---- Add subdirs
 add_subdirectory(tests)
+add_subdirectory(unit)
 
 # ---- Install the main executable
 install(TARGETS shmemvv

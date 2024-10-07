@@ -1,8 +1,6 @@
 #####################################
-# src/unit/CMakeLists.txt
+# src/unit/c/CMakeLists.txt
 #####################################
 
 # --- Add subdirectories
-add_subdirectory(c)
-add_subdirectory(cxx)
-add_subdirectory(c11)
+add_subdirectory(atomics)

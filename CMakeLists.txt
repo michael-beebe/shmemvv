@@ -21,12 +21,12 @@ if (VERBOSE)
 endif()
 
 # ---- Check for dlfcn.h
-include(CheckIncludeFile)
-check_include_file("dlfcn.h" HAVE_DLFCN_H)
+# include(CheckIncludeFile)
+# check_include_file("dlfcn.h" HAVE_DLFCN_H)
 
-if (NOT HAVE_DLFCN_H)
-  message(FATAL_ERROR "dlfcn.h not found, but required!")
-endif()
+# if (NOT HAVE_DLFCN_H)
+#   message(FATAL_ERROR "dlfcn.h not found, but required!")
+# endif()
 
 # ---- Add include directory
 include_directories(${CMAKE_SOURCE_DIR}/src/include)
