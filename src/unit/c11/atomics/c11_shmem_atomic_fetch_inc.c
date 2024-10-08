@@ -1,6 +1,6 @@
 /**
- * @file c_shmem_atomic_set.c
- * @brief Unit test for shmem_atomic_set
+ * @file c11_shmem_atomic_fetch_inc.c
+ * @brief Unit test for shmem_atomic_fetch_inc
  */
 
 #include <shmem.h>
@@ -11,24 +11,22 @@
 
 #include "shmemvv.h"
 
-#define TEST_C_SHMEM_ATOMIC_SET(TYPE, TYPENAME)                                \
+#define TEST_C11_SHMEM_ATOMIC_FETCH_INC(TYPE)                        \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
-    static TYPE set;                                                          \
+    static TYPE fetch;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
     TYPE value = 42;                                                           \
     *dest = value;                                                             \
     shmem_barrier_all();                                                       \
     int mype = shmem_my_pe();                                                  \
-    shmem_##TYPENAME##_atomic_set(dest, value, mype);                                        \
+    fetch = shmem_atomic_fetch_inc(dest, mype);                   \
     shmem_barrier_all();                                                       \
-    success = (*dest == value);                                                  \
+    success = (fetch == value && *dest == value + 1);                          \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })
-
-// TODO: add macro for the ctx version
 
 int main(int argc, char *argv[]) {
   shmem_init();
@@ -36,28 +34,28 @@ int main(int argc, char *argv[]) {
   bool result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_C_SHMEM_ATOMIC_SET(int, int);
-  result &= TEST_C_SHMEM_ATOMIC_SET(long, long);
-  result &= TEST_C_SHMEM_ATOMIC_SET(long long, longlong);
-  result &= TEST_C_SHMEM_ATOMIC_SET(unsigned int, uint);
-  result &= TEST_C_SHMEM_ATOMIC_SET(unsigned long, ulong);
-  result &= TEST_C_SHMEM_ATOMIC_SET(unsigned long long, ulonglong);
-  result &= TEST_C_SHMEM_ATOMIC_SET(int32_t, int32);
-  result &= TEST_C_SHMEM_ATOMIC_SET(int64_t, int64);
-  result &= TEST_C_SHMEM_ATOMIC_SET(uint32_t, uint32);
-  result &= TEST_C_SHMEM_ATOMIC_SET(uint64_t, uint64);
-  result &= TEST_C_SHMEM_ATOMIC_SET(size_t, size);
-  result &= TEST_C_SHMEM_ATOMIC_SET(ptrdiff_t, ptrdiff);
+  result &= TEST_C11_SHMEM_ATOMIC_FETCH_INC(int);
+  result &= TEST_C11_SHMEM_ATOMIC_FETCH_INC(long);
+  result &= TEST_C11_SHMEM_ATOMIC_FETCH_INC(long long);
+  result &= TEST_C11_SHMEM_ATOMIC_FETCH_INC(unsigned int);
+  result &= TEST_C11_SHMEM_ATOMIC_FETCH_INC(unsigned long);
+  result &= TEST_C11_SHMEM_ATOMIC_FETCH_INC(unsigned long long);
+  result &= TEST_C11_SHMEM_ATOMIC_FETCH_INC(int32_t);
+  result &= TEST_C11_SHMEM_ATOMIC_FETCH_INC(int64_t);
+  result &= TEST_C11_SHMEM_ATOMIC_FETCH_INC(uint32_t);
+  result &= TEST_C11_SHMEM_ATOMIC_FETCH_INC(uint64_t);
+  result &= TEST_C11_SHMEM_ATOMIC_FETCH_INC(size_t);
+  result &= TEST_C11_SHMEM_ATOMIC_FETCH_INC(ptrdiff_t);
 
   shmem_barrier_all();
 
   if (result) {
     if (shmem_my_pe() == 0) {
-      display_test_result("C shmem_atomic_set()", result, false);
+      display_test_result("C11 shmem_atomic_fetch_inc()", result, false);
     }
   } else {
     if (shmem_my_pe() == 0) {
-      display_test_result("C shmem_atomic_set()", result, false);
+      display_test_result("C11 shmem_atomic_fetch_inc()", result, false);
       rc = EXIT_FAILURE;
     }
   }
