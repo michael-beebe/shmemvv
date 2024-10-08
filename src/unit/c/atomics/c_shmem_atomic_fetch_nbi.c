@@ -1,6 +1,6 @@
 /**
- * @file c_shmem_atomic_fetch.c
- * @brief Unit test for shmem_atomic_fetch
+ * @file c_shmem_atomic_fetch_nbi.c
+ * @brief Unit test for shmem_atomic_fetch_nbi
  */
 
 #include <shmem.h>
@@ -11,7 +11,7 @@
 
 #include "shmemvv.h"
 
-#define TEST_C_SHMEM_ATOMIC_FETCH(TYPE, TYPENAME)                              \
+#define TEST_C_SHMEM_ATOMIC_FETCH_NBI(TYPE, TYPENAME)                        \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
@@ -21,7 +21,8 @@
     *dest = value;                                                             \
     shmem_barrier_all();                                                       \
     int mype = shmem_my_pe();                                                  \
-    fetch = shmem_##TYPENAME##_atomic_fetch(dest, mype);                       \
+    shmem_##TYPENAME##_atomic_fetch_nbi(&fetch, dest, mype);                   \
+    shmem_quiet();                                                             \
     shmem_barrier_all();                                                       \
     success = (fetch == value);                                                \
     shmem_free(dest);                                                          \
@@ -34,32 +35,30 @@ int main(int argc, char *argv[]) {
   bool result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_C_SHMEM_ATOMIC_FETCH(int, int);
-  result &= TEST_C_SHMEM_ATOMIC_FETCH(long, long);
-  result &= TEST_C_SHMEM_ATOMIC_FETCH(long long, longlong);
-  result &= TEST_C_SHMEM_ATOMIC_FETCH(unsigned int, uint);
-  result &= TEST_C_SHMEM_ATOMIC_FETCH(unsigned long, ulong);
-  result &= TEST_C_SHMEM_ATOMIC_FETCH(unsigned long long, ulonglong);
-  result &= TEST_C_SHMEM_ATOMIC_FETCH(int32_t, int32);
-  result &= TEST_C_SHMEM_ATOMIC_FETCH(int64_t, int64);
-  result &= TEST_C_SHMEM_ATOMIC_FETCH(uint32_t, uint32);
-  result &= TEST_C_SHMEM_ATOMIC_FETCH(uint64_t, uint64);
-  result &= TEST_C_SHMEM_ATOMIC_FETCH(size_t, size);
-  result &= TEST_C_SHMEM_ATOMIC_FETCH(ptrdiff_t, ptrdiff);
+  result &= TEST_C_SHMEM_ATOMIC_FETCH_NBI(int, int);
+  result &= TEST_C_SHMEM_ATOMIC_FETCH_NBI(long, long);
+  result &= TEST_C_SHMEM_ATOMIC_FETCH_NBI(long long, longlong);
+  result &= TEST_C_SHMEM_ATOMIC_FETCH_NBI(unsigned int, uint);
+  result &= TEST_C_SHMEM_ATOMIC_FETCH_NBI(unsigned long, ulong);
+  result &= TEST_C_SHMEM_ATOMIC_FETCH_NBI(unsigned long long, ulonglong);
+  result &= TEST_C_SHMEM_ATOMIC_FETCH_NBI(int32_t, int32);
+  result &= TEST_C_SHMEM_ATOMIC_FETCH_NBI(int64_t, int64);
+  result &= TEST_C_SHMEM_ATOMIC_FETCH_NBI(uint32_t, uint32);
+  result &= TEST_C_SHMEM_ATOMIC_FETCH_NBI(uint64_t, uint64);
+  result &= TEST_C_SHMEM_ATOMIC_FETCH_NBI(size_t, size);
+  result &= TEST_C_SHMEM_ATOMIC_FETCH_NBI(ptrdiff_t, ptrdiff);
 
   shmem_barrier_all();
 
   if (result) {
     if (shmem_my_pe() == 0) {
-      display_test_result("C shmem_atomic_fetch()", result, false);
+      display_test_result("C shmem_atomic_fetch_nbi()", result, false);
     }
   } else {
     if (shmem_my_pe() == 0) {
-      display_test_result("C shmem_atomic_fetch()", result, false);
+      display_test_result("C shmem_atomic_fetch_nbi()", result, false);
       rc = EXIT_FAILURE;
     }
   }
-
-  shmem_finalize();
   return rc;
 }

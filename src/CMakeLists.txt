@@ -19,7 +19,7 @@ link_directories(${CMAKE_LIBRARY_PATH})
 # ---- Collect source files
 set(SOURCES
   main.cpp
-  shmemvv.cpp
+  shmemvv.c
 )
 
 # ---- Add the main executable
