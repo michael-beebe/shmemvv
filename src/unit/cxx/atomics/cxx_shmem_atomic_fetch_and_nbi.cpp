@@ -1,6 +1,6 @@
 /**
- * @file c11_shmem_atomic_fetch_or.c
- * @brief Unit test for shmem_atomic_fetch_or
+ * @file cxx_shmem_atomic_fetch_and_nbi.cpp
+ * @brief Unit test for shmem_atomic_fetch_and_nbi
  */
 
 #include <shmem.h>
@@ -11,19 +11,21 @@
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_ATOMIC_FETCH_OR(TYPE)                         \
+#define TEST_CXX_SHMEM_ATOMIC_FETCH_AND_NBI(TYPE, TYPENAME)                    \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
     static TYPE fetch;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
-    TYPE value = 42, or_val = 15;                                              \
+    fetch = 0;                                                                 \
+    TYPE value = 42, and_val = 15;                                             \
     *dest = value;                                                             \
     shmem_barrier_all();                                                       \
     int mype = shmem_my_pe();                                                  \
-    fetch = shmem_atomic_fetch_or(dest, or_val, mype);            \
+    shmem_##TYPENAME##_atomic_fetch_and_nbi(&fetch, dest, and_val, mype);      \
+    shmem_quiet();                                                             \
     shmem_barrier_all();                                                       \
-    success = (fetch == value && *dest == (value | or_val));                   \
+    success = (fetch == value && *dest == (value & and_val));                  \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })
@@ -33,24 +35,24 @@ int main(int argc, char *argv[]) {
 
   bool result = true;
   int rc = EXIT_SUCCESS;
-
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_OR(unsigned int);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_OR(unsigned long);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_OR(unsigned long long);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_OR(int32_t);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_OR(int64_t);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_OR(uint32_t);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_OR(uint64_t);
+  
+  result &= TEST_CXX_SHMEM_ATOMIC_FETCH_AND_NBI(unsigned int, uint);
+  result &= TEST_CXX_SHMEM_ATOMIC_FETCH_AND_NBI(unsigned long, ulong);
+  result &= TEST_CXX_SHMEM_ATOMIC_FETCH_AND_NBI(unsigned long long, ulonglong);
+  result &= TEST_CXX_SHMEM_ATOMIC_FETCH_AND_NBI(int32_t, int32);
+  result &= TEST_CXX_SHMEM_ATOMIC_FETCH_AND_NBI(int64_t, int64);
+  result &= TEST_CXX_SHMEM_ATOMIC_FETCH_AND_NBI(uint32_t, uint32);
+  result &= TEST_CXX_SHMEM_ATOMIC_FETCH_AND_NBI(uint64_t, uint64);
 
   shmem_barrier_all();
 
   if (result) {
     if (shmem_my_pe() == 0) {
-      display_test_result("C11 shmem_atomic_fetch_or()", result, false);
+      display_test_result("CXX shmem_atomic_fetch_and_nbi()", result, false);
     }
   } else {
     if (shmem_my_pe() == 0) {
-      display_test_result("C11 shmem_atomic_fetch_or()", result, false);
+      display_test_result("CXX shmem_atomic_fetch_and_nbi()", result, false);
       rc = EXIT_FAILURE;
     }
   }

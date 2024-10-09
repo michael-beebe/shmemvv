@@ -62,5 +62,7 @@ int main(int argc, char *argv[]) {
       rc = EXIT_FAILURE;
     }
   }
+
+  shmem_finalize();
   return rc;
 }

@@ -55,5 +55,6 @@ int main(int argc, char *argv[]) {
     }
   }
 
+  shmem_finalize();
   return rc;
 }

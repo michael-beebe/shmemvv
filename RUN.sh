@@ -2,7 +2,23 @@
 
 # --- Set bin directory
 BIN_DIR=$(pwd)/build/bin
+ATOMIC_BIN=$BIN_DIR/atomics
 
-# ----------- Atomics -----------
+# ----------- Atomics ------------
+# --- C11
+for executable in $ATOMIC_BIN/c11_*; do
+  oshrun -np 2 $executable
+done
+
 # --- C
-oshrun -np 2 $BIN_DIR/c_shmem_atomic_fetch
+for executable in $ATOMIC_BIN/c_*; do
+  oshrun -np 2 $executable
+done
+
+# --- CXX
+for executable in $ATOMIC_BIN/cxx_*; do
+  oshrun -np 2 $executable
+done
+
+# --------- Collectives ----------
+

@@ -1,5 +1,5 @@
 /**
- * @file c11_shmem_atomic_compare_swap_nbi.c
+ * @file cxx_shmem_atomic_compare_swap_nbi.cpp
  * @brief Unit test for shmem_atomic_compare_swap_nbi
  */
 
@@ -11,7 +11,7 @@
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP_NBI(TYPE)                 \
+#define TEST_CXX_SHMEM_ATOMIC_COMPARE_SWAP_NBI(TYPE, TYPENAME)                 \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
@@ -22,8 +22,8 @@
     *dest = old;                                                               \
     shmem_barrier_all();                                                       \
     int mype = shmem_my_pe();                                                  \
-    shmem_atomic_compare_swap_nbi(&fetch, dest, old, new_val,                  \
-                                  mype);                                       \
+    shmem_##TYPENAME##_atomic_compare_swap_nbi(&fetch, dest, old, new_val,     \
+                                               mype);                          \
     shmem_quiet();                                                             \
     shmem_barrier_all();                                                       \
     success = (fetch == old && *dest == new_val);                              \
@@ -37,28 +37,28 @@ int main(int argc, char *argv[]) {
   bool result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP_NBI(int);
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP_NBI(long);
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP_NBI(long long);
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP_NBI(unsigned int);
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP_NBI(unsigned long);
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP_NBI(unsigned long long);
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP_NBI(int32_t);
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP_NBI(int64_t);
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP_NBI(uint32_t);
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP_NBI(uint64_t);
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP_NBI(size_t);
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP_NBI(ptrdiff_t);
+  result &= TEST_CXX_SHMEM_ATOMIC_COMPARE_SWAP_NBI(int, int);
+  result &= TEST_CXX_SHMEM_ATOMIC_COMPARE_SWAP_NBI(long, long);
+  result &= TEST_CXX_SHMEM_ATOMIC_COMPARE_SWAP_NBI(long long, longlong);
+  result &= TEST_CXX_SHMEM_ATOMIC_COMPARE_SWAP_NBI(unsigned int, uint);
+  result &= TEST_CXX_SHMEM_ATOMIC_COMPARE_SWAP_NBI(unsigned long, ulong);
+  result &= TEST_CXX_SHMEM_ATOMIC_COMPARE_SWAP_NBI(unsigned long long, ulonglong);
+  result &= TEST_CXX_SHMEM_ATOMIC_COMPARE_SWAP_NBI(int32_t, int32);
+  result &= TEST_CXX_SHMEM_ATOMIC_COMPARE_SWAP_NBI(int64_t, int64);
+  result &= TEST_CXX_SHMEM_ATOMIC_COMPARE_SWAP_NBI(uint32_t, uint32);
+  result &= TEST_CXX_SHMEM_ATOMIC_COMPARE_SWAP_NBI(uint64_t, uint64);
+  result &= TEST_CXX_SHMEM_ATOMIC_COMPARE_SWAP_NBI(size_t, size);
+  result &= TEST_CXX_SHMEM_ATOMIC_COMPARE_SWAP_NBI(ptrdiff_t, ptrdiff);
 
   shmem_barrier_all();
 
   if (result) {
     if (shmem_my_pe() == 0) {
-      display_test_result("C11 shmem_atomic_compare_swap_nbi()", result, false);
+      display_test_result("CXX shmem_atomic_compare_swap_nbi()", result, false);
     }
   } else {
     if (shmem_my_pe() == 0) {
-      display_test_result("C11 shmem_atomic_compare_swap_nbi()", result, false);
+      display_test_result("CXX shmem_atomic_compare_swap_nbi()", result, false);
       rc = EXIT_FAILURE;
     }
   }
