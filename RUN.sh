@@ -5,6 +5,7 @@ BIN_DIR=$(pwd)/build/bin
 ATOMIC_BIN=$BIN_DIR/atomics
 COLLECTIVE_BIN=$BIN_DIR/collectives
 RMA_BIN=$BIN_DIR/rma
+CTX_BIN=$BIN_DIR/ctx
 
 # ----------- Atomics ------------
 # # --- C
@@ -33,15 +34,21 @@ RMA_BIN=$BIN_DIR/rma
 #   oshrun -np 2 $executable
 # done
 
-# ----------- Pt2pr RMA ----------
-# --- C11
+# ----------- Pt2pt RMA ----------
+# # --- C11
 
+# # --- C
+# for executable in $RMA_BIN/c_*; do
+#   oshrun -np 2 $executable
+# done
+
+# # --- C11
+# for executable in $RMA_BIN/c11_*; do
+#   oshrun -np 2 $executable
+# done
+
+# ----------- Contexts ------------
 # --- C
-for executable in $RMA_BIN/c_*; do
-  oshrun -np 2 $executable
-done
-
-# --- C11
-for executable in $RMA_BIN/c11_*; do
+for executable in $CTX_BIN/c_*; do
   oshrun -np 2 $executable
 done

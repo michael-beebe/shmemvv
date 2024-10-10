@@ -84,7 +84,7 @@ int main(int argc, char *argv[]) {
     }
   } else {
     if (shmem_my_pe() == 0) {
-      display_test_result("C shmem_g()", result, true);
+      display_test_result("C shmem_g()", result, false);
       rc = EXIT_FAILURE;
     }
   }

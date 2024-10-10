@@ -22,5 +22,5 @@ cd ../
 echo ; echo
 
 # --- Run tests
-# ./RUN.sh
+./RUN.sh
 

@@ -91,7 +91,7 @@ int main(int argc, char *argv[]) {
     }
   } else {
     if (shmem_my_pe() == 0) {
-      display_test_result("C11 shmem_get_nbi()", result, true);
+      display_test_result("C11 shmem_get_nbi()", result, false);
       rc = EXIT_FAILURE;
     }
   }
