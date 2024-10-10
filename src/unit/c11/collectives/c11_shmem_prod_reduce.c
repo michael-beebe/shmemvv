@@ -1,11 +1,11 @@
 /**
- * @file c_shmem_prod_reduce.c
+ * @file c11_shmem_prod_reduce.c
  * @brief Unit test for shmem_prod_reduce().
  */
 
 #include "shmemvv.h"
 
-#define TEST_C_SHMEM_PROD_REDUCE(TYPE, TYPENAME) \
+#define TEST_C11_SHMEM_PROD_REDUCE(TYPE) \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
@@ -15,7 +15,7 @@
                                                                                \
     *src = mype + 1;                                                           \
                                                                                \
-    shmem_##TYPENAME##_prod_reduce(SHMEM_TEAM_WORLD, dest, src, 1);            \
+    shmem_prod_reduce(SHMEM_TEAM_WORLD, dest, src, 1);            \
                                                                                \
     TYPE expected_prod = 1;                                                    \
     for (int i = 1; i <= npes; i++) {                                          \
@@ -36,40 +36,40 @@ int main(int argc, char *argv[]) {
   bool result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_C_SHMEM_PROD_REDUCE(float, float);
-  result &= TEST_C_SHMEM_PROD_REDUCE(double, double);
-  result &= TEST_C_SHMEM_PROD_REDUCE(long double, longdouble);
-  result &= TEST_C_SHMEM_PROD_REDUCE(char, char);
-  result &= TEST_C_SHMEM_PROD_REDUCE(signed char, schar);
-  result &= TEST_C_SHMEM_PROD_REDUCE(short, short);
-  result &= TEST_C_SHMEM_PROD_REDUCE(int, int);
-  result &= TEST_C_SHMEM_PROD_REDUCE(long, long);
-  result &= TEST_C_SHMEM_PROD_REDUCE(long long, longlong);
-  result &= TEST_C_SHMEM_PROD_REDUCE(unsigned char, uchar);
-  result &= TEST_C_SHMEM_PROD_REDUCE(unsigned short, ushort);
-  result &= TEST_C_SHMEM_PROD_REDUCE(unsigned int, uint);
-  result &= TEST_C_SHMEM_PROD_REDUCE(unsigned long, ulong);
-  result &= TEST_C_SHMEM_PROD_REDUCE(unsigned long long, ulonglong);
-  result &= TEST_C_SHMEM_PROD_REDUCE(int8_t, int8);
-  result &= TEST_C_SHMEM_PROD_REDUCE(int16_t, int16);
-  result &= TEST_C_SHMEM_PROD_REDUCE(int32_t, int32);
-  result &= TEST_C_SHMEM_PROD_REDUCE(int64_t, int64);
-  result &= TEST_C_SHMEM_PROD_REDUCE(uint8_t, uint8);
-  result &= TEST_C_SHMEM_PROD_REDUCE(uint16_t, uint16);
-  result &= TEST_C_SHMEM_PROD_REDUCE(uint32_t, uint32);
-  result &= TEST_C_SHMEM_PROD_REDUCE(uint64_t, uint64);
-  result &= TEST_C_SHMEM_PROD_REDUCE(size_t, size);
-  result &= TEST_C_SHMEM_PROD_REDUCE(ptrdiff_t, ptrdiff);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(float);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(double);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(long double);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(char);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(signed char);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(short);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(int);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(long);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(long long);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(unsigned char);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(unsigned short);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(unsigned int);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(unsigned long);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(unsigned long long);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(int8_t);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(int16_t);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(int32_t);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(int64_t);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(uint8_t);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(uint16_t);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(uint32_t);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(uint64_t);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(size_t);
+  result &= TEST_C11_SHMEM_PROD_REDUCE(ptrdiff_t);
 
   shmem_barrier_all();
 
   if (result) {
     if (shmem_my_pe() == 0) {
-      display_test_result("C shmem_prod_reduce()", result, false);
+      display_test_result("C11 shmem_prod_reduce()", result, false);
     }
   } else {
     if (shmem_my_pe() == 0) {
-      display_test_result("C shmem_prod_reduce()", result, false);
+      display_test_result("C11 shmem_prod_reduce()", result, false);
       rc = EXIT_FAILURE;
     }
   }

@@ -4,3 +4,4 @@
 
 # --- Add subdirs
 add_subdirectory(atomics)
+add_subdirectory(collectives)

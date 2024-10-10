@@ -1,11 +1,11 @@
 /**
- * @file c_shmem_fcollect.c
+ * @file c11_shmem_fcollect.c
  * @brief Unit test for shmem_fcollect().
  */
 
 #include "shmemvv.h"
 
-#define TEST_C_SHMEM_FCOLLECT(TYPE, TYPENAME) \
+#define TEST_C11_SHMEM_FCOLLECT(TYPE) \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
@@ -15,7 +15,7 @@
                                                                                \
     src[0] = mype;                                                             \
                                                                                \
-    shmem_##TYPENAME##_fcollect(SHMEM_TEAM_WORLD, dest, src, 1);               \
+    shmem_fcollect(SHMEM_TEAM_WORLD, dest, src, 1);               \
                                                                                \
     bool success = true;                                                       \
     for (int i = 0; i < npes; ++i) {                                           \
@@ -37,40 +37,40 @@ int main(int argc, char *argv[]) {
   bool result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_C_SHMEM_FCOLLECT(float, float);
-  result &= TEST_C_SHMEM_FCOLLECT(double, double);
-  result &= TEST_C_SHMEM_FCOLLECT(long double, longdouble);
-  result &= TEST_C_SHMEM_FCOLLECT(char, char);
-  result &= TEST_C_SHMEM_FCOLLECT(signed char, schar);
-  result &= TEST_C_SHMEM_FCOLLECT(short, short);
-  result &= TEST_C_SHMEM_FCOLLECT(int, int);
-  result &= TEST_C_SHMEM_FCOLLECT(long, long);
-  result &= TEST_C_SHMEM_FCOLLECT(long long, longlong);
-  result &= TEST_C_SHMEM_FCOLLECT(unsigned char, uchar);
-  result &= TEST_C_SHMEM_FCOLLECT(unsigned short, ushort);
-  result &= TEST_C_SHMEM_FCOLLECT(unsigned int, uint);
-  result &= TEST_C_SHMEM_FCOLLECT(unsigned long, ulong);
-  result &= TEST_C_SHMEM_FCOLLECT(unsigned long long, ulonglong);
-  result &= TEST_C_SHMEM_FCOLLECT(int8_t, int8);
-  result &= TEST_C_SHMEM_FCOLLECT(int16_t, int16);
-  result &= TEST_C_SHMEM_FCOLLECT(int32_t, int32);
-  result &= TEST_C_SHMEM_FCOLLECT(int64_t, int64);
-  result &= TEST_C_SHMEM_FCOLLECT(uint8_t, uint8);
-  result &= TEST_C_SHMEM_FCOLLECT(uint16_t, uint16);
-  result &= TEST_C_SHMEM_FCOLLECT(uint32_t, uint32);
-  result &= TEST_C_SHMEM_FCOLLECT(uint64_t, uint64);
-  result &= TEST_C_SHMEM_FCOLLECT(size_t, size);
-  result &= TEST_C_SHMEM_FCOLLECT(ptrdiff_t, ptrdiff);
+  result &= TEST_C11_SHMEM_FCOLLECT(float);
+  result &= TEST_C11_SHMEM_FCOLLECT(double);
+  result &= TEST_C11_SHMEM_FCOLLECT(long double);
+  result &= TEST_C11_SHMEM_FCOLLECT(char);
+  result &= TEST_C11_SHMEM_FCOLLECT(signed char);
+  result &= TEST_C11_SHMEM_FCOLLECT(short);
+  result &= TEST_C11_SHMEM_FCOLLECT(int);
+  result &= TEST_C11_SHMEM_FCOLLECT(long);
+  result &= TEST_C11_SHMEM_FCOLLECT(long long);
+  result &= TEST_C11_SHMEM_FCOLLECT(unsigned char);
+  result &= TEST_C11_SHMEM_FCOLLECT(unsigned short);
+  result &= TEST_C11_SHMEM_FCOLLECT(unsigned int);
+  result &= TEST_C11_SHMEM_FCOLLECT(unsigned long);
+  result &= TEST_C11_SHMEM_FCOLLECT(unsigned long long);
+  result &= TEST_C11_SHMEM_FCOLLECT(int8_t);
+  result &= TEST_C11_SHMEM_FCOLLECT(int16_t);
+  result &= TEST_C11_SHMEM_FCOLLECT(int32_t);
+  result &= TEST_C11_SHMEM_FCOLLECT(int64_t);
+  result &= TEST_C11_SHMEM_FCOLLECT(uint8_t);
+  result &= TEST_C11_SHMEM_FCOLLECT(uint16_t);
+  result &= TEST_C11_SHMEM_FCOLLECT(uint32_t);
+  result &= TEST_C11_SHMEM_FCOLLECT(uint64_t);
+  result &= TEST_C11_SHMEM_FCOLLECT(size_t);
+  result &= TEST_C11_SHMEM_FCOLLECT(ptrdiff_t);
 
   shmem_barrier_all();
 
   if (result) {
     if (shmem_my_pe() == 0) {
-      display_test_result("C shmem_fcollect()", result, false);
+      display_test_result("C11 shmem_fcollect()", result, false);
     }
   } else {
     if (shmem_my_pe() == 0) {
-      display_test_result("C shmem_fcollect()", result, false);
+      display_test_result("C11 shmem_fcollect()", result, false);
       rc = EXIT_FAILURE;
     }
   }

@@ -1,11 +1,11 @@
 /**
- * @file c_shmem_broadcast.c
+ * @file c11_shmem_broadcast.c
  * @brief Unit test for shmem_broadcast().
  */
 
 #include "shmemvv.h"
 
-#define TEST_C_SHMEM_BROADCAST(TYPE, TYPENAME) \
+#define TEST_C11_SHMEM_BROADCAST(TYPE) \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
@@ -25,7 +25,7 @@
                                                                                \
     shmem_barrier_all();                                                       \
                                                                                \
-    shmem_##TYPENAME##_broadcast(SHMEM_TEAM_WORLD, dest, src, 4, 0);           \
+    shmem_broadcast(SHMEM_TEAM_WORLD, dest, src, 4, 0);           \
                                                                                \
     shmem_barrier_all();                                                       \
                                                                                \
@@ -49,40 +49,40 @@ int main(int argc, char *argv[]) {
   bool result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_C_SHMEM_BROADCAST(float, float);
-  result &= TEST_C_SHMEM_BROADCAST(double, double);
-  result &= TEST_C_SHMEM_BROADCAST(long double, longdouble);
-  result &= TEST_C_SHMEM_BROADCAST(char, char);
-  result &= TEST_C_SHMEM_BROADCAST(signed char, schar);
-  result &= TEST_C_SHMEM_BROADCAST(short, short);
-  result &= TEST_C_SHMEM_BROADCAST(int, int);
-  result &= TEST_C_SHMEM_BROADCAST(long, long);
-  result &= TEST_C_SHMEM_BROADCAST(long long, longlong);
-  result &= TEST_C_SHMEM_BROADCAST(unsigned char, uchar);
-  result &= TEST_C_SHMEM_BROADCAST(unsigned short, ushort);
-  result &= TEST_C_SHMEM_BROADCAST(unsigned int, uint);
-  result &= TEST_C_SHMEM_BROADCAST(unsigned long, ulong);
-  result &= TEST_C_SHMEM_BROADCAST(unsigned long long, ulonglong);
-  result &= TEST_C_SHMEM_BROADCAST(int8_t, int8);
-  result &= TEST_C_SHMEM_BROADCAST(int16_t, int16);
-  result &= TEST_C_SHMEM_BROADCAST(int32_t, int32);
-  result &= TEST_C_SHMEM_BROADCAST(int64_t, int64);
-  result &= TEST_C_SHMEM_BROADCAST(uint8_t, uint8);
-  result &= TEST_C_SHMEM_BROADCAST(uint16_t, uint16);
-  result &= TEST_C_SHMEM_BROADCAST(uint32_t, uint32);
-  result &= TEST_C_SHMEM_BROADCAST(uint64_t, uint64);
-  result &= TEST_C_SHMEM_BROADCAST(size_t, size);
-  result &= TEST_C_SHMEM_BROADCAST(ptrdiff_t, ptrdiff);
+  result &= TEST_C11_SHMEM_BROADCAST(float);
+  result &= TEST_C11_SHMEM_BROADCAST(double);
+  result &= TEST_C11_SHMEM_BROADCAST(long double);
+  result &= TEST_C11_SHMEM_BROADCAST(char);
+  result &= TEST_C11_SHMEM_BROADCAST(signed char);
+  result &= TEST_C11_SHMEM_BROADCAST(short);
+  result &= TEST_C11_SHMEM_BROADCAST(int);
+  result &= TEST_C11_SHMEM_BROADCAST(long);
+  result &= TEST_C11_SHMEM_BROADCAST(long long);
+  result &= TEST_C11_SHMEM_BROADCAST(unsigned char);
+  result &= TEST_C11_SHMEM_BROADCAST(unsigned short);
+  result &= TEST_C11_SHMEM_BROADCAST(unsigned int);
+  result &= TEST_C11_SHMEM_BROADCAST(unsigned long);
+  result &= TEST_C11_SHMEM_BROADCAST(unsigned long long);
+  result &= TEST_C11_SHMEM_BROADCAST(int8_t);
+  result &= TEST_C11_SHMEM_BROADCAST(int16_t);
+  result &= TEST_C11_SHMEM_BROADCAST(int32_t);
+  result &= TEST_C11_SHMEM_BROADCAST(int64_t);
+  result &= TEST_C11_SHMEM_BROADCAST(uint8_t);
+  result &= TEST_C11_SHMEM_BROADCAST(uint16_t);
+  result &= TEST_C11_SHMEM_BROADCAST(uint32_t);
+  result &= TEST_C11_SHMEM_BROADCAST(uint64_t);
+  result &= TEST_C11_SHMEM_BROADCAST(size_t);
+  result &= TEST_C11_SHMEM_BROADCAST(ptrdiff_t);
 
   shmem_barrier_all();
 
   if (result) {
     if (shmem_my_pe() == 0) {
-      display_test_result("C shmem_broadcast()", result, false);
+      display_test_result("C11 shmem_broadcast()", result, false);
     }
   } else {
     if (shmem_my_pe() == 0) {
-      display_test_result("C shmem_broadcast()", result, false);
+      display_test_result("C11 shmem_broadcast()", result, false);
       rc = EXIT_FAILURE;
     }
   }

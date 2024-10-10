@@ -1,11 +1,11 @@
 /**
- * @file c_shmem_sync_all.c
+ * @file c11_shmem_sync_all.c
  * @brief Unit test for shmem_sync_all().
  */
 
 #include "shmemvv.h"
 
-#define TEST_C_SHMEM_SYNC_ALL() \
+#define TEST_C11_SHMEM_SYNC_ALL() \
   ({                                                                           \
     static long shared_counter;                                                \
     bool success = true;                                                       \
@@ -27,17 +27,17 @@
 int main(int argc, char *argv[]) {
   shmem_init();
 
-  bool result = TEST_C_SHMEM_SYNC_ALL();
+  bool result = TEST_C11_SHMEM_SYNC_ALL();
 
   shmem_barrier_all();
 
   if (result) {
     if (shmem_my_pe() == 0) {
-      display_test_result("C shmem_sync_all()", result, false);
+      display_test_result("C11 shmem_sync_all()", result, false);
     }
   } else {
     if (shmem_my_pe() == 0) {
-      display_test_result("C shmem_sync_all()", result, true);
+      display_test_result("C11 shmem_sync_all()", result, true);
     }
   }
 

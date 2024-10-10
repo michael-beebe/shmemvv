@@ -1,7 +1,7 @@
 /**
- * @file c_shmem_alltoalls.c
+ * @file c11_shmem_alltoall.c
  *
- * @brief Unit test for shmem_alltoalls().
+ * @brief Unit test for shmem_alltoall().
  */
 
 #include <stdio.h>
@@ -11,23 +11,23 @@
 
 #include "shmemvv.h"
 
-#define TEST_C_SHMEM_ALLTOALLS(TYPE, TYPENAME) \
+#define TEST_C11_SHMEM_ALLTOALL(TYPE) \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
                                                                                \
-    TYPE *src = (TYPE *)shmem_malloc(npes * npes * sizeof(TYPE));              \
-    TYPE *dest = (TYPE *)shmem_malloc(npes * npes * sizeof(TYPE));             \
+    TYPE *src = (TYPE *)shmem_malloc(npes * sizeof(TYPE));                     \
+    TYPE *dest = (TYPE *)shmem_malloc(npes * sizeof(TYPE));                    \
                                                                                \
     for (int i = 0; i < npes; ++i) {                                           \
-      src[i] = mype + i * npes;                                                \
+      src[i] = mype + i;                                                       \
     }                                                                          \
                                                                                \
-    shmem_##TYPENAME##_alltoalls(SHMEM_TEAM_WORLD, dest, src, 1, 1, npes);     \
+    shmem_alltoall(SHMEM_TEAM_WORLD, dest, src, 1);               \
                                                                                \
     bool success = true;                                                       \
     for (int i = 0; i < npes; ++i) {                                           \
-      if (dest[i] != i * npes + mype) {                                        \
+      if (dest[i] != mype + i) {                                               \
         success = false;                                                       \
         break;                                                                 \
       }                                                                        \
@@ -42,48 +42,47 @@
 int main(int argc, char *argv[]) {
   shmem_init();
 
-  bool result = true;
+  int result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_C_SHMEM_ALLTOALLS(float, float);
-  result &= TEST_C_SHMEM_ALLTOALLS(double, double);
-  result &= TEST_C_SHMEM_ALLTOALLS(long double, longdouble);
-  result &= TEST_C_SHMEM_ALLTOALLS(char, char);
-  result &= TEST_C_SHMEM_ALLTOALLS(signed char, schar);
-  result &= TEST_C_SHMEM_ALLTOALLS(short, short);
-  result &= TEST_C_SHMEM_ALLTOALLS(int, int);
-  result &= TEST_C_SHMEM_ALLTOALLS(long, long);
-  result &= TEST_C_SHMEM_ALLTOALLS(long long, longlong);
-  result &= TEST_C_SHMEM_ALLTOALLS(unsigned char, uchar);
-  result &= TEST_C_SHMEM_ALLTOALLS(unsigned short, ushort);
-  result &= TEST_C_SHMEM_ALLTOALLS(unsigned int, uint);
-  result &= TEST_C_SHMEM_ALLTOALLS(unsigned long, ulong);
-  result &= TEST_C_SHMEM_ALLTOALLS(unsigned long long, ulonglong);
-  result &= TEST_C_SHMEM_ALLTOALLS(int8_t, int8);
-  result &= TEST_C_SHMEM_ALLTOALLS(int16_t, int16);
-  result &= TEST_C_SHMEM_ALLTOALLS(int32_t, int32);
-  result &= TEST_C_SHMEM_ALLTOALLS(int64_t, int64);
-  result &= TEST_C_SHMEM_ALLTOALLS(uint8_t, uint8);
-  result &= TEST_C_SHMEM_ALLTOALLS(uint16_t, uint16);
-  result &= TEST_C_SHMEM_ALLTOALLS(uint32_t, uint32);
-  result &= TEST_C_SHMEM_ALLTOALLS(uint64_t, uint64);
-  result &= TEST_C_SHMEM_ALLTOALLS(size_t, size);
-  result &= TEST_C_SHMEM_ALLTOALLS(ptrdiff_t, ptrdiff);
+  result &= TEST_C11_SHMEM_ALLTOALL(float);
+  result &= TEST_C11_SHMEM_ALLTOALL(double);
+  result &= TEST_C11_SHMEM_ALLTOALL(long double);
+  result &= TEST_C11_SHMEM_ALLTOALL(char);
+  result &= TEST_C11_SHMEM_ALLTOALL(signed char);
+  result &= TEST_C11_SHMEM_ALLTOALL(short);
+  result &= TEST_C11_SHMEM_ALLTOALL(int);
+  result &= TEST_C11_SHMEM_ALLTOALL(long);
+  result &= TEST_C11_SHMEM_ALLTOALL(long long);
+  result &= TEST_C11_SHMEM_ALLTOALL(unsigned char);
+  result &= TEST_C11_SHMEM_ALLTOALL(unsigned short);
+  result &= TEST_C11_SHMEM_ALLTOALL(unsigned int);
+  result &= TEST_C11_SHMEM_ALLTOALL(unsigned long);
+  result &= TEST_C11_SHMEM_ALLTOALL(unsigned long long);
+  result &= TEST_C11_SHMEM_ALLTOALL(int8_t);
+  result &= TEST_C11_SHMEM_ALLTOALL(int16_t);
+  result &= TEST_C11_SHMEM_ALLTOALL(int32_t);
+  result &= TEST_C11_SHMEM_ALLTOALL(int64_t);
+  result &= TEST_C11_SHMEM_ALLTOALL(uint8_t);
+  result &= TEST_C11_SHMEM_ALLTOALL(uint16_t);
+  result &= TEST_C11_SHMEM_ALLTOALL(uint32_t);
+  result &= TEST_C11_SHMEM_ALLTOALL(uint64_t);
+  result &= TEST_C11_SHMEM_ALLTOALL(size_t);
+  result &= TEST_C11_SHMEM_ALLTOALL(ptrdiff_t);
 
   shmem_barrier_all();
 
   if (result) {
     if (shmem_my_pe() == 0) {
-      display_test_result("C shmem_alltoalls()", result, false);
+      display_test_result("C11 shmem_alltoall()", result, false);
     }
   } else {
     if (shmem_my_pe() == 0) {
-      display_test_result("C shmem_alltoalls()", result, false);
+      display_test_result("C11 shmem_alltoall()", result, false);
       rc = EXIT_FAILURE;
     }
   }
 
   shmem_finalize();
-
   return rc;
 }
