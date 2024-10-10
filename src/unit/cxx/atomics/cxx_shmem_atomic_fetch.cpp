@@ -49,15 +49,12 @@ int main(int argc, char *argv[]) {
 
   shmem_barrier_all();
 
-  if (result) {
-    if (shmem_my_pe() == 0) {
-      display_test_result("CXX shmem_atomic_fetch()", result, false);
-    }
-  } else {
-    if (shmem_my_pe() == 0) {
-      display_test_result("CXX shmem_atomic_fetch()", result, false);
-      rc = EXIT_FAILURE;
-    }
+  if (shmem_my_pe() == 0) {
+    display_test_result("CXX shmem_atomic_fetch()", result, false);
+  }
+
+  if (!result) {
+    rc = EXIT_FAILURE;
   }
 
   shmem_finalize();

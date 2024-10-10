@@ -28,20 +28,19 @@ int main(int argc, char *argv[]) {
   shmem_init();
 
   bool result = TEST_C11_SHMEM_SYNC_ALL();
+  int rc = EXIT_SUCCESS;
 
   shmem_barrier_all();
 
-  if (result) {
-    if (shmem_my_pe() == 0) {
-      display_test_result("C11 shmem_sync_all()", result, false);
-    }
-  } else {
-    if (shmem_my_pe() == 0) {
-      display_test_result("C11 shmem_sync_all()", result, true);
-    }
+  if (shmem_my_pe() == 0) {
+    display_test_result("C11 shmem_sync_all()", result, false);
+  }
+
+  if (!result) {
+    rc = EXIT_FAILURE;
   }
 
   shmem_finalize();
 
-  return EXIT_SUCCESS;
+  return rc;
 }
