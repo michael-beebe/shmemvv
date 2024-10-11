@@ -3,9 +3,8 @@
  * @brief Unit test shmem_test() routine.
  */
 
-#include <ctime>
-#include <iostream>
 #include <shmem.h>
+#include <time.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <unistd.h>

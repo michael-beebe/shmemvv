@@ -3,12 +3,11 @@
  * @brief Tests the shmem_test_all_vector() routine.
  */
 
-#include <ctime>
-#include <iostream>
 #include <shmem.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <time.h>
 
 #include "shmemvv.h"
 

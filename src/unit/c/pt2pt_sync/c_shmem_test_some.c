@@ -3,12 +3,11 @@
  * @brief Unit test shmem_test_some() routine.
  */
 
-#include <ctime>
-#include <iostream>
 #include <shmem.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <time.h>
 
 #include "shmemvv.h"
 

@@ -3,9 +3,8 @@
  * @brief Unit test for shmem_signal_wait_until
  */
 
-#include <ctime>
-#include <iostream>
 #include <shmem.h>
+#include <time.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -68,7 +67,7 @@ int main(int argc, char **argv) {
   shmem_barrier_all();
 
   if (shmem_my_pe() == 0) {
-    display_test_result("C shmem_signal_wait_until()", result, false);
+    display_test_result("C shmem_wait_until()", result, false);
   }
 
   if (!result) {

@@ -3,11 +3,10 @@
  * @brief Unit test shmem_signal_wait_until() routine.
  */
 
-#include <ctime>
-#include <iostream>
 #include <shmem.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <time.h>
 #include <unistd.h>
 
 #include "shmemvv.h"

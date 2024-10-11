@@ -3,8 +3,7 @@
  * @brief Unit test shmem_wait_until_all() routine.
  */
 
-#include <ctime>
-#include <iostream>
+#include <time.h>
 #include <shmem.h>
 #include <stdbool.h>
 #include <stdio.h>

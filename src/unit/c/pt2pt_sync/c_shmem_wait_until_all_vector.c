@@ -3,9 +3,8 @@
  * @brief Unit test shmem_wait_until_all_vector() routine.
  */
 
-#include <ctime>
-#include <iostream>
 #include <shmem.h>
+#include <time.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -56,6 +55,9 @@
 
 int main(int argc, char **argv) {
   shmem_init();
+
+  int result = true;
+  int rc = EXIT_SUCCESS;
 
   result &= TEST_C_SHMEM_WAIT_UNTIL_ALL_VECTOR(short, short);
   result &= TEST_C_SHMEM_WAIT_UNTIL_ALL_VECTOR(int, int);
