@@ -9,4 +9,4 @@ add_subdirectory(rma)
 add_subdirectory(ctx)
 add_subdirectory(locking)
 add_subdirectory(memory)
-
+add_subdirectory(pt2pt_sync) 
