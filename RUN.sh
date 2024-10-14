@@ -92,3 +92,57 @@ for executable in $SIGNALING_BIN/c11_*; do
 done
 
 # ----------  CXX  ------------
+# --- setup
+for executable in $SETUP_BIN/cxx_*; do
+  oshrun -np 2 $executable
+done
+
+# --- atomics
+for executable in $ATOMIC_BIN/cxx_*; do
+  oshrun -np 2 $executable
+done
+
+# --- collectives
+for executable in $COLLECTIVE_BIN/cxx_*; do
+  oshrun -np 2 $executable
+done
+
+# --- rma
+for executable in $RMA_BIN/cxx_*; do
+  oshrun -np 2 $executable
+done
+
+# --- ctx
+for executable in $CTX_BIN/cxx_*; do
+  oshrun -np 2 $executable
+done  
+
+# --- locking
+for executable in $LOCKING_BIN/cxx_*; do
+  oshrun -np 2 $executable
+done
+
+# --- memory
+for executable in $MEMORY_BIN/cxx_*; do
+  oshrun -np 2 $executable
+done
+
+# --- pt2pt_sync
+for executable in $PT2PT_SYNC_BIN/cxx_*; do
+  oshrun -np 2 $executable
+done
+
+# --- signaling
+for executable in $SIGNALING_BIN/cxx_*; do
+  oshrun -np 2 $executable
+done
+
+# --- teams
+for executable in $TEAMS_BIN/cxx_*; do
+  oshrun -np 2 $executable
+done
+
+# --- threads
+for executable in $THREADS_BIN/cxx_*; do
+  oshrun -np 2 $executable
+done
