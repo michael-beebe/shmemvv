@@ -47,7 +47,7 @@
           if (time(NULL) - start_time > TIMEOUT) {                             \
             break;                                                             \
           }                                                                    \
-          usleep(1000);                                                        \
+          usleep(500);                                                         \
         }                                                                      \
         for (int i = 0; i < 4; ++i) {                                          \
           if (flags[i] != 1) {                                                 \

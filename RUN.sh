@@ -9,8 +9,14 @@ CTX_BIN=$BIN_DIR/ctx
 LOCKING_BIN=$BIN_DIR/locking
 MEMORY_BIN=$BIN_DIR/memory
 PT2PT_SYNC_BIN=$BIN_DIR/pt2pt_sync
+SETUP_BIN=$BIN_DIR/setup
 
 # ----------  C    ------------
+# --- setup
+for executable in $SETUP_BIN/c_*; do
+  oshrun -np 2 $executable
+done
+
 # # --- atomics
 # for executable in $ATOMIC_BIN/c_*; do
 #   oshrun -np 2 $executable
@@ -41,10 +47,10 @@ PT2PT_SYNC_BIN=$BIN_DIR/pt2pt_sync
 #   oshrun -np 2 $executable
 # done
 
-# --- pt2pt_sync
-for executable in $PT2PT_SYNC_BIN/c_*; do
-  oshrun -np 2 $executable
-done
+# # --- pt2pt_sync
+# for executable in $PT2PT_SYNC_BIN/c_*; do
+#   oshrun -np 2 $executable
+# done
 
 # ----------  C11  ------------
 # # --- atomics
