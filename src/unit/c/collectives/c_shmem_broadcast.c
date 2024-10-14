@@ -5,7 +5,7 @@
 
 #include "shmemvv.h"
 
-#define TEST_C_SHMEM_BROADCAST(TYPE, TYPENAME) \
+#define TEST_C_SHMEM_BROADCAST(TYPE, TYPENAME)                                 \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \

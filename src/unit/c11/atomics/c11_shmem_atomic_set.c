@@ -11,19 +11,19 @@
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_ATOMIC_SET(TYPE)                                \
+#define TEST_C11_SHMEM_ATOMIC_SET(TYPE)                                        \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
-    static TYPE set;                                                          \
+    static TYPE set;                                                           \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
     TYPE value = 42;                                                           \
     *dest = value;                                                             \
     shmem_barrier_all();                                                       \
     int mype = shmem_my_pe();                                                  \
-    shmem_atomic_set(dest, value, mype);                                        \
+    shmem_atomic_set(dest, value, mype);                                       \
     shmem_barrier_all();                                                       \
-    success = (*dest == value);                                                  \
+    success = (*dest == value);                                                \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })

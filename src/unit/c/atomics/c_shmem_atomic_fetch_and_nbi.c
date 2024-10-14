@@ -11,7 +11,7 @@
 
 #include "shmemvv.h"
 
-#define TEST_C_SHMEM_ATOMIC_FETCH_AND_NBI(TYPE, TYPENAME)                    \
+#define TEST_C_SHMEM_ATOMIC_FETCH_AND_NBI(TYPE, TYPENAME)                      \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
 
   bool result = true;
   int rc = EXIT_SUCCESS;
-  
+
   result &= TEST_C_SHMEM_ATOMIC_FETCH_AND_NBI(unsigned int, uint);
   result &= TEST_C_SHMEM_ATOMIC_FETCH_AND_NBI(unsigned long, ulong);
   result &= TEST_C_SHMEM_ATOMIC_FETCH_AND_NBI(unsigned long long, ulonglong);

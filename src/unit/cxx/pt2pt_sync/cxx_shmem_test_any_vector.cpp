@@ -6,11 +6,10 @@
 #include <shmem.h>
 #include <stdbool.h>
 #include <stdio.h>
-#include <unistd.h>
 #include <time.h>
+#include <unistd.h>
 
 #include "shmemvv.h"
-
 
 #define TIMEOUT 2
 #define TEST_CXX_SHMEM_TEST_ANY_VECTOR(TYPE, TYPENAME)                         \
@@ -55,7 +54,6 @@
     }                                                                          \
     success;                                                                   \
   })
-
 
 int main(int argc, char **argv) {
   shmem_init();

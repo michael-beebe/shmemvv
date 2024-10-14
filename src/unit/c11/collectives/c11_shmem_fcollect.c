@@ -5,7 +5,7 @@
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_FCOLLECT(TYPE) \
+#define TEST_C11_SHMEM_FCOLLECT(TYPE)                                          \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
@@ -15,7 +15,7 @@
                                                                                \
     src[0] = mype;                                                             \
                                                                                \
-    shmem_fcollect(SHMEM_TEAM_WORLD, dest, src, 1);               \
+    shmem_fcollect(SHMEM_TEAM_WORLD, dest, src, 1);                            \
                                                                                \
     bool success = true;                                                       \
     for (int i = 0; i < npes; ++i) {                                           \
@@ -75,4 +75,3 @@ int main(int argc, char *argv[]) {
   shmem_finalize();
   return rc;
 }
-

@@ -3,13 +3,13 @@
  * @brief Unit test for the shmem_get_nbi() routine.
  */
 
+#include <shmem.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <shmem.h>
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_GET_NBI(TYPE) \
+#define TEST_C11_SHMEM_GET_NBI(TYPE)                                           \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE src[10], dest[10];                                             \
@@ -25,7 +25,7 @@
     shmem_barrier_all();                                                       \
                                                                                \
     if (mype == 1) {                                                           \
-      shmem_get_nbi(dest, src, 10, 0);                            \
+      shmem_get_nbi(dest, src, 10, 0);                                         \
       shmem_quiet();                                                           \
     }                                                                          \
                                                                                \
@@ -81,7 +81,6 @@ int main(int argc, char *argv[]) {
   result &= TEST_C11_SHMEM_GET_NBI(uint64_t);
   result &= TEST_C11_SHMEM_GET_NBI(size_t);
   result &= TEST_C11_SHMEM_GET_NBI(ptrdiff_t);
-
 
   shmem_barrier_all();
 

@@ -3,13 +3,13 @@
  * @brief Unit test for the shmem_g() routine.
  */
 
+#include <shmem.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <shmem.h>
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_G(TYPE) \
+#define TEST_C11_SHMEM_G(TYPE)                                                 \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE src, dest;                                                     \
@@ -23,7 +23,7 @@
     shmem_barrier_all();                                                       \
                                                                                \
     if (mype == 1) {                                                           \
-      dest = shmem_g(&src, 0);                                    \
+      dest = shmem_g(&src, 0);                                                 \
     }                                                                          \
                                                                                \
     shmem_barrier_all();                                                       \
@@ -89,4 +89,3 @@ int main(int argc, char *argv[]) {
   shmem_finalize();
   return rc;
 }
-

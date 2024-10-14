@@ -11,8 +11,7 @@
 #include "shmemvv.h"
 
 char *test_shmem_info_get_name(void) {
-  char *name = (char *)malloc(SHMEM_MAX_NAME_LEN *
-                              sizeof(char));
+  char *name = (char *)malloc(SHMEM_MAX_NAME_LEN * sizeof(char));
   if (name != NULL) {
     shmem_info_get_name(name);
   }

@@ -18,7 +18,7 @@ bool test_shmem_info_get_version(void) {
     return false;
   }
 
-  return true; 
+  return true;
 }
 
 int main(int argc, char *argv[]) {
@@ -39,4 +39,3 @@ int main(int argc, char *argv[]) {
   shmem_finalize();
   return rc;
 }
-

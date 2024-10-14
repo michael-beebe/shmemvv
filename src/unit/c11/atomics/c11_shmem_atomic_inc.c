@@ -11,7 +11,7 @@
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_ATOMIC_INC(TYPE)                              \
+#define TEST_C11_SHMEM_ATOMIC_INC(TYPE)                                        \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
@@ -20,7 +20,7 @@
     *dest = value;                                                             \
     shmem_barrier_all();                                                       \
     int mype = shmem_my_pe();                                                  \
-    shmem_atomic_inc(dest, mype);                                 \
+    shmem_atomic_inc(dest, mype);                                              \
     shmem_barrier_all();                                                       \
     success = (*dest == value + 1);                                            \
     shmem_free(dest);                                                          \
@@ -59,4 +59,3 @@ int main(int argc, char *argv[]) {
   shmem_finalize();
   return rc;
 }
-

@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
 
   bool result = true;
   int rc = EXIT_SUCCESS;
-  
+
   result &= TEST_CXX_SHMEM_ATOMIC_FETCH_AND_NBI(unsigned int, uint);
   result &= TEST_CXX_SHMEM_ATOMIC_FETCH_AND_NBI(unsigned long, ulong);
   result &= TEST_CXX_SHMEM_ATOMIC_FETCH_AND_NBI(unsigned long long, ulonglong);

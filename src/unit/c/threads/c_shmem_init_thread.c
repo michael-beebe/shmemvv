@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
 
   int mype = shmem_my_pe();
   int npes = shmem_n_pes();
-  
+
   if (mype == 0) {
     display_test_result("C shmem_init_thread()", result, false);
   }

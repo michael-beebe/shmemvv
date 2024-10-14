@@ -5,7 +5,7 @@
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_MAX_REDUCE(TYPE) \
+#define TEST_C11_SHMEM_MAX_REDUCE(TYPE)                                        \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
@@ -15,7 +15,7 @@
                                                                                \
     *src = mype;                                                               \
                                                                                \
-    shmem_max_reduce(SHMEM_TEAM_WORLD, dest, src, 1);             \
+    shmem_max_reduce(SHMEM_TEAM_WORLD, dest, src, 1);                          \
                                                                                \
     bool success = (*dest == npes - 1);                                        \
                                                                                \
@@ -68,4 +68,4 @@ int main(int argc, char *argv[]) {
 
   shmem_finalize();
   return rc;
-} 
+}

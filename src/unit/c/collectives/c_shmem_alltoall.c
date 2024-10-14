@@ -4,14 +4,14 @@
  * @brief Unit test for shmem_alltoall().
  */
 
+#include <shmem.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
-#include <shmem.h>
 
 #include "shmemvv.h"
 
-#define TEST_C_SHMEM_ALLTOALL(TYPE, TYPENAME) \
+#define TEST_C_SHMEM_ALLTOALL(TYPE, TYPENAME)                                  \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \

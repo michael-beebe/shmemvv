@@ -3,14 +3,14 @@
  * @brief Unit test for shmem_atomic_fetch_or_nbi
  */
 
-#include <stdlib.h>
+#include <shmem.h>
 #include <stdbool.h>
 #include <stdint.h>
-#include <shmem.h> 
+#include <stdlib.h>
 
 #include "shmemvv.h"
 
-#define TEST_C_SHMEM_ATOMIC_FETCH_OR_NBI(TYPE, TYPENAME)                     \
+#define TEST_C_SHMEM_ATOMIC_FETCH_OR_NBI(TYPE, TYPENAME)                       \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \

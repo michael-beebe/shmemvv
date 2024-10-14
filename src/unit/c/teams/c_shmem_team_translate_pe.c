@@ -18,10 +18,10 @@ bool test_shmem_team_translate_pe(void) {
 
 int main(int argc, char *argv[]) {
   shmem_init();
-  
+
   int mype = shmem_my_pe();
   int npes = shmem_n_pes();
-  
+
   if (!(npes >= 2)) {
     if (mype == 0) {
       display_not_enough_pes("TEAMS");
@@ -29,13 +29,12 @@ int main(int argc, char *argv[]) {
     shmem_finalize();
     return EXIT_SUCCESS;
   }
-  
+
   bool result = test_shmem_team_translate_pe();
   int rc = result ? EXIT_SUCCESS : EXIT_FAILURE;
-  
+
   if (mype == 0) {
-    display_test_result("C shmem_team_translate_pe()", result,
-                       false);
+    display_test_result("C shmem_team_translate_pe()", result, false);
   }
 
   shmem_finalize();

@@ -3,16 +3,16 @@
  * @brief Unit test shmem_wait_until_all() routine.
  */
 
-#include <time.h>
+#include "shmemvv.h"
 #include <shmem.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <time.h>
 #include <unistd.h>
-#include "shmemvv.h"
 
 #define TIMEOUT 2
 
-#define TEST_C_SHMEM_WAIT_UNTIL_ALL(TYPE, TYPENAME)                          \
+#define TEST_C_SHMEM_WAIT_UNTIL_ALL(TYPE, TYPENAME)                            \
   ({                                                                           \
     bool success = true;                                                       \
     TYPE *flags = (TYPE *)shmem_malloc(2 * sizeof(TYPE));                      \

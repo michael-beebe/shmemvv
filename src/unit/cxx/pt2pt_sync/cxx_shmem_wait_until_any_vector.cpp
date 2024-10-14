@@ -4,9 +4,9 @@
  */
 
 #include <shmem.h>
-#include <time.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <time.h>
 #include <unistd.h>
 
 #include "shmemvv.h"
@@ -68,7 +68,7 @@ int main(int argc, char **argv) {
   result &= TEST_CXX_SHMEM_WAIT_UNTIL_ANY_VECTOR(uint32_t, uint32);
   result &= TEST_CXX_SHMEM_WAIT_UNTIL_ANY_VECTOR(uint64_t, uint64);
   result &= TEST_CXX_SHMEM_WAIT_UNTIL_ANY_VECTOR(size_t, size);
-  result &= TEST_CXX_SHMEM_WAIT_UNTIL_ANY_VECTOR(ptrdiff_t, ptrdiff);\
+  result &= TEST_CXX_SHMEM_WAIT_UNTIL_ANY_VECTOR(ptrdiff_t, ptrdiff);
 
   shmem_barrier_all();
 

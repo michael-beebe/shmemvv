@@ -3,13 +3,13 @@
  * @brief Unit test for the shmem_put_signal() routine.
  */
 
+#include <shmem.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <shmem.h>
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_PUT_SIGNAL(TYPE) \
+#define TEST_C11_SHMEM_PUT_SIGNAL(TYPE)                                        \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE dest = 0;                                                      \
@@ -26,8 +26,8 @@
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype == 0) {                                                         \
-        shmem_put_signal(&dest, &value, 1, &signal, 1, target_pe, \
-                                      SHMEM_SIGNAL_SET);                       \
+        shmem_put_signal(&dest, &value, 1, &signal, 1, target_pe,              \
+                         SHMEM_SIGNAL_SET);                                    \
       }                                                                        \
                                                                                \
       shmem_barrier_all();                                                     \

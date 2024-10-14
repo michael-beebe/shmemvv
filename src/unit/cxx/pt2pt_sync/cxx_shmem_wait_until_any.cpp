@@ -4,9 +4,9 @@
  */
 
 #include <shmem.h>
-#include <time.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <time.h>
 #include <unistd.h>
 
 #include "shmemvv.h"
@@ -47,7 +47,6 @@
     }                                                                          \
     success;                                                                   \
   })
-
 
 int main(int argc, char **argv) {
   shmem_init();

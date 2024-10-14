@@ -4,16 +4,16 @@
  */
 
 #include <shmem.h>
-#include <time.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <time.h>
 #include <unistd.h>
 
 #include "shmemvv.h"
 
 #define TIMEOUT 2
 
-#define TEST_C_SHMEM_TEST(TYPE, TYPENAME)                                    \
+#define TEST_C_SHMEM_TEST(TYPE, TYPENAME)                                      \
   ({                                                                           \
     bool success = true;                                                       \
     TYPE *flag = (TYPE *)shmem_malloc(sizeof(TYPE));                           \

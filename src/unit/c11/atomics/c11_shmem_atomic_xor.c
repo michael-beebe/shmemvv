@@ -11,7 +11,7 @@
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_ATOMIC_XOR(TYPE)                               \
+#define TEST_C11_SHMEM_ATOMIC_XOR(TYPE)                                        \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
@@ -20,9 +20,9 @@
     *dest = value;                                                             \
     shmem_barrier_all();                                                       \
     int mype = shmem_my_pe();                                                  \
-    shmem_atomic_xor(dest, xor_val, mype);                        \
+    shmem_atomic_xor(dest, xor_val, mype);                                     \
     shmem_barrier_all();                                                       \
-    success = (*dest == (value ^ xor_val));                                     \
+    success = (*dest == (value ^ xor_val));                                    \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })

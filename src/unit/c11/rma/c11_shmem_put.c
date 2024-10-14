@@ -3,13 +3,13 @@
  * @brief Unit test for the shmem_put() routine.
  */
 
+#include <shmem.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <shmem.h>
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_PUT(TYPE) \
+#define TEST_C11_SHMEM_PUT(TYPE)                                               \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE src[10], dest[10];                                             \
@@ -23,7 +23,7 @@
     shmem_barrier_all();                                                       \
                                                                                \
     if (mype == 0) {                                                           \
-      shmem_put(dest, src, 10, 1);                                \
+      shmem_put(dest, src, 10, 1);                                             \
     }                                                                          \
                                                                                \
     shmem_barrier_all();                                                       \
@@ -39,7 +39,6 @@
                                                                                \
     success;                                                                   \
   })
-
 
 int main(int argc, char *argv[]) {
   shmem_init();

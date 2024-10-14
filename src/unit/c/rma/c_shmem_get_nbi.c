@@ -3,13 +3,13 @@
  * @brief Unit test for the shmem_get_nbi() routine.
  */
 
+#include <shmem.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <shmem.h>
 
 #include "shmemvv.h"
 
-#define TEST_C_SHMEM_GET_NBI(TYPE, TYPENAME) \
+#define TEST_C_SHMEM_GET_NBI(TYPE, TYPENAME)                                   \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE src[10], dest[10];                                             \

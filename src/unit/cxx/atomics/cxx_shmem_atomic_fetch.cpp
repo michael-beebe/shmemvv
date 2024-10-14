@@ -11,7 +11,7 @@
 
 #include "shmemvv.h"
 
-#define TEST_CXX_SHMEM_ATOMIC_FETCH(TYPE, TYPENAME)                              \
+#define TEST_CXX_SHMEM_ATOMIC_FETCH(TYPE, TYPENAME)                            \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \

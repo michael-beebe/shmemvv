@@ -11,7 +11,7 @@
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_ATOMIC_OR(TYPE)                               \
+#define TEST_C11_SHMEM_ATOMIC_OR(TYPE)                                         \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
@@ -20,7 +20,7 @@
     *dest = value;                                                             \
     shmem_barrier_all();                                                       \
     int mype = shmem_my_pe();                                                  \
-    shmem_atomic_or(dest, or_val, mype);                          \
+    shmem_atomic_or(dest, or_val, mype);                                       \
     shmem_barrier_all();                                                       \
     success = (*dest == (value | or_val));                                     \
     shmem_free(dest);                                                          \
@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
   result &= TEST_C11_SHMEM_ATOMIC_OR(int64_t);
   result &= TEST_C11_SHMEM_ATOMIC_OR(uint32_t);
   result &= TEST_C11_SHMEM_ATOMIC_OR(uint64_t);
-  
+
   shmem_barrier_all();
 
   if (shmem_my_pe() == 0) {

@@ -11,7 +11,7 @@
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_ATOMIC_FETCH(TYPE)                              \
+#define TEST_C11_SHMEM_ATOMIC_FETCH(TYPE)                                      \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
@@ -21,7 +21,7 @@
     *dest = value;                                                             \
     shmem_barrier_all();                                                       \
     int mype = shmem_my_pe();                                                  \
-    fetch = shmem_atomic_fetch(dest, mype);                       \
+    fetch = shmem_atomic_fetch(dest, mype);                                    \
     shmem_barrier_all();                                                       \
     success = (fetch == value);                                                \
     shmem_free(dest);                                                          \

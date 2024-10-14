@@ -3,9 +3,9 @@
  * @brief Unit test for the shmem_team_destroy() routine
  */
 
+#include <shmem.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <shmem.h>
 
 #include "shmemvv.h"
 
@@ -23,7 +23,7 @@ bool test_shmem_team_destroy(void) {
 
 int main(int argc, char *argv[]) {
   shmem_init();
-  
+
   int mype = shmem_my_pe();
   int npes = shmem_n_pes();
 
@@ -47,8 +47,7 @@ int main(int argc, char *argv[]) {
   }
 
   if (mype == 0) {
-    display_test_result("CXX shmem_team_destroy()", result,
-                       false);
+    display_test_result("CXX shmem_team_destroy()", result, false);
   }
 
   shmem_finalize();

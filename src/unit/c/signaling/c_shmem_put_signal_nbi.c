@@ -3,14 +3,13 @@
  * @brief Unit test for the shmem_put_signal_nbi() routine.
  */
 
-
+#include <shmem.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <shmem.h>
 
 #include "shmemvv.h"
 
-#define TEST_C_SHMEM_PUT_SIGNAL_NBI(TYPE, TYPENAME) \
+#define TEST_C_SHMEM_PUT_SIGNAL_NBI(TYPE, TYPENAME)                            \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE dest = 0;                                                      \

@@ -4,15 +4,15 @@
  */
 
 #include <shmem.h>
-#include <time.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <time.h>
 #include <unistd.h>
 
 #include "shmemvv.h"
 
 #define TIMEOUT 2
-#define TEST_C_SHMEM_WAIT_UNTIL_ANY(TYPE, TYPENAME)                          \
+#define TEST_C_SHMEM_WAIT_UNTIL_ANY(TYPE, TYPENAME)                            \
   ({                                                                           \
     bool success = true;                                                       \
     TYPE *flags = (TYPE *)shmem_malloc(3 * sizeof(TYPE));                      \
@@ -47,7 +47,6 @@
     }                                                                          \
     success;                                                                   \
   })
-
 
 int main(int argc, char **argv) {
   shmem_init();

@@ -42,7 +42,8 @@ int main(int argc, char *argv[]) {
   result &= TEST_CXX_SHMEM_ATOMIC_COMPARE_SWAP_NBI(long long, longlong);
   result &= TEST_CXX_SHMEM_ATOMIC_COMPARE_SWAP_NBI(unsigned int, uint);
   result &= TEST_CXX_SHMEM_ATOMIC_COMPARE_SWAP_NBI(unsigned long, ulong);
-  result &= TEST_CXX_SHMEM_ATOMIC_COMPARE_SWAP_NBI(unsigned long long, ulonglong);
+  result &=
+      TEST_CXX_SHMEM_ATOMIC_COMPARE_SWAP_NBI(unsigned long long, ulonglong);
   result &= TEST_CXX_SHMEM_ATOMIC_COMPARE_SWAP_NBI(int32_t, int32);
   result &= TEST_CXX_SHMEM_ATOMIC_COMPARE_SWAP_NBI(int64_t, int64);
   result &= TEST_CXX_SHMEM_ATOMIC_COMPARE_SWAP_NBI(uint32_t, uint32);

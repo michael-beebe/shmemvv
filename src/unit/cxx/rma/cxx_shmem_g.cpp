@@ -3,13 +3,13 @@
  * @brief Unit test for the shmem_g() routine.
  */
 
+#include <shmem.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <shmem.h>
 
 #include "shmemvv.h"
 
-#define TEST_CXX_SHMEM_G(TYPE, TYPENAME) \
+#define TEST_CXX_SHMEM_G(TYPE, TYPENAME)                                       \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE src, dest;                                                     \
@@ -89,4 +89,3 @@ int main(int argc, char *argv[]) {
   shmem_finalize();
   return rc;
 }
-

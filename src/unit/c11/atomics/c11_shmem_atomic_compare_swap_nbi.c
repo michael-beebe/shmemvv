@@ -11,7 +11,7 @@
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP_NBI(TYPE)                 \
+#define TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP_NBI(TYPE)                           \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
@@ -22,8 +22,7 @@
     *dest = old;                                                               \
     shmem_barrier_all();                                                       \
     int mype = shmem_my_pe();                                                  \
-    shmem_atomic_compare_swap_nbi(&fetch, dest, old, new_val,                  \
-                                  mype);                                       \
+    shmem_atomic_compare_swap_nbi(&fetch, dest, old, new_val, mype);           \
     shmem_quiet();                                                             \
     shmem_barrier_all();                                                       \
     success = (fetch == old && *dest == new_val);                              \

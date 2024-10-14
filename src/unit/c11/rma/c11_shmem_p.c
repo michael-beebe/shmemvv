@@ -3,13 +3,13 @@
  * @brief Unit test for the shmem_p() routine.
  */
 
+#include <shmem.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <shmem.h>
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_P(TYPE) \
+#define TEST_C11_SHMEM_P(TYPE)                                                 \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE src, dest;                                                     \
@@ -21,7 +21,7 @@
     shmem_barrier_all();                                                       \
                                                                                \
     if (mype == 0) {                                                           \
-      shmem_p(&dest, src, 1);                                     \
+      shmem_p(&dest, src, 1);                                                  \
     }                                                                          \
                                                                                \
     shmem_barrier_all();                                                       \
@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
       display_not_enough_pes("RMA");
     }
     shmem_finalize();
-    return EXIT_SUCCESS;  
+    return EXIT_SUCCESS;
   }
 
   int result = true;

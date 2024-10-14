@@ -11,7 +11,7 @@
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_ATOMIC_FETCH_AND_NBI(TYPE)                    \
+#define TEST_C11_SHMEM_ATOMIC_FETCH_AND_NBI(TYPE)                              \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
@@ -22,7 +22,7 @@
     *dest = value;                                                             \
     shmem_barrier_all();                                                       \
     int mype = shmem_my_pe();                                                  \
-    shmem_atomic_fetch_and_nbi(&fetch, dest, and_val, mype);      \
+    shmem_atomic_fetch_and_nbi(&fetch, dest, and_val, mype);                   \
     shmem_quiet();                                                             \
     shmem_barrier_all();                                                       \
     success = (fetch == value && *dest == (value & and_val));                  \
@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
 
   bool result = true;
   int rc = EXIT_SUCCESS;
-  
+
   result &= TEST_C11_SHMEM_ATOMIC_FETCH_AND_NBI(unsigned int);
   result &= TEST_C11_SHMEM_ATOMIC_FETCH_AND_NBI(unsigned long);
   result &= TEST_C11_SHMEM_ATOMIC_FETCH_AND_NBI(unsigned long long);

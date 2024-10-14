@@ -3,9 +3,9 @@
  * @brief Unit test for the shmem_lock_unlock() routine.
  */
 
+#include <shmem.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <shmem.h>
 
 #include "shmemvv.h"
 

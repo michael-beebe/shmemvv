@@ -5,7 +5,7 @@
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_SUM_REDUCE(TYPE) \
+#define TEST_C11_SHMEM_SUM_REDUCE(TYPE)                                        \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
@@ -15,7 +15,7 @@
                                                                                \
     *src = mype;                                                               \
                                                                                \
-    shmem_sum_reduce(SHMEM_TEAM_WORLD, dest, src, 1);             \
+    shmem_sum_reduce(SHMEM_TEAM_WORLD, dest, src, 1);                          \
                                                                                \
     TYPE expected_sum = npes * (npes - 1) / 2;                                 \
     bool success = (*dest == expected_sum);                                    \
@@ -69,4 +69,4 @@ int main(int argc, char *argv[]) {
 
   shmem_finalize();
   return rc;
-} 
+}

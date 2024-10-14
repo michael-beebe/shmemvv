@@ -3,14 +3,14 @@
  * @brief Unit test for shmem_atomic_fetch_or_nbi
  */
 
-#include <stdlib.h>
+#include <shmem.h>
 #include <stdbool.h>
 #include <stdint.h>
-#include <shmem.h> 
+#include <stdlib.h>
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_ATOMIC_FETCH_OR_NBI(TYPE)                     \
+#define TEST_C11_SHMEM_ATOMIC_FETCH_OR_NBI(TYPE)                               \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
@@ -21,7 +21,7 @@
     *dest = value;                                                             \
     shmem_barrier_all();                                                       \
     int mype = shmem_my_pe();                                                  \
-    shmem_atomic_fetch_or_nbi(&fetch, dest, or_val, mype);        \
+    shmem_atomic_fetch_or_nbi(&fetch, dest, or_val, mype);                     \
     shmem_quiet();                                                             \
     shmem_barrier_all();                                                       \
     success = (fetch == value && *dest == (value | or_val));                   \

@@ -11,7 +11,7 @@
 
 #include "shmemvv.h"
 
-#define TEST_C_SHMEM_ATOMIC_FETCH_INC_NBI(TYPE, TYPENAME)                    \
+#define TEST_C_SHMEM_ATOMIC_FETCH_INC_NBI(TYPE, TYPENAME)                      \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
@@ -62,4 +62,3 @@ int main(int argc, char *argv[]) {
   shmem_finalize();
   return rc;
 }
-

@@ -15,15 +15,15 @@
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
-    static TYPE set;                                                          \
+    static TYPE set;                                                           \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
     TYPE value = 42;                                                           \
     *dest = value;                                                             \
     shmem_barrier_all();                                                       \
     int mype = shmem_my_pe();                                                  \
-    shmem_##TYPENAME##_atomic_set(dest, value, mype);                                        \
+    shmem_##TYPENAME##_atomic_set(dest, value, mype);                          \
     shmem_barrier_all();                                                       \
-    success = (*dest == value);                                                  \
+    success = (*dest == value);                                                \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })

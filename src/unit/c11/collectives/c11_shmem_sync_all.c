@@ -5,7 +5,7 @@
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_SYNC_ALL() \
+#define TEST_C11_SHMEM_SYNC_ALL()                                              \
   ({                                                                           \
     static long shared_counter;                                                \
     bool success = true;                                                       \

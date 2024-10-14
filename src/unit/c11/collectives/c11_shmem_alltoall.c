@@ -4,14 +4,14 @@
  * @brief Unit test for shmem_alltoall().
  */
 
+#include <shmem.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
-#include <shmem.h>
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_ALLTOALL(TYPE) \
+#define TEST_C11_SHMEM_ALLTOALL(TYPE)                                          \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
@@ -23,7 +23,7 @@
       src[i] = mype + i;                                                       \
     }                                                                          \
                                                                                \
-    shmem_alltoall(SHMEM_TEAM_WORLD, dest, src, 1);               \
+    shmem_alltoall(SHMEM_TEAM_WORLD, dest, src, 1);                            \
                                                                                \
     bool success = true;                                                       \
     for (int i = 0; i < npes; ++i) {                                           \

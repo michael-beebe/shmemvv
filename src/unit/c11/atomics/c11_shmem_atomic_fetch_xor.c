@@ -3,15 +3,15 @@
  * @brief Test for shmem_atomic_fetch_xor()
  */
 
+#include <shmem.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <shmem.h>
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_ATOMIC_FETCH_XOR(TYPE)                            \
-  ({                                                                             \
+#define TEST_C11_SHMEM_ATOMIC_FETCH_XOR(TYPE)                                  \
+  ({                                                                           \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
     static TYPE fetch;                                                         \
@@ -20,7 +20,7 @@
     *dest = value;                                                             \
     shmem_barrier_all();                                                       \
     int mype = shmem_my_pe();                                                  \
-    fetch = shmem_atomic_fetch_xor(dest, xor_val, mype);          \
+    fetch = shmem_atomic_fetch_xor(dest, xor_val, mype);                       \
     shmem_barrier_all();                                                       \
     success = (fetch == value && *dest == (value ^ xor_val));                  \
     shmem_free(dest);                                                          \
@@ -29,7 +29,7 @@
 
 int main(void) {
   shmem_init();
-  
+
   bool result = true;
   int rc = EXIT_SUCCESS;
 
@@ -40,7 +40,7 @@ int main(void) {
   result &= TEST_C11_SHMEM_ATOMIC_FETCH_XOR(int64_t);
   result &= TEST_C11_SHMEM_ATOMIC_FETCH_XOR(uint32_t);
   result &= TEST_C11_SHMEM_ATOMIC_FETCH_XOR(uint64_t);
-  
+
   shmem_barrier_all();
 
   if (shmem_my_pe() == 0) {
@@ -54,4 +54,3 @@ int main(void) {
   shmem_finalize();
   return rc;
 }
-

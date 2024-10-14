@@ -3,13 +3,13 @@
  * @brief Unit test for the shmem_put() routine.
  */
 
+#include <shmem.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <shmem.h>
 
 #include "shmemvv.h"
 
-#define TEST_CXX_SHMEM_PUT(TYPE, TYPENAME) \
+#define TEST_CXX_SHMEM_PUT(TYPE, TYPENAME)                                     \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE src[10], dest[10];                                             \
@@ -39,7 +39,6 @@
                                                                                \
     success;                                                                   \
   })
-
 
 int main(int argc, char *argv[]) {
   shmem_init();

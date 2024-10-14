@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
   result &= TEST_CXX_SHMEM_ATOMIC_OR(int64_t, int64);
   result &= TEST_CXX_SHMEM_ATOMIC_OR(uint32_t, uint32);
   result &= TEST_CXX_SHMEM_ATOMIC_OR(uint64_t, uint64);
-  
+
   shmem_barrier_all();
 
   if (shmem_my_pe() == 0) {

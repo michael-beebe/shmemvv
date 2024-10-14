@@ -3,13 +3,13 @@
  * @brief Unit test for the shmem_signal_fetch() routine.
  */
 
+#include <shmem.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <shmem.h>
 
 #include "shmemvv.h"
 
-#define TEST_C_SHMEM_SIGNAL_FETCH() \
+#define TEST_C_SHMEM_SIGNAL_FETCH()                                            \
   ({                                                                           \
     bool success = true;                                                       \
     static uint64_t signal = 1;                                                \
@@ -31,7 +31,6 @@
     }                                                                          \
     success;                                                                   \
   })
-
 
 int main(int argc, char *argv[]) {
   shmem_init();

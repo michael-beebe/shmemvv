@@ -5,7 +5,7 @@
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_PROD_REDUCE(TYPE) \
+#define TEST_C11_SHMEM_PROD_REDUCE(TYPE)                                       \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
@@ -15,7 +15,7 @@
                                                                                \
     *src = mype + 1;                                                           \
                                                                                \
-    shmem_prod_reduce(SHMEM_TEAM_WORLD, dest, src, 1);            \
+    shmem_prod_reduce(SHMEM_TEAM_WORLD, dest, src, 1);                         \
                                                                                \
     TYPE expected_prod = 1;                                                    \
     for (int i = 1; i <= npes; i++) {                                          \
@@ -73,4 +73,4 @@ int main(int argc, char *argv[]) {
 
   shmem_finalize();
   return rc;
-} 
+}

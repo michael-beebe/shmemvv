@@ -6,14 +6,13 @@
 #include <shmem.h>
 #include <stdbool.h>
 #include <stdio.h>
-#include <unistd.h>
 #include <time.h>
+#include <unistd.h>
 
 #include "shmemvv.h"
 
-
 #define TIMEOUT 2
-#define TEST_C_SHMEM_TEST_ALL_VECTOR(TYPE, TYPENAME)                         \
+#define TEST_C_SHMEM_TEST_ALL_VECTOR(TYPE, TYPENAME)                           \
   ({                                                                           \
     bool success = true;                                                       \
     TYPE *flags = (TYPE *)shmem_malloc(4 * sizeof(TYPE));                      \

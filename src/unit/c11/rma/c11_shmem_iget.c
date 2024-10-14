@@ -3,13 +3,13 @@
  * @brief Unit test for the shmem_iget() routine.
  */
 
+#include <shmem.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <shmem.h>
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_IGET(TYPE) \
+#define TEST_C11_SHMEM_IGET(TYPE)                                              \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE src[10], dest[10];                                             \
@@ -25,7 +25,7 @@
     shmem_barrier_all();                                                       \
                                                                                \
     if (mype == 1) {                                                           \
-      shmem_iget(dest, src, 2, 2, 5, 0);                          \
+      shmem_iget(dest, src, 2, 2, 5, 0);                                       \
     }                                                                          \
                                                                                \
     shmem_barrier_all();                                                       \

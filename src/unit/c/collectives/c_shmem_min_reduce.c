@@ -5,7 +5,7 @@
 
 #include "shmemvv.h"
 
-#define TEST_C_SHMEM_MIN_REDUCE(TYPE, TYPENAME) \
+#define TEST_C_SHMEM_MIN_REDUCE(TYPE, TYPENAME)                                \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
@@ -68,4 +68,4 @@ int main(int argc, char *argv[]) {
 
   shmem_finalize();
   return rc;
-} 
+}

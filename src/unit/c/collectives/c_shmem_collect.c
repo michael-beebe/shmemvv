@@ -5,7 +5,7 @@
 
 #include "shmemvv.h"
 
-#define TEST_C_SHMEM_COLLECT(TYPE, TYPENAME) \
+#define TEST_C_SHMEM_COLLECT(TYPE, TYPENAME)                                   \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
@@ -30,7 +30,7 @@
                                                                                \
     success;                                                                   \
   })
-    
+
 int main(int argc, char *argv[]) {
   shmem_init();
 

@@ -3,13 +3,13 @@
  * @brief Unit test for the shmem_put_nbi() routine.
  */
 
+#include <shmem.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <shmem.h>
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_PUT_NBI(TYPE) \
+#define TEST_C11_SHMEM_PUT_NBI(TYPE)                                           \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE src[10], dest[10];                                             \
@@ -23,7 +23,7 @@
     shmem_barrier_all();                                                       \
                                                                                \
     if (mype == 0) {                                                           \
-      shmem_put_nbi(dest, src, 10, 1);                            \
+      shmem_put_nbi(dest, src, 10, 1);                                         \
       shmem_quiet();                                                           \
     }                                                                          \
                                                                                \
@@ -49,7 +49,7 @@ int main(int argc, char *argv[]) {
       display_not_enough_pes("RMA");
     }
     shmem_finalize();
-    return EXIT_SUCCESS; 
+    return EXIT_SUCCESS;
   }
 
   int result = true;

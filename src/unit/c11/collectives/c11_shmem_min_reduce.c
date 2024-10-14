@@ -5,7 +5,7 @@
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_MIN_REDUCE(TYPE) \
+#define TEST_C11_SHMEM_MIN_REDUCE(TYPE)                                        \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
@@ -15,7 +15,7 @@
                                                                                \
     *src = mype;                                                               \
                                                                                \
-    shmem_min_reduce(SHMEM_TEAM_WORLD, dest, src, 1);             \
+    shmem_min_reduce(SHMEM_TEAM_WORLD, dest, src, 1);                          \
                                                                                \
     bool success = (*dest == 0);                                               \
                                                                                \
@@ -68,4 +68,4 @@ int main(int argc, char *argv[]) {
 
   shmem_finalize();
   return rc;
-} 
+}

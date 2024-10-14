@@ -3,12 +3,12 @@
  * @brief Unit test shmem_wait_until_all() routine.
  */
 
-#include <time.h>
+#include "shmemvv.h"
 #include <shmem.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <time.h>
 #include <unistd.h>
-#include "shmemvv.h"
 
 #define TIMEOUT 2
 

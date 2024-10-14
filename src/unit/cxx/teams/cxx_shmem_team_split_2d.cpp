@@ -19,7 +19,7 @@ bool test_shmem_team_split_2d(void) {
 
 int main(int argc, char *argv[]) {
   shmem_init();
-  
+
   int mype = shmem_my_pe();
   int npes = shmem_n_pes();
 
@@ -33,10 +33,9 @@ int main(int argc, char *argv[]) {
 
   bool result = test_shmem_team_split_2d();
   int rc = result ? EXIT_SUCCESS : EXIT_FAILURE;
-  
+
   if (mype == 0) {
-    display_test_result("CXX shmem_team_split_2d()", result,
-                       false);
+    display_test_result("CXX shmem_team_split_2d()", result, false);
   }
 
   shmem_finalize();

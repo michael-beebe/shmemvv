@@ -43,7 +43,6 @@ bool test_shmem_ptr() {
   return test_passed;
 }
 
-
 int main(int argc, char *argv[]) {
   shmem_init();
 

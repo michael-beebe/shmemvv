@@ -11,7 +11,7 @@
 
 #include "shmemvv.h"
 
-#define TEST_C_SHMEM_ATOMIC_ADD(TYPE, TYPENAME)                              \
+#define TEST_C_SHMEM_ATOMIC_ADD(TYPE, TYPENAME)                                \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
@@ -20,9 +20,9 @@
     *dest = value;                                                             \
     shmem_barrier_all();                                                       \
     int mype = shmem_my_pe();                                                  \
-    shmem_##TYPENAME##_atomic_add(dest, add_val, mype);                       \
+    shmem_##TYPENAME##_atomic_add(dest, add_val, mype);                        \
     shmem_barrier_all();                                                       \
-    success = (*dest == value + add_val);                                        \
+    success = (*dest == value + add_val);                                      \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })

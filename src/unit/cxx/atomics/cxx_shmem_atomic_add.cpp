@@ -20,9 +20,9 @@
     *dest = value;                                                             \
     shmem_barrier_all();                                                       \
     int mype = shmem_my_pe();                                                  \
-    shmem_##TYPENAME##_atomic_add(dest, add_val, mype);                       \
+    shmem_##TYPENAME##_atomic_add(dest, add_val, mype);                        \
     shmem_barrier_all();                                                       \
-    success = (*dest == value + add_val);                                        \
+    success = (*dest == value + add_val);                                      \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })

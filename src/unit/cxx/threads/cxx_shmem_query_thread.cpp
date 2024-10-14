@@ -19,13 +19,13 @@ bool test_shmem_query_thread(void) {
 
 int main(int argc, char *argv[]) {
   shmem_init();
-  
+
   int mype = shmem_my_pe();
   int npes = shmem_n_pes();
-  
+
   bool result = test_shmem_query_thread();
   int rc = result ? EXIT_SUCCESS : EXIT_FAILURE;
-  
+
   if (mype == 0) {
     display_test_result("CXX shmem_query_thread()", result, false);
   }

@@ -3,13 +3,13 @@
  * @brief Unit test for the shmem_iput() routine.
  */
 
+#include <shmem.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <shmem.h>
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_IPUT(TYPE) \
+#define TEST_C11_SHMEM_IPUT(TYPE)                                              \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE src[10], dest[10];                                             \
@@ -23,7 +23,7 @@
     shmem_barrier_all();                                                       \
                                                                                \
     if (mype == 0) {                                                           \
-      shmem_iput(dest, src, 2, 2, 5, 1);                          \
+      shmem_iput(dest, src, 2, 2, 5, 1);                                       \
     }                                                                          \
                                                                                \
     shmem_barrier_all();                                                       \

@@ -5,7 +5,7 @@
 
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_BROADCAST(TYPE) \
+#define TEST_C11_SHMEM_BROADCAST(TYPE)                                         \
   ({                                                                           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
@@ -25,7 +25,7 @@
                                                                                \
     shmem_barrier_all();                                                       \
                                                                                \
-    shmem_broadcast(SHMEM_TEAM_WORLD, dest, src, 4, 0);           \
+    shmem_broadcast(SHMEM_TEAM_WORLD, dest, src, 4, 0);                        \
                                                                                \
     shmem_barrier_all();                                                       \
                                                                                \

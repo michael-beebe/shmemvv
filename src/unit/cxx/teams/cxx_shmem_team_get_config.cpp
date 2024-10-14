@@ -3,9 +3,9 @@
  * @brief Unit test for the shmem_team_get_config() routine.
  */
 
+#include <shmem.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <shmem.h>
 
 #include "shmemvv.h"
 
@@ -26,7 +26,7 @@ bool test_shmem_team_get_config(void) {
 
 int main(int argc, char *argv[]) {
   shmem_init();
-  
+
   int mype = shmem_my_pe();
   int npes = shmem_n_pes();
 
@@ -42,8 +42,7 @@ int main(int argc, char *argv[]) {
   int rc = result ? EXIT_SUCCESS : EXIT_FAILURE;
 
   if (mype == 0) {
-    display_test_result("CXX shmem_team_get_config()", result,
-                       false);
+    display_test_result("CXX shmem_team_get_config()", result, false);
   }
 
   shmem_finalize();

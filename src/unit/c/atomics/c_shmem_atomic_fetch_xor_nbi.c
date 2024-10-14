@@ -3,14 +3,14 @@
  * @brief Unit test for shmem_atomic_fetch_xor_nbi
  */
 
-#include <stdlib.h>
+#include <shmem.h>
 #include <stdbool.h>
 #include <stdint.h>
-#include <shmem.h> 
+#include <stdlib.h>
 
 #include "shmemvv.h"
 
-#define TEST_C_SHMEM_ATOMIC_FETCH_XOR_NBI(TYPE, TYPENAME)                    \
+#define TEST_C_SHMEM_ATOMIC_FETCH_XOR_NBI(TYPE, TYPENAME)                      \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
@@ -28,7 +28,7 @@
     shmem_free(dest);                                                          \
     success;                                                                   \
   })
-  
+
 int main(int argc, char *argv[]) {
   shmem_init();
 

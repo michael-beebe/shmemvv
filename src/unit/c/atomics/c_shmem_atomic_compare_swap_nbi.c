@@ -11,7 +11,7 @@
 
 #include "shmemvv.h"
 
-#define TEST_C_SHMEM_ATOMIC_COMPARE_SWAP_NBI(TYPE, TYPENAME)                 \
+#define TEST_C_SHMEM_ATOMIC_COMPARE_SWAP_NBI(TYPE, TYPENAME)                   \
   ({                                                                           \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \

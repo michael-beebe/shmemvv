@@ -3,10 +3,9 @@
  * @brief Unit test for the shmem_ctx_get_team() routine.
  */
 
-
+#include <shmem.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <shmem.h>
 
 #include "shmemvv.h"
 
