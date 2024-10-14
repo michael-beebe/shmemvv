@@ -10,12 +10,13 @@ LOCKING_BIN=$BIN_DIR/locking
 MEMORY_BIN=$BIN_DIR/memory
 PT2PT_SYNC_BIN=$BIN_DIR/pt2pt_sync
 SETUP_BIN=$BIN_DIR/setup
+SIGNALING_BIN=$BIN_DIR/signaling
 
 # ----------  C    ------------
-# --- setup
-for executable in $SETUP_BIN/c_*; do
-  oshrun -np 2 $executable
-done
+# # --- setup
+# for executable in $SETUP_BIN/c_*; do
+#   oshrun -np 2 $executable
+# done
 
 # # --- atomics
 # for executable in $ATOMIC_BIN/c_*; do
@@ -52,6 +53,11 @@ done
 #   oshrun -np 2 $executable
 # done
 
+# --- signaling
+for executable in $SIGNALING_BIN/c_*; do
+  oshrun -np 2 $executable
+done
+
 # ----------  C11  ------------
 # # --- atomics
 # for executable in $ATOMIC_BIN/c11_*; do
@@ -67,5 +73,10 @@ done
 # for executable in $RMA_BIN/c11_*; do
 #   oshrun -np 2 $executable
 # done
+
+# --- signaling
+for executable in $SIGNALING_BIN/c11_*; do
+  oshrun -np 2 $executable
+done
 
 # ----------  CXX  ------------
