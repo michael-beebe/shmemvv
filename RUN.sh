@@ -14,7 +14,15 @@ SIGNALING_BIN=$BIN_DIR/signaling
 TEAMS_BIN=$BIN_DIR/teams
 THREADS_BIN=$BIN_DIR/threads
 
-# ----------  C    ------------
+HLINE="================================================"
+
+# ===============================================
+#         ----------  C  ------------
+# ===============================================
+echo $HLINE
+echo "    RUNNING C TESTS"
+echo $HLINE
+
 # --- setup
 for executable in $SETUP_BIN/c_*; do
   oshrun -np 2 $executable
@@ -70,7 +78,18 @@ for executable in $THREADS_BIN/c_*; do
   oshrun -np 2 $executable
 done
 
-# ----------  C11  ------------
+# ===============================================
+#       ----------  C11  ------------
+# ===============================================
+echo $HLINE
+echo "    RUNNING C11 TESTS"
+echo $HLINE
+
+# --- setup
+for executable in $SETUP_BIN/c11_*; do
+  oshrun -np 2 $executable
+done
+
 # --- atomics
 for executable in $ATOMIC_BIN/c11_*; do
   oshrun -np 2 $executable
@@ -86,12 +105,48 @@ for executable in $RMA_BIN/c11_*; do
   oshrun -np 2 $executable
 done
 
+# --- ctx
+for executable in $CTX_BIN/c11_*; do
+  oshrun -np 2 $executable
+done  
+
+# --- locking
+for executable in $LOCKING_BIN/c11_*; do
+  oshrun -np 2 $executable
+done
+
+# --- memory
+for executable in $MEMORY_BIN/c11_*; do
+  oshrun -np 2 $executable
+done
+
+# --- pt2pt_sync
+for executable in $PT2PT_SYNC_BIN/c11_*; do
+  oshrun -np 2 $executable
+done
+
 # --- signaling
 for executable in $SIGNALING_BIN/c11_*; do
   oshrun -np 2 $executable
 done
 
-# ----------  CXX  ------------
+# --- teams
+for executable in $TEAMS_BIN/c11_*; do
+  oshrun -np 2 $executable
+done
+
+# --- threads
+for executable in $THREADS_BIN/c11_*; do
+  oshrun -np 2 $executable
+done
+
+# ===============================================
+#       ----------  CXX  ------------
+# ===============================================
+echo $HLINE
+echo "    RUNNING CXX TESTS"
+echo $HLINE
+
 # --- setup
 for executable in $SETUP_BIN/cxx_*; do
   oshrun -np 2 $executable
