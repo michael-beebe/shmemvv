@@ -110,8 +110,8 @@ void log_init(const char* test_name) {
     fprintf(LOGGER, "---------- BEGIN TEST: %s\n", test_name);
 }
 
-void log_close(int result) {
-    fprintf(LOGGER, "---------- END TEST: %s\n", result == 0 ? "PASSED" : "FAILED");
+void log_close(int failed) {
+    fprintf(LOGGER, "---------- END TEST: %s\n", failed == 0 ? "PASSED" : "FAILED");
     fclose(LOGGER);
 }
 
