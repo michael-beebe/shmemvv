@@ -9,6 +9,14 @@
 
 #include "shmemvv.h"
 
+/**
+ * @brief Tests the creation and destruction of a SHMEM context.
+ *
+ * This function verifies that the `shmem_ctx_create` and `shmem_ctx_destroy` functions work as expected.
+ * It creates a shared memory context, checks that the creation was successful, and then destroys the context.
+ *
+ * @return true if the test passes, false otherwise.
+ */
 bool test_shmem_ctx_create_destroy(void) {
   shmem_ctx_t ctx;
   int ret = shmem_ctx_create(0, &ctx);

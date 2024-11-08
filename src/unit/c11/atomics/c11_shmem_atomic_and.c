@@ -9,26 +9,41 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "log.h"
 #include "shmemvv.h"
 
 #define TEST_C11_SHMEM_ATOMIC_AND(TYPE)                                        \
   ({                                                                           \
+    log_routine("shmem_atomic_and(" #TYPE ")");                                 \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
-    TYPE value = 42, and_val = 15;                                             \
+    log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
+    TYPE value = 42, and_val = 15;                                              \
     *dest = value;                                                             \
+    log_info("set %p to %d", (void *)dest, (char)value);                       \
     shmem_barrier_all();                                                       \
+    log_info("executing atomic and: dest = %p, and_val = %d", (void *)dest,      \
+             (char)and_val);                                                    \
     int mype = shmem_my_pe();                                                  \
-    shmem_atomic_and(dest, and_val, mype);                                     \
+    shmem_atomic_and(dest, and_val, mype);                                       \
     shmem_barrier_all();                                                       \
-    success = (*dest == (value & and_val));                                    \
+    success = (*dest == (value & and_val));                                     \
+    if (!success)                                                              \
+      log_fail("atomic and on %s did not produce expected value %d, got "       \
+               "instead %d",                                                   \
+               #TYPE, (char)(value & and_val), (char)*dest);                    \
+    else                                                                       \
+      log_info(                                                                \
+          "atomic and on a %s at %p produced expected result (%d & %d = %d)",   \
+          #TYPE, dest, value, and_val, *dest);                                  \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })
 
 int main(int argc, char *argv[]) {
   shmem_init();
+  log_init(__FILE__);
 
   bool result = true;
   int rc = EXIT_SUCCESS;
@@ -51,6 +66,7 @@ int main(int argc, char *argv[]) {
     rc = EXIT_FAILURE;
   }
 
+  log_close(rc);
   shmem_finalize();
 
   return rc;

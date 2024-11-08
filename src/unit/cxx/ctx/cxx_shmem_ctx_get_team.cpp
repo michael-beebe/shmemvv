@@ -9,6 +9,13 @@
 
 #include "shmemvv.h"
 
+/**
+ * @brief Tests the `shmem_ctx_get_team()` function.
+ *
+ * This test case verifies that the `shmem_ctx_get_team()` function correctly retrieves the team associated with a given SHMEM context.
+ *
+ * @return `true` if the test passes, `false` otherwise.
+ */
 bool test_shmem_ctx_get_team(void) {
   shmem_ctx_t ctx;
   shmem_ctx_create(0, &ctx);
