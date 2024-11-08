@@ -8,6 +8,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 
+#include "log.h"
 #include "shmemvv.h"
 
 #define TEST_C11_SHMEM_ATOMIC_FETCH_XOR_NBI(TYPE)                              \

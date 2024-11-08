@@ -3,6 +3,7 @@
  * @brief Unit test for shmem_prod_reduce().
  */
 
+#include "log.h"
 #include "shmemvv.h"
 
 #define TEST_C11_SHMEM_PROD_REDUCE(TYPE)                                       \

@@ -9,7 +9,7 @@ extern "C" {
  * But,
  * - The log output can change between a file or STDOUT based on initialization.
  * - The log output is kept seperate between executables.
- * - Passing file pointers to every single benchmark is cumbersome.
+ * - Passing file pointers to every single test is cumbersome.
  * And so a global.
  */
 FILE* LOGGER = NULL;
@@ -20,7 +20,6 @@ FILE* LOGGER = NULL;
   Prefixed with current time and prefix, in that order. Affixed with \n.
  */
 void log_line(const char* string, const char* prefix) {
-    if (shmem_my_pe() != 0) return;
     time_t time_since_epoch = time(NULL);
     struct tm * timeinfo;
     struct timeval tv;
@@ -93,14 +92,15 @@ void log_routine(const char* routine) {
 }
 
 void log_init(const char* test_name) {
-    if (shmem_my_pe() != 0) return; // TODO: per-pe logging
     if (LOGGER) return;
     const char* path_prefix = getenv("SHMEMVV_LOG_DIR");
     if(!path_prefix) path_prefix = "/tmp/";
     char path_buf[256];
-    strcpy(path_buf, strdup(path_prefix));
-    strlcat(path_buf, basename(strdup(test_name)), 256);
-    strlcat(path_buf, ".out", 256);
+    snprintf(path_buf, 256, "%s%s.pe%02d.out", path_prefix, basename(strdup(test_name)), shmem_my_pe());
+    /* strcpy(path_buf, strdup(path_prefix)); */
+    /* strlcat(path_buf, basename(strdup(test_name)), 256); */
+    /* strlcat(path_buf, ".pe_", 256); */
+    /* strlcat(path_buf, ".out", 256); */
     FILE* maybe_file = fopen(path_buf, "w+");
     if(maybe_file == NULL) {
         fprintf(stderr, "Failed to open log file (error %d: %s). Writing to STDOUT.\n", errno, strerror(errno));
@@ -111,7 +111,6 @@ void log_init(const char* test_name) {
 }
 
 void log_close(int result) {
-    if (shmem_my_pe() != 0) return;
     fprintf(LOGGER, "---------- END TEST: %s\n", result == 0 ? "PASSED" : "FAILED");
     fclose(LOGGER);
 }
