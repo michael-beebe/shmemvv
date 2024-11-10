@@ -7,31 +7,42 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "log.h"
 #include "shmemvv.h"
 
 #define TEST_C11_SHMEM_G(TYPE)                                                 \
   ({                                                                           \
+    log_routine("shmem_g(" #TYPE ")");                                         \
     bool success = true;                                                       \
     static TYPE src, dest;                                                     \
+    log_info("&src = %p, &dest = %p", &src, &dest);                            \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
                                                                                \
     if (mype == 0) {                                                           \
       src = 10;                                                                \
+      log_info("set src = 10");                                                \
     }                                                                          \
                                                                                \
     shmem_barrier_all();                                                       \
                                                                                \
     if (mype == 1) {                                                           \
+      log_info("shmem_g'ing src into dest");                                   \
       dest = shmem_g(&src, 0);                                                 \
+      log_info("dest = %d", (char)dest);                                       \
     }                                                                          \
                                                                                \
     shmem_barrier_all();                                                       \
                                                                                \
     if (mype == 1) {                                                           \
+      log_info("validating...");                                               \
       if (dest != 10) {                                                        \
+        log_fail("dest was unexpected value: expected 10, got ", (char)dest);  \
         success = false;                                                       \
       }                                                                        \
+      log_info("result is valid");                                             \
+    } else {                                                                   \
+      log_info("waiting for pe 1 to verify");                                  \
     }                                                                          \
                                                                                \
     success;                                                                   \
@@ -39,8 +50,10 @@
 
 int main(int argc, char *argv[]) {
   shmem_init();
+  log_init(__FILE__);
 
   if (!(shmem_n_pes() <= 2)) {
+    log_warn("not enough pes for test (need 2, have %d)", shmem_n_pes());
     if (shmem_my_pe() == 0) {
       display_not_enough_pes("RMA");
     }
@@ -86,6 +99,7 @@ int main(int argc, char *argv[]) {
     rc = EXIT_FAILURE;
   }
 
+  log_close(rc);
   shmem_finalize();
   return rc;
 }

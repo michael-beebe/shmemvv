@@ -104,10 +104,6 @@ void log_init(const char *test_name) {
   char path_buf[256];
   snprintf(path_buf, 256, "%s%s.pe%02d.out", path_prefix,
            basename(strdup(test_name)), shmem_my_pe());
-  /* strcpy(path_buf, strdup(path_prefix)); */
-  /* strlcat(path_buf, basename(strdup(test_name)), 256); */
-  /* strlcat(path_buf, ".pe_", 256); */
-  /* strlcat(path_buf, ".out", 256); */
   FILE *maybe_file = fopen(path_buf, "w+");
   if (maybe_file == NULL) {
     fprintf(stderr,
