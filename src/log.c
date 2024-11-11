@@ -102,7 +102,7 @@ void log_init(const char *test_name) {
   if (!path_prefix)
     path_prefix = "/tmp/";
   char path_buf[256];
-  snprintf(path_buf, 256, "%s%s.pe%02d.out", path_prefix,
+  snprintf(path_buf, 256, "%s%s.pe%02d.log", path_prefix,
            basename(strdup(test_name)), shmem_my_pe());
   FILE *maybe_file = fopen(path_buf, "w+");
   if (maybe_file == NULL) {
