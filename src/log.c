@@ -39,7 +39,7 @@ void log_line(const char *string, const char *prefix) {
    @param ... Variable arguments to be formatted into the message using
    `fstring`.
  */
-void log_info(char *fstring, ...) {
+void log_info(const char *fstring, ...) {
   va_list va;
   char buf[MAX_LOG_LEN];
   va_start(va, fstring);
@@ -58,7 +58,7 @@ void log_info(char *fstring, ...) {
    @param ... Variable arguments to be formatted into the message using
    `fstring`.
  */
-void log_warn(char *fstring, ...) {
+void log_warn(const char *fstring, ...) {
   va_list va;
   char buf[MAX_LOG_LEN];
   va_start(va, fstring);
@@ -79,7 +79,7 @@ void log_warn(char *fstring, ...) {
    @param ... Variable arguments to be formatted into the message using
    `fstring`.
  */
-void log_fail(char *fstring, ...) {
+void log_fail(const char *fstring, ...) {
   va_list va;
   char buf[MAX_LOG_LEN];
   va_start(va, fstring);

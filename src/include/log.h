@@ -42,7 +42,7 @@ void log_line(const char* string, const char* prefix);
    @param fstring Format string specifying the message to be logged.
    @param ... Variable arguments to be formatted into the message using `fstring`.
  */
-void log_info(char* fstring, ...);
+void log_info(const char* fstring, ...);
 
 /**
    Logs a warning message to the logger.
@@ -50,7 +50,7 @@ void log_info(char* fstring, ...);
    @param fstring Format string specifying the message to be logged.
    @param ... Variable arguments to be formatted into the message using `fstring`.
  */
-void log_warn(char* fstring, ...);
+void log_warn(const char* fstring, ...);
 
 /**
    Logs a fatal message to the logger.
@@ -61,7 +61,7 @@ void log_warn(char* fstring, ...);
    @param fstring Format string specifying the message to be logged.
    @param ... Variable arguments to be formatted into the message using `fstring`.
  */
-void log_fail(char* fstring, ...);
+void log_fail(const char* fstring, ...);
 
 void log_init(const char* test_name);
 
