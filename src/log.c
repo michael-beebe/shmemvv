@@ -27,8 +27,8 @@ void log_line(const char *string, const char *prefix) {
   timeinfo = localtime(&time_since_epoch);
   gettimeofday(&tv, NULL);
 
-  fprintf(LOGGER, "[%02d:%02d:%02d.%03d] %s%s\n", timeinfo->tm_hour,
-          timeinfo->tm_min, timeinfo->tm_sec, tv.tv_usec / 1000, prefix,
+  fprintf(LOGGER, "[%02d:%02d:%02d.%03ld] %s%s\n", timeinfo->tm_hour,
+          timeinfo->tm_min, timeinfo->tm_sec, (long int) tv.tv_usec / 1000, prefix,
           string);
 }
 
