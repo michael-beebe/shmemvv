@@ -9,19 +9,25 @@
 #include <time.h>
 #include <unistd.h>
 
+#include "log.h"
 #include "shmemvv.h"
 
 #define TIMEOUT 2
 #define TEST_C_SHMEM_WAIT_UNTIL_ALL_VECTOR(TYPE, TYPENAME)                     \
   ({                                                                           \
+    log_routine("c11_shmem_wait_until_all_vector(" #TYPE ")");                 \
     bool success = true;                                                       \
     TYPE *flags = (TYPE *)shmem_malloc(4 * sizeof(TYPE));                      \
+    log_info("shmem_malloc'd flags (%d bytes, 4x " #TYPE ") at %p",            \
+             4 * sizeof(TYPE), (void *)flags);                                 \
     if (flags == NULL) {                                                       \
+      log_fail("shmem_malloc failed!");                                        \
       success = false;                                                         \
     } else {                                                                   \
       for (int i = 0; i < 4; ++i) {                                            \
         flags[i] = 0;                                                          \
       }                                                                        \
+      log_info("set flags to 0");                                              \
       int mype = shmem_my_pe();                                                \
                                                                                \
       shmem_barrier_all();                                                     \
@@ -30,6 +36,7 @@
         for (int i = 0; i < 4; ++i) {                                          \
           shmem_##TYPENAME##_p(&flags[i], 1, 1);                               \
         }                                                                      \
+        log_info("set flags on pe 1 to [1; 4]");                               \
         shmem_quiet();                                                         \
       }                                                                        \
                                                                                \
@@ -39,10 +46,17 @@
         int status[4] = {SHMEM_CMP_EQ, SHMEM_CMP_EQ, SHMEM_CMP_EQ,             \
                          SHMEM_CMP_EQ};                                        \
         TYPE cmp_values[4] = {1, 1, 1, 1};                                     \
+        log_info("executing wait_until_all(flags = %p, n = 4, status = "       \
+                 "[SHMEM_CMP_EQ; 4], cmp_values = [1; 4])",                    \
+                 (void *)flags);                                                \
         shmem_##TYPENAME##_wait_until_all_vector(flags, 4, status,             \
                                                  SHMEM_CMP_EQ, cmp_values);    \
+        log_info("wait until returned");                                       \
         for (int i = 0; i < 4; ++i) {                                          \
           if (flags[i] != 1) {                                                 \
+            log_fail("wait until returned but flags didn't match test!");      \
+            log_fail("expected flags[%d] (%p) to equal 1, got %d", i,          \
+                     (void *)&flags[i], flags[i]);                             \
             success = false;                                                   \
             break;                                                             \
           }                                                                    \
@@ -55,6 +69,7 @@
 
 int main(int argc, char **argv) {
   shmem_init();
+  log_init(__FILE__);
 
   int result = true;
   int rc = EXIT_SUCCESS;
@@ -84,6 +99,7 @@ int main(int argc, char **argv) {
     rc = EXIT_FAILURE;
   }
 
+  log_close(rc);
   shmem_finalize();
   return rc;
 }
