@@ -16,7 +16,7 @@
     bool success = true;                                                       \
     static TYPE src, dest;                                                     \
     log_info("Allocated static variables: src at %p, dest at %p",              \
-              (void *)&src, (void *)&dest);                                    \
+             (void *)&src, (void *)&dest);                                     \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
     log_info("Running on PE %d of %d total PEs", mype, npes);                  \
@@ -29,7 +29,7 @@
                                                                                \
     if (mype == 0) {                                                           \
       log_info("PE 0: Starting put operation to PE 1");                        \
-      log_info("PE 0: dest=%p, src=%d", (void *)&dest, src);                  \
+      log_info("PE 0: dest=%p, src=%d", (void *)&dest, src);                   \
       shmem_##TYPENAME##_p(&dest, src, 1);                                     \
       log_info("PE 0: Completed put operation");                               \
     }                                                                          \

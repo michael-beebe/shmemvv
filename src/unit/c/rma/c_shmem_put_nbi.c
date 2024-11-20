@@ -12,11 +12,11 @@
 
 #define TEST_C_SHMEM_PUT_NBI(TYPE, TYPENAME)                                   \
   ({                                                                           \
-    log_routine("shmem_" #TYPENAME "_put_nbi()");                             \
+    log_routine("shmem_" #TYPENAME "_put_nbi()");                              \
     bool success = true;                                                       \
     static TYPE src[10], dest[10];                                             \
-    log_info("Allocated static arrays: src at %p, dest at %p",                 \
-              (void *)&src, (void *)&dest);                                    \
+    log_info("Allocated static arrays: src at %p, dest at %p", (void *)&src,   \
+             (void *)&dest);                                                   \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
     log_info("Running on PE %d of %d total PEs", mype, npes);                  \
@@ -44,12 +44,12 @@
       log_info("PE 1: Beginning validation of received data");                 \
       for (int i = 0; i < 10; i++) {                                           \
         if (dest[i] != i) {                                                    \
-          log_fail("PE 1: Validation failed - dest[%d] = %d, expected %d",     \
-                   i, (int)dest[i], i);                                        \
+          log_fail("PE 1: Validation failed - dest[%d] = %d, expected %d", i,  \
+                   (int)dest[i], i);                                           \
           success = false;                                                     \
           break;                                                               \
         }                                                                      \
-        log_info("PE 1: dest[%d] = %d (valid)", i, (int)dest[i]);             \
+        log_info("PE 1: dest[%d] = %d (valid)", i, (int)dest[i]);              \
       }                                                                        \
       if (success) {                                                           \
         log_info("PE 1: All elements validated successfully");                 \

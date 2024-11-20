@@ -32,9 +32,8 @@
                                                                                \
     if (mype == 0) {                                                           \
       log_info("PE 0: Starting strided put to PE 1");                          \
-      log_info(                                                                \
-          "PE 0: dest=%p, src=%p, dest_stride=2, src_stride=2, nelems=5",      \
-          (void *)dest, (void *)src);                                          \
+      log_info("PE 0: dest=%p, src=%p, dest_stride=2, src_stride=2, nelems=5", \
+               (void *)dest, (void *)src);                                     \
       shmem_iput(dest, src, 2, 2, 5, 1);                                       \
       log_info("PE 0: Completed strided put operation");                       \
     }                                                                          \
