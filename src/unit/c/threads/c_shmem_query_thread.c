@@ -10,7 +10,7 @@
 
 bool test_shmem_query_thread(void) {
   log_routine("shmem_query_thread()");
-  
+
   int provided;
   log_info("Calling shmem_query_thread()");
   shmem_query_thread(&provided);

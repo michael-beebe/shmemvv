@@ -10,28 +10,28 @@
 
 bool test_shmem_query_thread(void) {
   log_routine("shmem_query_thread()");
-  
+
   int provided;
   log_info("Calling shmem_query_thread()");
   shmem_query_thread(&provided);
   log_info("Thread level returned: %d", provided);
 
   const char *level_str;
-  switch(provided) {
-    case SHMEM_THREAD_MULTIPLE:
-      level_str = "SHMEM_THREAD_MULTIPLE";
-      break;
-    case SHMEM_THREAD_FUNNELED:
-      level_str = "SHMEM_THREAD_FUNNELED";
-      break;
-    case SHMEM_THREAD_SERIALIZED:
-      level_str = "SHMEM_THREAD_SERIALIZED";
-      break;
-    case SHMEM_THREAD_SINGLE:
-      level_str = "SHMEM_THREAD_SINGLE";
-      break;
-    default:
-      level_str = "INVALID";
+  switch (provided) {
+  case SHMEM_THREAD_MULTIPLE:
+    level_str = "SHMEM_THREAD_MULTIPLE";
+    break;
+  case SHMEM_THREAD_FUNNELED:
+    level_str = "SHMEM_THREAD_FUNNELED";
+    break;
+  case SHMEM_THREAD_SERIALIZED:
+    level_str = "SHMEM_THREAD_SERIALIZED";
+    break;
+  case SHMEM_THREAD_SINGLE:
+    level_str = "SHMEM_THREAD_SINGLE";
+    break;
+  default:
+    level_str = "INVALID";
   }
 
   bool success =

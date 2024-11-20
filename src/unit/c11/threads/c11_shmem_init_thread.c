@@ -10,29 +10,29 @@
 
 bool test_shmem_init_thread(void) {
   log_routine("shmem_init_thread()");
-  
+
   int provided;
   log_info("Requesting thread level SHMEM_THREAD_MULTIPLE");
   shmem_init_thread(SHMEM_THREAD_MULTIPLE, &provided);
   log_init(__FILE__);
 
   log_info("Checking returned thread level: %d", provided);
-  
+
   const char *level_str;
-  switch(provided) {
-    case SHMEM_THREAD_MULTIPLE:
-      level_str = "SHMEM_THREAD_MULTIPLE";
-      break;
-    case SHMEM_THREAD_FUNNELED:
-      level_str = "SHMEM_THREAD_FUNNELED"; 
-      break;
-    case SHMEM_THREAD_SERIALIZED:
-      level_str = "SHMEM_THREAD_SERIALIZED";
-      break;
-    default:
-      level_str = "INVALID";
+  switch (provided) {
+  case SHMEM_THREAD_MULTIPLE:
+    level_str = "SHMEM_THREAD_MULTIPLE";
+    break;
+  case SHMEM_THREAD_FUNNELED:
+    level_str = "SHMEM_THREAD_FUNNELED";
+    break;
+  case SHMEM_THREAD_SERIALIZED:
+    level_str = "SHMEM_THREAD_SERIALIZED";
+    break;
+  default:
+    level_str = "INVALID";
   }
-  
+
   bool is_valid = provided == SHMEM_THREAD_MULTIPLE ||
                   provided == SHMEM_THREAD_FUNNELED ||
                   provided == SHMEM_THREAD_SERIALIZED;
