@@ -1,0 +1,122 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/collectives/c11_shmem_sum_reduce.c
+[11:36:32.705] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(float)
+[11:36:32.706] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:36:32.706] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.706] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.706] [INFO] shmem_sum_reduce on float produced expected result.
+[11:36:32.706] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(double)
+[11:36:32.706] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.706] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.706] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.707] [INFO] shmem_sum_reduce on double produced expected result.
+[11:36:32.707] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(long double)
+[11:36:32.707] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
+[11:36:32.707] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.707] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.707] [INFO] shmem_sum_reduce on long double produced expected result.
+[11:36:32.707] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(char)
+[11:36:32.707] [INFO] shmem_malloc'd 1 bytes @ &src = 0xaaab40002250, 1 bytes @ &dest = 0xaaab40002270
+[11:36:32.707] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.707] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.708] [INFO] shmem_sum_reduce on char produced expected result.
+[11:36:32.708] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(signed char)
+[11:36:32.708] [INFO] shmem_malloc'd 1 bytes @ &src = 0xaaab40002250, 1 bytes @ &dest = 0xaaab40002270
+[11:36:32.708] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.708] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.708] [INFO] shmem_sum_reduce on signed char produced expected result.
+[11:36:32.708] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(short)
+[11:36:32.709] [INFO] shmem_malloc'd 2 bytes @ &src = 0xaaab40002250, 2 bytes @ &dest = 0xaaab40002270
+[11:36:32.709] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.709] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.709] [INFO] shmem_sum_reduce on short produced expected result.
+[11:36:32.709] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(int)
+[11:36:32.709] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:36:32.709] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.709] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.709] [INFO] shmem_sum_reduce on int produced expected result.
+[11:36:32.710] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(long)
+[11:36:32.710] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.710] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.710] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.710] [INFO] shmem_sum_reduce on long produced expected result.
+[11:36:32.710] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(long long)
+[11:36:32.710] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.710] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.710] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.711] [INFO] shmem_sum_reduce on long long produced expected result.
+[11:36:32.711] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(unsigned char)
+[11:36:32.711] [INFO] shmem_malloc'd 1 bytes @ &src = 0xaaab40002250, 1 bytes @ &dest = 0xaaab40002270
+[11:36:32.711] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.711] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.711] [INFO] shmem_sum_reduce on unsigned char produced expected result.
+[11:36:32.711] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(unsigned short)
+[11:36:32.711] [INFO] shmem_malloc'd 2 bytes @ &src = 0xaaab40002250, 2 bytes @ &dest = 0xaaab40002270
+[11:36:32.711] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.711] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.712] [INFO] shmem_sum_reduce on unsigned short produced expected result.
+[11:36:32.712] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(unsigned int)
+[11:36:32.712] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:36:32.712] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.712] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.712] [INFO] shmem_sum_reduce on unsigned int produced expected result.
+[11:36:32.713] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(unsigned long)
+[11:36:32.713] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.713] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.713] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.713] [INFO] shmem_sum_reduce on unsigned long produced expected result.
+[11:36:32.713] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(unsigned long long)
+[11:36:32.714] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.714] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.714] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.714] [INFO] shmem_sum_reduce on unsigned long long produced expected result.
+[11:36:32.714] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(int8_t)
+[11:36:32.714] [INFO] shmem_malloc'd 1 bytes @ &src = 0xaaab40002250, 1 bytes @ &dest = 0xaaab40002270
+[11:36:32.714] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.714] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.715] [INFO] shmem_sum_reduce on int8_t produced expected result.
+[11:36:32.715] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(int16_t)
+[11:36:32.715] [INFO] shmem_malloc'd 2 bytes @ &src = 0xaaab40002250, 2 bytes @ &dest = 0xaaab40002270
+[11:36:32.715] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.715] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.715] [INFO] shmem_sum_reduce on int16_t produced expected result.
+[11:36:32.715] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(int32_t)
+[11:36:32.715] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:36:32.715] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.715] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.716] [INFO] shmem_sum_reduce on int32_t produced expected result.
+[11:36:32.716] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(int64_t)
+[11:36:32.716] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.716] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.716] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.716] [INFO] shmem_sum_reduce on int64_t produced expected result.
+[11:36:32.716] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(uint8_t)
+[11:36:32.717] [INFO] shmem_malloc'd 1 bytes @ &src = 0xaaab40002250, 1 bytes @ &dest = 0xaaab40002270
+[11:36:32.717] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.717] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.717] [INFO] shmem_sum_reduce on uint8_t produced expected result.
+[11:36:32.717] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(uint16_t)
+[11:36:32.717] [INFO] shmem_malloc'd 2 bytes @ &src = 0xaaab40002250, 2 bytes @ &dest = 0xaaab40002270
+[11:36:32.717] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.717] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.717] [INFO] shmem_sum_reduce on uint16_t produced expected result.
+[11:36:32.718] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(uint32_t)
+[11:36:32.718] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:36:32.718] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.718] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.718] [INFO] shmem_sum_reduce on uint32_t produced expected result.
+[11:36:32.718] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(uint64_t)
+[11:36:32.718] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.718] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.718] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.719] [INFO] shmem_sum_reduce on uint64_t produced expected result.
+[11:36:32.719] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(size_t)
+[11:36:32.719] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.719] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.719] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.719] [INFO] shmem_sum_reduce on size_t produced expected result.
+[11:36:32.719] ------ BEGIN TEST ROUTINE: shmem_sum_reduce(ptrdiff_t)
+[11:36:32.720] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.720] [INFO] set src (0xaaab40002250) to 1
+[11:36:32.720] [INFO] executing shmem_sum_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.720] [INFO] shmem_sum_reduce on ptrdiff_t produced expected result.
+---------- END TEST: PASSED

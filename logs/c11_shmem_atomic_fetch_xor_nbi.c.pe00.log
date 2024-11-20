@@ -1,0 +1,37 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/atomics/c11_shmem_atomic_fetch_xor_nbi.c
+[11:36:32.481] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_xor_nbi(unsigned int)
+[11:36:32.481] [INFO] shmem_malloc'd 4 bytes at 0xaaab00002250
+[11:36:32.481] [INFO] set 0xaaab00002250 to 42
+[11:36:32.481] [INFO] executing atomic fetch xor (nbi): dest = 0xaaab00002250, xor_val = 15
+[11:36:32.481] [INFO] atomic fetch xor (nbi) on a unsigned int at 0xaaab00002250 produced expected result
+[11:36:32.481] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_xor_nbi(unsigned long)
+[11:36:32.482] [INFO] shmem_malloc'd 8 bytes at 0xaaab00002250
+[11:36:32.482] [INFO] set 0xaaab00002250 to 42
+[11:36:32.482] [INFO] executing atomic fetch xor (nbi): dest = 0xaaab00002250, xor_val = 15
+[11:36:32.482] [INFO] atomic fetch xor (nbi) on a unsigned long at 0xaaab00002250 produced expected result
+[11:36:32.482] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_xor_nbi(unsigned long long)
+[11:36:32.482] [INFO] shmem_malloc'd 8 bytes at 0xaaab00002250
+[11:36:32.482] [INFO] set 0xaaab00002250 to 42
+[11:36:32.482] [INFO] executing atomic fetch xor (nbi): dest = 0xaaab00002250, xor_val = 15
+[11:36:32.482] [INFO] atomic fetch xor (nbi) on a unsigned long long at 0xaaab00002250 produced expected result
+[11:36:32.482] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_xor_nbi(int32_t)
+[11:36:32.482] [INFO] shmem_malloc'd 4 bytes at 0xaaab00002250
+[11:36:32.482] [INFO] set 0xaaab00002250 to 42
+[11:36:32.482] [INFO] executing atomic fetch xor (nbi): dest = 0xaaab00002250, xor_val = 15
+[11:36:32.482] [INFO] atomic fetch xor (nbi) on a int32_t at 0xaaab00002250 produced expected result
+[11:36:32.483] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_xor_nbi(int64_t)
+[11:36:32.483] [INFO] shmem_malloc'd 8 bytes at 0xaaab00002250
+[11:36:32.483] [INFO] set 0xaaab00002250 to 42
+[11:36:32.483] [INFO] executing atomic fetch xor (nbi): dest = 0xaaab00002250, xor_val = 15
+[11:36:32.483] [INFO] atomic fetch xor (nbi) on a int64_t at 0xaaab00002250 produced expected result
+[11:36:32.483] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_xor_nbi(uint32_t)
+[11:36:32.483] [INFO] shmem_malloc'd 4 bytes at 0xaaab00002250
+[11:36:32.483] [INFO] set 0xaaab00002250 to 42
+[11:36:32.483] [INFO] executing atomic fetch xor (nbi): dest = 0xaaab00002250, xor_val = 15
+[11:36:32.483] [INFO] atomic fetch xor (nbi) on a uint32_t at 0xaaab00002250 produced expected result
+[11:36:32.483] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_xor_nbi(uint64_t)
+[11:36:32.483] [INFO] shmem_malloc'd 8 bytes at 0xaaab00002250
+[11:36:32.483] [INFO] set 0xaaab00002250 to 42
+[11:36:32.483] [INFO] executing atomic fetch xor (nbi): dest = 0xaaab00002250, xor_val = 15
+[11:36:32.484] [INFO] atomic fetch xor (nbi) on a uint64_t at 0xaaab00002250 produced expected result
+---------- END TEST: PASSED

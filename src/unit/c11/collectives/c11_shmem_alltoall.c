@@ -14,21 +14,23 @@
 
 #define TEST_C11_SHMEM_ALLTOALL(TYPE)                                          \
   ({                                                                           \
-    log_routine("shmem_alltoall(" #TYPE ")");                                   \
+    log_routine("shmem_alltoall(" #TYPE ")");                                  \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
                                                                                \
     TYPE *src = (TYPE *)shmem_malloc(npes * sizeof(TYPE));                     \
     TYPE *dest = (TYPE *)shmem_malloc(npes * sizeof(TYPE));                    \
     log_info("shmem_malloc'd %d bytes @ &src = %p, %d bytes @ &dest = %p",     \
-             npes * sizeof(TYPE), (void *)src, npes * sizeof(TYPE), (void *)dest);    \
+             npes * sizeof(TYPE), (void *)src, npes * sizeof(TYPE),            \
+             (void *)dest);                                                    \
                                                                                \
     for (int i = 0; i < npes; ++i) {                                           \
       src[i] = mype + i;                                                       \
     }                                                                          \
-    log_info("set %p..%p to %d + idx", (void *)src, (void*)&src[npes - 1], mype);                      \
+    log_info("set %p..%p to %d + idx", (void *)src, (void *)&src[npes - 1],    \
+             mype);                                                            \
                                                                                \
-    log_info("executing shmem_alltoall: dest = %p, src = %p", (void *)dest,     \
+    log_info("executing shmem_alltoall: dest = %p, src = %p", (void *)dest,    \
              (void *)src);                                                     \
     shmem_alltoall(SHMEM_TEAM_WORLD, dest, src, 1);                            \
                                                                                \
@@ -37,17 +39,17 @@
     for (int i = 0; i < npes; ++i) {                                           \
       if (dest[i] != mype + i) {                                               \
         log_info("index %d of dest (%p) failed. expected %d, got %d", i,       \
-                 &dest[i], mype + i, (char)dest[i]);                                  \
+                 &dest[i], mype + i, (char)dest[i]);                           \
         success = false;                                                       \
         break;                                                                 \
       }                                                                        \
     }                                                                          \
                                                                                \
     if (success)                                                               \
-      log_info("shmem_alltoall on " #TYPE " produced expected result.");        \
+      log_info("shmem_alltoall on " #TYPE " produced expected result.");       \
     else                                                                       \
       log_fail(                                                                \
-          "at least one value was unexpected in result of shmem_alltoall");     \
+          "at least one value was unexpected in result of shmem_alltoall");    \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
                                                                                \

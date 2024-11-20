@@ -1,0 +1,146 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c/collectives/c_shmem_max_reduce.c
+[11:36:32.237] ------ BEGIN TEST ROUTINE: shmem_float_max_reduce
+[11:36:32.237] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab00002250, 4 bytes @ &dest = 0xaaab00002270
+[11:36:32.237] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.237] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.237] [INFO] validating result...
+[11:36:32.237] [INFO] shmem_float_max_reduce produced expected result.
+[11:36:32.237] ------ BEGIN TEST ROUTINE: shmem_double_max_reduce
+[11:36:32.238] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab00002250, 8 bytes @ &dest = 0xaaab00002270
+[11:36:32.238] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.238] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.238] [INFO] validating result...
+[11:36:32.238] [INFO] shmem_double_max_reduce produced expected result.
+[11:36:32.238] ------ BEGIN TEST ROUTINE: shmem_longdouble_max_reduce
+[11:36:32.238] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab00002250, 16 bytes @ &dest = 0xaaab00002270
+[11:36:32.238] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.238] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.238] [INFO] validating result...
+[11:36:32.238] [INFO] shmem_longdouble_max_reduce produced expected result.
+[11:36:32.239] ------ BEGIN TEST ROUTINE: shmem_char_max_reduce
+[11:36:32.239] [INFO] shmem_malloc'd 1 bytes @ &src = 0xaaab00002250, 1 bytes @ &dest = 0xaaab00002270
+[11:36:32.239] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.239] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.239] [INFO] validating result...
+[11:36:32.239] [INFO] shmem_char_max_reduce produced expected result.
+[11:36:32.239] ------ BEGIN TEST ROUTINE: shmem_schar_max_reduce
+[11:36:32.239] [INFO] shmem_malloc'd 1 bytes @ &src = 0xaaab00002250, 1 bytes @ &dest = 0xaaab00002270
+[11:36:32.239] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.239] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.240] [INFO] validating result...
+[11:36:32.240] [INFO] shmem_schar_max_reduce produced expected result.
+[11:36:32.240] ------ BEGIN TEST ROUTINE: shmem_short_max_reduce
+[11:36:32.240] [INFO] shmem_malloc'd 2 bytes @ &src = 0xaaab00002250, 2 bytes @ &dest = 0xaaab00002270
+[11:36:32.240] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.240] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.240] [INFO] validating result...
+[11:36:32.240] [INFO] shmem_short_max_reduce produced expected result.
+[11:36:32.240] ------ BEGIN TEST ROUTINE: shmem_int_max_reduce
+[11:36:32.240] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab00002250, 4 bytes @ &dest = 0xaaab00002270
+[11:36:32.240] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.240] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.241] [INFO] validating result...
+[11:36:32.241] [INFO] shmem_int_max_reduce produced expected result.
+[11:36:32.241] ------ BEGIN TEST ROUTINE: shmem_long_max_reduce
+[11:36:32.241] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab00002250, 8 bytes @ &dest = 0xaaab00002270
+[11:36:32.241] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.241] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.241] [INFO] validating result...
+[11:36:32.241] [INFO] shmem_long_max_reduce produced expected result.
+[11:36:32.241] ------ BEGIN TEST ROUTINE: shmem_longlong_max_reduce
+[11:36:32.242] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab00002250, 8 bytes @ &dest = 0xaaab00002270
+[11:36:32.242] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.242] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.242] [INFO] validating result...
+[11:36:32.242] [INFO] shmem_longlong_max_reduce produced expected result.
+[11:36:32.242] ------ BEGIN TEST ROUTINE: shmem_uchar_max_reduce
+[11:36:32.242] [INFO] shmem_malloc'd 1 bytes @ &src = 0xaaab00002250, 1 bytes @ &dest = 0xaaab00002270
+[11:36:32.242] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.242] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.242] [INFO] validating result...
+[11:36:32.242] [INFO] shmem_uchar_max_reduce produced expected result.
+[11:36:32.243] ------ BEGIN TEST ROUTINE: shmem_ushort_max_reduce
+[11:36:32.243] [INFO] shmem_malloc'd 2 bytes @ &src = 0xaaab00002250, 2 bytes @ &dest = 0xaaab00002270
+[11:36:32.243] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.243] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.243] [INFO] validating result...
+[11:36:32.243] [INFO] shmem_ushort_max_reduce produced expected result.
+[11:36:32.243] ------ BEGIN TEST ROUTINE: shmem_uint_max_reduce
+[11:36:32.243] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab00002250, 4 bytes @ &dest = 0xaaab00002270
+[11:36:32.243] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.243] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.244] [INFO] validating result...
+[11:36:32.244] [INFO] shmem_uint_max_reduce produced expected result.
+[11:36:32.244] ------ BEGIN TEST ROUTINE: shmem_ulong_max_reduce
+[11:36:32.244] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab00002250, 8 bytes @ &dest = 0xaaab00002270
+[11:36:32.244] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.244] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.244] [INFO] validating result...
+[11:36:32.244] [INFO] shmem_ulong_max_reduce produced expected result.
+[11:36:32.244] ------ BEGIN TEST ROUTINE: shmem_ulonglong_max_reduce
+[11:36:32.244] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab00002250, 8 bytes @ &dest = 0xaaab00002270
+[11:36:32.244] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.244] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.245] [INFO] validating result...
+[11:36:32.245] [INFO] shmem_ulonglong_max_reduce produced expected result.
+[11:36:32.245] ------ BEGIN TEST ROUTINE: shmem_int8_max_reduce
+[11:36:32.245] [INFO] shmem_malloc'd 1 bytes @ &src = 0xaaab00002250, 1 bytes @ &dest = 0xaaab00002270
+[11:36:32.245] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.245] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.245] [INFO] validating result...
+[11:36:32.245] [INFO] shmem_int8_max_reduce produced expected result.
+[11:36:32.245] ------ BEGIN TEST ROUTINE: shmem_int16_max_reduce
+[11:36:32.246] [INFO] shmem_malloc'd 2 bytes @ &src = 0xaaab00002250, 2 bytes @ &dest = 0xaaab00002270
+[11:36:32.246] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.246] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.246] [INFO] validating result...
+[11:36:32.246] [INFO] shmem_int16_max_reduce produced expected result.
+[11:36:32.246] ------ BEGIN TEST ROUTINE: shmem_int32_max_reduce
+[11:36:32.246] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab00002250, 4 bytes @ &dest = 0xaaab00002270
+[11:36:32.246] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.246] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.246] [INFO] validating result...
+[11:36:32.246] [INFO] shmem_int32_max_reduce produced expected result.
+[11:36:32.247] ------ BEGIN TEST ROUTINE: shmem_int64_max_reduce
+[11:36:32.247] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab00002250, 8 bytes @ &dest = 0xaaab00002270
+[11:36:32.247] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.247] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.247] [INFO] validating result...
+[11:36:32.247] [INFO] shmem_int64_max_reduce produced expected result.
+[11:36:32.247] ------ BEGIN TEST ROUTINE: shmem_uint8_max_reduce
+[11:36:32.247] [INFO] shmem_malloc'd 1 bytes @ &src = 0xaaab00002250, 1 bytes @ &dest = 0xaaab00002270
+[11:36:32.247] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.247] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.248] [INFO] validating result...
+[11:36:32.248] [INFO] shmem_uint8_max_reduce produced expected result.
+[11:36:32.248] ------ BEGIN TEST ROUTINE: shmem_uint16_max_reduce
+[11:36:32.248] [INFO] shmem_malloc'd 2 bytes @ &src = 0xaaab00002250, 2 bytes @ &dest = 0xaaab00002270
+[11:36:32.248] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.248] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.248] [INFO] validating result...
+[11:36:32.248] [INFO] shmem_uint16_max_reduce produced expected result.
+[11:36:32.248] ------ BEGIN TEST ROUTINE: shmem_uint32_max_reduce
+[11:36:32.248] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab00002250, 4 bytes @ &dest = 0xaaab00002270
+[11:36:32.248] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.248] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.249] [INFO] validating result...
+[11:36:32.249] [INFO] shmem_uint32_max_reduce produced expected result.
+[11:36:32.249] ------ BEGIN TEST ROUTINE: shmem_uint64_max_reduce
+[11:36:32.249] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab00002250, 8 bytes @ &dest = 0xaaab00002270
+[11:36:32.249] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.249] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.249] [INFO] validating result...
+[11:36:32.249] [INFO] shmem_uint64_max_reduce produced expected result.
+[11:36:32.249] ------ BEGIN TEST ROUTINE: shmem_size_max_reduce
+[11:36:32.250] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab00002250, 8 bytes @ &dest = 0xaaab00002270
+[11:36:32.250] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.250] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.250] [INFO] validating result...
+[11:36:32.250] [INFO] shmem_size_max_reduce produced expected result.
+[11:36:32.250] ------ BEGIN TEST ROUTINE: shmem_ptrdiff_max_reduce
+[11:36:32.250] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab00002250, 8 bytes @ &dest = 0xaaab00002270
+[11:36:32.250] [INFO] set 0xaaab00002250 (src) to 0
+[11:36:32.250] [INFO] executing shmem_max_reduce: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:36:32.250] [INFO] validating result...
+[11:36:32.250] [INFO] shmem_ptrdiff_max_reduce produced expected result.
+---------- END TEST: PASSED

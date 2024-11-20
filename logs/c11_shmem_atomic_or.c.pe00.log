@@ -1,0 +1,37 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/atomics/c11_shmem_atomic_or.c
+[11:36:32.502] ------ BEGIN TEST ROUTINE: shmem_atomic_or(unsigned int)
+[11:36:32.502] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:36:32.502] [INFO] set 0xaaab40002250 to 42
+[11:36:32.502] [INFO] executing atomic or: dest = 0xaaab40002250, or_val = 15
+[11:36:32.502] [INFO] atomic or on a unsigned int at 0xaaab40002250 produced expected result (42 | 15 = 47)
+[11:36:32.502] ------ BEGIN TEST ROUTINE: shmem_atomic_or(unsigned long)
+[11:36:32.503] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.503] [INFO] set 0xaaab40002250 to 42
+[11:36:32.503] [INFO] executing atomic or: dest = 0xaaab40002250, or_val = 15
+[11:36:32.503] [INFO] atomic or on a unsigned long at 0xaaab40002250 produced expected result (42 | 15 = 47)
+[11:36:32.503] ------ BEGIN TEST ROUTINE: shmem_atomic_or(unsigned long long)
+[11:36:32.503] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.503] [INFO] set 0xaaab40002250 to 42
+[11:36:32.503] [INFO] executing atomic or: dest = 0xaaab40002250, or_val = 15
+[11:36:32.503] [INFO] atomic or on a unsigned long long at 0xaaab40002250 produced expected result (42 | 15 = 47)
+[11:36:32.503] ------ BEGIN TEST ROUTINE: shmem_atomic_or(int32_t)
+[11:36:32.503] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:36:32.503] [INFO] set 0xaaab40002250 to 42
+[11:36:32.504] [INFO] executing atomic or: dest = 0xaaab40002250, or_val = 15
+[11:36:32.504] [INFO] atomic or on a int32_t at 0xaaab40002250 produced expected result (42 | 15 = 47)
+[11:36:32.504] ------ BEGIN TEST ROUTINE: shmem_atomic_or(int64_t)
+[11:36:32.504] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.504] [INFO] set 0xaaab40002250 to 42
+[11:36:32.504] [INFO] executing atomic or: dest = 0xaaab40002250, or_val = 15
+[11:36:32.504] [INFO] atomic or on a int64_t at 0xaaab40002250 produced expected result (42 | 15 = 47)
+[11:36:32.504] ------ BEGIN TEST ROUTINE: shmem_atomic_or(uint32_t)
+[11:36:32.505] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:36:32.505] [INFO] set 0xaaab40002250 to 42
+[11:36:32.505] [INFO] executing atomic or: dest = 0xaaab40002250, or_val = 15
+[11:36:32.505] [INFO] atomic or on a uint32_t at 0xaaab40002250 produced expected result (42 | 15 = 47)
+[11:36:32.505] ------ BEGIN TEST ROUTINE: shmem_atomic_or(uint64_t)
+[11:36:32.505] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.505] [INFO] set 0xaaab40002250 to 42
+[11:36:32.505] [INFO] executing atomic or: dest = 0xaaab40002250, or_val = 15
+[11:36:32.505] [INFO] atomic or on a uint64_t at 0xaaab40002250 produced expected result (42 | 15 = 47)
+---------- END TEST: PASSED

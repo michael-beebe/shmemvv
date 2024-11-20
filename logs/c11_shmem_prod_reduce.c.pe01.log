@@ -1,0 +1,122 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/collectives/c11_shmem_prod_reduce.c
+[11:36:32.684] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(float)
+[11:36:32.685] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:36:32.685] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.685] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.685] [INFO] shmem_prod_reduce on float produced expected result.
+[11:36:32.685] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(double)
+[11:36:32.685] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.685] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.685] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.685] [INFO] shmem_prod_reduce on double produced expected result.
+[11:36:32.686] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(long double)
+[11:36:32.686] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
+[11:36:32.686] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.686] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.686] [INFO] shmem_prod_reduce on long double produced expected result.
+[11:36:32.686] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(char)
+[11:36:32.686] [INFO] shmem_malloc'd 1 bytes @ &src = 0xaaab40002250, 1 bytes @ &dest = 0xaaab40002270
+[11:36:32.686] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.686] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.687] [INFO] shmem_prod_reduce on char produced expected result.
+[11:36:32.687] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(signed char)
+[11:36:32.687] [INFO] shmem_malloc'd 1 bytes @ &src = 0xaaab40002250, 1 bytes @ &dest = 0xaaab40002270
+[11:36:32.687] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.687] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.687] [INFO] shmem_prod_reduce on signed char produced expected result.
+[11:36:32.687] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(short)
+[11:36:32.687] [INFO] shmem_malloc'd 2 bytes @ &src = 0xaaab40002250, 2 bytes @ &dest = 0xaaab40002270
+[11:36:32.687] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.687] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.688] [INFO] shmem_prod_reduce on short produced expected result.
+[11:36:32.688] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(int)
+[11:36:32.688] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:36:32.688] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.688] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.688] [INFO] shmem_prod_reduce on int produced expected result.
+[11:36:32.689] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(long)
+[11:36:32.689] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.689] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.689] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.689] [INFO] shmem_prod_reduce on long produced expected result.
+[11:36:32.689] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(long long)
+[11:36:32.689] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.689] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.689] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.690] [INFO] shmem_prod_reduce on long long produced expected result.
+[11:36:32.690] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(unsigned char)
+[11:36:32.690] [INFO] shmem_malloc'd 1 bytes @ &src = 0xaaab40002250, 1 bytes @ &dest = 0xaaab40002270
+[11:36:32.690] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.690] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.690] [INFO] shmem_prod_reduce on unsigned char produced expected result.
+[11:36:32.691] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(unsigned short)
+[11:36:32.691] [INFO] shmem_malloc'd 2 bytes @ &src = 0xaaab40002250, 2 bytes @ &dest = 0xaaab40002270
+[11:36:32.691] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.691] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.691] [INFO] shmem_prod_reduce on unsigned short produced expected result.
+[11:36:32.691] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(unsigned int)
+[11:36:32.692] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:36:32.692] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.692] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.692] [INFO] shmem_prod_reduce on unsigned int produced expected result.
+[11:36:32.692] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(unsigned long)
+[11:36:32.692] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.692] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.692] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.693] [INFO] shmem_prod_reduce on unsigned long produced expected result.
+[11:36:32.693] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(unsigned long long)
+[11:36:32.693] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.693] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.693] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.693] [INFO] shmem_prod_reduce on unsigned long long produced expected result.
+[11:36:32.693] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(int8_t)
+[11:36:32.693] [INFO] shmem_malloc'd 1 bytes @ &src = 0xaaab40002250, 1 bytes @ &dest = 0xaaab40002270
+[11:36:32.693] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.693] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.694] [INFO] shmem_prod_reduce on int8_t produced expected result.
+[11:36:32.694] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(int16_t)
+[11:36:32.694] [INFO] shmem_malloc'd 2 bytes @ &src = 0xaaab40002250, 2 bytes @ &dest = 0xaaab40002270
+[11:36:32.694] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.694] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.694] [INFO] shmem_prod_reduce on int16_t produced expected result.
+[11:36:32.694] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(int32_t)
+[11:36:32.695] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:36:32.695] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.695] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.695] [INFO] shmem_prod_reduce on int32_t produced expected result.
+[11:36:32.695] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(int64_t)
+[11:36:32.695] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.695] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.695] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.695] [INFO] shmem_prod_reduce on int64_t produced expected result.
+[11:36:32.695] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(uint8_t)
+[11:36:32.696] [INFO] shmem_malloc'd 1 bytes @ &src = 0xaaab40002250, 1 bytes @ &dest = 0xaaab40002270
+[11:36:32.696] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.696] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.696] [INFO] shmem_prod_reduce on uint8_t produced expected result.
+[11:36:32.696] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(uint16_t)
+[11:36:32.696] [INFO] shmem_malloc'd 2 bytes @ &src = 0xaaab40002250, 2 bytes @ &dest = 0xaaab40002270
+[11:36:32.696] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.696] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.697] [INFO] shmem_prod_reduce on uint16_t produced expected result.
+[11:36:32.697] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(uint32_t)
+[11:36:32.697] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:36:32.697] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.697] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.697] [INFO] shmem_prod_reduce on uint32_t produced expected result.
+[11:36:32.697] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(uint64_t)
+[11:36:32.698] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.698] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.698] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.698] [INFO] shmem_prod_reduce on uint64_t produced expected result.
+[11:36:32.698] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(size_t)
+[11:36:32.698] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.698] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.698] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.698] [INFO] shmem_prod_reduce on size_t produced expected result.
+[11:36:32.699] ------ BEGIN TEST ROUTINE: shmem_prod_reduce(ptrdiff_t)
+[11:36:32.699] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.699] [INFO] set src (0xaaab40002250) to 2
+[11:36:32.699] [INFO] executing shmem_prod_reduce: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.699] [INFO] shmem_prod_reduce on ptrdiff_t produced expected result.
+---------- END TEST: PASSED

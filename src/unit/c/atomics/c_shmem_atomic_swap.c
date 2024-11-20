@@ -9,26 +9,41 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "log.h"
 #include "shmemvv.h"
 
 #define TEST_C_SHMEM_ATOMIC_SWAP(TYPE, TYPENAME)                               \
   ({                                                                           \
+    log_routine("shmem_" #TYPENAME "_atomic_swap");                            \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
+    log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
     TYPE value = 42, new_val = 43;                                             \
     *dest = value;                                                             \
     shmem_barrier_all();                                                       \
+    log_info("executing atomic swap: dest = %p, new_val = %d", (void *)dest,   \
+             (char)new_val);                                                   \
     int mype = shmem_my_pe();                                                  \
     TYPE swapped = shmem_##TYPENAME##_atomic_swap(dest, new_val, mype);        \
     shmem_barrier_all();                                                       \
     success = (swapped == value && *dest == new_val);                          \
+    if (!success)                                                              \
+      log_fail("atomic swap on %s did not produce expected value %d, "         \
+               "got instead %d",                                               \
+               #TYPE, (char)value, (char)swapped);                             \
+    else                                                                       \
+      log_info(                                                                \
+          "atomic swap on a %s at %p produced expected result (%d == %d && "   \
+          "%d == %d)",                                                         \
+          #TYPE, dest, value, swapped, new_val, *dest);                        \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })
 
 int main(int argc, char *argv[]) {
   shmem_init();
+  log_init(__FILE__);
 
   bool result = true;
   int rc = EXIT_SUCCESS;
@@ -56,6 +71,7 @@ int main(int argc, char *argv[]) {
     rc = EXIT_FAILURE;
   }
 
+  log_close(rc);
   shmem_finalize();
   return rc;
 }

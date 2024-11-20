@@ -1,0 +1,6 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c/collectives/c_shmem_sync_all.c
+[11:36:32.299] ------ BEGIN TEST ROUTINE: shmem_sync_all()
+[11:36:32.299] [INFO] counter @ 0xaaaad47901f8
+[11:36:32.300] [INFO] executing shmem_atomic_inc
+[11:36:32.300] [INFO] executing shmem_sync_all
+---------- END TEST: PASSED

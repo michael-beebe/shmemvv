@@ -1,0 +1,146 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c/collectives/c_shmem_collect.c
+[11:36:32.195] ------ BEGIN TEST ROUTINE: shmem_float_collect
+[11:36:32.195] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.195] [INFO] set 0xaaab40002250 to 0
+[11:36:32.195] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.195] [INFO] validating result...
+[11:36:32.195] [INFO] shmem_collect on float produced expected result.
+[11:36:32.195] ------ BEGIN TEST ROUTINE: shmem_double_collect
+[11:36:32.196] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
+[11:36:32.196] [INFO] set 0xaaab40002250 to 0
+[11:36:32.196] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.196] [INFO] validating result...
+[11:36:32.196] [INFO] shmem_collect on double produced expected result.
+[11:36:32.196] ------ BEGIN TEST ROUTINE: shmem_longdouble_collect
+[11:36:32.196] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002270
+[11:36:32.196] [INFO] set 0xaaab40002250 to 0
+[11:36:32.196] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.197] [INFO] validating result...
+[11:36:32.197] [INFO] shmem_collect on long double produced expected result.
+[11:36:32.197] ------ BEGIN TEST ROUTINE: shmem_char_collect
+[11:36:32.197] [INFO] shmem_malloc'd 1 bytes @ &src = 0xaaab40002250, 2 bytes @ &dest = 0xaaab40002270
+[11:36:32.197] [INFO] set 0xaaab40002250 to 0
+[11:36:32.197] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.197] [INFO] validating result...
+[11:36:32.197] [INFO] shmem_collect on char produced expected result.
+[11:36:32.198] ------ BEGIN TEST ROUTINE: shmem_schar_collect
+[11:36:32.198] [INFO] shmem_malloc'd 1 bytes @ &src = 0xaaab40002250, 2 bytes @ &dest = 0xaaab40002270
+[11:36:32.198] [INFO] set 0xaaab40002250 to 0
+[11:36:32.198] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.198] [INFO] validating result...
+[11:36:32.198] [INFO] shmem_collect on signed char produced expected result.
+[11:36:32.198] ------ BEGIN TEST ROUTINE: shmem_short_collect
+[11:36:32.198] [INFO] shmem_malloc'd 2 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:36:32.198] [INFO] set 0xaaab40002250 to 0
+[11:36:32.198] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.199] [INFO] validating result...
+[11:36:32.199] [INFO] shmem_collect on short produced expected result.
+[11:36:32.199] ------ BEGIN TEST ROUTINE: shmem_int_collect
+[11:36:32.199] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.199] [INFO] set 0xaaab40002250 to 0
+[11:36:32.199] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.199] [INFO] validating result...
+[11:36:32.199] [INFO] shmem_collect on int produced expected result.
+[11:36:32.200] ------ BEGIN TEST ROUTINE: shmem_long_collect
+[11:36:32.200] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
+[11:36:32.200] [INFO] set 0xaaab40002250 to 0
+[11:36:32.200] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.200] [INFO] validating result...
+[11:36:32.200] [INFO] shmem_collect on long produced expected result.
+[11:36:32.200] ------ BEGIN TEST ROUTINE: shmem_longlong_collect
+[11:36:32.200] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
+[11:36:32.200] [INFO] set 0xaaab40002250 to 0
+[11:36:32.200] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.201] [INFO] validating result...
+[11:36:32.201] [INFO] shmem_collect on long long produced expected result.
+[11:36:32.201] ------ BEGIN TEST ROUTINE: shmem_uchar_collect
+[11:36:32.201] [INFO] shmem_malloc'd 1 bytes @ &src = 0xaaab40002250, 2 bytes @ &dest = 0xaaab40002270
+[11:36:32.201] [INFO] set 0xaaab40002250 to 0
+[11:36:32.201] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.201] [INFO] validating result...
+[11:36:32.201] [INFO] shmem_collect on unsigned char produced expected result.
+[11:36:32.201] ------ BEGIN TEST ROUTINE: shmem_ushort_collect
+[11:36:32.202] [INFO] shmem_malloc'd 2 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:36:32.202] [INFO] set 0xaaab40002250 to 0
+[11:36:32.202] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.202] [INFO] validating result...
+[11:36:32.202] [INFO] shmem_collect on unsigned short produced expected result.
+[11:36:32.202] ------ BEGIN TEST ROUTINE: shmem_uint_collect
+[11:36:32.202] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.202] [INFO] set 0xaaab40002250 to 0
+[11:36:32.202] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.203] [INFO] validating result...
+[11:36:32.203] [INFO] shmem_collect on unsigned int produced expected result.
+[11:36:32.203] ------ BEGIN TEST ROUTINE: shmem_ulong_collect
+[11:36:32.203] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
+[11:36:32.203] [INFO] set 0xaaab40002250 to 0
+[11:36:32.203] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.203] [INFO] validating result...
+[11:36:32.203] [INFO] shmem_collect on unsigned long produced expected result.
+[11:36:32.204] ------ BEGIN TEST ROUTINE: shmem_ulonglong_collect
+[11:36:32.204] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
+[11:36:32.204] [INFO] set 0xaaab40002250 to 0
+[11:36:32.204] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.204] [INFO] validating result...
+[11:36:32.204] [INFO] shmem_collect on unsigned long long produced expected result.
+[11:36:32.204] ------ BEGIN TEST ROUTINE: shmem_int8_collect
+[11:36:32.204] [INFO] shmem_malloc'd 1 bytes @ &src = 0xaaab40002250, 2 bytes @ &dest = 0xaaab40002270
+[11:36:32.204] [INFO] set 0xaaab40002250 to 0
+[11:36:32.204] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.205] [INFO] validating result...
+[11:36:32.205] [INFO] shmem_collect on int8_t produced expected result.
+[11:36:32.205] ------ BEGIN TEST ROUTINE: shmem_int16_collect
+[11:36:32.205] [INFO] shmem_malloc'd 2 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:36:32.205] [INFO] set 0xaaab40002250 to 0
+[11:36:32.205] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.205] [INFO] validating result...
+[11:36:32.205] [INFO] shmem_collect on int16_t produced expected result.
+[11:36:32.205] ------ BEGIN TEST ROUTINE: shmem_int32_collect
+[11:36:32.205] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.205] [INFO] set 0xaaab40002250 to 0
+[11:36:32.205] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.206] [INFO] validating result...
+[11:36:32.206] [INFO] shmem_collect on int32_t produced expected result.
+[11:36:32.206] ------ BEGIN TEST ROUTINE: shmem_int64_collect
+[11:36:32.206] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
+[11:36:32.206] [INFO] set 0xaaab40002250 to 0
+[11:36:32.206] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.206] [INFO] validating result...
+[11:36:32.206] [INFO] shmem_collect on int64_t produced expected result.
+[11:36:32.206] ------ BEGIN TEST ROUTINE: shmem_uint8_collect
+[11:36:32.206] [INFO] shmem_malloc'd 1 bytes @ &src = 0xaaab40002250, 2 bytes @ &dest = 0xaaab40002270
+[11:36:32.206] [INFO] set 0xaaab40002250 to 0
+[11:36:32.206] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.207] [INFO] validating result...
+[11:36:32.207] [INFO] shmem_collect on uint8_t produced expected result.
+[11:36:32.207] ------ BEGIN TEST ROUTINE: shmem_uint16_collect
+[11:36:32.207] [INFO] shmem_malloc'd 2 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:36:32.207] [INFO] set 0xaaab40002250 to 0
+[11:36:32.207] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.207] [INFO] validating result...
+[11:36:32.207] [INFO] shmem_collect on uint16_t produced expected result.
+[11:36:32.208] ------ BEGIN TEST ROUTINE: shmem_uint32_collect
+[11:36:32.208] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.208] [INFO] set 0xaaab40002250 to 0
+[11:36:32.208] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.208] [INFO] validating result...
+[11:36:32.208] [INFO] shmem_collect on uint32_t produced expected result.
+[11:36:32.208] ------ BEGIN TEST ROUTINE: shmem_uint64_collect
+[11:36:32.209] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
+[11:36:32.209] [INFO] set 0xaaab40002250 to 0
+[11:36:32.209] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.209] [INFO] validating result...
+[11:36:32.209] [INFO] shmem_collect on uint64_t produced expected result.
+[11:36:32.209] ------ BEGIN TEST ROUTINE: shmem_size_collect
+[11:36:32.209] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
+[11:36:32.209] [INFO] set 0xaaab40002250 to 0
+[11:36:32.209] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.210] [INFO] validating result...
+[11:36:32.210] [INFO] shmem_collect on size_t produced expected result.
+[11:36:32.210] ------ BEGIN TEST ROUTINE: shmem_ptrdiff_collect
+[11:36:32.210] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
+[11:36:32.210] [INFO] set 0xaaab40002250 to 0
+[11:36:32.210] [INFO] executing shmem_collect: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.210] [INFO] validating result...
+[11:36:32.210] [INFO] shmem_collect on ptrdiff_t produced expected result.
+---------- END TEST: PASSED

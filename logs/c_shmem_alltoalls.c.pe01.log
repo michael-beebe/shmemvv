@@ -1,0 +1,170 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c/collectives/c_shmem_alltoalls.c
+[11:36:32.149] ------ BEGIN TEST ROUTINE: shmem_float_alltoalls
+[11:36:32.149] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
+[11:36:32.149] [INFO] set 0xaaab40002250..0xaaab40002254 to 1 + idx * 2
+[11:36:32.149] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.150] [INFO] validating result...
+[11:36:32.150] [INFO] index 0 of dest (0xaaab40002270) failed. expected 1, got 0
+[11:36:32.150] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+[11:36:32.150] ------ BEGIN TEST ROUTINE: shmem_double_alltoalls
+[11:36:32.150] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
+[11:36:32.150] [INFO] set 0xaaab40002250..0xaaab40002258 to 1 + idx * 2
+[11:36:32.150] [INFO] executing shmem_alltoalls: dest = 0xaaab40002280, src = 0xaaab40002250
+[11:36:32.150] [INFO] validating result...
+[11:36:32.150] [INFO] index 0 of dest (0xaaab40002280) failed. expected 1, got 0
+[11:36:32.150] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+[11:36:32.150] ------ BEGIN TEST ROUTINE: shmem_longdouble_alltoalls
+[11:36:32.151] [INFO] shmem_malloc'd 64 bytes @ &src = 0xaaab40002250, 64 bytes @ &dest = 0xaaab400022a0
+[11:36:32.151] [INFO] set 0xaaab40002250..0xaaab40002260 to 1 + idx * 2
+[11:36:32.151] [INFO] executing shmem_alltoalls: dest = 0xaaab400022a0, src = 0xaaab40002250
+[11:36:32.151] [INFO] validating result...
+[11:36:32.151] [INFO] index 0 of dest (0xaaab400022a0) failed. expected 1, got 0
+[11:36:32.151] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+[11:36:32.151] ------ BEGIN TEST ROUTINE: shmem_char_alltoalls
+[11:36:32.151] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:36:32.151] [INFO] set 0xaaab40002250..0xaaab40002251 to 1 + idx * 2
+[11:36:32.151] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.152] [INFO] validating result...
+[11:36:32.152] [INFO] index 0 of dest (0xaaab40002270) failed. expected 1, got 222
+[11:36:32.152] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+[11:36:32.152] ------ BEGIN TEST ROUTINE: shmem_schar_alltoalls
+[11:36:32.152] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:36:32.152] [INFO] set 0xaaab40002250..0xaaab40002251 to 1 + idx * 2
+[11:36:32.152] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.152] [INFO] validating result...
+[11:36:32.152] [INFO] index 0 of dest (0xaaab40002270) failed. expected 1, got 222
+[11:36:32.152] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+[11:36:32.152] ------ BEGIN TEST ROUTINE: shmem_short_alltoalls
+[11:36:32.153] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.153] [INFO] set 0xaaab40002250..0xaaab40002252 to 1 + idx * 2
+[11:36:32.153] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.153] [INFO] validating result...
+[11:36:32.153] [INFO] index 0 of dest (0xaaab40002270) failed. expected 1, got 255
+[11:36:32.153] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+[11:36:32.153] ------ BEGIN TEST ROUTINE: shmem_int_alltoalls
+[11:36:32.153] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
+[11:36:32.153] [INFO] set 0xaaab40002250..0xaaab40002254 to 1 + idx * 2
+[11:36:32.153] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.154] [INFO] validating result...
+[11:36:32.154] [INFO] index 0 of dest (0xaaab40002270) failed. expected 1, got 104
+[11:36:32.154] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+[11:36:32.154] ------ BEGIN TEST ROUTINE: shmem_long_alltoalls
+[11:36:32.154] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
+[11:36:32.154] [INFO] set 0xaaab40002250..0xaaab40002258 to 1 + idx * 2
+[11:36:32.154] [INFO] executing shmem_alltoalls: dest = 0xaaab40002280, src = 0xaaab40002250
+[11:36:32.154] [INFO] validating result...
+[11:36:32.154] [INFO] index 0 of dest (0xaaab40002280) failed. expected 1, got 32
+[11:36:32.154] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+[11:36:32.154] ------ BEGIN TEST ROUTINE: shmem_longlong_alltoalls
+[11:36:32.154] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
+[11:36:32.154] [INFO] set 0xaaab40002250..0xaaab40002258 to 1 + idx * 2
+[11:36:32.154] [INFO] executing shmem_alltoalls: dest = 0xaaab40002280, src = 0xaaab40002250
+[11:36:32.155] [INFO] validating result...
+[11:36:32.155] [INFO] index 0 of dest (0xaaab40002280) failed. expected 1, got 32
+[11:36:32.155] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+[11:36:32.155] ------ BEGIN TEST ROUTINE: shmem_uchar_alltoalls
+[11:36:32.155] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:36:32.155] [INFO] set 0xaaab40002250..0xaaab40002251 to 1 + idx * 2
+[11:36:32.155] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.155] [INFO] validating result...
+[11:36:32.155] [INFO] index 0 of dest (0xaaab40002270) failed. expected 1, got 222
+[11:36:32.155] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+[11:36:32.155] ------ BEGIN TEST ROUTINE: shmem_ushort_alltoalls
+[11:36:32.156] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.156] [INFO] set 0xaaab40002250..0xaaab40002252 to 1 + idx * 2
+[11:36:32.156] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.156] [INFO] validating result...
+[11:36:32.156] [INFO] index 0 of dest (0xaaab40002270) failed. expected 1, got 255
+[11:36:32.156] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+[11:36:32.156] ------ BEGIN TEST ROUTINE: shmem_uint_alltoalls
+[11:36:32.156] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
+[11:36:32.156] [INFO] set 0xaaab40002250..0xaaab40002254 to 1 + idx * 2
+[11:36:32.156] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.156] [INFO] validating result...
+[11:36:32.156] [INFO] index 0 of dest (0xaaab40002270) failed. expected 1, got 104
+[11:36:32.156] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+[11:36:32.157] ------ BEGIN TEST ROUTINE: shmem_ulong_alltoalls
+[11:36:32.157] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
+[11:36:32.157] [INFO] set 0xaaab40002250..0xaaab40002258 to 1 + idx * 2
+[11:36:32.157] [INFO] executing shmem_alltoalls: dest = 0xaaab40002280, src = 0xaaab40002250
+[11:36:32.157] [INFO] validating result...
+[11:36:32.157] [INFO] index 0 of dest (0xaaab40002280) failed. expected 1, got 32
+[11:36:32.157] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+[11:36:32.157] ------ BEGIN TEST ROUTINE: shmem_ulonglong_alltoalls
+[11:36:32.158] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
+[11:36:32.158] [INFO] set 0xaaab40002250..0xaaab40002258 to 1 + idx * 2
+[11:36:32.158] [INFO] executing shmem_alltoalls: dest = 0xaaab40002280, src = 0xaaab40002250
+[11:36:32.158] [INFO] validating result...
+[11:36:32.158] [INFO] index 0 of dest (0xaaab40002280) failed. expected 1, got 32
+[11:36:32.158] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+[11:36:32.158] ------ BEGIN TEST ROUTINE: shmem_int8_alltoalls
+[11:36:32.158] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:36:32.158] [INFO] set 0xaaab40002250..0xaaab40002251 to 1 + idx * 2
+[11:36:32.158] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.158] [INFO] validating result...
+[11:36:32.158] [INFO] index 0 of dest (0xaaab40002270) failed. expected 1, got 222
+[11:36:32.158] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+[11:36:32.158] ------ BEGIN TEST ROUTINE: shmem_int16_alltoalls
+[11:36:32.159] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.159] [INFO] set 0xaaab40002250..0xaaab40002252 to 1 + idx * 2
+[11:36:32.159] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.159] [INFO] validating result...
+[11:36:32.159] [INFO] index 0 of dest (0xaaab40002270) failed. expected 1, got 255
+[11:36:32.159] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+[11:36:32.159] ------ BEGIN TEST ROUTINE: shmem_int32_alltoalls
+[11:36:32.159] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
+[11:36:32.159] [INFO] set 0xaaab40002250..0xaaab40002254 to 1 + idx * 2
+[11:36:32.159] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.159] [INFO] validating result...
+[11:36:32.159] [INFO] index 0 of dest (0xaaab40002270) failed. expected 1, got 104
+[11:36:32.159] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+[11:36:32.160] ------ BEGIN TEST ROUTINE: shmem_int64_alltoalls
+[11:36:32.160] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
+[11:36:32.160] [INFO] set 0xaaab40002250..0xaaab40002258 to 1 + idx * 2
+[11:36:32.160] [INFO] executing shmem_alltoalls: dest = 0xaaab40002280, src = 0xaaab40002250
+[11:36:32.160] [INFO] validating result...
+[11:36:32.160] [INFO] index 0 of dest (0xaaab40002280) failed. expected 1, got 32
+[11:36:32.160] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+[11:36:32.160] ------ BEGIN TEST ROUTINE: shmem_uint8_alltoalls
+[11:36:32.160] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:36:32.160] [INFO] set 0xaaab40002250..0xaaab40002251 to 1 + idx * 2
+[11:36:32.160] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.160] [INFO] validating result...
+[11:36:32.160] [INFO] index 0 of dest (0xaaab40002270) failed. expected 1, got 222
+[11:36:32.160] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+[11:36:32.161] ------ BEGIN TEST ROUTINE: shmem_uint16_alltoalls
+[11:36:32.161] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:36:32.161] [INFO] set 0xaaab40002250..0xaaab40002252 to 1 + idx * 2
+[11:36:32.161] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.161] [INFO] validating result...
+[11:36:32.161] [INFO] index 0 of dest (0xaaab40002270) failed. expected 1, got 255
+[11:36:32.161] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+[11:36:32.161] ------ BEGIN TEST ROUTINE: shmem_uint32_alltoalls
+[11:36:32.162] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
+[11:36:32.162] [INFO] set 0xaaab40002250..0xaaab40002254 to 1 + idx * 2
+[11:36:32.162] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:36:32.162] [INFO] validating result...
+[11:36:32.162] [INFO] index 0 of dest (0xaaab40002270) failed. expected 1, got 104
+[11:36:32.162] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+[11:36:32.162] ------ BEGIN TEST ROUTINE: shmem_uint64_alltoalls
+[11:36:32.162] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
+[11:36:32.162] [INFO] set 0xaaab40002250..0xaaab40002258 to 1 + idx * 2
+[11:36:32.162] [INFO] executing shmem_alltoalls: dest = 0xaaab40002280, src = 0xaaab40002250
+[11:36:32.162] [INFO] validating result...
+[11:36:32.162] [INFO] index 0 of dest (0xaaab40002280) failed. expected 1, got 32
+[11:36:32.162] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+[11:36:32.163] ------ BEGIN TEST ROUTINE: shmem_size_alltoalls
+[11:36:32.163] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
+[11:36:32.163] [INFO] set 0xaaab40002250..0xaaab40002258 to 1 + idx * 2
+[11:36:32.163] [INFO] executing shmem_alltoalls: dest = 0xaaab40002280, src = 0xaaab40002250
+[11:36:32.163] [INFO] validating result...
+[11:36:32.163] [INFO] index 0 of dest (0xaaab40002280) failed. expected 1, got 32
+[11:36:32.163] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+[11:36:32.163] ------ BEGIN TEST ROUTINE: shmem_ptrdiff_alltoalls
+[11:36:32.163] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
+[11:36:32.163] [INFO] set 0xaaab40002250..0xaaab40002258 to 1 + idx * 2
+[11:36:32.163] [INFO] executing shmem_alltoalls: dest = 0xaaab40002280, src = 0xaaab40002250
+[11:36:32.164] [INFO] validating result...
+[11:36:32.164] [INFO] index 0 of dest (0xaaab40002280) failed. expected 1, got 32
+[11:36:32.164] [FAIL] at least one value was unexpected in result of shmem_alltoalls
+---------- END TEST: FAILED

@@ -30,7 +30,7 @@
       if (dest[i] != i) {                                                      \
         log_info("index %d of dest (%p) failed. expected %d, got %d", i,       \
                  &dest[i], i, (char)dest[i]);                                  \
-        success = false;                                                     \
+        success = false;                                                       \
         break;                                                                 \
       }                                                                        \
     }                                                                          \

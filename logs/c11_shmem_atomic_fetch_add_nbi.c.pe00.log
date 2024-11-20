@@ -1,0 +1,62 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/atomics/c11_shmem_atomic_fetch_add_nbi.c
+[11:36:32.380] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_add_nbi(int)
+[11:36:32.380] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:36:32.380] [INFO] set 0xaaab40002250 to 42
+[11:36:32.381] [INFO] executing atomic fetch add (nbi): dest = 0xaaab40002250, add_val = 10
+[11:36:32.381] [INFO] atomic fetch add (nbi) on a int at 0xaaab40002250 produced expected result
+[11:36:32.381] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_add_nbi(long)
+[11:36:32.381] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.381] [INFO] set 0xaaab40002250 to 42
+[11:36:32.381] [INFO] executing atomic fetch add (nbi): dest = 0xaaab40002250, add_val = 10
+[11:36:32.381] [INFO] atomic fetch add (nbi) on a long at 0xaaab40002250 produced expected result
+[11:36:32.381] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_add_nbi(long long)
+[11:36:32.381] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.381] [INFO] set 0xaaab40002250 to 42
+[11:36:32.382] [INFO] executing atomic fetch add (nbi): dest = 0xaaab40002250, add_val = 10
+[11:36:32.382] [INFO] atomic fetch add (nbi) on a long long at 0xaaab40002250 produced expected result
+[11:36:32.382] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_add_nbi(unsigned int)
+[11:36:32.382] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:36:32.382] [INFO] set 0xaaab40002250 to 42
+[11:36:32.382] [INFO] executing atomic fetch add (nbi): dest = 0xaaab40002250, add_val = 10
+[11:36:32.382] [INFO] atomic fetch add (nbi) on a unsigned int at 0xaaab40002250 produced expected result
+[11:36:32.382] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_add_nbi(unsigned long)
+[11:36:32.382] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.382] [INFO] set 0xaaab40002250 to 42
+[11:36:32.382] [INFO] executing atomic fetch add (nbi): dest = 0xaaab40002250, add_val = 10
+[11:36:32.383] [INFO] atomic fetch add (nbi) on a unsigned long at 0xaaab40002250 produced expected result
+[11:36:32.383] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_add_nbi(unsigned long long)
+[11:36:32.383] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.383] [INFO] set 0xaaab40002250 to 42
+[11:36:32.383] [INFO] executing atomic fetch add (nbi): dest = 0xaaab40002250, add_val = 10
+[11:36:32.383] [INFO] atomic fetch add (nbi) on a unsigned long long at 0xaaab40002250 produced expected result
+[11:36:32.383] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_add_nbi(int32_t)
+[11:36:32.383] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:36:32.383] [INFO] set 0xaaab40002250 to 42
+[11:36:32.383] [INFO] executing atomic fetch add (nbi): dest = 0xaaab40002250, add_val = 10
+[11:36:32.383] [INFO] atomic fetch add (nbi) on a int32_t at 0xaaab40002250 produced expected result
+[11:36:32.384] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_add_nbi(int64_t)
+[11:36:32.384] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.384] [INFO] set 0xaaab40002250 to 42
+[11:36:32.384] [INFO] executing atomic fetch add (nbi): dest = 0xaaab40002250, add_val = 10
+[11:36:32.384] [INFO] atomic fetch add (nbi) on a int64_t at 0xaaab40002250 produced expected result
+[11:36:32.384] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_add_nbi(uint32_t)
+[11:36:32.384] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:36:32.384] [INFO] set 0xaaab40002250 to 42
+[11:36:32.384] [INFO] executing atomic fetch add (nbi): dest = 0xaaab40002250, add_val = 10
+[11:36:32.384] [INFO] atomic fetch add (nbi) on a uint32_t at 0xaaab40002250 produced expected result
+[11:36:32.384] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_add_nbi(uint64_t)
+[11:36:32.384] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.384] [INFO] set 0xaaab40002250 to 42
+[11:36:32.384] [INFO] executing atomic fetch add (nbi): dest = 0xaaab40002250, add_val = 10
+[11:36:32.385] [INFO] atomic fetch add (nbi) on a uint64_t at 0xaaab40002250 produced expected result
+[11:36:32.385] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_add_nbi(size_t)
+[11:36:32.385] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.385] [INFO] set 0xaaab40002250 to 42
+[11:36:32.385] [INFO] executing atomic fetch add (nbi): dest = 0xaaab40002250, add_val = 10
+[11:36:32.385] [INFO] atomic fetch add (nbi) on a size_t at 0xaaab40002250 produced expected result
+[11:36:32.385] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_add_nbi(ptrdiff_t)
+[11:36:32.385] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.385] [INFO] set 0xaaab40002250 to 42
+[11:36:32.385] [INFO] executing atomic fetch add (nbi): dest = 0xaaab40002250, add_val = 10
+[11:36:32.385] [INFO] atomic fetch add (nbi) on a ptrdiff_t at 0xaaab40002250 produced expected result
+---------- END TEST: PASSED

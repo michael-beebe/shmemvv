@@ -1,0 +1,62 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/atomics/c11_shmem_atomic_set.c
+[11:36:32.512] ------ BEGIN TEST ROUTINE: shmem_atomic_set(int)
+[11:36:32.512] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:36:32.512] [INFO] set 0xaaab40002250 to 43
+[11:36:32.513] [INFO] executing atomic set: dest = 0xaaab40002250, val = 42
+[11:36:32.513] [INFO] atomic or on a int at 0xaaab40002250 produced expected result (42 = 42)
+[11:36:32.513] ------ BEGIN TEST ROUTINE: shmem_atomic_set(long)
+[11:36:32.513] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.513] [INFO] set 0xaaab40002250 to 43
+[11:36:32.513] [INFO] executing atomic set: dest = 0xaaab40002250, val = 42
+[11:36:32.513] [INFO] atomic or on a long at 0xaaab40002250 produced expected result (42 = 42)
+[11:36:32.513] ------ BEGIN TEST ROUTINE: shmem_atomic_set(long long)
+[11:36:32.513] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.513] [INFO] set 0xaaab40002250 to 43
+[11:36:32.513] [INFO] executing atomic set: dest = 0xaaab40002250, val = 42
+[11:36:32.514] [INFO] atomic or on a long long at 0xaaab40002250 produced expected result (42 = 42)
+[11:36:32.514] ------ BEGIN TEST ROUTINE: shmem_atomic_set(unsigned int)
+[11:36:32.514] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:36:32.514] [INFO] set 0xaaab40002250 to 43
+[11:36:32.514] [INFO] executing atomic set: dest = 0xaaab40002250, val = 42
+[11:36:32.514] [INFO] atomic or on a unsigned int at 0xaaab40002250 produced expected result (42 = 42)
+[11:36:32.514] ------ BEGIN TEST ROUTINE: shmem_atomic_set(unsigned long)
+[11:36:32.514] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.514] [INFO] set 0xaaab40002250 to 43
+[11:36:32.514] [INFO] executing atomic set: dest = 0xaaab40002250, val = 42
+[11:36:32.514] [INFO] atomic or on a unsigned long at 0xaaab40002250 produced expected result (42 = 42)
+[11:36:32.514] ------ BEGIN TEST ROUTINE: shmem_atomic_set(unsigned long long)
+[11:36:32.515] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.515] [INFO] set 0xaaab40002250 to 43
+[11:36:32.515] [INFO] executing atomic set: dest = 0xaaab40002250, val = 42
+[11:36:32.515] [INFO] atomic or on a unsigned long long at 0xaaab40002250 produced expected result (42 = 42)
+[11:36:32.515] ------ BEGIN TEST ROUTINE: shmem_atomic_set(int32_t)
+[11:36:32.515] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:36:32.515] [INFO] set 0xaaab40002250 to 43
+[11:36:32.515] [INFO] executing atomic set: dest = 0xaaab40002250, val = 42
+[11:36:32.515] [INFO] atomic or on a int32_t at 0xaaab40002250 produced expected result (42 = 42)
+[11:36:32.515] ------ BEGIN TEST ROUTINE: shmem_atomic_set(int64_t)
+[11:36:32.515] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.515] [INFO] set 0xaaab40002250 to 43
+[11:36:32.515] [INFO] executing atomic set: dest = 0xaaab40002250, val = 42
+[11:36:32.515] [INFO] atomic or on a int64_t at 0xaaab40002250 produced expected result (42 = 42)
+[11:36:32.516] ------ BEGIN TEST ROUTINE: shmem_atomic_set(uint32_t)
+[11:36:32.516] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:36:32.516] [INFO] set 0xaaab40002250 to 43
+[11:36:32.516] [INFO] executing atomic set: dest = 0xaaab40002250, val = 42
+[11:36:32.516] [INFO] atomic or on a uint32_t at 0xaaab40002250 produced expected result (42 = 42)
+[11:36:32.516] ------ BEGIN TEST ROUTINE: shmem_atomic_set(uint64_t)
+[11:36:32.516] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.516] [INFO] set 0xaaab40002250 to 43
+[11:36:32.516] [INFO] executing atomic set: dest = 0xaaab40002250, val = 42
+[11:36:32.516] [INFO] atomic or on a uint64_t at 0xaaab40002250 produced expected result (42 = 42)
+[11:36:32.516] ------ BEGIN TEST ROUTINE: shmem_atomic_set(size_t)
+[11:36:32.516] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.516] [INFO] set 0xaaab40002250 to 43
+[11:36:32.516] [INFO] executing atomic set: dest = 0xaaab40002250, val = 42
+[11:36:32.517] [INFO] atomic or on a size_t at 0xaaab40002250 produced expected result (42 = 42)
+[11:36:32.517] ------ BEGIN TEST ROUTINE: shmem_atomic_set(ptrdiff_t)
+[11:36:32.517] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.517] [INFO] set 0xaaab40002250 to 43
+[11:36:32.517] [INFO] executing atomic set: dest = 0xaaab40002250, val = 42
+[11:36:32.517] [INFO] atomic or on a ptrdiff_t at 0xaaab40002250 produced expected result (42 = 42)
+---------- END TEST: PASSED

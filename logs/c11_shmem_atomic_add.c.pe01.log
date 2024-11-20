@@ -1,0 +1,62 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/atomics/c11_shmem_atomic_add.c
+[11:36:32.306] ------ BEGIN TEST ROUTINE: shmem_atomic_add(int)
+[11:36:32.307] [INFO] shmem_malloc'd 4 bytes at 0xaaab00002250
+[11:36:32.307] [INFO] set 0xaaab00002250 to 42
+[11:36:32.307] [INFO] executing atomic add: dest = 0xaaab00002250, add_val = 10
+[11:36:32.307] [INFO] atomic add on a int at 0xaaab00002250 produced expected result (42 + 10 = 52)
+[11:36:32.307] ------ BEGIN TEST ROUTINE: shmem_atomic_add(long)
+[11:36:32.307] [INFO] shmem_malloc'd 8 bytes at 0xaaab00002250
+[11:36:32.307] [INFO] set 0xaaab00002250 to 42
+[11:36:32.307] [INFO] executing atomic add: dest = 0xaaab00002250, add_val = 10
+[11:36:32.307] [INFO] atomic add on a long at 0xaaab00002250 produced expected result (42 + 10 = 52)
+[11:36:32.307] ------ BEGIN TEST ROUTINE: shmem_atomic_add(long long)
+[11:36:32.307] [INFO] shmem_malloc'd 8 bytes at 0xaaab00002250
+[11:36:32.307] [INFO] set 0xaaab00002250 to 42
+[11:36:32.308] [INFO] executing atomic add: dest = 0xaaab00002250, add_val = 10
+[11:36:32.308] [INFO] atomic add on a long long at 0xaaab00002250 produced expected result (42 + 10 = 52)
+[11:36:32.308] ------ BEGIN TEST ROUTINE: shmem_atomic_add(unsigned int)
+[11:36:32.308] [INFO] shmem_malloc'd 4 bytes at 0xaaab00002250
+[11:36:32.308] [INFO] set 0xaaab00002250 to 42
+[11:36:32.308] [INFO] executing atomic add: dest = 0xaaab00002250, add_val = 10
+[11:36:32.308] [INFO] atomic add on a unsigned int at 0xaaab00002250 produced expected result (42 + 10 = 52)
+[11:36:32.308] ------ BEGIN TEST ROUTINE: shmem_atomic_add(unsigned long)
+[11:36:32.308] [INFO] shmem_malloc'd 8 bytes at 0xaaab00002250
+[11:36:32.308] [INFO] set 0xaaab00002250 to 42
+[11:36:32.308] [INFO] executing atomic add: dest = 0xaaab00002250, add_val = 10
+[11:36:32.308] [INFO] atomic add on a unsigned long at 0xaaab00002250 produced expected result (42 + 10 = 52)
+[11:36:32.309] ------ BEGIN TEST ROUTINE: shmem_atomic_add(unsigned long long)
+[11:36:32.309] [INFO] shmem_malloc'd 8 bytes at 0xaaab00002250
+[11:36:32.309] [INFO] set 0xaaab00002250 to 42
+[11:36:32.309] [INFO] executing atomic add: dest = 0xaaab00002250, add_val = 10
+[11:36:32.309] [INFO] atomic add on a unsigned long long at 0xaaab00002250 produced expected result (42 + 10 = 52)
+[11:36:32.309] ------ BEGIN TEST ROUTINE: shmem_atomic_add(int32_t)
+[11:36:32.309] [INFO] shmem_malloc'd 4 bytes at 0xaaab00002250
+[11:36:32.309] [INFO] set 0xaaab00002250 to 42
+[11:36:32.309] [INFO] executing atomic add: dest = 0xaaab00002250, add_val = 10
+[11:36:32.309] [INFO] atomic add on a int32_t at 0xaaab00002250 produced expected result (42 + 10 = 52)
+[11:36:32.309] ------ BEGIN TEST ROUTINE: shmem_atomic_add(int64_t)
+[11:36:32.309] [INFO] shmem_malloc'd 8 bytes at 0xaaab00002250
+[11:36:32.309] [INFO] set 0xaaab00002250 to 42
+[11:36:32.309] [INFO] executing atomic add: dest = 0xaaab00002250, add_val = 10
+[11:36:32.310] [INFO] atomic add on a int64_t at 0xaaab00002250 produced expected result (42 + 10 = 52)
+[11:36:32.310] ------ BEGIN TEST ROUTINE: shmem_atomic_add(uint32_t)
+[11:36:32.310] [INFO] shmem_malloc'd 4 bytes at 0xaaab00002250
+[11:36:32.310] [INFO] set 0xaaab00002250 to 42
+[11:36:32.310] [INFO] executing atomic add: dest = 0xaaab00002250, add_val = 10
+[11:36:32.310] [INFO] atomic add on a uint32_t at 0xaaab00002250 produced expected result (42 + 10 = 52)
+[11:36:32.310] ------ BEGIN TEST ROUTINE: shmem_atomic_add(uint64_t)
+[11:36:32.310] [INFO] shmem_malloc'd 8 bytes at 0xaaab00002250
+[11:36:32.310] [INFO] set 0xaaab00002250 to 42
+[11:36:32.310] [INFO] executing atomic add: dest = 0xaaab00002250, add_val = 10
+[11:36:32.310] [INFO] atomic add on a uint64_t at 0xaaab00002250 produced expected result (42 + 10 = 52)
+[11:36:32.310] ------ BEGIN TEST ROUTINE: shmem_atomic_add(size_t)
+[11:36:32.310] [INFO] shmem_malloc'd 8 bytes at 0xaaab00002250
+[11:36:32.310] [INFO] set 0xaaab00002250 to 42
+[11:36:32.311] [INFO] executing atomic add: dest = 0xaaab00002250, add_val = 10
+[11:36:32.311] [INFO] atomic add on a size_t at 0xaaab00002250 produced expected result (42 + 10 = 52)
+[11:36:32.311] ------ BEGIN TEST ROUTINE: shmem_atomic_add(ptrdiff_t)
+[11:36:32.311] [INFO] shmem_malloc'd 8 bytes at 0xaaab00002250
+[11:36:32.311] [INFO] set 0xaaab00002250 to 42
+[11:36:32.311] [INFO] executing atomic add: dest = 0xaaab00002250, add_val = 10
+[11:36:32.311] [INFO] atomic add on a ptrdiff_t at 0xaaab00002250 produced expected result (42 + 10 = 52)
+---------- END TEST: PASSED

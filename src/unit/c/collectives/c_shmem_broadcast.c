@@ -3,40 +3,56 @@
  * @brief Unit test for shmem_broadcast().
  */
 
+#include "log.h"
 #include "shmemvv.h"
 
 #define TEST_C_SHMEM_BROADCAST(TYPE, TYPENAME)                                 \
   ({                                                                           \
+    log_routine("shmem_" #TYPENAME "_broadcast");                              \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
                                                                                \
     TYPE *src = (TYPE *)shmem_malloc(4 * sizeof(TYPE));                        \
     TYPE *dest = (TYPE *)shmem_malloc(4 * sizeof(TYPE));                       \
+    log_info("shmem_malloc'd %d bytes @ &src = %p, %d bytes @ &dest = %p",     \
+             4 * sizeof(TYPE), (void *)src, 4 * sizeof(TYPE), (void *)dest);   \
                                                                                \
     if (mype == 0) {                                                           \
       for (int i = 0; i < 4; ++i) {                                            \
         src[i] = i + 1;                                                        \
       }                                                                        \
+      log_info("set %p..%p to idx + 1", (void *)src, (void *)&src[3]);         \
     }                                                                          \
                                                                                \
     for (int i = 0; i < 4; ++i) {                                              \
       dest[i] = -1;                                                            \
     }                                                                          \
+    log_info("set %p..%p to -1", (void *)dest, (void *)&dest[3]);              \
                                                                                \
     shmem_barrier_all();                                                       \
                                                                                \
+    log_info("executing shmem_broadcast: dest = %p, src = %p", (void *)dest,   \
+             (void *)src);                                                     \
     shmem_##TYPENAME##_broadcast(SHMEM_TEAM_WORLD, dest, src, 4, 0);           \
                                                                                \
     shmem_barrier_all();                                                       \
                                                                                \
+    log_info("validating result...");                                          \
     bool success = true;                                                       \
     for (int i = 0; i < 4; ++i) {                                              \
       if (dest[i] != i + 1) {                                                  \
+        log_info("index %d of dest (%p) failed. expected %d, got %d", i,       \
+                 &dest[i], i + 1, (char)dest[i]);                              \
         success = false;                                                       \
         break;                                                                 \
       }                                                                        \
     }                                                                          \
                                                                                \
+    if (success)                                                               \
+      log_info("shmem_broadcast on " #TYPE " produced expected result.");      \
+    else                                                                       \
+      log_fail(                                                                \
+          "at least one value was unexpected in result of shmem_broadcast");   \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
                                                                                \
@@ -45,6 +61,7 @@
 
 int main(int argc, char *argv[]) {
   shmem_init();
+  log_init(__FILE__);
 
   bool result = true;
   int rc = EXIT_SUCCESS;
@@ -84,6 +101,7 @@ int main(int argc, char *argv[]) {
     rc = EXIT_FAILURE;
   }
 
+  log_close(rc);
   shmem_finalize();
 
   return rc;

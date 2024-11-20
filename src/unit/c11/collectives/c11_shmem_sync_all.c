@@ -8,22 +8,23 @@
 
 #define TEST_C11_SHMEM_SYNC_ALL()                                              \
   ({                                                                           \
-    log_routine("shmem_sync_all()");                                   \
+    log_routine("shmem_sync_all()");                                           \
     static long shared_counter;                                                \
     bool success = true;                                                       \
                                                                                \
     shared_counter = 0;                                                        \
-    log_info("counter @ %p", (void*)&shared_counter);    \
+    log_info("counter @ %p", (void *)&shared_counter);                         \
     shmem_barrier_all();                                                       \
                                                                                \
-    log_info("executing shmem_atomic_inc");                                                     \
+    log_info("executing shmem_atomic_inc");                                    \
     shmem_atomic_inc(&shared_counter, 0);                                      \
                                                                                \
-    log_info("executing shmem_sync_all");                                                     \
+    log_info("executing shmem_sync_all");                                      \
     shmem_sync_all();                                                          \
                                                                                \
     if (shared_counter != shmem_n_pes()) {                                     \
-      log_info("counter failed validation: expected %d increments, got %ld", shmem_n_pes(), shared_counter);                             \
+      log_info("counter failed validation: expected %d increments, got %ld",   \
+               shmem_n_pes(), shared_counter);                                 \
       success = false;                                                         \
     }                                                                          \
                                                                                \

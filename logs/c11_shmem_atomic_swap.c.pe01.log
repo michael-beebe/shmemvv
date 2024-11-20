@@ -1,0 +1,62 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/atomics/c11_shmem_atomic_swap.c
+[11:36:32.524] ------ BEGIN TEST ROUTINE: shmem_atomic_set(int)
+[11:36:32.524] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:36:32.524] [INFO] set 0xaaab40002250 to 42
+[11:36:32.524] [INFO] executing atomic swap: dest = 0xaaab40002250, new_val = 43
+[11:36:32.524] [INFO] atomic swap on a int at 0xaaab40002250 produced expected result
+[11:36:32.524] ------ BEGIN TEST ROUTINE: shmem_atomic_set(long)
+[11:36:32.524] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.524] [INFO] set 0xaaab40002250 to 42
+[11:36:32.524] [INFO] executing atomic swap: dest = 0xaaab40002250, new_val = 43
+[11:36:32.525] [INFO] atomic swap on a long at 0xaaab40002250 produced expected result
+[11:36:32.525] ------ BEGIN TEST ROUTINE: shmem_atomic_set(long long)
+[11:36:32.525] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.525] [INFO] set 0xaaab40002250 to 42
+[11:36:32.525] [INFO] executing atomic swap: dest = 0xaaab40002250, new_val = 43
+[11:36:32.525] [INFO] atomic swap on a long long at 0xaaab40002250 produced expected result
+[11:36:32.525] ------ BEGIN TEST ROUTINE: shmem_atomic_set(unsigned int)
+[11:36:32.525] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:36:32.525] [INFO] set 0xaaab40002250 to 42
+[11:36:32.525] [INFO] executing atomic swap: dest = 0xaaab40002250, new_val = 43
+[11:36:32.525] [INFO] atomic swap on a unsigned int at 0xaaab40002250 produced expected result
+[11:36:32.525] ------ BEGIN TEST ROUTINE: shmem_atomic_set(unsigned long)
+[11:36:32.526] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.526] [INFO] set 0xaaab40002250 to 42
+[11:36:32.526] [INFO] executing atomic swap: dest = 0xaaab40002250, new_val = 43
+[11:36:32.526] [INFO] atomic swap on a unsigned long at 0xaaab40002250 produced expected result
+[11:36:32.526] ------ BEGIN TEST ROUTINE: shmem_atomic_set(unsigned long long)
+[11:36:32.526] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.526] [INFO] set 0xaaab40002250 to 42
+[11:36:32.526] [INFO] executing atomic swap: dest = 0xaaab40002250, new_val = 43
+[11:36:32.526] [INFO] atomic swap on a unsigned long long at 0xaaab40002250 produced expected result
+[11:36:32.526] ------ BEGIN TEST ROUTINE: shmem_atomic_set(int32_t)
+[11:36:32.526] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:36:32.526] [INFO] set 0xaaab40002250 to 42
+[11:36:32.526] [INFO] executing atomic swap: dest = 0xaaab40002250, new_val = 43
+[11:36:32.527] [INFO] atomic swap on a int32_t at 0xaaab40002250 produced expected result
+[11:36:32.527] ------ BEGIN TEST ROUTINE: shmem_atomic_set(int64_t)
+[11:36:32.527] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.527] [INFO] set 0xaaab40002250 to 42
+[11:36:32.527] [INFO] executing atomic swap: dest = 0xaaab40002250, new_val = 43
+[11:36:32.527] [INFO] atomic swap on a int64_t at 0xaaab40002250 produced expected result
+[11:36:32.527] ------ BEGIN TEST ROUTINE: shmem_atomic_set(uint32_t)
+[11:36:32.527] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:36:32.527] [INFO] set 0xaaab40002250 to 42
+[11:36:32.527] [INFO] executing atomic swap: dest = 0xaaab40002250, new_val = 43
+[11:36:32.527] [INFO] atomic swap on a uint32_t at 0xaaab40002250 produced expected result
+[11:36:32.528] ------ BEGIN TEST ROUTINE: shmem_atomic_set(uint64_t)
+[11:36:32.528] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.528] [INFO] set 0xaaab40002250 to 42
+[11:36:32.528] [INFO] executing atomic swap: dest = 0xaaab40002250, new_val = 43
+[11:36:32.528] [INFO] atomic swap on a uint64_t at 0xaaab40002250 produced expected result
+[11:36:32.528] ------ BEGIN TEST ROUTINE: shmem_atomic_set(size_t)
+[11:36:32.528] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.528] [INFO] set 0xaaab40002250 to 42
+[11:36:32.528] [INFO] executing atomic swap: dest = 0xaaab40002250, new_val = 43
+[11:36:32.528] [INFO] atomic swap on a size_t at 0xaaab40002250 produced expected result
+[11:36:32.529] ------ BEGIN TEST ROUTINE: shmem_atomic_set(ptrdiff_t)
+[11:36:32.529] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:36:32.529] [INFO] set 0xaaab40002250 to 42
+[11:36:32.529] [INFO] executing atomic swap: dest = 0xaaab40002250, new_val = 43
+[11:36:32.529] [INFO] atomic swap on a ptrdiff_t at 0xaaab40002250 produced expected result
+---------- END TEST: PASSED
