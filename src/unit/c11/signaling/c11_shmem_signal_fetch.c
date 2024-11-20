@@ -21,7 +21,7 @@
     int npes = shmem_n_pes();                                                  \
                                                                                \
     if (npes < 2) {                                                            \
-      log_fail("test requires at least 2 PEs, only have %d", npes);           \
+      log_fail("test requires at least 2 PEs, only have %d", npes);            \
       success = false;                                                         \
     } else {                                                                   \
       log_info("starting barrier_all with %d PEs", npes);                      \
@@ -29,7 +29,7 @@
                                                                                \
       if (mype == 1) {                                                         \
         log_info("PE %d calling shmem_signal_fetch(signal = %p)", mype,        \
-                &signal);                                                      \
+                 &signal);                                                     \
         fetched_signal = shmem_signal_fetch(&signal);                          \
         log_info("fetched signal value: %lu", fetched_signal);                 \
         if (fetched_signal != 1) {                                             \
@@ -37,7 +37,7 @@
                    fetched_signal);                                            \
           success = false;                                                     \
         } else {                                                               \
-          log_info("signal fetch successful - value matches expected");         \
+          log_info("signal fetch successful - value matches expected");        \
         }                                                                      \
       } else {                                                                 \
         log_info("PE %d waiting at barrier", mype);                            \
