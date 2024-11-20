@@ -29,9 +29,9 @@ echo "    RUNNING C TESTS"
 echo $HLINE
 
 # --- setup
-for executable in $SETUP_BIN/c_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $SETUP_BIN/c_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- atomics
 # for executable in $ATOMIC_BIN/c_*; do
@@ -69,14 +69,14 @@ done
 # done
 
 # --- signaling
-for executable in $SIGNALING_BIN/c_*; do
-  oshrun -np 2 $executable
-done
-
-# --- teams
-# for executable in $TEAMS_BIN/c_*; do
+# for executable in $SIGNALING_BIN/c_*; do
 #   oshrun -np 2 $executable
 # done
+
+# --- teams
+for executable in $TEAMS_BIN/c_*; do
+  oshrun -np 2 $executable
+done
 
 # --- threads
 # for executable in $THREADS_BIN/c_*; do
@@ -91,9 +91,9 @@ echo "    RUNNING C11 TESTS"
 echo $HLINE
 
 # --- setup
-for executable in $SETUP_BIN/c11_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $SETUP_BIN/c11_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- atomics
 # for executable in $ATOMIC_BIN/c11_*; do
@@ -131,14 +131,14 @@ done
 # done
 
 # --- signaling
-for executable in $SIGNALING_BIN/c11_*; do
-  oshrun -np 2 $executable
-done
-
-# --- teams
-# for executable in $TEAMS_BIN/c11_*; do
+# for executable in $SIGNALING_BIN/c11_*; do
 #   oshrun -np 2 $executable
 # done
+
+# --- teams
+for executable in $TEAMS_BIN/c11_*; do
+  oshrun -np 2 $executable
+done
 
 # --- threads
 # for executable in $THREADS_BIN/c11_*; do
@@ -208,4 +208,3 @@ done
 # done
 
 
-# mv *.log $SHMEMVV_LOG_DIR
