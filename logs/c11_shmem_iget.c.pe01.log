@@ -1,242 +1,242 @@
 ---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/rma/c11_shmem_iget.c
-[14:59:26.671] ------ BEGIN TEST ROUTINE: shmem_iget(long)
-[14:59:26.671] [INFO] Allocated static arrays: src at 0xaaaae8690200, dest at 0xaaaae8690250
-[14:59:26.671] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.671] [INFO] Completed barrier synchronization
-[14:59:26.671] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.671] [INFO] PE 1: dest=0xaaaae8690250, src=0xaaaae8690200, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.671] [INFO] PE 1: Completed strided get operation
-[14:59:26.671] [INFO] Completed barrier synchronization
-[14:59:26.671] [INFO] PE 1: Beginning validation of received data
-[14:59:26.671] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
-[14:59:26.671] ------ BEGIN TEST ROUTINE: shmem_iget(double)
-[14:59:26.671] [INFO] Allocated static arrays: src at 0xaaaae86902a0, dest at 0xaaaae86902f0
-[14:59:26.671] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.672] [INFO] Completed barrier synchronization
-[14:59:26.672] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.672] [INFO] PE 1: dest=0xaaaae86902f0, src=0xaaaae86902a0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.672] [INFO] PE 1: Completed strided get operation
-[14:59:26.672] [INFO] Completed barrier synchronization
-[14:59:26.672] [INFO] PE 1: Beginning validation of received data
-[14:59:26.672] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
-[14:59:26.672] ------ BEGIN TEST ROUTINE: shmem_iget(long double)
-[14:59:26.672] [INFO] Allocated static arrays: src at 0xaaaae8690340, dest at 0xaaaae86903e0
-[14:59:26.672] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.672] [INFO] Completed barrier synchronization
-[14:59:26.672] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.672] [INFO] PE 1: dest=0xaaaae86903e0, src=0xaaaae8690340, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.672] [INFO] PE 1: Completed strided get operation
-[14:59:26.672] [INFO] Completed barrier synchronization
-[14:59:26.672] [INFO] PE 1: Beginning validation of received data
-[14:59:26.672] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
-[14:59:26.672] ------ BEGIN TEST ROUTINE: shmem_iget(char)
-[14:59:26.672] [INFO] Allocated static arrays: src at 0xaaaae8690480, dest at 0xaaaae8690490
-[14:59:26.672] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.672] [INFO] Completed barrier synchronization
-[14:59:26.672] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.672] [INFO] PE 1: dest=0xaaaae8690490, src=0xaaaae8690480, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.672] [INFO] PE 1: Completed strided get operation
-[14:59:26.672] [INFO] Completed barrier synchronization
-[14:59:26.672] [INFO] PE 1: Beginning validation of received data
-[14:59:26.672] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
-[14:59:26.672] ------ BEGIN TEST ROUTINE: shmem_iget(signed char)
-[14:59:26.672] [INFO] Allocated static arrays: src at 0xaaaae86904a0, dest at 0xaaaae86904b0
-[14:59:26.672] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.672] [INFO] Completed barrier synchronization
-[14:59:26.672] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.672] [INFO] PE 1: dest=0xaaaae86904b0, src=0xaaaae86904a0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.672] [INFO] PE 1: Completed strided get operation
-[14:59:26.672] [INFO] Completed barrier synchronization
-[14:59:26.672] [INFO] PE 1: Beginning validation of received data
-[14:59:26.672] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
-[14:59:26.672] ------ BEGIN TEST ROUTINE: shmem_iget(short)
-[14:59:26.672] [INFO] Allocated static arrays: src at 0xaaaae86904c0, dest at 0xaaaae86904d8
-[14:59:26.672] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.672] [INFO] Completed barrier synchronization
-[14:59:26.672] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.672] [INFO] PE 1: dest=0xaaaae86904d8, src=0xaaaae86904c0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.673] [INFO] PE 1: Completed strided get operation
-[14:59:26.673] [INFO] Completed barrier synchronization
-[14:59:26.673] [INFO] PE 1: Beginning validation of received data
-[14:59:26.673] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
-[14:59:26.673] ------ BEGIN TEST ROUTINE: shmem_iget(int)
-[14:59:26.673] [INFO] Allocated static arrays: src at 0xaaaae86904f0, dest at 0xaaaae8690518
-[14:59:26.673] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.673] [INFO] Completed barrier synchronization
-[14:59:26.673] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.673] [INFO] PE 1: dest=0xaaaae8690518, src=0xaaaae86904f0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.673] [INFO] PE 1: Completed strided get operation
-[14:59:26.673] [INFO] Completed barrier synchronization
-[14:59:26.673] [INFO] PE 1: Beginning validation of received data
-[14:59:26.673] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
-[14:59:26.673] ------ BEGIN TEST ROUTINE: shmem_iget(long)
-[14:59:26.673] [INFO] Allocated static arrays: src at 0xaaaae8690540, dest at 0xaaaae8690590
-[14:59:26.673] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.673] [INFO] Completed barrier synchronization
-[14:59:26.673] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.673] [INFO] PE 1: dest=0xaaaae8690590, src=0xaaaae8690540, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.673] [INFO] PE 1: Completed strided get operation
-[14:59:26.673] [INFO] Completed barrier synchronization
-[14:59:26.673] [INFO] PE 1: Beginning validation of received data
-[14:59:26.673] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
-[14:59:26.673] ------ BEGIN TEST ROUTINE: shmem_iget(long long)
-[14:59:26.673] [INFO] Allocated static arrays: src at 0xaaaae86905e0, dest at 0xaaaae8690630
-[14:59:26.673] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.673] [INFO] Completed barrier synchronization
-[14:59:26.673] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.673] [INFO] PE 1: dest=0xaaaae8690630, src=0xaaaae86905e0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.673] [INFO] PE 1: Completed strided get operation
-[14:59:26.673] [INFO] Completed barrier synchronization
-[14:59:26.673] [INFO] PE 1: Beginning validation of received data
-[14:59:26.673] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
-[14:59:26.673] ------ BEGIN TEST ROUTINE: shmem_iget(unsigned char)
-[14:59:26.673] [INFO] Allocated static arrays: src at 0xaaaae8690680, dest at 0xaaaae8690690
-[14:59:26.673] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.674] [INFO] Completed barrier synchronization
-[14:59:26.674] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.674] [INFO] PE 1: dest=0xaaaae8690690, src=0xaaaae8690680, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.674] [INFO] PE 1: Completed strided get operation
-[14:59:26.674] [INFO] Completed barrier synchronization
-[14:59:26.674] [INFO] PE 1: Beginning validation of received data
-[14:59:26.674] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
-[14:59:26.674] ------ BEGIN TEST ROUTINE: shmem_iget(unsigned short)
-[14:59:26.674] [INFO] Allocated static arrays: src at 0xaaaae86906a0, dest at 0xaaaae86906b8
-[14:59:26.674] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.674] [INFO] Completed barrier synchronization
-[14:59:26.674] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.674] [INFO] PE 1: dest=0xaaaae86906b8, src=0xaaaae86906a0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.674] [INFO] PE 1: Completed strided get operation
-[14:59:26.674] [INFO] Completed barrier synchronization
-[14:59:26.674] [INFO] PE 1: Beginning validation of received data
-[14:59:26.674] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
-[14:59:26.674] ------ BEGIN TEST ROUTINE: shmem_iget(unsigned int)
-[14:59:26.674] [INFO] Allocated static arrays: src at 0xaaaae86906d0, dest at 0xaaaae86906f8
-[14:59:26.674] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.674] [INFO] Completed barrier synchronization
-[14:59:26.674] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.674] [INFO] PE 1: dest=0xaaaae86906f8, src=0xaaaae86906d0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.674] [INFO] PE 1: Completed strided get operation
-[14:59:26.674] [INFO] Completed barrier synchronization
-[14:59:26.674] [INFO] PE 1: Beginning validation of received data
-[14:59:26.674] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
-[14:59:26.674] ------ BEGIN TEST ROUTINE: shmem_iget(unsigned long)
-[14:59:26.674] [INFO] Allocated static arrays: src at 0xaaaae8690720, dest at 0xaaaae8690770
-[14:59:26.674] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.675] [INFO] Completed barrier synchronization
-[14:59:26.675] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.675] [INFO] PE 1: dest=0xaaaae8690770, src=0xaaaae8690720, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.675] [INFO] PE 1: Completed strided get operation
-[14:59:26.675] [INFO] Completed barrier synchronization
-[14:59:26.675] [INFO] PE 1: Beginning validation of received data
-[14:59:26.675] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
-[14:59:26.675] ------ BEGIN TEST ROUTINE: shmem_iget(unsigned long long)
-[14:59:26.675] [INFO] Allocated static arrays: src at 0xaaaae86907c0, dest at 0xaaaae8690810
-[14:59:26.675] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.675] [INFO] Completed barrier synchronization
-[14:59:26.675] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.675] [INFO] PE 1: dest=0xaaaae8690810, src=0xaaaae86907c0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.675] [INFO] PE 1: Completed strided get operation
-[14:59:26.675] [INFO] Completed barrier synchronization
-[14:59:26.675] [INFO] PE 1: Beginning validation of received data
-[14:59:26.675] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
-[14:59:26.675] ------ BEGIN TEST ROUTINE: shmem_iget(int8_t)
-[14:59:26.675] [INFO] Allocated static arrays: src at 0xaaaae8690860, dest at 0xaaaae8690870
-[14:59:26.675] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.675] [INFO] Completed barrier synchronization
-[14:59:26.675] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.675] [INFO] PE 1: dest=0xaaaae8690870, src=0xaaaae8690860, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.675] [INFO] PE 1: Completed strided get operation
-[14:59:26.675] [INFO] Completed barrier synchronization
-[14:59:26.675] [INFO] PE 1: Beginning validation of received data
-[14:59:26.675] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
-[14:59:26.675] ------ BEGIN TEST ROUTINE: shmem_iget(int16_t)
-[14:59:26.675] [INFO] Allocated static arrays: src at 0xaaaae8690880, dest at 0xaaaae8690898
-[14:59:26.675] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.675] [INFO] Completed barrier synchronization
-[14:59:26.675] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.675] [INFO] PE 1: dest=0xaaaae8690898, src=0xaaaae8690880, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.675] [INFO] PE 1: Completed strided get operation
-[14:59:26.676] [INFO] Completed barrier synchronization
-[14:59:26.676] [INFO] PE 1: Beginning validation of received data
-[14:59:26.676] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
-[14:59:26.676] ------ BEGIN TEST ROUTINE: shmem_iget(int32_t)
-[14:59:26.676] [INFO] Allocated static arrays: src at 0xaaaae86908b0, dest at 0xaaaae86908d8
-[14:59:26.676] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.676] [INFO] Completed barrier synchronization
-[14:59:26.676] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.676] [INFO] PE 1: dest=0xaaaae86908d8, src=0xaaaae86908b0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.676] [INFO] PE 1: Completed strided get operation
-[14:59:26.676] [INFO] Completed barrier synchronization
-[14:59:26.676] [INFO] PE 1: Beginning validation of received data
-[14:59:26.676] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
-[14:59:26.676] ------ BEGIN TEST ROUTINE: shmem_iget(int64_t)
-[14:59:26.676] [INFO] Allocated static arrays: src at 0xaaaae8690900, dest at 0xaaaae8690950
-[14:59:26.676] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.676] [INFO] Completed barrier synchronization
-[14:59:26.676] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.676] [INFO] PE 1: dest=0xaaaae8690950, src=0xaaaae8690900, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.676] [INFO] PE 1: Completed strided get operation
-[14:59:26.676] [INFO] Completed barrier synchronization
-[14:59:26.676] [INFO] PE 1: Beginning validation of received data
-[14:59:26.676] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
-[14:59:26.676] ------ BEGIN TEST ROUTINE: shmem_iget(uint8_t)
-[14:59:26.676] [INFO] Allocated static arrays: src at 0xaaaae86909a0, dest at 0xaaaae86909b0
-[14:59:26.676] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.676] [INFO] Completed barrier synchronization
-[14:59:26.676] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.676] [INFO] PE 1: dest=0xaaaae86909b0, src=0xaaaae86909a0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.676] [INFO] PE 1: Completed strided get operation
-[14:59:26.676] [INFO] Completed barrier synchronization
-[14:59:26.676] [INFO] PE 1: Beginning validation of received data
-[14:59:26.676] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
-[14:59:26.676] ------ BEGIN TEST ROUTINE: shmem_iget(uint16_t)
-[14:59:26.676] [INFO] Allocated static arrays: src at 0xaaaae86909c0, dest at 0xaaaae86909d8
-[14:59:26.676] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.677] [INFO] Completed barrier synchronization
-[14:59:26.677] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.677] [INFO] PE 1: dest=0xaaaae86909d8, src=0xaaaae86909c0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.677] [INFO] PE 1: Completed strided get operation
-[14:59:26.677] [INFO] Completed barrier synchronization
-[14:59:26.677] [INFO] PE 1: Beginning validation of received data
-[14:59:26.677] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
-[14:59:26.677] ------ BEGIN TEST ROUTINE: shmem_iget(uint32_t)
-[14:59:26.677] [INFO] Allocated static arrays: src at 0xaaaae86909f0, dest at 0xaaaae8690a18
-[14:59:26.677] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.677] [INFO] Completed barrier synchronization
-[14:59:26.677] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.677] [INFO] PE 1: dest=0xaaaae8690a18, src=0xaaaae86909f0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.677] [INFO] PE 1: Completed strided get operation
-[14:59:26.677] [INFO] Completed barrier synchronization
-[14:59:26.677] [INFO] PE 1: Beginning validation of received data
-[14:59:26.677] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
-[14:59:26.677] ------ BEGIN TEST ROUTINE: shmem_iget(uint64_t)
-[14:59:26.677] [INFO] Allocated static arrays: src at 0xaaaae8690a40, dest at 0xaaaae8690a90
-[14:59:26.677] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.677] [INFO] Completed barrier synchronization
-[14:59:26.677] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.677] [INFO] PE 1: dest=0xaaaae8690a90, src=0xaaaae8690a40, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.677] [INFO] PE 1: Completed strided get operation
-[14:59:26.678] [INFO] Completed barrier synchronization
-[14:59:26.678] [INFO] PE 1: Beginning validation of received data
-[14:59:26.678] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
-[14:59:26.678] ------ BEGIN TEST ROUTINE: shmem_iget(size_t)
-[14:59:26.678] [INFO] Allocated static arrays: src at 0xaaaae8690ae0, dest at 0xaaaae8690b30
-[14:59:26.678] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.678] [INFO] Completed barrier synchronization
-[14:59:26.678] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.678] [INFO] PE 1: dest=0xaaaae8690b30, src=0xaaaae8690ae0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.678] [INFO] PE 1: Completed strided get operation
-[14:59:26.678] [INFO] Completed barrier synchronization
-[14:59:26.678] [INFO] PE 1: Beginning validation of received data
-[14:59:26.678] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
-[14:59:26.678] ------ BEGIN TEST ROUTINE: shmem_iget(ptrdiff_t)
-[14:59:26.678] [INFO] Allocated static arrays: src at 0xaaaae8690b80, dest at 0xaaaae8690bd0
-[14:59:26.678] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.678] [INFO] Completed barrier synchronization
-[14:59:26.678] [INFO] PE 1: Starting strided get from PE 0
-[14:59:26.678] [INFO] PE 1: dest=0xaaaae8690bd0, src=0xaaaae8690b80, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.678] [INFO] PE 1: Completed strided get operation
-[14:59:26.678] [INFO] Completed barrier synchronization
-[14:59:26.678] [INFO] PE 1: Beginning validation of received data
-[14:59:26.678] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.959] ------ BEGIN TEST ROUTINE: shmem_iget(long)
+[16:28:12.959] [INFO] Allocated static arrays: src at 0xaaaadf4c0200, dest at 0xaaaadf4c0250
+[16:28:12.959] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.960] [INFO] Completed barrier synchronization
+[16:28:12.960] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.960] [INFO] PE 1: dest=0xaaaadf4c0250, src=0xaaaadf4c0200, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.960] [INFO] PE 1: Completed strided get operation
+[16:28:12.960] [INFO] Completed barrier synchronization
+[16:28:12.960] [INFO] PE 1: Beginning validation of received data
+[16:28:12.960] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.960] ------ BEGIN TEST ROUTINE: shmem_iget(double)
+[16:28:12.960] [INFO] Allocated static arrays: src at 0xaaaadf4c02a0, dest at 0xaaaadf4c02f0
+[16:28:12.960] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.960] [INFO] Completed barrier synchronization
+[16:28:12.960] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.960] [INFO] PE 1: dest=0xaaaadf4c02f0, src=0xaaaadf4c02a0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.960] [INFO] PE 1: Completed strided get operation
+[16:28:12.960] [INFO] Completed barrier synchronization
+[16:28:12.960] [INFO] PE 1: Beginning validation of received data
+[16:28:12.960] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.960] ------ BEGIN TEST ROUTINE: shmem_iget(long double)
+[16:28:12.960] [INFO] Allocated static arrays: src at 0xaaaadf4c0340, dest at 0xaaaadf4c03e0
+[16:28:12.960] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.960] [INFO] Completed barrier synchronization
+[16:28:12.960] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.960] [INFO] PE 1: dest=0xaaaadf4c03e0, src=0xaaaadf4c0340, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.960] [INFO] PE 1: Completed strided get operation
+[16:28:12.960] [INFO] Completed barrier synchronization
+[16:28:12.960] [INFO] PE 1: Beginning validation of received data
+[16:28:12.960] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.960] ------ BEGIN TEST ROUTINE: shmem_iget(char)
+[16:28:12.960] [INFO] Allocated static arrays: src at 0xaaaadf4c0480, dest at 0xaaaadf4c0490
+[16:28:12.960] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.961] [INFO] Completed barrier synchronization
+[16:28:12.961] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.961] [INFO] PE 1: dest=0xaaaadf4c0490, src=0xaaaadf4c0480, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.961] [INFO] PE 1: Completed strided get operation
+[16:28:12.961] [INFO] Completed barrier synchronization
+[16:28:12.961] [INFO] PE 1: Beginning validation of received data
+[16:28:12.961] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.961] ------ BEGIN TEST ROUTINE: shmem_iget(signed char)
+[16:28:12.961] [INFO] Allocated static arrays: src at 0xaaaadf4c04a0, dest at 0xaaaadf4c04b0
+[16:28:12.961] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.961] [INFO] Completed barrier synchronization
+[16:28:12.961] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.961] [INFO] PE 1: dest=0xaaaadf4c04b0, src=0xaaaadf4c04a0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.961] [INFO] PE 1: Completed strided get operation
+[16:28:12.961] [INFO] Completed barrier synchronization
+[16:28:12.961] [INFO] PE 1: Beginning validation of received data
+[16:28:12.961] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.961] ------ BEGIN TEST ROUTINE: shmem_iget(short)
+[16:28:12.961] [INFO] Allocated static arrays: src at 0xaaaadf4c04c0, dest at 0xaaaadf4c04d8
+[16:28:12.961] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.961] [INFO] Completed barrier synchronization
+[16:28:12.961] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.961] [INFO] PE 1: dest=0xaaaadf4c04d8, src=0xaaaadf4c04c0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.961] [INFO] PE 1: Completed strided get operation
+[16:28:12.961] [INFO] Completed barrier synchronization
+[16:28:12.961] [INFO] PE 1: Beginning validation of received data
+[16:28:12.961] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.961] ------ BEGIN TEST ROUTINE: shmem_iget(int)
+[16:28:12.961] [INFO] Allocated static arrays: src at 0xaaaadf4c04f0, dest at 0xaaaadf4c0518
+[16:28:12.961] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.961] [INFO] Completed barrier synchronization
+[16:28:12.961] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.961] [INFO] PE 1: dest=0xaaaadf4c0518, src=0xaaaadf4c04f0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.961] [INFO] PE 1: Completed strided get operation
+[16:28:12.961] [INFO] Completed barrier synchronization
+[16:28:12.961] [INFO] PE 1: Beginning validation of received data
+[16:28:12.961] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.961] ------ BEGIN TEST ROUTINE: shmem_iget(long)
+[16:28:12.961] [INFO] Allocated static arrays: src at 0xaaaadf4c0540, dest at 0xaaaadf4c0590
+[16:28:12.961] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.962] [INFO] Completed barrier synchronization
+[16:28:12.962] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.962] [INFO] PE 1: dest=0xaaaadf4c0590, src=0xaaaadf4c0540, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.962] [INFO] PE 1: Completed strided get operation
+[16:28:12.962] [INFO] Completed barrier synchronization
+[16:28:12.962] [INFO] PE 1: Beginning validation of received data
+[16:28:12.962] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.962] ------ BEGIN TEST ROUTINE: shmem_iget(long long)
+[16:28:12.962] [INFO] Allocated static arrays: src at 0xaaaadf4c05e0, dest at 0xaaaadf4c0630
+[16:28:12.962] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.962] [INFO] Completed barrier synchronization
+[16:28:12.962] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.962] [INFO] PE 1: dest=0xaaaadf4c0630, src=0xaaaadf4c05e0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.962] [INFO] PE 1: Completed strided get operation
+[16:28:12.962] [INFO] Completed barrier synchronization
+[16:28:12.962] [INFO] PE 1: Beginning validation of received data
+[16:28:12.962] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.962] ------ BEGIN TEST ROUTINE: shmem_iget(unsigned char)
+[16:28:12.962] [INFO] Allocated static arrays: src at 0xaaaadf4c0680, dest at 0xaaaadf4c0690
+[16:28:12.962] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.962] [INFO] Completed barrier synchronization
+[16:28:12.962] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.962] [INFO] PE 1: dest=0xaaaadf4c0690, src=0xaaaadf4c0680, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.962] [INFO] PE 1: Completed strided get operation
+[16:28:12.962] [INFO] Completed barrier synchronization
+[16:28:12.962] [INFO] PE 1: Beginning validation of received data
+[16:28:12.962] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.962] ------ BEGIN TEST ROUTINE: shmem_iget(unsigned short)
+[16:28:12.962] [INFO] Allocated static arrays: src at 0xaaaadf4c06a0, dest at 0xaaaadf4c06b8
+[16:28:12.962] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.962] [INFO] Completed barrier synchronization
+[16:28:12.962] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.962] [INFO] PE 1: dest=0xaaaadf4c06b8, src=0xaaaadf4c06a0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.963] [INFO] PE 1: Completed strided get operation
+[16:28:12.963] [INFO] Completed barrier synchronization
+[16:28:12.963] [INFO] PE 1: Beginning validation of received data
+[16:28:12.963] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.963] ------ BEGIN TEST ROUTINE: shmem_iget(unsigned int)
+[16:28:12.963] [INFO] Allocated static arrays: src at 0xaaaadf4c06d0, dest at 0xaaaadf4c06f8
+[16:28:12.963] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.963] [INFO] Completed barrier synchronization
+[16:28:12.963] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.963] [INFO] PE 1: dest=0xaaaadf4c06f8, src=0xaaaadf4c06d0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.963] [INFO] PE 1: Completed strided get operation
+[16:28:12.963] [INFO] Completed barrier synchronization
+[16:28:12.963] [INFO] PE 1: Beginning validation of received data
+[16:28:12.963] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.963] ------ BEGIN TEST ROUTINE: shmem_iget(unsigned long)
+[16:28:12.963] [INFO] Allocated static arrays: src at 0xaaaadf4c0720, dest at 0xaaaadf4c0770
+[16:28:12.963] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.963] [INFO] Completed barrier synchronization
+[16:28:12.963] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.963] [INFO] PE 1: dest=0xaaaadf4c0770, src=0xaaaadf4c0720, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.963] [INFO] PE 1: Completed strided get operation
+[16:28:12.963] [INFO] Completed barrier synchronization
+[16:28:12.963] [INFO] PE 1: Beginning validation of received data
+[16:28:12.963] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.963] ------ BEGIN TEST ROUTINE: shmem_iget(unsigned long long)
+[16:28:12.963] [INFO] Allocated static arrays: src at 0xaaaadf4c07c0, dest at 0xaaaadf4c0810
+[16:28:12.963] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.964] [INFO] Completed barrier synchronization
+[16:28:12.964] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.964] [INFO] PE 1: dest=0xaaaadf4c0810, src=0xaaaadf4c07c0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.964] [INFO] PE 1: Completed strided get operation
+[16:28:12.964] [INFO] Completed barrier synchronization
+[16:28:12.964] [INFO] PE 1: Beginning validation of received data
+[16:28:12.964] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.964] ------ BEGIN TEST ROUTINE: shmem_iget(int8_t)
+[16:28:12.964] [INFO] Allocated static arrays: src at 0xaaaadf4c0860, dest at 0xaaaadf4c0870
+[16:28:12.964] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.964] [INFO] Completed barrier synchronization
+[16:28:12.964] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.964] [INFO] PE 1: dest=0xaaaadf4c0870, src=0xaaaadf4c0860, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.964] [INFO] PE 1: Completed strided get operation
+[16:28:12.964] [INFO] Completed barrier synchronization
+[16:28:12.964] [INFO] PE 1: Beginning validation of received data
+[16:28:12.964] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.964] ------ BEGIN TEST ROUTINE: shmem_iget(int16_t)
+[16:28:12.964] [INFO] Allocated static arrays: src at 0xaaaadf4c0880, dest at 0xaaaadf4c0898
+[16:28:12.964] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.964] [INFO] Completed barrier synchronization
+[16:28:12.964] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.964] [INFO] PE 1: dest=0xaaaadf4c0898, src=0xaaaadf4c0880, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.964] [INFO] PE 1: Completed strided get operation
+[16:28:12.964] [INFO] Completed barrier synchronization
+[16:28:12.964] [INFO] PE 1: Beginning validation of received data
+[16:28:12.964] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.964] ------ BEGIN TEST ROUTINE: shmem_iget(int32_t)
+[16:28:12.964] [INFO] Allocated static arrays: src at 0xaaaadf4c08b0, dest at 0xaaaadf4c08d8
+[16:28:12.964] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.965] [INFO] Completed barrier synchronization
+[16:28:12.965] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.965] [INFO] PE 1: dest=0xaaaadf4c08d8, src=0xaaaadf4c08b0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.965] [INFO] PE 1: Completed strided get operation
+[16:28:12.965] [INFO] Completed barrier synchronization
+[16:28:12.965] [INFO] PE 1: Beginning validation of received data
+[16:28:12.965] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.965] ------ BEGIN TEST ROUTINE: shmem_iget(int64_t)
+[16:28:12.965] [INFO] Allocated static arrays: src at 0xaaaadf4c0900, dest at 0xaaaadf4c0950
+[16:28:12.965] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.965] [INFO] Completed barrier synchronization
+[16:28:12.965] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.965] [INFO] PE 1: dest=0xaaaadf4c0950, src=0xaaaadf4c0900, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.965] [INFO] PE 1: Completed strided get operation
+[16:28:12.965] [INFO] Completed barrier synchronization
+[16:28:12.965] [INFO] PE 1: Beginning validation of received data
+[16:28:12.965] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.965] ------ BEGIN TEST ROUTINE: shmem_iget(uint8_t)
+[16:28:12.965] [INFO] Allocated static arrays: src at 0xaaaadf4c09a0, dest at 0xaaaadf4c09b0
+[16:28:12.965] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.965] [INFO] Completed barrier synchronization
+[16:28:12.965] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.965] [INFO] PE 1: dest=0xaaaadf4c09b0, src=0xaaaadf4c09a0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.965] [INFO] PE 1: Completed strided get operation
+[16:28:12.965] [INFO] Completed barrier synchronization
+[16:28:12.965] [INFO] PE 1: Beginning validation of received data
+[16:28:12.965] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.965] ------ BEGIN TEST ROUTINE: shmem_iget(uint16_t)
+[16:28:12.965] [INFO] Allocated static arrays: src at 0xaaaadf4c09c0, dest at 0xaaaadf4c09d8
+[16:28:12.965] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.966] [INFO] Completed barrier synchronization
+[16:28:12.966] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.966] [INFO] PE 1: dest=0xaaaadf4c09d8, src=0xaaaadf4c09c0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.966] [INFO] PE 1: Completed strided get operation
+[16:28:12.966] [INFO] Completed barrier synchronization
+[16:28:12.966] [INFO] PE 1: Beginning validation of received data
+[16:28:12.966] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.966] ------ BEGIN TEST ROUTINE: shmem_iget(uint32_t)
+[16:28:12.966] [INFO] Allocated static arrays: src at 0xaaaadf4c09f0, dest at 0xaaaadf4c0a18
+[16:28:12.966] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.966] [INFO] Completed barrier synchronization
+[16:28:12.966] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.966] [INFO] PE 1: dest=0xaaaadf4c0a18, src=0xaaaadf4c09f0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.966] [INFO] PE 1: Completed strided get operation
+[16:28:12.966] [INFO] Completed barrier synchronization
+[16:28:12.966] [INFO] PE 1: Beginning validation of received data
+[16:28:12.966] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.966] ------ BEGIN TEST ROUTINE: shmem_iget(uint64_t)
+[16:28:12.966] [INFO] Allocated static arrays: src at 0xaaaadf4c0a40, dest at 0xaaaadf4c0a90
+[16:28:12.966] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.966] [INFO] Completed barrier synchronization
+[16:28:12.966] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.966] [INFO] PE 1: dest=0xaaaadf4c0a90, src=0xaaaadf4c0a40, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.966] [INFO] PE 1: Completed strided get operation
+[16:28:12.966] [INFO] Completed barrier synchronization
+[16:28:12.966] [INFO] PE 1: Beginning validation of received data
+[16:28:12.966] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.966] ------ BEGIN TEST ROUTINE: shmem_iget(size_t)
+[16:28:12.966] [INFO] Allocated static arrays: src at 0xaaaadf4c0ae0, dest at 0xaaaadf4c0b30
+[16:28:12.966] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.966] [INFO] Completed barrier synchronization
+[16:28:12.966] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.966] [INFO] PE 1: dest=0xaaaadf4c0b30, src=0xaaaadf4c0ae0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.967] [INFO] PE 1: Completed strided get operation
+[16:28:12.967] [INFO] Completed barrier synchronization
+[16:28:12.967] [INFO] PE 1: Beginning validation of received data
+[16:28:12.967] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[16:28:12.967] ------ BEGIN TEST ROUTINE: shmem_iget(ptrdiff_t)
+[16:28:12.967] [INFO] Allocated static arrays: src at 0xaaaadf4c0b80, dest at 0xaaaadf4c0bd0
+[16:28:12.967] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.967] [INFO] Completed barrier synchronization
+[16:28:12.967] [INFO] PE 1: Starting strided get from PE 0
+[16:28:12.967] [INFO] PE 1: dest=0xaaaadf4c0bd0, src=0xaaaadf4c0b80, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.967] [INFO] PE 1: Completed strided get operation
+[16:28:12.967] [INFO] Completed barrier synchronization
+[16:28:12.967] [INFO] PE 1: Beginning validation of received data
+[16:28:12.967] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
 ---------- END TEST: FAILED

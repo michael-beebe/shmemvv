@@ -11,12 +11,19 @@
 #include "shmemvv.h"
 
 bool test_shmem_pe_accessible(void) {
+  log_routine("shmem_pe_accessible()");
+  log_info("Testing accessibility of current PE");
+
   int pe = shmem_my_pe();
+  log_info("Current PE number is %d", pe);
+
+  log_info("Checking if PE %d is accessible via shmem_pe_accessible()", pe);
   if (!shmem_pe_accessible(pe)) {
-    log_fail("my pe is %d, but shmem_pe_accessible(%d) is false!", pe, pe);
+    log_fail("PE accessibility check failed - PE %d is not accessible to itself", pe);
     return false;
   }
-  log_info("shmem_pe_accessible(self) is true");
+
+  log_info("PE accessibility check successful - PE %d is accessible to itself", pe);
   return true;
 }
 
@@ -24,11 +31,15 @@ int main(int argc, char *argv[]) {
   shmem_init();
   log_init(__FILE__);
 
+  log_info("Starting test for shmem_pe_accessible()");
   bool result = test_shmem_pe_accessible();
   int rc = EXIT_SUCCESS;
 
   if (!result) {
+    log_info("shmem_pe_accessible() test failed");
     rc = EXIT_FAILURE;
+  } else {
+    log_info("shmem_pe_accessible() test completed successfully");
   }
 
   if (shmem_my_pe() == 0) {

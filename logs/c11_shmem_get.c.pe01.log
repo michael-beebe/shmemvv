@@ -1,218 +1,218 @@
 ---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/rma/c11_shmem_get.c
-[14:59:26.644] ------ BEGIN TEST ROUTINE: shmem_get(long)
-[14:59:26.644] [INFO] Allocated static arrays: src at 0xaaaacc0c0200, dest at 0xaaaacc0c0250
-[14:59:26.644] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.644] [INFO] Completed barrier synchronization
-[14:59:26.644] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.644] [INFO] PE 1: Completed get operation
-[14:59:26.644] [INFO] Completed barrier synchronization
-[14:59:26.644] [INFO] PE 1: Beginning validation of received data
-[14:59:26.644] [INFO] PE 1: Validation successful - all elements match expected values
-[14:59:26.644] ------ BEGIN TEST ROUTINE: shmem_get(double)
-[14:59:26.644] [INFO] Allocated static arrays: src at 0xaaaacc0c02a0, dest at 0xaaaacc0c02f0
-[14:59:26.644] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.645] [INFO] Completed barrier synchronization
-[14:59:26.645] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.645] [INFO] PE 1: Completed get operation
-[14:59:26.645] [INFO] Completed barrier synchronization
-[14:59:26.645] [INFO] PE 1: Beginning validation of received data
-[14:59:26.645] [INFO] PE 1: Validation successful - all elements match expected values
-[14:59:26.645] ------ BEGIN TEST ROUTINE: shmem_get(long double)
-[14:59:26.645] [INFO] Allocated static arrays: src at 0xaaaacc0c0340, dest at 0xaaaacc0c03e0
-[14:59:26.645] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.645] [INFO] Completed barrier synchronization
-[14:59:26.645] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.645] [INFO] PE 1: Completed get operation
-[14:59:26.645] [INFO] Completed barrier synchronization
-[14:59:26.645] [INFO] PE 1: Beginning validation of received data
-[14:59:26.645] [INFO] PE 1: Validation successful - all elements match expected values
-[14:59:26.645] ------ BEGIN TEST ROUTINE: shmem_get(char)
-[14:59:26.645] [INFO] Allocated static arrays: src at 0xaaaacc0c0480, dest at 0xaaaacc0c0490
-[14:59:26.645] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.645] [INFO] Completed barrier synchronization
-[14:59:26.645] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.645] [INFO] PE 1: Completed get operation
-[14:59:26.645] [INFO] Completed barrier synchronization
-[14:59:26.645] [INFO] PE 1: Beginning validation of received data
-[14:59:26.645] [INFO] PE 1: Validation successful - all elements match expected values
-[14:59:26.645] ------ BEGIN TEST ROUTINE: shmem_get(signed char)
-[14:59:26.645] [INFO] Allocated static arrays: src at 0xaaaacc0c04a0, dest at 0xaaaacc0c04b0
-[14:59:26.645] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.645] [INFO] Completed barrier synchronization
-[14:59:26.645] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.645] [INFO] PE 1: Completed get operation
-[14:59:26.646] [INFO] Completed barrier synchronization
-[14:59:26.646] [INFO] PE 1: Beginning validation of received data
-[14:59:26.646] [INFO] PE 1: Validation successful - all elements match expected values
-[14:59:26.646] ------ BEGIN TEST ROUTINE: shmem_get(short)
-[14:59:26.646] [INFO] Allocated static arrays: src at 0xaaaacc0c04c0, dest at 0xaaaacc0c04d8
-[14:59:26.646] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.646] [INFO] Completed barrier synchronization
-[14:59:26.646] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.646] [INFO] PE 1: Completed get operation
-[14:59:26.646] [INFO] Completed barrier synchronization
-[14:59:26.646] [INFO] PE 1: Beginning validation of received data
-[14:59:26.646] [INFO] PE 1: Validation successful - all elements match expected values
-[14:59:26.646] ------ BEGIN TEST ROUTINE: shmem_get(int)
-[14:59:26.646] [INFO] Allocated static arrays: src at 0xaaaacc0c04f0, dest at 0xaaaacc0c0518
-[14:59:26.646] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.646] [INFO] Completed barrier synchronization
-[14:59:26.646] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.646] [INFO] PE 1: Completed get operation
-[14:59:26.646] [INFO] Completed barrier synchronization
-[14:59:26.646] [INFO] PE 1: Beginning validation of received data
-[14:59:26.646] [INFO] PE 1: Validation successful - all elements match expected values
-[14:59:26.646] ------ BEGIN TEST ROUTINE: shmem_get(long)
-[14:59:26.646] [INFO] Allocated static arrays: src at 0xaaaacc0c0540, dest at 0xaaaacc0c0590
-[14:59:26.646] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.646] [INFO] Completed barrier synchronization
-[14:59:26.646] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.646] [INFO] PE 1: Completed get operation
-[14:59:26.646] [INFO] Completed barrier synchronization
-[14:59:26.646] [INFO] PE 1: Beginning validation of received data
-[14:59:26.646] [INFO] PE 1: Validation successful - all elements match expected values
-[14:59:26.646] ------ BEGIN TEST ROUTINE: shmem_get(long long)
-[14:59:26.646] [INFO] Allocated static arrays: src at 0xaaaacc0c05e0, dest at 0xaaaacc0c0630
-[14:59:26.646] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.646] [INFO] Completed barrier synchronization
-[14:59:26.646] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.647] [INFO] PE 1: Completed get operation
-[14:59:26.647] [INFO] Completed barrier synchronization
-[14:59:26.647] [INFO] PE 1: Beginning validation of received data
-[14:59:26.647] [INFO] PE 1: Validation successful - all elements match expected values
-[14:59:26.647] ------ BEGIN TEST ROUTINE: shmem_get(unsigned char)
-[14:59:26.647] [INFO] Allocated static arrays: src at 0xaaaacc0c0680, dest at 0xaaaacc0c0690
-[14:59:26.647] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.647] [INFO] Completed barrier synchronization
-[14:59:26.647] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.647] [INFO] PE 1: Completed get operation
-[14:59:26.647] [INFO] Completed barrier synchronization
-[14:59:26.647] [INFO] PE 1: Beginning validation of received data
-[14:59:26.647] [INFO] PE 1: Validation successful - all elements match expected values
-[14:59:26.647] ------ BEGIN TEST ROUTINE: shmem_get(unsigned short)
-[14:59:26.647] [INFO] Allocated static arrays: src at 0xaaaacc0c06a0, dest at 0xaaaacc0c06b8
-[14:59:26.647] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.647] [INFO] Completed barrier synchronization
-[14:59:26.647] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.647] [INFO] PE 1: Completed get operation
-[14:59:26.647] [INFO] Completed barrier synchronization
-[14:59:26.647] [INFO] PE 1: Beginning validation of received data
-[14:59:26.647] [INFO] PE 1: Validation successful - all elements match expected values
-[14:59:26.647] ------ BEGIN TEST ROUTINE: shmem_get(unsigned int)
-[14:59:26.647] [INFO] Allocated static arrays: src at 0xaaaacc0c06d0, dest at 0xaaaacc0c06f8
-[14:59:26.647] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.647] [INFO] Completed barrier synchronization
-[14:59:26.647] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.647] [INFO] PE 1: Completed get operation
-[14:59:26.647] [INFO] Completed barrier synchronization
-[14:59:26.647] [INFO] PE 1: Beginning validation of received data
-[14:59:26.647] [INFO] PE 1: Validation successful - all elements match expected values
-[14:59:26.647] ------ BEGIN TEST ROUTINE: shmem_get(unsigned long)
-[14:59:26.647] [INFO] Allocated static arrays: src at 0xaaaacc0c0720, dest at 0xaaaacc0c0770
-[14:59:26.647] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.648] [INFO] Completed barrier synchronization
-[14:59:26.648] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.648] [INFO] PE 1: Completed get operation
-[14:59:26.648] [INFO] Completed barrier synchronization
-[14:59:26.648] [INFO] PE 1: Beginning validation of received data
-[14:59:26.648] [INFO] PE 1: Validation successful - all elements match expected values
-[14:59:26.648] ------ BEGIN TEST ROUTINE: shmem_get(unsigned long long)
-[14:59:26.648] [INFO] Allocated static arrays: src at 0xaaaacc0c07c0, dest at 0xaaaacc0c0810
-[14:59:26.648] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.648] [INFO] Completed barrier synchronization
-[14:59:26.648] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.648] [INFO] PE 1: Completed get operation
-[14:59:26.648] [INFO] Completed barrier synchronization
-[14:59:26.648] [INFO] PE 1: Beginning validation of received data
-[14:59:26.648] [INFO] PE 1: Validation successful - all elements match expected values
-[14:59:26.648] ------ BEGIN TEST ROUTINE: shmem_get(int8_t)
-[14:59:26.648] [INFO] Allocated static arrays: src at 0xaaaacc0c0860, dest at 0xaaaacc0c0870
-[14:59:26.648] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.648] [INFO] Completed barrier synchronization
-[14:59:26.648] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.648] [INFO] PE 1: Completed get operation
-[14:59:26.648] [INFO] Completed barrier synchronization
-[14:59:26.648] [INFO] PE 1: Beginning validation of received data
-[14:59:26.648] [INFO] PE 1: Validation successful - all elements match expected values
-[14:59:26.648] ------ BEGIN TEST ROUTINE: shmem_get(int16_t)
-[14:59:26.648] [INFO] Allocated static arrays: src at 0xaaaacc0c0880, dest at 0xaaaacc0c0898
-[14:59:26.648] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.648] [INFO] Completed barrier synchronization
-[14:59:26.648] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.648] [INFO] PE 1: Completed get operation
-[14:59:26.648] [INFO] Completed barrier synchronization
-[14:59:26.648] [INFO] PE 1: Beginning validation of received data
-[14:59:26.648] [INFO] PE 1: Validation successful - all elements match expected values
-[14:59:26.648] ------ BEGIN TEST ROUTINE: shmem_get(int32_t)
-[14:59:26.648] [INFO] Allocated static arrays: src at 0xaaaacc0c08b0, dest at 0xaaaacc0c08d8
-[14:59:26.648] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.648] [INFO] Completed barrier synchronization
-[14:59:26.648] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.648] [INFO] PE 1: Completed get operation
-[14:59:26.649] [INFO] Completed barrier synchronization
-[14:59:26.649] [INFO] PE 1: Beginning validation of received data
-[14:59:26.649] [INFO] PE 1: Validation successful - all elements match expected values
-[14:59:26.649] ------ BEGIN TEST ROUTINE: shmem_get(int64_t)
-[14:59:26.649] [INFO] Allocated static arrays: src at 0xaaaacc0c0900, dest at 0xaaaacc0c0950
-[14:59:26.649] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.649] [INFO] Completed barrier synchronization
-[14:59:26.649] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.649] [INFO] PE 1: Completed get operation
-[14:59:26.649] [INFO] Completed barrier synchronization
-[14:59:26.649] [INFO] PE 1: Beginning validation of received data
-[14:59:26.649] [INFO] PE 1: Validation successful - all elements match expected values
-[14:59:26.649] ------ BEGIN TEST ROUTINE: shmem_get(uint8_t)
-[14:59:26.649] [INFO] Allocated static arrays: src at 0xaaaacc0c09a0, dest at 0xaaaacc0c09b0
-[14:59:26.649] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.649] [INFO] Completed barrier synchronization
-[14:59:26.649] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.649] [INFO] PE 1: Completed get operation
-[14:59:26.649] [INFO] Completed barrier synchronization
-[14:59:26.649] [INFO] PE 1: Beginning validation of received data
-[14:59:26.649] [INFO] PE 1: Validation successful - all elements match expected values
-[14:59:26.649] ------ BEGIN TEST ROUTINE: shmem_get(uint16_t)
-[14:59:26.649] [INFO] Allocated static arrays: src at 0xaaaacc0c09c0, dest at 0xaaaacc0c09d8
-[14:59:26.649] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.649] [INFO] Completed barrier synchronization
-[14:59:26.649] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.649] [INFO] PE 1: Completed get operation
-[14:59:26.649] [INFO] Completed barrier synchronization
-[14:59:26.649] [INFO] PE 1: Beginning validation of received data
-[14:59:26.649] [INFO] PE 1: Validation successful - all elements match expected values
-[14:59:26.649] ------ BEGIN TEST ROUTINE: shmem_get(uint32_t)
-[14:59:26.649] [INFO] Allocated static arrays: src at 0xaaaacc0c09f0, dest at 0xaaaacc0c0a18
-[14:59:26.649] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.649] [INFO] Completed barrier synchronization
-[14:59:26.649] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.649] [INFO] PE 1: Completed get operation
-[14:59:26.650] [INFO] Completed barrier synchronization
-[14:59:26.650] [INFO] PE 1: Beginning validation of received data
-[14:59:26.650] [INFO] PE 1: Validation successful - all elements match expected values
-[14:59:26.650] ------ BEGIN TEST ROUTINE: shmem_get(uint64_t)
-[14:59:26.650] [INFO] Allocated static arrays: src at 0xaaaacc0c0a40, dest at 0xaaaacc0c0a90
-[14:59:26.650] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.650] [INFO] Completed barrier synchronization
-[14:59:26.650] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.650] [INFO] PE 1: Completed get operation
-[14:59:26.650] [INFO] Completed barrier synchronization
-[14:59:26.650] [INFO] PE 1: Beginning validation of received data
-[14:59:26.650] [INFO] PE 1: Validation successful - all elements match expected values
-[14:59:26.650] ------ BEGIN TEST ROUTINE: shmem_get(size_t)
-[14:59:26.650] [INFO] Allocated static arrays: src at 0xaaaacc0c0ae0, dest at 0xaaaacc0c0b30
-[14:59:26.650] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.650] [INFO] Completed barrier synchronization
-[14:59:26.650] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.650] [INFO] PE 1: Completed get operation
-[14:59:26.650] [INFO] Completed barrier synchronization
-[14:59:26.650] [INFO] PE 1: Beginning validation of received data
-[14:59:26.650] [INFO] PE 1: Validation successful - all elements match expected values
-[14:59:26.650] ------ BEGIN TEST ROUTINE: shmem_get(ptrdiff_t)
-[14:59:26.650] [INFO] Allocated static arrays: src at 0xaaaacc0c0b80, dest at 0xaaaacc0c0bd0
-[14:59:26.650] [INFO] Running on PE 1 of 2 total PEs
-[14:59:26.650] [INFO] Completed barrier synchronization
-[14:59:26.650] [INFO] PE 1: Starting get of 10 elements from PE 0
-[14:59:26.650] [INFO] PE 1: Completed get operation
-[14:59:26.650] [INFO] Completed barrier synchronization
-[14:59:26.650] [INFO] PE 1: Beginning validation of received data
-[14:59:26.650] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.932] ------ BEGIN TEST ROUTINE: shmem_get(long)
+[16:28:12.932] [INFO] Allocated static arrays: src at 0xaaaac1340200, dest at 0xaaaac1340250
+[16:28:12.932] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.933] [INFO] Completed barrier synchronization
+[16:28:12.933] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.933] [INFO] PE 1: Completed get operation
+[16:28:12.933] [INFO] Completed barrier synchronization
+[16:28:12.933] [INFO] PE 1: Beginning validation of received data
+[16:28:12.933] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.933] ------ BEGIN TEST ROUTINE: shmem_get(double)
+[16:28:12.933] [INFO] Allocated static arrays: src at 0xaaaac13402a0, dest at 0xaaaac13402f0
+[16:28:12.933] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.933] [INFO] Completed barrier synchronization
+[16:28:12.933] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.933] [INFO] PE 1: Completed get operation
+[16:28:12.933] [INFO] Completed barrier synchronization
+[16:28:12.933] [INFO] PE 1: Beginning validation of received data
+[16:28:12.933] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.933] ------ BEGIN TEST ROUTINE: shmem_get(long double)
+[16:28:12.933] [INFO] Allocated static arrays: src at 0xaaaac1340340, dest at 0xaaaac13403e0
+[16:28:12.933] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.933] [INFO] Completed barrier synchronization
+[16:28:12.933] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.933] [INFO] PE 1: Completed get operation
+[16:28:12.933] [INFO] Completed barrier synchronization
+[16:28:12.933] [INFO] PE 1: Beginning validation of received data
+[16:28:12.933] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.933] ------ BEGIN TEST ROUTINE: shmem_get(char)
+[16:28:12.933] [INFO] Allocated static arrays: src at 0xaaaac1340480, dest at 0xaaaac1340490
+[16:28:12.933] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.933] [INFO] Completed barrier synchronization
+[16:28:12.933] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.934] [INFO] PE 1: Completed get operation
+[16:28:12.934] [INFO] Completed barrier synchronization
+[16:28:12.934] [INFO] PE 1: Beginning validation of received data
+[16:28:12.934] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.934] ------ BEGIN TEST ROUTINE: shmem_get(signed char)
+[16:28:12.934] [INFO] Allocated static arrays: src at 0xaaaac13404a0, dest at 0xaaaac13404b0
+[16:28:12.934] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.934] [INFO] Completed barrier synchronization
+[16:28:12.934] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.934] [INFO] PE 1: Completed get operation
+[16:28:12.934] [INFO] Completed barrier synchronization
+[16:28:12.934] [INFO] PE 1: Beginning validation of received data
+[16:28:12.934] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.934] ------ BEGIN TEST ROUTINE: shmem_get(short)
+[16:28:12.934] [INFO] Allocated static arrays: src at 0xaaaac13404c0, dest at 0xaaaac13404d8
+[16:28:12.934] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.934] [INFO] Completed barrier synchronization
+[16:28:12.934] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.934] [INFO] PE 1: Completed get operation
+[16:28:12.934] [INFO] Completed barrier synchronization
+[16:28:12.934] [INFO] PE 1: Beginning validation of received data
+[16:28:12.934] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.934] ------ BEGIN TEST ROUTINE: shmem_get(int)
+[16:28:12.934] [INFO] Allocated static arrays: src at 0xaaaac13404f0, dest at 0xaaaac1340518
+[16:28:12.934] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.934] [INFO] Completed barrier synchronization
+[16:28:12.934] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.934] [INFO] PE 1: Completed get operation
+[16:28:12.934] [INFO] Completed barrier synchronization
+[16:28:12.934] [INFO] PE 1: Beginning validation of received data
+[16:28:12.934] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.934] ------ BEGIN TEST ROUTINE: shmem_get(long)
+[16:28:12.934] [INFO] Allocated static arrays: src at 0xaaaac1340540, dest at 0xaaaac1340590
+[16:28:12.934] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.934] [INFO] Completed barrier synchronization
+[16:28:12.934] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.934] [INFO] PE 1: Completed get operation
+[16:28:12.934] [INFO] Completed barrier synchronization
+[16:28:12.934] [INFO] PE 1: Beginning validation of received data
+[16:28:12.934] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.934] ------ BEGIN TEST ROUTINE: shmem_get(long long)
+[16:28:12.934] [INFO] Allocated static arrays: src at 0xaaaac13405e0, dest at 0xaaaac1340630
+[16:28:12.934] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.935] [INFO] Completed barrier synchronization
+[16:28:12.935] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.935] [INFO] PE 1: Completed get operation
+[16:28:12.935] [INFO] Completed barrier synchronization
+[16:28:12.935] [INFO] PE 1: Beginning validation of received data
+[16:28:12.935] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.935] ------ BEGIN TEST ROUTINE: shmem_get(unsigned char)
+[16:28:12.935] [INFO] Allocated static arrays: src at 0xaaaac1340680, dest at 0xaaaac1340690
+[16:28:12.935] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.935] [INFO] Completed barrier synchronization
+[16:28:12.935] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.935] [INFO] PE 1: Completed get operation
+[16:28:12.935] [INFO] Completed barrier synchronization
+[16:28:12.935] [INFO] PE 1: Beginning validation of received data
+[16:28:12.935] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.935] ------ BEGIN TEST ROUTINE: shmem_get(unsigned short)
+[16:28:12.935] [INFO] Allocated static arrays: src at 0xaaaac13406a0, dest at 0xaaaac13406b8
+[16:28:12.935] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.935] [INFO] Completed barrier synchronization
+[16:28:12.935] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.935] [INFO] PE 1: Completed get operation
+[16:28:12.935] [INFO] Completed barrier synchronization
+[16:28:12.935] [INFO] PE 1: Beginning validation of received data
+[16:28:12.935] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.935] ------ BEGIN TEST ROUTINE: shmem_get(unsigned int)
+[16:28:12.935] [INFO] Allocated static arrays: src at 0xaaaac13406d0, dest at 0xaaaac13406f8
+[16:28:12.935] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.935] [INFO] Completed barrier synchronization
+[16:28:12.935] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.935] [INFO] PE 1: Completed get operation
+[16:28:12.935] [INFO] Completed barrier synchronization
+[16:28:12.935] [INFO] PE 1: Beginning validation of received data
+[16:28:12.935] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.935] ------ BEGIN TEST ROUTINE: shmem_get(unsigned long)
+[16:28:12.935] [INFO] Allocated static arrays: src at 0xaaaac1340720, dest at 0xaaaac1340770
+[16:28:12.935] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.936] [INFO] Completed barrier synchronization
+[16:28:12.936] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.936] [INFO] PE 1: Completed get operation
+[16:28:12.936] [INFO] Completed barrier synchronization
+[16:28:12.936] [INFO] PE 1: Beginning validation of received data
+[16:28:12.936] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.936] ------ BEGIN TEST ROUTINE: shmem_get(unsigned long long)
+[16:28:12.936] [INFO] Allocated static arrays: src at 0xaaaac13407c0, dest at 0xaaaac1340810
+[16:28:12.936] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.936] [INFO] Completed barrier synchronization
+[16:28:12.936] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.936] [INFO] PE 1: Completed get operation
+[16:28:12.936] [INFO] Completed barrier synchronization
+[16:28:12.936] [INFO] PE 1: Beginning validation of received data
+[16:28:12.936] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.936] ------ BEGIN TEST ROUTINE: shmem_get(int8_t)
+[16:28:12.936] [INFO] Allocated static arrays: src at 0xaaaac1340860, dest at 0xaaaac1340870
+[16:28:12.936] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.936] [INFO] Completed barrier synchronization
+[16:28:12.936] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.936] [INFO] PE 1: Completed get operation
+[16:28:12.936] [INFO] Completed barrier synchronization
+[16:28:12.936] [INFO] PE 1: Beginning validation of received data
+[16:28:12.936] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.936] ------ BEGIN TEST ROUTINE: shmem_get(int16_t)
+[16:28:12.936] [INFO] Allocated static arrays: src at 0xaaaac1340880, dest at 0xaaaac1340898
+[16:28:12.936] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.937] [INFO] Completed barrier synchronization
+[16:28:12.937] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.937] [INFO] PE 1: Completed get operation
+[16:28:12.937] [INFO] Completed barrier synchronization
+[16:28:12.937] [INFO] PE 1: Beginning validation of received data
+[16:28:12.937] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.937] ------ BEGIN TEST ROUTINE: shmem_get(int32_t)
+[16:28:12.937] [INFO] Allocated static arrays: src at 0xaaaac13408b0, dest at 0xaaaac13408d8
+[16:28:12.937] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.937] [INFO] Completed barrier synchronization
+[16:28:12.937] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.937] [INFO] PE 1: Completed get operation
+[16:28:12.937] [INFO] Completed barrier synchronization
+[16:28:12.937] [INFO] PE 1: Beginning validation of received data
+[16:28:12.937] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.937] ------ BEGIN TEST ROUTINE: shmem_get(int64_t)
+[16:28:12.937] [INFO] Allocated static arrays: src at 0xaaaac1340900, dest at 0xaaaac1340950
+[16:28:12.937] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.937] [INFO] Completed barrier synchronization
+[16:28:12.937] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.937] [INFO] PE 1: Completed get operation
+[16:28:12.937] [INFO] Completed barrier synchronization
+[16:28:12.937] [INFO] PE 1: Beginning validation of received data
+[16:28:12.937] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.937] ------ BEGIN TEST ROUTINE: shmem_get(uint8_t)
+[16:28:12.937] [INFO] Allocated static arrays: src at 0xaaaac13409a0, dest at 0xaaaac13409b0
+[16:28:12.937] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.937] [INFO] Completed barrier synchronization
+[16:28:12.937] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.937] [INFO] PE 1: Completed get operation
+[16:28:12.938] [INFO] Completed barrier synchronization
+[16:28:12.938] [INFO] PE 1: Beginning validation of received data
+[16:28:12.938] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.938] ------ BEGIN TEST ROUTINE: shmem_get(uint16_t)
+[16:28:12.938] [INFO] Allocated static arrays: src at 0xaaaac13409c0, dest at 0xaaaac13409d8
+[16:28:12.938] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.938] [INFO] Completed barrier synchronization
+[16:28:12.938] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.938] [INFO] PE 1: Completed get operation
+[16:28:12.938] [INFO] Completed barrier synchronization
+[16:28:12.938] [INFO] PE 1: Beginning validation of received data
+[16:28:12.938] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.938] ------ BEGIN TEST ROUTINE: shmem_get(uint32_t)
+[16:28:12.938] [INFO] Allocated static arrays: src at 0xaaaac13409f0, dest at 0xaaaac1340a18
+[16:28:12.938] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.938] [INFO] Completed barrier synchronization
+[16:28:12.938] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.938] [INFO] PE 1: Completed get operation
+[16:28:12.938] [INFO] Completed barrier synchronization
+[16:28:12.938] [INFO] PE 1: Beginning validation of received data
+[16:28:12.938] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.938] ------ BEGIN TEST ROUTINE: shmem_get(uint64_t)
+[16:28:12.938] [INFO] Allocated static arrays: src at 0xaaaac1340a40, dest at 0xaaaac1340a90
+[16:28:12.938] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.938] [INFO] Completed barrier synchronization
+[16:28:12.938] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.938] [INFO] PE 1: Completed get operation
+[16:28:12.938] [INFO] Completed barrier synchronization
+[16:28:12.938] [INFO] PE 1: Beginning validation of received data
+[16:28:12.938] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.938] ------ BEGIN TEST ROUTINE: shmem_get(size_t)
+[16:28:12.938] [INFO] Allocated static arrays: src at 0xaaaac1340ae0, dest at 0xaaaac1340b30
+[16:28:12.938] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.938] [INFO] Completed barrier synchronization
+[16:28:12.938] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.938] [INFO] PE 1: Completed get operation
+[16:28:12.939] [INFO] Completed barrier synchronization
+[16:28:12.939] [INFO] PE 1: Beginning validation of received data
+[16:28:12.939] [INFO] PE 1: Validation successful - all elements match expected values
+[16:28:12.939] ------ BEGIN TEST ROUTINE: shmem_get(ptrdiff_t)
+[16:28:12.939] [INFO] Allocated static arrays: src at 0xaaaac1340b80, dest at 0xaaaac1340bd0
+[16:28:12.939] [INFO] Running on PE 1 of 2 total PEs
+[16:28:12.939] [INFO] Completed barrier synchronization
+[16:28:12.939] [INFO] PE 1: Starting get of 10 elements from PE 0
+[16:28:12.939] [INFO] PE 1: Completed get operation
+[16:28:12.939] [INFO] Completed barrier synchronization
+[16:28:12.939] [INFO] PE 1: Beginning validation of received data
+[16:28:12.939] [INFO] PE 1: Validation successful - all elements match expected values
 ---------- END TEST: PASSED

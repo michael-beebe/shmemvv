@@ -1,242 +1,242 @@
 ---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c/rma/c_shmem_iput.c
-[14:59:26.579] ------ BEGIN TEST ROUTINE: shmem_long_iput()
-[14:59:26.579] [INFO] Allocated static arrays: src at 0xaaaad4c00200, dest at 0xaaaad4c00250
-[14:59:26.579] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.579] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.580] [INFO] Completed barrier synchronization
-[14:59:26.580] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.580] [INFO] PE 0: dest=0xaaaad4c00250, src=0xaaaad4c00200, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.580] [INFO] PE 0: Completed strided put operation
-[14:59:26.580] [INFO] Completed barrier synchronization
-[14:59:26.580] [INFO] PE 0: Waiting for PE 1 to complete validation
-[14:59:26.580] ------ BEGIN TEST ROUTINE: shmem_double_iput()
-[14:59:26.580] [INFO] Allocated static arrays: src at 0xaaaad4c002a0, dest at 0xaaaad4c002f0
-[14:59:26.580] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.580] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.580] [INFO] Completed barrier synchronization
-[14:59:26.580] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.580] [INFO] PE 0: dest=0xaaaad4c002f0, src=0xaaaad4c002a0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.580] [INFO] PE 0: Completed strided put operation
-[14:59:26.580] [INFO] Completed barrier synchronization
-[14:59:26.580] [INFO] PE 0: Waiting for PE 1 to complete validation
-[14:59:26.580] ------ BEGIN TEST ROUTINE: shmem_longdouble_iput()
-[14:59:26.580] [INFO] Allocated static arrays: src at 0xaaaad4c00340, dest at 0xaaaad4c003e0
-[14:59:26.580] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.580] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.580] [INFO] Completed barrier synchronization
-[14:59:26.580] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.580] [INFO] PE 0: dest=0xaaaad4c003e0, src=0xaaaad4c00340, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.580] [INFO] PE 0: Completed strided put operation
-[14:59:26.580] [INFO] Completed barrier synchronization
-[14:59:26.580] [INFO] PE 0: Waiting for PE 1 to complete validation
-[14:59:26.580] ------ BEGIN TEST ROUTINE: shmem_char_iput()
-[14:59:26.580] [INFO] Allocated static arrays: src at 0xaaaad4c00480, dest at 0xaaaad4c00490
-[14:59:26.580] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.580] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.580] [INFO] Completed barrier synchronization
-[14:59:26.580] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.580] [INFO] PE 0: dest=0xaaaad4c00490, src=0xaaaad4c00480, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.580] [INFO] PE 0: Completed strided put operation
-[14:59:26.581] [INFO] Completed barrier synchronization
-[14:59:26.581] [INFO] PE 0: Waiting for PE 1 to complete validation
-[14:59:26.581] ------ BEGIN TEST ROUTINE: shmem_schar_iput()
-[14:59:26.581] [INFO] Allocated static arrays: src at 0xaaaad4c004a0, dest at 0xaaaad4c004b0
-[14:59:26.581] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.581] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.581] [INFO] Completed barrier synchronization
-[14:59:26.581] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.581] [INFO] PE 0: dest=0xaaaad4c004b0, src=0xaaaad4c004a0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.581] [INFO] PE 0: Completed strided put operation
-[14:59:26.581] [INFO] Completed barrier synchronization
-[14:59:26.581] [INFO] PE 0: Waiting for PE 1 to complete validation
-[14:59:26.581] ------ BEGIN TEST ROUTINE: shmem_short_iput()
-[14:59:26.581] [INFO] Allocated static arrays: src at 0xaaaad4c004c0, dest at 0xaaaad4c004d8
-[14:59:26.581] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.581] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.581] [INFO] Completed barrier synchronization
-[14:59:26.581] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.581] [INFO] PE 0: dest=0xaaaad4c004d8, src=0xaaaad4c004c0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.581] [INFO] PE 0: Completed strided put operation
-[14:59:26.581] [INFO] Completed barrier synchronization
-[14:59:26.581] [INFO] PE 0: Waiting for PE 1 to complete validation
-[14:59:26.581] ------ BEGIN TEST ROUTINE: shmem_int_iput()
-[14:59:26.581] [INFO] Allocated static arrays: src at 0xaaaad4c004f0, dest at 0xaaaad4c00518
-[14:59:26.581] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.581] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.581] [INFO] Completed barrier synchronization
-[14:59:26.581] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.581] [INFO] PE 0: dest=0xaaaad4c00518, src=0xaaaad4c004f0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.581] [INFO] PE 0: Completed strided put operation
-[14:59:26.581] [INFO] Completed barrier synchronization
-[14:59:26.581] [INFO] PE 0: Waiting for PE 1 to complete validation
-[14:59:26.581] ------ BEGIN TEST ROUTINE: shmem_long_iput()
-[14:59:26.581] [INFO] Allocated static arrays: src at 0xaaaad4c00540, dest at 0xaaaad4c00590
-[14:59:26.581] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.581] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.581] [INFO] Completed barrier synchronization
-[14:59:26.581] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.581] [INFO] PE 0: dest=0xaaaad4c00590, src=0xaaaad4c00540, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.582] [INFO] PE 0: Completed strided put operation
-[14:59:26.582] [INFO] Completed barrier synchronization
-[14:59:26.582] [INFO] PE 0: Waiting for PE 1 to complete validation
-[14:59:26.582] ------ BEGIN TEST ROUTINE: shmem_longlong_iput()
-[14:59:26.582] [INFO] Allocated static arrays: src at 0xaaaad4c005e0, dest at 0xaaaad4c00630
-[14:59:26.582] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.582] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.582] [INFO] Completed barrier synchronization
-[14:59:26.582] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.582] [INFO] PE 0: dest=0xaaaad4c00630, src=0xaaaad4c005e0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.582] [INFO] PE 0: Completed strided put operation
-[14:59:26.582] [INFO] Completed barrier synchronization
-[14:59:26.582] [INFO] PE 0: Waiting for PE 1 to complete validation
-[14:59:26.582] ------ BEGIN TEST ROUTINE: shmem_uchar_iput()
-[14:59:26.582] [INFO] Allocated static arrays: src at 0xaaaad4c00680, dest at 0xaaaad4c00690
-[14:59:26.582] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.582] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.582] [INFO] Completed barrier synchronization
-[14:59:26.582] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.582] [INFO] PE 0: dest=0xaaaad4c00690, src=0xaaaad4c00680, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.582] [INFO] PE 0: Completed strided put operation
-[14:59:26.582] [INFO] Completed barrier synchronization
-[14:59:26.582] [INFO] PE 0: Waiting for PE 1 to complete validation
-[14:59:26.582] ------ BEGIN TEST ROUTINE: shmem_ushort_iput()
-[14:59:26.582] [INFO] Allocated static arrays: src at 0xaaaad4c006a0, dest at 0xaaaad4c006b8
-[14:59:26.582] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.582] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.582] [INFO] Completed barrier synchronization
-[14:59:26.582] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.582] [INFO] PE 0: dest=0xaaaad4c006b8, src=0xaaaad4c006a0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.582] [INFO] PE 0: Completed strided put operation
-[14:59:26.582] [INFO] Completed barrier synchronization
-[14:59:26.582] [INFO] PE 0: Waiting for PE 1 to complete validation
-[14:59:26.582] ------ BEGIN TEST ROUTINE: shmem_uint_iput()
-[14:59:26.582] [INFO] Allocated static arrays: src at 0xaaaad4c006d0, dest at 0xaaaad4c006f8
-[14:59:26.582] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.582] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.582] [INFO] Completed barrier synchronization
-[14:59:26.582] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.582] [INFO] PE 0: dest=0xaaaad4c006f8, src=0xaaaad4c006d0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.583] [INFO] PE 0: Completed strided put operation
-[14:59:26.583] [INFO] Completed barrier synchronization
-[14:59:26.583] [INFO] PE 0: Waiting for PE 1 to complete validation
-[14:59:26.583] ------ BEGIN TEST ROUTINE: shmem_ulong_iput()
-[14:59:26.583] [INFO] Allocated static arrays: src at 0xaaaad4c00720, dest at 0xaaaad4c00770
-[14:59:26.583] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.583] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.583] [INFO] Completed barrier synchronization
-[14:59:26.583] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.583] [INFO] PE 0: dest=0xaaaad4c00770, src=0xaaaad4c00720, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.583] [INFO] PE 0: Completed strided put operation
-[14:59:26.583] [INFO] Completed barrier synchronization
-[14:59:26.583] [INFO] PE 0: Waiting for PE 1 to complete validation
-[14:59:26.583] ------ BEGIN TEST ROUTINE: shmem_ulonglong_iput()
-[14:59:26.583] [INFO] Allocated static arrays: src at 0xaaaad4c007c0, dest at 0xaaaad4c00810
-[14:59:26.583] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.583] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.583] [INFO] Completed barrier synchronization
-[14:59:26.583] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.583] [INFO] PE 0: dest=0xaaaad4c00810, src=0xaaaad4c007c0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.583] [INFO] PE 0: Completed strided put operation
-[14:59:26.583] [INFO] Completed barrier synchronization
-[14:59:26.583] [INFO] PE 0: Waiting for PE 1 to complete validation
-[14:59:26.583] ------ BEGIN TEST ROUTINE: shmem_int8_iput()
-[14:59:26.583] [INFO] Allocated static arrays: src at 0xaaaad4c00860, dest at 0xaaaad4c00870
-[14:59:26.583] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.583] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.583] [INFO] Completed barrier synchronization
-[14:59:26.583] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.583] [INFO] PE 0: dest=0xaaaad4c00870, src=0xaaaad4c00860, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.583] [INFO] PE 0: Completed strided put operation
-[14:59:26.583] [INFO] Completed barrier synchronization
-[14:59:26.583] [INFO] PE 0: Waiting for PE 1 to complete validation
-[14:59:26.583] ------ BEGIN TEST ROUTINE: shmem_int16_iput()
-[14:59:26.583] [INFO] Allocated static arrays: src at 0xaaaad4c00880, dest at 0xaaaad4c00898
-[14:59:26.583] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.583] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.584] [INFO] Completed barrier synchronization
-[14:59:26.584] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.584] [INFO] PE 0: dest=0xaaaad4c00898, src=0xaaaad4c00880, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.584] [INFO] PE 0: Completed strided put operation
-[14:59:26.584] [INFO] Completed barrier synchronization
-[14:59:26.584] [INFO] PE 0: Waiting for PE 1 to complete validation
-[14:59:26.584] ------ BEGIN TEST ROUTINE: shmem_int32_iput()
-[14:59:26.584] [INFO] Allocated static arrays: src at 0xaaaad4c008b0, dest at 0xaaaad4c008d8
-[14:59:26.584] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.584] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.584] [INFO] Completed barrier synchronization
-[14:59:26.584] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.584] [INFO] PE 0: dest=0xaaaad4c008d8, src=0xaaaad4c008b0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.584] [INFO] PE 0: Completed strided put operation
-[14:59:26.584] [INFO] Completed barrier synchronization
-[14:59:26.584] [INFO] PE 0: Waiting for PE 1 to complete validation
-[14:59:26.584] ------ BEGIN TEST ROUTINE: shmem_int64_iput()
-[14:59:26.584] [INFO] Allocated static arrays: src at 0xaaaad4c00900, dest at 0xaaaad4c00950
-[14:59:26.584] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.584] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.584] [INFO] Completed barrier synchronization
-[14:59:26.584] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.584] [INFO] PE 0: dest=0xaaaad4c00950, src=0xaaaad4c00900, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.584] [INFO] PE 0: Completed strided put operation
-[14:59:26.584] [INFO] Completed barrier synchronization
-[14:59:26.584] [INFO] PE 0: Waiting for PE 1 to complete validation
-[14:59:26.584] ------ BEGIN TEST ROUTINE: shmem_uint8_iput()
-[14:59:26.584] [INFO] Allocated static arrays: src at 0xaaaad4c009a0, dest at 0xaaaad4c009b0
-[14:59:26.584] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.584] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.584] [INFO] Completed barrier synchronization
-[14:59:26.584] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.584] [INFO] PE 0: dest=0xaaaad4c009b0, src=0xaaaad4c009a0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.584] [INFO] PE 0: Completed strided put operation
-[14:59:26.584] [INFO] Completed barrier synchronization
-[14:59:26.584] [INFO] PE 0: Waiting for PE 1 to complete validation
-[14:59:26.584] ------ BEGIN TEST ROUTINE: shmem_uint16_iput()
-[14:59:26.584] [INFO] Allocated static arrays: src at 0xaaaad4c009c0, dest at 0xaaaad4c009d8
-[14:59:26.584] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.584] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.585] [INFO] Completed barrier synchronization
-[14:59:26.585] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.585] [INFO] PE 0: dest=0xaaaad4c009d8, src=0xaaaad4c009c0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.585] [INFO] PE 0: Completed strided put operation
-[14:59:26.585] [INFO] Completed barrier synchronization
-[14:59:26.585] [INFO] PE 0: Waiting for PE 1 to complete validation
-[14:59:26.585] ------ BEGIN TEST ROUTINE: shmem_uint32_iput()
-[14:59:26.585] [INFO] Allocated static arrays: src at 0xaaaad4c009f0, dest at 0xaaaad4c00a18
-[14:59:26.585] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.585] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.585] [INFO] Completed barrier synchronization
-[14:59:26.585] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.585] [INFO] PE 0: dest=0xaaaad4c00a18, src=0xaaaad4c009f0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.585] [INFO] PE 0: Completed strided put operation
-[14:59:26.585] [INFO] Completed barrier synchronization
-[14:59:26.585] [INFO] PE 0: Waiting for PE 1 to complete validation
-[14:59:26.585] ------ BEGIN TEST ROUTINE: shmem_uint64_iput()
-[14:59:26.585] [INFO] Allocated static arrays: src at 0xaaaad4c00a40, dest at 0xaaaad4c00a90
-[14:59:26.585] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.585] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.585] [INFO] Completed barrier synchronization
-[14:59:26.585] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.585] [INFO] PE 0: dest=0xaaaad4c00a90, src=0xaaaad4c00a40, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.585] [INFO] PE 0: Completed strided put operation
-[14:59:26.585] [INFO] Completed barrier synchronization
-[14:59:26.585] [INFO] PE 0: Waiting for PE 1 to complete validation
-[14:59:26.585] ------ BEGIN TEST ROUTINE: shmem_size_iput()
-[14:59:26.585] [INFO] Allocated static arrays: src at 0xaaaad4c00ae0, dest at 0xaaaad4c00b30
-[14:59:26.585] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.585] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.585] [INFO] Completed barrier synchronization
-[14:59:26.585] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.585] [INFO] PE 0: dest=0xaaaad4c00b30, src=0xaaaad4c00ae0, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.585] [INFO] PE 0: Completed strided put operation
-[14:59:26.586] [INFO] Completed barrier synchronization
-[14:59:26.586] [INFO] PE 0: Waiting for PE 1 to complete validation
-[14:59:26.586] ------ BEGIN TEST ROUTINE: shmem_ptrdiff_iput()
-[14:59:26.586] [INFO] Allocated static arrays: src at 0xaaaad4c00b80, dest at 0xaaaad4c00bd0
-[14:59:26.586] [INFO] Running on PE 0 of 2 total PEs
-[14:59:26.586] [INFO] PE 0: Initialized src array with values [0..9]
-[14:59:26.586] [INFO] Completed barrier synchronization
-[14:59:26.586] [INFO] PE 0: Starting strided put to PE 1
-[14:59:26.586] [INFO] PE 0: dest=0xaaaad4c00bd0, src=0xaaaad4c00b80, dest_stride=2, src_stride=2, nelems=5
-[14:59:26.586] [INFO] PE 0: Completed strided put operation
-[14:59:26.586] [INFO] Completed barrier synchronization
-[14:59:26.586] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.868] ------ BEGIN TEST ROUTINE: shmem_long_iput()
+[16:28:12.868] [INFO] Allocated static arrays: src at 0xaaaac89d0200, dest at 0xaaaac89d0250
+[16:28:12.868] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.868] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.868] [INFO] Completed barrier synchronization
+[16:28:12.868] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.868] [INFO] PE 0: dest=0xaaaac89d0250, src=0xaaaac89d0200, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.868] [INFO] PE 0: Completed strided put operation
+[16:28:12.868] [INFO] Completed barrier synchronization
+[16:28:12.868] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.868] ------ BEGIN TEST ROUTINE: shmem_double_iput()
+[16:28:12.868] [INFO] Allocated static arrays: src at 0xaaaac89d02a0, dest at 0xaaaac89d02f0
+[16:28:12.868] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.868] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.868] [INFO] Completed barrier synchronization
+[16:28:12.868] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.868] [INFO] PE 0: dest=0xaaaac89d02f0, src=0xaaaac89d02a0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.868] [INFO] PE 0: Completed strided put operation
+[16:28:12.869] [INFO] Completed barrier synchronization
+[16:28:12.869] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.869] ------ BEGIN TEST ROUTINE: shmem_longdouble_iput()
+[16:28:12.869] [INFO] Allocated static arrays: src at 0xaaaac89d0340, dest at 0xaaaac89d03e0
+[16:28:12.869] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.869] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.869] [INFO] Completed barrier synchronization
+[16:28:12.869] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.869] [INFO] PE 0: dest=0xaaaac89d03e0, src=0xaaaac89d0340, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.869] [INFO] PE 0: Completed strided put operation
+[16:28:12.869] [INFO] Completed barrier synchronization
+[16:28:12.869] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.869] ------ BEGIN TEST ROUTINE: shmem_char_iput()
+[16:28:12.869] [INFO] Allocated static arrays: src at 0xaaaac89d0480, dest at 0xaaaac89d0490
+[16:28:12.869] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.869] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.869] [INFO] Completed barrier synchronization
+[16:28:12.869] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.869] [INFO] PE 0: dest=0xaaaac89d0490, src=0xaaaac89d0480, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.869] [INFO] PE 0: Completed strided put operation
+[16:28:12.869] [INFO] Completed barrier synchronization
+[16:28:12.869] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.869] ------ BEGIN TEST ROUTINE: shmem_schar_iput()
+[16:28:12.869] [INFO] Allocated static arrays: src at 0xaaaac89d04a0, dest at 0xaaaac89d04b0
+[16:28:12.869] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.869] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.869] [INFO] Completed barrier synchronization
+[16:28:12.869] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.869] [INFO] PE 0: dest=0xaaaac89d04b0, src=0xaaaac89d04a0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.869] [INFO] PE 0: Completed strided put operation
+[16:28:12.869] [INFO] Completed barrier synchronization
+[16:28:12.869] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.869] ------ BEGIN TEST ROUTINE: shmem_short_iput()
+[16:28:12.869] [INFO] Allocated static arrays: src at 0xaaaac89d04c0, dest at 0xaaaac89d04d8
+[16:28:12.869] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.869] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.870] [INFO] Completed barrier synchronization
+[16:28:12.870] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.870] [INFO] PE 0: dest=0xaaaac89d04d8, src=0xaaaac89d04c0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.870] [INFO] PE 0: Completed strided put operation
+[16:28:12.870] [INFO] Completed barrier synchronization
+[16:28:12.870] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.870] ------ BEGIN TEST ROUTINE: shmem_int_iput()
+[16:28:12.870] [INFO] Allocated static arrays: src at 0xaaaac89d04f0, dest at 0xaaaac89d0518
+[16:28:12.870] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.870] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.870] [INFO] Completed barrier synchronization
+[16:28:12.870] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.870] [INFO] PE 0: dest=0xaaaac89d0518, src=0xaaaac89d04f0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.870] [INFO] PE 0: Completed strided put operation
+[16:28:12.870] [INFO] Completed barrier synchronization
+[16:28:12.870] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.870] ------ BEGIN TEST ROUTINE: shmem_long_iput()
+[16:28:12.870] [INFO] Allocated static arrays: src at 0xaaaac89d0540, dest at 0xaaaac89d0590
+[16:28:12.870] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.870] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.870] [INFO] Completed barrier synchronization
+[16:28:12.870] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.870] [INFO] PE 0: dest=0xaaaac89d0590, src=0xaaaac89d0540, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.870] [INFO] PE 0: Completed strided put operation
+[16:28:12.870] [INFO] Completed barrier synchronization
+[16:28:12.870] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.870] ------ BEGIN TEST ROUTINE: shmem_longlong_iput()
+[16:28:12.870] [INFO] Allocated static arrays: src at 0xaaaac89d05e0, dest at 0xaaaac89d0630
+[16:28:12.870] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.870] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.870] [INFO] Completed barrier synchronization
+[16:28:12.870] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.870] [INFO] PE 0: dest=0xaaaac89d0630, src=0xaaaac89d05e0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.870] [INFO] PE 0: Completed strided put operation
+[16:28:12.870] [INFO] Completed barrier synchronization
+[16:28:12.870] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.870] ------ BEGIN TEST ROUTINE: shmem_uchar_iput()
+[16:28:12.870] [INFO] Allocated static arrays: src at 0xaaaac89d0680, dest at 0xaaaac89d0690
+[16:28:12.870] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.870] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.871] [INFO] Completed barrier synchronization
+[16:28:12.871] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.871] [INFO] PE 0: dest=0xaaaac89d0690, src=0xaaaac89d0680, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.871] [INFO] PE 0: Completed strided put operation
+[16:28:12.871] [INFO] Completed barrier synchronization
+[16:28:12.871] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.871] ------ BEGIN TEST ROUTINE: shmem_ushort_iput()
+[16:28:12.871] [INFO] Allocated static arrays: src at 0xaaaac89d06a0, dest at 0xaaaac89d06b8
+[16:28:12.871] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.871] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.871] [INFO] Completed barrier synchronization
+[16:28:12.871] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.871] [INFO] PE 0: dest=0xaaaac89d06b8, src=0xaaaac89d06a0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.871] [INFO] PE 0: Completed strided put operation
+[16:28:12.871] [INFO] Completed barrier synchronization
+[16:28:12.871] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.871] ------ BEGIN TEST ROUTINE: shmem_uint_iput()
+[16:28:12.871] [INFO] Allocated static arrays: src at 0xaaaac89d06d0, dest at 0xaaaac89d06f8
+[16:28:12.871] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.871] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.871] [INFO] Completed barrier synchronization
+[16:28:12.871] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.871] [INFO] PE 0: dest=0xaaaac89d06f8, src=0xaaaac89d06d0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.871] [INFO] PE 0: Completed strided put operation
+[16:28:12.871] [INFO] Completed barrier synchronization
+[16:28:12.871] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.871] ------ BEGIN TEST ROUTINE: shmem_ulong_iput()
+[16:28:12.871] [INFO] Allocated static arrays: src at 0xaaaac89d0720, dest at 0xaaaac89d0770
+[16:28:12.871] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.871] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.871] [INFO] Completed barrier synchronization
+[16:28:12.871] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.871] [INFO] PE 0: dest=0xaaaac89d0770, src=0xaaaac89d0720, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.871] [INFO] PE 0: Completed strided put operation
+[16:28:12.871] [INFO] Completed barrier synchronization
+[16:28:12.871] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.871] ------ BEGIN TEST ROUTINE: shmem_ulonglong_iput()
+[16:28:12.871] [INFO] Allocated static arrays: src at 0xaaaac89d07c0, dest at 0xaaaac89d0810
+[16:28:12.871] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.871] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.871] [INFO] Completed barrier synchronization
+[16:28:12.871] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.871] [INFO] PE 0: dest=0xaaaac89d0810, src=0xaaaac89d07c0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.872] [INFO] PE 0: Completed strided put operation
+[16:28:12.872] [INFO] Completed barrier synchronization
+[16:28:12.872] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.872] ------ BEGIN TEST ROUTINE: shmem_int8_iput()
+[16:28:12.872] [INFO] Allocated static arrays: src at 0xaaaac89d0860, dest at 0xaaaac89d0870
+[16:28:12.872] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.872] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.872] [INFO] Completed barrier synchronization
+[16:28:12.872] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.872] [INFO] PE 0: dest=0xaaaac89d0870, src=0xaaaac89d0860, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.872] [INFO] PE 0: Completed strided put operation
+[16:28:12.872] [INFO] Completed barrier synchronization
+[16:28:12.872] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.872] ------ BEGIN TEST ROUTINE: shmem_int16_iput()
+[16:28:12.872] [INFO] Allocated static arrays: src at 0xaaaac89d0880, dest at 0xaaaac89d0898
+[16:28:12.872] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.872] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.872] [INFO] Completed barrier synchronization
+[16:28:12.872] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.872] [INFO] PE 0: dest=0xaaaac89d0898, src=0xaaaac89d0880, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.872] [INFO] PE 0: Completed strided put operation
+[16:28:12.872] [INFO] Completed barrier synchronization
+[16:28:12.872] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.872] ------ BEGIN TEST ROUTINE: shmem_int32_iput()
+[16:28:12.872] [INFO] Allocated static arrays: src at 0xaaaac89d08b0, dest at 0xaaaac89d08d8
+[16:28:12.872] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.872] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.872] [INFO] Completed barrier synchronization
+[16:28:12.872] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.872] [INFO] PE 0: dest=0xaaaac89d08d8, src=0xaaaac89d08b0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.872] [INFO] PE 0: Completed strided put operation
+[16:28:12.872] [INFO] Completed barrier synchronization
+[16:28:12.872] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.872] ------ BEGIN TEST ROUTINE: shmem_int64_iput()
+[16:28:12.872] [INFO] Allocated static arrays: src at 0xaaaac89d0900, dest at 0xaaaac89d0950
+[16:28:12.872] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.872] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.872] [INFO] Completed barrier synchronization
+[16:28:12.872] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.872] [INFO] PE 0: dest=0xaaaac89d0950, src=0xaaaac89d0900, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.872] [INFO] PE 0: Completed strided put operation
+[16:28:12.872] [INFO] Completed barrier synchronization
+[16:28:12.872] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.872] ------ BEGIN TEST ROUTINE: shmem_uint8_iput()
+[16:28:12.872] [INFO] Allocated static arrays: src at 0xaaaac89d09a0, dest at 0xaaaac89d09b0
+[16:28:12.872] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.872] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.873] [INFO] Completed barrier synchronization
+[16:28:12.873] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.873] [INFO] PE 0: dest=0xaaaac89d09b0, src=0xaaaac89d09a0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.873] [INFO] PE 0: Completed strided put operation
+[16:28:12.873] [INFO] Completed barrier synchronization
+[16:28:12.873] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.873] ------ BEGIN TEST ROUTINE: shmem_uint16_iput()
+[16:28:12.873] [INFO] Allocated static arrays: src at 0xaaaac89d09c0, dest at 0xaaaac89d09d8
+[16:28:12.873] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.873] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.873] [INFO] Completed barrier synchronization
+[16:28:12.873] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.873] [INFO] PE 0: dest=0xaaaac89d09d8, src=0xaaaac89d09c0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.873] [INFO] PE 0: Completed strided put operation
+[16:28:12.873] [INFO] Completed barrier synchronization
+[16:28:12.873] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.873] ------ BEGIN TEST ROUTINE: shmem_uint32_iput()
+[16:28:12.873] [INFO] Allocated static arrays: src at 0xaaaac89d09f0, dest at 0xaaaac89d0a18
+[16:28:12.873] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.873] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.873] [INFO] Completed barrier synchronization
+[16:28:12.873] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.873] [INFO] PE 0: dest=0xaaaac89d0a18, src=0xaaaac89d09f0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.873] [INFO] PE 0: Completed strided put operation
+[16:28:12.873] [INFO] Completed barrier synchronization
+[16:28:12.873] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.873] ------ BEGIN TEST ROUTINE: shmem_uint64_iput()
+[16:28:12.873] [INFO] Allocated static arrays: src at 0xaaaac89d0a40, dest at 0xaaaac89d0a90
+[16:28:12.873] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.873] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.873] [INFO] Completed barrier synchronization
+[16:28:12.873] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.873] [INFO] PE 0: dest=0xaaaac89d0a90, src=0xaaaac89d0a40, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.873] [INFO] PE 0: Completed strided put operation
+[16:28:12.873] [INFO] Completed barrier synchronization
+[16:28:12.873] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.873] ------ BEGIN TEST ROUTINE: shmem_size_iput()
+[16:28:12.873] [INFO] Allocated static arrays: src at 0xaaaac89d0ae0, dest at 0xaaaac89d0b30
+[16:28:12.873] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.873] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.873] [INFO] Completed barrier synchronization
+[16:28:12.873] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.873] [INFO] PE 0: dest=0xaaaac89d0b30, src=0xaaaac89d0ae0, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.873] [INFO] PE 0: Completed strided put operation
+[16:28:12.873] [INFO] Completed barrier synchronization
+[16:28:12.873] [INFO] PE 0: Waiting for PE 1 to complete validation
+[16:28:12.873] ------ BEGIN TEST ROUTINE: shmem_ptrdiff_iput()
+[16:28:12.873] [INFO] Allocated static arrays: src at 0xaaaac89d0b80, dest at 0xaaaac89d0bd0
+[16:28:12.873] [INFO] Running on PE 0 of 2 total PEs
+[16:28:12.873] [INFO] PE 0: Initialized src array with values [0..9]
+[16:28:12.874] [INFO] Completed barrier synchronization
+[16:28:12.874] [INFO] PE 0: Starting strided put to PE 1
+[16:28:12.874] [INFO] PE 0: dest=0xaaaac89d0bd0, src=0xaaaac89d0b80, dest_stride=2, src_stride=2, nelems=5
+[16:28:12.874] [INFO] PE 0: Completed strided put operation
+[16:28:12.874] [INFO] Completed barrier synchronization
+[16:28:12.874] [INFO] PE 0: Waiting for PE 1 to complete validation
 ---------- END TEST: PASSED
