@@ -13,7 +13,8 @@
 /**
  * @brief Tests the `shmem_ctx_get_team()` function.
  *
- * This test case verifies that the `shmem_ctx_get_team()` function correctly retrieves the team associated with a given SHMEM context.
+ * This test case verifies that the `shmem_ctx_get_team()` function correctly
+ * retrieves the team associated with a given SHMEM context.
  *
  * @return `true` if the test passes, `false` otherwise.
  */
@@ -23,10 +24,10 @@ bool test_shmem_ctx_get_team(void) {
   log_info("constructed ctx");
   shmem_team_t team;
   int ret = shmem_ctx_get_team(ctx, &team);
-  if(ret)
+  if (ret)
     log_fail("shmem_ctx_get_team ret'd non-zero: %d", ret);
   shmem_ctx_destroy(ctx);
-  if(team != SHMEM_TEAM_WORLD)
+  if (team != SHMEM_TEAM_WORLD)
     log_fail("shmem_ctx_get_team didn't set team to SHMEM_TEAM_WORLD");
   return (ret == 0 && team == SHMEM_TEAM_WORLD);
 }

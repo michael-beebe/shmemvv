@@ -1,146 +1,146 @@
 ---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c/collectives/c_shmem_broadcast.c
-[11:36:32.171] ------ BEGIN TEST ROUTINE: shmem_float_broadcast
-[11:36:32.171] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
-[11:36:32.171] [INFO] set 0xaaab40002270..0xaaab4000227c to -1
-[11:36:32.171] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.171] [INFO] validating result...
-[11:36:32.171] [INFO] shmem_broadcast on float produced expected result.
-[11:36:32.172] ------ BEGIN TEST ROUTINE: shmem_double_broadcast
-[11:36:32.172] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
-[11:36:32.172] [INFO] set 0xaaab40002280..0xaaab40002298 to -1
-[11:36:32.172] [INFO] executing shmem_broadcast: dest = 0xaaab40002280, src = 0xaaab40002250
-[11:36:32.172] [INFO] validating result...
-[11:36:32.172] [INFO] shmem_broadcast on double produced expected result.
-[11:36:32.172] ------ BEGIN TEST ROUTINE: shmem_longdouble_broadcast
-[11:36:32.173] [INFO] shmem_malloc'd 64 bytes @ &src = 0xaaab40002250, 64 bytes @ &dest = 0xaaab400022a0
-[11:36:32.173] [INFO] set 0xaaab400022a0..0xaaab400022d0 to -1
-[11:36:32.173] [INFO] executing shmem_broadcast: dest = 0xaaab400022a0, src = 0xaaab40002250
-[11:36:32.173] [INFO] validating result...
-[11:36:32.173] [INFO] shmem_broadcast on long double produced expected result.
-[11:36:32.173] ------ BEGIN TEST ROUTINE: shmem_char_broadcast
-[11:36:32.173] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
-[11:36:32.173] [INFO] set 0xaaab40002270..0xaaab40002273 to -1
-[11:36:32.174] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.174] [INFO] validating result...
-[11:36:32.174] [INFO] shmem_broadcast on char produced expected result.
-[11:36:32.174] ------ BEGIN TEST ROUTINE: shmem_schar_broadcast
-[11:36:32.174] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
-[11:36:32.174] [INFO] set 0xaaab40002270..0xaaab40002273 to -1
-[11:36:32.174] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.174] [INFO] validating result...
-[11:36:32.174] [INFO] shmem_broadcast on signed char produced expected result.
-[11:36:32.175] ------ BEGIN TEST ROUTINE: shmem_short_broadcast
-[11:36:32.175] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
-[11:36:32.175] [INFO] set 0xaaab40002270..0xaaab40002276 to -1
-[11:36:32.175] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.175] [INFO] validating result...
-[11:36:32.175] [INFO] shmem_broadcast on short produced expected result.
-[11:36:32.175] ------ BEGIN TEST ROUTINE: shmem_int_broadcast
-[11:36:32.176] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
-[11:36:32.176] [INFO] set 0xaaab40002270..0xaaab4000227c to -1
-[11:36:32.176] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.176] [INFO] validating result...
-[11:36:32.176] [INFO] shmem_broadcast on int produced expected result.
-[11:36:32.176] ------ BEGIN TEST ROUTINE: shmem_long_broadcast
-[11:36:32.177] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
-[11:36:32.177] [INFO] set 0xaaab40002280..0xaaab40002298 to -1
-[11:36:32.177] [INFO] executing shmem_broadcast: dest = 0xaaab40002280, src = 0xaaab40002250
-[11:36:32.177] [INFO] validating result...
-[11:36:32.177] [INFO] shmem_broadcast on long produced expected result.
-[11:36:32.177] ------ BEGIN TEST ROUTINE: shmem_longlong_broadcast
-[11:36:32.177] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
-[11:36:32.177] [INFO] set 0xaaab40002280..0xaaab40002298 to -1
-[11:36:32.177] [INFO] executing shmem_broadcast: dest = 0xaaab40002280, src = 0xaaab40002250
-[11:36:32.178] [INFO] validating result...
-[11:36:32.178] [INFO] shmem_broadcast on long long produced expected result.
-[11:36:32.178] ------ BEGIN TEST ROUTINE: shmem_uchar_broadcast
-[11:36:32.178] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
-[11:36:32.178] [INFO] set 0xaaab40002270..0xaaab40002273 to -1
-[11:36:32.178] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.179] [INFO] validating result...
-[11:36:32.179] [INFO] shmem_broadcast on unsigned char produced expected result.
-[11:36:32.179] ------ BEGIN TEST ROUTINE: shmem_ushort_broadcast
-[11:36:32.179] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
-[11:36:32.179] [INFO] set 0xaaab40002270..0xaaab40002276 to -1
-[11:36:32.179] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.179] [INFO] validating result...
-[11:36:32.179] [INFO] shmem_broadcast on unsigned short produced expected result.
-[11:36:32.180] ------ BEGIN TEST ROUTINE: shmem_uint_broadcast
-[11:36:32.180] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
-[11:36:32.180] [INFO] set 0xaaab40002270..0xaaab4000227c to -1
-[11:36:32.180] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.180] [INFO] validating result...
-[11:36:32.180] [INFO] shmem_broadcast on unsigned int produced expected result.
-[11:36:32.180] ------ BEGIN TEST ROUTINE: shmem_ulong_broadcast
-[11:36:32.180] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
-[11:36:32.180] [INFO] set 0xaaab40002280..0xaaab40002298 to -1
-[11:36:32.181] [INFO] executing shmem_broadcast: dest = 0xaaab40002280, src = 0xaaab40002250
-[11:36:32.181] [INFO] validating result...
-[11:36:32.181] [INFO] shmem_broadcast on unsigned long produced expected result.
-[11:36:32.181] ------ BEGIN TEST ROUTINE: shmem_ulonglong_broadcast
-[11:36:32.181] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
-[11:36:32.181] [INFO] set 0xaaab40002280..0xaaab40002298 to -1
-[11:36:32.181] [INFO] executing shmem_broadcast: dest = 0xaaab40002280, src = 0xaaab40002250
-[11:36:32.181] [INFO] validating result...
-[11:36:32.181] [INFO] shmem_broadcast on unsigned long long produced expected result.
-[11:36:32.182] ------ BEGIN TEST ROUTINE: shmem_int8_broadcast
-[11:36:32.182] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
-[11:36:32.182] [INFO] set 0xaaab40002270..0xaaab40002273 to -1
-[11:36:32.182] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.182] [INFO] validating result...
-[11:36:32.182] [INFO] shmem_broadcast on int8_t produced expected result.
-[11:36:32.182] ------ BEGIN TEST ROUTINE: shmem_int16_broadcast
-[11:36:32.182] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
-[11:36:32.182] [INFO] set 0xaaab40002270..0xaaab40002276 to -1
-[11:36:32.183] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.183] [INFO] validating result...
-[11:36:32.183] [INFO] shmem_broadcast on int16_t produced expected result.
-[11:36:32.183] ------ BEGIN TEST ROUTINE: shmem_int32_broadcast
-[11:36:32.183] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
-[11:36:32.183] [INFO] set 0xaaab40002270..0xaaab4000227c to -1
-[11:36:32.183] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.183] [INFO] validating result...
-[11:36:32.183] [INFO] shmem_broadcast on int32_t produced expected result.
-[11:36:32.184] ------ BEGIN TEST ROUTINE: shmem_int64_broadcast
-[11:36:32.184] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
-[11:36:32.184] [INFO] set 0xaaab40002280..0xaaab40002298 to -1
-[11:36:32.184] [INFO] executing shmem_broadcast: dest = 0xaaab40002280, src = 0xaaab40002250
-[11:36:32.184] [INFO] validating result...
-[11:36:32.184] [INFO] shmem_broadcast on int64_t produced expected result.
-[11:36:32.184] ------ BEGIN TEST ROUTINE: shmem_uint8_broadcast
-[11:36:32.184] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
-[11:36:32.184] [INFO] set 0xaaab40002270..0xaaab40002273 to -1
-[11:36:32.184] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.185] [INFO] validating result...
-[11:36:32.185] [INFO] shmem_broadcast on uint8_t produced expected result.
-[11:36:32.185] ------ BEGIN TEST ROUTINE: shmem_uint16_broadcast
-[11:36:32.185] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
-[11:36:32.185] [INFO] set 0xaaab40002270..0xaaab40002276 to -1
-[11:36:32.185] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.185] [INFO] validating result...
-[11:36:32.185] [INFO] shmem_broadcast on uint16_t produced expected result.
-[11:36:32.185] ------ BEGIN TEST ROUTINE: shmem_uint32_broadcast
-[11:36:32.185] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
-[11:36:32.185] [INFO] set 0xaaab40002270..0xaaab4000227c to -1
-[11:36:32.186] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.186] [INFO] validating result...
-[11:36:32.186] [INFO] shmem_broadcast on uint32_t produced expected result.
-[11:36:32.186] ------ BEGIN TEST ROUTINE: shmem_uint64_broadcast
-[11:36:32.186] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
-[11:36:32.186] [INFO] set 0xaaab40002280..0xaaab40002298 to -1
-[11:36:32.186] [INFO] executing shmem_broadcast: dest = 0xaaab40002280, src = 0xaaab40002250
-[11:36:32.186] [INFO] validating result...
-[11:36:32.186] [INFO] shmem_broadcast on uint64_t produced expected result.
-[11:36:32.186] ------ BEGIN TEST ROUTINE: shmem_size_broadcast
-[11:36:32.187] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
-[11:36:32.187] [INFO] set 0xaaab40002280..0xaaab40002298 to -1
-[11:36:32.187] [INFO] executing shmem_broadcast: dest = 0xaaab40002280, src = 0xaaab40002250
-[11:36:32.187] [INFO] validating result...
-[11:36:32.187] [INFO] shmem_broadcast on size_t produced expected result.
-[11:36:32.187] ------ BEGIN TEST ROUTINE: shmem_ptrdiff_broadcast
-[11:36:32.187] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
-[11:36:32.187] [INFO] set 0xaaab40002280..0xaaab40002298 to -1
-[11:36:32.187] [INFO] executing shmem_broadcast: dest = 0xaaab40002280, src = 0xaaab40002250
-[11:36:32.187] [INFO] validating result...
-[11:36:32.187] [INFO] shmem_broadcast on ptrdiff_t produced expected result.
+[11:41:03.220] ------ BEGIN TEST ROUTINE: shmem_float_broadcast
+[11:41:03.221] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
+[11:41:03.221] [INFO] set 0xaaab40002270..0xaaab4000227c to -1
+[11:41:03.221] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:41:03.221] [INFO] validating result...
+[11:41:03.221] [INFO] shmem_broadcast on float produced expected result.
+[11:41:03.221] ------ BEGIN TEST ROUTINE: shmem_double_broadcast
+[11:41:03.222] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
+[11:41:03.222] [INFO] set 0xaaab40002280..0xaaab40002298 to -1
+[11:41:03.222] [INFO] executing shmem_broadcast: dest = 0xaaab40002280, src = 0xaaab40002250
+[11:41:03.222] [INFO] validating result...
+[11:41:03.222] [INFO] shmem_broadcast on double produced expected result.
+[11:41:03.222] ------ BEGIN TEST ROUTINE: shmem_longdouble_broadcast
+[11:41:03.222] [INFO] shmem_malloc'd 64 bytes @ &src = 0xaaab40002250, 64 bytes @ &dest = 0xaaab400022a0
+[11:41:03.222] [INFO] set 0xaaab400022a0..0xaaab400022d0 to -1
+[11:41:03.223] [INFO] executing shmem_broadcast: dest = 0xaaab400022a0, src = 0xaaab40002250
+[11:41:03.223] [INFO] validating result...
+[11:41:03.223] [INFO] shmem_broadcast on long double produced expected result.
+[11:41:03.223] ------ BEGIN TEST ROUTINE: shmem_char_broadcast
+[11:41:03.223] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:41:03.223] [INFO] set 0xaaab40002270..0xaaab40002273 to -1
+[11:41:03.224] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:41:03.224] [INFO] validating result...
+[11:41:03.224] [INFO] shmem_broadcast on char produced expected result.
+[11:41:03.224] ------ BEGIN TEST ROUTINE: shmem_schar_broadcast
+[11:41:03.224] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:41:03.224] [INFO] set 0xaaab40002270..0xaaab40002273 to -1
+[11:41:03.224] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:41:03.224] [INFO] validating result...
+[11:41:03.224] [INFO] shmem_broadcast on signed char produced expected result.
+[11:41:03.225] ------ BEGIN TEST ROUTINE: shmem_short_broadcast
+[11:41:03.225] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:41:03.225] [INFO] set 0xaaab40002270..0xaaab40002276 to -1
+[11:41:03.225] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:41:03.225] [INFO] validating result...
+[11:41:03.225] [INFO] shmem_broadcast on short produced expected result.
+[11:41:03.225] ------ BEGIN TEST ROUTINE: shmem_int_broadcast
+[11:41:03.225] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
+[11:41:03.225] [INFO] set 0xaaab40002270..0xaaab4000227c to -1
+[11:41:03.225] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:41:03.226] [INFO] validating result...
+[11:41:03.226] [INFO] shmem_broadcast on int produced expected result.
+[11:41:03.226] ------ BEGIN TEST ROUTINE: shmem_long_broadcast
+[11:41:03.226] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
+[11:41:03.226] [INFO] set 0xaaab40002280..0xaaab40002298 to -1
+[11:41:03.226] [INFO] executing shmem_broadcast: dest = 0xaaab40002280, src = 0xaaab40002250
+[11:41:03.226] [INFO] validating result...
+[11:41:03.226] [INFO] shmem_broadcast on long produced expected result.
+[11:41:03.226] ------ BEGIN TEST ROUTINE: shmem_longlong_broadcast
+[11:41:03.227] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
+[11:41:03.227] [INFO] set 0xaaab40002280..0xaaab40002298 to -1
+[11:41:03.227] [INFO] executing shmem_broadcast: dest = 0xaaab40002280, src = 0xaaab40002250
+[11:41:03.227] [INFO] validating result...
+[11:41:03.227] [INFO] shmem_broadcast on long long produced expected result.
+[11:41:03.227] ------ BEGIN TEST ROUTINE: shmem_uchar_broadcast
+[11:41:03.228] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:41:03.228] [INFO] set 0xaaab40002270..0xaaab40002273 to -1
+[11:41:03.228] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:41:03.228] [INFO] validating result...
+[11:41:03.228] [INFO] shmem_broadcast on unsigned char produced expected result.
+[11:41:03.228] ------ BEGIN TEST ROUTINE: shmem_ushort_broadcast
+[11:41:03.228] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:41:03.228] [INFO] set 0xaaab40002270..0xaaab40002276 to -1
+[11:41:03.228] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:41:03.229] [INFO] validating result...
+[11:41:03.229] [INFO] shmem_broadcast on unsigned short produced expected result.
+[11:41:03.229] ------ BEGIN TEST ROUTINE: shmem_uint_broadcast
+[11:41:03.229] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
+[11:41:03.229] [INFO] set 0xaaab40002270..0xaaab4000227c to -1
+[11:41:03.229] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:41:03.229] [INFO] validating result...
+[11:41:03.229] [INFO] shmem_broadcast on unsigned int produced expected result.
+[11:41:03.230] ------ BEGIN TEST ROUTINE: shmem_ulong_broadcast
+[11:41:03.230] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
+[11:41:03.230] [INFO] set 0xaaab40002280..0xaaab40002298 to -1
+[11:41:03.230] [INFO] executing shmem_broadcast: dest = 0xaaab40002280, src = 0xaaab40002250
+[11:41:03.230] [INFO] validating result...
+[11:41:03.230] [INFO] shmem_broadcast on unsigned long produced expected result.
+[11:41:03.231] ------ BEGIN TEST ROUTINE: shmem_ulonglong_broadcast
+[11:41:03.231] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
+[11:41:03.231] [INFO] set 0xaaab40002280..0xaaab40002298 to -1
+[11:41:03.231] [INFO] executing shmem_broadcast: dest = 0xaaab40002280, src = 0xaaab40002250
+[11:41:03.231] [INFO] validating result...
+[11:41:03.231] [INFO] shmem_broadcast on unsigned long long produced expected result.
+[11:41:03.231] ------ BEGIN TEST ROUTINE: shmem_int8_broadcast
+[11:41:03.232] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:41:03.232] [INFO] set 0xaaab40002270..0xaaab40002273 to -1
+[11:41:03.232] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:41:03.232] [INFO] validating result...
+[11:41:03.232] [INFO] shmem_broadcast on int8_t produced expected result.
+[11:41:03.232] ------ BEGIN TEST ROUTINE: shmem_int16_broadcast
+[11:41:03.232] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:41:03.232] [INFO] set 0xaaab40002270..0xaaab40002276 to -1
+[11:41:03.233] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:41:03.233] [INFO] validating result...
+[11:41:03.233] [INFO] shmem_broadcast on int16_t produced expected result.
+[11:41:03.233] ------ BEGIN TEST ROUTINE: shmem_int32_broadcast
+[11:41:03.233] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
+[11:41:03.233] [INFO] set 0xaaab40002270..0xaaab4000227c to -1
+[11:41:03.233] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:41:03.234] [INFO] validating result...
+[11:41:03.234] [INFO] shmem_broadcast on int32_t produced expected result.
+[11:41:03.234] ------ BEGIN TEST ROUTINE: shmem_int64_broadcast
+[11:41:03.234] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
+[11:41:03.234] [INFO] set 0xaaab40002280..0xaaab40002298 to -1
+[11:41:03.234] [INFO] executing shmem_broadcast: dest = 0xaaab40002280, src = 0xaaab40002250
+[11:41:03.234] [INFO] validating result...
+[11:41:03.234] [INFO] shmem_broadcast on int64_t produced expected result.
+[11:41:03.235] ------ BEGIN TEST ROUTINE: shmem_uint8_broadcast
+[11:41:03.235] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
+[11:41:03.235] [INFO] set 0xaaab40002270..0xaaab40002273 to -1
+[11:41:03.235] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:41:03.235] [INFO] validating result...
+[11:41:03.235] [INFO] shmem_broadcast on uint8_t produced expected result.
+[11:41:03.235] ------ BEGIN TEST ROUTINE: shmem_uint16_broadcast
+[11:41:03.236] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
+[11:41:03.236] [INFO] set 0xaaab40002270..0xaaab40002276 to -1
+[11:41:03.236] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:41:03.236] [INFO] validating result...
+[11:41:03.236] [INFO] shmem_broadcast on uint16_t produced expected result.
+[11:41:03.236] ------ BEGIN TEST ROUTINE: shmem_uint32_broadcast
+[11:41:03.236] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
+[11:41:03.236] [INFO] set 0xaaab40002270..0xaaab4000227c to -1
+[11:41:03.236] [INFO] executing shmem_broadcast: dest = 0xaaab40002270, src = 0xaaab40002250
+[11:41:03.237] [INFO] validating result...
+[11:41:03.237] [INFO] shmem_broadcast on uint32_t produced expected result.
+[11:41:03.237] ------ BEGIN TEST ROUTINE: shmem_uint64_broadcast
+[11:41:03.237] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
+[11:41:03.237] [INFO] set 0xaaab40002280..0xaaab40002298 to -1
+[11:41:03.237] [INFO] executing shmem_broadcast: dest = 0xaaab40002280, src = 0xaaab40002250
+[11:41:03.237] [INFO] validating result...
+[11:41:03.237] [INFO] shmem_broadcast on uint64_t produced expected result.
+[11:41:03.237] ------ BEGIN TEST ROUTINE: shmem_size_broadcast
+[11:41:03.238] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
+[11:41:03.238] [INFO] set 0xaaab40002280..0xaaab40002298 to -1
+[11:41:03.238] [INFO] executing shmem_broadcast: dest = 0xaaab40002280, src = 0xaaab40002250
+[11:41:03.238] [INFO] validating result...
+[11:41:03.238] [INFO] shmem_broadcast on size_t produced expected result.
+[11:41:03.238] ------ BEGIN TEST ROUTINE: shmem_ptrdiff_broadcast
+[11:41:03.238] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
+[11:41:03.238] [INFO] set 0xaaab40002280..0xaaab40002298 to -1
+[11:41:03.238] [INFO] executing shmem_broadcast: dest = 0xaaab40002280, src = 0xaaab40002250
+[11:41:03.238] [INFO] validating result...
+[11:41:03.238] [INFO] shmem_broadcast on ptrdiff_t produced expected result.
 ---------- END TEST: PASSED

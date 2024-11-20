@@ -32,11 +32,11 @@
     bool success = (*dest == expected_prod);                                   \
                                                                                \
     if (success)                                                               \
-      log_info("shmem_prod_reduce on " #TYPE " produced expected result.");     \
+      log_info("shmem_prod_reduce on " #TYPE " produced expected result.");    \
     else                                                                       \
-      log_fail("shmem_prod_reduce on " #TYPE                                    \
-               " produced unexpected result: expected %ld, found %ld",           \
-               (long)expected_prod, (long)*dest);                               \
+      log_fail("shmem_prod_reduce on " #TYPE                                   \
+               " produced unexpected result: expected %ld, found %ld",         \
+               (long)expected_prod, (long)*dest);                              \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
                                                                                \

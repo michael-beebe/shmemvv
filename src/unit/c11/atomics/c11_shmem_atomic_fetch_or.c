@@ -31,11 +31,12 @@
     shmem_barrier_all();                                                       \
     success = (fetch == value && *dest == (value | or_val));                   \
     if (!success)                                                              \
-      log_fail("atomic fetch or on %s did not produce expected value = %d, ret = "   \
-               "%d, got "                                                      \
-               "instead value = %d, ret = %d",                                 \
-               #TYPE, (char)(value | or_val), (char)value, (char)*dest,        \
-               (char)fetch);                                                   \
+      log_fail(                                                                \
+          "atomic fetch or on %s did not produce expected value = %d, ret = "  \
+          "%d, got "                                                           \
+          "instead value = %d, ret = %d",                                      \
+          #TYPE, (char)(value | or_val), (char)value, (char)*dest,             \
+          (char)fetch);                                                        \
     else                                                                       \
       log_info("atomic fetch or on a %s at %p produced expected result",       \
                #TYPE, (void *)dest);                                           \

@@ -8,7 +8,7 @@
 
 #define TEST_C11_SHMEM_FCOLLECT(TYPE)                                          \
   ({                                                                           \
-    log_routine("shmem_fcollect(" #TYPE ")");                                   \
+    log_routine("shmem_fcollect(" #TYPE ")");                                  \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
                                                                                \
@@ -21,7 +21,7 @@
     log_info("set %p (src[0]) to %d", (void *)src, mype);                      \
                                                                                \
     shmem_fcollect(SHMEM_TEAM_WORLD, dest, src, 1);                            \
-    log_info("executing shmem_fcollect: dest = %p, src = %p", (void *)dest,     \
+    log_info("executing shmem_fcollect: dest = %p, src = %p", (void *)dest,    \
              (void *)src);                                                     \
                                                                                \
     log_info("validating result...");                                          \
@@ -36,10 +36,10 @@
     }                                                                          \
                                                                                \
     if (success)                                                               \
-      log_info("shmem_fcollect on " #TYPE " produced expected result.");        \
+      log_info("shmem_fcollect on " #TYPE " produced expected result.");       \
     else                                                                       \
       log_fail(                                                                \
-          "at least one value was unexpected in result of shmem_fcollect");     \
+          "at least one value was unexpected in result of shmem_fcollect");    \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
                                                                                \

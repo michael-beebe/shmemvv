@@ -17,7 +17,8 @@ bool test_shmem_align(void) {
   size_t alignment = 64;
   size_t size = 1024;
 
-  log_info("calling shmem_align(align = %ld, size = %ld)...", (long) alignment, (long) size);
+  log_info("calling shmem_align(align = %ld, size = %ld)...", (long)alignment,
+           (long)size);
   void *ptr = shmem_align(alignment, size);
   if (ptr == NULL) {
     log_fail("shmem_align ret'd null ptr!");

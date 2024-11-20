@@ -14,7 +14,7 @@
 
 #define TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP_NBI(TYPE)                           \
   ({                                                                           \
-    log_routine("shmem_atomic_compare_swap_nbi(" #TYPE ")");                       \
+    log_routine("shmem_atomic_compare_swap_nbi(" #TYPE ")");                   \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
     static TYPE fetch;                                                         \
@@ -25,8 +25,9 @@
     *dest = old;                                                               \
     log_info("set %p to %d", (void *)dest, (char)old);                         \
     shmem_barrier_all();                                                       \
-    log_info("executing atomic cmp swp (nbi): dest = %p, value = %d, new = %d",      \
-             (void *)dest, (char)*dest, (char)new_val);                        \
+    log_info(                                                                  \
+        "executing atomic cmp swp (nbi): dest = %p, value = %d, new = %d",     \
+        (void *)dest, (char)*dest, (char)new_val);                             \
     int mype = shmem_my_pe();                                                  \
     shmem_atomic_compare_swap_nbi(&fetch, dest, old, new_val, mype);           \
     shmem_quiet();                                                             \
@@ -37,7 +38,7 @@
           "atomic cmp swp on %s did not produce expected value = %d, ret = "   \
           "%d, got "                                                           \
           "instead value = %d, ret = %d",                                      \
-          #TYPE, (char)(new_val), (char)old, (char)*dest, (char)fetch);      \
+          #TYPE, (char)(new_val), (char)old, (char)*dest, (char)fetch);        \
     else                                                                       \
       log_info("atomic cmp swp on a %s at %p produced expected result", #TYPE, \
                (void *)dest);                                                  \

@@ -13,7 +13,7 @@
 
 #define TEST_C11_SHMEM_ATOMIC_FETCH_OR_NBI(TYPE)                               \
   ({                                                                           \
-    log_routine("shmem_atomic_fetch_or_nbi(" #TYPE ")");                              \
+    log_routine("shmem_atomic_fetch_or_nbi(" #TYPE ")");                       \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
     static TYPE fetch;                                                         \
@@ -25,13 +25,15 @@
     log_info("set %p to %d", (void *)dest, (char)value);                       \
     shmem_barrier_all();                                                       \
     int mype = shmem_my_pe();                                                  \
-    log_info("executing atomic fetch or (nbi): dest = %p, or_val = %d", (void *)dest, (char)or_val);               \
+    log_info("executing atomic fetch or (nbi): dest = %p, or_val = %d",        \
+             (void *)dest, (char)or_val);                                      \
     shmem_atomic_fetch_or_nbi(&fetch, dest, or_val, mype);                     \
     shmem_quiet();                                                             \
     shmem_barrier_all();                                                       \
     success = (fetch == value && *dest == (value | or_val));                   \
     if (!success)                                                              \
-      log_fail("atomic fetch or (nbi) on %s did not produce expected value = %d, ret = "   \
+      log_fail("atomic fetch or (nbi) on %s did not produce expected value = " \
+               "%d, ret = "                                                    \
                "%d, got "                                                      \
                "instead value = %d, ret = %d",                                 \
                #TYPE, (char)(value | or_val), (char)value, (char)*dest,        \

@@ -12,7 +12,7 @@
 
 #define TEST_C11_SHMEM_P(TYPE)                                                 \
   ({                                                                           \
-    log_routine("shmem_2(" #TYPE ")"); \
+    log_routine("shmem_2(" #TYPE ")");                                         \
     bool success = true;                                                       \
     static TYPE src, dest;                                                     \
     log_info("&src = %p, &dest = %p", src, dest);                              \
@@ -20,12 +20,12 @@
     int npes = shmem_n_pes();                                                  \
                                                                                \
     src = mype;                                                                \
-    log_info("set src = %d", mype);                                                \
+    log_info("set src = %d", mype);                                            \
                                                                                \
     shmem_barrier_all();                                                       \
                                                                                \
     if (mype == 0) {                                                           \
-      log_info("shmem_p'ing %d into dest", src); \
+      log_info("shmem_p'ing %d into dest", src);                               \
       shmem_p(&dest, src, 1);                                                  \
     }                                                                          \
                                                                                \
@@ -34,7 +34,7 @@
     if (mype == 1) {                                                           \
       log_info("validating...");                                               \
       if (dest != 0) {                                                         \
-        log_fail("dest was unexpected value: expected 0, got ", (char)dest);  \
+        log_fail("dest was unexpected value: expected 0, got ", (char)dest);   \
         success = false;                                                       \
       }                                                                        \
       log_info("result is valid");                                             \

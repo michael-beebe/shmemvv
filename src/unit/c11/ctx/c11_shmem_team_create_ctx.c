@@ -17,7 +17,8 @@
  * 1. Creating a new team using `shmem_team_split_strided`.
  * 2. Calling `shmem_team_create_ctx` to create a context for the team.
  * 3. Checking the return value of `shmem_team_create_ctx` for errors.
- * 4. Destroying the context and team using `shmem_ctx_destroy` and `shmem_team_destroy`, respectively.
+ * 4. Destroying the context and team using `shmem_ctx_destroy` and
+ * `shmem_team_destroy`, respectively.
  *
  * @return True if the test passes, false otherwise.
  */

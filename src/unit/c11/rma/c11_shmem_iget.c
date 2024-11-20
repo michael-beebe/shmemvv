@@ -30,7 +30,8 @@
                                                                                \
     if (mype == 1) {                                                           \
       log_info("shmem_iget(dest = %p, src = %p, dest_stride = 2, src_stride "  \
-               "= 2, n = 5, pe = 0)", &src, &dest);                                         \
+               "= 2, n = 5, pe = 0)",                                          \
+               &src, &dest);                                                   \
       shmem_iget(dest, src, 2, 2, 5, 0);                                       \
     }                                                                          \
                                                                                \

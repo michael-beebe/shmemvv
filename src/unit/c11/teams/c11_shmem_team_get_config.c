@@ -22,13 +22,16 @@ bool test_shmem_team_get_config(void) {
     log_fail("team split failed: got SHMEM_TEAM_INVALID");
     return false;
   }
-  log_info("calling shmem_team_get_config(config_mask = %ld (SHMEM_TEAM_NUM_CONTEXTS))", config_mask);
+  log_info("calling shmem_team_get_config(config_mask = %ld "
+           "(SHMEM_TEAM_NUM_CONTEXTS))",
+           config_mask);
   shmem_team_get_config(team, config_mask, &config);
   bool result = (config.num_contexts >= 0);
-  if(result)
+  if (result)
     log_info("returned team config is valid");
   else
-    log_fail("num contexts returned is invalid! expected >= 0, got %d", config.num_contexts);
+    log_fail("num contexts returned is invalid! expected >= 0, got %d",
+             config.num_contexts);
   shmem_team_destroy(team);
   return result;
 }

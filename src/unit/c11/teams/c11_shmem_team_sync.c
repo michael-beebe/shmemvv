@@ -11,7 +11,7 @@
 bool test_shmem_team_sync(void) {
   log_routine("shmem_team_sync()");
   static long shared_counter;
-  log_info("counter @ %p", (void*)&shared_counter);
+  log_info("counter @ %p", (void *)&shared_counter);
   bool success = true;
 
   shared_counter = 0;
@@ -32,10 +32,11 @@ bool test_shmem_team_sync(void) {
   log_info("validating result...");
   if (shared_counter != shmem_n_pes()) {
     log_fail("expected counter = %d, got %d!", shmem_n_pes(), shared_counter);
-    if(shared_counter < shmem_n_pes())
+    if (shared_counter < shmem_n_pes())
       log_fail("team_sync may not have sent all atomic operations!");
     else
-      log_fail("team_split_strided may have made too many teams, or team_sync may have duplicated operations!");
+      log_fail("team_split_strided may have made too many teams, or team_sync "
+               "may have duplicated operations!");
     success = false;
   } else {
     log_info("result is valid!");

@@ -14,7 +14,7 @@
 
 #define TEST_C11_SHMEM_ATOMIC_INC(TYPE)                                        \
   ({                                                                           \
-  log_routine("shmem_atomic_inc(" #TYPE ")"); \
+    log_routine("shmem_atomic_inc(" #TYPE ")");                                \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
@@ -25,18 +25,18 @@
     shmem_barrier_all();                                                       \
     int mype = shmem_my_pe();                                                  \
     log_info("executing atomic inc: dest = %p, *dest = %d", (void *)dest,      \
-             (char)*dest);                                                    \
+             (char)*dest);                                                     \
     shmem_atomic_inc(dest, mype);                                              \
     shmem_barrier_all();                                                       \
     success = (*dest == value + 1);                                            \
     if (!success)                                                              \
-      log_fail("atomic inc on %s did not produce expected value %d, got "       \
+      log_fail("atomic inc on %s did not produce expected value %d, got "      \
                "instead %d",                                                   \
-               #TYPE, (char)(value + 1), (char)*dest);                    \
+               #TYPE, (char)(value + 1), (char)*dest);                         \
     else                                                                       \
       log_info(                                                                \
           "atomic inc on a %s at %p produced expected result (%d + 1 = %d)",   \
-          #TYPE, dest, value, *dest);                                  \
+          #TYPE, dest, value, *dest);                                          \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })

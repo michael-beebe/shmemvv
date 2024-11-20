@@ -16,14 +16,14 @@ bool test_shmem_malloc_free(void) {
   log_routine("shmem_malloc_free()");
   size_t size = 1024;
   void *ptr = shmem_malloc(size);
-  log_info("shmem_malloc'd %ld bytes @ %p", (long)size, (void*)ptr);
+  log_info("shmem_malloc'd %ld bytes @ %p", (long)size, (void *)ptr);
   if (ptr == NULL) {
     log_fail("shmem_malloc ret'd null ptr!");
     return false;
   }
-  log_info("shmem_free'ing %p...", (void*)ptr);
+  log_info("shmem_free'ing %p...", (void *)ptr);
   shmem_free(ptr);
-  log_info("shmem_free'd %p...", (void*)ptr);
+  log_info("shmem_free'd %p...", (void *)ptr);
   return true;
 }
 

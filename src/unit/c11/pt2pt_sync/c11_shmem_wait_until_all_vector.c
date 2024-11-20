@@ -48,7 +48,7 @@
         TYPE cmp_values[4] = {1, 1, 1, 1};                                     \
         log_info("executing wait_until_all(flags = %p, n = 4, status = "       \
                  "[SHMEM_CMP_EQ; 4], cmp_values = [1; 4])",                    \
-                 (void *)flags);                                                \
+                 (void *)flags);                                               \
         shmem_##TYPENAME##_wait_until_all_vector(flags, 4, status,             \
                                                  SHMEM_CMP_EQ, cmp_values);    \
         log_info("wait until returned");                                       \

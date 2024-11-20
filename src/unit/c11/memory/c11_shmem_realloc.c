@@ -16,13 +16,14 @@ bool test_shmem_realloc(void) {
   log_routine("shmem_realloc()");
   size_t size = 1024;
   void *ptr = shmem_malloc(size);
-  log_info("shmem_malloc'd %ld bytes @ %p", (long) size, (void*)ptr);
+  log_info("shmem_malloc'd %ld bytes @ %p", (long)size, (void *)ptr);
   if (ptr == NULL) {
     log_fail("shmem_malloc ret'd null ptr!");
     return false;
   }
   size_t new_size = 2048;
-  log_info("calling shmem_realloc(old = %p, new_size = %ld)", (void*)ptr, (long)new_size);
+  log_info("calling shmem_realloc(old = %p, new_size = %ld)", (void *)ptr,
+           (long)new_size);
   void *new_ptr = shmem_realloc(ptr, new_size);
   if (new_ptr == NULL) {
     log_fail("shmem_realloc ret'd null ptr!");

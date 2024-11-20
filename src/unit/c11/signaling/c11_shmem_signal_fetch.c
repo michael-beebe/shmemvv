@@ -10,12 +10,12 @@
 #include "log.h"
 #include "shmemvv.h"
 
-#define TEST_C_SHMEM_SIGNAL_FETCH() \
+#define TEST_C_SHMEM_SIGNAL_FETCH()                                            \
   ({                                                                           \
-    log_routine("shmem_signal_fetch()");                                \
+    log_routine("shmem_signal_fetch()");                                       \
     bool success = true;                                                       \
     static uint64_t signal = 1;                                                \
-    log_info("signal @ %p", &signal);    \
+    log_info("signal @ %p", &signal);                                          \
     uint64_t fetched_signal = 0;                                               \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
@@ -26,18 +26,18 @@
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype == 1) {                                                         \
-        log_info("calling shmem_signal_fetch(signal = %p)", &signal);                        \
+        log_info("calling shmem_signal_fetch(signal = %p)", &signal);          \
         fetched_signal = shmem_signal_fetch(&signal);                          \
         if (fetched_signal != 1) {                                             \
-          log_fail("unexpected return value: expected 1, found %d", fetched_signal); \
+          log_fail("unexpected return value: expected 1, found %d",            \
+                   fetched_signal);                                            \
           success = false;                                                     \
         }                                                                      \
-        log_info("result is valid"); \
+        log_info("result is valid");                                           \
       }                                                                        \
     }                                                                          \
     success;                                                                   \
   })
-
 
 int main(int argc, char *argv[]) {
   shmem_init();

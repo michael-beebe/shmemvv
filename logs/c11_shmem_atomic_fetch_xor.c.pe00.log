@@ -1,37 +1,37 @@
 ---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/atomics/c11_shmem_atomic_fetch_xor.c
-[11:36:32.470] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_xor(unsigned int)
-[11:36:32.470] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
-[11:36:32.470] [INFO] set 0xaaab40002250 to 42
-[11:36:32.471] [INFO] executing atomic fetch xor: dest = 0xaaab40002250, xor_val = 15
-[11:36:32.471] [INFO] atomic fetch xor on a unsigned int at 0xaaab40002250 produced expected result
-[11:36:32.471] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_xor(unsigned long)
-[11:36:32.471] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
-[11:36:32.471] [INFO] set 0xaaab40002250 to 42
-[11:36:32.471] [INFO] executing atomic fetch xor: dest = 0xaaab40002250, xor_val = 15
-[11:36:32.471] [INFO] atomic fetch xor on a unsigned long at 0xaaab40002250 produced expected result
-[11:36:32.471] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_xor(unsigned long long)
-[11:36:32.471] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
-[11:36:32.471] [INFO] set 0xaaab40002250 to 42
-[11:36:32.472] [INFO] executing atomic fetch xor: dest = 0xaaab40002250, xor_val = 15
-[11:36:32.472] [INFO] atomic fetch xor on a unsigned long long at 0xaaab40002250 produced expected result
-[11:36:32.472] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_xor(int32_t)
-[11:36:32.472] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
-[11:36:32.472] [INFO] set 0xaaab40002250 to 42
-[11:36:32.472] [INFO] executing atomic fetch xor: dest = 0xaaab40002250, xor_val = 15
-[11:36:32.472] [INFO] atomic fetch xor on a int32_t at 0xaaab40002250 produced expected result
-[11:36:32.472] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_xor(int64_t)
-[11:36:32.472] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
-[11:36:32.472] [INFO] set 0xaaab40002250 to 42
-[11:36:32.472] [INFO] executing atomic fetch xor: dest = 0xaaab40002250, xor_val = 15
-[11:36:32.473] [INFO] atomic fetch xor on a int64_t at 0xaaab40002250 produced expected result
-[11:36:32.473] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_xor(uint32_t)
-[11:36:32.473] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
-[11:36:32.473] [INFO] set 0xaaab40002250 to 42
-[11:36:32.473] [INFO] executing atomic fetch xor: dest = 0xaaab40002250, xor_val = 15
-[11:36:32.473] [INFO] atomic fetch xor on a uint32_t at 0xaaab40002250 produced expected result
-[11:36:32.473] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_xor(uint64_t)
-[11:36:32.473] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
-[11:36:32.473] [INFO] set 0xaaab40002250 to 42
-[11:36:32.473] [INFO] executing atomic fetch xor: dest = 0xaaab40002250, xor_val = 15
-[11:36:32.473] [INFO] atomic fetch xor on a uint64_t at 0xaaab40002250 produced expected result
+[11:41:03.519] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_xor(unsigned int)
+[11:41:03.519] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:41:03.519] [INFO] set 0xaaab40002250 to 42
+[11:41:03.520] [INFO] executing atomic fetch xor: dest = 0xaaab40002250, xor_val = 15
+[11:41:03.520] [INFO] atomic fetch xor on a unsigned int at 0xaaab40002250 produced expected result
+[11:41:03.520] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_xor(unsigned long)
+[11:41:03.520] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:41:03.520] [INFO] set 0xaaab40002250 to 42
+[11:41:03.520] [INFO] executing atomic fetch xor: dest = 0xaaab40002250, xor_val = 15
+[11:41:03.520] [INFO] atomic fetch xor on a unsigned long at 0xaaab40002250 produced expected result
+[11:41:03.520] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_xor(unsigned long long)
+[11:41:03.520] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:41:03.520] [INFO] set 0xaaab40002250 to 42
+[11:41:03.520] [INFO] executing atomic fetch xor: dest = 0xaaab40002250, xor_val = 15
+[11:41:03.520] [INFO] atomic fetch xor on a unsigned long long at 0xaaab40002250 produced expected result
+[11:41:03.521] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_xor(int32_t)
+[11:41:03.521] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:41:03.521] [INFO] set 0xaaab40002250 to 42
+[11:41:03.521] [INFO] executing atomic fetch xor: dest = 0xaaab40002250, xor_val = 15
+[11:41:03.521] [INFO] atomic fetch xor on a int32_t at 0xaaab40002250 produced expected result
+[11:41:03.521] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_xor(int64_t)
+[11:41:03.521] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:41:03.521] [INFO] set 0xaaab40002250 to 42
+[11:41:03.521] [INFO] executing atomic fetch xor: dest = 0xaaab40002250, xor_val = 15
+[11:41:03.521] [INFO] atomic fetch xor on a int64_t at 0xaaab40002250 produced expected result
+[11:41:03.521] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_xor(uint32_t)
+[11:41:03.521] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:41:03.521] [INFO] set 0xaaab40002250 to 42
+[11:41:03.522] [INFO] executing atomic fetch xor: dest = 0xaaab40002250, xor_val = 15
+[11:41:03.522] [INFO] atomic fetch xor on a uint32_t at 0xaaab40002250 produced expected result
+[11:41:03.522] ------ BEGIN TEST ROUTINE: shmem_atomic_fetch_xor(uint64_t)
+[11:41:03.522] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:41:03.522] [INFO] set 0xaaab40002250 to 42
+[11:41:03.522] [INFO] executing atomic fetch xor: dest = 0xaaab40002250, xor_val = 15
+[11:41:03.522] [INFO] atomic fetch xor on a uint64_t at 0xaaab40002250 produced expected result
 ---------- END TEST: PASSED

@@ -14,31 +14,33 @@
 
 #define TEST_C11_SHMEM_ATOMIC_FETCH_AND_NBI(TYPE)                              \
   ({                                                                           \
-    log_routine("shmem_atomic_fetch_and_nbi(" #TYPE ")");                              \
+    log_routine("shmem_atomic_fetch_and_nbi(" #TYPE ")");                      \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
     static TYPE fetch;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
     fetch = 0;                                                                 \
-    TYPE value = 42, and_val = 15;                                              \
+    TYPE value = 42, and_val = 15;                                             \
     *dest = value;                                                             \
     log_info("set %p to %d", (void *)dest, (char)value);                       \
     shmem_barrier_all();                                                       \
     int mype = shmem_my_pe();                                                  \
-    log_info("executing atomic fetch and (nbi): dest = %p, and_val = %d", (void *)dest, (char)and_val);               \
-    shmem_atomic_fetch_and_nbi(&fetch, dest, and_val, mype);                     \
+    log_info("executing atomic fetch and (nbi): dest = %p, and_val = %d",      \
+             (void *)dest, (char)and_val);                                     \
+    shmem_atomic_fetch_and_nbi(&fetch, dest, and_val, mype);                   \
     shmem_quiet();                                                             \
     shmem_barrier_all();                                                       \
-    success = (fetch == value && *dest == (value & and_val));                   \
+    success = (fetch == value && *dest == (value & and_val));                  \
     if (!success)                                                              \
-      log_fail("atomic fetch and (nbi) on %s did not produce expected value = %d, ret = "   \
+      log_fail("atomic fetch and (nbi) on %s did not produce expected value "  \
+               "= %d, ret = "                                                  \
                "%d, got "                                                      \
                "instead value = %d, ret = %d",                                 \
-               #TYPE, (char)(value & and_val), (char)value, (char)*dest,        \
+               #TYPE, (char)(value & and_val), (char)value, (char)*dest,       \
                (char)fetch);                                                   \
     else                                                                       \
-      log_info("atomic fetch and on a %s at %p produced expected result",       \
+      log_info("atomic fetch and on a %s at %p produced expected result",      \
                #TYPE, (void *)dest);                                           \
     shmem_free(dest);                                                          \
     success;                                                                   \

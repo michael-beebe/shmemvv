@@ -12,7 +12,8 @@
 /**
  * @brief Tests the `shmem_ctx_get_team()` function.
  *
- * This test case verifies that the `shmem_ctx_get_team()` function correctly retrieves the team associated with a given SHMEM context.
+ * This test case verifies that the `shmem_ctx_get_team()` function correctly
+ * retrieves the team associated with a given SHMEM context.
  *
  * @return `true` if the test passes, `false` otherwise.
  */

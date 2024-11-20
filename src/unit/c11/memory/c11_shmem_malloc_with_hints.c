@@ -17,7 +17,8 @@ bool test_shmem_malloc_with_hints(void) {
   size_t size = 1024;
   long hints = SHMEM_MALLOC_ATOMICS_REMOTE;
   void *ptr = shmem_malloc_with_hints(size, hints);
-  log_info("shmem_malloc'd %ld bytes @ %p with ATOMICS_REMOTE hint", (long) size, (void*)ptr);
+  log_info("shmem_malloc'd %ld bytes @ %p with ATOMICS_REMOTE hint", (long)size,
+           (void *)ptr);
   if (ptr == NULL) {
     log_fail("shmem_malloc_with_hints ret'd null ptr!");
     return false;

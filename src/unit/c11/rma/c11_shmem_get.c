@@ -29,7 +29,7 @@
     shmem_barrier_all();                                                       \
                                                                                \
     if (mype == 1) {                                                           \
-      log_info("getting 10 elements from src into dest on pe 0");                      \
+      log_info("getting 10 elements from src into dest on pe 0");              \
       shmem_get(dest, src, 10, 0);                                             \
     }                                                                          \
                                                                                \

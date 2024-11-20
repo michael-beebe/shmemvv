@@ -1,37 +1,37 @@
 ---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/atomics/c11_shmem_atomic_and.c
-[11:36:32.317] ------ BEGIN TEST ROUTINE: shmem_atomic_and(unsigned int)
-[11:36:32.318] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
-[11:36:32.318] [INFO] set 0xaaab40002250 to 42
-[11:36:32.318] [INFO] executing atomic and: dest = 0xaaab40002250, and_val = 15
-[11:36:32.318] [INFO] atomic and on a unsigned int at 0xaaab40002250 produced expected result (42 & 15 = 10)
-[11:36:32.318] ------ BEGIN TEST ROUTINE: shmem_atomic_and(unsigned long)
-[11:36:32.318] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
-[11:36:32.318] [INFO] set 0xaaab40002250 to 42
-[11:36:32.318] [INFO] executing atomic and: dest = 0xaaab40002250, and_val = 15
-[11:36:32.318] [INFO] atomic and on a unsigned long at 0xaaab40002250 produced expected result (42 & 15 = 10)
-[11:36:32.319] ------ BEGIN TEST ROUTINE: shmem_atomic_and(unsigned long long)
-[11:36:32.319] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
-[11:36:32.319] [INFO] set 0xaaab40002250 to 42
-[11:36:32.319] [INFO] executing atomic and: dest = 0xaaab40002250, and_val = 15
-[11:36:32.319] [INFO] atomic and on a unsigned long long at 0xaaab40002250 produced expected result (42 & 15 = 10)
-[11:36:32.319] ------ BEGIN TEST ROUTINE: shmem_atomic_and(int32_t)
-[11:36:32.319] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
-[11:36:32.319] [INFO] set 0xaaab40002250 to 42
-[11:36:32.319] [INFO] executing atomic and: dest = 0xaaab40002250, and_val = 15
-[11:36:32.320] [INFO] atomic and on a int32_t at 0xaaab40002250 produced expected result (42 & 15 = 10)
-[11:36:32.320] ------ BEGIN TEST ROUTINE: shmem_atomic_and(int64_t)
-[11:36:32.320] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
-[11:36:32.320] [INFO] set 0xaaab40002250 to 42
-[11:36:32.320] [INFO] executing atomic and: dest = 0xaaab40002250, and_val = 15
-[11:36:32.320] [INFO] atomic and on a int64_t at 0xaaab40002250 produced expected result (42 & 15 = 10)
-[11:36:32.320] ------ BEGIN TEST ROUTINE: shmem_atomic_and(uint32_t)
-[11:36:32.320] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
-[11:36:32.320] [INFO] set 0xaaab40002250 to 42
-[11:36:32.320] [INFO] executing atomic and: dest = 0xaaab40002250, and_val = 15
-[11:36:32.321] [INFO] atomic and on a uint32_t at 0xaaab40002250 produced expected result (42 & 15 = 10)
-[11:36:32.321] ------ BEGIN TEST ROUTINE: shmem_atomic_and(uint64_t)
-[11:36:32.321] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
-[11:36:32.321] [INFO] set 0xaaab40002250 to 42
-[11:36:32.321] [INFO] executing atomic and: dest = 0xaaab40002250, and_val = 15
-[11:36:32.321] [INFO] atomic and on a uint64_t at 0xaaab40002250 produced expected result (42 & 15 = 10)
+[11:41:03.364] ------ BEGIN TEST ROUTINE: shmem_atomic_and(unsigned int)
+[11:41:03.365] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:41:03.365] [INFO] set 0xaaab40002250 to 42
+[11:41:03.365] [INFO] executing atomic and: dest = 0xaaab40002250, and_val = 15
+[11:41:03.365] [INFO] atomic and on a unsigned int at 0xaaab40002250 produced expected result (42 & 15 = 10)
+[11:41:03.365] ------ BEGIN TEST ROUTINE: shmem_atomic_and(unsigned long)
+[11:41:03.365] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:41:03.365] [INFO] set 0xaaab40002250 to 42
+[11:41:03.365] [INFO] executing atomic and: dest = 0xaaab40002250, and_val = 15
+[11:41:03.365] [INFO] atomic and on a unsigned long at 0xaaab40002250 produced expected result (42 & 15 = 10)
+[11:41:03.366] ------ BEGIN TEST ROUTINE: shmem_atomic_and(unsigned long long)
+[11:41:03.366] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:41:03.366] [INFO] set 0xaaab40002250 to 42
+[11:41:03.366] [INFO] executing atomic and: dest = 0xaaab40002250, and_val = 15
+[11:41:03.366] [INFO] atomic and on a unsigned long long at 0xaaab40002250 produced expected result (42 & 15 = 10)
+[11:41:03.366] ------ BEGIN TEST ROUTINE: shmem_atomic_and(int32_t)
+[11:41:03.366] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:41:03.366] [INFO] set 0xaaab40002250 to 42
+[11:41:03.366] [INFO] executing atomic and: dest = 0xaaab40002250, and_val = 15
+[11:41:03.366] [INFO] atomic and on a int32_t at 0xaaab40002250 produced expected result (42 & 15 = 10)
+[11:41:03.367] ------ BEGIN TEST ROUTINE: shmem_atomic_and(int64_t)
+[11:41:03.367] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:41:03.367] [INFO] set 0xaaab40002250 to 42
+[11:41:03.367] [INFO] executing atomic and: dest = 0xaaab40002250, and_val = 15
+[11:41:03.367] [INFO] atomic and on a int64_t at 0xaaab40002250 produced expected result (42 & 15 = 10)
+[11:41:03.367] ------ BEGIN TEST ROUTINE: shmem_atomic_and(uint32_t)
+[11:41:03.367] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:41:03.367] [INFO] set 0xaaab40002250 to 42
+[11:41:03.367] [INFO] executing atomic and: dest = 0xaaab40002250, and_val = 15
+[11:41:03.367] [INFO] atomic and on a uint32_t at 0xaaab40002250 produced expected result (42 & 15 = 10)
+[11:41:03.368] ------ BEGIN TEST ROUTINE: shmem_atomic_and(uint64_t)
+[11:41:03.368] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:41:03.368] [INFO] set 0xaaab40002250 to 42
+[11:41:03.368] [INFO] executing atomic and: dest = 0xaaab40002250, and_val = 15
+[11:41:03.368] [INFO] atomic and on a uint64_t at 0xaaab40002250 produced expected result (42 & 15 = 10)
 ---------- END TEST: PASSED

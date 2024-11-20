@@ -14,7 +14,7 @@ bool test_shmem_team_split_strided(void) {
   shmem_team_split_strided(SHMEM_TEAM_WORLD, 0, 1, shmem_n_pes(), NULL, 0,
                            &team);
   int npes = shmem_team_n_pes(team);
-  if(npes == shmem_n_pes())
+  if (npes == shmem_n_pes())
     log_info("n_pes in team is valid");
   else
     log_fail("team_n_pes is invalid! got %d, expected %d", npes, shmem_n_pes());

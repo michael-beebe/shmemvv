@@ -14,7 +14,7 @@
 
 #define TEST_C11_SHMEM_ATOMIC_FETCH_NBI(TYPE)                                  \
   ({                                                                           \
-    log_routine("shmem_atomic_fetch_nbi(" #TYPE ")");                              \
+    log_routine("shmem_atomic_fetch_nbi(" #TYPE ")");                          \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
     static TYPE fetch;                                                         \
@@ -25,7 +25,7 @@
     log_info("set %p to %d", (void *)dest, (char)value);                       \
     shmem_barrier_all();                                                       \
     int mype = shmem_my_pe();                                                  \
-    log_info("executing atomic fetch (nbi): dest = %p", (void *)dest);               \
+    log_info("executing atomic fetch (nbi): dest = %p", (void *)dest);         \
     shmem_atomic_fetch_nbi(&fetch, dest, mype);                                \
     shmem_quiet();                                                             \
     shmem_barrier_all();                                                       \

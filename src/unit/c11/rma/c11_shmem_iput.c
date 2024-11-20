@@ -22,13 +22,14 @@
     for (int i = 0; i < 10; i++) {                                             \
       src[i] = i + mype;                                                       \
     }                                                                          \
-    log_info("set src to [%d..=%d]", mype, mype + 9);                                          \
+    log_info("set src to [%d..=%d]", mype, mype + 9);                          \
                                                                                \
     shmem_barrier_all();                                                       \
                                                                                \
     if (mype == 0) {                                                           \
       log_info("shmem_iput(dest = %p, src = %p, dest_stride = 2, src_stride "  \
-               "= 2, n = 5, pe = 0)", &src, &dest);                                         \
+               "= 2, n = 5, pe = 0)",                                          \
+               &src, &dest);                                                   \
       shmem_iput(dest, src, 2, 2, 5, 1);                                       \
     }                                                                          \
                                                                                \

@@ -34,23 +34,25 @@ extern "C" {
 
   Prefixed with current time and prefix, in that order. Affixed with \n.
  */
-void log_line(const char* string, const char* prefix);
+void log_line(const char *string, const char *prefix);
 
 /**
    Logs an informational message to the logger.
 
    @param fstring Format string specifying the message to be logged.
-   @param ... Variable arguments to be formatted into the message using `fstring`.
+   @param ... Variable arguments to be formatted into the message using
+   `fstring`.
  */
-void log_info(const char* fstring, ...);
+void log_info(const char *fstring, ...);
 
 /**
    Logs a warning message to the logger.
 
    @param fstring Format string specifying the message to be logged.
-   @param ... Variable arguments to be formatted into the message using `fstring`.
+   @param ... Variable arguments to be formatted into the message using
+   `fstring`.
  */
-void log_warn(const char* fstring, ...);
+void log_warn(const char *fstring, ...);
 
 /**
    Logs a fatal message to the logger.
@@ -59,13 +61,14 @@ void log_warn(const char* fstring, ...);
    Execution will continue past this function.
 
    @param fstring Format string specifying the message to be logged.
-   @param ... Variable arguments to be formatted into the message using `fstring`.
+   @param ... Variable arguments to be formatted into the message using
+   `fstring`.
  */
-void log_fail(const char* fstring, ...);
+void log_fail(const char *fstring, ...);
 
-void log_init(const char* test_name);
+void log_init(const char *test_name);
 
-void log_routine(const char* routine);
+void log_routine(const char *routine);
 
 void log_close(int result);
 

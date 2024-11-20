@@ -1,146 +1,146 @@
 ---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c/collectives/c_shmem_alltoalls.c
-[11:36:32.149] ------ BEGIN TEST ROUTINE: shmem_float_alltoalls
-[11:36:32.149] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
-[11:36:32.149] [INFO] set 0xaaab40002250..0xaaab40002254 to 0 + idx * 2
-[11:36:32.149] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.150] [INFO] validating result...
-[11:36:32.150] [INFO] shmem_alltoalls on float produced expected result.
-[11:36:32.150] ------ BEGIN TEST ROUTINE: shmem_double_alltoalls
-[11:36:32.150] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
-[11:36:32.150] [INFO] set 0xaaab40002250..0xaaab40002258 to 0 + idx * 2
-[11:36:32.150] [INFO] executing shmem_alltoalls: dest = 0xaaab40002280, src = 0xaaab40002250
-[11:36:32.150] [INFO] validating result...
-[11:36:32.150] [INFO] shmem_alltoalls on double produced expected result.
-[11:36:32.150] ------ BEGIN TEST ROUTINE: shmem_longdouble_alltoalls
-[11:36:32.150] [INFO] shmem_malloc'd 64 bytes @ &src = 0xaaab40002250, 64 bytes @ &dest = 0xaaab400022a0
-[11:36:32.150] [INFO] set 0xaaab40002250..0xaaab40002260 to 0 + idx * 2
-[11:36:32.150] [INFO] executing shmem_alltoalls: dest = 0xaaab400022a0, src = 0xaaab40002250
-[11:36:32.151] [INFO] validating result...
-[11:36:32.151] [INFO] shmem_alltoalls on long double produced expected result.
-[11:36:32.151] ------ BEGIN TEST ROUTINE: shmem_char_alltoalls
-[11:36:32.151] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
-[11:36:32.151] [INFO] set 0xaaab40002250..0xaaab40002251 to 0 + idx * 2
-[11:36:32.151] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.151] [INFO] validating result...
-[11:36:32.151] [INFO] shmem_alltoalls on char produced expected result.
-[11:36:32.152] ------ BEGIN TEST ROUTINE: shmem_schar_alltoalls
-[11:36:32.152] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
-[11:36:32.152] [INFO] set 0xaaab40002250..0xaaab40002251 to 0 + idx * 2
-[11:36:32.152] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.152] [INFO] validating result...
-[11:36:32.152] [INFO] shmem_alltoalls on signed char produced expected result.
-[11:36:32.152] ------ BEGIN TEST ROUTINE: shmem_short_alltoalls
-[11:36:32.153] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
-[11:36:32.153] [INFO] set 0xaaab40002250..0xaaab40002252 to 0 + idx * 2
-[11:36:32.153] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.153] [INFO] validating result...
-[11:36:32.153] [INFO] shmem_alltoalls on short produced expected result.
-[11:36:32.153] ------ BEGIN TEST ROUTINE: shmem_int_alltoalls
-[11:36:32.153] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
-[11:36:32.153] [INFO] set 0xaaab40002250..0xaaab40002254 to 0 + idx * 2
-[11:36:32.153] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.154] [INFO] validating result...
-[11:36:32.154] [INFO] shmem_alltoalls on int produced expected result.
-[11:36:32.154] ------ BEGIN TEST ROUTINE: shmem_long_alltoalls
-[11:36:32.154] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
-[11:36:32.154] [INFO] set 0xaaab40002250..0xaaab40002258 to 0 + idx * 2
-[11:36:32.154] [INFO] executing shmem_alltoalls: dest = 0xaaab40002280, src = 0xaaab40002250
-[11:36:32.154] [INFO] validating result...
-[11:36:32.154] [INFO] shmem_alltoalls on long produced expected result.
-[11:36:32.154] ------ BEGIN TEST ROUTINE: shmem_longlong_alltoalls
-[11:36:32.154] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
-[11:36:32.154] [INFO] set 0xaaab40002250..0xaaab40002258 to 0 + idx * 2
-[11:36:32.154] [INFO] executing shmem_alltoalls: dest = 0xaaab40002280, src = 0xaaab40002250
-[11:36:32.155] [INFO] validating result...
-[11:36:32.155] [INFO] shmem_alltoalls on long long produced expected result.
-[11:36:32.155] ------ BEGIN TEST ROUTINE: shmem_uchar_alltoalls
-[11:36:32.155] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
-[11:36:32.155] [INFO] set 0xaaab40002250..0xaaab40002251 to 0 + idx * 2
-[11:36:32.155] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.155] [INFO] validating result...
-[11:36:32.155] [INFO] shmem_alltoalls on unsigned char produced expected result.
-[11:36:32.155] ------ BEGIN TEST ROUTINE: shmem_ushort_alltoalls
-[11:36:32.155] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
-[11:36:32.155] [INFO] set 0xaaab40002250..0xaaab40002252 to 0 + idx * 2
-[11:36:32.155] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.156] [INFO] validating result...
-[11:36:32.156] [INFO] shmem_alltoalls on unsigned short produced expected result.
-[11:36:32.156] ------ BEGIN TEST ROUTINE: shmem_uint_alltoalls
-[11:36:32.156] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
-[11:36:32.156] [INFO] set 0xaaab40002250..0xaaab40002254 to 0 + idx * 2
-[11:36:32.156] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.156] [INFO] validating result...
-[11:36:32.156] [INFO] shmem_alltoalls on unsigned int produced expected result.
-[11:36:32.157] ------ BEGIN TEST ROUTINE: shmem_ulong_alltoalls
-[11:36:32.157] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
-[11:36:32.157] [INFO] set 0xaaab40002250..0xaaab40002258 to 0 + idx * 2
-[11:36:32.157] [INFO] executing shmem_alltoalls: dest = 0xaaab40002280, src = 0xaaab40002250
-[11:36:32.157] [INFO] validating result...
-[11:36:32.157] [INFO] shmem_alltoalls on unsigned long produced expected result.
-[11:36:32.157] ------ BEGIN TEST ROUTINE: shmem_ulonglong_alltoalls
-[11:36:32.157] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
-[11:36:32.157] [INFO] set 0xaaab40002250..0xaaab40002258 to 0 + idx * 2
-[11:36:32.157] [INFO] executing shmem_alltoalls: dest = 0xaaab40002280, src = 0xaaab40002250
-[11:36:32.158] [INFO] validating result...
-[11:36:32.158] [INFO] shmem_alltoalls on unsigned long long produced expected result.
-[11:36:32.158] ------ BEGIN TEST ROUTINE: shmem_int8_alltoalls
-[11:36:32.158] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
-[11:36:32.158] [INFO] set 0xaaab40002250..0xaaab40002251 to 0 + idx * 2
-[11:36:32.158] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.158] [INFO] validating result...
-[11:36:32.158] [INFO] shmem_alltoalls on int8_t produced expected result.
-[11:36:32.158] ------ BEGIN TEST ROUTINE: shmem_int16_alltoalls
-[11:36:32.159] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
-[11:36:32.159] [INFO] set 0xaaab40002250..0xaaab40002252 to 0 + idx * 2
-[11:36:32.159] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.159] [INFO] validating result...
-[11:36:32.159] [INFO] shmem_alltoalls on int16_t produced expected result.
-[11:36:32.159] ------ BEGIN TEST ROUTINE: shmem_int32_alltoalls
-[11:36:32.159] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
-[11:36:32.159] [INFO] set 0xaaab40002250..0xaaab40002254 to 0 + idx * 2
-[11:36:32.159] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.159] [INFO] validating result...
-[11:36:32.159] [INFO] shmem_alltoalls on int32_t produced expected result.
-[11:36:32.159] ------ BEGIN TEST ROUTINE: shmem_int64_alltoalls
-[11:36:32.160] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
-[11:36:32.160] [INFO] set 0xaaab40002250..0xaaab40002258 to 0 + idx * 2
-[11:36:32.160] [INFO] executing shmem_alltoalls: dest = 0xaaab40002280, src = 0xaaab40002250
-[11:36:32.160] [INFO] validating result...
-[11:36:32.160] [INFO] shmem_alltoalls on int64_t produced expected result.
-[11:36:32.160] ------ BEGIN TEST ROUTINE: shmem_uint8_alltoalls
-[11:36:32.160] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab40002250, 4 bytes @ &dest = 0xaaab40002270
-[11:36:32.160] [INFO] set 0xaaab40002250..0xaaab40002251 to 0 + idx * 2
-[11:36:32.160] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.160] [INFO] validating result...
-[11:36:32.160] [INFO] shmem_alltoalls on uint8_t produced expected result.
-[11:36:32.161] ------ BEGIN TEST ROUTINE: shmem_uint16_alltoalls
-[11:36:32.161] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab40002250, 8 bytes @ &dest = 0xaaab40002270
-[11:36:32.161] [INFO] set 0xaaab40002250..0xaaab40002252 to 0 + idx * 2
-[11:36:32.161] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.161] [INFO] validating result...
-[11:36:32.161] [INFO] shmem_alltoalls on uint16_t produced expected result.
-[11:36:32.161] ------ BEGIN TEST ROUTINE: shmem_uint32_alltoalls
-[11:36:32.161] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab40002250, 16 bytes @ &dest = 0xaaab40002270
-[11:36:32.161] [INFO] set 0xaaab40002250..0xaaab40002254 to 0 + idx * 2
-[11:36:32.161] [INFO] executing shmem_alltoalls: dest = 0xaaab40002270, src = 0xaaab40002250
-[11:36:32.162] [INFO] validating result...
-[11:36:32.162] [INFO] shmem_alltoalls on uint32_t produced expected result.
-[11:36:32.162] ------ BEGIN TEST ROUTINE: shmem_uint64_alltoalls
-[11:36:32.162] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
-[11:36:32.162] [INFO] set 0xaaab40002250..0xaaab40002258 to 0 + idx * 2
-[11:36:32.162] [INFO] executing shmem_alltoalls: dest = 0xaaab40002280, src = 0xaaab40002250
-[11:36:32.162] [INFO] validating result...
-[11:36:32.162] [INFO] shmem_alltoalls on uint64_t produced expected result.
-[11:36:32.163] ------ BEGIN TEST ROUTINE: shmem_size_alltoalls
-[11:36:32.163] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
-[11:36:32.163] [INFO] set 0xaaab40002250..0xaaab40002258 to 0 + idx * 2
-[11:36:32.163] [INFO] executing shmem_alltoalls: dest = 0xaaab40002280, src = 0xaaab40002250
-[11:36:32.163] [INFO] validating result...
-[11:36:32.163] [INFO] shmem_alltoalls on size_t produced expected result.
-[11:36:32.163] ------ BEGIN TEST ROUTINE: shmem_ptrdiff_alltoalls
-[11:36:32.163] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab40002250, 32 bytes @ &dest = 0xaaab40002280
-[11:36:32.163] [INFO] set 0xaaab40002250..0xaaab40002258 to 0 + idx * 2
-[11:36:32.163] [INFO] executing shmem_alltoalls: dest = 0xaaab40002280, src = 0xaaab40002250
-[11:36:32.164] [INFO] validating result...
-[11:36:32.164] [INFO] shmem_alltoalls on ptrdiff_t produced expected result.
+[11:41:03.199] ------ BEGIN TEST ROUTINE: shmem_float_alltoalls
+[11:41:03.200] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab00002250, 16 bytes @ &dest = 0xaaab00002270
+[11:41:03.200] [INFO] set 0xaaab00002250..0xaaab00002254 to 0 + idx * 2
+[11:41:03.200] [INFO] executing shmem_alltoalls: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:41:03.200] [INFO] validating result...
+[11:41:03.200] [INFO] shmem_alltoalls on float produced expected result.
+[11:41:03.200] ------ BEGIN TEST ROUTINE: shmem_double_alltoalls
+[11:41:03.200] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab00002250, 32 bytes @ &dest = 0xaaab00002280
+[11:41:03.200] [INFO] set 0xaaab00002250..0xaaab00002258 to 0 + idx * 2
+[11:41:03.200] [INFO] executing shmem_alltoalls: dest = 0xaaab00002280, src = 0xaaab00002250
+[11:41:03.201] [INFO] validating result...
+[11:41:03.201] [INFO] shmem_alltoalls on double produced expected result.
+[11:41:03.201] ------ BEGIN TEST ROUTINE: shmem_longdouble_alltoalls
+[11:41:03.201] [INFO] shmem_malloc'd 64 bytes @ &src = 0xaaab00002250, 64 bytes @ &dest = 0xaaab000022a0
+[11:41:03.201] [INFO] set 0xaaab00002250..0xaaab00002260 to 0 + idx * 2
+[11:41:03.201] [INFO] executing shmem_alltoalls: dest = 0xaaab000022a0, src = 0xaaab00002250
+[11:41:03.201] [INFO] validating result...
+[11:41:03.201] [INFO] shmem_alltoalls on long double produced expected result.
+[11:41:03.201] ------ BEGIN TEST ROUTINE: shmem_char_alltoalls
+[11:41:03.202] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab00002250, 4 bytes @ &dest = 0xaaab00002270
+[11:41:03.202] [INFO] set 0xaaab00002250..0xaaab00002251 to 0 + idx * 2
+[11:41:03.202] [INFO] executing shmem_alltoalls: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:41:03.202] [INFO] validating result...
+[11:41:03.202] [INFO] shmem_alltoalls on char produced expected result.
+[11:41:03.202] ------ BEGIN TEST ROUTINE: shmem_schar_alltoalls
+[11:41:03.202] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab00002250, 4 bytes @ &dest = 0xaaab00002270
+[11:41:03.202] [INFO] set 0xaaab00002250..0xaaab00002251 to 0 + idx * 2
+[11:41:03.202] [INFO] executing shmem_alltoalls: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:41:03.202] [INFO] validating result...
+[11:41:03.202] [INFO] shmem_alltoalls on signed char produced expected result.
+[11:41:03.202] ------ BEGIN TEST ROUTINE: shmem_short_alltoalls
+[11:41:03.203] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab00002250, 8 bytes @ &dest = 0xaaab00002270
+[11:41:03.203] [INFO] set 0xaaab00002250..0xaaab00002252 to 0 + idx * 2
+[11:41:03.203] [INFO] executing shmem_alltoalls: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:41:03.203] [INFO] validating result...
+[11:41:03.203] [INFO] shmem_alltoalls on short produced expected result.
+[11:41:03.203] ------ BEGIN TEST ROUTINE: shmem_int_alltoalls
+[11:41:03.203] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab00002250, 16 bytes @ &dest = 0xaaab00002270
+[11:41:03.203] [INFO] set 0xaaab00002250..0xaaab00002254 to 0 + idx * 2
+[11:41:03.203] [INFO] executing shmem_alltoalls: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:41:03.204] [INFO] validating result...
+[11:41:03.204] [INFO] shmem_alltoalls on int produced expected result.
+[11:41:03.204] ------ BEGIN TEST ROUTINE: shmem_long_alltoalls
+[11:41:03.204] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab00002250, 32 bytes @ &dest = 0xaaab00002280
+[11:41:03.204] [INFO] set 0xaaab00002250..0xaaab00002258 to 0 + idx * 2
+[11:41:03.204] [INFO] executing shmem_alltoalls: dest = 0xaaab00002280, src = 0xaaab00002250
+[11:41:03.204] [INFO] validating result...
+[11:41:03.204] [INFO] shmem_alltoalls on long produced expected result.
+[11:41:03.205] ------ BEGIN TEST ROUTINE: shmem_longlong_alltoalls
+[11:41:03.205] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab00002250, 32 bytes @ &dest = 0xaaab00002280
+[11:41:03.205] [INFO] set 0xaaab00002250..0xaaab00002258 to 0 + idx * 2
+[11:41:03.205] [INFO] executing shmem_alltoalls: dest = 0xaaab00002280, src = 0xaaab00002250
+[11:41:03.205] [INFO] validating result...
+[11:41:03.205] [INFO] shmem_alltoalls on long long produced expected result.
+[11:41:03.205] ------ BEGIN TEST ROUTINE: shmem_uchar_alltoalls
+[11:41:03.206] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab00002250, 4 bytes @ &dest = 0xaaab00002270
+[11:41:03.206] [INFO] set 0xaaab00002250..0xaaab00002251 to 0 + idx * 2
+[11:41:03.206] [INFO] executing shmem_alltoalls: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:41:03.206] [INFO] validating result...
+[11:41:03.206] [INFO] shmem_alltoalls on unsigned char produced expected result.
+[11:41:03.206] ------ BEGIN TEST ROUTINE: shmem_ushort_alltoalls
+[11:41:03.206] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab00002250, 8 bytes @ &dest = 0xaaab00002270
+[11:41:03.206] [INFO] set 0xaaab00002250..0xaaab00002252 to 0 + idx * 2
+[11:41:03.206] [INFO] executing shmem_alltoalls: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:41:03.206] [INFO] validating result...
+[11:41:03.206] [INFO] shmem_alltoalls on unsigned short produced expected result.
+[11:41:03.206] ------ BEGIN TEST ROUTINE: shmem_uint_alltoalls
+[11:41:03.207] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab00002250, 16 bytes @ &dest = 0xaaab00002270
+[11:41:03.207] [INFO] set 0xaaab00002250..0xaaab00002254 to 0 + idx * 2
+[11:41:03.207] [INFO] executing shmem_alltoalls: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:41:03.207] [INFO] validating result...
+[11:41:03.207] [INFO] shmem_alltoalls on unsigned int produced expected result.
+[11:41:03.207] ------ BEGIN TEST ROUTINE: shmem_ulong_alltoalls
+[11:41:03.207] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab00002250, 32 bytes @ &dest = 0xaaab00002280
+[11:41:03.207] [INFO] set 0xaaab00002250..0xaaab00002258 to 0 + idx * 2
+[11:41:03.207] [INFO] executing shmem_alltoalls: dest = 0xaaab00002280, src = 0xaaab00002250
+[11:41:03.207] [INFO] validating result...
+[11:41:03.207] [INFO] shmem_alltoalls on unsigned long produced expected result.
+[11:41:03.208] ------ BEGIN TEST ROUTINE: shmem_ulonglong_alltoalls
+[11:41:03.208] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab00002250, 32 bytes @ &dest = 0xaaab00002280
+[11:41:03.208] [INFO] set 0xaaab00002250..0xaaab00002258 to 0 + idx * 2
+[11:41:03.208] [INFO] executing shmem_alltoalls: dest = 0xaaab00002280, src = 0xaaab00002250
+[11:41:03.208] [INFO] validating result...
+[11:41:03.208] [INFO] shmem_alltoalls on unsigned long long produced expected result.
+[11:41:03.208] ------ BEGIN TEST ROUTINE: shmem_int8_alltoalls
+[11:41:03.208] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab00002250, 4 bytes @ &dest = 0xaaab00002270
+[11:41:03.208] [INFO] set 0xaaab00002250..0xaaab00002251 to 0 + idx * 2
+[11:41:03.208] [INFO] executing shmem_alltoalls: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:41:03.209] [INFO] validating result...
+[11:41:03.209] [INFO] shmem_alltoalls on int8_t produced expected result.
+[11:41:03.209] ------ BEGIN TEST ROUTINE: shmem_int16_alltoalls
+[11:41:03.209] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab00002250, 8 bytes @ &dest = 0xaaab00002270
+[11:41:03.209] [INFO] set 0xaaab00002250..0xaaab00002252 to 0 + idx * 2
+[11:41:03.209] [INFO] executing shmem_alltoalls: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:41:03.209] [INFO] validating result...
+[11:41:03.209] [INFO] shmem_alltoalls on int16_t produced expected result.
+[11:41:03.209] ------ BEGIN TEST ROUTINE: shmem_int32_alltoalls
+[11:41:03.209] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab00002250, 16 bytes @ &dest = 0xaaab00002270
+[11:41:03.209] [INFO] set 0xaaab00002250..0xaaab00002254 to 0 + idx * 2
+[11:41:03.209] [INFO] executing shmem_alltoalls: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:41:03.210] [INFO] validating result...
+[11:41:03.210] [INFO] shmem_alltoalls on int32_t produced expected result.
+[11:41:03.210] ------ BEGIN TEST ROUTINE: shmem_int64_alltoalls
+[11:41:03.210] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab00002250, 32 bytes @ &dest = 0xaaab00002280
+[11:41:03.210] [INFO] set 0xaaab00002250..0xaaab00002258 to 0 + idx * 2
+[11:41:03.210] [INFO] executing shmem_alltoalls: dest = 0xaaab00002280, src = 0xaaab00002250
+[11:41:03.210] [INFO] validating result...
+[11:41:03.210] [INFO] shmem_alltoalls on int64_t produced expected result.
+[11:41:03.210] ------ BEGIN TEST ROUTINE: shmem_uint8_alltoalls
+[11:41:03.210] [INFO] shmem_malloc'd 4 bytes @ &src = 0xaaab00002250, 4 bytes @ &dest = 0xaaab00002270
+[11:41:03.210] [INFO] set 0xaaab00002250..0xaaab00002251 to 0 + idx * 2
+[11:41:03.210] [INFO] executing shmem_alltoalls: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:41:03.211] [INFO] validating result...
+[11:41:03.211] [INFO] shmem_alltoalls on uint8_t produced expected result.
+[11:41:03.211] ------ BEGIN TEST ROUTINE: shmem_uint16_alltoalls
+[11:41:03.211] [INFO] shmem_malloc'd 8 bytes @ &src = 0xaaab00002250, 8 bytes @ &dest = 0xaaab00002270
+[11:41:03.211] [INFO] set 0xaaab00002250..0xaaab00002252 to 0 + idx * 2
+[11:41:03.211] [INFO] executing shmem_alltoalls: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:41:03.211] [INFO] validating result...
+[11:41:03.211] [INFO] shmem_alltoalls on uint16_t produced expected result.
+[11:41:03.211] ------ BEGIN TEST ROUTINE: shmem_uint32_alltoalls
+[11:41:03.212] [INFO] shmem_malloc'd 16 bytes @ &src = 0xaaab00002250, 16 bytes @ &dest = 0xaaab00002270
+[11:41:03.212] [INFO] set 0xaaab00002250..0xaaab00002254 to 0 + idx * 2
+[11:41:03.212] [INFO] executing shmem_alltoalls: dest = 0xaaab00002270, src = 0xaaab00002250
+[11:41:03.212] [INFO] validating result...
+[11:41:03.212] [INFO] shmem_alltoalls on uint32_t produced expected result.
+[11:41:03.212] ------ BEGIN TEST ROUTINE: shmem_uint64_alltoalls
+[11:41:03.212] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab00002250, 32 bytes @ &dest = 0xaaab00002280
+[11:41:03.212] [INFO] set 0xaaab00002250..0xaaab00002258 to 0 + idx * 2
+[11:41:03.212] [INFO] executing shmem_alltoalls: dest = 0xaaab00002280, src = 0xaaab00002250
+[11:41:03.212] [INFO] validating result...
+[11:41:03.212] [INFO] shmem_alltoalls on uint64_t produced expected result.
+[11:41:03.212] ------ BEGIN TEST ROUTINE: shmem_size_alltoalls
+[11:41:03.213] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab00002250, 32 bytes @ &dest = 0xaaab00002280
+[11:41:03.213] [INFO] set 0xaaab00002250..0xaaab00002258 to 0 + idx * 2
+[11:41:03.213] [INFO] executing shmem_alltoalls: dest = 0xaaab00002280, src = 0xaaab00002250
+[11:41:03.213] [INFO] validating result...
+[11:41:03.213] [INFO] shmem_alltoalls on size_t produced expected result.
+[11:41:03.213] ------ BEGIN TEST ROUTINE: shmem_ptrdiff_alltoalls
+[11:41:03.213] [INFO] shmem_malloc'd 32 bytes @ &src = 0xaaab00002250, 32 bytes @ &dest = 0xaaab00002280
+[11:41:03.213] [INFO] set 0xaaab00002250..0xaaab00002258 to 0 + idx * 2
+[11:41:03.213] [INFO] executing shmem_alltoalls: dest = 0xaaab00002280, src = 0xaaab00002250
+[11:41:03.214] [INFO] validating result...
+[11:41:03.214] [INFO] shmem_alltoalls on ptrdiff_t produced expected result.
 ---------- END TEST: PASSED

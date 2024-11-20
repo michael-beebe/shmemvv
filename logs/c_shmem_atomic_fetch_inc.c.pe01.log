@@ -1,50 +1,50 @@
 ---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c/atomics/c_shmem_atomic_fetch_inc.c
-[11:36:31.978] ------ BEGIN TEST ROUTINE: shmem_int_atomic_fetch_inc
-[11:36:31.979] [INFO] shmem_malloc'd 4 bytes at 0xaaab00002250
-[11:36:31.979] [INFO] set 0xaaab00002250 to 42
-[11:36:31.979] [INFO] atomic fetch inc on a int at 0xaaab00002250 produced expected result (42 == 42 && 43 == 42517)
-[11:36:31.979] ------ BEGIN TEST ROUTINE: shmem_long_atomic_fetch_inc
-[11:36:31.979] [INFO] shmem_malloc'd 8 bytes at 0xaaab00002250
-[11:36:31.979] [INFO] set 0xaaab00002250 to 42
-[11:36:31.980] [INFO] atomic fetch inc on a long at 0xaaab00002250 produced expected result (42 == 42 && 43 == 42517)
-[11:36:31.980] ------ BEGIN TEST ROUTINE: shmem_longlong_atomic_fetch_inc
-[11:36:31.980] [INFO] shmem_malloc'd 8 bytes at 0xaaab00002250
-[11:36:31.980] [INFO] set 0xaaab00002250 to 42
-[11:36:31.980] [INFO] atomic fetch inc on a long long at 0xaaab00002250 produced expected result (42 == 42 && 43 == 42517)
-[11:36:31.980] ------ BEGIN TEST ROUTINE: shmem_uint_atomic_fetch_inc
-[11:36:31.980] [INFO] shmem_malloc'd 4 bytes at 0xaaab00002250
-[11:36:31.980] [INFO] set 0xaaab00002250 to 42
-[11:36:31.981] [INFO] atomic fetch inc on a unsigned int at 0xaaab00002250 produced expected result (42 == 42 && 43 == 42517)
-[11:36:31.981] ------ BEGIN TEST ROUTINE: shmem_ulong_atomic_fetch_inc
-[11:36:31.981] [INFO] shmem_malloc'd 8 bytes at 0xaaab00002250
-[11:36:31.981] [INFO] set 0xaaab00002250 to 42
-[11:36:31.981] [INFO] atomic fetch inc on a unsigned long at 0xaaab00002250 produced expected result (42 == 42 && 43 == 42517)
-[11:36:31.981] ------ BEGIN TEST ROUTINE: shmem_ulonglong_atomic_fetch_inc
-[11:36:31.981] [INFO] shmem_malloc'd 8 bytes at 0xaaab00002250
-[11:36:31.981] [INFO] set 0xaaab00002250 to 42
-[11:36:31.981] [INFO] atomic fetch inc on a unsigned long long at 0xaaab00002250 produced expected result (42 == 42 && 43 == 42517)
-[11:36:31.981] ------ BEGIN TEST ROUTINE: shmem_int32_atomic_fetch_inc
-[11:36:31.982] [INFO] shmem_malloc'd 4 bytes at 0xaaab00002250
-[11:36:31.982] [INFO] set 0xaaab00002250 to 42
-[11:36:31.982] [INFO] atomic fetch inc on a int32_t at 0xaaab00002250 produced expected result (42 == 42 && 43 == 42517)
-[11:36:31.982] ------ BEGIN TEST ROUTINE: shmem_int64_atomic_fetch_inc
-[11:36:31.982] [INFO] shmem_malloc'd 8 bytes at 0xaaab00002250
-[11:36:31.982] [INFO] set 0xaaab00002250 to 42
-[11:36:31.982] [INFO] atomic fetch inc on a int64_t at 0xaaab00002250 produced expected result (42 == 42 && 43 == 42517)
-[11:36:31.982] ------ BEGIN TEST ROUTINE: shmem_uint32_atomic_fetch_inc
-[11:36:31.982] [INFO] shmem_malloc'd 4 bytes at 0xaaab00002250
-[11:36:31.982] [INFO] set 0xaaab00002250 to 42
-[11:36:31.983] [INFO] atomic fetch inc on a uint32_t at 0xaaab00002250 produced expected result (42 == 42 && 43 == 42517)
-[11:36:31.983] ------ BEGIN TEST ROUTINE: shmem_uint64_atomic_fetch_inc
-[11:36:31.983] [INFO] shmem_malloc'd 8 bytes at 0xaaab00002250
-[11:36:31.983] [INFO] set 0xaaab00002250 to 42
-[11:36:31.983] [INFO] atomic fetch inc on a uint64_t at 0xaaab00002250 produced expected result (42 == 42 && 43 == 42517)
-[11:36:31.983] ------ BEGIN TEST ROUTINE: shmem_size_atomic_fetch_inc
-[11:36:31.983] [INFO] shmem_malloc'd 8 bytes at 0xaaab00002250
-[11:36:31.983] [INFO] set 0xaaab00002250 to 42
-[11:36:31.983] [INFO] atomic fetch inc on a size_t at 0xaaab00002250 produced expected result (42 == 42 && 43 == 42517)
-[11:36:31.983] ------ BEGIN TEST ROUTINE: shmem_ptrdiff_atomic_fetch_inc
-[11:36:31.983] [INFO] shmem_malloc'd 8 bytes at 0xaaab00002250
-[11:36:31.983] [INFO] set 0xaaab00002250 to 42
-[11:36:31.984] [INFO] atomic fetch inc on a ptrdiff_t at 0xaaab00002250 produced expected result (42 == 42 && 43 == 42517)
+[11:41:03.030] ------ BEGIN TEST ROUTINE: shmem_int_atomic_fetch_inc
+[11:41:03.031] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:41:03.031] [INFO] set 0xaaab40002250 to 42
+[11:41:03.031] [INFO] atomic fetch inc on a int at 0xaaab40002250 produced expected result (42 == 42 && 43 == 42788)
+[11:41:03.031] ------ BEGIN TEST ROUTINE: shmem_long_atomic_fetch_inc
+[11:41:03.031] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:41:03.031] [INFO] set 0xaaab40002250 to 42
+[11:41:03.032] [INFO] atomic fetch inc on a long at 0xaaab40002250 produced expected result (42 == 42 && 43 == 42788)
+[11:41:03.032] ------ BEGIN TEST ROUTINE: shmem_longlong_atomic_fetch_inc
+[11:41:03.032] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:41:03.032] [INFO] set 0xaaab40002250 to 42
+[11:41:03.032] [INFO] atomic fetch inc on a long long at 0xaaab40002250 produced expected result (42 == 42 && 43 == 42788)
+[11:41:03.032] ------ BEGIN TEST ROUTINE: shmem_uint_atomic_fetch_inc
+[11:41:03.032] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:41:03.032] [INFO] set 0xaaab40002250 to 42
+[11:41:03.033] [INFO] atomic fetch inc on a unsigned int at 0xaaab40002250 produced expected result (42 == 42 && 43 == 42788)
+[11:41:03.033] ------ BEGIN TEST ROUTINE: shmem_ulong_atomic_fetch_inc
+[11:41:03.033] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:41:03.033] [INFO] set 0xaaab40002250 to 42
+[11:41:03.033] [INFO] atomic fetch inc on a unsigned long at 0xaaab40002250 produced expected result (42 == 42 && 43 == 42788)
+[11:41:03.033] ------ BEGIN TEST ROUTINE: shmem_ulonglong_atomic_fetch_inc
+[11:41:03.033] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:41:03.033] [INFO] set 0xaaab40002250 to 42
+[11:41:03.033] [INFO] atomic fetch inc on a unsigned long long at 0xaaab40002250 produced expected result (42 == 42 && 43 == 42788)
+[11:41:03.034] ------ BEGIN TEST ROUTINE: shmem_int32_atomic_fetch_inc
+[11:41:03.034] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:41:03.034] [INFO] set 0xaaab40002250 to 42
+[11:41:03.034] [INFO] atomic fetch inc on a int32_t at 0xaaab40002250 produced expected result (42 == 42 && 43 == 42788)
+[11:41:03.034] ------ BEGIN TEST ROUTINE: shmem_int64_atomic_fetch_inc
+[11:41:03.034] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:41:03.034] [INFO] set 0xaaab40002250 to 42
+[11:41:03.034] [INFO] atomic fetch inc on a int64_t at 0xaaab40002250 produced expected result (42 == 42 && 43 == 42788)
+[11:41:03.034] ------ BEGIN TEST ROUTINE: shmem_uint32_atomic_fetch_inc
+[11:41:03.034] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:41:03.034] [INFO] set 0xaaab40002250 to 42
+[11:41:03.035] [INFO] atomic fetch inc on a uint32_t at 0xaaab40002250 produced expected result (42 == 42 && 43 == 42788)
+[11:41:03.035] ------ BEGIN TEST ROUTINE: shmem_uint64_atomic_fetch_inc
+[11:41:03.035] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:41:03.035] [INFO] set 0xaaab40002250 to 42
+[11:41:03.035] [INFO] atomic fetch inc on a uint64_t at 0xaaab40002250 produced expected result (42 == 42 && 43 == 42788)
+[11:41:03.035] ------ BEGIN TEST ROUTINE: shmem_size_atomic_fetch_inc
+[11:41:03.035] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:41:03.035] [INFO] set 0xaaab40002250 to 42
+[11:41:03.035] [INFO] atomic fetch inc on a size_t at 0xaaab40002250 produced expected result (42 == 42 && 43 == 42788)
+[11:41:03.036] ------ BEGIN TEST ROUTINE: shmem_ptrdiff_atomic_fetch_inc
+[11:41:03.036] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:41:03.036] [INFO] set 0xaaab40002250 to 42
+[11:41:03.036] [INFO] atomic fetch inc on a ptrdiff_t at 0xaaab40002250 produced expected result (42 == 42 && 43 == 42788)
 ---------- END TEST: PASSED

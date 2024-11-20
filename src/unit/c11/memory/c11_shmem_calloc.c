@@ -16,7 +16,8 @@ bool test_shmem_calloc(void) {
   log_routine("shmem_calloc()");
   size_t count = 256;
   size_t size = sizeof(int);
-  log_info("calling shmem_calloc(count = %ld, size = %d)", (long)count, (char)size);
+  log_info("calling shmem_calloc(count = %ld, size = %d)", (long)count,
+           (char)size);
   int *ptr = (int *)shmem_calloc(count, size);
   if (ptr == NULL) {
     log_fail("shmem_calloc ret'd null ptr!");
@@ -25,7 +26,8 @@ bool test_shmem_calloc(void) {
   log_info("validating result...");
   for (size_t i = 0; i < count; ++i) {
     if (ptr[i] != 0) {
-      log_fail("idx %d (%p) was not zeroed by shmem_calloc!", i, (void*)&ptr[i]);
+      log_fail("idx %d (%p) was not zeroed by shmem_calloc!", i,
+               (void *)&ptr[i]);
       shmem_free(ptr);
       return false;
     }

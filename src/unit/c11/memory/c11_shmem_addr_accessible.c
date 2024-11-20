@@ -17,14 +17,14 @@ bool test_shmem_addr_accessible() {
   int mype = shmem_my_pe();
   int npes = shmem_n_pes();
   int *ptr = (int *)shmem_malloc(sizeof(int));
-  log_info("shmem_malloc'd %d bytes @ %p", sizeof(int), (void*)ptr);
+  log_info("shmem_malloc'd %d bytes @ %p", sizeof(int), (void *)ptr);
 
   if (ptr == NULL) {
     log_fail("shmem_malloc ret'd null!");
     return false;
   }
 
-  log_info("set %p to %d", (void*)ptr, (char)shmem_my_pe());
+  log_info("set %p to %d", (void *)ptr, (char)shmem_my_pe());
   *ptr = mype;
 
   shmem_barrier_all();
@@ -34,7 +34,9 @@ bool test_shmem_addr_accessible() {
   log_info("validating...");
   for (int pe = 0; pe < npes; ++pe) {
     if (shmem_addr_accessible(ptr, pe) != 1) {
-      log_fail("failed: expected shmem_addr_accessible(%p on pe %d) to be true!", ptr, pe);
+      log_fail(
+          "failed: expected shmem_addr_accessible(%p on pe %d) to be true!",
+          ptr, pe);
       test_passed = false;
     }
   }
@@ -42,7 +44,8 @@ bool test_shmem_addr_accessible() {
   if (test_passed)
     log_info("shmem_addr_accessible produced expected result.");
   else
-    log_fail("at least one result was unexpected in validation of shmem_addr_accessible");
+    log_fail("at least one result was unexpected in validation of "
+             "shmem_addr_accessible");
   shmem_free(ptr);
   return test_passed;
 }

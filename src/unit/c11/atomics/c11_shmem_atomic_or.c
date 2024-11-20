@@ -36,7 +36,7 @@
     else                                                                       \
       log_info(                                                                \
           "atomic or on a %s at %p produced expected result (%d | %d = %d)",   \
-          #TYPE, (void*)dest, value, or_val, *dest);                           \
+          #TYPE, (void *)dest, value, or_val, *dest);                          \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })

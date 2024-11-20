@@ -1,37 +1,37 @@
 ---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c/atomics/c_shmem_atomic_fetch_or_nbi.c
-[11:36:32.025] ------ BEGIN TEST ROUTINE: shmem_uint_atomic_fetch_or_nbi
-[11:36:32.025] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
-[11:36:32.025] [INFO] set 0xaaab40002250 to 42
-[11:36:32.025] [INFO] executing atomic fetch or nbi: dest = 0xaaab40002250, or_val = 15
-[11:36:32.025] [INFO] atomic fetch or nbi on a unsigned int at 0xaaab40002250 produced expected result (42 == 42 && 47 == 1)
-[11:36:32.025] ------ BEGIN TEST ROUTINE: shmem_ulong_atomic_fetch_or_nbi
-[11:36:32.025] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
-[11:36:32.025] [INFO] set 0xaaab40002250 to 42
-[11:36:32.025] [INFO] executing atomic fetch or nbi: dest = 0xaaab40002250, or_val = 15
-[11:36:32.025] [INFO] atomic fetch or nbi on a unsigned long at 0xaaab40002250 produced expected result (42 == 42 && 47 == 1)
-[11:36:32.026] ------ BEGIN TEST ROUTINE: shmem_ulonglong_atomic_fetch_or_nbi
-[11:36:32.026] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
-[11:36:32.026] [INFO] set 0xaaab40002250 to 42
-[11:36:32.026] [INFO] executing atomic fetch or nbi: dest = 0xaaab40002250, or_val = 15
-[11:36:32.026] [INFO] atomic fetch or nbi on a unsigned long long at 0xaaab40002250 produced expected result (42 == 42 && 47 == 1)
-[11:36:32.026] ------ BEGIN TEST ROUTINE: shmem_int32_atomic_fetch_or_nbi
-[11:36:32.026] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
-[11:36:32.026] [INFO] set 0xaaab40002250 to 42
-[11:36:32.026] [INFO] executing atomic fetch or nbi: dest = 0xaaab40002250, or_val = 15
-[11:36:32.026] [INFO] atomic fetch or nbi on a int32_t at 0xaaab40002250 produced expected result (42 == 42 && 47 == 1)
-[11:36:32.026] ------ BEGIN TEST ROUTINE: shmem_int64_atomic_fetch_or_nbi
-[11:36:32.026] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
-[11:36:32.026] [INFO] set 0xaaab40002250 to 42
-[11:36:32.026] [INFO] executing atomic fetch or nbi: dest = 0xaaab40002250, or_val = 15
-[11:36:32.027] [INFO] atomic fetch or nbi on a int64_t at 0xaaab40002250 produced expected result (42 == 42 && 47 == 1)
-[11:36:32.027] ------ BEGIN TEST ROUTINE: shmem_uint32_atomic_fetch_or_nbi
-[11:36:32.027] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
-[11:36:32.027] [INFO] set 0xaaab40002250 to 42
-[11:36:32.027] [INFO] executing atomic fetch or nbi: dest = 0xaaab40002250, or_val = 15
-[11:36:32.027] [INFO] atomic fetch or nbi on a uint32_t at 0xaaab40002250 produced expected result (42 == 42 && 47 == 1)
-[11:36:32.027] ------ BEGIN TEST ROUTINE: shmem_uint64_atomic_fetch_or_nbi
-[11:36:32.027] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
-[11:36:32.027] [INFO] set 0xaaab40002250 to 42
-[11:36:32.027] [INFO] executing atomic fetch or nbi: dest = 0xaaab40002250, or_val = 15
-[11:36:32.027] [INFO] atomic fetch or nbi on a uint64_t at 0xaaab40002250 produced expected result (42 == 42 && 47 == 1)
+[11:41:03.077] ------ BEGIN TEST ROUTINE: shmem_uint_atomic_fetch_or_nbi
+[11:41:03.078] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:41:03.078] [INFO] set 0xaaab40002250 to 42
+[11:41:03.078] [INFO] executing atomic fetch or nbi: dest = 0xaaab40002250, or_val = 15
+[11:41:03.078] [INFO] atomic fetch or nbi on a unsigned int at 0xaaab40002250 produced expected result (42 == 42 && 47 == 1)
+[11:41:03.078] ------ BEGIN TEST ROUTINE: shmem_ulong_atomic_fetch_or_nbi
+[11:41:03.078] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:41:03.078] [INFO] set 0xaaab40002250 to 42
+[11:41:03.078] [INFO] executing atomic fetch or nbi: dest = 0xaaab40002250, or_val = 15
+[11:41:03.078] [INFO] atomic fetch or nbi on a unsigned long at 0xaaab40002250 produced expected result (42 == 42 && 47 == 1)
+[11:41:03.078] ------ BEGIN TEST ROUTINE: shmem_ulonglong_atomic_fetch_or_nbi
+[11:41:03.079] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:41:03.079] [INFO] set 0xaaab40002250 to 42
+[11:41:03.079] [INFO] executing atomic fetch or nbi: dest = 0xaaab40002250, or_val = 15
+[11:41:03.079] [INFO] atomic fetch or nbi on a unsigned long long at 0xaaab40002250 produced expected result (42 == 42 && 47 == 1)
+[11:41:03.079] ------ BEGIN TEST ROUTINE: shmem_int32_atomic_fetch_or_nbi
+[11:41:03.079] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:41:03.079] [INFO] set 0xaaab40002250 to 42
+[11:41:03.079] [INFO] executing atomic fetch or nbi: dest = 0xaaab40002250, or_val = 15
+[11:41:03.079] [INFO] atomic fetch or nbi on a int32_t at 0xaaab40002250 produced expected result (42 == 42 && 47 == 1)
+[11:41:03.079] ------ BEGIN TEST ROUTINE: shmem_int64_atomic_fetch_or_nbi
+[11:41:03.080] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:41:03.080] [INFO] set 0xaaab40002250 to 42
+[11:41:03.080] [INFO] executing atomic fetch or nbi: dest = 0xaaab40002250, or_val = 15
+[11:41:03.080] [INFO] atomic fetch or nbi on a int64_t at 0xaaab40002250 produced expected result (42 == 42 && 47 == 1)
+[11:41:03.080] ------ BEGIN TEST ROUTINE: shmem_uint32_atomic_fetch_or_nbi
+[11:41:03.080] [INFO] shmem_malloc'd 4 bytes at 0xaaab40002250
+[11:41:03.080] [INFO] set 0xaaab40002250 to 42
+[11:41:03.080] [INFO] executing atomic fetch or nbi: dest = 0xaaab40002250, or_val = 15
+[11:41:03.080] [INFO] atomic fetch or nbi on a uint32_t at 0xaaab40002250 produced expected result (42 == 42 && 47 == 1)
+[11:41:03.080] ------ BEGIN TEST ROUTINE: shmem_uint64_atomic_fetch_or_nbi
+[11:41:03.081] [INFO] shmem_malloc'd 8 bytes at 0xaaab40002250
+[11:41:03.081] [INFO] set 0xaaab40002250 to 42
+[11:41:03.081] [INFO] executing atomic fetch or nbi: dest = 0xaaab40002250, or_val = 15
+[11:41:03.081] [INFO] atomic fetch or nbi on a uint64_t at 0xaaab40002250 produced expected result (42 == 42 && 47 == 1)
 ---------- END TEST: PASSED

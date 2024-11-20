@@ -31,7 +31,7 @@
     else                                                                       \
       log_fail("shmem_max_reduce on " #TYPE                                    \
                " produced unexpected result: expected %d, found %d",           \
-               0, (char)*dest);                                         \
+               0, (char)*dest);                                                \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
                                                                                \

@@ -1,7 +1,7 @@
 ---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/collectives/c11_shmem_sync_all.c
-[11:36:32.726] ------ BEGIN TEST ROUTINE: shmem_sync_all()
-[11:36:32.726] [INFO] counter @ 0xaaaaadbb01f8
-[11:36:32.727] [INFO] executing shmem_atomic_inc
-[11:36:32.727] [INFO] executing shmem_sync_all
-[11:36:32.727] [INFO] counter failed validation: expected 2 increments, got 0
+[11:41:03.780] ------ BEGIN TEST ROUTINE: shmem_sync_all()
+[11:41:03.780] [INFO] counter @ 0xaaaae8e801f8
+[11:41:03.780] [INFO] executing shmem_atomic_inc
+[11:41:03.780] [INFO] executing shmem_sync_all
+[11:41:03.781] [INFO] counter failed validation: expected 2 increments, got 0
 ---------- END TEST: FAILED

@@ -15,7 +15,7 @@ bool test_c_shmem_lock_unlock(void) {
   long *lock = (long *)shmem_malloc(sizeof(long));
   long *value = (long *)shmem_malloc(sizeof(long));
   *lock = 0;
-  log_info("created lock @ %p", (void*)lock);
+  log_info("created lock @ %p", (void *)lock);
   int mype = shmem_my_pe();
   bool result = true;
 

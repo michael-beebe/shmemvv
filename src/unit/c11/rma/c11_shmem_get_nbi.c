@@ -12,7 +12,7 @@
 
 #define TEST_C11_SHMEM_GET_NBI(TYPE)                                           \
   ({                                                                           \
-    log_routine("shmem_get_nbi(" #TYPE ")");                                       \
+    log_routine("shmem_get_nbi(" #TYPE ")");                                   \
     bool success = true;                                                       \
     static TYPE src[10], dest[10];                                             \
     log_info("&src = %p, &dest = %p", &src, &dest);                            \
@@ -29,7 +29,7 @@
     shmem_barrier_all();                                                       \
                                                                                \
     if (mype == 1) {                                                           \
-      log_info("getting 10 elements from src into dest on pe 0");                      \
+      log_info("getting 10 elements from src into dest on pe 0");              \
       shmem_get_nbi(dest, src, 10, 0);                                         \
       shmem_quiet();                                                           \
     }                                                                          \

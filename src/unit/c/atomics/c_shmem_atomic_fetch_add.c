@@ -46,7 +46,7 @@
 int main(int argc, char *argv[]) {
   shmem_init();
   log_init(__FILE__);
-  
+
   bool result = true;
   int rc = EXIT_SUCCESS;
 
@@ -75,6 +75,6 @@ int main(int argc, char *argv[]) {
 
   log_close(rc);
   shmem_finalize();
-  
+
   return rc;
 }

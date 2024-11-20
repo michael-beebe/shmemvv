@@ -21,12 +21,14 @@
     TYPE *src = (TYPE *)shmem_malloc(npes * sizeof(TYPE));                     \
     TYPE *dest = (TYPE *)shmem_malloc(npes * sizeof(TYPE));                    \
     log_info("shmem_malloc'd %d bytes @ &src = %p, %d bytes @ &dest = %p",     \
-             npes * sizeof(TYPE), (void *)src, npes * sizeof(TYPE), (void *)dest); \
+             npes * sizeof(TYPE), (void *)src, npes * sizeof(TYPE),            \
+             (void *)dest);                                                    \
                                                                                \
     for (int i = 0; i < npes; ++i) {                                           \
       src[i] = mype + i;                                                       \
     }                                                                          \
-    log_info("set %p..%p to %d + idx", (void *)src, (void*)&src[npes - 1], mype); \
+    log_info("set %p..%p to %d + idx", (void *)src, (void *)&src[npes - 1],    \
+             mype);                                                            \
                                                                                \
     log_info("executing shmem_alltoall: dest = %p, src = %p", (void *)dest,    \
              (void *)src);                                                     \
@@ -46,7 +48,8 @@
     if (success)                                                               \
       log_info("shmem_alltoall on " #TYPE " produced expected result.");       \
     else                                                                       \
-      log_fail("at least one value was unexpected in result of shmem_alltoall"); \
+      log_fail(                                                                \
+          "at least one value was unexpected in result of shmem_alltoall");    \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
                                                                                \

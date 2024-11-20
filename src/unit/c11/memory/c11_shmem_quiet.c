@@ -15,16 +15,16 @@
 bool test_shmem_quiet(void) {
   log_routine("shmem_quiet()");
   long *flag = (long *)shmem_malloc(sizeof(long));
-  log_info("shmem_malloc'd %d bytes @ %p", sizeof(long), (void*)flag);
+  log_info("shmem_malloc'd %d bytes @ %p", sizeof(long), (void *)flag);
   *flag = 0;
-  log_info("set %p to 0", (void*)flag);
+  log_info("set %p to 0", (void *)flag);
   int mype = shmem_my_pe();
 
   shmem_barrier_all();
 
   if (mype == 0) {
     shmem_long_p(flag, 1, 1);
-    log_info("shmem_long_p'd %p to 1", (void*)flag);
+    log_info("shmem_long_p'd %p to 1", (void *)flag);
     shmem_quiet();
   }
 

@@ -16,7 +16,7 @@ bool test_shmem_team_translate_pe(void) {
                            &team);
   log_info("calling team_translate_pe(split_team -> world team)");
   int pe_in_team = shmem_team_translate_pe(team, 0, SHMEM_TEAM_WORLD);
-  if(pe_in_team >= 0)
+  if (pe_in_team >= 0)
     log_info("returned pe is valid");
   else
     log_fail("returned pe is invalid! expected >= 0, got %d", pe_in_team);

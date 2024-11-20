@@ -3,7 +3,6 @@
  * @brief Unit test for the shmem_put_signal_nbi() routine.
  */
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <shmem.h>
@@ -11,9 +10,9 @@
 #include "log.h"
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_PUT_SIGNAL_NBI(TYPE) \
+#define TEST_C11_SHMEM_PUT_SIGNAL_NBI(TYPE)                                    \
   ({                                                                           \
-    log_routine("shmem_put_signal_nbi(" #TYPE ")");                                \
+    log_routine("shmem_put_signal_nbi(" #TYPE ")");                            \
     bool success = true;                                                       \
     static TYPE dest = 0;                                                      \
     static TYPE value = (TYPE)123;                                             \
@@ -32,8 +31,8 @@
                                                                                \
       if (mype == 0) {                                                         \
         log_info("calling shmem_put_signal()");                                \
-        shmem_put_signal_nbi(&dest, &value, 1, &signal, 1,        \
-                                          target_pe, SHMEM_SIGNAL_SET);        \
+        shmem_put_signal_nbi(&dest, &value, 1, &signal, 1, target_pe,          \
+                             SHMEM_SIGNAL_SET);                                \
         shmem_quiet();                                                         \
       }                                                                        \
                                                                                \
