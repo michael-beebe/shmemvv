@@ -22,7 +22,8 @@ int test_shmem_my_pe() {
     log_info("PE number validation successful - got valid PE number %d", mype);
     return mype;
   } else {
-    log_fail("PE number validation failed - got invalid negative PE number %d", mype);
+    log_fail("PE number validation failed - got invalid negative PE number %d",
+             mype);
     return -1;
   }
 }

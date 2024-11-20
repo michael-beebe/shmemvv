@@ -19,11 +19,14 @@ bool test_shmem_pe_accessible(void) {
 
   log_info("Checking if PE %d is accessible via shmem_pe_accessible()", pe);
   if (!shmem_pe_accessible(pe)) {
-    log_fail("PE accessibility check failed - PE %d is not accessible to itself", pe);
+    log_fail(
+        "PE accessibility check failed - PE %d is not accessible to itself",
+        pe);
     return false;
   }
 
-  log_info("PE accessibility check successful - PE %d is accessible to itself", pe);
+  log_info("PE accessibility check successful - PE %d is accessible to itself",
+           pe);
   return true;
 }
 

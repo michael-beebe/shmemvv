@@ -21,10 +21,12 @@ bool test_shmem_info_get_version(void) {
 
   log_info("Validating version numbers");
   if (major != 1 || minor != 5) {
-    log_fail("Version mismatch: expected OpenSHMEM 1.5, got %d.%d", major, minor);
+    log_fail("Version mismatch: expected OpenSHMEM 1.5, got %d.%d", major,
+             minor);
     return false;
   }
-  log_info("Version validation successful - OpenSHMEM %d.%d as expected", major, minor);
+  log_info("Version validation successful - OpenSHMEM %d.%d as expected", major,
+           minor);
 
   return true;
 }
