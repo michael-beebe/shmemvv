@@ -74,14 +74,14 @@ echo $HLINE
 # done
 
 # --- teams
-for executable in $TEAMS_BIN/c_*; do
-  oshrun -np 2 $executable
-done
-
-# --- threads
-# for executable in $THREADS_BIN/c_*; do
+# for executable in $TEAMS_BIN/c_*; do
 #   oshrun -np 2 $executable
 # done
+
+# --- threads
+for executable in $THREADS_BIN/c_*; do
+  oshrun -np 2 $executable
+done
 
 # ===============================================
 #       ----------  C11  ------------
@@ -136,14 +136,14 @@ echo $HLINE
 # done
 
 # --- teams
-for executable in $TEAMS_BIN/c11_*; do
-  oshrun -np 2 $executable
-done
-
-# --- threads
-# for executable in $THREADS_BIN/c11_*; do
+# for executable in $TEAMS_BIN/c11_*; do
 #   oshrun -np 2 $executable
 # done
+
+# --- threads
+for executable in $THREADS_BIN/c11_*; do
+  oshrun -np 2 $executable
+done
 
 # ===============================================
 #       ----------  CXX  ------------

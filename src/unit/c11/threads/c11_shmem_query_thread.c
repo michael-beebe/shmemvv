@@ -10,20 +10,46 @@
 
 bool test_shmem_query_thread(void) {
   log_routine("shmem_query_thread()");
+  
   int provided;
+  log_info("Calling shmem_query_thread()");
   shmem_query_thread(&provided);
+  log_info("Thread level returned: %d", provided);
+
+  const char *level_str;
+  switch(provided) {
+    case SHMEM_THREAD_MULTIPLE:
+      level_str = "SHMEM_THREAD_MULTIPLE";
+      break;
+    case SHMEM_THREAD_FUNNELED:
+      level_str = "SHMEM_THREAD_FUNNELED";
+      break;
+    case SHMEM_THREAD_SERIALIZED:
+      level_str = "SHMEM_THREAD_SERIALIZED";
+      break;
+    case SHMEM_THREAD_SINGLE:
+      level_str = "SHMEM_THREAD_SINGLE";
+      break;
+    default:
+      level_str = "INVALID";
+  }
+
   bool success =
       (provided == SHMEM_THREAD_SINGLE || provided == SHMEM_THREAD_FUNNELED ||
        provided == SHMEM_THREAD_SERIALIZED ||
        provided == SHMEM_THREAD_MULTIPLE);
-  if (!success)
-    log_fail("expected shmem_query_thread to return either "
-             "(SHMEM_THREAD_MULTIPLE) %d, (SHMEM_THREAD_FUNNELED) %d, or "
-             "(SHMEM_THREAD_SERIALIZED) %d\n but got %d",
+
+  if (!success) {
+    log_fail("Invalid thread level returned: %d (%s)", provided, level_str);
+    log_fail("Expected one of: SHMEM_THREAD_MULTIPLE (%d), "
+             "SHMEM_THREAD_FUNNELED (%d), SHMEM_THREAD_SERIALIZED (%d) "
+             "or SHMEM_THREAD_SINGLE (%d)",
              SHMEM_THREAD_MULTIPLE, SHMEM_THREAD_FUNNELED,
-             SHMEM_THREAD_SERIALIZED, provided);
-  else
-    log_info("thread query is valid (%d)", provided);
+             SHMEM_THREAD_SERIALIZED, SHMEM_THREAD_SINGLE);
+  } else {
+    log_info("Valid thread level returned: %s (%d)", level_str, provided);
+  }
+
   return success;
 }
 
