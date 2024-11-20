@@ -17,39 +17,51 @@
     static TYPE dest = 0;                                                      \
     static TYPE value = (TYPE)123;                                             \
     static uint64_t signal = 0;                                                \
-    log_info("signal @ %p, value @ %p, dest @ %p", &signal, &value, &dest);    \
+    log_info(                                                                  \
+        "Test variables initialized - signal @ %p, value @ %p, dest @ %p",     \
+        &signal, &value, &dest);                                               \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
+    log_info("Running on PE %d of %d total PEs", mype, npes);                  \
                                                                                \
     if (npes < 2) {                                                            \
+      log_fail("Test requires at least 2 PEs, but only %d PE(s) available",    \
+               npes);                                                          \
       success = false;                                                         \
     } else {                                                                   \
       int target_pe = (mype + 1) % npes;                                       \
-      log_info("targetting pe %d", target_pe);                                 \
+      log_info("PE %d will send data to PE %d", mype, target_pe);              \
                                                                                \
+      log_info("Entering barrier before data transfer");                       \
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype == 0) {                                                         \
-        log_info("calling shmem_put_signal()");                                \
+        log_info("PE 0: Initiating put with signal to PE %d", target_pe);      \
+        log_info("Sending value %d with signal value 1", (int)value);          \
         shmem_put_signal(&dest, &value, 1, &signal, 1, target_pe,              \
                          SHMEM_SIGNAL_SET);                                    \
       }                                                                        \
                                                                                \
+      log_info("Entering barrier after data transfer");                        \
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype == 1) {                                                         \
-        log_info("validating result");                                         \
+        log_info("PE 1: Validating received data and signal");                 \
+        log_info("Expected: dest = 123, signal = 1");                          \
+        log_info("Received: dest = %d, signal = %lu", (int)dest,               \
+                 (unsigned long)signal);                                       \
         if (dest != 123 || signal != 1) {                                      \
-          log_info("failed: expected dest = 123, signal = 1, got dest = %d, "  \
-                   "signal = %d",                                              \
-                   (char)dest, (char)signal);                                  \
+          log_fail("Validation failed: Data or signal mismatch");              \
           success = false;                                                     \
+        } else {                                                               \
+          log_info(                                                            \
+              "Validation successful: Data and signal match expected values"); \
         }                                                                      \
-        log_info("result is valid");                                           \
       } else {                                                                 \
-        log_info("pe 1 is validating...");                                     \
+        log_info("PE %d: Waiting while PE 1 validates results", mype);         \
       }                                                                        \
     }                                                                          \
+    log_info("Test completed with %s", success ? "SUCCESS" : "FAILURE");       \
     success;                                                                   \
   })
 

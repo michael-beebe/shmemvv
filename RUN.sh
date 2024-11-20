@@ -29,9 +29,9 @@ echo "    RUNNING C TESTS"
 echo $HLINE
 
 # --- setup
-# for executable in $SETUP_BIN/c_*; do
-#   oshrun -np 2 $executable
-# done
+for executable in $SETUP_BIN/c_*; do
+  oshrun -np 2 $executable
+done
 
 # --- atomics
 # for executable in $ATOMIC_BIN/c_*; do
@@ -44,9 +44,9 @@ echo $HLINE
 # done
 
 # --- rma
-for executable in $RMA_BIN/c_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $RMA_BIN/c_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- ctx
 # for executable in $CTX_BIN/c_*; do
@@ -69,9 +69,9 @@ done
 # done
 
 # --- signaling
-# for executable in $SIGNALING_BIN/c_*; do
-#   oshrun -np 2 $executable
-# done
+for executable in $SIGNALING_BIN/c_*; do
+  oshrun -np 2 $executable
+done
 
 # --- teams
 # for executable in $TEAMS_BIN/c_*; do
@@ -91,9 +91,9 @@ echo "    RUNNING C11 TESTS"
 echo $HLINE
 
 # --- setup
-# for executable in $SETUP_BIN/c11_*; do
-#   oshrun -np 2 $executable
-# done
+for executable in $SETUP_BIN/c11_*; do
+  oshrun -np 2 $executable
+done
 
 # --- atomics
 # for executable in $ATOMIC_BIN/c11_*; do
@@ -106,9 +106,9 @@ echo $HLINE
 # done
 
 # --- rma
-for executable in $RMA_BIN/c11_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $RMA_BIN/c11_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- ctx
 # for executable in $CTX_BIN/c11_*; do
@@ -131,9 +131,9 @@ done
 # done
 
 # --- signaling
-# for executable in $SIGNALING_BIN/c11_*; do
-#   oshrun -np 2 $executable
-# done
+for executable in $SIGNALING_BIN/c11_*; do
+  oshrun -np 2 $executable
+done
 
 # --- teams
 # for executable in $TEAMS_BIN/c11_*; do

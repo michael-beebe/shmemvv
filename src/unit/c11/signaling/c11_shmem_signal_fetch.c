@@ -15,25 +15,32 @@
     log_routine("shmem_signal_fetch()");                                       \
     bool success = true;                                                       \
     static uint64_t signal = 1;                                                \
-    log_info("signal @ %p", &signal);                                          \
+    log_info("signal initialized to %lu @ %p", signal, &signal);               \
     uint64_t fetched_signal = 0;                                               \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
                                                                                \
     if (npes < 2) {                                                            \
+      log_fail("test requires at least 2 PEs, only have %d", npes);           \
       success = false;                                                         \
     } else {                                                                   \
+      log_info("starting barrier_all with %d PEs", npes);                      \
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype == 1) {                                                         \
-        log_info("calling shmem_signal_fetch(signal = %p)", &signal);          \
+        log_info("PE %d calling shmem_signal_fetch(signal = %p)", mype,        \
+                &signal);                                                      \
         fetched_signal = shmem_signal_fetch(&signal);                          \
+        log_info("fetched signal value: %lu", fetched_signal);                 \
         if (fetched_signal != 1) {                                             \
-          log_fail("unexpected return value: expected 1, found %d",            \
+          log_fail("unexpected return value: expected 1, found %lu",           \
                    fetched_signal);                                            \
           success = false;                                                     \
+        } else {                                                               \
+          log_info("signal fetch successful - value matches expected");         \
         }                                                                      \
-        log_info("result is valid");                                           \
+      } else {                                                                 \
+        log_info("PE %d waiting at barrier", mype);                            \
       }                                                                        \
     }                                                                          \
     success;                                                                   \
