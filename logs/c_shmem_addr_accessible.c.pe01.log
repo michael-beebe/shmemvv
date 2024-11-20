@@ -1,7 +1,0 @@
----------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c/memory/c_shmem_addr_accessible.c
-[12:01:14.258] ------ BEGIN TEST ROUTINE: shmem_addr_accessible()
-[12:01:14.258] [INFO] shmem_malloc'd 4 bytes @ 0xaaab00002250
-[12:01:14.258] [INFO] set 0xaaab00002250 to 1
-[12:01:14.258] [INFO] validating...
-[12:01:14.258] [INFO] shmem_addr_accessible produced expected result.
----------- END TEST: PASSED

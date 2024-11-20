@@ -19,14 +19,14 @@
     log_routine("c11_shmem_signal_wait_until()");                              \
     bool success = true;                                                       \
     uint64_t *flag = (uint64_t *)shmem_malloc(sizeof(uint64_t));               \
-    log_info("shmem_malloc'd flag (%d bytes) at %p", sizeof(uint64_t),         \
-             (void *)flag);                                                    \
+    log_info("Allocated flag variable (%zu bytes) at address %p",              \
+             sizeof(uint64_t), (void *)flag);                                  \
     if (flag == NULL) {                                                        \
-      log_fail("shmem_malloc failed!");                                        \
+      log_fail("Memory allocation failed - shmem_malloc returned NULL");       \
       success = false;                                                         \
     } else {                                                                   \
       *flag = 0;                                                               \
-      log_info("set flag to 0");                                               \
+      log_info("Initialized flag value to 0");                                 \
       int mype = shmem_my_pe();                                                \
       int npes = shmem_n_pes();                                                \
       uint64_t value = 1;                                                      \
@@ -35,33 +35,38 @@
                                                                                \
       if (mype == 0) {                                                         \
         for (int pe = 1; pe < npes; ++pe) {                                    \
-          log_info("setting flag to 1 on pe %d", pe);                          \
+          log_info("PE 0: Setting flag to 1 on remote PE %d", pe);             \
           shmem_uint64_p(flag, value, pe);                                     \
         }                                                                      \
+        log_info("PE 0: Completed setting flags, calling shmem_quiet()");      \
         shmem_quiet();                                                         \
       } else {                                                                 \
-        log_info("waiting for pe 0 to set the flag");                          \
+        log_info("PE %d: Waiting for PE 0 to set local flag", mype);           \
       }                                                                        \
                                                                                \
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype != 0) {                                                         \
         time_t start_time = time(NULL);                                        \
-        log_info("executing signal_wait_until_some(flag = %p, status = "       \
-                 "SHMEM_CMP_EQ, to = 1)",                                      \
-                 (void *)flag);                                                \
+        log_info("PE %d: Starting signal_wait_until loop (flag=%p, "           \
+                 "condition=SHMEM_CMP_EQ, target=1)",                          \
+                 mype, (void *)flag);                                          \
         while (!shmem_test(flag, SHMEM_CMP_EQ, value) &&                       \
                time(NULL) - start_time < TIMEOUT) {                            \
           shmem_signal_wait_until(flag, SHMEM_CMP_EQ, value);                  \
         }                                                                      \
-        log_info("signal_wait_until returned");                                \
+        log_info("PE %d: signal_wait_until completed, flag value is %lu",      \
+                 mype, *flag);                                                 \
         if (*flag != value) {                                                  \
-          log_fail("signal_wait_until returned, but flag didn't match! "       \
-                   "(expected 1, got %d)",                                     \
-                   flag);                                                      \
+          log_fail("PE %d: Test failed - flag value mismatch after wait. "     \
+                   "Expected %lu but got %lu",                                 \
+                   mype, value, *flag);                                        \
           success = false;                                                     \
+        } else {                                                               \
+          log_info("PE %d: Successfully received expected flag value", mype);  \
         }                                                                      \
       }                                                                        \
+      log_info("Freeing allocated memory at %p", (void *)flag);                \
       shmem_free(flag);                                                        \
     }                                                                          \
     success;                                                                   \

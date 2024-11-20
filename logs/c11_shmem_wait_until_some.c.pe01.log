@@ -1,0 +1,86 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/pt2pt_sync/c11_shmem_wait_until_some.c
+[14:28:09.132] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_some(int)
+[14:28:09.133] [INFO] Allocated flags array (16 bytes) at address 0xaaab00002250
+[14:28:09.133] [INFO] Initialized all flags to 0
+[14:28:09.133] [INFO] PE 1: Starting wait_until_some (flags=0xaaab00002250, n=4, indices=0xfffff1999fc8, status=[SHMEM_CMP_EQ x4], target=1)
+[14:28:09.133] [INFO] PE 1: wait_until_some completed with count=0
+[14:28:09.133] [FAIL] PE 1: wait_until_some failed - expected count=2, got count=0
+[14:28:09.133] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:28:09.133] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_some(long)
+[14:28:09.133] [INFO] Allocated flags array (32 bytes) at address 0xaaab00002250
+[14:28:09.133] [INFO] Initialized all flags to 0
+[14:28:09.133] [INFO] PE 1: Starting wait_until_some (flags=0xaaab00002250, n=4, indices=0xfffff1999fc8, status=[SHMEM_CMP_EQ x4], target=1)
+[14:28:09.133] [INFO] PE 1: wait_until_some completed with count=0
+[14:28:09.133] [FAIL] PE 1: wait_until_some failed - expected count=2, got count=0
+[14:28:09.133] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:28:09.133] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_some(long long)
+[14:28:09.133] [INFO] Allocated flags array (32 bytes) at address 0xaaab00002250
+[14:28:09.133] [INFO] Initialized all flags to 0
+[14:28:09.133] [INFO] PE 1: Starting wait_until_some (flags=0xaaab00002250, n=4, indices=0xfffff1999fc8, status=[SHMEM_CMP_EQ x4], target=1)
+[14:28:09.133] [INFO] PE 1: wait_until_some completed with count=0
+[14:28:09.133] [FAIL] PE 1: wait_until_some failed - expected count=2, got count=0
+[14:28:09.133] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:28:09.133] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_some(unsigned int)
+[14:28:09.134] [INFO] Allocated flags array (16 bytes) at address 0xaaab00002250
+[14:28:09.134] [INFO] Initialized all flags to 0
+[14:28:09.134] [INFO] PE 1: Starting wait_until_some (flags=0xaaab00002250, n=4, indices=0xfffff1999fc8, status=[SHMEM_CMP_EQ x4], target=1)
+[14:28:09.134] [INFO] PE 1: wait_until_some completed with count=0
+[14:28:09.134] [FAIL] PE 1: wait_until_some failed - expected count=2, got count=0
+[14:28:09.134] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:28:09.134] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_some(unsigned long)
+[14:28:09.134] [INFO] Allocated flags array (32 bytes) at address 0xaaab00002250
+[14:28:09.134] [INFO] Initialized all flags to 0
+[14:28:09.134] [INFO] PE 1: Starting wait_until_some (flags=0xaaab00002250, n=4, indices=0xfffff1999fc8, status=[SHMEM_CMP_EQ x4], target=1)
+[14:28:09.134] [INFO] PE 1: wait_until_some completed with count=0
+[14:28:09.134] [FAIL] PE 1: wait_until_some failed - expected count=2, got count=0
+[14:28:09.134] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:28:09.134] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_some(unsigned long long)
+[14:28:09.134] [INFO] Allocated flags array (32 bytes) at address 0xaaab00002250
+[14:28:09.134] [INFO] Initialized all flags to 0
+[14:28:09.134] [INFO] PE 1: Starting wait_until_some (flags=0xaaab00002250, n=4, indices=0xfffff1999fc8, status=[SHMEM_CMP_EQ x4], target=1)
+[14:28:09.134] [INFO] PE 1: wait_until_some completed with count=0
+[14:28:09.134] [FAIL] PE 1: wait_until_some failed - expected count=2, got count=0
+[14:28:09.134] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:28:09.134] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_some(int32_t)
+[14:28:09.135] [INFO] Allocated flags array (16 bytes) at address 0xaaab00002250
+[14:28:09.135] [INFO] Initialized all flags to 0
+[14:28:09.135] [INFO] PE 1: Starting wait_until_some (flags=0xaaab00002250, n=4, indices=0xfffff1999fc8, status=[SHMEM_CMP_EQ x4], target=1)
+[14:28:09.135] [INFO] PE 1: wait_until_some completed with count=0
+[14:28:09.135] [FAIL] PE 1: wait_until_some failed - expected count=2, got count=0
+[14:28:09.135] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:28:09.135] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_some(int64_t)
+[14:28:09.135] [INFO] Allocated flags array (32 bytes) at address 0xaaab00002250
+[14:28:09.135] [INFO] Initialized all flags to 0
+[14:28:09.135] [INFO] PE 1: Starting wait_until_some (flags=0xaaab00002250, n=4, indices=0xfffff1999fc8, status=[SHMEM_CMP_EQ x4], target=1)
+[14:28:09.135] [INFO] PE 1: wait_until_some completed with count=0
+[14:28:09.135] [FAIL] PE 1: wait_until_some failed - expected count=2, got count=0
+[14:28:09.135] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:28:09.135] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_some(uint32_t)
+[14:28:09.135] [INFO] Allocated flags array (16 bytes) at address 0xaaab00002250
+[14:28:09.135] [INFO] Initialized all flags to 0
+[14:28:09.135] [INFO] PE 1: Starting wait_until_some (flags=0xaaab00002250, n=4, indices=0xfffff1999fc8, status=[SHMEM_CMP_EQ x4], target=1)
+[14:28:09.135] [INFO] PE 1: wait_until_some completed with count=0
+[14:28:09.135] [FAIL] PE 1: wait_until_some failed - expected count=2, got count=0
+[14:28:09.135] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:28:09.135] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_some(uint64_t)
+[14:28:09.136] [INFO] Allocated flags array (32 bytes) at address 0xaaab00002250
+[14:28:09.136] [INFO] Initialized all flags to 0
+[14:28:09.136] [INFO] PE 1: Starting wait_until_some (flags=0xaaab00002250, n=4, indices=0xfffff1999fc8, status=[SHMEM_CMP_EQ x4], target=1)
+[14:28:09.136] [INFO] PE 1: wait_until_some completed with count=0
+[14:28:09.136] [FAIL] PE 1: wait_until_some failed - expected count=2, got count=0
+[14:28:09.136] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:28:09.136] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_some(size_t)
+[14:28:09.136] [INFO] Allocated flags array (32 bytes) at address 0xaaab00002250
+[14:28:09.136] [INFO] Initialized all flags to 0
+[14:28:09.136] [INFO] PE 1: Starting wait_until_some (flags=0xaaab00002250, n=4, indices=0xfffff1999fc8, status=[SHMEM_CMP_EQ x4], target=1)
+[14:28:09.136] [INFO] PE 1: wait_until_some completed with count=0
+[14:28:09.136] [FAIL] PE 1: wait_until_some failed - expected count=2, got count=0
+[14:28:09.136] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:28:09.136] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_some(ptrdiff_t)
+[14:28:09.136] [INFO] Allocated flags array (32 bytes) at address 0xaaab00002250
+[14:28:09.136] [INFO] Initialized all flags to 0
+[14:28:09.136] [INFO] PE 1: Starting wait_until_some (flags=0xaaab00002250, n=4, indices=0xfffff1999fc8, status=[SHMEM_CMP_EQ x4], target=1)
+[14:28:09.136] [INFO] PE 1: wait_until_some completed with count=0
+[14:28:09.136] [FAIL] PE 1: wait_until_some failed - expected count=2, got count=0
+[14:28:09.136] [INFO] Freeing allocated memory at 0xaaab00002250
+---------- END TEST: FAILED

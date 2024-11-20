@@ -1,9 +1,0 @@
----------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/memory/c11_shmem_calloc.c
-[12:01:14.339] ------ BEGIN TEST ROUTINE: shmem_calloc()
-[12:01:14.339] [INFO] Allocating array of 256 elements of size 4 bytes each
-[12:01:14.339] [INFO] Successfully allocated memory at 0xaaab00002250
-[12:01:14.339] [INFO] Verifying all elements are initialized to zero...
-[12:01:14.339] [INFO] All elements verified to be zero
-[12:01:14.339] [INFO] Freeing allocated memory...
-[12:01:14.339] [INFO] Memory freed successfully
----------- END TEST: PASSED

@@ -1,0 +1,86 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c/pt2pt_sync/c_shmem_wait_until.c
+[14:26:45.056] ------ BEGIN TEST ROUTINE: shmem_wait_until(int)
+[14:26:45.057] [INFO] Allocated flag array (4 bytes) at address 0xaaab40002250
+[14:26:45.057] [INFO] Initialized flag to 0
+[14:26:45.057] [INFO] PE 1: Starting wait_until (flag=0xaaab40002250, SHMEM_CMP_EQ, 1)
+[14:26:45.057] [INFO] PE 1: wait_until completed with flag value=1
+[14:26:45.057] [INFO] PE 1: Successfully validated flag=1
+[14:26:45.057] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:26:45.057] ------ BEGIN TEST ROUTINE: shmem_wait_until(long)
+[14:26:45.057] [INFO] Allocated flag array (8 bytes) at address 0xaaab40002250
+[14:26:45.057] [INFO] Initialized flag to 0
+[14:26:45.057] [INFO] PE 1: Starting wait_until (flag=0xaaab40002250, SHMEM_CMP_EQ, 1)
+[14:26:45.057] [INFO] PE 1: wait_until completed with flag value=1
+[14:26:45.057] [INFO] PE 1: Successfully validated flag=1
+[14:26:45.057] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:26:45.058] ------ BEGIN TEST ROUTINE: shmem_wait_until(long long)
+[14:26:45.058] [INFO] Allocated flag array (8 bytes) at address 0xaaab40002250
+[14:26:45.058] [INFO] Initialized flag to 0
+[14:26:45.058] [INFO] PE 1: Starting wait_until (flag=0xaaab40002250, SHMEM_CMP_EQ, 1)
+[14:26:45.058] [INFO] PE 1: wait_until completed with flag value=1
+[14:26:45.058] [INFO] PE 1: Successfully validated flag=1
+[14:26:45.058] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:26:45.058] ------ BEGIN TEST ROUTINE: shmem_wait_until(unsigned int)
+[14:26:45.058] [INFO] Allocated flag array (4 bytes) at address 0xaaab40002250
+[14:26:45.058] [INFO] Initialized flag to 0
+[14:26:45.058] [INFO] PE 1: Starting wait_until (flag=0xaaab40002250, SHMEM_CMP_EQ, 1)
+[14:26:45.058] [INFO] PE 1: wait_until completed with flag value=1
+[14:26:45.058] [INFO] PE 1: Successfully validated flag=1
+[14:26:45.058] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:26:45.058] ------ BEGIN TEST ROUTINE: shmem_wait_until(unsigned long)
+[14:26:45.058] [INFO] Allocated flag array (8 bytes) at address 0xaaab40002250
+[14:26:45.058] [INFO] Initialized flag to 0
+[14:26:45.059] [INFO] PE 1: Starting wait_until (flag=0xaaab40002250, SHMEM_CMP_EQ, 1)
+[14:26:45.059] [INFO] PE 1: wait_until completed with flag value=1
+[14:26:45.059] [INFO] PE 1: Successfully validated flag=1
+[14:26:45.059] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:26:45.059] ------ BEGIN TEST ROUTINE: shmem_wait_until(unsigned long long)
+[14:26:45.059] [INFO] Allocated flag array (8 bytes) at address 0xaaab40002250
+[14:26:45.059] [INFO] Initialized flag to 0
+[14:26:45.059] [INFO] PE 1: Starting wait_until (flag=0xaaab40002250, SHMEM_CMP_EQ, 1)
+[14:26:45.059] [INFO] PE 1: wait_until completed with flag value=1
+[14:26:45.059] [INFO] PE 1: Successfully validated flag=1
+[14:26:45.059] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:26:45.059] ------ BEGIN TEST ROUTINE: shmem_wait_until(int32_t)
+[14:26:45.059] [INFO] Allocated flag array (4 bytes) at address 0xaaab40002250
+[14:26:45.059] [INFO] Initialized flag to 0
+[14:26:45.059] [INFO] PE 1: Starting wait_until (flag=0xaaab40002250, SHMEM_CMP_EQ, 1)
+[14:26:45.059] [INFO] PE 1: wait_until completed with flag value=1
+[14:26:45.059] [INFO] PE 1: Successfully validated flag=1
+[14:26:45.059] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:26:45.059] ------ BEGIN TEST ROUTINE: shmem_wait_until(int64_t)
+[14:26:45.059] [INFO] Allocated flag array (8 bytes) at address 0xaaab40002250
+[14:26:45.059] [INFO] Initialized flag to 0
+[14:26:45.060] [INFO] PE 1: Starting wait_until (flag=0xaaab40002250, SHMEM_CMP_EQ, 1)
+[14:26:45.060] [INFO] PE 1: wait_until completed with flag value=1
+[14:26:45.060] [INFO] PE 1: Successfully validated flag=1
+[14:26:45.060] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:26:45.060] ------ BEGIN TEST ROUTINE: shmem_wait_until(uint32_t)
+[14:26:45.060] [INFO] Allocated flag array (4 bytes) at address 0xaaab40002250
+[14:26:45.060] [INFO] Initialized flag to 0
+[14:26:45.060] [INFO] PE 1: Starting wait_until (flag=0xaaab40002250, SHMEM_CMP_EQ, 1)
+[14:26:45.060] [INFO] PE 1: wait_until completed with flag value=1
+[14:26:45.060] [INFO] PE 1: Successfully validated flag=1
+[14:26:45.060] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:26:45.060] ------ BEGIN TEST ROUTINE: shmem_wait_until(uint64_t)
+[14:26:45.060] [INFO] Allocated flag array (8 bytes) at address 0xaaab40002250
+[14:26:45.060] [INFO] Initialized flag to 0
+[14:26:45.060] [INFO] PE 1: Starting wait_until (flag=0xaaab40002250, SHMEM_CMP_EQ, 1)
+[14:26:45.060] [INFO] PE 1: wait_until completed with flag value=1
+[14:26:45.060] [INFO] PE 1: Successfully validated flag=1
+[14:26:45.060] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:26:45.060] ------ BEGIN TEST ROUTINE: shmem_wait_until(size_t)
+[14:26:45.061] [INFO] Allocated flag array (8 bytes) at address 0xaaab40002250
+[14:26:45.061] [INFO] Initialized flag to 0
+[14:26:45.061] [INFO] PE 1: Starting wait_until (flag=0xaaab40002250, SHMEM_CMP_EQ, 1)
+[14:26:45.061] [INFO] PE 1: wait_until completed with flag value=1
+[14:26:45.061] [INFO] PE 1: Successfully validated flag=1
+[14:26:45.061] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:26:45.061] ------ BEGIN TEST ROUTINE: shmem_wait_until(ptrdiff_t)
+[14:26:45.061] [INFO] Allocated flag array (8 bytes) at address 0xaaab40002250
+[14:26:45.061] [INFO] Initialized flag to 0
+[14:26:45.061] [INFO] PE 1: Starting wait_until (flag=0xaaab40002250, SHMEM_CMP_EQ, 1)
+[14:26:45.061] [INFO] PE 1: wait_until completed with flag value=1
+[14:26:45.061] [INFO] PE 1: Successfully validated flag=1
+[14:26:45.061] [INFO] Freeing allocated memory at 0xaaab40002250
+---------- END TEST: PASSED

@@ -1,0 +1,100 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/pt2pt_sync/c11_shmem_test_some_vector.c
+[14:28:09.056] ------ BEGIN TEST ROUTINE: c11_shmem_test_some_vector(short)
+[14:28:09.057] [INFO] Allocated flags array (8 bytes) at address 0xaaab40002250
+[14:28:09.057] [INFO] Initialized all flags to 0
+[14:28:09.057] [INFO] PE 1: Starting test_some_vector loop (flags=0xaaab40002250, condition=SHMEM_CMP_EQ, targets=[0,1,0,1])
+[14:28:09.057] [INFO] PE 1: test_some_vector loop completed after 0 iterations
+[14:28:09.057] [INFO] PE 1: Successfully validated flags[1]=1 and flags[3]=1
+[14:28:09.057] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.057] ------ BEGIN TEST ROUTINE: c11_shmem_test_some_vector(int)
+[14:28:09.057] [INFO] Allocated flags array (16 bytes) at address 0xaaab40002250
+[14:28:09.057] [INFO] Initialized all flags to 0
+[14:28:09.057] [INFO] PE 1: Starting test_some_vector loop (flags=0xaaab40002250, condition=SHMEM_CMP_EQ, targets=[0,1,0,1])
+[14:28:09.057] [INFO] PE 1: test_some_vector loop completed after 0 iterations
+[14:28:09.057] [INFO] PE 1: Successfully validated flags[1]=1 and flags[3]=1
+[14:28:09.057] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.057] ------ BEGIN TEST ROUTINE: c11_shmem_test_some_vector(long)
+[14:28:09.057] [INFO] Allocated flags array (32 bytes) at address 0xaaab40002250
+[14:28:09.057] [INFO] Initialized all flags to 0
+[14:28:09.058] [INFO] PE 1: Starting test_some_vector loop (flags=0xaaab40002250, condition=SHMEM_CMP_EQ, targets=[0,1,0,1])
+[14:28:09.058] [INFO] PE 1: test_some_vector loop completed after 0 iterations
+[14:28:09.058] [INFO] PE 1: Successfully validated flags[1]=1 and flags[3]=1
+[14:28:09.058] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.058] ------ BEGIN TEST ROUTINE: c11_shmem_test_some_vector(long long)
+[14:28:09.058] [INFO] Allocated flags array (32 bytes) at address 0xaaab40002250
+[14:28:09.058] [INFO] Initialized all flags to 0
+[14:28:09.058] [INFO] PE 1: Starting test_some_vector loop (flags=0xaaab40002250, condition=SHMEM_CMP_EQ, targets=[0,1,0,1])
+[14:28:09.058] [INFO] PE 1: test_some_vector loop completed after 0 iterations
+[14:28:09.058] [INFO] PE 1: Successfully validated flags[1]=1 and flags[3]=1
+[14:28:09.058] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.058] ------ BEGIN TEST ROUTINE: c11_shmem_test_some_vector(unsigned short)
+[14:28:09.058] [INFO] Allocated flags array (8 bytes) at address 0xaaab40002250
+[14:28:09.058] [INFO] Initialized all flags to 0
+[14:28:09.058] [INFO] PE 1: Starting test_some_vector loop (flags=0xaaab40002250, condition=SHMEM_CMP_EQ, targets=[0,1,0,1])
+[14:28:09.058] [INFO] PE 1: test_some_vector loop completed after 0 iterations
+[14:28:09.058] [INFO] PE 1: Successfully validated flags[1]=1 and flags[3]=1
+[14:28:09.058] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.058] ------ BEGIN TEST ROUTINE: c11_shmem_test_some_vector(unsigned int)
+[14:28:09.059] [INFO] Allocated flags array (16 bytes) at address 0xaaab40002250
+[14:28:09.059] [INFO] Initialized all flags to 0
+[14:28:09.059] [INFO] PE 1: Starting test_some_vector loop (flags=0xaaab40002250, condition=SHMEM_CMP_EQ, targets=[0,1,0,1])
+[14:28:09.059] [INFO] PE 1: test_some_vector loop completed after 0 iterations
+[14:28:09.059] [INFO] PE 1: Successfully validated flags[1]=1 and flags[3]=1
+[14:28:09.059] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.059] ------ BEGIN TEST ROUTINE: c11_shmem_test_some_vector(unsigned long)
+[14:28:09.059] [INFO] Allocated flags array (32 bytes) at address 0xaaab40002250
+[14:28:09.059] [INFO] Initialized all flags to 0
+[14:28:09.059] [INFO] PE 1: Starting test_some_vector loop (flags=0xaaab40002250, condition=SHMEM_CMP_EQ, targets=[0,1,0,1])
+[14:28:09.059] [INFO] PE 1: test_some_vector loop completed after 0 iterations
+[14:28:09.059] [INFO] PE 1: Successfully validated flags[1]=1 and flags[3]=1
+[14:28:09.059] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.059] ------ BEGIN TEST ROUTINE: c11_shmem_test_some_vector(unsigned long long)
+[14:28:09.059] [INFO] Allocated flags array (32 bytes) at address 0xaaab40002250
+[14:28:09.059] [INFO] Initialized all flags to 0
+[14:28:09.059] [INFO] PE 1: Starting test_some_vector loop (flags=0xaaab40002250, condition=SHMEM_CMP_EQ, targets=[0,1,0,1])
+[14:28:09.059] [INFO] PE 1: test_some_vector loop completed after 0 iterations
+[14:28:09.059] [INFO] PE 1: Successfully validated flags[1]=1 and flags[3]=1
+[14:28:09.059] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.060] ------ BEGIN TEST ROUTINE: c11_shmem_test_some_vector(int32_t)
+[14:28:09.060] [INFO] Allocated flags array (16 bytes) at address 0xaaab40002250
+[14:28:09.060] [INFO] Initialized all flags to 0
+[14:28:09.060] [INFO] PE 1: Starting test_some_vector loop (flags=0xaaab40002250, condition=SHMEM_CMP_EQ, targets=[0,1,0,1])
+[14:28:09.060] [INFO] PE 1: test_some_vector loop completed after 0 iterations
+[14:28:09.060] [INFO] PE 1: Successfully validated flags[1]=1 and flags[3]=1
+[14:28:09.060] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.060] ------ BEGIN TEST ROUTINE: c11_shmem_test_some_vector(int64_t)
+[14:28:09.060] [INFO] Allocated flags array (32 bytes) at address 0xaaab40002250
+[14:28:09.060] [INFO] Initialized all flags to 0
+[14:28:09.060] [INFO] PE 1: Starting test_some_vector loop (flags=0xaaab40002250, condition=SHMEM_CMP_EQ, targets=[0,1,0,1])
+[14:28:09.060] [INFO] PE 1: test_some_vector loop completed after 0 iterations
+[14:28:09.060] [INFO] PE 1: Successfully validated flags[1]=1 and flags[3]=1
+[14:28:09.060] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.060] ------ BEGIN TEST ROUTINE: c11_shmem_test_some_vector(uint32_t)
+[14:28:09.060] [INFO] Allocated flags array (16 bytes) at address 0xaaab40002250
+[14:28:09.060] [INFO] Initialized all flags to 0
+[14:28:09.061] [INFO] PE 1: Starting test_some_vector loop (flags=0xaaab40002250, condition=SHMEM_CMP_EQ, targets=[0,1,0,1])
+[14:28:09.061] [INFO] PE 1: test_some_vector loop completed after 0 iterations
+[14:28:09.061] [INFO] PE 1: Successfully validated flags[1]=1 and flags[3]=1
+[14:28:09.061] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.061] ------ BEGIN TEST ROUTINE: c11_shmem_test_some_vector(uint64_t)
+[14:28:09.061] [INFO] Allocated flags array (32 bytes) at address 0xaaab40002250
+[14:28:09.061] [INFO] Initialized all flags to 0
+[14:28:09.061] [INFO] PE 1: Starting test_some_vector loop (flags=0xaaab40002250, condition=SHMEM_CMP_EQ, targets=[0,1,0,1])
+[14:28:09.061] [INFO] PE 1: test_some_vector loop completed after 0 iterations
+[14:28:09.061] [INFO] PE 1: Successfully validated flags[1]=1 and flags[3]=1
+[14:28:09.061] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.061] ------ BEGIN TEST ROUTINE: c11_shmem_test_some_vector(size_t)
+[14:28:09.061] [INFO] Allocated flags array (32 bytes) at address 0xaaab40002250
+[14:28:09.061] [INFO] Initialized all flags to 0
+[14:28:09.061] [INFO] PE 1: Starting test_some_vector loop (flags=0xaaab40002250, condition=SHMEM_CMP_EQ, targets=[0,1,0,1])
+[14:28:09.061] [INFO] PE 1: test_some_vector loop completed after 0 iterations
+[14:28:09.061] [INFO] PE 1: Successfully validated flags[1]=1 and flags[3]=1
+[14:28:09.061] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.062] ------ BEGIN TEST ROUTINE: c11_shmem_test_some_vector(ptrdiff_t)
+[14:28:09.062] [INFO] Allocated flags array (32 bytes) at address 0xaaab40002250
+[14:28:09.062] [INFO] Initialized all flags to 0
+[14:28:09.062] [INFO] PE 1: Starting test_some_vector loop (flags=0xaaab40002250, condition=SHMEM_CMP_EQ, targets=[0,1,0,1])
+[14:28:09.062] [INFO] PE 1: test_some_vector loop completed after 0 iterations
+[14:28:09.062] [INFO] PE 1: Successfully validated flags[1]=1 and flags[3]=1
+[14:28:09.062] [INFO] Freeing allocated memory at 0xaaab40002250
+---------- END TEST: PASSED

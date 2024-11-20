@@ -1,0 +1,86 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/pt2pt_sync/c11_shmem_wait_until_all.c
+[14:28:09.081] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_all(short)
+[14:28:09.081] [INFO] Allocated flags array (4 bytes) at address 0xaaab40002250
+[14:28:09.081] [INFO] Initialized all flags to 0
+[14:28:09.081] [INFO] PE 0: Setting flags[0] and flags[1] to 1 on PE 1
+[14:28:09.081] [INFO] PE 0: Called shmem_quiet() after setting flags
+[14:28:09.081] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.082] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_all(int)
+[14:28:09.082] [INFO] Allocated flags array (8 bytes) at address 0xaaab40002250
+[14:28:09.082] [INFO] Initialized all flags to 0
+[14:28:09.082] [INFO] PE 0: Setting flags[0] and flags[1] to 1 on PE 1
+[14:28:09.082] [INFO] PE 0: Called shmem_quiet() after setting flags
+[14:28:09.082] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.082] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_all(long)
+[14:28:09.082] [INFO] Allocated flags array (16 bytes) at address 0xaaab40002250
+[14:28:09.082] [INFO] Initialized all flags to 0
+[14:28:09.082] [INFO] PE 0: Setting flags[0] and flags[1] to 1 on PE 1
+[14:28:09.082] [INFO] PE 0: Called shmem_quiet() after setting flags
+[14:28:09.082] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.082] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_all(long long)
+[14:28:09.083] [INFO] Allocated flags array (16 bytes) at address 0xaaab40002250
+[14:28:09.083] [INFO] Initialized all flags to 0
+[14:28:09.083] [INFO] PE 0: Setting flags[0] and flags[1] to 1 on PE 1
+[14:28:09.083] [INFO] PE 0: Called shmem_quiet() after setting flags
+[14:28:09.083] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.083] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_all(unsigned short)
+[14:28:09.083] [INFO] Allocated flags array (4 bytes) at address 0xaaab40002250
+[14:28:09.083] [INFO] Initialized all flags to 0
+[14:28:09.083] [INFO] PE 0: Setting flags[0] and flags[1] to 1 on PE 1
+[14:28:09.083] [INFO] PE 0: Called shmem_quiet() after setting flags
+[14:28:09.083] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.083] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_all(unsigned int)
+[14:28:09.083] [INFO] Allocated flags array (8 bytes) at address 0xaaab40002250
+[14:28:09.084] [INFO] Initialized all flags to 0
+[14:28:09.084] [INFO] PE 0: Setting flags[0] and flags[1] to 1 on PE 1
+[14:28:09.084] [INFO] PE 0: Called shmem_quiet() after setting flags
+[14:28:09.084] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.084] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_all(unsigned long)
+[14:28:09.084] [INFO] Allocated flags array (16 bytes) at address 0xaaab40002250
+[14:28:09.084] [INFO] Initialized all flags to 0
+[14:28:09.084] [INFO] PE 0: Setting flags[0] and flags[1] to 1 on PE 1
+[14:28:09.084] [INFO] PE 0: Called shmem_quiet() after setting flags
+[14:28:09.084] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.084] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_all(unsigned long long)
+[14:28:09.084] [INFO] Allocated flags array (16 bytes) at address 0xaaab40002250
+[14:28:09.084] [INFO] Initialized all flags to 0
+[14:28:09.084] [INFO] PE 0: Setting flags[0] and flags[1] to 1 on PE 1
+[14:28:09.084] [INFO] PE 0: Called shmem_quiet() after setting flags
+[14:28:09.084] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.085] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_all(int32_t)
+[14:28:09.085] [INFO] Allocated flags array (8 bytes) at address 0xaaab40002250
+[14:28:09.085] [INFO] Initialized all flags to 0
+[14:28:09.085] [INFO] PE 0: Setting flags[0] and flags[1] to 1 on PE 1
+[14:28:09.085] [INFO] PE 0: Called shmem_quiet() after setting flags
+[14:28:09.085] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.085] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_all(int64_t)
+[14:28:09.085] [INFO] Allocated flags array (16 bytes) at address 0xaaab40002250
+[14:28:09.085] [INFO] Initialized all flags to 0
+[14:28:09.085] [INFO] PE 0: Setting flags[0] and flags[1] to 1 on PE 1
+[14:28:09.085] [INFO] PE 0: Called shmem_quiet() after setting flags
+[14:28:09.085] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.085] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_all(uint32_t)
+[14:28:09.085] [INFO] Allocated flags array (8 bytes) at address 0xaaab40002250
+[14:28:09.085] [INFO] Initialized all flags to 0
+[14:28:09.085] [INFO] PE 0: Setting flags[0] and flags[1] to 1 on PE 1
+[14:28:09.085] [INFO] PE 0: Called shmem_quiet() after setting flags
+[14:28:09.086] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.086] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_all(uint64_t)
+[14:28:09.086] [INFO] Allocated flags array (16 bytes) at address 0xaaab40002250
+[14:28:09.086] [INFO] Initialized all flags to 0
+[14:28:09.086] [INFO] PE 0: Setting flags[0] and flags[1] to 1 on PE 1
+[14:28:09.086] [INFO] PE 0: Called shmem_quiet() after setting flags
+[14:28:09.086] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.086] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_all(size_t)
+[14:28:09.086] [INFO] Allocated flags array (16 bytes) at address 0xaaab40002250
+[14:28:09.086] [INFO] Initialized all flags to 0
+[14:28:09.086] [INFO] PE 0: Setting flags[0] and flags[1] to 1 on PE 1
+[14:28:09.086] [INFO] PE 0: Called shmem_quiet() after setting flags
+[14:28:09.086] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:28:09.087] ------ BEGIN TEST ROUTINE: c11_shmem_wait_until_all(ptrdiff_t)
+[14:28:09.087] [INFO] Allocated flags array (16 bytes) at address 0xaaab40002250
+[14:28:09.087] [INFO] Initialized all flags to 0
+[14:28:09.087] [INFO] PE 0: Setting flags[0] and flags[1] to 1 on PE 1
+[14:28:09.087] [INFO] PE 0: Called shmem_quiet() after setting flags
+[14:28:09.087] [INFO] Freeing allocated memory at 0xaaab40002250
+---------- END TEST: PASSED

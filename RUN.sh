@@ -59,14 +59,14 @@ echo $HLINE
 # done
 
 # --- memory
-for executable in $MEMORY_BIN/c_*; do
-  oshrun -np 2 $executable
-done
-
-# --- pt2pt_sync
-# for executable in $PT2PT_SYNC_BIN/c_*; do
+# for executable in $MEMORY_BIN/c_*; do
 #   oshrun -np 2 $executable
 # done
+
+# --- pt2pt_sync
+for executable in $PT2PT_SYNC_BIN/c_*; do
+  oshrun -np 2 $executable
+done
 
 # --- signaling
 # for executable in $SIGNALING_BIN/c_*; do
@@ -121,14 +121,14 @@ echo $HLINE
 # done
 
 # --- memory
-for executable in $MEMORY_BIN/c11_*; do
-  oshrun -np 2 $executable
-done
-
-# --- pt2pt_sync
-# for executable in $PT2PT_SYNC_BIN/c11_*; do
+# for executable in $MEMORY_BIN/c11_*; do
 #   oshrun -np 2 $executable
 # done
+
+# --- pt2pt_sync
+for executable in $PT2PT_SYNC_BIN/c11_*; do
+  oshrun -np 2 $executable
+done
 
 # --- signaling
 # for executable in $SIGNALING_BIN/c11_*; do

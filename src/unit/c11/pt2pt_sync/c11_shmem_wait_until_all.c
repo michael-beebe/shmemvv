@@ -18,15 +18,15 @@
     log_routine("c11_shmem_wait_until_all(" #TYPE ")");                        \
     bool success = true;                                                       \
     TYPE *flags = (TYPE *)shmem_malloc(2 * sizeof(TYPE));                      \
-    log_info("shmem_malloc'd 2 flags (%d bytes) at %p", 2 * sizeof(TYPE),      \
-             (void *)flags);                                                   \
+    log_info("Allocated flags array (%zu bytes) at address %p",                \
+             2 * sizeof(TYPE), (void *)flags);                                 \
     if (flags == NULL) {                                                       \
-      log_fail("shmem_malloc failed!");                                        \
+      log_fail("Memory allocation failed - shmem_malloc returned NULL");       \
       success = false;                                                         \
     } else {                                                                   \
       flags[0] = 0;                                                            \
       flags[1] = 0;                                                            \
-      log_info("set flags to 0");                                              \
+      log_info("Initialized all flags to 0");                                  \
       int mype = shmem_my_pe();                                                \
       int npes = shmem_n_pes();                                                \
                                                                                \
@@ -34,28 +34,30 @@
                                                                                \
       if (mype == 0) {                                                         \
         for (int pe = 1; pe < npes; ++pe) {                                    \
-          log_info("setting flag on pe %d to 1", pe);                          \
+          log_info("PE 0: Setting flags[0] and flags[1] to 1 on PE %d", pe);   \
           shmem_##TYPENAME##_p(&flags[0], 1, pe);                              \
           shmem_##TYPENAME##_p(&flags[1], 1, pe);                              \
         }                                                                      \
         shmem_quiet();                                                         \
+        log_info("PE 0: Called shmem_quiet() after setting flags");            \
       }                                                                        \
                                                                                \
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype != 0) {                                                         \
-        log_info(                                                              \
-            "executing wait_until_all(flags = %p, n = 2, SHMEM_CMP_EQ, 1)",    \
-            (void *)flags);                                                    \
+        log_info("PE %d: Starting wait_until_all (flags=%p, n=2, "             \
+                 "condition=SHMEM_CMP_EQ, target=1)", mype, (void *)flags);    \
         shmem_##TYPENAME##_wait_until_all(flags, 2, NULL, SHMEM_CMP_EQ, 1);    \
-        log_info("wait until returned");                                       \
+        log_info("PE %d: wait_until_all completed", mype);                     \
         if (flags[0] != 1 || flags[1] != 1) {                                  \
-          log_fail("wait until returned but flags didn't match test!");        \
-          log_fail("expected [1, 1] got [%d, %d]", (char)flags[0],             \
-                   (char)flags[1]);                                            \
+          log_fail("PE %d: Validation failed - flags=[%d, %d], expected [1,1]", \
+                   mype, (int)flags[0], (int)flags[1]);                        \
           success = false;                                                     \
+        } else {                                                               \
+          log_info("PE %d: Successfully validated flags=[1,1]", mype);         \
         }                                                                      \
       }                                                                        \
+      log_info("Freeing allocated memory at %p", (void *)flags);               \
       shmem_free(flags);                                                       \
     }                                                                          \
     success;                                                                   \

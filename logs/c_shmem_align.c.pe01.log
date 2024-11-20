@@ -1,7 +1,0 @@
----------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c/memory/c_shmem_align.c
-[12:01:14.265] ------ BEGIN TEST ROUTINE: shmem_align()
-[12:01:14.265] [INFO] calling shmem_align with alignment=64, size=1024
-[12:01:14.266] [INFO] shmem_align returned 0xaaab40002280
-[12:01:14.266] [INFO] freeing aligned memory
-[12:01:14.266] [INFO] shmem_align test completed successfully
----------- END TEST: PASSED

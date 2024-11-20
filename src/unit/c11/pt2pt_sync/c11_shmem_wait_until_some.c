@@ -19,26 +19,27 @@
     log_routine("c11_shmem_wait_until_some(" #TYPE ")");                       \
     bool success = true;                                                       \
     TYPE *flags = (TYPE *)shmem_malloc(4 * sizeof(TYPE));                      \
-    log_info("shmem_malloc'd 4 flags (%d bytes) at %p", 4 * sizeof(TYPE),      \
-             (void *)flags);                                                   \
+    log_info("Allocated flags array (%zu bytes) at address %p",                \
+             4 * sizeof(TYPE), (void *)flags);                                 \
     if (flags == NULL) {                                                       \
-      log_fail("shmem_malloc failed!");                                        \
+      log_fail("Memory allocation failed - shmem_malloc returned NULL");       \
       success = false;                                                         \
     } else {                                                                   \
       for (int i = 0; i < 4; ++i) {                                            \
         flags[i] = 0;                                                          \
       }                                                                        \
-      log_info("set flags to [0; 4]");                                         \
+      log_info("Initialized all flags to 0");                                  \
       int mype = shmem_my_pe();                                                \
                                                                                \
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype == 0) {                                                         \
-        log_info("setting flags[1, 3] ([%p, %p]) on pe 1 to 1",                \
-                 (void *)&flags[1], (void *)&flags[3]);                        \
+        log_info("PE 0: Setting flags[1] and flags[3] to 1 on PE 1 "           \
+                 "(addresses: %p, %p)", (void *)&flags[1], (void *)&flags[3]); \
         shmem_##TYPENAME##_p(&flags[1], 1, 1);                                 \
         shmem_##TYPENAME##_p(&flags[3], 1, 1);                                 \
         shmem_quiet();                                                         \
+        log_info("PE 0: Called shmem_quiet() after setting flags");            \
       }                                                                        \
                                                                                \
       shmem_barrier_all();                                                     \
@@ -47,30 +48,32 @@
         size_t indices[4];                                                     \
         int status[4] = {SHMEM_CMP_EQ, SHMEM_CMP_EQ, SHMEM_CMP_EQ,             \
                          SHMEM_CMP_EQ};                                        \
-        log_info("executing wait_until_some(flags = %p, n = 4, indices = %p, " \
-                 "status = "                                                   \
-                 "[SHMEM_CMP_EQ; 4], to = 1)",                                 \
-                 (void *)flags, (void *)indices);                              \
+        log_info("PE %d: Starting wait_until_some (flags=%p, n=4, "            \
+                 "indices=%p, status=[SHMEM_CMP_EQ x4], target=1)",            \
+                 mype, (void *)flags, (void *)indices);                        \
         size_t count = shmem_##TYPENAME##_wait_until_some(                     \
             flags, 4, indices, status, SHMEM_CMP_EQ, 1);                       \
-        log_info("wait_until_some returned");                                  \
+        log_info("PE %d: wait_until_some completed with count=%zu",            \
+                 mype, count);                                                 \
         if (count < 2) {                                                       \
-          log_info("wait_until_any didn't find all matches! expected count = " \
-                   "2, got %d",                                                \
-                   (char)count);                                               \
+          log_fail("PE %d: wait_until_some failed - expected count=2, "        \
+                   "got count=%zu", mype, count);                              \
           success = false;                                                     \
         } else {                                                               \
           for (size_t i = 0; i < count; ++i) {                                 \
             if (flags[indices[i]] != 1) {                                      \
-              log_fail(                                                        \
-                  "indices says flags[%d] should be 1, but was really %d!",    \
-                  indices[i], (char)flags[indices[1]]);                        \
+              log_fail("PE %d: Validation failed - flags[%zu]=%d, expected 1", \
+                       mype, indices[i], (int)flags[indices[i]]);              \
               success = false;                                                 \
               break;                                                           \
+            } else {                                                           \
+              log_info("PE %d: Successfully validated flags[%zu]=1",           \
+                       mype, indices[i]);                                      \
             }                                                                  \
           }                                                                    \
         }                                                                      \
       }                                                                        \
+      log_info("Freeing allocated memory at %p", (void *)flags);               \
       shmem_free(flags);                                                       \
     }                                                                          \
     success;                                                                   \

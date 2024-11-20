@@ -19,16 +19,16 @@
     log_routine("c11_shmem_test_all(" #TYPE ")");                              \
     bool success = true;                                                       \
     TYPE *flags = (TYPE *)shmem_malloc(4 * sizeof(TYPE));                      \
-    log_info("shmem_malloc'd flag (%d bytes) at %p", 4 * sizeof(TYPE),         \
-             (void *)flags);                                                   \
+    log_info("Allocated flags array (%zu bytes) at address %p",                \
+             4 * sizeof(TYPE), (void *)flags);                                 \
     if (flags == NULL) {                                                       \
-      log_fail("shmem_malloc failed! got null ptr!");                          \
+      log_fail("Memory allocation failed - shmem_malloc returned NULL");       \
       success = false;                                                         \
     } else {                                                                   \
       for (int i = 0; i < 4; ++i) {                                            \
         flags[i] = 0;                                                          \
       }                                                                        \
-      log_info("set flags to 0..=3");                                          \
+      log_info("Initialized all flags to 0");                                  \
       int mype = shmem_my_pe();                                                \
       int npes = shmem_n_pes();                                                \
                                                                                \
@@ -36,11 +36,12 @@
                                                                                \
       if (mype == 0) {                                                         \
         for (int pe = 1; pe < npes; ++pe) {                                    \
-          log_info("copying flags to pe %d...", pe);                           \
+          log_info("PE 0: Setting flags to 1 on remote PE %d", pe);            \
           for (int i = 0; i < 4; ++i) {                                        \
             shmem_##TYPENAME##_p(&flags[i], 1, pe);                            \
           }                                                                    \
         }                                                                      \
+        log_info("PE 0: Completed setting flags, calling shmem_quiet()");      \
         shmem_quiet();                                                         \
       }                                                                        \
                                                                                \
@@ -49,27 +50,35 @@
       if (mype != 0) {                                                         \
         TYPE cmp_value = 1;                                                    \
         time_t start_time = time(NULL);                                        \
-        log_info("waiting for flags to be sent (pe %d)", mype);                \
+        int iterations = 0;                                                    \
+        log_info("PE %d: Starting test_all loop (flags=%p, condition="         \
+                 "SHMEM_CMP_EQ, target=1)", mype, (void *)flags);             \
         while (!shmem_##TYPENAME##_test_all(flags, 4, NULL, SHMEM_CMP_EQ,      \
                                             cmp_value)) {                      \
           if (time(NULL) - start_time > TIMEOUT) {                             \
-            log_info("waited too long. assuming failure");                     \
+            log_fail("PE %d: Test timed out after %d iterations", mype,        \
+                     iterations);                                              \
             break;                                                             \
           }                                                                    \
           usleep(500);                                                         \
+          iterations++;                                                        \
         }                                                                      \
+        log_info("PE %d: test_all loop completed after %d iterations",         \
+                 mype, iterations);                                            \
+                                                                               \
         for (int i = 0; i < 4; ++i) {                                          \
           if (flags[i] != 1) {                                                 \
-            log_fail("flags[%d] was not expected value, expected %d got %d",   \
-                     1, (char)flags[i]);                                       \
+            log_fail("PE %d: Validation failed - flags[%d] = %d, expected 1",  \
+                     mype, i, (int)flags[i]);                                  \
             success = false;                                                   \
             break;                                                             \
           }                                                                    \
         }                                                                      \
         if (success) {                                                         \
-          log_info("flags are valid");                                         \
+          log_info("PE %d: All flags successfully validated", mype);           \
         }                                                                      \
       }                                                                        \
+      log_info("Freeing allocated memory at %p", (void *)flags);               \
       shmem_free(flags);                                                       \
     }                                                                          \
     success;                                                                   \

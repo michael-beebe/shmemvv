@@ -1,0 +1,100 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c/pt2pt_sync/c_shmem_test_all.c
+[14:26:03.021] ------ BEGIN TEST ROUTINE: shmem_test_all(short)
+[14:26:03.022] [INFO] Allocated flags array (8 bytes) at address 0xaaab00002250
+[14:26:03.022] [INFO] Initialized all flags to 0
+[14:26:03.023] [INFO] PE 1: Starting test_all loop (flags=0xaaab00002250, condition=SHMEM_CMP_EQ, target=1)
+[14:26:03.023] [INFO] PE 1: test_all loop completed after 0 iterations
+[14:26:03.023] [INFO] PE 1: All flags successfully validated
+[14:26:03.023] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:26:03.023] ------ BEGIN TEST ROUTINE: shmem_test_all(int)
+[14:26:03.023] [INFO] Allocated flags array (16 bytes) at address 0xaaab00002250
+[14:26:03.023] [INFO] Initialized all flags to 0
+[14:26:03.024] [INFO] PE 1: Starting test_all loop (flags=0xaaab00002250, condition=SHMEM_CMP_EQ, target=1)
+[14:26:03.024] [INFO] PE 1: test_all loop completed after 0 iterations
+[14:26:03.024] [INFO] PE 1: All flags successfully validated
+[14:26:03.024] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:26:03.024] ------ BEGIN TEST ROUTINE: shmem_test_all(long)
+[14:26:03.024] [INFO] Allocated flags array (32 bytes) at address 0xaaab00002250
+[14:26:03.024] [INFO] Initialized all flags to 0
+[14:26:03.024] [INFO] PE 1: Starting test_all loop (flags=0xaaab00002250, condition=SHMEM_CMP_EQ, target=1)
+[14:26:03.024] [INFO] PE 1: test_all loop completed after 0 iterations
+[14:26:03.024] [INFO] PE 1: All flags successfully validated
+[14:26:03.024] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:26:03.024] ------ BEGIN TEST ROUTINE: shmem_test_all(long long)
+[14:26:03.024] [INFO] Allocated flags array (32 bytes) at address 0xaaab00002250
+[14:26:03.024] [INFO] Initialized all flags to 0
+[14:26:03.025] [INFO] PE 1: Starting test_all loop (flags=0xaaab00002250, condition=SHMEM_CMP_EQ, target=1)
+[14:26:03.025] [INFO] PE 1: test_all loop completed after 0 iterations
+[14:26:03.025] [INFO] PE 1: All flags successfully validated
+[14:26:03.025] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:26:03.025] ------ BEGIN TEST ROUTINE: shmem_test_all(unsigned short)
+[14:26:03.025] [INFO] Allocated flags array (8 bytes) at address 0xaaab00002250
+[14:26:03.025] [INFO] Initialized all flags to 0
+[14:26:03.025] [INFO] PE 1: Starting test_all loop (flags=0xaaab00002250, condition=SHMEM_CMP_EQ, target=1)
+[14:26:03.025] [INFO] PE 1: test_all loop completed after 0 iterations
+[14:26:03.025] [INFO] PE 1: All flags successfully validated
+[14:26:03.025] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:26:03.025] ------ BEGIN TEST ROUTINE: shmem_test_all(unsigned int)
+[14:26:03.026] [INFO] Allocated flags array (16 bytes) at address 0xaaab00002250
+[14:26:03.026] [INFO] Initialized all flags to 0
+[14:26:03.026] [INFO] PE 1: Starting test_all loop (flags=0xaaab00002250, condition=SHMEM_CMP_EQ, target=1)
+[14:26:03.026] [INFO] PE 1: test_all loop completed after 0 iterations
+[14:26:03.026] [INFO] PE 1: All flags successfully validated
+[14:26:03.026] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:26:03.026] ------ BEGIN TEST ROUTINE: shmem_test_all(unsigned long)
+[14:26:03.026] [INFO] Allocated flags array (32 bytes) at address 0xaaab00002250
+[14:26:03.026] [INFO] Initialized all flags to 0
+[14:26:03.026] [INFO] PE 1: Starting test_all loop (flags=0xaaab00002250, condition=SHMEM_CMP_EQ, target=1)
+[14:26:03.026] [INFO] PE 1: test_all loop completed after 0 iterations
+[14:26:03.026] [INFO] PE 1: All flags successfully validated
+[14:26:03.026] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:26:03.027] ------ BEGIN TEST ROUTINE: shmem_test_all(unsigned long long)
+[14:26:03.027] [INFO] Allocated flags array (32 bytes) at address 0xaaab00002250
+[14:26:03.027] [INFO] Initialized all flags to 0
+[14:26:03.027] [INFO] PE 1: Starting test_all loop (flags=0xaaab00002250, condition=SHMEM_CMP_EQ, target=1)
+[14:26:03.027] [INFO] PE 1: test_all loop completed after 0 iterations
+[14:26:03.027] [INFO] PE 1: All flags successfully validated
+[14:26:03.027] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:26:03.027] ------ BEGIN TEST ROUTINE: shmem_test_all(int32_t)
+[14:26:03.027] [INFO] Allocated flags array (16 bytes) at address 0xaaab00002250
+[14:26:03.027] [INFO] Initialized all flags to 0
+[14:26:03.028] [INFO] PE 1: Starting test_all loop (flags=0xaaab00002250, condition=SHMEM_CMP_EQ, target=1)
+[14:26:03.028] [INFO] PE 1: test_all loop completed after 0 iterations
+[14:26:03.028] [INFO] PE 1: All flags successfully validated
+[14:26:03.028] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:26:03.028] ------ BEGIN TEST ROUTINE: shmem_test_all(int64_t)
+[14:26:03.028] [INFO] Allocated flags array (32 bytes) at address 0xaaab00002250
+[14:26:03.028] [INFO] Initialized all flags to 0
+[14:26:03.028] [INFO] PE 1: Starting test_all loop (flags=0xaaab00002250, condition=SHMEM_CMP_EQ, target=1)
+[14:26:03.028] [INFO] PE 1: test_all loop completed after 0 iterations
+[14:26:03.028] [INFO] PE 1: All flags successfully validated
+[14:26:03.028] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:26:03.028] ------ BEGIN TEST ROUTINE: shmem_test_all(uint32_t)
+[14:26:03.028] [INFO] Allocated flags array (16 bytes) at address 0xaaab00002250
+[14:26:03.028] [INFO] Initialized all flags to 0
+[14:26:03.028] [INFO] PE 1: Starting test_all loop (flags=0xaaab00002250, condition=SHMEM_CMP_EQ, target=1)
+[14:26:03.028] [INFO] PE 1: test_all loop completed after 0 iterations
+[14:26:03.028] [INFO] PE 1: All flags successfully validated
+[14:26:03.028] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:26:03.029] ------ BEGIN TEST ROUTINE: shmem_test_all(uint64_t)
+[14:26:03.029] [INFO] Allocated flags array (32 bytes) at address 0xaaab00002250
+[14:26:03.029] [INFO] Initialized all flags to 0
+[14:26:03.029] [INFO] PE 1: Starting test_all loop (flags=0xaaab00002250, condition=SHMEM_CMP_EQ, target=1)
+[14:26:03.029] [INFO] PE 1: test_all loop completed after 0 iterations
+[14:26:03.029] [INFO] PE 1: All flags successfully validated
+[14:26:03.029] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:26:03.030] ------ BEGIN TEST ROUTINE: shmem_test_all(size_t)
+[14:26:03.030] [INFO] Allocated flags array (32 bytes) at address 0xaaab00002250
+[14:26:03.030] [INFO] Initialized all flags to 0
+[14:26:03.030] [INFO] PE 1: Starting test_all loop (flags=0xaaab00002250, condition=SHMEM_CMP_EQ, target=1)
+[14:26:03.030] [INFO] PE 1: test_all loop completed after 0 iterations
+[14:26:03.030] [INFO] PE 1: All flags successfully validated
+[14:26:03.030] [INFO] Freeing allocated memory at 0xaaab00002250
+[14:26:03.030] ------ BEGIN TEST ROUTINE: shmem_test_all(ptrdiff_t)
+[14:26:03.030] [INFO] Allocated flags array (32 bytes) at address 0xaaab00002250
+[14:26:03.030] [INFO] Initialized all flags to 0
+[14:26:03.031] [INFO] PE 1: Starting test_all loop (flags=0xaaab00002250, condition=SHMEM_CMP_EQ, target=1)
+[14:26:03.031] [INFO] PE 1: test_all loop completed after 0 iterations
+[14:26:03.031] [INFO] PE 1: All flags successfully validated
+[14:26:03.031] [INFO] Freeing allocated memory at 0xaaab00002250
+---------- END TEST: PASSED

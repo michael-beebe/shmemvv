@@ -1,0 +1,114 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/pt2pt_sync/c11_shmem_test.c
+[14:26:45.153] ------ BEGIN TEST ROUTINE: c11_shmem_test(short)
+[14:26:45.153] [INFO] Allocated flag array (2 bytes) at address 0xaaab40002250
+[14:26:45.153] [INFO] Initialized flag to 0
+[14:26:45.153] [INFO] PE 1: Starting test loop (flag=0xaaab40002250, condition=SHMEM_CMP_EQ, target=1)
+[14:26:48.001] [FAIL] PE 1: Test timed out after 1420 iterations
+[14:26:48.001] [INFO] PE 1: Test loop completed after 1420 iterations
+[14:26:48.001] [FAIL] PE 1: Validation failed - flag=0, expected 1
+[14:26:48.001] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:26:48.002] ------ BEGIN TEST ROUTINE: c11_shmem_test(int)
+[14:26:48.002] [INFO] Allocated flag array (4 bytes) at address 0xaaab40002250
+[14:26:48.002] [INFO] Initialized flag to 0
+[14:26:48.003] [INFO] PE 1: Starting test loop (flag=0xaaab40002250, condition=SHMEM_CMP_EQ, target=1)
+[14:26:51.001] [FAIL] PE 1: Test timed out after 1497 iterations
+[14:26:51.001] [INFO] PE 1: Test loop completed after 1497 iterations
+[14:26:51.001] [FAIL] PE 1: Validation failed - flag=0, expected 1
+[14:26:51.001] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:26:51.002] ------ BEGIN TEST ROUTINE: c11_shmem_test(long)
+[14:26:51.002] [INFO] Allocated flag array (8 bytes) at address 0xaaab40002250
+[14:26:51.002] [INFO] Initialized flag to 0
+[14:26:51.003] [INFO] PE 1: Starting test loop (flag=0xaaab40002250, condition=SHMEM_CMP_EQ, target=1)
+[14:26:54.001] [FAIL] PE 1: Test timed out after 1497 iterations
+[14:26:54.001] [INFO] PE 1: Test loop completed after 1497 iterations
+[14:26:54.001] [FAIL] PE 1: Validation failed - flag=0, expected 1
+[14:26:54.001] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:26:54.002] ------ BEGIN TEST ROUTINE: c11_shmem_test(long long)
+[14:26:54.002] [INFO] Allocated flag array (8 bytes) at address 0xaaab40002250
+[14:26:54.002] [INFO] Initialized flag to 0
+[14:26:54.003] [INFO] PE 1: Starting test loop (flag=0xaaab40002250, condition=SHMEM_CMP_EQ, target=1)
+[14:26:57.001] [FAIL] PE 1: Test timed out after 1497 iterations
+[14:26:57.001] [INFO] PE 1: Test loop completed after 1497 iterations
+[14:26:57.001] [FAIL] PE 1: Validation failed - flag=0, expected 1
+[14:26:57.001] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:26:57.002] ------ BEGIN TEST ROUTINE: c11_shmem_test(unsigned short)
+[14:26:57.002] [INFO] Allocated flag array (2 bytes) at address 0xaaab40002250
+[14:26:57.002] [INFO] Initialized flag to 0
+[14:26:57.003] [INFO] PE 1: Starting test loop (flag=0xaaab40002250, condition=SHMEM_CMP_EQ, target=1)
+[14:27:00.001] [FAIL] PE 1: Test timed out after 1492 iterations
+[14:27:00.001] [INFO] PE 1: Test loop completed after 1492 iterations
+[14:27:00.001] [FAIL] PE 1: Validation failed - flag=0, expected 1
+[14:27:00.001] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:27:00.004] ------ BEGIN TEST ROUTINE: c11_shmem_test(unsigned int)
+[14:27:00.004] [INFO] Allocated flag array (4 bytes) at address 0xaaab40002250
+[14:27:00.004] [INFO] Initialized flag to 0
+[14:27:00.005] [INFO] PE 1: Starting test loop (flag=0xaaab40002250, condition=SHMEM_CMP_EQ, target=1)
+[14:27:03.002] [FAIL] PE 1: Test timed out after 1496 iterations
+[14:27:03.002] [INFO] PE 1: Test loop completed after 1496 iterations
+[14:27:03.002] [FAIL] PE 1: Validation failed - flag=0, expected 1
+[14:27:03.002] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:27:03.003] ------ BEGIN TEST ROUTINE: c11_shmem_test(unsigned long)
+[14:27:03.003] [INFO] Allocated flag array (8 bytes) at address 0xaaab40002250
+[14:27:03.003] [INFO] Initialized flag to 0
+[14:27:03.004] [INFO] PE 1: Starting test loop (flag=0xaaab40002250, condition=SHMEM_CMP_EQ, target=1)
+[14:27:06.002] [FAIL] PE 1: Test timed out after 1498 iterations
+[14:27:06.002] [INFO] PE 1: Test loop completed after 1498 iterations
+[14:27:06.002] [FAIL] PE 1: Validation failed - flag=0, expected 1
+[14:27:06.002] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:27:06.003] ------ BEGIN TEST ROUTINE: c11_shmem_test(unsigned long long)
+[14:27:06.003] [INFO] Allocated flag array (8 bytes) at address 0xaaab40002250
+[14:27:06.003] [INFO] Initialized flag to 0
+[14:27:06.003] [INFO] PE 1: Starting test loop (flag=0xaaab40002250, condition=SHMEM_CMP_EQ, target=1)
+[14:27:09.001] [FAIL] PE 1: Test timed out after 1498 iterations
+[14:27:09.001] [INFO] PE 1: Test loop completed after 1498 iterations
+[14:27:09.001] [FAIL] PE 1: Validation failed - flag=0, expected 1
+[14:27:09.001] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:27:09.002] ------ BEGIN TEST ROUTINE: c11_shmem_test(int32_t)
+[14:27:09.002] [INFO] Allocated flag array (4 bytes) at address 0xaaab40002250
+[14:27:09.002] [INFO] Initialized flag to 0
+[14:27:09.003] [INFO] PE 1: Starting test loop (flag=0xaaab40002250, condition=SHMEM_CMP_EQ, target=1)
+[14:27:12.001] [FAIL] PE 1: Test timed out after 1498 iterations
+[14:27:12.001] [INFO] PE 1: Test loop completed after 1498 iterations
+[14:27:12.001] [FAIL] PE 1: Validation failed - flag=0, expected 1
+[14:27:12.001] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:27:12.002] ------ BEGIN TEST ROUTINE: c11_shmem_test(int64_t)
+[14:27:12.002] [INFO] Allocated flag array (8 bytes) at address 0xaaab40002250
+[14:27:12.002] [INFO] Initialized flag to 0
+[14:27:12.003] [INFO] PE 1: Starting test loop (flag=0xaaab40002250, condition=SHMEM_CMP_EQ, target=1)
+[14:27:15.001] [FAIL] PE 1: Test timed out after 1497 iterations
+[14:27:15.001] [INFO] PE 1: Test loop completed after 1497 iterations
+[14:27:15.001] [FAIL] PE 1: Validation failed - flag=0, expected 1
+[14:27:15.001] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:27:15.001] ------ BEGIN TEST ROUTINE: c11_shmem_test(uint32_t)
+[14:27:15.001] [INFO] Allocated flag array (4 bytes) at address 0xaaab40002250
+[14:27:15.001] [INFO] Initialized flag to 0
+[14:27:15.002] [INFO] PE 1: Starting test loop (flag=0xaaab40002250, condition=SHMEM_CMP_EQ, target=1)
+[14:27:18.002] [FAIL] PE 1: Test timed out after 1499 iterations
+[14:27:18.002] [INFO] PE 1: Test loop completed after 1499 iterations
+[14:27:18.002] [FAIL] PE 1: Validation failed - flag=0, expected 1
+[14:27:18.002] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:27:18.004] ------ BEGIN TEST ROUTINE: c11_shmem_test(uint64_t)
+[14:27:18.004] [INFO] Allocated flag array (8 bytes) at address 0xaaab40002250
+[14:27:18.004] [INFO] Initialized flag to 0
+[14:27:18.005] [INFO] PE 1: Starting test loop (flag=0xaaab40002250, condition=SHMEM_CMP_EQ, target=1)
+[14:27:21.002] [FAIL] PE 1: Test timed out after 1497 iterations
+[14:27:21.002] [INFO] PE 1: Test loop completed after 1497 iterations
+[14:27:21.002] [FAIL] PE 1: Validation failed - flag=0, expected 1
+[14:27:21.002] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:27:21.003] ------ BEGIN TEST ROUTINE: c11_shmem_test(size_t)
+[14:27:21.003] [INFO] Allocated flag array (8 bytes) at address 0xaaab40002250
+[14:27:21.003] [INFO] Initialized flag to 0
+[14:27:21.004] [INFO] PE 1: Starting test loop (flag=0xaaab40002250, condition=SHMEM_CMP_EQ, target=1)
+[14:27:24.001] [FAIL] PE 1: Test timed out after 1491 iterations
+[14:27:24.001] [INFO] PE 1: Test loop completed after 1491 iterations
+[14:27:24.001] [FAIL] PE 1: Validation failed - flag=0, expected 1
+[14:27:24.001] [INFO] Freeing allocated memory at 0xaaab40002250
+[14:27:24.002] ------ BEGIN TEST ROUTINE: c11_shmem_test(ptrdiff_t)
+[14:27:24.002] [INFO] Allocated flag array (8 bytes) at address 0xaaab40002250
+[14:27:24.002] [INFO] Initialized flag to 0
+[14:27:24.003] [INFO] PE 1: Starting test loop (flag=0xaaab40002250, condition=SHMEM_CMP_EQ, target=1)
+[14:27:27.002] [FAIL] PE 1: Test timed out after 1499 iterations
+[14:27:27.002] [INFO] PE 1: Test loop completed after 1499 iterations
+[14:27:27.002] [FAIL] PE 1: Validation failed - flag=0, expected 1
+[14:27:27.002] [INFO] Freeing allocated memory at 0xaaab40002250
+---------- END TEST: FAILED

@@ -18,47 +18,51 @@
     log_routine("c11_shmem_wait_until_any(" #TYPE ")");                        \
     bool success = true;                                                       \
     TYPE *flags = (TYPE *)shmem_malloc(3 * sizeof(TYPE));                      \
-    log_info("shmem_malloc'd 3 flags (%d bytes) at %p", 3 * sizeof(TYPE),      \
-             (void *)flags);                                                   \
+    log_info("Allocated flags array (%zu bytes) at address %p",                \
+             3 * sizeof(TYPE), (void *)flags);                                 \
     if (flags == NULL) {                                                       \
-      log_fail("shmem_malloc failed!");                                        \
+      log_fail("Memory allocation failed - shmem_malloc returned NULL");       \
       success = false;                                                         \
     } else {                                                                   \
       for (int i = 0; i < 3; i++) {                                            \
         flags[i] = 0;                                                          \
       }                                                                        \
-      log_info("set flags to [0; 3]");                                         \
+      log_info("Initialized all flags to 0");                                  \
       int mype = shmem_my_pe();                                                \
                                                                                \
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype == 0) {                                                         \
-        log_info("setting flags[2] (%p) on pe 1 to 1", (void *)&flags[2]);     \
+        log_info("PE 0: Setting flags[2] to 1 on PE 1 (address: %p)",          \
+                 (void *)&flags[2]);                                           \
         shmem_##TYPENAME##_p(&flags[2], 1, 1);                                 \
         shmem_quiet();                                                         \
+        log_info("PE 0: Called shmem_quiet() after setting flag");             \
       }                                                                        \
                                                                                \
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype != 0) {                                                         \
         int status[3] = {SHMEM_CMP_EQ, SHMEM_CMP_EQ, SHMEM_CMP_EQ};            \
-        log_info("executing wait_until_any(flags = %p, n = 3, status = "       \
-                 "[SHMEM_CMP_EQ; 3], to = 1)",                                 \
-                 (void *)flags);                                               \
+        log_info("PE %d: Starting wait_until_any (flags=%p, n=3, "             \
+                 "status=[SHMEM_CMP_EQ x3], target=1)", mype, (void *)flags);  \
         size_t index = shmem_##TYPENAME##_wait_until_any(flags, 3, status,     \
                                                          SHMEM_CMP_EQ, 1);     \
-        log_info("wait_until_any returned (idx = %d)", (char)index);           \
+        log_info("PE %d: wait_until_any completed with index=%zu",             \
+                 mype, index);                                                 \
         if (index == SIZE_MAX) {                                               \
-          log_info(                                                            \
-              "wait_until_any skipped valid match! expected ret = 1, got %d",  \
-              (char)index);                                                    \
+          log_fail("PE %d: wait_until_any failed - returned SIZE_MAX",         \
+                   mype);                                                      \
           success = false;                                                     \
         } else if (flags[index] != 1) {                                        \
-          log_info("wait_until_any match invalid! expected ret = 1, got %d",   \
-                   (char)index);                                               \
+          log_fail("PE %d: Validation failed - flags[%zu]=%d, expected 1",     \
+                   mype, index, (int)flags[index]);                            \
           success = false;                                                     \
+        } else {                                                               \
+          log_info("PE %d: Successfully validated flags[%zu]=1", mype, index); \
         }                                                                      \
       }                                                                        \
+      log_info("Freeing allocated memory at %p", (void *)flags);               \
       shmem_free(flags);                                                       \
     }                                                                          \
     success;                                                                   \
