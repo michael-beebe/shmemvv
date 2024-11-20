@@ -14,8 +14,9 @@ bool test_shmem_team_split_2d(void) {
 
   log_info("Attempting to split SHMEM_TEAM_WORLD into 2D teams");
   log_info("Using xdim=2 and auto-calculated ydim");
-  
-  int ret = shmem_team_split_2d(SHMEM_TEAM_WORLD, 2, NULL, 0, &team_x, NULL, 0, &team_y);
+
+  int ret = shmem_team_split_2d(SHMEM_TEAM_WORLD, 2, NULL, 0, &team_x, NULL, 0,
+                                &team_y);
 
   if (ret != 0) {
     log_fail("Team split failed with error code %d", ret);
@@ -50,7 +51,8 @@ int main(int argc, char *argv[]) {
 
   if (!(npes >= 2)) {
     if (mype == 0) {
-      log_fail("Test requires at least 2 PEs, but only %d PE(s) available", npes);
+      log_fail("Test requires at least 2 PEs, but only %d PE(s) available",
+               npes);
       display_not_enough_pes("TEAMS");
     }
     shmem_finalize();

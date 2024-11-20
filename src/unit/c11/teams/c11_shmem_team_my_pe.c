@@ -32,7 +32,8 @@ int main(int argc, char *argv[]) {
 
   if (!(npes >= 2)) {
     if (mype == 0) {
-      log_fail("Test requires at least 2 PEs, but only %d PE(s) available", npes);
+      log_fail("Test requires at least 2 PEs, but only %d PE(s) available",
+               npes);
       display_not_enough_pes("TEAMS");
     }
     shmem_finalize();
