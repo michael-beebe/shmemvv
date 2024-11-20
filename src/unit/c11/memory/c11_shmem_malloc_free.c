@@ -13,17 +13,29 @@
 #include "shmemvv.h"
 
 bool test_shmem_malloc_free(void) {
-  log_routine("shmem_malloc_free()");
+  log_routine("shmem_malloc() and shmem_free()");
+  log_info("Testing symmetric heap allocation and deallocation");
+
   size_t size = 1024;
+  log_info("Attempting to allocate %zu bytes using shmem_malloc...", size);
+
   void *ptr = shmem_malloc(size);
-  log_info("shmem_malloc'd %ld bytes @ %p", (long)size, (void *)ptr);
   if (ptr == NULL) {
-    log_fail("shmem_malloc ret'd null ptr!");
+    log_fail("Memory allocation failed: shmem_malloc returned NULL pointer");
     return false;
   }
-  log_info("shmem_free'ing %p...", (void *)ptr);
+
+  log_info("Successfully allocated %zu bytes at address %p", size, (void *)ptr);
+  log_info("Verifying allocation is accessible...");
+
+  *((char *)ptr) = 1;
+  log_info("Memory write test successful");
+
+  log_info("Deallocating memory at address %p using shmem_free...",
+           (void *)ptr);
   shmem_free(ptr);
-  log_info("shmem_free'd %p...", (void *)ptr);
+  log_info("Memory successfully deallocated");
+
   return true;
 }
 

@@ -14,17 +14,33 @@
 
 bool test_shmem_malloc_with_hints(void) {
   log_routine("shmem_malloc_with_hints()");
+  log_info("Testing symmetric heap allocation with hints");
+
   size_t size = 1024;
   long hints = SHMEM_MALLOC_ATOMICS_REMOTE;
+
+  log_info("Attempting to allocate %zu bytes with SHMEM_MALLOC_ATOMICS_REMOTE "
+           "hint...",
+           size);
   void *ptr = shmem_malloc_with_hints(size, hints);
-  log_info("shmem_malloc'd %ld bytes @ %p with ATOMICS_REMOTE hint", (long)size,
-           (void *)ptr);
+
   if (ptr == NULL) {
-    log_fail("shmem_malloc_with_hints ret'd null ptr!");
+    log_fail("Memory allocation failed: shmem_malloc_with_hints returned NULL "
+             "pointer");
     return false;
   }
-  log_info("shmem_malloc_with_hints ret'd valid ptr");
+
+  log_info("Successfully allocated %zu bytes at address %p", size, (void *)ptr);
+  log_info("Verifying allocation is accessible...");
+
+  *((char *)ptr) = 1;
+  log_info("Memory write test successful");
+
+  log_info("Deallocating memory at address %p using shmem_free...",
+           (void *)ptr);
   shmem_free(ptr);
+  log_info("Memory successfully deallocated");
+
   return true;
 }
 

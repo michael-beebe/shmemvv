@@ -1,0 +1,10 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c/memory/c_shmem_malloc_free.c
+[12:01:14.287] ------ BEGIN TEST ROUTINE: shmem_malloc() and shmem_free()
+[12:01:14.287] [INFO] Testing symmetric heap allocation and deallocation
+[12:01:14.287] [INFO] Attempting to allocate 1024 bytes using shmem_malloc...
+[12:01:14.288] [INFO] Successfully allocated 1024 bytes at address 0xaaab40002250
+[12:01:14.288] [INFO] Verifying allocation is accessible...
+[12:01:14.288] [INFO] Memory write test successful
+[12:01:14.288] [INFO] Deallocating memory at address 0xaaab40002250 using shmem_free...
+[12:01:14.288] [INFO] Memory successfully deallocated
+---------- END TEST: PASSED

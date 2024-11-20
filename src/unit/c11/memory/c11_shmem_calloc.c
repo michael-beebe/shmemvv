@@ -16,24 +16,32 @@ bool test_shmem_calloc(void) {
   log_routine("shmem_calloc()");
   size_t count = 256;
   size_t size = sizeof(int);
-  log_info("calling shmem_calloc(count = %ld, size = %d)", (long)count,
-           (char)size);
+
+  log_info("Allocating array of %zu elements of size %zu bytes each", count,
+           size);
   int *ptr = (int *)shmem_calloc(count, size);
+
   if (ptr == NULL) {
-    log_fail("shmem_calloc ret'd null ptr!");
+    log_fail("shmem_calloc returned NULL pointer");
     return false;
   }
-  log_info("validating result...");
+
+  log_info("Successfully allocated memory at %p", (void *)ptr);
+  log_info("Verifying all elements are initialized to zero...");
+
   for (size_t i = 0; i < count; ++i) {
     if (ptr[i] != 0) {
-      log_fail("idx %d (%p) was not zeroed by shmem_calloc!", i,
-               (void *)&ptr[i]);
+      log_fail("Element at index %zu is not zero (value: %d)", i, ptr[i]);
       shmem_free(ptr);
       return false;
     }
   }
-  log_info("result validated");
+
+  log_info("All elements verified to be zero");
+  log_info("Freeing allocated memory...");
   shmem_free(ptr);
+
+  log_info("Memory freed successfully");
   return true;
 }
 

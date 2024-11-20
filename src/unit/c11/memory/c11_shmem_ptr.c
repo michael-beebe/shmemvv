@@ -14,51 +14,65 @@
 
 bool test_shmem_ptr() {
   log_routine("shmem_ptr()");
+  log_info("Testing shmem_ptr functionality between PEs");
+
   int mype = shmem_my_pe();
   int npes = shmem_n_pes();
+  log_info("Current PE: %d, Total PEs: %d", mype, npes);
+
   int *ptr = (int *)shmem_malloc(sizeof(int));
-  log_info("shmem_malloc'd %d bytes @ %p", sizeof(int), (void *)ptr);
+  log_info("Allocated %zu bytes for test variable at address %p", sizeof(int),
+           (void *)ptr);
 
   if (ptr == NULL) {
-    log_fail("shmem_malloc ret'd null!");
+    log_fail("Memory allocation failed: shmem_malloc returned NULL pointer");
     return false;
   }
 
   *ptr = mype;
-  log_info("set %p to %d", (void *)ptr, mype);
+  log_info("Initialized value at %p to PE number %d", (void *)ptr, mype);
 
+  log_info("Entering barrier before pointer tests");
   shmem_barrier_all();
 
   bool test_passed = true;
 
   for (int pe = 0; pe < npes; ++pe) {
+    log_info("Testing shmem_ptr for PE %d", pe);
     int *remote_ptr = (int *)shmem_ptr(ptr, pe);
-    log_info("got ptr %p on pe %d", (void *)ptr, pe);
+    log_info("shmem_ptr(%p, %d) returned %p", (void *)ptr, pe,
+             (void *)remote_ptr);
 
     if (remote_ptr != NULL) {
-      log_info("shmem_ptr returned valid ptr, verifying data");
+      log_info("Validating data through remote pointer on PE %d", pe);
       int remote_val = *remote_ptr;
       if (remote_val != pe) {
-        log_fail("remote ptr read (%p) produced unexpected value (expected %d, "
-                 "got %d)",
-                 (void *)remote_ptr, pe, remote_val);
+        log_fail("Data validation failed on PE %d: Expected %d, got %d at "
+                 "address %p",
+                 pe, pe, remote_val, (void *)remote_ptr);
         test_passed = false;
       } else {
-        log_fail("remote ptr read (%p @ pe %d) valid", (void *)remote_ptr, pe);
+        log_info("Successfully validated data on PE %d: value %d at address %p",
+                 pe, remote_val, (void *)remote_ptr);
       }
     } else if (pe == mype) {
-      log_fail("shmem_ptr on own pe returned null ptr!");
+      log_fail("shmem_ptr failed to return valid pointer for local PE %d",
+               mype);
       test_passed = false;
     } else {
-      log_warn("ptr was null, but was ptr to remote pe. your openshmem impl "
-               "may not support shmem_ptr");
+      log_warn("shmem_ptr returned NULL for remote PE %d - Implementation may "
+               "not support remote pointers",
+               pe);
     }
   }
 
-  if (test_passed)
-    log_info("shmem_ptr validated");
-  else
-    log_fail("at least one shmem_ptr call failed validation");
+  if (test_passed) {
+    log_info("All shmem_ptr tests completed successfully");
+  } else {
+    log_fail("shmem_ptr validation failed on one or more PEs");
+  }
+
+  log_info("Freeing allocated memory at %p", (void *)ptr);
   shmem_free(ptr);
   return test_passed;
 }

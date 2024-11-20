@@ -1,0 +1,13 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c/memory/c_shmem_quiet.c
+[12:01:14.310] ------ BEGIN TEST ROUTINE: shmem_quiet()
+[12:01:14.310] [INFO] Testing shmem_quiet functionality between PEs
+[12:01:14.310] [INFO] Allocated 8 bytes for flag variable at address 0xaaab40002250
+[12:01:14.310] [INFO] Initialized flag at 0xaaab40002250 to 0
+[12:01:14.310] [INFO] Current PE: 1
+[12:01:14.310] [INFO] Entering barrier before communication
+[12:01:14.310] [INFO] Entering barrier after communication
+[12:01:14.310] [INFO] PE 1: Validating received value
+[12:01:14.310] [INFO] Validation successful: Flag value is 1 as expected
+[12:01:14.310] [INFO] Freeing allocated memory at 0xaaab40002250
+[12:01:14.310] [INFO] Test completed with success
+---------- END TEST: PASSED

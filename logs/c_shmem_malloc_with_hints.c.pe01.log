@@ -1,0 +1,10 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c/memory/c_shmem_malloc_with_hints.c
+[12:01:14.295] ------ BEGIN TEST ROUTINE: shmem_malloc_with_hints()
+[12:01:14.295] [INFO] Testing symmetric heap allocation with hints
+[12:01:14.295] [INFO] Attempting to allocate 1024 bytes with SHMEM_MALLOC_ATOMICS_REMOTE hint...
+[12:01:14.295] [INFO] Successfully allocated 1024 bytes at address 0xaaab40002250
+[12:01:14.295] [INFO] Verifying allocation is accessible...
+[12:01:14.295] [INFO] Memory write test successful
+[12:01:14.295] [INFO] Deallocating memory at address 0xaaab40002250 using shmem_free...
+[12:01:14.295] [INFO] Memory successfully deallocated
+---------- END TEST: PASSED

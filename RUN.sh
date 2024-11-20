@@ -34,14 +34,14 @@ echo $HLINE
 # done
 
 # --- atomics
-for executable in $ATOMIC_BIN/c_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $ATOMIC_BIN/c_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- collectives
-for executable in $COLLECTIVE_BIN/c_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $COLLECTIVE_BIN/c_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- rma
 # for executable in $RMA_BIN/c_*; do
@@ -59,9 +59,9 @@ done
 # done
 
 # --- memory
-# for executable in $MEMORY_BIN/c_*; do
-#   oshrun -np 2 $executable
-# done
+for executable in $MEMORY_BIN/c_*; do
+  oshrun -np 2 $executable
+done
 
 # --- pt2pt_sync
 # for executable in $PT2PT_SYNC_BIN/c_*; do
@@ -96,14 +96,14 @@ echo $HLINE
 # done
 
 # --- atomics
-for executable in $ATOMIC_BIN/c11_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $ATOMIC_BIN/c11_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- collectives
-for executable in $COLLECTIVE_BIN/c11_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $COLLECTIVE_BIN/c11_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- rma
 # for executable in $RMA_BIN/c11_*; do
@@ -121,9 +121,9 @@ done
 # done
 
 # --- memory
-# for executable in $MEMORY_BIN/c11_*; do
-#   oshrun -np 2 $executable
-# done
+for executable in $MEMORY_BIN/c11_*; do
+  oshrun -np 2 $executable
+done
 
 # --- pt2pt_sync
 # for executable in $PT2PT_SYNC_BIN/c11_*; do
@@ -148,9 +148,9 @@ done
 # ===============================================
 #       ----------  CXX  ------------
 # ===============================================
-echo $HLINE
-echo "    RUNNING CXX TESTS"
-echo $HLINE
+# echo $HLINE
+# echo "    RUNNING CXX TESTS"
+# echo $HLINE
 
 # --- setup
 # for executable in $SETUP_BIN/cxx_*; do
@@ -158,14 +158,14 @@ echo $HLINE
 # done
 
 # --- atomics
-for executable in $ATOMIC_BIN/cxx_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $ATOMIC_BIN/cxx_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- collectives
-for executable in $COLLECTIVE_BIN/cxx_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $COLLECTIVE_BIN/cxx_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- rma
 # for executable in $RMA_BIN/cxx_*; do

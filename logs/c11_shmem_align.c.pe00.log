@@ -1,0 +1,9 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/memory/c11_shmem_align.c
+[12:01:14.332] ------ BEGIN TEST ROUTINE: shmem_align()
+[12:01:14.332] [INFO] Testing shmem_align with alignment=64 bytes, size=1024 bytes
+[12:01:14.332] [INFO] Attempting to allocate 1024 bytes of memory aligned to 64 byte boundary...
+[12:01:14.332] [INFO] Successfully allocated aligned memory at address 0xaaab40002280
+[12:01:14.332] [INFO] Verifying alignment: address 0xaaab40002280 mod 64 = 0 (expected 0)
+[12:01:14.332] [INFO] Freeing aligned memory...
+[12:01:14.332] [INFO] Memory freed successfully
+---------- END TEST: PASSED

@@ -14,36 +14,52 @@
 
 bool test_shmem_quiet(void) {
   log_routine("shmem_quiet()");
-  long *flag = (long *)shmem_malloc(sizeof(long));
-  log_info("shmem_malloc'd %d bytes @ %p", sizeof(long), (void *)flag);
-  *flag = 0;
-  log_info("set %p to 0", (void *)flag);
-  int mype = shmem_my_pe();
+  log_info("Testing shmem_quiet functionality between PEs");
 
+  long *flag = (long *)shmem_malloc(sizeof(long));
+  if (flag == NULL) {
+    log_fail("Memory allocation failed: shmem_malloc returned NULL pointer");
+    return false;
+  }
+  log_info("Allocated %zu bytes for flag variable at address %p", sizeof(long),
+           (void *)flag);
+
+  *flag = 0;
+  log_info("Initialized flag at %p to 0", (void *)flag);
+
+  int mype = shmem_my_pe();
+  log_info("Current PE: %d", mype);
+
+  log_info("Entering barrier before communication");
   shmem_barrier_all();
 
   if (mype == 0) {
+    log_info("PE 0: Putting value 1 to flag on PE 1");
     shmem_long_p(flag, 1, 1);
-    log_info("shmem_long_p'd %p to 1", (void *)flag);
+    log_info("PE 0: Calling shmem_quiet to ensure completion of put operation");
     shmem_quiet();
   }
 
+  log_info("Entering barrier after communication");
   shmem_barrier_all();
 
   bool result = true;
   if (mype == 1) {
-    log_info("validating result...");
+    log_info("PE 1: Validating received value");
     if (*flag != 1) {
-      log_fail("got unexpected value in flag: expected 1, got %ld", *flag);
+      log_fail("Validation failed: Expected flag value 1, got %ld", *flag);
       result = false;
     } else {
-      log_info("result is valid!");
+      log_info("Validation successful: Flag value is 1 as expected");
     }
   } else {
-    log_info("validation is done by pe 1, twiddling thumbs");
+    log_info("PE %d: Waiting while PE 1 validates result", mype);
   }
 
+  log_info("Freeing allocated memory at %p", (void *)flag);
   shmem_free(flag);
+
+  log_info("Test completed with %s", result ? "success" : "failure");
   return result;
 }
 

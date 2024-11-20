@@ -1,0 +1,12 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c/memory/c_shmem_fence.c
+[12:01:14.280] ------ BEGIN TEST ROUTINE: shmem_fence()
+[12:01:14.280] [INFO] Testing shmem_fence ordering semantics between PE 0 and PE 1
+[12:01:14.280] [INFO] Allocating shared memory for flag variable...
+[12:01:14.280] [INFO] Successfully allocated 8 bytes at address 0xaaab40002250
+[12:01:14.280] [INFO] Initialized flag to 0
+[12:01:14.280] [INFO] Synchronizing all PEs before test...
+[12:01:14.280] [INFO] Synchronizing all PEs after operations...
+[12:01:14.280] [INFO] PE 1: Validating fence ordering semantics
+[12:01:14.280] [INFO] PE 1: Validation successful - fence maintained proper ordering
+[12:01:14.280] [INFO] Freeing allocated memory at 0xaaab40002250
+---------- END TEST: PASSED

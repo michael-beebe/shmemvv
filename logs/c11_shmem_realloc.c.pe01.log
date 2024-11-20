@@ -1,0 +1,12 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/memory/c11_shmem_realloc.c
+[12:01:14.382] ------ BEGIN TEST ROUTINE: shmem_realloc()
+[12:01:14.382] [INFO] Testing symmetric heap reallocation functionality
+[12:01:14.382] [INFO] Attempting initial allocation of 1024 bytes
+[12:01:14.383] [INFO] Initial allocation: shmem_malloc(1024) returned 0xaaab00002250
+[12:01:14.383] [INFO] Successfully allocated initial memory block
+[12:01:14.383] [INFO] Attempting to reallocate memory from 1024 to 2048 bytes
+[12:01:14.383] [INFO] Calling shmem_realloc(ptr=0xaaab00002250, new_size=2048)
+[12:01:14.383] [INFO] Reallocation successful: new pointer at 0xaaab00002250
+[12:01:14.383] [INFO] Freeing reallocated memory at 0xaaab00002250
+[12:01:14.383] [INFO] Test completed successfully
+---------- END TEST: PASSED
