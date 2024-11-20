@@ -1,0 +1,650 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/rma/c11_shmem_put_nbi.c
+[14:59:26.724] ------ BEGIN TEST ROUTINE: shmem_put_nbi(long)
+[14:59:26.724] [INFO] Allocated static arrays: src at 0xaaaaca8e0200, dest at 0xaaaaca8e0250
+[14:59:26.724] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.724] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.724] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.724] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.724] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.724] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.724] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.724] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.724] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.724] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.724] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.724] [INFO] Completed barrier synchronization
+[14:59:26.724] [INFO] Completed barrier synchronization
+[14:59:26.724] [INFO] PE 1: Beginning validation of received data
+[14:59:26.724] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.724] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.724] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.724] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.724] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.724] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.724] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.724] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.724] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.724] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.724] [INFO] PE 1: All elements validated successfully
+[14:59:26.724] ------ BEGIN TEST ROUTINE: shmem_put_nbi(double)
+[14:59:26.724] [INFO] Allocated static arrays: src at 0xaaaaca8e02a0, dest at 0xaaaaca8e02f0
+[14:59:26.724] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.724] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.724] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.724] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.724] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.724] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.724] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.724] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.724] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.724] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.724] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.724] [INFO] Completed barrier synchronization
+[14:59:26.725] [INFO] Completed barrier synchronization
+[14:59:26.725] [INFO] PE 1: Beginning validation of received data
+[14:59:26.725] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.725] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.725] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.725] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.725] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.725] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.725] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.725] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.725] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.725] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.725] [INFO] PE 1: All elements validated successfully
+[14:59:26.725] ------ BEGIN TEST ROUTINE: shmem_put_nbi(long double)
+[14:59:26.725] [INFO] Allocated static arrays: src at 0xaaaaca8e0340, dest at 0xaaaaca8e03e0
+[14:59:26.725] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.725] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.725] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.725] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.725] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.725] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.725] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.725] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.725] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.725] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.725] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.725] [INFO] Completed barrier synchronization
+[14:59:26.725] [INFO] Completed barrier synchronization
+[14:59:26.725] [INFO] PE 1: Beginning validation of received data
+[14:59:26.725] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.725] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.725] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.725] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.725] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.725] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.725] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.725] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.725] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.725] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.725] [INFO] PE 1: All elements validated successfully
+[14:59:26.725] ------ BEGIN TEST ROUTINE: shmem_put_nbi(char)
+[14:59:26.725] [INFO] Allocated static arrays: src at 0xaaaaca8e0480, dest at 0xaaaaca8e0490
+[14:59:26.725] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.725] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.725] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.725] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.725] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.725] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.725] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.725] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.725] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.725] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.725] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.725] [INFO] Completed barrier synchronization
+[14:59:26.725] [INFO] Completed barrier synchronization
+[14:59:26.725] [INFO] PE 1: Beginning validation of received data
+[14:59:26.725] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.725] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.725] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.725] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.725] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.725] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.725] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.725] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.725] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.725] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.725] [INFO] PE 1: All elements validated successfully
+[14:59:26.725] ------ BEGIN TEST ROUTINE: shmem_put_nbi(signed char)
+[14:59:26.725] [INFO] Allocated static arrays: src at 0xaaaaca8e04a0, dest at 0xaaaaca8e04b0
+[14:59:26.725] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.725] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.725] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.725] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.725] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.725] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.725] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.725] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.725] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.725] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.725] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.725] [INFO] Completed barrier synchronization
+[14:59:26.725] [INFO] Completed barrier synchronization
+[14:59:26.725] [INFO] PE 1: Beginning validation of received data
+[14:59:26.725] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.725] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.725] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.725] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.725] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.725] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.725] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.725] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.725] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.725] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.725] [INFO] PE 1: All elements validated successfully
+[14:59:26.725] ------ BEGIN TEST ROUTINE: shmem_put_nbi(short)
+[14:59:26.725] [INFO] Allocated static arrays: src at 0xaaaaca8e04c0, dest at 0xaaaaca8e04d8
+[14:59:26.725] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.725] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.725] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.725] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.725] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.725] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.725] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.725] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.725] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.725] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.725] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.726] [INFO] Completed barrier synchronization
+[14:59:26.726] [INFO] Completed barrier synchronization
+[14:59:26.726] [INFO] PE 1: Beginning validation of received data
+[14:59:26.726] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.726] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.726] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.726] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.726] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.726] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.726] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.726] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.726] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.726] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.726] [INFO] PE 1: All elements validated successfully
+[14:59:26.726] ------ BEGIN TEST ROUTINE: shmem_put_nbi(int)
+[14:59:26.726] [INFO] Allocated static arrays: src at 0xaaaaca8e04f0, dest at 0xaaaaca8e0518
+[14:59:26.726] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.726] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.726] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.726] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.726] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.726] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.726] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.726] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.726] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.726] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.726] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.726] [INFO] Completed barrier synchronization
+[14:59:26.726] [INFO] Completed barrier synchronization
+[14:59:26.726] [INFO] PE 1: Beginning validation of received data
+[14:59:26.726] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.726] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.726] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.726] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.726] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.726] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.726] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.726] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.726] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.726] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.726] [INFO] PE 1: All elements validated successfully
+[14:59:26.726] ------ BEGIN TEST ROUTINE: shmem_put_nbi(long)
+[14:59:26.726] [INFO] Allocated static arrays: src at 0xaaaaca8e0540, dest at 0xaaaaca8e0590
+[14:59:26.726] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.726] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.726] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.726] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.726] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.726] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.726] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.726] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.726] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.726] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.726] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.726] [INFO] Completed barrier synchronization
+[14:59:26.726] [INFO] Completed barrier synchronization
+[14:59:26.726] [INFO] PE 1: Beginning validation of received data
+[14:59:26.726] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.726] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.726] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.726] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.726] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.726] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.726] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.726] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.726] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.726] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.726] [INFO] PE 1: All elements validated successfully
+[14:59:26.726] ------ BEGIN TEST ROUTINE: shmem_put_nbi(long long)
+[14:59:26.726] [INFO] Allocated static arrays: src at 0xaaaaca8e05e0, dest at 0xaaaaca8e0630
+[14:59:26.726] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.726] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.726] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.726] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.726] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.726] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.726] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.726] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.726] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.726] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.726] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.726] [INFO] Completed barrier synchronization
+[14:59:26.727] [INFO] Completed barrier synchronization
+[14:59:26.727] [INFO] PE 1: Beginning validation of received data
+[14:59:26.727] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.727] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.727] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.727] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.727] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.727] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.727] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.727] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.727] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.727] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.727] [INFO] PE 1: All elements validated successfully
+[14:59:26.727] ------ BEGIN TEST ROUTINE: shmem_put_nbi(unsigned char)
+[14:59:26.727] [INFO] Allocated static arrays: src at 0xaaaaca8e0680, dest at 0xaaaaca8e0690
+[14:59:26.727] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.727] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.727] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.727] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.727] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.727] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.727] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.727] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.727] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.727] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.727] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.727] [INFO] Completed barrier synchronization
+[14:59:26.727] [INFO] Completed barrier synchronization
+[14:59:26.727] [INFO] PE 1: Beginning validation of received data
+[14:59:26.727] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.727] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.727] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.727] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.727] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.727] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.727] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.727] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.727] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.727] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.727] [INFO] PE 1: All elements validated successfully
+[14:59:26.727] ------ BEGIN TEST ROUTINE: shmem_put_nbi(unsigned short)
+[14:59:26.727] [INFO] Allocated static arrays: src at 0xaaaaca8e06a0, dest at 0xaaaaca8e06b8
+[14:59:26.727] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.727] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.727] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.727] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.727] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.727] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.727] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.727] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.727] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.727] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.727] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.727] [INFO] Completed barrier synchronization
+[14:59:26.727] [INFO] Completed barrier synchronization
+[14:59:26.727] [INFO] PE 1: Beginning validation of received data
+[14:59:26.727] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.727] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.727] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.727] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.727] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.727] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.727] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.727] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.727] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.727] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.727] [INFO] PE 1: All elements validated successfully
+[14:59:26.727] ------ BEGIN TEST ROUTINE: shmem_put_nbi(unsigned int)
+[14:59:26.727] [INFO] Allocated static arrays: src at 0xaaaaca8e06d0, dest at 0xaaaaca8e06f8
+[14:59:26.727] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.727] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.727] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.727] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.727] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.727] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.727] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.727] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.727] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.727] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.727] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.727] [INFO] Completed barrier synchronization
+[14:59:26.727] [INFO] Completed barrier synchronization
+[14:59:26.727] [INFO] PE 1: Beginning validation of received data
+[14:59:26.727] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.727] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.727] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.727] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.727] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.727] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.727] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.727] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.727] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.727] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.727] [INFO] PE 1: All elements validated successfully
+[14:59:26.727] ------ BEGIN TEST ROUTINE: shmem_put_nbi(unsigned long)
+[14:59:26.727] [INFO] Allocated static arrays: src at 0xaaaaca8e0720, dest at 0xaaaaca8e0770
+[14:59:26.727] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.727] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.727] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.727] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.727] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.727] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.727] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.727] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.727] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.727] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.727] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.727] [INFO] Completed barrier synchronization
+[14:59:26.728] [INFO] Completed barrier synchronization
+[14:59:26.728] [INFO] PE 1: Beginning validation of received data
+[14:59:26.728] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.728] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.728] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.728] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.728] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.728] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.728] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.728] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.728] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.728] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.728] [INFO] PE 1: All elements validated successfully
+[14:59:26.728] ------ BEGIN TEST ROUTINE: shmem_put_nbi(unsigned long long)
+[14:59:26.728] [INFO] Allocated static arrays: src at 0xaaaaca8e07c0, dest at 0xaaaaca8e0810
+[14:59:26.728] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.728] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.728] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.728] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.728] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.728] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.728] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.728] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.728] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.728] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.728] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.728] [INFO] Completed barrier synchronization
+[14:59:26.728] [INFO] Completed barrier synchronization
+[14:59:26.728] [INFO] PE 1: Beginning validation of received data
+[14:59:26.728] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.728] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.728] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.728] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.728] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.728] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.728] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.728] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.728] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.728] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.728] [INFO] PE 1: All elements validated successfully
+[14:59:26.728] ------ BEGIN TEST ROUTINE: shmem_put_nbi(int8_t)
+[14:59:26.728] [INFO] Allocated static arrays: src at 0xaaaaca8e0860, dest at 0xaaaaca8e0870
+[14:59:26.728] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.728] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.728] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.728] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.728] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.728] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.728] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.728] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.728] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.728] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.728] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.728] [INFO] Completed barrier synchronization
+[14:59:26.728] [INFO] Completed barrier synchronization
+[14:59:26.728] [INFO] PE 1: Beginning validation of received data
+[14:59:26.728] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.728] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.728] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.728] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.728] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.728] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.728] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.728] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.728] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.728] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.728] [INFO] PE 1: All elements validated successfully
+[14:59:26.728] ------ BEGIN TEST ROUTINE: shmem_put_nbi(int16_t)
+[14:59:26.728] [INFO] Allocated static arrays: src at 0xaaaaca8e0880, dest at 0xaaaaca8e0898
+[14:59:26.728] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.728] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.728] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.728] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.728] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.728] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.728] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.728] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.728] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.728] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.728] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.728] [INFO] Completed barrier synchronization
+[14:59:26.728] [INFO] Completed barrier synchronization
+[14:59:26.728] [INFO] PE 1: Beginning validation of received data
+[14:59:26.728] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.728] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.728] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.728] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.728] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.728] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.728] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.728] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.728] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.728] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.728] [INFO] PE 1: All elements validated successfully
+[14:59:26.728] ------ BEGIN TEST ROUTINE: shmem_put_nbi(int32_t)
+[14:59:26.728] [INFO] Allocated static arrays: src at 0xaaaaca8e08b0, dest at 0xaaaaca8e08d8
+[14:59:26.728] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.728] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.728] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.728] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.728] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.728] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.728] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.728] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.728] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.728] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.728] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.729] [INFO] Completed barrier synchronization
+[14:59:26.729] [INFO] Completed barrier synchronization
+[14:59:26.729] [INFO] PE 1: Beginning validation of received data
+[14:59:26.729] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.729] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.729] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.729] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.729] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.729] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.729] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.729] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.729] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.729] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.729] [INFO] PE 1: All elements validated successfully
+[14:59:26.729] ------ BEGIN TEST ROUTINE: shmem_put_nbi(int64_t)
+[14:59:26.729] [INFO] Allocated static arrays: src at 0xaaaaca8e0900, dest at 0xaaaaca8e0950
+[14:59:26.729] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.729] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.729] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.729] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.729] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.729] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.729] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.729] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.729] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.729] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.729] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.729] [INFO] Completed barrier synchronization
+[14:59:26.729] [INFO] Completed barrier synchronization
+[14:59:26.729] [INFO] PE 1: Beginning validation of received data
+[14:59:26.729] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.729] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.729] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.729] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.729] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.729] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.729] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.729] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.729] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.729] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.729] [INFO] PE 1: All elements validated successfully
+[14:59:26.729] ------ BEGIN TEST ROUTINE: shmem_put_nbi(uint8_t)
+[14:59:26.729] [INFO] Allocated static arrays: src at 0xaaaaca8e09a0, dest at 0xaaaaca8e09b0
+[14:59:26.729] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.729] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.729] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.729] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.729] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.729] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.729] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.729] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.729] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.729] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.729] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.729] [INFO] Completed barrier synchronization
+[14:59:26.729] [INFO] Completed barrier synchronization
+[14:59:26.729] [INFO] PE 1: Beginning validation of received data
+[14:59:26.729] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.729] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.729] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.729] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.729] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.729] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.729] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.729] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.729] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.729] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.729] [INFO] PE 1: All elements validated successfully
+[14:59:26.729] ------ BEGIN TEST ROUTINE: shmem_put_nbi(uint16_t)
+[14:59:26.729] [INFO] Allocated static arrays: src at 0xaaaaca8e09c0, dest at 0xaaaaca8e09d8
+[14:59:26.729] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.729] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.729] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.729] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.729] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.729] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.729] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.729] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.729] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.729] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.729] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.729] [INFO] Completed barrier synchronization
+[14:59:26.729] [INFO] Completed barrier synchronization
+[14:59:26.729] [INFO] PE 1: Beginning validation of received data
+[14:59:26.729] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.729] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.729] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.729] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.729] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.729] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.729] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.729] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.729] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.729] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.729] [INFO] PE 1: All elements validated successfully
+[14:59:26.729] ------ BEGIN TEST ROUTINE: shmem_put_nbi(uint32_t)
+[14:59:26.729] [INFO] Allocated static arrays: src at 0xaaaaca8e09f0, dest at 0xaaaaca8e0a18
+[14:59:26.729] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.729] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.729] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.729] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.729] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.729] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.729] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.729] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.729] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.729] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.729] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.730] [INFO] Completed barrier synchronization
+[14:59:26.730] [INFO] Completed barrier synchronization
+[14:59:26.730] [INFO] PE 1: Beginning validation of received data
+[14:59:26.730] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.730] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.730] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.730] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.730] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.730] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.730] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.730] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.730] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.730] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.730] [INFO] PE 1: All elements validated successfully
+[14:59:26.730] ------ BEGIN TEST ROUTINE: shmem_put_nbi(uint64_t)
+[14:59:26.730] [INFO] Allocated static arrays: src at 0xaaaaca8e0a40, dest at 0xaaaaca8e0a90
+[14:59:26.730] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.730] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.730] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.730] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.730] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.730] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.730] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.730] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.730] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.730] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.730] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.730] [INFO] Completed barrier synchronization
+[14:59:26.730] [INFO] Completed barrier synchronization
+[14:59:26.730] [INFO] PE 1: Beginning validation of received data
+[14:59:26.730] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.730] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.730] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.730] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.730] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.730] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.730] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.730] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.730] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.730] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.730] [INFO] PE 1: All elements validated successfully
+[14:59:26.730] ------ BEGIN TEST ROUTINE: shmem_put_nbi(size_t)
+[14:59:26.730] [INFO] Allocated static arrays: src at 0xaaaaca8e0ae0, dest at 0xaaaaca8e0b30
+[14:59:26.730] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.730] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.730] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.730] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.730] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.730] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.730] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.730] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.730] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.730] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.730] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.730] [INFO] Completed barrier synchronization
+[14:59:26.730] [INFO] Completed barrier synchronization
+[14:59:26.730] [INFO] PE 1: Beginning validation of received data
+[14:59:26.730] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.730] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.730] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.730] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.730] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.730] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.730] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.730] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.730] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.730] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.730] [INFO] PE 1: All elements validated successfully
+[14:59:26.730] ------ BEGIN TEST ROUTINE: shmem_put_nbi(ptrdiff_t)
+[14:59:26.730] [INFO] Allocated static arrays: src at 0xaaaaca8e0b80, dest at 0xaaaaca8e0bd0
+[14:59:26.730] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.730] [INFO] PE 1: Initialized src[0] = 1
+[14:59:26.730] [INFO] PE 1: Initialized src[1] = 2
+[14:59:26.730] [INFO] PE 1: Initialized src[2] = 3
+[14:59:26.730] [INFO] PE 1: Initialized src[3] = 4
+[14:59:26.730] [INFO] PE 1: Initialized src[4] = 5
+[14:59:26.730] [INFO] PE 1: Initialized src[5] = 6
+[14:59:26.730] [INFO] PE 1: Initialized src[6] = 7
+[14:59:26.730] [INFO] PE 1: Initialized src[7] = 8
+[14:59:26.730] [INFO] PE 1: Initialized src[8] = 9
+[14:59:26.730] [INFO] PE 1: Initialized src[9] = 10
+[14:59:26.730] [INFO] Completed barrier synchronization
+[14:59:26.730] [INFO] Completed barrier synchronization
+[14:59:26.730] [INFO] PE 1: Beginning validation of received data
+[14:59:26.730] [INFO] PE 1: dest[0] = 0 (valid)
+[14:59:26.730] [INFO] PE 1: dest[1] = 1 (valid)
+[14:59:26.730] [INFO] PE 1: dest[2] = 2 (valid)
+[14:59:26.730] [INFO] PE 1: dest[3] = 3 (valid)
+[14:59:26.730] [INFO] PE 1: dest[4] = 4 (valid)
+[14:59:26.730] [INFO] PE 1: dest[5] = 5 (valid)
+[14:59:26.730] [INFO] PE 1: dest[6] = 6 (valid)
+[14:59:26.730] [INFO] PE 1: dest[7] = 7 (valid)
+[14:59:26.730] [INFO] PE 1: dest[8] = 8 (valid)
+[14:59:26.730] [INFO] PE 1: dest[9] = 9 (valid)
+[14:59:26.730] [INFO] PE 1: All elements validated successfully
+---------- END TEST: PASSED

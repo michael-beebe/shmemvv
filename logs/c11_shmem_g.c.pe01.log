@@ -1,0 +1,218 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/rma/c11_shmem_g.c
+[14:59:26.631] ------ BEGIN TEST ROUTINE: shmem_g(long)
+[14:59:26.631] [INFO] Allocated static variables: src at 0xaaaae4240200, dest at 0xaaaae4240208
+[14:59:26.631] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.631] [INFO] Completed barrier synchronization
+[14:59:26.631] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.631] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.631] [INFO] Completed barrier synchronization
+[14:59:26.631] [INFO] PE 1: Beginning validation
+[14:59:26.631] [INFO] PE 1: Validation successful - dest=10 as expected
+[14:59:26.631] ------ BEGIN TEST ROUTINE: shmem_g(double)
+[14:59:26.631] [INFO] Allocated static variables: src at 0xaaaae4240210, dest at 0xaaaae4240218
+[14:59:26.631] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.631] [INFO] Completed barrier synchronization
+[14:59:26.631] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.631] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.632] [INFO] Completed barrier synchronization
+[14:59:26.632] [INFO] PE 1: Beginning validation
+[14:59:26.632] [INFO] PE 1: Validation successful - dest=10 as expected
+[14:59:26.632] ------ BEGIN TEST ROUTINE: shmem_g(long double)
+[14:59:26.632] [INFO] Allocated static variables: src at 0xaaaae4240220, dest at 0xaaaae4240230
+[14:59:26.632] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.632] [INFO] Completed barrier synchronization
+[14:59:26.632] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.632] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.632] [INFO] Completed barrier synchronization
+[14:59:26.632] [INFO] PE 1: Beginning validation
+[14:59:26.632] [INFO] PE 1: Validation successful - dest=10 as expected
+[14:59:26.632] ------ BEGIN TEST ROUTINE: shmem_g(char)
+[14:59:26.632] [INFO] Allocated static variables: src at 0xaaaae4240240, dest at 0xaaaae4240241
+[14:59:26.632] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.632] [INFO] Completed barrier synchronization
+[14:59:26.632] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.632] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.632] [INFO] Completed barrier synchronization
+[14:59:26.632] [INFO] PE 1: Beginning validation
+[14:59:26.632] [INFO] PE 1: Validation successful - dest=10 as expected
+[14:59:26.632] ------ BEGIN TEST ROUTINE: shmem_g(signed char)
+[14:59:26.632] [INFO] Allocated static variables: src at 0xaaaae4240242, dest at 0xaaaae4240243
+[14:59:26.632] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.632] [INFO] Completed barrier synchronization
+[14:59:26.632] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.632] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.632] [INFO] Completed barrier synchronization
+[14:59:26.632] [INFO] PE 1: Beginning validation
+[14:59:26.632] [INFO] PE 1: Validation successful - dest=10 as expected
+[14:59:26.632] ------ BEGIN TEST ROUTINE: shmem_g(short)
+[14:59:26.632] [INFO] Allocated static variables: src at 0xaaaae4240244, dest at 0xaaaae4240246
+[14:59:26.632] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.633] [INFO] Completed barrier synchronization
+[14:59:26.633] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.633] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.633] [INFO] Completed barrier synchronization
+[14:59:26.633] [INFO] PE 1: Beginning validation
+[14:59:26.633] [INFO] PE 1: Validation successful - dest=10 as expected
+[14:59:26.633] ------ BEGIN TEST ROUTINE: shmem_g(int)
+[14:59:26.633] [INFO] Allocated static variables: src at 0xaaaae4240248, dest at 0xaaaae424024c
+[14:59:26.633] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.633] [INFO] Completed barrier synchronization
+[14:59:26.633] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.633] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.633] [INFO] Completed barrier synchronization
+[14:59:26.633] [INFO] PE 1: Beginning validation
+[14:59:26.633] [INFO] PE 1: Validation successful - dest=10 as expected
+[14:59:26.633] ------ BEGIN TEST ROUTINE: shmem_g(long)
+[14:59:26.633] [INFO] Allocated static variables: src at 0xaaaae4240250, dest at 0xaaaae4240258
+[14:59:26.633] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.633] [INFO] Completed barrier synchronization
+[14:59:26.633] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.633] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.633] [INFO] Completed barrier synchronization
+[14:59:26.633] [INFO] PE 1: Beginning validation
+[14:59:26.633] [INFO] PE 1: Validation successful - dest=10 as expected
+[14:59:26.633] ------ BEGIN TEST ROUTINE: shmem_g(long long)
+[14:59:26.633] [INFO] Allocated static variables: src at 0xaaaae4240260, dest at 0xaaaae4240268
+[14:59:26.633] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.633] [INFO] Completed barrier synchronization
+[14:59:26.633] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.633] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.634] [INFO] Completed barrier synchronization
+[14:59:26.634] [INFO] PE 1: Beginning validation
+[14:59:26.634] [INFO] PE 1: Validation successful - dest=10 as expected
+[14:59:26.634] ------ BEGIN TEST ROUTINE: shmem_g(unsigned char)
+[14:59:26.634] [INFO] Allocated static variables: src at 0xaaaae4240270, dest at 0xaaaae4240271
+[14:59:26.634] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.634] [INFO] Completed barrier synchronization
+[14:59:26.634] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.634] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.634] [INFO] Completed barrier synchronization
+[14:59:26.634] [INFO] PE 1: Beginning validation
+[14:59:26.634] [INFO] PE 1: Validation successful - dest=10 as expected
+[14:59:26.634] ------ BEGIN TEST ROUTINE: shmem_g(unsigned short)
+[14:59:26.634] [INFO] Allocated static variables: src at 0xaaaae4240272, dest at 0xaaaae4240274
+[14:59:26.634] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.634] [INFO] Completed barrier synchronization
+[14:59:26.634] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.634] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.634] [INFO] Completed barrier synchronization
+[14:59:26.634] [INFO] PE 1: Beginning validation
+[14:59:26.634] [INFO] PE 1: Validation successful - dest=10 as expected
+[14:59:26.634] ------ BEGIN TEST ROUTINE: shmem_g(unsigned int)
+[14:59:26.634] [INFO] Allocated static variables: src at 0xaaaae4240278, dest at 0xaaaae424027c
+[14:59:26.634] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.634] [INFO] Completed barrier synchronization
+[14:59:26.634] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.634] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.635] [INFO] Completed barrier synchronization
+[14:59:26.635] [INFO] PE 1: Beginning validation
+[14:59:26.635] [INFO] PE 1: Validation successful - dest=10 as expected
+[14:59:26.635] ------ BEGIN TEST ROUTINE: shmem_g(unsigned long)
+[14:59:26.635] [INFO] Allocated static variables: src at 0xaaaae4240280, dest at 0xaaaae4240288
+[14:59:26.635] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.635] [INFO] Completed barrier synchronization
+[14:59:26.635] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.635] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.635] [INFO] Completed barrier synchronization
+[14:59:26.635] [INFO] PE 1: Beginning validation
+[14:59:26.635] [INFO] PE 1: Validation successful - dest=10 as expected
+[14:59:26.635] ------ BEGIN TEST ROUTINE: shmem_g(unsigned long long)
+[14:59:26.635] [INFO] Allocated static variables: src at 0xaaaae4240290, dest at 0xaaaae4240298
+[14:59:26.635] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.635] [INFO] Completed barrier synchronization
+[14:59:26.635] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.635] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.635] [INFO] Completed barrier synchronization
+[14:59:26.635] [INFO] PE 1: Beginning validation
+[14:59:26.635] [INFO] PE 1: Validation successful - dest=10 as expected
+[14:59:26.635] ------ BEGIN TEST ROUTINE: shmem_g(int8_t)
+[14:59:26.635] [INFO] Allocated static variables: src at 0xaaaae42402a0, dest at 0xaaaae42402a1
+[14:59:26.635] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.635] [INFO] Completed barrier synchronization
+[14:59:26.635] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.635] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.635] [INFO] Completed barrier synchronization
+[14:59:26.635] [INFO] PE 1: Beginning validation
+[14:59:26.635] [INFO] PE 1: Validation successful - dest=10 as expected
+[14:59:26.635] ------ BEGIN TEST ROUTINE: shmem_g(int16_t)
+[14:59:26.635] [INFO] Allocated static variables: src at 0xaaaae42402a2, dest at 0xaaaae42402a4
+[14:59:26.635] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.635] [INFO] Completed barrier synchronization
+[14:59:26.635] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.635] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.635] [INFO] Completed barrier synchronization
+[14:59:26.635] [INFO] PE 1: Beginning validation
+[14:59:26.635] [INFO] PE 1: Validation successful - dest=10 as expected
+[14:59:26.635] ------ BEGIN TEST ROUTINE: shmem_g(int32_t)
+[14:59:26.635] [INFO] Allocated static variables: src at 0xaaaae42402a8, dest at 0xaaaae42402ac
+[14:59:26.635] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.636] [INFO] Completed barrier synchronization
+[14:59:26.636] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.636] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.636] [INFO] Completed barrier synchronization
+[14:59:26.636] [INFO] PE 1: Beginning validation
+[14:59:26.636] [INFO] PE 1: Validation successful - dest=10 as expected
+[14:59:26.636] ------ BEGIN TEST ROUTINE: shmem_g(int64_t)
+[14:59:26.636] [INFO] Allocated static variables: src at 0xaaaae42402b0, dest at 0xaaaae42402b8
+[14:59:26.636] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.636] [INFO] Completed barrier synchronization
+[14:59:26.636] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.636] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.636] [INFO] Completed barrier synchronization
+[14:59:26.636] [INFO] PE 1: Beginning validation
+[14:59:26.636] [INFO] PE 1: Validation successful - dest=10 as expected
+[14:59:26.636] ------ BEGIN TEST ROUTINE: shmem_g(uint8_t)
+[14:59:26.636] [INFO] Allocated static variables: src at 0xaaaae42402c0, dest at 0xaaaae42402c1
+[14:59:26.636] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.636] [INFO] Completed barrier synchronization
+[14:59:26.636] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.636] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.636] [INFO] Completed barrier synchronization
+[14:59:26.636] [INFO] PE 1: Beginning validation
+[14:59:26.636] [INFO] PE 1: Validation successful - dest=10 as expected
+[14:59:26.636] ------ BEGIN TEST ROUTINE: shmem_g(uint16_t)
+[14:59:26.636] [INFO] Allocated static variables: src at 0xaaaae42402c2, dest at 0xaaaae42402c4
+[14:59:26.636] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.636] [INFO] Completed barrier synchronization
+[14:59:26.636] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.636] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.636] [INFO] Completed barrier synchronization
+[14:59:26.636] [INFO] PE 1: Beginning validation
+[14:59:26.636] [INFO] PE 1: Validation successful - dest=10 as expected
+[14:59:26.636] ------ BEGIN TEST ROUTINE: shmem_g(uint32_t)
+[14:59:26.636] [INFO] Allocated static variables: src at 0xaaaae42402c8, dest at 0xaaaae42402cc
+[14:59:26.636] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.636] [INFO] Completed barrier synchronization
+[14:59:26.636] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.636] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.637] [INFO] Completed barrier synchronization
+[14:59:26.637] [INFO] PE 1: Beginning validation
+[14:59:26.637] [INFO] PE 1: Validation successful - dest=10 as expected
+[14:59:26.637] ------ BEGIN TEST ROUTINE: shmem_g(uint64_t)
+[14:59:26.637] [INFO] Allocated static variables: src at 0xaaaae42402d0, dest at 0xaaaae42402d8
+[14:59:26.637] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.637] [INFO] Completed barrier synchronization
+[14:59:26.637] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.637] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.637] [INFO] Completed barrier synchronization
+[14:59:26.637] [INFO] PE 1: Beginning validation
+[14:59:26.637] [INFO] PE 1: Validation successful - dest=10 as expected
+[14:59:26.637] ------ BEGIN TEST ROUTINE: shmem_g(size_t)
+[14:59:26.637] [INFO] Allocated static variables: src at 0xaaaae42402e0, dest at 0xaaaae42402e8
+[14:59:26.637] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.637] [INFO] Completed barrier synchronization
+[14:59:26.637] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.637] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.637] [INFO] Completed barrier synchronization
+[14:59:26.637] [INFO] PE 1: Beginning validation
+[14:59:26.637] [INFO] PE 1: Validation successful - dest=10 as expected
+[14:59:26.637] ------ BEGIN TEST ROUTINE: shmem_g(ptrdiff_t)
+[14:59:26.637] [INFO] Allocated static variables: src at 0xaaaae42402f0, dest at 0xaaaae42402f8
+[14:59:26.637] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.637] [INFO] Completed barrier synchronization
+[14:59:26.637] [INFO] PE 1: Fetching remote value from PE 0
+[14:59:26.637] [INFO] PE 1: Fetched value dest = 10
+[14:59:26.637] [INFO] Completed barrier synchronization
+[14:59:26.637] [INFO] PE 1: Beginning validation
+[14:59:26.637] [INFO] PE 1: Validation successful - dest=10 as expected
+---------- END TEST: PASSED

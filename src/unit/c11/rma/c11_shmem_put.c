@@ -15,37 +15,46 @@
     log_routine("shmem_put(" #TYPE ")");                                       \
     bool success = true;                                                       \
     static TYPE src[10], dest[10];                                             \
-    log_info("&src = %p, &dest = %p", &src, &dest);                            \
+    log_info("Allocated static arrays: src at %p, dest at %p", (void *)&src,   \
+             (void *)&dest);                                                   \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
+    log_info("Running on PE %d of %d total PEs", mype, npes);                  \
                                                                                \
     for (int i = 0; i < 10; i++) {                                             \
       src[i] = i + mype;                                                       \
-      log_info("set src[%d] (%p) to %d", i, &src[i], i + mype);                \
+      log_info("PE %d: Initialized src[%d] = %d", mype, i, i + mype);          \
     }                                                                          \
                                                                                \
     shmem_barrier_all();                                                       \
+    log_info("Completed barrier synchronization");                             \
                                                                                \
     if (mype == 0) {                                                           \
-      log_info("shmem_put'ing 10 elemnts into dest on pe 1 ");                 \
+      log_info("PE 0: Starting put operation to PE 1");                        \
+      log_info("PE 0: dest=%p, src=%p, nelems=10", (void *)dest, (void *)src); \
       shmem_put(dest, src, 10, 1);                                             \
+      log_info("PE 0: Completed put operation");                               \
     }                                                                          \
                                                                                \
     shmem_barrier_all();                                                       \
+    log_info("Completed barrier synchronization");                             \
                                                                                \
     if (mype == 1) {                                                           \
-      log_info("validating...");                                               \
+      log_info("PE 1: Beginning validation of received data");                 \
       for (int i = 0; i < 10; i++) {                                           \
         if (dest[i] != i) {                                                    \
-          log_fail("dest[%d] failed: expected %d, got %d", i, i,               \
-                   (char)dest[i]);                                             \
+          log_fail("PE 1: Validation failed - dest[%d] = %d, expected %d", i,  \
+                   (int)dest[i], i);                                           \
           success = false;                                                     \
           break;                                                               \
         }                                                                      \
+        log_info("PE 1: dest[%d] = %d (valid)", i, (int)dest[i]);              \
       }                                                                        \
-      log_info("result is valid");                                             \
+      if (success) {                                                           \
+        log_info("PE 1: All elements validated successfully");                 \
+      }                                                                        \
     } else {                                                                   \
-      log_info("waiting for pe 1 to verify");                                  \
+      log_info("PE 0: Waiting for PE 1 to complete validation");               \
     }                                                                          \
                                                                                \
     success;                                                                   \

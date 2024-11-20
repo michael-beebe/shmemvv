@@ -1,0 +1,218 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c/rma/c_shmem_get_nbi.c
+[14:59:26.551] ------ BEGIN TEST ROUTINE: shmem_long_get_nbi()
+[14:59:26.551] [INFO] Allocated static arrays: src at 0xaaaac98e0200, dest at 0xaaaac98e0250
+[14:59:26.551] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.551] [INFO] Completed barrier synchronization
+[14:59:26.551] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.551] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.551] [INFO] Completed barrier synchronization
+[14:59:26.551] [INFO] PE 1: Beginning validation of received data
+[14:59:26.551] [INFO] PE 1: Validation successful - all elements match expected values
+[14:59:26.551] ------ BEGIN TEST ROUTINE: shmem_double_get_nbi()
+[14:59:26.551] [INFO] Allocated static arrays: src at 0xaaaac98e02a0, dest at 0xaaaac98e02f0
+[14:59:26.551] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.552] [INFO] Completed barrier synchronization
+[14:59:26.552] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.552] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.552] [INFO] Completed barrier synchronization
+[14:59:26.552] [INFO] PE 1: Beginning validation of received data
+[14:59:26.552] [INFO] PE 1: Validation successful - all elements match expected values
+[14:59:26.552] ------ BEGIN TEST ROUTINE: shmem_longdouble_get_nbi()
+[14:59:26.552] [INFO] Allocated static arrays: src at 0xaaaac98e0340, dest at 0xaaaac98e03e0
+[14:59:26.552] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.552] [INFO] Completed barrier synchronization
+[14:59:26.552] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.552] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.552] [INFO] Completed barrier synchronization
+[14:59:26.552] [INFO] PE 1: Beginning validation of received data
+[14:59:26.552] [INFO] PE 1: Validation successful - all elements match expected values
+[14:59:26.552] ------ BEGIN TEST ROUTINE: shmem_char_get_nbi()
+[14:59:26.552] [INFO] Allocated static arrays: src at 0xaaaac98e0480, dest at 0xaaaac98e0490
+[14:59:26.552] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.552] [INFO] Completed barrier synchronization
+[14:59:26.552] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.552] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.552] [INFO] Completed barrier synchronization
+[14:59:26.552] [INFO] PE 1: Beginning validation of received data
+[14:59:26.552] [INFO] PE 1: Validation successful - all elements match expected values
+[14:59:26.552] ------ BEGIN TEST ROUTINE: shmem_schar_get_nbi()
+[14:59:26.552] [INFO] Allocated static arrays: src at 0xaaaac98e04a0, dest at 0xaaaac98e04b0
+[14:59:26.552] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.552] [INFO] Completed barrier synchronization
+[14:59:26.552] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.552] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.553] [INFO] Completed barrier synchronization
+[14:59:26.553] [INFO] PE 1: Beginning validation of received data
+[14:59:26.553] [INFO] PE 1: Validation successful - all elements match expected values
+[14:59:26.553] ------ BEGIN TEST ROUTINE: shmem_short_get_nbi()
+[14:59:26.553] [INFO] Allocated static arrays: src at 0xaaaac98e04c0, dest at 0xaaaac98e04d8
+[14:59:26.553] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.553] [INFO] Completed barrier synchronization
+[14:59:26.553] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.553] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.553] [INFO] Completed barrier synchronization
+[14:59:26.553] [INFO] PE 1: Beginning validation of received data
+[14:59:26.553] [INFO] PE 1: Validation successful - all elements match expected values
+[14:59:26.553] ------ BEGIN TEST ROUTINE: shmem_int_get_nbi()
+[14:59:26.553] [INFO] Allocated static arrays: src at 0xaaaac98e04f0, dest at 0xaaaac98e0518
+[14:59:26.553] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.553] [INFO] Completed barrier synchronization
+[14:59:26.553] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.553] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.553] [INFO] Completed barrier synchronization
+[14:59:26.553] [INFO] PE 1: Beginning validation of received data
+[14:59:26.553] [INFO] PE 1: Validation successful - all elements match expected values
+[14:59:26.553] ------ BEGIN TEST ROUTINE: shmem_long_get_nbi()
+[14:59:26.553] [INFO] Allocated static arrays: src at 0xaaaac98e0540, dest at 0xaaaac98e0590
+[14:59:26.553] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.553] [INFO] Completed barrier synchronization
+[14:59:26.553] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.553] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.553] [INFO] Completed barrier synchronization
+[14:59:26.553] [INFO] PE 1: Beginning validation of received data
+[14:59:26.553] [INFO] PE 1: Validation successful - all elements match expected values
+[14:59:26.553] ------ BEGIN TEST ROUTINE: shmem_longlong_get_nbi()
+[14:59:26.553] [INFO] Allocated static arrays: src at 0xaaaac98e05e0, dest at 0xaaaac98e0630
+[14:59:26.553] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.553] [INFO] Completed barrier synchronization
+[14:59:26.553] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.553] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.554] [INFO] Completed barrier synchronization
+[14:59:26.554] [INFO] PE 1: Beginning validation of received data
+[14:59:26.554] [INFO] PE 1: Validation successful - all elements match expected values
+[14:59:26.554] ------ BEGIN TEST ROUTINE: shmem_uchar_get_nbi()
+[14:59:26.554] [INFO] Allocated static arrays: src at 0xaaaac98e0680, dest at 0xaaaac98e0690
+[14:59:26.554] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.554] [INFO] Completed barrier synchronization
+[14:59:26.554] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.554] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.554] [INFO] Completed barrier synchronization
+[14:59:26.554] [INFO] PE 1: Beginning validation of received data
+[14:59:26.554] [INFO] PE 1: Validation successful - all elements match expected values
+[14:59:26.554] ------ BEGIN TEST ROUTINE: shmem_ushort_get_nbi()
+[14:59:26.554] [INFO] Allocated static arrays: src at 0xaaaac98e06a0, dest at 0xaaaac98e06b8
+[14:59:26.554] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.554] [INFO] Completed barrier synchronization
+[14:59:26.554] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.554] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.554] [INFO] Completed barrier synchronization
+[14:59:26.554] [INFO] PE 1: Beginning validation of received data
+[14:59:26.554] [INFO] PE 1: Validation successful - all elements match expected values
+[14:59:26.554] ------ BEGIN TEST ROUTINE: shmem_uint_get_nbi()
+[14:59:26.554] [INFO] Allocated static arrays: src at 0xaaaac98e06d0, dest at 0xaaaac98e06f8
+[14:59:26.554] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.554] [INFO] Completed barrier synchronization
+[14:59:26.554] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.554] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.554] [INFO] Completed barrier synchronization
+[14:59:26.554] [INFO] PE 1: Beginning validation of received data
+[14:59:26.554] [INFO] PE 1: Validation successful - all elements match expected values
+[14:59:26.554] ------ BEGIN TEST ROUTINE: shmem_ulong_get_nbi()
+[14:59:26.554] [INFO] Allocated static arrays: src at 0xaaaac98e0720, dest at 0xaaaac98e0770
+[14:59:26.554] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.554] [INFO] Completed barrier synchronization
+[14:59:26.554] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.554] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.555] [INFO] Completed barrier synchronization
+[14:59:26.555] [INFO] PE 1: Beginning validation of received data
+[14:59:26.555] [INFO] PE 1: Validation successful - all elements match expected values
+[14:59:26.555] ------ BEGIN TEST ROUTINE: shmem_ulonglong_get_nbi()
+[14:59:26.555] [INFO] Allocated static arrays: src at 0xaaaac98e07c0, dest at 0xaaaac98e0810
+[14:59:26.555] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.555] [INFO] Completed barrier synchronization
+[14:59:26.555] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.555] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.555] [INFO] Completed barrier synchronization
+[14:59:26.555] [INFO] PE 1: Beginning validation of received data
+[14:59:26.555] [INFO] PE 1: Validation successful - all elements match expected values
+[14:59:26.555] ------ BEGIN TEST ROUTINE: shmem_int8_get_nbi()
+[14:59:26.555] [INFO] Allocated static arrays: src at 0xaaaac98e0860, dest at 0xaaaac98e0870
+[14:59:26.555] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.555] [INFO] Completed barrier synchronization
+[14:59:26.555] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.555] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.555] [INFO] Completed barrier synchronization
+[14:59:26.555] [INFO] PE 1: Beginning validation of received data
+[14:59:26.555] [INFO] PE 1: Validation successful - all elements match expected values
+[14:59:26.555] ------ BEGIN TEST ROUTINE: shmem_int16_get_nbi()
+[14:59:26.555] [INFO] Allocated static arrays: src at 0xaaaac98e0880, dest at 0xaaaac98e0898
+[14:59:26.555] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.555] [INFO] Completed barrier synchronization
+[14:59:26.555] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.555] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.555] [INFO] Completed barrier synchronization
+[14:59:26.555] [INFO] PE 1: Beginning validation of received data
+[14:59:26.555] [INFO] PE 1: Validation successful - all elements match expected values
+[14:59:26.555] ------ BEGIN TEST ROUTINE: shmem_int32_get_nbi()
+[14:59:26.555] [INFO] Allocated static arrays: src at 0xaaaac98e08b0, dest at 0xaaaac98e08d8
+[14:59:26.555] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.555] [INFO] Completed barrier synchronization
+[14:59:26.555] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.555] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.556] [INFO] Completed barrier synchronization
+[14:59:26.556] [INFO] PE 1: Beginning validation of received data
+[14:59:26.556] [INFO] PE 1: Validation successful - all elements match expected values
+[14:59:26.556] ------ BEGIN TEST ROUTINE: shmem_int64_get_nbi()
+[14:59:26.556] [INFO] Allocated static arrays: src at 0xaaaac98e0900, dest at 0xaaaac98e0950
+[14:59:26.556] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.556] [INFO] Completed barrier synchronization
+[14:59:26.556] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.556] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.556] [INFO] Completed barrier synchronization
+[14:59:26.556] [INFO] PE 1: Beginning validation of received data
+[14:59:26.556] [INFO] PE 1: Validation successful - all elements match expected values
+[14:59:26.556] ------ BEGIN TEST ROUTINE: shmem_uint8_get_nbi()
+[14:59:26.556] [INFO] Allocated static arrays: src at 0xaaaac98e09a0, dest at 0xaaaac98e09b0
+[14:59:26.556] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.556] [INFO] Completed barrier synchronization
+[14:59:26.556] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.556] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.556] [INFO] Completed barrier synchronization
+[14:59:26.556] [INFO] PE 1: Beginning validation of received data
+[14:59:26.556] [INFO] PE 1: Validation successful - all elements match expected values
+[14:59:26.556] ------ BEGIN TEST ROUTINE: shmem_uint16_get_nbi()
+[14:59:26.556] [INFO] Allocated static arrays: src at 0xaaaac98e09c0, dest at 0xaaaac98e09d8
+[14:59:26.556] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.556] [INFO] Completed barrier synchronization
+[14:59:26.556] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.556] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.556] [INFO] Completed barrier synchronization
+[14:59:26.556] [INFO] PE 1: Beginning validation of received data
+[14:59:26.556] [INFO] PE 1: Validation successful - all elements match expected values
+[14:59:26.556] ------ BEGIN TEST ROUTINE: shmem_uint32_get_nbi()
+[14:59:26.556] [INFO] Allocated static arrays: src at 0xaaaac98e09f0, dest at 0xaaaac98e0a18
+[14:59:26.556] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.557] [INFO] Completed barrier synchronization
+[14:59:26.557] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.557] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.557] [INFO] Completed barrier synchronization
+[14:59:26.557] [INFO] PE 1: Beginning validation of received data
+[14:59:26.557] [INFO] PE 1: Validation successful - all elements match expected values
+[14:59:26.557] ------ BEGIN TEST ROUTINE: shmem_uint64_get_nbi()
+[14:59:26.557] [INFO] Allocated static arrays: src at 0xaaaac98e0a40, dest at 0xaaaac98e0a90
+[14:59:26.557] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.557] [INFO] Completed barrier synchronization
+[14:59:26.557] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.557] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.557] [INFO] Completed barrier synchronization
+[14:59:26.557] [INFO] PE 1: Beginning validation of received data
+[14:59:26.557] [INFO] PE 1: Validation successful - all elements match expected values
+[14:59:26.557] ------ BEGIN TEST ROUTINE: shmem_size_get_nbi()
+[14:59:26.557] [INFO] Allocated static arrays: src at 0xaaaac98e0ae0, dest at 0xaaaac98e0b30
+[14:59:26.557] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.557] [INFO] Completed barrier synchronization
+[14:59:26.557] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.557] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.557] [INFO] Completed barrier synchronization
+[14:59:26.557] [INFO] PE 1: Beginning validation of received data
+[14:59:26.557] [INFO] PE 1: Validation successful - all elements match expected values
+[14:59:26.557] ------ BEGIN TEST ROUTINE: shmem_ptrdiff_get_nbi()
+[14:59:26.557] [INFO] Allocated static arrays: src at 0xaaaac98e0b80, dest at 0xaaaac98e0bd0
+[14:59:26.557] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.557] [INFO] Completed barrier synchronization
+[14:59:26.557] [INFO] PE 1: Starting non-blocking get of 10 elements from PE 0
+[14:59:26.557] [INFO] PE 1: Calling quiet to ensure completion
+[14:59:26.558] [INFO] Completed barrier synchronization
+[14:59:26.558] [INFO] PE 1: Beginning validation of received data
+[14:59:26.558] [INFO] PE 1: Validation successful - all elements match expected values
+---------- END TEST: PASSED

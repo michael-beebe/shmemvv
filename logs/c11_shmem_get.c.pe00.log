@@ -1,0 +1,170 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/rma/c11_shmem_get.c
+[14:59:26.644] ------ BEGIN TEST ROUTINE: shmem_get(long)
+[14:59:26.644] [INFO] Allocated static arrays: src at 0xaaaab7810200, dest at 0xaaaab7810250
+[14:59:26.644] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.644] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.644] [INFO] Completed barrier synchronization
+[14:59:26.644] [INFO] Completed barrier synchronization
+[14:59:26.644] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.644] ------ BEGIN TEST ROUTINE: shmem_get(double)
+[14:59:26.644] [INFO] Allocated static arrays: src at 0xaaaab78102a0, dest at 0xaaaab78102f0
+[14:59:26.644] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.644] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.645] [INFO] Completed barrier synchronization
+[14:59:26.645] [INFO] Completed barrier synchronization
+[14:59:26.645] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.645] ------ BEGIN TEST ROUTINE: shmem_get(long double)
+[14:59:26.645] [INFO] Allocated static arrays: src at 0xaaaab7810340, dest at 0xaaaab78103e0
+[14:59:26.645] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.645] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.645] [INFO] Completed barrier synchronization
+[14:59:26.645] [INFO] Completed barrier synchronization
+[14:59:26.645] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.645] ------ BEGIN TEST ROUTINE: shmem_get(char)
+[14:59:26.645] [INFO] Allocated static arrays: src at 0xaaaab7810480, dest at 0xaaaab7810490
+[14:59:26.645] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.645] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.645] [INFO] Completed barrier synchronization
+[14:59:26.645] [INFO] Completed barrier synchronization
+[14:59:26.645] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.645] ------ BEGIN TEST ROUTINE: shmem_get(signed char)
+[14:59:26.645] [INFO] Allocated static arrays: src at 0xaaaab78104a0, dest at 0xaaaab78104b0
+[14:59:26.645] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.645] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.645] [INFO] Completed barrier synchronization
+[14:59:26.646] [INFO] Completed barrier synchronization
+[14:59:26.646] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.646] ------ BEGIN TEST ROUTINE: shmem_get(short)
+[14:59:26.646] [INFO] Allocated static arrays: src at 0xaaaab78104c0, dest at 0xaaaab78104d8
+[14:59:26.646] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.646] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.646] [INFO] Completed barrier synchronization
+[14:59:26.646] [INFO] Completed barrier synchronization
+[14:59:26.646] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.646] ------ BEGIN TEST ROUTINE: shmem_get(int)
+[14:59:26.646] [INFO] Allocated static arrays: src at 0xaaaab78104f0, dest at 0xaaaab7810518
+[14:59:26.646] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.646] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.646] [INFO] Completed barrier synchronization
+[14:59:26.646] [INFO] Completed barrier synchronization
+[14:59:26.646] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.646] ------ BEGIN TEST ROUTINE: shmem_get(long)
+[14:59:26.646] [INFO] Allocated static arrays: src at 0xaaaab7810540, dest at 0xaaaab7810590
+[14:59:26.646] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.646] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.646] [INFO] Completed barrier synchronization
+[14:59:26.646] [INFO] Completed barrier synchronization
+[14:59:26.646] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.646] ------ BEGIN TEST ROUTINE: shmem_get(long long)
+[14:59:26.646] [INFO] Allocated static arrays: src at 0xaaaab78105e0, dest at 0xaaaab7810630
+[14:59:26.646] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.646] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.646] [INFO] Completed barrier synchronization
+[14:59:26.647] [INFO] Completed barrier synchronization
+[14:59:26.647] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.647] ------ BEGIN TEST ROUTINE: shmem_get(unsigned char)
+[14:59:26.647] [INFO] Allocated static arrays: src at 0xaaaab7810680, dest at 0xaaaab7810690
+[14:59:26.647] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.647] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.647] [INFO] Completed barrier synchronization
+[14:59:26.647] [INFO] Completed barrier synchronization
+[14:59:26.647] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.647] ------ BEGIN TEST ROUTINE: shmem_get(unsigned short)
+[14:59:26.647] [INFO] Allocated static arrays: src at 0xaaaab78106a0, dest at 0xaaaab78106b8
+[14:59:26.647] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.647] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.647] [INFO] Completed barrier synchronization
+[14:59:26.647] [INFO] Completed barrier synchronization
+[14:59:26.647] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.647] ------ BEGIN TEST ROUTINE: shmem_get(unsigned int)
+[14:59:26.647] [INFO] Allocated static arrays: src at 0xaaaab78106d0, dest at 0xaaaab78106f8
+[14:59:26.647] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.647] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.647] [INFO] Completed barrier synchronization
+[14:59:26.647] [INFO] Completed barrier synchronization
+[14:59:26.647] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.647] ------ BEGIN TEST ROUTINE: shmem_get(unsigned long)
+[14:59:26.647] [INFO] Allocated static arrays: src at 0xaaaab7810720, dest at 0xaaaab7810770
+[14:59:26.647] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.647] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.647] [INFO] Completed barrier synchronization
+[14:59:26.648] [INFO] Completed barrier synchronization
+[14:59:26.648] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.648] ------ BEGIN TEST ROUTINE: shmem_get(unsigned long long)
+[14:59:26.648] [INFO] Allocated static arrays: src at 0xaaaab78107c0, dest at 0xaaaab7810810
+[14:59:26.648] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.648] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.648] [INFO] Completed barrier synchronization
+[14:59:26.648] [INFO] Completed barrier synchronization
+[14:59:26.648] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.648] ------ BEGIN TEST ROUTINE: shmem_get(int8_t)
+[14:59:26.648] [INFO] Allocated static arrays: src at 0xaaaab7810860, dest at 0xaaaab7810870
+[14:59:26.648] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.648] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.648] [INFO] Completed barrier synchronization
+[14:59:26.648] [INFO] Completed barrier synchronization
+[14:59:26.648] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.648] ------ BEGIN TEST ROUTINE: shmem_get(int16_t)
+[14:59:26.648] [INFO] Allocated static arrays: src at 0xaaaab7810880, dest at 0xaaaab7810898
+[14:59:26.648] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.648] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.648] [INFO] Completed barrier synchronization
+[14:59:26.648] [INFO] Completed barrier synchronization
+[14:59:26.648] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.648] ------ BEGIN TEST ROUTINE: shmem_get(int32_t)
+[14:59:26.648] [INFO] Allocated static arrays: src at 0xaaaab78108b0, dest at 0xaaaab78108d8
+[14:59:26.648] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.648] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.648] [INFO] Completed barrier synchronization
+[14:59:26.648] [INFO] Completed barrier synchronization
+[14:59:26.648] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.648] ------ BEGIN TEST ROUTINE: shmem_get(int64_t)
+[14:59:26.648] [INFO] Allocated static arrays: src at 0xaaaab7810900, dest at 0xaaaab7810950
+[14:59:26.648] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.648] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.649] [INFO] Completed barrier synchronization
+[14:59:26.649] [INFO] Completed barrier synchronization
+[14:59:26.649] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.649] ------ BEGIN TEST ROUTINE: shmem_get(uint8_t)
+[14:59:26.649] [INFO] Allocated static arrays: src at 0xaaaab78109a0, dest at 0xaaaab78109b0
+[14:59:26.649] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.649] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.649] [INFO] Completed barrier synchronization
+[14:59:26.649] [INFO] Completed barrier synchronization
+[14:59:26.649] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.649] ------ BEGIN TEST ROUTINE: shmem_get(uint16_t)
+[14:59:26.649] [INFO] Allocated static arrays: src at 0xaaaab78109c0, dest at 0xaaaab78109d8
+[14:59:26.649] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.649] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.649] [INFO] Completed barrier synchronization
+[14:59:26.649] [INFO] Completed barrier synchronization
+[14:59:26.649] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.649] ------ BEGIN TEST ROUTINE: shmem_get(uint32_t)
+[14:59:26.649] [INFO] Allocated static arrays: src at 0xaaaab78109f0, dest at 0xaaaab7810a18
+[14:59:26.649] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.649] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.649] [INFO] Completed barrier synchronization
+[14:59:26.649] [INFO] Completed barrier synchronization
+[14:59:26.649] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.649] ------ BEGIN TEST ROUTINE: shmem_get(uint64_t)
+[14:59:26.649] [INFO] Allocated static arrays: src at 0xaaaab7810a40, dest at 0xaaaab7810a90
+[14:59:26.649] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.649] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.650] [INFO] Completed barrier synchronization
+[14:59:26.650] [INFO] Completed barrier synchronization
+[14:59:26.650] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.650] ------ BEGIN TEST ROUTINE: shmem_get(size_t)
+[14:59:26.650] [INFO] Allocated static arrays: src at 0xaaaab7810ae0, dest at 0xaaaab7810b30
+[14:59:26.650] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.650] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.650] [INFO] Completed barrier synchronization
+[14:59:26.650] [INFO] Completed barrier synchronization
+[14:59:26.650] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.650] ------ BEGIN TEST ROUTINE: shmem_get(ptrdiff_t)
+[14:59:26.650] [INFO] Allocated static arrays: src at 0xaaaab7810b80, dest at 0xaaaab7810bd0
+[14:59:26.650] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.650] [INFO] PE 0: Initialized src array with values [0..9]
+[14:59:26.650] [INFO] Completed barrier synchronization
+[14:59:26.650] [INFO] Completed barrier synchronization
+[14:59:26.650] [INFO] PE 0: Waiting for PE 1 to complete validation
+---------- END TEST: PASSED

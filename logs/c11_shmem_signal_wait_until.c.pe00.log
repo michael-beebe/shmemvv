@@ -1,8 +1,0 @@
----------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/pt2pt_sync/c11_shmem_signal_wait_until.c
-[14:26:45.146] ------ BEGIN TEST ROUTINE: c11_shmem_signal_wait_until()
-[14:26:45.146] [INFO] Allocated flag variable (8 bytes) at address 0xaaab00002250
-[14:26:45.146] [INFO] Initialized flag value to 0
-[14:26:45.146] [INFO] PE 0: Setting flag to 1 on remote PE 1
-[14:26:45.146] [INFO] PE 0: Completed setting flags, calling shmem_quiet()
-[14:26:45.146] [INFO] Freeing allocated memory at 0xaaab00002250
----------- END TEST: PASSED

@@ -15,41 +15,49 @@
     log_routine("shmem_iget(" #TYPE ")");                                      \
     bool success = true;                                                       \
     static TYPE src[10], dest[10];                                             \
-    log_info("&src = %p, &dest = %p", &src, &dest);                            \
+    log_info("Allocated static arrays: src at %p, dest at %p", (void *)&src,   \
+             (void *)&dest);                                                   \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
+    log_info("Running on PE %d of %d total PEs", mype, npes);                  \
                                                                                \
     if (mype == 0) {                                                           \
       for (int i = 0; i < 10; i++) {                                           \
         src[i] = i;                                                            \
       }                                                                        \
-      log_info("set src to [0..=9]");                                          \
+      log_info("PE 0: Initialized src array with values [0..9]");              \
     }                                                                          \
                                                                                \
     shmem_barrier_all();                                                       \
+    log_info("Completed barrier synchronization");                             \
                                                                                \
     if (mype == 1) {                                                           \
-      log_info("shmem_iget(dest = %p, src = %p, dest_stride = 2, src_stride "  \
-               "= 2, n = 5, pe = 0)",                                          \
-               &src, &dest);                                                   \
+      log_info("PE 1: Starting strided get from PE 0");                        \
+      log_info("PE 1: dest=%p, src=%p, dest_stride=2, src_stride=2, nelems=5", \
+               (void *)dest, (void *)src);                                     \
       shmem_iget(dest, src, 2, 2, 5, 0);                                       \
+      log_info("PE 1: Completed strided get operation");                       \
     }                                                                          \
                                                                                \
     shmem_barrier_all();                                                       \
+    log_info("Completed barrier synchronization");                             \
                                                                                \
     if (mype == 1) {                                                           \
-      log_info("validating...");                                               \
+      log_info("PE 1: Beginning validation of received data");                 \
       for (int i = 0; i < 10; i += 2) {                                        \
         if (dest[i] != i / 2) {                                                \
-          log_fail("dest[%d] failed: expected %d, got %d", i, i / 2,           \
-                   (char)dest[i]);                                             \
+          log_fail("PE 1: Validation failed - dest[%d] = %d, expected %d", i,  \
+                   (int)dest[i], i / 2);                                       \
           success = false;                                                     \
           break;                                                               \
         }                                                                      \
       }                                                                        \
-      log_info("result is valid");                                             \
+      if (success) {                                                           \
+        log_info("PE 1: Validation successful - all elements match expected "  \
+                 "values");                                                    \
+      }                                                                        \
     } else {                                                                   \
-      log_info("waiting for pe 1 to verify");                                  \
+      log_info("PE 0: Waiting for PE 1 to complete validation");               \
     }                                                                          \
                                                                                \
     success;                                                                   \
@@ -60,6 +68,8 @@ int main(int argc, char *argv[]) {
   log_init(__FILE__);
 
   if (!(shmem_n_pes() <= 2)) {
+    log_warn("Not enough PEs to run test (requires 2 PEs, have %d PEs)",
+             shmem_n_pes());
     if (shmem_my_pe() == 0) {
       display_not_enough_pes("RMA");
     }

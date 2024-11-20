@@ -1,0 +1,458 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/rma/c11_shmem_put.c
+[14:59:26.710] ------ BEGIN TEST ROUTINE: shmem_put(long)
+[14:59:26.710] [INFO] Allocated static arrays: src at 0xaaaae8f20200, dest at 0xaaaae8f20250
+[14:59:26.710] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.710] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.710] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.710] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.710] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.710] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.710] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.710] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.710] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.710] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.710] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.710] [INFO] Completed barrier synchronization
+[14:59:26.710] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.710] [INFO] PE 0: dest=0xaaaae8f20250, src=0xaaaae8f20200, nelems=10
+[14:59:26.710] [INFO] PE 0: Completed put operation
+[14:59:26.710] [INFO] Completed barrier synchronization
+[14:59:26.710] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.710] ------ BEGIN TEST ROUTINE: shmem_put(double)
+[14:59:26.710] [INFO] Allocated static arrays: src at 0xaaaae8f202a0, dest at 0xaaaae8f202f0
+[14:59:26.710] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.710] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.710] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.710] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.710] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.710] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.710] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.710] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.710] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.710] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.710] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.710] [INFO] Completed barrier synchronization
+[14:59:26.710] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.710] [INFO] PE 0: dest=0xaaaae8f202f0, src=0xaaaae8f202a0, nelems=10
+[14:59:26.710] [INFO] PE 0: Completed put operation
+[14:59:26.711] [INFO] Completed barrier synchronization
+[14:59:26.711] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.711] ------ BEGIN TEST ROUTINE: shmem_put(long double)
+[14:59:26.711] [INFO] Allocated static arrays: src at 0xaaaae8f20340, dest at 0xaaaae8f203e0
+[14:59:26.711] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.711] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.711] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.711] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.711] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.711] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.711] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.711] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.711] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.711] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.711] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.711] [INFO] Completed barrier synchronization
+[14:59:26.711] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.711] [INFO] PE 0: dest=0xaaaae8f203e0, src=0xaaaae8f20340, nelems=10
+[14:59:26.711] [INFO] PE 0: Completed put operation
+[14:59:26.711] [INFO] Completed barrier synchronization
+[14:59:26.711] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.711] ------ BEGIN TEST ROUTINE: shmem_put(char)
+[14:59:26.711] [INFO] Allocated static arrays: src at 0xaaaae8f20480, dest at 0xaaaae8f20490
+[14:59:26.711] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.711] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.711] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.711] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.711] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.711] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.711] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.711] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.711] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.711] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.711] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.711] [INFO] Completed barrier synchronization
+[14:59:26.711] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.711] [INFO] PE 0: dest=0xaaaae8f20490, src=0xaaaae8f20480, nelems=10
+[14:59:26.711] [INFO] PE 0: Completed put operation
+[14:59:26.711] [INFO] Completed barrier synchronization
+[14:59:26.711] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.711] ------ BEGIN TEST ROUTINE: shmem_put(signed char)
+[14:59:26.711] [INFO] Allocated static arrays: src at 0xaaaae8f204a0, dest at 0xaaaae8f204b0
+[14:59:26.711] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.711] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.711] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.711] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.711] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.711] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.711] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.711] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.711] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.711] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.711] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.711] [INFO] Completed barrier synchronization
+[14:59:26.711] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.711] [INFO] PE 0: dest=0xaaaae8f204b0, src=0xaaaae8f204a0, nelems=10
+[14:59:26.711] [INFO] PE 0: Completed put operation
+[14:59:26.711] [INFO] Completed barrier synchronization
+[14:59:26.711] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.711] ------ BEGIN TEST ROUTINE: shmem_put(short)
+[14:59:26.711] [INFO] Allocated static arrays: src at 0xaaaae8f204c0, dest at 0xaaaae8f204d8
+[14:59:26.711] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.711] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.711] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.711] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.711] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.711] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.711] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.711] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.711] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.711] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.711] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.712] [INFO] Completed barrier synchronization
+[14:59:26.712] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.712] [INFO] PE 0: dest=0xaaaae8f204d8, src=0xaaaae8f204c0, nelems=10
+[14:59:26.712] [INFO] PE 0: Completed put operation
+[14:59:26.712] [INFO] Completed barrier synchronization
+[14:59:26.712] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.712] ------ BEGIN TEST ROUTINE: shmem_put(int)
+[14:59:26.712] [INFO] Allocated static arrays: src at 0xaaaae8f204f0, dest at 0xaaaae8f20518
+[14:59:26.712] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.712] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.712] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.712] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.712] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.712] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.712] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.712] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.712] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.712] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.712] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.712] [INFO] Completed barrier synchronization
+[14:59:26.712] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.712] [INFO] PE 0: dest=0xaaaae8f20518, src=0xaaaae8f204f0, nelems=10
+[14:59:26.712] [INFO] PE 0: Completed put operation
+[14:59:26.712] [INFO] Completed barrier synchronization
+[14:59:26.712] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.712] ------ BEGIN TEST ROUTINE: shmem_put(long)
+[14:59:26.712] [INFO] Allocated static arrays: src at 0xaaaae8f20540, dest at 0xaaaae8f20590
+[14:59:26.712] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.712] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.712] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.712] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.712] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.712] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.712] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.712] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.712] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.712] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.712] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.712] [INFO] Completed barrier synchronization
+[14:59:26.712] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.712] [INFO] PE 0: dest=0xaaaae8f20590, src=0xaaaae8f20540, nelems=10
+[14:59:26.712] [INFO] PE 0: Completed put operation
+[14:59:26.712] [INFO] Completed barrier synchronization
+[14:59:26.712] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.712] ------ BEGIN TEST ROUTINE: shmem_put(long long)
+[14:59:26.712] [INFO] Allocated static arrays: src at 0xaaaae8f205e0, dest at 0xaaaae8f20630
+[14:59:26.712] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.712] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.712] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.712] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.712] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.712] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.712] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.712] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.712] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.712] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.712] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.713] [INFO] Completed barrier synchronization
+[14:59:26.713] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.713] [INFO] PE 0: dest=0xaaaae8f20630, src=0xaaaae8f205e0, nelems=10
+[14:59:26.713] [INFO] PE 0: Completed put operation
+[14:59:26.713] [INFO] Completed barrier synchronization
+[14:59:26.713] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.713] ------ BEGIN TEST ROUTINE: shmem_put(unsigned char)
+[14:59:26.713] [INFO] Allocated static arrays: src at 0xaaaae8f20680, dest at 0xaaaae8f20690
+[14:59:26.713] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.713] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.713] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.713] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.713] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.713] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.713] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.713] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.713] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.713] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.713] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.713] [INFO] Completed barrier synchronization
+[14:59:26.713] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.713] [INFO] PE 0: dest=0xaaaae8f20690, src=0xaaaae8f20680, nelems=10
+[14:59:26.713] [INFO] PE 0: Completed put operation
+[14:59:26.713] [INFO] Completed barrier synchronization
+[14:59:26.713] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.713] ------ BEGIN TEST ROUTINE: shmem_put(unsigned short)
+[14:59:26.713] [INFO] Allocated static arrays: src at 0xaaaae8f206a0, dest at 0xaaaae8f206b8
+[14:59:26.713] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.713] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.713] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.713] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.713] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.713] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.713] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.713] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.713] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.713] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.713] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.713] [INFO] Completed barrier synchronization
+[14:59:26.713] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.713] [INFO] PE 0: dest=0xaaaae8f206b8, src=0xaaaae8f206a0, nelems=10
+[14:59:26.713] [INFO] PE 0: Completed put operation
+[14:59:26.713] [INFO] Completed barrier synchronization
+[14:59:26.713] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.713] ------ BEGIN TEST ROUTINE: shmem_put(unsigned int)
+[14:59:26.713] [INFO] Allocated static arrays: src at 0xaaaae8f206d0, dest at 0xaaaae8f206f8
+[14:59:26.713] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.713] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.713] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.713] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.713] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.713] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.713] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.713] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.713] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.713] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.713] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.713] [INFO] Completed barrier synchronization
+[14:59:26.713] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.713] [INFO] PE 0: dest=0xaaaae8f206f8, src=0xaaaae8f206d0, nelems=10
+[14:59:26.713] [INFO] PE 0: Completed put operation
+[14:59:26.713] [INFO] Completed barrier synchronization
+[14:59:26.713] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.713] ------ BEGIN TEST ROUTINE: shmem_put(unsigned long)
+[14:59:26.713] [INFO] Allocated static arrays: src at 0xaaaae8f20720, dest at 0xaaaae8f20770
+[14:59:26.713] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.713] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.713] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.713] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.713] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.713] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.713] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.713] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.713] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.713] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.713] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.714] [INFO] Completed barrier synchronization
+[14:59:26.714] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.714] [INFO] PE 0: dest=0xaaaae8f20770, src=0xaaaae8f20720, nelems=10
+[14:59:26.714] [INFO] PE 0: Completed put operation
+[14:59:26.714] [INFO] Completed barrier synchronization
+[14:59:26.714] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.714] ------ BEGIN TEST ROUTINE: shmem_put(unsigned long long)
+[14:59:26.714] [INFO] Allocated static arrays: src at 0xaaaae8f207c0, dest at 0xaaaae8f20810
+[14:59:26.714] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.714] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.714] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.714] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.714] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.714] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.714] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.714] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.714] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.714] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.714] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.714] [INFO] Completed barrier synchronization
+[14:59:26.714] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.714] [INFO] PE 0: dest=0xaaaae8f20810, src=0xaaaae8f207c0, nelems=10
+[14:59:26.714] [INFO] PE 0: Completed put operation
+[14:59:26.714] [INFO] Completed barrier synchronization
+[14:59:26.714] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.714] ------ BEGIN TEST ROUTINE: shmem_put(int8_t)
+[14:59:26.714] [INFO] Allocated static arrays: src at 0xaaaae8f20860, dest at 0xaaaae8f20870
+[14:59:26.714] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.714] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.714] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.714] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.714] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.714] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.714] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.714] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.714] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.714] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.714] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.714] [INFO] Completed barrier synchronization
+[14:59:26.714] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.714] [INFO] PE 0: dest=0xaaaae8f20870, src=0xaaaae8f20860, nelems=10
+[14:59:26.714] [INFO] PE 0: Completed put operation
+[14:59:26.714] [INFO] Completed barrier synchronization
+[14:59:26.714] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.714] ------ BEGIN TEST ROUTINE: shmem_put(int16_t)
+[14:59:26.714] [INFO] Allocated static arrays: src at 0xaaaae8f20880, dest at 0xaaaae8f20898
+[14:59:26.714] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.714] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.714] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.714] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.714] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.714] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.714] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.714] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.714] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.714] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.714] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.714] [INFO] Completed barrier synchronization
+[14:59:26.714] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.714] [INFO] PE 0: dest=0xaaaae8f20898, src=0xaaaae8f20880, nelems=10
+[14:59:26.714] [INFO] PE 0: Completed put operation
+[14:59:26.714] [INFO] Completed barrier synchronization
+[14:59:26.714] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.714] ------ BEGIN TEST ROUTINE: shmem_put(int32_t)
+[14:59:26.714] [INFO] Allocated static arrays: src at 0xaaaae8f208b0, dest at 0xaaaae8f208d8
+[14:59:26.714] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.714] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.714] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.714] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.714] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.714] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.714] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.714] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.714] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.714] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.714] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.715] [INFO] Completed barrier synchronization
+[14:59:26.715] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.715] [INFO] PE 0: dest=0xaaaae8f208d8, src=0xaaaae8f208b0, nelems=10
+[14:59:26.715] [INFO] PE 0: Completed put operation
+[14:59:26.715] [INFO] Completed barrier synchronization
+[14:59:26.715] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.715] ------ BEGIN TEST ROUTINE: shmem_put(int64_t)
+[14:59:26.715] [INFO] Allocated static arrays: src at 0xaaaae8f20900, dest at 0xaaaae8f20950
+[14:59:26.715] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.715] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.715] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.715] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.715] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.715] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.715] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.715] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.715] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.715] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.715] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.715] [INFO] Completed barrier synchronization
+[14:59:26.715] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.715] [INFO] PE 0: dest=0xaaaae8f20950, src=0xaaaae8f20900, nelems=10
+[14:59:26.715] [INFO] PE 0: Completed put operation
+[14:59:26.715] [INFO] Completed barrier synchronization
+[14:59:26.715] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.715] ------ BEGIN TEST ROUTINE: shmem_put(uint8_t)
+[14:59:26.715] [INFO] Allocated static arrays: src at 0xaaaae8f209a0, dest at 0xaaaae8f209b0
+[14:59:26.715] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.715] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.715] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.715] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.715] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.715] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.715] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.715] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.715] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.715] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.715] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.715] [INFO] Completed barrier synchronization
+[14:59:26.715] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.715] [INFO] PE 0: dest=0xaaaae8f209b0, src=0xaaaae8f209a0, nelems=10
+[14:59:26.715] [INFO] PE 0: Completed put operation
+[14:59:26.715] [INFO] Completed barrier synchronization
+[14:59:26.715] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.715] ------ BEGIN TEST ROUTINE: shmem_put(uint16_t)
+[14:59:26.715] [INFO] Allocated static arrays: src at 0xaaaae8f209c0, dest at 0xaaaae8f209d8
+[14:59:26.715] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.715] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.715] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.715] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.715] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.715] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.715] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.715] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.715] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.715] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.715] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.715] [INFO] Completed barrier synchronization
+[14:59:26.715] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.715] [INFO] PE 0: dest=0xaaaae8f209d8, src=0xaaaae8f209c0, nelems=10
+[14:59:26.715] [INFO] PE 0: Completed put operation
+[14:59:26.715] [INFO] Completed barrier synchronization
+[14:59:26.715] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.715] ------ BEGIN TEST ROUTINE: shmem_put(uint32_t)
+[14:59:26.715] [INFO] Allocated static arrays: src at 0xaaaae8f209f0, dest at 0xaaaae8f20a18
+[14:59:26.715] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.715] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.715] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.715] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.715] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.715] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.715] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.715] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.715] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.715] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.715] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.716] [INFO] Completed barrier synchronization
+[14:59:26.716] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.716] [INFO] PE 0: dest=0xaaaae8f20a18, src=0xaaaae8f209f0, nelems=10
+[14:59:26.716] [INFO] PE 0: Completed put operation
+[14:59:26.716] [INFO] Completed barrier synchronization
+[14:59:26.716] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.716] ------ BEGIN TEST ROUTINE: shmem_put(uint64_t)
+[14:59:26.716] [INFO] Allocated static arrays: src at 0xaaaae8f20a40, dest at 0xaaaae8f20a90
+[14:59:26.716] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.716] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.716] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.716] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.716] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.716] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.716] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.716] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.716] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.716] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.716] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.716] [INFO] Completed barrier synchronization
+[14:59:26.716] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.716] [INFO] PE 0: dest=0xaaaae8f20a90, src=0xaaaae8f20a40, nelems=10
+[14:59:26.716] [INFO] PE 0: Completed put operation
+[14:59:26.716] [INFO] Completed barrier synchronization
+[14:59:26.716] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.716] ------ BEGIN TEST ROUTINE: shmem_put(size_t)
+[14:59:26.716] [INFO] Allocated static arrays: src at 0xaaaae8f20ae0, dest at 0xaaaae8f20b30
+[14:59:26.716] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.716] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.716] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.716] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.716] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.716] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.716] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.716] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.716] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.716] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.716] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.716] [INFO] Completed barrier synchronization
+[14:59:26.716] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.716] [INFO] PE 0: dest=0xaaaae8f20b30, src=0xaaaae8f20ae0, nelems=10
+[14:59:26.716] [INFO] PE 0: Completed put operation
+[14:59:26.716] [INFO] Completed barrier synchronization
+[14:59:26.716] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.716] ------ BEGIN TEST ROUTINE: shmem_put(ptrdiff_t)
+[14:59:26.716] [INFO] Allocated static arrays: src at 0xaaaae8f20b80, dest at 0xaaaae8f20bd0
+[14:59:26.716] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.716] [INFO] PE 0: Initialized src[0] = 0
+[14:59:26.716] [INFO] PE 0: Initialized src[1] = 1
+[14:59:26.716] [INFO] PE 0: Initialized src[2] = 2
+[14:59:26.716] [INFO] PE 0: Initialized src[3] = 3
+[14:59:26.716] [INFO] PE 0: Initialized src[4] = 4
+[14:59:26.716] [INFO] PE 0: Initialized src[5] = 5
+[14:59:26.716] [INFO] PE 0: Initialized src[6] = 6
+[14:59:26.716] [INFO] PE 0: Initialized src[7] = 7
+[14:59:26.716] [INFO] PE 0: Initialized src[8] = 8
+[14:59:26.716] [INFO] PE 0: Initialized src[9] = 9
+[14:59:26.716] [INFO] Completed barrier synchronization
+[14:59:26.716] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.716] [INFO] PE 0: dest=0xaaaae8f20bd0, src=0xaaaae8f20b80, nelems=10
+[14:59:26.716] [INFO] PE 0: Completed put operation
+[14:59:26.717] [INFO] Completed barrier synchronization
+[14:59:26.717] [INFO] PE 0: Waiting for PE 1 to complete validation
+---------- END TEST: PASSED

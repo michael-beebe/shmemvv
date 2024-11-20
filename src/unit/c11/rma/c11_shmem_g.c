@@ -15,34 +15,38 @@
     log_routine("shmem_g(" #TYPE ")");                                         \
     bool success = true;                                                       \
     static TYPE src, dest;                                                     \
-    log_info("&src = %p, &dest = %p", &src, &dest);                            \
+    log_info("Allocated static variables: src at %p, dest at %p", (void*)&src, (void*)&dest); \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
+    log_info("Running on PE %d of %d total PEs", mype, npes);                  \
                                                                                \
     if (mype == 0) {                                                           \
       src = 10;                                                                \
-      log_info("set src = 10");                                                \
+      log_info("PE 0: Initialized src = %d", (int)src);                        \
     }                                                                          \
                                                                                \
     shmem_barrier_all();                                                       \
+    log_info("Completed barrier synchronization");                             \
                                                                                \
     if (mype == 1) {                                                           \
-      log_info("shmem_g'ing src into dest");                                   \
+      log_info("PE 1: Fetching remote value from PE 0");                       \
       dest = shmem_g(&src, 0);                                                 \
-      log_info("dest = %d", (char)dest);                                       \
+      log_info("PE 1: Fetched value dest = %d", (int)dest);                   \
     }                                                                          \
                                                                                \
     shmem_barrier_all();                                                       \
+    log_info("Completed barrier synchronization");                             \
                                                                                \
     if (mype == 1) {                                                           \
-      log_info("validating...");                                               \
+      log_info("PE 1: Beginning validation");                                  \
       if (dest != 10) {                                                        \
-        log_fail("dest was unexpected value: expected 10, got ", (char)dest);  \
+        log_fail("PE 1: Validation failed - expected dest=10, got dest=%d", (int)dest); \
         success = false;                                                       \
+      } else {                                                                 \
+        log_info("PE 1: Validation successful - dest=10 as expected");         \
       }                                                                        \
-      log_info("result is valid");                                             \
     } else {                                                                   \
-      log_info("waiting for pe 1 to verify");                                  \
+      log_info("PE 0: Waiting for PE 1 to complete validation");               \
     }                                                                          \
                                                                                \
     success;                                                                   \
@@ -53,7 +57,7 @@ int main(int argc, char *argv[]) {
   log_init(__FILE__);
 
   if (!(shmem_n_pes() <= 2)) {
-    log_warn("not enough pes for test (need 2, have %d)", shmem_n_pes());
+    log_warn("Not enough PEs to run test (requires 2 PEs, have %d PEs)", shmem_n_pes());
     if (shmem_my_pe() == 0) {
       display_not_enough_pes("RMA");
     }

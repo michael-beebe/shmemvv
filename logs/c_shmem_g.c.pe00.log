@@ -1,0 +1,170 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c/rma/c_shmem_g.c
+[14:59:26.525] ------ BEGIN TEST ROUTINE: shmem_long_g()
+[14:59:26.525] [INFO] Allocated static variables: src at 0xaaaae2f20200, dest at 0xaaaae2f20208
+[14:59:26.525] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.525] [INFO] PE 0: Initialized src = 10
+[14:59:26.525] [INFO] Completed barrier synchronization
+[14:59:26.525] [INFO] Completed barrier synchronization
+[14:59:26.525] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.525] ------ BEGIN TEST ROUTINE: shmem_double_g()
+[14:59:26.525] [INFO] Allocated static variables: src at 0xaaaae2f20210, dest at 0xaaaae2f20218
+[14:59:26.525] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.525] [INFO] PE 0: Initialized src = 10
+[14:59:26.525] [INFO] Completed barrier synchronization
+[14:59:26.525] [INFO] Completed barrier synchronization
+[14:59:26.525] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.525] ------ BEGIN TEST ROUTINE: shmem_longdouble_g()
+[14:59:26.525] [INFO] Allocated static variables: src at 0xaaaae2f20220, dest at 0xaaaae2f20230
+[14:59:26.525] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.525] [INFO] PE 0: Initialized src = 10
+[14:59:26.525] [INFO] Completed barrier synchronization
+[14:59:26.526] [INFO] Completed barrier synchronization
+[14:59:26.526] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.526] ------ BEGIN TEST ROUTINE: shmem_char_g()
+[14:59:26.526] [INFO] Allocated static variables: src at 0xaaaae2f20240, dest at 0xaaaae2f20241
+[14:59:26.526] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.526] [INFO] PE 0: Initialized src = 10
+[14:59:26.526] [INFO] Completed barrier synchronization
+[14:59:26.526] [INFO] Completed barrier synchronization
+[14:59:26.526] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.526] ------ BEGIN TEST ROUTINE: shmem_schar_g()
+[14:59:26.526] [INFO] Allocated static variables: src at 0xaaaae2f20242, dest at 0xaaaae2f20243
+[14:59:26.526] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.526] [INFO] PE 0: Initialized src = 10
+[14:59:26.526] [INFO] Completed barrier synchronization
+[14:59:26.526] [INFO] Completed barrier synchronization
+[14:59:26.526] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.526] ------ BEGIN TEST ROUTINE: shmem_short_g()
+[14:59:26.526] [INFO] Allocated static variables: src at 0xaaaae2f20244, dest at 0xaaaae2f20246
+[14:59:26.526] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.526] [INFO] PE 0: Initialized src = 10
+[14:59:26.526] [INFO] Completed barrier synchronization
+[14:59:26.526] [INFO] Completed barrier synchronization
+[14:59:26.526] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.526] ------ BEGIN TEST ROUTINE: shmem_int_g()
+[14:59:26.526] [INFO] Allocated static variables: src at 0xaaaae2f20248, dest at 0xaaaae2f2024c
+[14:59:26.526] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.526] [INFO] PE 0: Initialized src = 10
+[14:59:26.526] [INFO] Completed barrier synchronization
+[14:59:26.526] [INFO] Completed barrier synchronization
+[14:59:26.526] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.526] ------ BEGIN TEST ROUTINE: shmem_long_g()
+[14:59:26.526] [INFO] Allocated static variables: src at 0xaaaae2f20250, dest at 0xaaaae2f20258
+[14:59:26.526] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.526] [INFO] PE 0: Initialized src = 10
+[14:59:26.526] [INFO] Completed barrier synchronization
+[14:59:26.527] [INFO] Completed barrier synchronization
+[14:59:26.527] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.527] ------ BEGIN TEST ROUTINE: shmem_longlong_g()
+[14:59:26.527] [INFO] Allocated static variables: src at 0xaaaae2f20260, dest at 0xaaaae2f20268
+[14:59:26.527] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.527] [INFO] PE 0: Initialized src = 10
+[14:59:26.527] [INFO] Completed barrier synchronization
+[14:59:26.527] [INFO] Completed barrier synchronization
+[14:59:26.527] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.527] ------ BEGIN TEST ROUTINE: shmem_uchar_g()
+[14:59:26.527] [INFO] Allocated static variables: src at 0xaaaae2f20270, dest at 0xaaaae2f20271
+[14:59:26.527] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.527] [INFO] PE 0: Initialized src = 10
+[14:59:26.527] [INFO] Completed barrier synchronization
+[14:59:26.527] [INFO] Completed barrier synchronization
+[14:59:26.527] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.527] ------ BEGIN TEST ROUTINE: shmem_ushort_g()
+[14:59:26.527] [INFO] Allocated static variables: src at 0xaaaae2f20272, dest at 0xaaaae2f20274
+[14:59:26.527] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.527] [INFO] PE 0: Initialized src = 10
+[14:59:26.527] [INFO] Completed barrier synchronization
+[14:59:26.527] [INFO] Completed barrier synchronization
+[14:59:26.527] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.527] ------ BEGIN TEST ROUTINE: shmem_uint_g()
+[14:59:26.527] [INFO] Allocated static variables: src at 0xaaaae2f20278, dest at 0xaaaae2f2027c
+[14:59:26.527] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.527] [INFO] PE 0: Initialized src = 10
+[14:59:26.527] [INFO] Completed barrier synchronization
+[14:59:26.527] [INFO] Completed barrier synchronization
+[14:59:26.527] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.527] ------ BEGIN TEST ROUTINE: shmem_ulong_g()
+[14:59:26.527] [INFO] Allocated static variables: src at 0xaaaae2f20280, dest at 0xaaaae2f20288
+[14:59:26.527] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.527] [INFO] PE 0: Initialized src = 10
+[14:59:26.528] [INFO] Completed barrier synchronization
+[14:59:26.528] [INFO] Completed barrier synchronization
+[14:59:26.528] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.528] ------ BEGIN TEST ROUTINE: shmem_ulonglong_g()
+[14:59:26.528] [INFO] Allocated static variables: src at 0xaaaae2f20290, dest at 0xaaaae2f20298
+[14:59:26.528] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.528] [INFO] PE 0: Initialized src = 10
+[14:59:26.528] [INFO] Completed barrier synchronization
+[14:59:26.528] [INFO] Completed barrier synchronization
+[14:59:26.528] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.528] ------ BEGIN TEST ROUTINE: shmem_int8_g()
+[14:59:26.528] [INFO] Allocated static variables: src at 0xaaaae2f202a0, dest at 0xaaaae2f202a1
+[14:59:26.528] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.528] [INFO] PE 0: Initialized src = 10
+[14:59:26.528] [INFO] Completed barrier synchronization
+[14:59:26.528] [INFO] Completed barrier synchronization
+[14:59:26.528] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.528] ------ BEGIN TEST ROUTINE: shmem_int16_g()
+[14:59:26.528] [INFO] Allocated static variables: src at 0xaaaae2f202a2, dest at 0xaaaae2f202a4
+[14:59:26.528] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.528] [INFO] PE 0: Initialized src = 10
+[14:59:26.528] [INFO] Completed barrier synchronization
+[14:59:26.528] [INFO] Completed barrier synchronization
+[14:59:26.528] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.528] ------ BEGIN TEST ROUTINE: shmem_int32_g()
+[14:59:26.528] [INFO] Allocated static variables: src at 0xaaaae2f202a8, dest at 0xaaaae2f202ac
+[14:59:26.528] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.528] [INFO] PE 0: Initialized src = 10
+[14:59:26.529] [INFO] Completed barrier synchronization
+[14:59:26.529] [INFO] Completed barrier synchronization
+[14:59:26.529] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.529] ------ BEGIN TEST ROUTINE: shmem_int64_g()
+[14:59:26.529] [INFO] Allocated static variables: src at 0xaaaae2f202b0, dest at 0xaaaae2f202b8
+[14:59:26.529] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.529] [INFO] PE 0: Initialized src = 10
+[14:59:26.529] [INFO] Completed barrier synchronization
+[14:59:26.529] [INFO] Completed barrier synchronization
+[14:59:26.529] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.529] ------ BEGIN TEST ROUTINE: shmem_uint8_g()
+[14:59:26.529] [INFO] Allocated static variables: src at 0xaaaae2f202c0, dest at 0xaaaae2f202c1
+[14:59:26.529] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.529] [INFO] PE 0: Initialized src = 10
+[14:59:26.529] [INFO] Completed barrier synchronization
+[14:59:26.529] [INFO] Completed barrier synchronization
+[14:59:26.529] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.529] ------ BEGIN TEST ROUTINE: shmem_uint16_g()
+[14:59:26.529] [INFO] Allocated static variables: src at 0xaaaae2f202c2, dest at 0xaaaae2f202c4
+[14:59:26.529] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.529] [INFO] PE 0: Initialized src = 10
+[14:59:26.529] [INFO] Completed barrier synchronization
+[14:59:26.529] [INFO] Completed barrier synchronization
+[14:59:26.529] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.529] ------ BEGIN TEST ROUTINE: shmem_uint32_g()
+[14:59:26.529] [INFO] Allocated static variables: src at 0xaaaae2f202c8, dest at 0xaaaae2f202cc
+[14:59:26.529] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.530] [INFO] PE 0: Initialized src = 10
+[14:59:26.530] [INFO] Completed barrier synchronization
+[14:59:26.530] [INFO] Completed barrier synchronization
+[14:59:26.530] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.530] ------ BEGIN TEST ROUTINE: shmem_uint64_g()
+[14:59:26.530] [INFO] Allocated static variables: src at 0xaaaae2f202d0, dest at 0xaaaae2f202d8
+[14:59:26.530] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.530] [INFO] PE 0: Initialized src = 10
+[14:59:26.530] [INFO] Completed barrier synchronization
+[14:59:26.530] [INFO] Completed barrier synchronization
+[14:59:26.530] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.530] ------ BEGIN TEST ROUTINE: shmem_size_g()
+[14:59:26.530] [INFO] Allocated static variables: src at 0xaaaae2f202e0, dest at 0xaaaae2f202e8
+[14:59:26.530] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.530] [INFO] PE 0: Initialized src = 10
+[14:59:26.530] [INFO] Completed barrier synchronization
+[14:59:26.530] [INFO] Completed barrier synchronization
+[14:59:26.530] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.530] ------ BEGIN TEST ROUTINE: shmem_ptrdiff_g()
+[14:59:26.530] [INFO] Allocated static variables: src at 0xaaaae2f202f0, dest at 0xaaaae2f202f8
+[14:59:26.530] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.530] [INFO] PE 0: Initialized src = 10
+[14:59:26.530] [INFO] Completed barrier synchronization
+[14:59:26.531] [INFO] Completed barrier synchronization
+[14:59:26.531] [INFO] PE 0: Waiting for PE 1 to complete validation
+---------- END TEST: PASSED

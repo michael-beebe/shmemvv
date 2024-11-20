@@ -1,0 +1,242 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c/rma/c_shmem_p.c
+[14:59:26.592] ------ BEGIN TEST ROUTINE: shmem_long_p()
+[14:59:26.592] [INFO] Allocated static variables: src at 0xaaaab84e0200, dest at 0xaaaab84e0208
+[14:59:26.592] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.592] [INFO] PE 0: Initialized src with value 0
+[14:59:26.593] [INFO] Completed barrier synchronization
+[14:59:26.593] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.593] [INFO] PE 0: dest=0xaaaab84e0208, src=0
+[14:59:26.593] [INFO] PE 0: Completed put operation
+[14:59:26.593] [INFO] Completed barrier synchronization
+[14:59:26.593] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.593] ------ BEGIN TEST ROUTINE: shmem_double_p()
+[14:59:26.593] [INFO] Allocated static variables: src at 0xaaaab84e0210, dest at 0xaaaab84e0218
+[14:59:26.593] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.593] [INFO] PE 0: Initialized src with value 0
+[14:59:26.593] [INFO] Completed barrier synchronization
+[14:59:26.593] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.593] [INFO] PE 0: dest=0xaaaab84e0218, src=0
+[14:59:26.593] [INFO] PE 0: Completed put operation
+[14:59:26.593] [INFO] Completed barrier synchronization
+[14:59:26.593] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.593] ------ BEGIN TEST ROUTINE: shmem_longdouble_p()
+[14:59:26.593] [INFO] Allocated static variables: src at 0xaaaab84e0220, dest at 0xaaaab84e0230
+[14:59:26.593] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.593] [INFO] PE 0: Initialized src with value 0
+[14:59:26.593] [INFO] Completed barrier synchronization
+[14:59:26.593] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.593] [INFO] PE 0: dest=0xaaaab84e0230, src=0
+[14:59:26.593] [INFO] PE 0: Completed put operation
+[14:59:26.593] [INFO] Completed barrier synchronization
+[14:59:26.593] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.593] ------ BEGIN TEST ROUTINE: shmem_char_p()
+[14:59:26.593] [INFO] Allocated static variables: src at 0xaaaab84e0240, dest at 0xaaaab84e0241
+[14:59:26.593] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.593] [INFO] PE 0: Initialized src with value 0
+[14:59:26.593] [INFO] Completed barrier synchronization
+[14:59:26.593] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.593] [INFO] PE 0: dest=0xaaaab84e0241, src=0
+[14:59:26.593] [INFO] PE 0: Completed put operation
+[14:59:26.593] [INFO] Completed barrier synchronization
+[14:59:26.593] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.593] ------ BEGIN TEST ROUTINE: shmem_schar_p()
+[14:59:26.593] [INFO] Allocated static variables: src at 0xaaaab84e0242, dest at 0xaaaab84e0243
+[14:59:26.593] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.593] [INFO] PE 0: Initialized src with value 0
+[14:59:26.593] [INFO] Completed barrier synchronization
+[14:59:26.593] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.593] [INFO] PE 0: dest=0xaaaab84e0243, src=0
+[14:59:26.593] [INFO] PE 0: Completed put operation
+[14:59:26.594] [INFO] Completed barrier synchronization
+[14:59:26.594] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.594] ------ BEGIN TEST ROUTINE: shmem_short_p()
+[14:59:26.594] [INFO] Allocated static variables: src at 0xaaaab84e0244, dest at 0xaaaab84e0246
+[14:59:26.594] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.594] [INFO] PE 0: Initialized src with value 0
+[14:59:26.594] [INFO] Completed barrier synchronization
+[14:59:26.594] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.594] [INFO] PE 0: dest=0xaaaab84e0246, src=0
+[14:59:26.594] [INFO] PE 0: Completed put operation
+[14:59:26.594] [INFO] Completed barrier synchronization
+[14:59:26.594] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.594] ------ BEGIN TEST ROUTINE: shmem_int_p()
+[14:59:26.594] [INFO] Allocated static variables: src at 0xaaaab84e0248, dest at 0xaaaab84e024c
+[14:59:26.594] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.594] [INFO] PE 0: Initialized src with value 0
+[14:59:26.594] [INFO] Completed barrier synchronization
+[14:59:26.594] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.594] [INFO] PE 0: dest=0xaaaab84e024c, src=0
+[14:59:26.594] [INFO] PE 0: Completed put operation
+[14:59:26.594] [INFO] Completed barrier synchronization
+[14:59:26.594] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.594] ------ BEGIN TEST ROUTINE: shmem_long_p()
+[14:59:26.594] [INFO] Allocated static variables: src at 0xaaaab84e0250, dest at 0xaaaab84e0258
+[14:59:26.594] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.594] [INFO] PE 0: Initialized src with value 0
+[14:59:26.594] [INFO] Completed barrier synchronization
+[14:59:26.594] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.594] [INFO] PE 0: dest=0xaaaab84e0258, src=0
+[14:59:26.594] [INFO] PE 0: Completed put operation
+[14:59:26.594] [INFO] Completed barrier synchronization
+[14:59:26.594] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.594] ------ BEGIN TEST ROUTINE: shmem_longlong_p()
+[14:59:26.594] [INFO] Allocated static variables: src at 0xaaaab84e0260, dest at 0xaaaab84e0268
+[14:59:26.594] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.594] [INFO] PE 0: Initialized src with value 0
+[14:59:26.595] [INFO] Completed barrier synchronization
+[14:59:26.595] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.595] [INFO] PE 0: dest=0xaaaab84e0268, src=0
+[14:59:26.595] [INFO] PE 0: Completed put operation
+[14:59:26.595] [INFO] Completed barrier synchronization
+[14:59:26.595] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.595] ------ BEGIN TEST ROUTINE: shmem_uchar_p()
+[14:59:26.595] [INFO] Allocated static variables: src at 0xaaaab84e0270, dest at 0xaaaab84e0271
+[14:59:26.595] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.595] [INFO] PE 0: Initialized src with value 0
+[14:59:26.595] [INFO] Completed barrier synchronization
+[14:59:26.595] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.595] [INFO] PE 0: dest=0xaaaab84e0271, src=0
+[14:59:26.595] [INFO] PE 0: Completed put operation
+[14:59:26.595] [INFO] Completed barrier synchronization
+[14:59:26.595] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.595] ------ BEGIN TEST ROUTINE: shmem_ushort_p()
+[14:59:26.595] [INFO] Allocated static variables: src at 0xaaaab84e0272, dest at 0xaaaab84e0274
+[14:59:26.595] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.595] [INFO] PE 0: Initialized src with value 0
+[14:59:26.595] [INFO] Completed barrier synchronization
+[14:59:26.595] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.595] [INFO] PE 0: dest=0xaaaab84e0274, src=0
+[14:59:26.595] [INFO] PE 0: Completed put operation
+[14:59:26.595] [INFO] Completed barrier synchronization
+[14:59:26.595] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.595] ------ BEGIN TEST ROUTINE: shmem_uint_p()
+[14:59:26.595] [INFO] Allocated static variables: src at 0xaaaab84e0278, dest at 0xaaaab84e027c
+[14:59:26.595] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.595] [INFO] PE 0: Initialized src with value 0
+[14:59:26.595] [INFO] Completed barrier synchronization
+[14:59:26.595] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.595] [INFO] PE 0: dest=0xaaaab84e027c, src=0
+[14:59:26.595] [INFO] PE 0: Completed put operation
+[14:59:26.595] [INFO] Completed barrier synchronization
+[14:59:26.595] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.595] ------ BEGIN TEST ROUTINE: shmem_ulong_p()
+[14:59:26.595] [INFO] Allocated static variables: src at 0xaaaab84e0280, dest at 0xaaaab84e0288
+[14:59:26.595] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.595] [INFO] PE 0: Initialized src with value 0
+[14:59:26.595] [INFO] Completed barrier synchronization
+[14:59:26.595] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.595] [INFO] PE 0: dest=0xaaaab84e0288, src=0
+[14:59:26.595] [INFO] PE 0: Completed put operation
+[14:59:26.595] [INFO] Completed barrier synchronization
+[14:59:26.595] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.595] ------ BEGIN TEST ROUTINE: shmem_ulonglong_p()
+[14:59:26.595] [INFO] Allocated static variables: src at 0xaaaab84e0290, dest at 0xaaaab84e0298
+[14:59:26.595] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.595] [INFO] PE 0: Initialized src with value 0
+[14:59:26.595] [INFO] Completed barrier synchronization
+[14:59:26.595] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.595] [INFO] PE 0: dest=0xaaaab84e0298, src=0
+[14:59:26.595] [INFO] PE 0: Completed put operation
+[14:59:26.596] [INFO] Completed barrier synchronization
+[14:59:26.596] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.596] ------ BEGIN TEST ROUTINE: shmem_int8_p()
+[14:59:26.596] [INFO] Allocated static variables: src at 0xaaaab84e02a0, dest at 0xaaaab84e02a1
+[14:59:26.596] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.596] [INFO] PE 0: Initialized src with value 0
+[14:59:26.596] [INFO] Completed barrier synchronization
+[14:59:26.596] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.596] [INFO] PE 0: dest=0xaaaab84e02a1, src=0
+[14:59:26.596] [INFO] PE 0: Completed put operation
+[14:59:26.596] [INFO] Completed barrier synchronization
+[14:59:26.596] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.596] ------ BEGIN TEST ROUTINE: shmem_int16_p()
+[14:59:26.596] [INFO] Allocated static variables: src at 0xaaaab84e02a2, dest at 0xaaaab84e02a4
+[14:59:26.596] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.596] [INFO] PE 0: Initialized src with value 0
+[14:59:26.596] [INFO] Completed barrier synchronization
+[14:59:26.596] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.596] [INFO] PE 0: dest=0xaaaab84e02a4, src=0
+[14:59:26.596] [INFO] PE 0: Completed put operation
+[14:59:26.596] [INFO] Completed barrier synchronization
+[14:59:26.596] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.596] ------ BEGIN TEST ROUTINE: shmem_int32_p()
+[14:59:26.596] [INFO] Allocated static variables: src at 0xaaaab84e02a8, dest at 0xaaaab84e02ac
+[14:59:26.596] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.596] [INFO] PE 0: Initialized src with value 0
+[14:59:26.596] [INFO] Completed barrier synchronization
+[14:59:26.596] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.596] [INFO] PE 0: dest=0xaaaab84e02ac, src=0
+[14:59:26.596] [INFO] PE 0: Completed put operation
+[14:59:26.596] [INFO] Completed barrier synchronization
+[14:59:26.596] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.596] ------ BEGIN TEST ROUTINE: shmem_int64_p()
+[14:59:26.596] [INFO] Allocated static variables: src at 0xaaaab84e02b0, dest at 0xaaaab84e02b8
+[14:59:26.596] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.596] [INFO] PE 0: Initialized src with value 0
+[14:59:26.596] [INFO] Completed barrier synchronization
+[14:59:26.596] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.596] [INFO] PE 0: dest=0xaaaab84e02b8, src=0
+[14:59:26.596] [INFO] PE 0: Completed put operation
+[14:59:26.596] [INFO] Completed barrier synchronization
+[14:59:26.596] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.596] ------ BEGIN TEST ROUTINE: shmem_uint8_p()
+[14:59:26.596] [INFO] Allocated static variables: src at 0xaaaab84e02c0, dest at 0xaaaab84e02c1
+[14:59:26.596] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.596] [INFO] PE 0: Initialized src with value 0
+[14:59:26.597] [INFO] Completed barrier synchronization
+[14:59:26.597] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.597] [INFO] PE 0: dest=0xaaaab84e02c1, src=0
+[14:59:26.597] [INFO] PE 0: Completed put operation
+[14:59:26.597] [INFO] Completed barrier synchronization
+[14:59:26.597] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.597] ------ BEGIN TEST ROUTINE: shmem_uint16_p()
+[14:59:26.597] [INFO] Allocated static variables: src at 0xaaaab84e02c2, dest at 0xaaaab84e02c4
+[14:59:26.597] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.597] [INFO] PE 0: Initialized src with value 0
+[14:59:26.597] [INFO] Completed barrier synchronization
+[14:59:26.597] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.597] [INFO] PE 0: dest=0xaaaab84e02c4, src=0
+[14:59:26.597] [INFO] PE 0: Completed put operation
+[14:59:26.597] [INFO] Completed barrier synchronization
+[14:59:26.597] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.597] ------ BEGIN TEST ROUTINE: shmem_uint32_p()
+[14:59:26.597] [INFO] Allocated static variables: src at 0xaaaab84e02c8, dest at 0xaaaab84e02cc
+[14:59:26.597] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.597] [INFO] PE 0: Initialized src with value 0
+[14:59:26.597] [INFO] Completed barrier synchronization
+[14:59:26.597] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.597] [INFO] PE 0: dest=0xaaaab84e02cc, src=0
+[14:59:26.597] [INFO] PE 0: Completed put operation
+[14:59:26.597] [INFO] Completed barrier synchronization
+[14:59:26.597] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.597] ------ BEGIN TEST ROUTINE: shmem_uint64_p()
+[14:59:26.597] [INFO] Allocated static variables: src at 0xaaaab84e02d0, dest at 0xaaaab84e02d8
+[14:59:26.597] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.597] [INFO] PE 0: Initialized src with value 0
+[14:59:26.597] [INFO] Completed barrier synchronization
+[14:59:26.597] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.597] [INFO] PE 0: dest=0xaaaab84e02d8, src=0
+[14:59:26.597] [INFO] PE 0: Completed put operation
+[14:59:26.597] [INFO] Completed barrier synchronization
+[14:59:26.597] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.597] ------ BEGIN TEST ROUTINE: shmem_size_p()
+[14:59:26.597] [INFO] Allocated static variables: src at 0xaaaab84e02e0, dest at 0xaaaab84e02e8
+[14:59:26.597] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.597] [INFO] PE 0: Initialized src with value 0
+[14:59:26.597] [INFO] Completed barrier synchronization
+[14:59:26.597] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.597] [INFO] PE 0: dest=0xaaaab84e02e8, src=0
+[14:59:26.597] [INFO] PE 0: Completed put operation
+[14:59:26.597] [INFO] Completed barrier synchronization
+[14:59:26.597] [INFO] PE 0: Waiting for PE 1 to complete validation
+[14:59:26.597] ------ BEGIN TEST ROUTINE: shmem_ptrdiff_p()
+[14:59:26.597] [INFO] Allocated static variables: src at 0xaaaab84e02f0, dest at 0xaaaab84e02f8
+[14:59:26.597] [INFO] Running on PE 0 of 2 total PEs
+[14:59:26.597] [INFO] PE 0: Initialized src with value 0
+[14:59:26.597] [INFO] Completed barrier synchronization
+[14:59:26.597] [INFO] PE 0: Starting put operation to PE 1
+[14:59:26.597] [INFO] PE 0: dest=0xaaaab84e02f8, src=0
+[14:59:26.598] [INFO] PE 0: Completed put operation
+[14:59:26.598] [INFO] Completed barrier synchronization
+[14:59:26.598] [INFO] PE 0: Waiting for PE 1 to complete validation
+---------- END TEST: PASSED

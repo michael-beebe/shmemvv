@@ -1,0 +1,194 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/rma/c11_shmem_iput.c
+[14:59:26.685] ------ BEGIN TEST ROUTINE: shmem_iput(long)
+[14:59:26.685] [INFO] Allocated static arrays: src at 0xaaaae1df0200, dest at 0xaaaae1df0250
+[14:59:26.685] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.685] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.685] [INFO] Completed barrier synchronization
+[14:59:26.685] [INFO] Completed barrier synchronization
+[14:59:26.685] [INFO] PE 1: Beginning validation of received data
+[14:59:26.685] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[14:59:26.685] ------ BEGIN TEST ROUTINE: shmem_iput(double)
+[14:59:26.685] [INFO] Allocated static arrays: src at 0xaaaae1df02a0, dest at 0xaaaae1df02f0
+[14:59:26.685] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.685] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.686] [INFO] Completed barrier synchronization
+[14:59:26.686] [INFO] Completed barrier synchronization
+[14:59:26.686] [INFO] PE 1: Beginning validation of received data
+[14:59:26.686] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[14:59:26.686] ------ BEGIN TEST ROUTINE: shmem_iput(long double)
+[14:59:26.686] [INFO] Allocated static arrays: src at 0xaaaae1df0340, dest at 0xaaaae1df03e0
+[14:59:26.686] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.686] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.686] [INFO] Completed barrier synchronization
+[14:59:26.686] [INFO] Completed barrier synchronization
+[14:59:26.686] [INFO] PE 1: Beginning validation of received data
+[14:59:26.686] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[14:59:26.686] ------ BEGIN TEST ROUTINE: shmem_iput(char)
+[14:59:26.686] [INFO] Allocated static arrays: src at 0xaaaae1df0480, dest at 0xaaaae1df0490
+[14:59:26.686] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.686] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.686] [INFO] Completed barrier synchronization
+[14:59:26.686] [INFO] Completed barrier synchronization
+[14:59:26.686] [INFO] PE 1: Beginning validation of received data
+[14:59:26.686] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[14:59:26.686] ------ BEGIN TEST ROUTINE: shmem_iput(signed char)
+[14:59:26.686] [INFO] Allocated static arrays: src at 0xaaaae1df04a0, dest at 0xaaaae1df04b0
+[14:59:26.686] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.686] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.686] [INFO] Completed barrier synchronization
+[14:59:26.686] [INFO] Completed barrier synchronization
+[14:59:26.686] [INFO] PE 1: Beginning validation of received data
+[14:59:26.686] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[14:59:26.686] ------ BEGIN TEST ROUTINE: shmem_iput(short)
+[14:59:26.686] [INFO] Allocated static arrays: src at 0xaaaae1df04c0, dest at 0xaaaae1df04d8
+[14:59:26.686] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.686] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.687] [INFO] Completed barrier synchronization
+[14:59:26.687] [INFO] Completed barrier synchronization
+[14:59:26.687] [INFO] PE 1: Beginning validation of received data
+[14:59:26.687] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[14:59:26.687] ------ BEGIN TEST ROUTINE: shmem_iput(int)
+[14:59:26.687] [INFO] Allocated static arrays: src at 0xaaaae1df04f0, dest at 0xaaaae1df0518
+[14:59:26.687] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.687] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.687] [INFO] Completed barrier synchronization
+[14:59:26.687] [INFO] Completed barrier synchronization
+[14:59:26.687] [INFO] PE 1: Beginning validation of received data
+[14:59:26.687] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[14:59:26.687] ------ BEGIN TEST ROUTINE: shmem_iput(long)
+[14:59:26.687] [INFO] Allocated static arrays: src at 0xaaaae1df0540, dest at 0xaaaae1df0590
+[14:59:26.687] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.687] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.687] [INFO] Completed barrier synchronization
+[14:59:26.687] [INFO] Completed barrier synchronization
+[14:59:26.687] [INFO] PE 1: Beginning validation of received data
+[14:59:26.687] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[14:59:26.687] ------ BEGIN TEST ROUTINE: shmem_iput(long long)
+[14:59:26.687] [INFO] Allocated static arrays: src at 0xaaaae1df05e0, dest at 0xaaaae1df0630
+[14:59:26.687] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.687] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.687] [INFO] Completed barrier synchronization
+[14:59:26.687] [INFO] Completed barrier synchronization
+[14:59:26.687] [INFO] PE 1: Beginning validation of received data
+[14:59:26.687] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[14:59:26.687] ------ BEGIN TEST ROUTINE: shmem_iput(unsigned char)
+[14:59:26.687] [INFO] Allocated static arrays: src at 0xaaaae1df0680, dest at 0xaaaae1df0690
+[14:59:26.687] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.687] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.688] [INFO] Completed barrier synchronization
+[14:59:26.688] [INFO] Completed barrier synchronization
+[14:59:26.688] [INFO] PE 1: Beginning validation of received data
+[14:59:26.688] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[14:59:26.688] ------ BEGIN TEST ROUTINE: shmem_iput(unsigned short)
+[14:59:26.688] [INFO] Allocated static arrays: src at 0xaaaae1df06a0, dest at 0xaaaae1df06b8
+[14:59:26.688] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.688] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.688] [INFO] Completed barrier synchronization
+[14:59:26.688] [INFO] Completed barrier synchronization
+[14:59:26.688] [INFO] PE 1: Beginning validation of received data
+[14:59:26.688] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[14:59:26.688] ------ BEGIN TEST ROUTINE: shmem_iput(unsigned int)
+[14:59:26.688] [INFO] Allocated static arrays: src at 0xaaaae1df06d0, dest at 0xaaaae1df06f8
+[14:59:26.688] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.688] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.688] [INFO] Completed barrier synchronization
+[14:59:26.688] [INFO] Completed barrier synchronization
+[14:59:26.688] [INFO] PE 1: Beginning validation of received data
+[14:59:26.688] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[14:59:26.688] ------ BEGIN TEST ROUTINE: shmem_iput(unsigned long)
+[14:59:26.688] [INFO] Allocated static arrays: src at 0xaaaae1df0720, dest at 0xaaaae1df0770
+[14:59:26.688] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.688] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.688] [INFO] Completed barrier synchronization
+[14:59:26.688] [INFO] Completed barrier synchronization
+[14:59:26.688] [INFO] PE 1: Beginning validation of received data
+[14:59:26.688] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[14:59:26.688] ------ BEGIN TEST ROUTINE: shmem_iput(unsigned long long)
+[14:59:26.688] [INFO] Allocated static arrays: src at 0xaaaae1df07c0, dest at 0xaaaae1df0810
+[14:59:26.688] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.688] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.688] [INFO] Completed barrier synchronization
+[14:59:26.689] [INFO] Completed barrier synchronization
+[14:59:26.689] [INFO] PE 1: Beginning validation of received data
+[14:59:26.689] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[14:59:26.689] ------ BEGIN TEST ROUTINE: shmem_iput(int8_t)
+[14:59:26.689] [INFO] Allocated static arrays: src at 0xaaaae1df0860, dest at 0xaaaae1df0870
+[14:59:26.689] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.689] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.689] [INFO] Completed barrier synchronization
+[14:59:26.689] [INFO] Completed barrier synchronization
+[14:59:26.689] [INFO] PE 1: Beginning validation of received data
+[14:59:26.689] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[14:59:26.689] ------ BEGIN TEST ROUTINE: shmem_iput(int16_t)
+[14:59:26.689] [INFO] Allocated static arrays: src at 0xaaaae1df0880, dest at 0xaaaae1df0898
+[14:59:26.689] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.689] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.689] [INFO] Completed barrier synchronization
+[14:59:26.689] [INFO] Completed barrier synchronization
+[14:59:26.689] [INFO] PE 1: Beginning validation of received data
+[14:59:26.689] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[14:59:26.689] ------ BEGIN TEST ROUTINE: shmem_iput(int32_t)
+[14:59:26.689] [INFO] Allocated static arrays: src at 0xaaaae1df08b0, dest at 0xaaaae1df08d8
+[14:59:26.689] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.689] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.689] [INFO] Completed barrier synchronization
+[14:59:26.689] [INFO] Completed barrier synchronization
+[14:59:26.689] [INFO] PE 1: Beginning validation of received data
+[14:59:26.689] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[14:59:26.689] ------ BEGIN TEST ROUTINE: shmem_iput(int64_t)
+[14:59:26.689] [INFO] Allocated static arrays: src at 0xaaaae1df0900, dest at 0xaaaae1df0950
+[14:59:26.689] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.689] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.689] [INFO] Completed barrier synchronization
+[14:59:26.689] [INFO] Completed barrier synchronization
+[14:59:26.689] [INFO] PE 1: Beginning validation of received data
+[14:59:26.689] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[14:59:26.689] ------ BEGIN TEST ROUTINE: shmem_iput(uint8_t)
+[14:59:26.689] [INFO] Allocated static arrays: src at 0xaaaae1df09a0, dest at 0xaaaae1df09b0
+[14:59:26.689] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.689] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.690] [INFO] Completed barrier synchronization
+[14:59:26.690] [INFO] Completed barrier synchronization
+[14:59:26.690] [INFO] PE 1: Beginning validation of received data
+[14:59:26.690] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[14:59:26.690] ------ BEGIN TEST ROUTINE: shmem_iput(uint16_t)
+[14:59:26.690] [INFO] Allocated static arrays: src at 0xaaaae1df09c0, dest at 0xaaaae1df09d8
+[14:59:26.690] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.690] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.690] [INFO] Completed barrier synchronization
+[14:59:26.690] [INFO] Completed barrier synchronization
+[14:59:26.690] [INFO] PE 1: Beginning validation of received data
+[14:59:26.690] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[14:59:26.690] ------ BEGIN TEST ROUTINE: shmem_iput(uint32_t)
+[14:59:26.690] [INFO] Allocated static arrays: src at 0xaaaae1df09f0, dest at 0xaaaae1df0a18
+[14:59:26.690] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.690] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.690] [INFO] Completed barrier synchronization
+[14:59:26.690] [INFO] Completed barrier synchronization
+[14:59:26.690] [INFO] PE 1: Beginning validation of received data
+[14:59:26.690] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[14:59:26.690] ------ BEGIN TEST ROUTINE: shmem_iput(uint64_t)
+[14:59:26.690] [INFO] Allocated static arrays: src at 0xaaaae1df0a40, dest at 0xaaaae1df0a90
+[14:59:26.690] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.690] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.690] [INFO] Completed barrier synchronization
+[14:59:26.690] [INFO] Completed barrier synchronization
+[14:59:26.690] [INFO] PE 1: Beginning validation of received data
+[14:59:26.690] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[14:59:26.690] ------ BEGIN TEST ROUTINE: shmem_iput(size_t)
+[14:59:26.690] [INFO] Allocated static arrays: src at 0xaaaae1df0ae0, dest at 0xaaaae1df0b30
+[14:59:26.690] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.690] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.690] [INFO] Completed barrier synchronization
+[14:59:26.691] [INFO] Completed barrier synchronization
+[14:59:26.691] [INFO] PE 1: Beginning validation of received data
+[14:59:26.691] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+[14:59:26.691] ------ BEGIN TEST ROUTINE: shmem_iput(ptrdiff_t)
+[14:59:26.691] [INFO] Allocated static arrays: src at 0xaaaae1df0b80, dest at 0xaaaae1df0bd0
+[14:59:26.691] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.691] [INFO] PE 1: Initialized src array with values [1..10]
+[14:59:26.691] [INFO] Completed barrier synchronization
+[14:59:26.691] [INFO] Completed barrier synchronization
+[14:59:26.691] [INFO] PE 1: Beginning validation of received data
+[14:59:26.691] [FAIL] PE 1: Validation failed - dest[2] = 2, expected 1
+---------- END TEST: FAILED

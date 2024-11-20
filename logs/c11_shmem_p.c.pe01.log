@@ -1,0 +1,194 @@
+---------- BEGIN TEST: /root/lanl/vv/shmemvv_logs/src/unit/c11/rma/c11_shmem_p.c
+[14:59:26.698] ------ BEGIN TEST ROUTINE: shmem_p(long)
+[14:59:26.698] [INFO] Allocated static variables: src at 0xaaaae19d0200, dest at 0xaaaae19d0208
+[14:59:26.698] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.698] [INFO] PE 1: Initialized src with value 1
+[14:59:26.699] [INFO] Completed barrier synchronization
+[14:59:26.699] [INFO] Completed barrier synchronization
+[14:59:26.699] [INFO] PE 1: Beginning validation of received data
+[14:59:26.699] [INFO] PE 1: Validation successful - dest matches expected value
+[14:59:26.699] ------ BEGIN TEST ROUTINE: shmem_p(double)
+[14:59:26.699] [INFO] Allocated static variables: src at 0xaaaae19d0210, dest at 0xaaaae19d0218
+[14:59:26.699] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.699] [INFO] PE 1: Initialized src with value 1
+[14:59:26.699] [INFO] Completed barrier synchronization
+[14:59:26.699] [INFO] Completed barrier synchronization
+[14:59:26.699] [INFO] PE 1: Beginning validation of received data
+[14:59:26.699] [INFO] PE 1: Validation successful - dest matches expected value
+[14:59:26.699] ------ BEGIN TEST ROUTINE: shmem_p(long double)
+[14:59:26.699] [INFO] Allocated static variables: src at 0xaaaae19d0220, dest at 0xaaaae19d0230
+[14:59:26.699] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.699] [INFO] PE 1: Initialized src with value 1
+[14:59:26.699] [INFO] Completed barrier synchronization
+[14:59:26.699] [INFO] Completed barrier synchronization
+[14:59:26.699] [INFO] PE 1: Beginning validation of received data
+[14:59:26.699] [INFO] PE 1: Validation successful - dest matches expected value
+[14:59:26.699] ------ BEGIN TEST ROUTINE: shmem_p(char)
+[14:59:26.699] [INFO] Allocated static variables: src at 0xaaaae19d0240, dest at 0xaaaae19d0241
+[14:59:26.699] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.699] [INFO] PE 1: Initialized src with value 1
+[14:59:26.699] [INFO] Completed barrier synchronization
+[14:59:26.699] [INFO] Completed barrier synchronization
+[14:59:26.699] [INFO] PE 1: Beginning validation of received data
+[14:59:26.699] [INFO] PE 1: Validation successful - dest matches expected value
+[14:59:26.699] ------ BEGIN TEST ROUTINE: shmem_p(signed char)
+[14:59:26.699] [INFO] Allocated static variables: src at 0xaaaae19d0242, dest at 0xaaaae19d0243
+[14:59:26.699] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.699] [INFO] PE 1: Initialized src with value 1
+[14:59:26.699] [INFO] Completed barrier synchronization
+[14:59:26.699] [INFO] Completed barrier synchronization
+[14:59:26.699] [INFO] PE 1: Beginning validation of received data
+[14:59:26.699] [INFO] PE 1: Validation successful - dest matches expected value
+[14:59:26.699] ------ BEGIN TEST ROUTINE: shmem_p(short)
+[14:59:26.699] [INFO] Allocated static variables: src at 0xaaaae19d0244, dest at 0xaaaae19d0246
+[14:59:26.699] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.699] [INFO] PE 1: Initialized src with value 1
+[14:59:26.699] [INFO] Completed barrier synchronization
+[14:59:26.700] [INFO] Completed barrier synchronization
+[14:59:26.700] [INFO] PE 1: Beginning validation of received data
+[14:59:26.700] [INFO] PE 1: Validation successful - dest matches expected value
+[14:59:26.700] ------ BEGIN TEST ROUTINE: shmem_p(int)
+[14:59:26.700] [INFO] Allocated static variables: src at 0xaaaae19d0248, dest at 0xaaaae19d024c
+[14:59:26.700] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.700] [INFO] PE 1: Initialized src with value 1
+[14:59:26.700] [INFO] Completed barrier synchronization
+[14:59:26.700] [INFO] Completed barrier synchronization
+[14:59:26.700] [INFO] PE 1: Beginning validation of received data
+[14:59:26.700] [INFO] PE 1: Validation successful - dest matches expected value
+[14:59:26.700] ------ BEGIN TEST ROUTINE: shmem_p(long)
+[14:59:26.700] [INFO] Allocated static variables: src at 0xaaaae19d0250, dest at 0xaaaae19d0258
+[14:59:26.700] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.700] [INFO] PE 1: Initialized src with value 1
+[14:59:26.700] [INFO] Completed barrier synchronization
+[14:59:26.700] [INFO] Completed barrier synchronization
+[14:59:26.700] [INFO] PE 1: Beginning validation of received data
+[14:59:26.700] [INFO] PE 1: Validation successful - dest matches expected value
+[14:59:26.700] ------ BEGIN TEST ROUTINE: shmem_p(long long)
+[14:59:26.700] [INFO] Allocated static variables: src at 0xaaaae19d0260, dest at 0xaaaae19d0268
+[14:59:26.700] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.700] [INFO] PE 1: Initialized src with value 1
+[14:59:26.700] [INFO] Completed barrier synchronization
+[14:59:26.700] [INFO] Completed barrier synchronization
+[14:59:26.700] [INFO] PE 1: Beginning validation of received data
+[14:59:26.700] [INFO] PE 1: Validation successful - dest matches expected value
+[14:59:26.700] ------ BEGIN TEST ROUTINE: shmem_p(unsigned char)
+[14:59:26.700] [INFO] Allocated static variables: src at 0xaaaae19d0270, dest at 0xaaaae19d0271
+[14:59:26.700] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.700] [INFO] PE 1: Initialized src with value 1
+[14:59:26.700] [INFO] Completed barrier synchronization
+[14:59:26.700] [INFO] Completed barrier synchronization
+[14:59:26.700] [INFO] PE 1: Beginning validation of received data
+[14:59:26.700] [INFO] PE 1: Validation successful - dest matches expected value
+[14:59:26.700] ------ BEGIN TEST ROUTINE: shmem_p(unsigned short)
+[14:59:26.700] [INFO] Allocated static variables: src at 0xaaaae19d0272, dest at 0xaaaae19d0274
+[14:59:26.700] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.700] [INFO] PE 1: Initialized src with value 1
+[14:59:26.700] [INFO] Completed barrier synchronization
+[14:59:26.701] [INFO] Completed barrier synchronization
+[14:59:26.701] [INFO] PE 1: Beginning validation of received data
+[14:59:26.701] [INFO] PE 1: Validation successful - dest matches expected value
+[14:59:26.701] ------ BEGIN TEST ROUTINE: shmem_p(unsigned int)
+[14:59:26.701] [INFO] Allocated static variables: src at 0xaaaae19d0278, dest at 0xaaaae19d027c
+[14:59:26.701] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.701] [INFO] PE 1: Initialized src with value 1
+[14:59:26.701] [INFO] Completed barrier synchronization
+[14:59:26.701] [INFO] Completed barrier synchronization
+[14:59:26.701] [INFO] PE 1: Beginning validation of received data
+[14:59:26.701] [INFO] PE 1: Validation successful - dest matches expected value
+[14:59:26.701] ------ BEGIN TEST ROUTINE: shmem_p(unsigned long)
+[14:59:26.701] [INFO] Allocated static variables: src at 0xaaaae19d0280, dest at 0xaaaae19d0288
+[14:59:26.701] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.701] [INFO] PE 1: Initialized src with value 1
+[14:59:26.701] [INFO] Completed barrier synchronization
+[14:59:26.701] [INFO] Completed barrier synchronization
+[14:59:26.701] [INFO] PE 1: Beginning validation of received data
+[14:59:26.701] [INFO] PE 1: Validation successful - dest matches expected value
+[14:59:26.701] ------ BEGIN TEST ROUTINE: shmem_p(unsigned long long)
+[14:59:26.701] [INFO] Allocated static variables: src at 0xaaaae19d0290, dest at 0xaaaae19d0298
+[14:59:26.701] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.701] [INFO] PE 1: Initialized src with value 1
+[14:59:26.701] [INFO] Completed barrier synchronization
+[14:59:26.701] [INFO] Completed barrier synchronization
+[14:59:26.701] [INFO] PE 1: Beginning validation of received data
+[14:59:26.701] [INFO] PE 1: Validation successful - dest matches expected value
+[14:59:26.701] ------ BEGIN TEST ROUTINE: shmem_p(int8_t)
+[14:59:26.701] [INFO] Allocated static variables: src at 0xaaaae19d02a0, dest at 0xaaaae19d02a1
+[14:59:26.701] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.701] [INFO] PE 1: Initialized src with value 1
+[14:59:26.701] [INFO] Completed barrier synchronization
+[14:59:26.701] [INFO] Completed barrier synchronization
+[14:59:26.701] [INFO] PE 1: Beginning validation of received data
+[14:59:26.701] [INFO] PE 1: Validation successful - dest matches expected value
+[14:59:26.701] ------ BEGIN TEST ROUTINE: shmem_p(int16_t)
+[14:59:26.701] [INFO] Allocated static variables: src at 0xaaaae19d02a2, dest at 0xaaaae19d02a4
+[14:59:26.701] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.701] [INFO] PE 1: Initialized src with value 1
+[14:59:26.701] [INFO] Completed barrier synchronization
+[14:59:26.702] [INFO] Completed barrier synchronization
+[14:59:26.702] [INFO] PE 1: Beginning validation of received data
+[14:59:26.702] [INFO] PE 1: Validation successful - dest matches expected value
+[14:59:26.702] ------ BEGIN TEST ROUTINE: shmem_p(int32_t)
+[14:59:26.702] [INFO] Allocated static variables: src at 0xaaaae19d02a8, dest at 0xaaaae19d02ac
+[14:59:26.702] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.702] [INFO] PE 1: Initialized src with value 1
+[14:59:26.702] [INFO] Completed barrier synchronization
+[14:59:26.702] [INFO] Completed barrier synchronization
+[14:59:26.702] [INFO] PE 1: Beginning validation of received data
+[14:59:26.702] [INFO] PE 1: Validation successful - dest matches expected value
+[14:59:26.702] ------ BEGIN TEST ROUTINE: shmem_p(int64_t)
+[14:59:26.702] [INFO] Allocated static variables: src at 0xaaaae19d02b0, dest at 0xaaaae19d02b8
+[14:59:26.702] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.702] [INFO] PE 1: Initialized src with value 1
+[14:59:26.702] [INFO] Completed barrier synchronization
+[14:59:26.702] [INFO] Completed barrier synchronization
+[14:59:26.702] [INFO] PE 1: Beginning validation of received data
+[14:59:26.702] [INFO] PE 1: Validation successful - dest matches expected value
+[14:59:26.702] ------ BEGIN TEST ROUTINE: shmem_p(uint8_t)
+[14:59:26.702] [INFO] Allocated static variables: src at 0xaaaae19d02c0, dest at 0xaaaae19d02c1
+[14:59:26.702] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.702] [INFO] PE 1: Initialized src with value 1
+[14:59:26.702] [INFO] Completed barrier synchronization
+[14:59:26.702] [INFO] Completed barrier synchronization
+[14:59:26.702] [INFO] PE 1: Beginning validation of received data
+[14:59:26.702] [INFO] PE 1: Validation successful - dest matches expected value
+[14:59:26.702] ------ BEGIN TEST ROUTINE: shmem_p(uint16_t)
+[14:59:26.702] [INFO] Allocated static variables: src at 0xaaaae19d02c2, dest at 0xaaaae19d02c4
+[14:59:26.702] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.702] [INFO] PE 1: Initialized src with value 1
+[14:59:26.702] [INFO] Completed barrier synchronization
+[14:59:26.702] [INFO] Completed barrier synchronization
+[14:59:26.702] [INFO] PE 1: Beginning validation of received data
+[14:59:26.702] [INFO] PE 1: Validation successful - dest matches expected value
+[14:59:26.702] ------ BEGIN TEST ROUTINE: shmem_p(uint32_t)
+[14:59:26.702] [INFO] Allocated static variables: src at 0xaaaae19d02c8, dest at 0xaaaae19d02cc
+[14:59:26.702] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.702] [INFO] PE 1: Initialized src with value 1
+[14:59:26.702] [INFO] Completed barrier synchronization
+[14:59:26.703] [INFO] Completed barrier synchronization
+[14:59:26.703] [INFO] PE 1: Beginning validation of received data
+[14:59:26.703] [INFO] PE 1: Validation successful - dest matches expected value
+[14:59:26.703] ------ BEGIN TEST ROUTINE: shmem_p(uint64_t)
+[14:59:26.703] [INFO] Allocated static variables: src at 0xaaaae19d02d0, dest at 0xaaaae19d02d8
+[14:59:26.703] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.703] [INFO] PE 1: Initialized src with value 1
+[14:59:26.703] [INFO] Completed barrier synchronization
+[14:59:26.703] [INFO] Completed barrier synchronization
+[14:59:26.703] [INFO] PE 1: Beginning validation of received data
+[14:59:26.703] [INFO] PE 1: Validation successful - dest matches expected value
+[14:59:26.703] ------ BEGIN TEST ROUTINE: shmem_p(size_t)
+[14:59:26.703] [INFO] Allocated static variables: src at 0xaaaae19d02e0, dest at 0xaaaae19d02e8
+[14:59:26.703] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.703] [INFO] PE 1: Initialized src with value 1
+[14:59:26.703] [INFO] Completed barrier synchronization
+[14:59:26.703] [INFO] Completed barrier synchronization
+[14:59:26.703] [INFO] PE 1: Beginning validation of received data
+[14:59:26.703] [INFO] PE 1: Validation successful - dest matches expected value
+[14:59:26.703] ------ BEGIN TEST ROUTINE: shmem_p(ptrdiff_t)
+[14:59:26.703] [INFO] Allocated static variables: src at 0xaaaae19d02f0, dest at 0xaaaae19d02f8
+[14:59:26.703] [INFO] Running on PE 1 of 2 total PEs
+[14:59:26.703] [INFO] PE 1: Initialized src with value 1
+[14:59:26.703] [INFO] Completed barrier synchronization
+[14:59:26.703] [INFO] Completed barrier synchronization
+[14:59:26.703] [INFO] PE 1: Beginning validation of received data
+[14:59:26.703] [INFO] PE 1: Validation successful - dest matches expected value
+---------- END TEST: PASSED
