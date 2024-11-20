@@ -52,7 +52,8 @@
         time_t start_time = time(NULL);                                        \
         int iterations = 0;                                                    \
         log_info("PE %d: Starting test_all loop (flags=%p, condition="         \
-                 "SHMEM_CMP_EQ, target=1)", mype, (void *)flags);             \
+                 "SHMEM_CMP_EQ, target=1)",                                    \
+                 mype, (void *)flags);                                         \
         while (!shmem_##TYPENAME##_test_all(flags, 4, NULL, SHMEM_CMP_EQ,      \
                                             cmp_value)) {                      \
           if (time(NULL) - start_time > TIMEOUT) {                             \
@@ -63,8 +64,8 @@
           usleep(500);                                                         \
           iterations++;                                                        \
         }                                                                      \
-        log_info("PE %d: test_all loop completed after %d iterations",         \
-                 mype, iterations);                                            \
+        log_info("PE %d: test_all loop completed after %d iterations", mype,   \
+                 iterations);                                                  \
                                                                                \
         for (int i = 0; i < 4; ++i) {                                          \
           if (flags[i] != 1) {                                                 \

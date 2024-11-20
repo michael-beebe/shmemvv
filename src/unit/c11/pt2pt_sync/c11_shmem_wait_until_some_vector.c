@@ -35,7 +35,8 @@
                                                                                \
       if (mype == 0) {                                                         \
         log_info("PE 0: Setting flags[1] and flags[3] to 1 on PE 1 "           \
-                 "(addresses: %p, %p)", (void *)&flags[1], (void *)&flags[3]); \
+                 "(addresses: %p, %p)",                                        \
+                 (void *)&flags[1], (void *)&flags[3]);                        \
         shmem_##TYPENAME##_p(&flags[1], 1, 1);                                 \
         shmem_##TYPENAME##_p(&flags[3], 1, 1);                                 \
         shmem_quiet();                                                         \
@@ -58,7 +59,8 @@
                  mype, count);                                                 \
         if (count < 2) {                                                       \
           log_fail("PE %d: wait_until_some_vector failed - expected count=2, " \
-                   "got count=%zu", mype, count);                              \
+                   "got count=%zu",                                            \
+                   mype, count);                                               \
           success = false;                                                     \
         } else {                                                               \
           for (size_t i = 0; i < count; ++i) {                                 \
@@ -68,8 +70,8 @@
               success = false;                                                 \
               break;                                                           \
             } else {                                                           \
-              log_info("PE %d: Successfully validated flags[%zu]=1",           \
-                       mype, indices[i]);                                      \
+              log_info("PE %d: Successfully validated flags[%zu]=1", mype,     \
+                       indices[i]);                                            \
             }                                                                  \
           }                                                                    \
         }                                                                      \

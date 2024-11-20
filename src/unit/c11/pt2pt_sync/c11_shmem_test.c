@@ -19,8 +19,8 @@
     log_routine("c11_shmem_test(" #TYPE ")");                                  \
     bool success = true;                                                       \
     TYPE *flag = (TYPE *)shmem_malloc(sizeof(TYPE));                           \
-    log_info("Allocated flag array (%zu bytes) at address %p",                 \
-             sizeof(TYPE), (void *)flag);                                      \
+    log_info("Allocated flag array (%zu bytes) at address %p", sizeof(TYPE),   \
+             (void *)flag);                                                    \
     if (flag == NULL) {                                                        \
       log_fail("Memory allocation failed - shmem_malloc returned NULL");       \
       success = false;                                                         \
@@ -43,8 +43,10 @@
       if (mype != 0) {                                                         \
         time_t start_time = time(NULL);                                        \
         int iterations = 0;                                                    \
-        log_info("PE %d: Starting test loop (flag=%p, condition=SHMEM_CMP_EQ, "\
-                 "target=1)", mype, (void *)flag);                             \
+        log_info(                                                              \
+            "PE %d: Starting test loop (flag=%p, condition=SHMEM_CMP_EQ, "     \
+            "target=1)",                                                       \
+            mype, (void *)flag);                                               \
         while (!shmem_##TYPENAME##_test(flag, SHMEM_CMP_EQ, 1)) {              \
           if (time(NULL) - start_time > TIMEOUT) {                             \
             log_fail("PE %d: Test timed out after %d iterations", mype,        \
@@ -57,8 +59,8 @@
         log_info("PE %d: Test loop completed after %d iterations", mype,       \
                  iterations);                                                  \
         if (*flag != 1) {                                                      \
-          log_fail("PE %d: Validation failed - flag=%d, expected 1",           \
-                   mype, (int)*flag);                                          \
+          log_fail("PE %d: Validation failed - flag=%d, expected 1", mype,     \
+                   (int)*flag);                                                \
           success = false;                                                     \
         } else {                                                               \
           log_info("PE %d: Successfully validated flag=1", mype);              \

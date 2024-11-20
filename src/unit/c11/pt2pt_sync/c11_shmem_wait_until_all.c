@@ -46,12 +46,14 @@
                                                                                \
       if (mype != 0) {                                                         \
         log_info("PE %d: Starting wait_until_all (flags=%p, n=2, "             \
-                 "condition=SHMEM_CMP_EQ, target=1)", mype, (void *)flags);    \
+                 "condition=SHMEM_CMP_EQ, target=1)",                          \
+                 mype, (void *)flags);                                         \
         shmem_##TYPENAME##_wait_until_all(flags, 2, NULL, SHMEM_CMP_EQ, 1);    \
         log_info("PE %d: wait_until_all completed", mype);                     \
         if (flags[0] != 1 || flags[1] != 1) {                                  \
-          log_fail("PE %d: Validation failed - flags=[%d, %d], expected [1,1]", \
-                   mype, (int)flags[0], (int)flags[1]);                        \
+          log_fail(                                                            \
+              "PE %d: Validation failed - flags=[%d, %d], expected [1,1]",     \
+              mype, (int)flags[0], (int)flags[1]);                             \
           success = false;                                                     \
         } else {                                                               \
           log_info("PE %d: Successfully validated flags=[1,1]", mype);         \

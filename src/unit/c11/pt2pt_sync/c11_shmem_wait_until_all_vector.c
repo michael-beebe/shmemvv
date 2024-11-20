@@ -48,7 +48,7 @@
                          SHMEM_CMP_EQ};                                        \
         TYPE cmp_values[4] = {1, 1, 1, 1};                                     \
         log_info("PE %d: Starting wait_until_all_vector (flags=%p, n=4, "      \
-                 "status=[SHMEM_CMP_EQ x4], cmp_values=[1 x4])",              \
+                 "status=[SHMEM_CMP_EQ x4], cmp_values=[1 x4])",               \
                  mype, (void *)flags);                                         \
         shmem_##TYPENAME##_wait_until_all_vector(flags, 4, status,             \
                                                  SHMEM_CMP_EQ, cmp_values);    \

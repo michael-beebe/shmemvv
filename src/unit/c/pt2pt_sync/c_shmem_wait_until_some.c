@@ -16,7 +16,7 @@
 
 #define TEST_C_SHMEM_WAIT_UNTIL_SOME(TYPE, TYPENAME)                           \
   ({                                                                           \
-    log_routine("shmem_wait_until_some(" #TYPE ")");                          \
+    log_routine("shmem_wait_until_some(" #TYPE ")");                           \
     bool success = true;                                                       \
     TYPE *flags = (TYPE *)shmem_malloc(4 * sizeof(TYPE));                      \
     log_info("Allocated flags array (%zu bytes) at address %p",                \
@@ -35,7 +35,8 @@
                                                                                \
       if (mype == 0) {                                                         \
         log_info("PE 0: Setting flags[1] and flags[3] to 1 on PE 1 "           \
-                 "(addresses: %p, %p)", (void *)&flags[1], (void *)&flags[3]); \
+                 "(addresses: %p, %p)",                                        \
+                 (void *)&flags[1], (void *)&flags[3]);                        \
         shmem_##TYPENAME##_p(&flags[1], 1, 1);                                 \
         shmem_##TYPENAME##_p(&flags[3], 1, 1);                                 \
         shmem_quiet();                                                         \
@@ -53,11 +54,12 @@
                  mype, (void *)flags, (void *)indices);                        \
         size_t count = shmem_##TYPENAME##_wait_until_some(                     \
             flags, 4, indices, status, SHMEM_CMP_EQ, 1);                       \
-        log_info("PE %d: wait_until_some completed with count=%zu",            \
-                 mype, count);                                                 \
+        log_info("PE %d: wait_until_some completed with count=%zu", mype,      \
+                 count);                                                       \
         if (count < 2) {                                                       \
           log_fail("PE %d: wait_until_some failed - expected count=2, "        \
-                   "got count=%zu", mype, count);                              \
+                   "got count=%zu",                                            \
+                   mype, count);                                               \
           success = false;                                                     \
         } else {                                                               \
           for (size_t i = 0; i < count; ++i) {                                 \
@@ -67,8 +69,8 @@
               success = false;                                                 \
               break;                                                           \
             } else {                                                           \
-              log_info("PE %d: Successfully validated flags[%zu]=1",           \
-                       mype, indices[i]);                                      \
+              log_info("PE %d: Successfully validated flags[%zu]=1", mype,     \
+                       indices[i]);                                            \
             }                                                                  \
           }                                                                    \
         }                                                                      \

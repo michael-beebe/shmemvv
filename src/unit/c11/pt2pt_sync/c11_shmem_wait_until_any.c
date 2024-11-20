@@ -45,14 +45,14 @@
       if (mype != 0) {                                                         \
         int status[3] = {SHMEM_CMP_EQ, SHMEM_CMP_EQ, SHMEM_CMP_EQ};            \
         log_info("PE %d: Starting wait_until_any (flags=%p, n=3, "             \
-                 "status=[SHMEM_CMP_EQ x3], target=1)", mype, (void *)flags);  \
+                 "status=[SHMEM_CMP_EQ x3], target=1)",                        \
+                 mype, (void *)flags);                                         \
         size_t index = shmem_##TYPENAME##_wait_until_any(flags, 3, status,     \
                                                          SHMEM_CMP_EQ, 1);     \
-        log_info("PE %d: wait_until_any completed with index=%zu",             \
-                 mype, index);                                                 \
+        log_info("PE %d: wait_until_any completed with index=%zu", mype,       \
+                 index);                                                       \
         if (index == SIZE_MAX) {                                               \
-          log_fail("PE %d: wait_until_any failed - returned SIZE_MAX",         \
-                   mype);                                                      \
+          log_fail("PE %d: wait_until_any failed - returned SIZE_MAX", mype);  \
           success = false;                                                     \
         } else if (flags[index] != 1) {                                        \
           log_fail("PE %d: Validation failed - flags[%zu]=%d, expected 1",     \
