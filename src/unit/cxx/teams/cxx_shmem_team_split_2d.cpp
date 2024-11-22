@@ -25,9 +25,11 @@ bool test_shmem_team_split_2d(void) {
 
   bool result = (npes_x > 0 && npes_y > 0);
   if (result) {
-    log_info("Got valid team sizes - X team: %d PEs, Y team: %d PEs", npes_x, npes_y);
+    log_info("Got valid team sizes - X team: %d PEs, Y team: %d PEs", npes_x,
+             npes_y);
   } else {
-    log_fail("Got invalid team sizes - X team: %d PEs, Y team: %d PEs", npes_x, npes_y);
+    log_fail("Got invalid team sizes - X team: %d PEs, Y team: %d PEs", npes_x,
+             npes_y);
   }
 
   log_info("Destroying teams");
@@ -47,7 +49,8 @@ int main(int argc, char *argv[]) {
 
   if (!(npes >= 2)) {
     if (mype == 0) {
-      log_fail("Test requires at least 2 PEs, but only %d PE(s) available", npes);
+      log_fail("Test requires at least 2 PEs, but only %d PE(s) available",
+               npes);
       display_not_enough_pes("TEAMS");
     }
     shmem_finalize();

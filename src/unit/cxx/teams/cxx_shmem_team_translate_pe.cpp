@@ -17,15 +17,16 @@ bool test_shmem_team_translate_pe(void) {
   log_info("Attempting to split SHMEM_TEAM_WORLD into new team");
   log_info("Using stride=1, start=0 and all PEs");
 
-  int ret = shmem_team_split_strided(SHMEM_TEAM_WORLD, 0, 1, shmem_n_pes(), NULL, 0,
-                           &team);
+  int ret = shmem_team_split_strided(SHMEM_TEAM_WORLD, 0, 1, shmem_n_pes(),
+                                     NULL, 0, &team);
 
   if (ret != 0) {
     log_fail("Team split failed with error code %d", ret);
     return false;
   }
 
-  log_info("Team split successful, translating PE 0 from team to SHMEM_TEAM_WORLD");
+  log_info(
+      "Team split successful, translating PE 0 from team to SHMEM_TEAM_WORLD");
   int pe_in_team = shmem_team_translate_pe(team, 0, SHMEM_TEAM_WORLD);
 
   bool result = (pe_in_team >= 0);
@@ -51,7 +52,8 @@ int main(int argc, char *argv[]) {
 
   if (!(npes >= 2)) {
     if (mype == 0) {
-      log_fail("Test requires at least 2 PEs, but only %d PE(s) available", npes);
+      log_fail("Test requires at least 2 PEs, but only %d PE(s) available",
+               npes);
       display_not_enough_pes("TEAMS");
     }
     shmem_finalize();

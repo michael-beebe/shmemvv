@@ -34,9 +34,9 @@
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype == 0) {                                                         \
-        log_info("PE 0: Setting flags[2] to 1 on PE 1");                      \
+        log_info("PE 0: Setting flags[2] to 1 on PE 1");                       \
         shmem_##TYPENAME##_p(&flags[2], 1, 1);                                 \
-        log_info("PE 0: Called shmem_quiet() after setting flag");            \
+        log_info("PE 0: Called shmem_quiet() after setting flag");             \
         shmem_quiet();                                                         \
       }                                                                        \
                                                                                \
@@ -46,19 +46,19 @@
         int status[4] = {SHMEM_CMP_EQ, SHMEM_CMP_EQ, SHMEM_CMP_EQ,             \
                          SHMEM_CMP_EQ};                                        \
         TYPE cmp_values[4] = {1, 1, 1, 1};                                     \
-        log_info("PE %d: Calling wait_until_any_vector", mype);               \
+        log_info("PE %d: Calling wait_until_any_vector", mype);                \
         size_t index = shmem_##TYPENAME##_wait_until_any_vector(               \
             flags, 4, status, SHMEM_CMP_EQ, cmp_values);                       \
         if (index == SIZE_MAX) {                                               \
-          log_fail("wait_until_any_vector returned SIZE_MAX");                \
+          log_fail("wait_until_any_vector returned SIZE_MAX");                 \
           success = false;                                                     \
         } else if (flags[index] != 1) {                                        \
-          log_fail("Flag at index %zu not set to expected value", index);     \
+          log_fail("Flag at index %zu not set to expected value", index);      \
           success = false;                                                     \
-        } else {                                                              \
-          log_info("PE %d: Successfully found flag set at index %zu",         \
-                  mype, index);                                               \
-        }                                                                     \
+        } else {                                                               \
+          log_info("PE %d: Successfully found flag set at index %zu", mype,    \
+                   index);                                                     \
+        }                                                                      \
       }                                                                        \
       shmem_free(flags);                                                       \
     }                                                                          \

@@ -38,8 +38,10 @@
                #TYPE, (char)fetch, (char)value, (char)*dest,                   \
                (char)(value + add_val));                                       \
     else                                                                       \
-      log_info("atomic fetch_add_nbi on a %s at %p produced expected results: "\
-               "fetch = %d, dest = %d", #TYPE, dest, (char)fetch, (char)*dest);\
+      log_info(                                                                \
+          "atomic fetch_add_nbi on a %s at %p produced expected results: "     \
+          "fetch = %d, dest = %d",                                             \
+          #TYPE, dest, (char)fetch, (char)*dest);                              \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })

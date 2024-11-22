@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
   if (!result) {
     rc = EXIT_FAILURE;
   }
-  
+
   log_close(rc);
   shmem_finalize();
 

@@ -18,7 +18,7 @@ bool test_shmem_quiet(void) {
   *flag = 0;
   int mype = shmem_my_pe();
 
-  log_info("allocated flag at %p, initialized to 0", (void*)flag);
+  log_info("allocated flag at %p, initialized to 0", (void *)flag);
 
   shmem_barrier_all();
 

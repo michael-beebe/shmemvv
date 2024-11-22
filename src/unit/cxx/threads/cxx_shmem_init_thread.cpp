@@ -19,9 +19,9 @@ bool test_shmem_init_thread(void) {
 
   log_info("Received thread support level: %d", provided);
 
-  bool result = (provided == SHMEM_THREAD_MULTIPLE ||
-                provided == SHMEM_THREAD_FUNNELED ||
-                provided == SHMEM_THREAD_SERIALIZED);
+  bool result =
+      (provided == SHMEM_THREAD_MULTIPLE || provided == SHMEM_THREAD_FUNNELED ||
+       provided == SHMEM_THREAD_SERIALIZED);
 
   if (result) {
     log_info("Received valid thread support level");

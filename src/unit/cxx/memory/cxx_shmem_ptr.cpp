@@ -16,7 +16,7 @@ bool test_shmem_ptr() {
   log_routine("shmem_ptr()");
   int mype = shmem_my_pe();
   int npes = shmem_n_pes();
-  
+
   log_info("attempting to allocate memory");
   int *ptr = (int *)shmem_malloc(sizeof(int));
 
@@ -24,7 +24,7 @@ bool test_shmem_ptr() {
     log_fail("shmem_malloc returned NULL");
     return false;
   }
-  log_info("successfully allocated memory at %p", (void*)ptr);
+  log_info("successfully allocated memory at %p", (void *)ptr);
 
   *ptr = mype;
   log_info("initialized local value to %d", mype);
@@ -41,7 +41,8 @@ bool test_shmem_ptr() {
       int remote_val = *remote_ptr;
       log_info("got remote value %d from PE %d", remote_val, pe);
       if (remote_val != pe) {
-        log_fail("incorrect value %d from PE %d (expected %d)", remote_val, pe, pe);
+        log_fail("incorrect value %d from PE %d (expected %d)", remote_val, pe,
+                 pe);
         test_passed = false;
       }
     } else if (pe == mype) {

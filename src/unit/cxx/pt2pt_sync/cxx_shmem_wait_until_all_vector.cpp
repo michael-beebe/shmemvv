@@ -34,8 +34,8 @@
                                                                                \
       if (mype == 0) {                                                         \
         for (int i = 0; i < 4; ++i) {                                          \
-          log_info("PE 0: Setting flags[%d] to 1 on PE 1 (address: %p)",       \
-                   i, (void *)&flags[i]);                                      \
+          log_info("PE 0: Setting flags[%d] to 1 on PE 1 (address: %p)", i,    \
+                   (void *)&flags[i]);                                         \
           shmem_##TYPENAME##_p(&flags[i], 1, 1);                               \
         }                                                                      \
         log_info("PE 0: Called shmem_quiet() after setting flags");            \
@@ -54,7 +54,7 @@
         log_info("PE %d: Wait completed, verifying flags", mype);              \
         for (int i = 0; i < 4; ++i) {                                          \
           if (flags[i] != 1) {                                                 \
-            log_fail("PE %d: flags[%d] = %d, expected 1", mype, i, flags[i]); \
+            log_fail("PE %d: flags[%d] = %d, expected 1", mype, i, flags[i]);  \
             success = false;                                                   \
             break;                                                             \
           }                                                                    \

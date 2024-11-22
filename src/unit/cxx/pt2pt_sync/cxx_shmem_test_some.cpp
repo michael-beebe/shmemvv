@@ -39,7 +39,7 @@
           shmem_##TYPENAME##_p(&flags[3], 1, pe);                              \
         }                                                                      \
         shmem_quiet();                                                         \
-        log_info("PE 0: Set flags[1] and flags[3] to 1 on all other PEs");    \
+        log_info("PE 0: Set flags[1] and flags[3] to 1 on all other PEs");     \
       }                                                                        \
                                                                                \
       shmem_barrier_all();                                                     \
@@ -66,8 +66,7 @@
                    mype, (int)flags[1], (int)flags[3]);                        \
           success = false;                                                     \
         } else {                                                               \
-          log_info("PE %d: Successfully received expected flag values",         \
-                   mype);                                                      \
+          log_info("PE %d: Successfully received expected flag values", mype); \
         }                                                                      \
       }                                                                        \
       log_info("Freeing allocated memory at %p", (void *)flags);               \

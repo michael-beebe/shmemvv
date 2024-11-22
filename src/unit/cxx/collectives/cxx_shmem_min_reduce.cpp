@@ -35,8 +35,7 @@
     if (success)                                                               \
       log_info("shmem_min_reduce on " #TYPE " produced expected result.");     \
     else                                                                       \
-      log_fail(                                                                \
-          "unexpected value in result of shmem_min_reduce");                   \
+      log_fail("unexpected value in result of shmem_min_reduce");              \
                                                                                \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \

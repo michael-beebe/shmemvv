@@ -19,8 +19,8 @@
     log_routine("shmem_" #TYPENAME "_test()");                                 \
     bool success = true;                                                       \
     TYPE *flag = (TYPE *)shmem_malloc(sizeof(TYPE));                           \
-    log_info("Allocated flag (%zu bytes) at address %p",                       \
-             sizeof(TYPE), (void *)flag);                                      \
+    log_info("Allocated flag (%zu bytes) at address %p", sizeof(TYPE),         \
+             (void *)flag);                                                    \
     if (flag == NULL) {                                                        \
       log_fail("Memory allocation failed - shmem_malloc returned NULL");       \
       success = false;                                                         \

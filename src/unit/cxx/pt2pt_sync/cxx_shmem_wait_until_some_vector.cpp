@@ -16,7 +16,7 @@
 
 #define TEST_CXX_SHMEM_WAIT_UNTIL_SOME_VECTOR(TYPE, TYPENAME)                  \
   ({                                                                           \
-    log_routine("shmem_" #TYPENAME "_wait_until_some_vector()");                \
+    log_routine("shmem_" #TYPENAME "_wait_until_some_vector()");               \
     bool success = true;                                                       \
     TYPE *flags = (TYPE *)shmem_malloc(4 * sizeof(TYPE));                      \
     log_info("Allocated flags array (%zu bytes) at address %p",                \
@@ -34,7 +34,7 @@
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype == 0) {                                                         \
-        log_info("PE 0: Setting flags[1] and flags[3] to 1 on PE 1");         \
+        log_info("PE 0: Setting flags[1] and flags[3] to 1 on PE 1");          \
         shmem_##TYPENAME##_p(&flags[1], 1, 1);                                 \
         shmem_##TYPENAME##_p(&flags[3], 1, 1);                                 \
         log_info("PE 0: Called shmem_quiet() after setting flags");            \
@@ -48,19 +48,19 @@
                          SHMEM_CMP_EQ};                                        \
         TYPE cmp_values[4] = {1, 1, 1, 1};                                     \
         size_t indices[4];                                                     \
-        log_info("PE %d: Calling wait_until_some_vector", mype);              \
+        log_info("PE %d: Calling wait_until_some_vector", mype);               \
         size_t count = shmem_##TYPENAME##_wait_until_some_vector(              \
             flags, 4, indices, status, SHMEM_CMP_EQ, cmp_values);              \
         log_info("PE %d: wait_until_some_vector returned count=%zu", mype,     \
-                count);                                                        \
+                 count);                                                       \
         if (count < 2) {                                                       \
-          log_fail("Expected count >= 2 but got %zu", count);                 \
+          log_fail("Expected count >= 2 but got %zu", count);                  \
           success = false;                                                     \
         } else {                                                               \
           for (size_t i = 0; i < count; ++i) {                                 \
             if (flags[indices[i]] != 1) {                                      \
-              log_fail("flags[%zu] = %d, expected 1", indices[i],             \
-                      (int)flags[indices[i]]);                                 \
+              log_fail("flags[%zu] = %d, expected 1", indices[i],              \
+                       (int)flags[indices[i]]);                                \
               success = false;                                                 \
               break;                                                           \
             }                                                                  \

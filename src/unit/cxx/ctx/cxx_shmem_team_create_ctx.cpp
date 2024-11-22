@@ -24,14 +24,14 @@
  */
 bool test_shmem_team_create_ctx(void) {
   log_routine("shmem_team_create_ctx()");
-  
+
   shmem_team_t team;
   shmem_ctx_t ctx;
-  
+
   log_info("creating team using shmem_team_split_strided");
   shmem_team_split_strided(SHMEM_TEAM_WORLD, 0, 1, shmem_n_pes(), NULL, 0,
                            &team);
-  
+
   log_info("creating context for team");
   int ret = shmem_team_create_ctx(team, 0, &ctx);
   if (ret != 0) {
@@ -39,12 +39,12 @@ bool test_shmem_team_create_ctx(void) {
     return false;
   }
   log_info("context created successfully");
-  
+
   log_info("destroying context and team");
   shmem_ctx_destroy(ctx);
   shmem_team_destroy(team);
   log_info("cleanup complete");
-  
+
   return true;
 }
 

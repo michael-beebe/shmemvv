@@ -15,7 +15,7 @@ char *test_shmem_info_get_name(void) {
   log_routine("shmem_info_get_name()");
   char *name = (char *)malloc(SHMEM_MAX_NAME_LEN * sizeof(char));
   if (name != NULL) {
-    log_info("Allocated name buffer at %p", (void*)name);
+    log_info("Allocated name buffer at %p", (void *)name);
     shmem_info_get_name(name);
     log_info("Retrieved vendor name: %s", name);
   } else {

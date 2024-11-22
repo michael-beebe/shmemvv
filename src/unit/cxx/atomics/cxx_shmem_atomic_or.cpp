@@ -23,16 +23,16 @@
     *dest = value;                                                             \
     log_info("set %p to %d", (void *)dest, (char)value);                       \
     shmem_barrier_all();                                                       \
-    log_info("executing atomic or: dest = %p, or_val = %d",                    \
-             (void *)dest, (char)or_val);                                      \
+    log_info("executing atomic or: dest = %p, or_val = %d", (void *)dest,      \
+             (char)or_val);                                                    \
     int mype = shmem_my_pe();                                                  \
     shmem_##TYPENAME##_atomic_or(dest, or_val, mype);                          \
     shmem_barrier_all();                                                       \
     success = (*dest == (value | or_val));                                     \
     if (!success)                                                              \
       log_fail("atomic or on %s did not produce expected value: "              \
-               "dest = %d (expected %d)", #TYPE, (char)*dest,                  \
-               (char)(value | or_val));                                        \
+               "dest = %d (expected %d)",                                      \
+               #TYPE, (char)*dest, (char)(value | or_val));                    \
     else                                                                       \
       log_info("atomic or on a %s at %p produced expected result: dest = %d",  \
                #TYPE, dest, (char)*dest);                                      \

@@ -32,7 +32,7 @@
         log_info("PE 1: Fetching signal value");                               \
         fetched_signal = shmem_signal_fetch(&signal);                          \
         log_info("Expected signal value: 1, Fetched signal value: %lu",        \
-                (unsigned long)fetched_signal);                                \
+                 (unsigned long)fetched_signal);                               \
         if (fetched_signal != 1) {                                             \
           log_fail("Validation failed: Signal value mismatch");                \
           success = false;                                                     \
@@ -40,7 +40,7 @@
           log_info("Validation successful: Signal value matches expected");    \
         }                                                                      \
       } else {                                                                 \
-        log_info("PE %d: Waiting while PE 1 fetches signal", mype);           \
+        log_info("PE %d: Waiting while PE 1 fetches signal", mype);            \
       }                                                                        \
     }                                                                          \
     log_info("Test completed with %s", success ? "SUCCESS" : "FAILURE");       \

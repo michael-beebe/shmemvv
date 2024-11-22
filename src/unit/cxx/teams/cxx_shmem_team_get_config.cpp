@@ -14,7 +14,7 @@ bool test_shmem_team_get_config(void) {
   shmem_team_t team;
   shmem_team_config_t config;
   long config_mask = SHMEM_TEAM_NUM_CONTEXTS;
-  
+
   log_routine("shmem_team_get_config()");
   log_info("Attempting to split SHMEM_TEAM_WORLD into new team");
   log_info("Using stride=1, start=0 and all PEs");
@@ -29,9 +29,10 @@ bool test_shmem_team_get_config(void) {
   log_info("Team split successful, getting team config");
   shmem_team_get_config(team, config_mask, &config);
   bool result = (config.num_contexts >= 0);
-  
+
   if (result) {
-    log_info("Team config retrieved successfully - num_contexts = %d", config.num_contexts);
+    log_info("Team config retrieved successfully - num_contexts = %d",
+             config.num_contexts);
   } else {
     log_fail("Invalid num_contexts value: %d", config.num_contexts);
   }
@@ -52,7 +53,8 @@ int main(int argc, char *argv[]) {
 
   if (!(npes >= 2)) {
     if (mype == 0) {
-      log_fail("Test requires at least 2 PEs, but only %d PE(s) available", npes);
+      log_fail("Test requires at least 2 PEs, but only %d PE(s) available",
+               npes);
       display_not_enough_pes("TEAMS");
     }
     shmem_finalize();

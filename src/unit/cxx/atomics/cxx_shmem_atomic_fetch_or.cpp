@@ -37,7 +37,8 @@
                (char)(value | or_val));                                        \
     else                                                                       \
       log_info("atomic fetch_or on a %s at %p produced expected results: "     \
-               "fetch = %d, dest = %d", #TYPE, dest, (char)fetch, (char)*dest);\
+               "fetch = %d, dest = %d",                                        \
+               #TYPE, dest, (char)fetch, (char)*dest);                         \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })

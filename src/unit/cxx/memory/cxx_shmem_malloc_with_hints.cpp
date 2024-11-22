@@ -16,16 +16,16 @@ bool test_shmem_malloc_with_hints(void) {
   log_routine("shmem_malloc_with_hints()");
   size_t size = 1024;
   long hints = SHMEM_MALLOC_ATOMICS_REMOTE;
-  
+
   log_info("attempting to allocate %zu bytes with hints %ld", size, hints);
   void *ptr = shmem_malloc_with_hints(size, hints);
-  
+
   if (ptr == NULL) {
     log_fail("shmem_malloc_with_hints returned NULL");
     return false;
   }
   log_info("successfully allocated memory at %p", ptr);
-  
+
   log_info("freeing allocated memory");
   shmem_free(ptr);
   return true;

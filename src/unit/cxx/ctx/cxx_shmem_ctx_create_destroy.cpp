@@ -21,7 +21,7 @@
  */
 bool test_shmem_ctx_create_destroy(void) {
   log_routine("shmem_ctx_create_destroy()");
-  
+
   shmem_ctx_t ctx;
   log_info("attempting to create context");
   int ret = shmem_ctx_create(0, &ctx);
@@ -30,7 +30,7 @@ bool test_shmem_ctx_create_destroy(void) {
     return false;
   }
   log_info("context created successfully");
-  
+
   log_info("destroying context");
   shmem_ctx_destroy(ctx);
   log_info("context destroyed");

@@ -16,16 +16,17 @@ bool test_shmem_align(void) {
   log_routine("shmem_align()");
   size_t alignment = 64;
   size_t size = 1024;
-  
-  log_info("attempting to allocate %zu bytes with alignment %zu", size, alignment);
+
+  log_info("attempting to allocate %zu bytes with alignment %zu", size,
+           alignment);
   void *ptr = shmem_align(alignment, size);
-  
+
   if (ptr == NULL) {
     log_fail("shmem_align returned NULL");
     return false;
   }
   log_info("successfully allocated aligned memory at %p", ptr);
-  
+
   log_info("freeing allocated memory");
   shmem_free(ptr);
   return true;

@@ -15,16 +15,16 @@
 bool test_shmem_malloc_free(void) {
   log_routine("shmem_malloc() and shmem_free()");
   size_t size = 1024;
-  
+
   log_info("attempting to allocate %zu bytes", size);
   void *ptr = shmem_malloc(size);
-  
+
   if (ptr == NULL) {
     log_fail("shmem_malloc returned NULL");
     return false;
   }
   log_info("successfully allocated memory at %p", ptr);
-  
+
   log_info("freeing allocated memory");
   shmem_free(ptr);
   return true;

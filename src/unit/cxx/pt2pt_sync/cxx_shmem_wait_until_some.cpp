@@ -16,7 +16,7 @@
 
 #define TEST_CXX_SHMEM_WAIT_UNTIL_SOME(TYPE, TYPENAME)                         \
   ({                                                                           \
-    log_routine("shmem_" #TYPENAME "_wait_until_some()");                       \
+    log_routine("shmem_" #TYPENAME "_wait_until_some()");                      \
     bool success = true;                                                       \
     TYPE *flags = (TYPE *)shmem_malloc(4 * sizeof(TYPE));                      \
     log_info("Allocated flags array (%zu bytes) at address %p",                \
@@ -34,7 +34,7 @@
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype == 0) {                                                         \
-        log_info("PE 0: Setting flags[1] and flags[3] to 1 on PE 1");         \
+        log_info("PE 0: Setting flags[1] and flags[3] to 1 on PE 1");          \
         shmem_##TYPENAME##_p(&flags[1], 1, 1);                                 \
         shmem_##TYPENAME##_p(&flags[3], 1, 1);                                 \
         log_info("PE 0: Called shmem_quiet() after setting flags");            \
@@ -47,25 +47,25 @@
         size_t indices[4];                                                     \
         int status[4] = {SHMEM_CMP_EQ, SHMEM_CMP_EQ, SHMEM_CMP_EQ,             \
                          SHMEM_CMP_EQ};                                        \
-        log_info("PE %d: Waiting for some flags to become 1", mype);          \
+        log_info("PE %d: Waiting for some flags to become 1", mype);           \
         size_t count = shmem_##TYPENAME##_wait_until_some(                     \
             flags, 4, indices, status, SHMEM_CMP_EQ, 1);                       \
-        log_info("PE %d: Wait completed, got count=%zu", mype, count);        \
+        log_info("PE %d: Wait completed, got count=%zu", mype, count);         \
         if (count < 2) {                                                       \
-          log_fail("PE %d: Expected count >= 2 but got %zu", mype, count);    \
+          log_fail("PE %d: Expected count >= 2 but got %zu", mype, count);     \
           success = false;                                                     \
         } else {                                                               \
-          log_info("PE %d: Verifying flags at returned indices", mype);       \
+          log_info("PE %d: Verifying flags at returned indices", mype);        \
           for (size_t i = 0; i < count; ++i) {                                 \
             if (flags[indices[i]] != 1) {                                      \
-              log_fail("PE %d: flags[%zu] = %d, expected 1",                  \
-                      mype, indices[i], flags[indices[i]]);                    \
+              log_fail("PE %d: flags[%zu] = %d, expected 1", mype, indices[i], \
+                       flags[indices[i]]);                                     \
               success = false;                                                 \
               break;                                                           \
             }                                                                  \
           }                                                                    \
           if (success) {                                                       \
-            log_info("PE %d: All flags verified successfully", mype);         \
+            log_info("PE %d: All flags verified successfully", mype);          \
           }                                                                    \
         }                                                                      \
       }                                                                        \

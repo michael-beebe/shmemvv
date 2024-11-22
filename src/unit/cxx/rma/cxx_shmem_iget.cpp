@@ -15,8 +15,8 @@
     log_routine("shmem_" #TYPENAME "_iget()");                                 \
     bool success = true;                                                       \
     static TYPE src[10], dest[10];                                             \
-    log_info("Allocated static arrays: src at %p, dest at %p",                 \
-             (void *)src, (void *)dest);                                       \
+    log_info("Allocated static arrays: src at %p, dest at %p", (void *)src,    \
+             (void *)dest);                                                    \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
     log_info("Running on PE %d of %d total PEs", mype, npes);                  \
@@ -44,7 +44,7 @@
       for (int i = 0; i < 10; i += 2) {                                        \
         if (dest[i] != i / 2) {                                                \
           log_fail("PE 1: Validation failed - expected dest[%d]=%d, got %d",   \
-                   i, i/2, (int)dest[i]);                                      \
+                   i, i / 2, (int)dest[i]);                                    \
           success = false;                                                     \
           break;                                                               \
         }                                                                      \

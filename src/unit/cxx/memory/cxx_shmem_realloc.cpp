@@ -15,7 +15,7 @@
 bool test_shmem_realloc(void) {
   log_routine("shmem_realloc()");
   size_t size = 1024;
-  
+
   log_info("attempting to allocate %zu bytes", size);
   void *ptr = shmem_malloc(size);
   if (ptr == NULL) {

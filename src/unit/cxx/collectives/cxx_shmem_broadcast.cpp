@@ -26,13 +26,13 @@
       for (int i = 0; i < 4; ++i) {                                            \
         src[i] = i + 1;                                                        \
       }                                                                        \
-      log_info("set %p..%p to idx + 1", (void *)src, (void *)&src[3]);        \
+      log_info("set %p..%p to idx + 1", (void *)src, (void *)&src[3]);         \
     }                                                                          \
                                                                                \
     for (int i = 0; i < 4; ++i) {                                              \
       dest[i] = -1;                                                            \
     }                                                                          \
-    log_info("set %p..%p to -1", (void *)dest, (void *)&dest[3]);             \
+    log_info("set %p..%p to -1", (void *)dest, (void *)&dest[3]);              \
                                                                                \
     shmem_barrier_all();                                                       \
                                                                                \

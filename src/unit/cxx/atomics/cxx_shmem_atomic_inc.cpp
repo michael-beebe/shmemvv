@@ -30,11 +30,12 @@
     success = (*dest == value + 1);                                            \
     if (!success)                                                              \
       log_fail("atomic inc on %s did not produce expected value: "             \
-               "dest = %d (expected %d)", #TYPE, (char)*dest,                  \
-               (char)(value + 1));                                             \
+               "dest = %d (expected %d)",                                      \
+               #TYPE, (char)*dest, (char)(value + 1));                         \
     else                                                                       \
       log_info("atomic inc on a %s at %p produced expected result: "           \
-               "dest = %d", #TYPE, dest, (char)*dest);                         \
+               "dest = %d",                                                    \
+               #TYPE, dest, (char)*dest);                                      \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })

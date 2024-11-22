@@ -16,16 +16,16 @@ bool test_shmem_calloc(void) {
   log_routine("shmem_calloc()");
   size_t count = 256;
   size_t size = sizeof(int);
-  
+
   log_info("attempting to allocate %zu elements of size %zu", count, size);
   int *ptr = (int *)shmem_calloc(count, size);
-  
+
   if (ptr == NULL) {
     log_fail("shmem_calloc returned NULL");
     return false;
   }
   log_info("successfully allocated memory at %p", (void *)ptr);
-  
+
   log_info("validating memory is zeroed...");
   for (size_t i = 0; i < count; ++i) {
     if (ptr[i] != 0) {
@@ -35,7 +35,7 @@ bool test_shmem_calloc(void) {
     }
   }
   log_info("all memory validated as zero");
-  
+
   log_info("freeing allocated memory");
   shmem_free(ptr);
   return true;

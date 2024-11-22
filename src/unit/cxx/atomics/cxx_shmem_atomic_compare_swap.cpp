@@ -18,31 +18,31 @@
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
-    log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);    \
-    TYPE old = 42, new_val = 43;                                              \
-    *dest = old;                                                              \
-    log_info("set %p to %d", (void *)dest, (char)old);                        \
-    shmem_barrier_all();                                                      \
-    int mype = shmem_my_pe();                                                 \
-    int npes = shmem_n_pes();                                                 \
-    shmem_barrier_all();                                                      \
-    log_info("executing atomic compare_swap: dest = %p, old = %d, new = %d",  \
-             (void *)dest, (char)old, (char)new_val);                         \
-    TYPE swapped = shmem_##TYPENAME##_atomic_compare_swap(dest, old, new_val, \
-                                                          (mype + 1) % npes); \
-    shmem_barrier_all();                                                      \
-    success = (swapped == old && *dest == new_val);                          \
-    if (!success)                                                             \
-      log_fail("atomic compare_swap on %s did not produce expected values: "  \
-               "swapped = %d (expected %d), dest = %d (expected %d)",         \
-               #TYPE, (char)swapped, (char)old, (char)*dest, (char)new_val); \
-    else                                                                      \
-      log_info("atomic compare_swap on a %s at %p produced expected results: "\
-               "swapped = %d, dest = %d", #TYPE, dest, (char)swapped,        \
-               (char)*dest);                                                  \
-    shmem_barrier_all();                                                     \
-    shmem_free(dest);                                                        \
-    success;                                                                 \
+    log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
+    TYPE old = 42, new_val = 43;                                               \
+    *dest = old;                                                               \
+    log_info("set %p to %d", (void *)dest, (char)old);                         \
+    shmem_barrier_all();                                                       \
+    int mype = shmem_my_pe();                                                  \
+    int npes = shmem_n_pes();                                                  \
+    shmem_barrier_all();                                                       \
+    log_info("executing atomic compare_swap: dest = %p, old = %d, new = %d",   \
+             (void *)dest, (char)old, (char)new_val);                          \
+    TYPE swapped = shmem_##TYPENAME##_atomic_compare_swap(dest, old, new_val,  \
+                                                          (mype + 1) % npes);  \
+    shmem_barrier_all();                                                       \
+    success = (swapped == old && *dest == new_val);                            \
+    if (!success)                                                              \
+      log_fail("atomic compare_swap on %s did not produce expected values: "   \
+               "swapped = %d (expected %d), dest = %d (expected %d)",          \
+               #TYPE, (char)swapped, (char)old, (char)*dest, (char)new_val);   \
+    else                                                                       \
+      log_info("atomic compare_swap on a %s at %p produced expected results: " \
+               "swapped = %d, dest = %d",                                      \
+               #TYPE, dest, (char)swapped, (char)*dest);                       \
+    shmem_barrier_all();                                                       \
+    shmem_free(dest);                                                          \
+    success;                                                                   \
   })
 
 int main(int argc, char *argv[]) {

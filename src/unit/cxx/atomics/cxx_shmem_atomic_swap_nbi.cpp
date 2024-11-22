@@ -38,7 +38,8 @@
                #TYPE, (char)fetch, (char)value, (char)*dest, (char)new_val);   \
     else                                                                       \
       log_info("atomic swap_nbi on a %s at %p produced expected results: "     \
-               "fetch = %d, dest = %d", #TYPE, dest, (char)fetch, (char)*dest);\
+               "fetch = %d, dest = %d",                                        \
+               #TYPE, dest, (char)fetch, (char)*dest);                         \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })

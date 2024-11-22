@@ -26,7 +26,8 @@
     log_info("set %p to %d", (void *)dest, (char)old);                         \
     shmem_barrier_all();                                                       \
     log_info("executing atomic compare_swap_nbi: dest = %p, old = %d, "        \
-             "new = %d", (void *)dest, (char)old, (char)new_val);             \
+             "new = %d",                                                       \
+             (void *)dest, (char)old, (char)new_val);                          \
     int mype = shmem_my_pe();                                                  \
     shmem_##TYPENAME##_atomic_compare_swap_nbi(&fetch, dest, old, new_val,     \
                                                mype);                          \
@@ -36,11 +37,11 @@
     if (!success)                                                              \
       log_fail("atomic compare_swap_nbi on %s did not produce expected "       \
                "values: fetch = %d (expected %d), dest = %d (expected %d)",    \
-               #TYPE, (char)fetch, (char)old, (char)*dest, (char)new_val);    \
+               #TYPE, (char)fetch, (char)old, (char)*dest, (char)new_val);     \
     else                                                                       \
       log_info("atomic compare_swap_nbi on a %s at %p produced expected "      \
-               "results: fetch = %d, dest = %d", #TYPE, dest, (char)fetch,     \
-               (char)*dest);                                                   \
+               "results: fetch = %d, dest = %d",                               \
+               #TYPE, dest, (char)fetch, (char)*dest);                         \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })

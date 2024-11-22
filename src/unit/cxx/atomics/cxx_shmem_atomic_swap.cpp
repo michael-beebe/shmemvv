@@ -23,8 +23,8 @@
     *dest = value;                                                             \
     log_info("set %p to %d", (void *)dest, (char)value);                       \
     shmem_barrier_all();                                                       \
-    log_info("executing atomic swap: dest = %p, new_val = %d",                 \
-             (void *)dest, (char)new_val);                                     \
+    log_info("executing atomic swap: dest = %p, new_val = %d", (void *)dest,   \
+             (char)new_val);                                                   \
     int mype = shmem_my_pe();                                                  \
     TYPE swapped = shmem_##TYPENAME##_atomic_swap(dest, new_val, mype);        \
     shmem_barrier_all();                                                       \
@@ -35,8 +35,8 @@
                #TYPE, (char)swapped, (char)value, (char)*dest, (char)new_val); \
     else                                                                       \
       log_info("atomic swap on a %s at %p produced expected results: "         \
-               "swapped = %d, dest = %d", #TYPE, dest, (char)swapped,         \
-               (char)*dest);                                                   \
+               "swapped = %d, dest = %d",                                      \
+               #TYPE, dest, (char)swapped, (char)*dest);                       \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })

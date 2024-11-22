@@ -15,7 +15,7 @@
 #define TIMEOUT 2
 #define TEST_CXX_SHMEM_TEST_SOME_VECTOR(TYPE, TYPENAME)                        \
   ({                                                                           \
-    log_routine("shmem_" #TYPENAME "_test_some_vector()");                      \
+    log_routine("shmem_" #TYPENAME "_test_some_vector()");                     \
     bool success = true;                                                       \
     TYPE *flags = (TYPE *)shmem_malloc(4 * sizeof(TYPE));                      \
     log_info("Allocated flags array (%zu bytes) at address %p",                \
@@ -63,11 +63,11 @@
           usleep(1000);                                                        \
         }                                                                      \
         if (flags[1] != 1 || flags[3] != 1) {                                  \
-          log_fail("PE %d: Test failed - flags[1]=%d flags[3]=%d",             \
-                   mype, (int)flags[1], (int)flags[3]);                        \
+          log_fail("PE %d: Test failed - flags[1]=%d flags[3]=%d", mype,       \
+                   (int)flags[1], (int)flags[3]);                              \
           success = false;                                                     \
         } else {                                                               \
-          log_info("PE %d: Successfully received expected flag values", mype);  \
+          log_info("PE %d: Successfully received expected flag values", mype); \
         }                                                                      \
       }                                                                        \
       log_info("Freeing allocated memory at %p", (void *)flags);               \

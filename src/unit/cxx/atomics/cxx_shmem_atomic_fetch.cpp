@@ -31,10 +31,12 @@
     success = (fetch == value);                                                \
     if (!success)                                                              \
       log_fail("atomic fetch on %s did not produce expected values: "          \
-               "fetch = %d (expected %d)", #TYPE, (char)fetch, (char)value);   \
+               "fetch = %d (expected %d)",                                     \
+               #TYPE, (char)fetch, (char)value);                               \
     else                                                                       \
       log_info("atomic fetch on a %s at %p produced expected results: "        \
-               "fetch = %d", #TYPE, dest, (char)fetch);                        \
+               "fetch = %d",                                                   \
+               #TYPE, dest, (char)fetch);                                      \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })

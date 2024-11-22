@@ -23,16 +23,16 @@
     *dest = value;                                                             \
     log_info("set %p to %d", (void *)dest, (char)value);                       \
     shmem_barrier_all();                                                       \
-    log_info("executing atomic xor: dest = %p, xor_val = %d",                  \
-             (void *)dest, (char)xor_val);                                     \
+    log_info("executing atomic xor: dest = %p, xor_val = %d", (void *)dest,    \
+             (char)xor_val);                                                   \
     int mype = shmem_my_pe();                                                  \
     shmem_##TYPENAME##_atomic_xor(dest, xor_val, mype);                        \
     shmem_barrier_all();                                                       \
     success = (*dest == (value ^ xor_val));                                    \
     if (!success)                                                              \
       log_fail("atomic xor on %s did not produce expected value: "             \
-               "dest = %d (expected %d)", #TYPE, (char)*dest,                  \
-               (char)(value ^ xor_val));                                       \
+               "dest = %d (expected %d)",                                      \
+               #TYPE, (char)*dest, (char)(value ^ xor_val));                   \
     else                                                                       \
       log_info("atomic xor on a %s at %p produced expected result: dest = %d", \
                #TYPE, dest, (char)*dest);                                      \

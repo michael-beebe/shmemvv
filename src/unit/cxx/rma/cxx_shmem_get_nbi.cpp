@@ -12,11 +12,11 @@
 
 #define TEST_CXX_SHMEM_GET_NBI(TYPE, TYPENAME)                                 \
   ({                                                                           \
-    log_routine("shmem_" #TYPENAME "_get_nbi()");                             \
+    log_routine("shmem_" #TYPENAME "_get_nbi()");                              \
     bool success = true;                                                       \
     static TYPE src[10], dest[10];                                             \
-    log_info("Allocated static arrays: src at %p, dest at %p",                 \
-             (void *)src, (void *)dest);                                       \
+    log_info("Allocated static arrays: src at %p, dest at %p", (void *)src,    \
+             (void *)dest);                                                    \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
     log_info("Running on PE %d of %d total PEs", mype, npes);                  \

@@ -18,8 +18,8 @@
     log_routine("shmem_" #TYPENAME "_wait_until()");                           \
     bool success = true;                                                       \
     TYPE *flag = (TYPE *)shmem_malloc(sizeof(TYPE));                           \
-    log_info("Allocated flag (%zu bytes) at address %p",                       \
-             sizeof(TYPE), (void *)flag);                                      \
+    log_info("Allocated flag (%zu bytes) at address %p", sizeof(TYPE),         \
+             (void *)flag);                                                    \
     if (flag == NULL) {                                                        \
       log_fail("Memory allocation failed - shmem_malloc returned NULL");       \
       success = false;                                                         \
@@ -45,15 +45,15 @@
       if (mype != 0) {                                                         \
         log_info("PE %d: Waiting for flag to become 1", mype);                 \
         shmem_##TYPENAME##_wait_until(flag, SHMEM_CMP_EQ, 1);                  \
-        log_info("PE %d: wait_until completed, flag value is %d",              \
-                 mype, (int)*flag);                                            \
+        log_info("PE %d: wait_until completed, flag value is %d", mype,        \
+                 (int)*flag);                                                  \
         if (*flag != 1) {                                                      \
           log_fail("PE %d: Test failed - flag value mismatch after wait. "     \
-                   "Expected 1 but got %d",                                     \
+                   "Expected 1 but got %d",                                    \
                    mype, (int)*flag);                                          \
           success = false;                                                     \
         } else {                                                               \
-          log_info("PE %d: Successfully received expected flag value", mype);   \
+          log_info("PE %d: Successfully received expected flag value", mype);  \
         }                                                                      \
       }                                                                        \
       log_info("Freeing allocated memory at %p", (void *)flag);                \

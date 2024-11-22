@@ -31,10 +31,12 @@
     success = (*dest == value);                                                \
     if (!success)                                                              \
       log_fail("atomic set on %s did not produce expected value: "             \
-               "dest = %d (expected %d)", #TYPE, (char)*dest, (char)value);    \
+               "dest = %d (expected %d)",                                      \
+               #TYPE, (char)*dest, (char)value);                               \
     else                                                                       \
       log_info("atomic set on a %s at %p produced expected result: "           \
-               "dest = %d", #TYPE, dest, (char)*dest);                         \
+               "dest = %d",                                                    \
+               #TYPE, dest, (char)*dest);                                      \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })

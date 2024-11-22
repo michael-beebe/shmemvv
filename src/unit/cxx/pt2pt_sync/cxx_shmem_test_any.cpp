@@ -57,8 +57,8 @@
           }                                                                    \
           usleep(1000);                                                        \
         }                                                                      \
-        log_info("PE %d: test_any completed, flag[2] value is %d",             \
-                 mype, (int)flags[2]);                                         \
+        log_info("PE %d: test_any completed, flag[2] value is %d", mype,       \
+                 (int)flags[2]);                                               \
         if (flags[2] != 1) {                                                   \
           log_fail("PE %d: Test failed - flag[2] value mismatch. "             \
                    "Expected 1 but got %d",                                    \
