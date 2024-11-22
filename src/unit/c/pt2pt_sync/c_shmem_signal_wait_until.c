@@ -14,7 +14,7 @@
 
 #define TIMEOUT 2
 
-#define TEST_CXX_SHMEM_SIGNAL_WAIT_UNTIL()                                     \
+#define TEST_C_SHMEM_SIGNAL_WAIT_UNTIL()                                     \
   ({                                                                           \
     log_routine("shmem_signal_wait_until()");                                  \
     bool success = true;                                                       \
@@ -79,7 +79,7 @@ int main(int argc, char **argv) {
   int result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_CXX_SHMEM_SIGNAL_WAIT_UNTIL();
+  result &= TEST_C_SHMEM_SIGNAL_WAIT_UNTIL();
 
   shmem_barrier_all();
 

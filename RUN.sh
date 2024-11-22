@@ -24,9 +24,9 @@ HLINE="================================================"
 # ===============================================
 #         ----------  C  ------------
 # ===============================================
-echo $HLINE
-echo "    RUNNING C TESTS"
-echo $HLINE
+# echo $HLINE
+# echo "    RUNNING C TESTS"
+# echo $HLINE
 
 # --- setup
 # for executable in $SETUP_BIN/c_*; do
@@ -79,16 +79,16 @@ echo $HLINE
 # done
 
 # --- threads
-for executable in $THREADS_BIN/c_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $THREADS_BIN/c_*; do
+#   oshrun -np 2 $executable
+# done
 
 # ===============================================
 #       ----------  C11  ------------
 # ===============================================
-echo $HLINE
-echo "    RUNNING C11 TESTS"
-echo $HLINE
+# echo $HLINE
+# echo "    RUNNING C11 TESTS"
+# echo $HLINE
 
 # --- setup
 # for executable in $SETUP_BIN/c11_*; do
@@ -141,21 +141,21 @@ echo $HLINE
 # done
 
 # --- threads
-for executable in $THREADS_BIN/c11_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $THREADS_BIN/c11_*; do
+#   oshrun -np 2 $executable
+# done
 
 # ===============================================
 #       ----------  CXX  ------------
 # ===============================================
-# echo $HLINE
-# echo "    RUNNING CXX TESTS"
-# echo $HLINE
+echo $HLINE
+echo "    RUNNING CXX TESTS"
+echo $HLINE
 
 # --- setup
-# for executable in $SETUP_BIN/cxx_*; do
-#   oshrun -np 2 $executable
-# done
+for executable in $SETUP_BIN/cxx_*; do
+  oshrun -np 2 $executable
+done
 
 # --- atomics
 # for executable in $ATOMIC_BIN/cxx_*; do
@@ -168,9 +168,9 @@ done
 # done
 
 # --- rma
-# for executable in $RMA_BIN/cxx_*; do
-#   oshrun -np 2 $executable
-# done
+for executable in $RMA_BIN/cxx_*; do
+  oshrun -np 2 $executable
+done
 
 # --- ctx
 # for executable in $CTX_BIN/cxx_*; do
@@ -193,18 +193,18 @@ done
 # done
 
 # --- signaling
-# for executable in $SIGNALING_BIN/cxx_*; do
-#   oshrun -np 2 $executable
-# done
+for executable in $SIGNALING_BIN/cxx_*; do
+  oshrun -np 2 $executable
+done
 
 # --- teams
-# for executable in $TEAMS_BIN/cxx_*; do
-#   oshrun -np 2 $executable
-# done
+for executable in $TEAMS_BIN/cxx_*; do
+  oshrun -np 2 $executable
+done
 
 # --- threads
-# for executable in $THREADS_BIN/cxx_*; do
-#   oshrun -np 2 $executable
-# done
+for executable in $THREADS_BIN/cxx_*; do
+  oshrun -np 2 $executable
+done
 
 

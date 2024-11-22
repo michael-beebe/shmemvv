@@ -9,28 +9,41 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "log.h"
 #include "shmemvv.h"
 
 #define TEST_CXX_SHMEM_ATOMIC_FETCH_NBI(TYPE, TYPENAME)                        \
   ({                                                                           \
+    log_routine("shmem_" #TYPENAME "_atomic_fetch_nbi");                       \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
     static TYPE fetch;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
+    log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
+    fetch = 0;                                                                 \
     TYPE value = 42;                                                           \
     *dest = value;                                                             \
+    log_info("set %p to %d", (void *)dest, (char)value);                       \
     shmem_barrier_all();                                                       \
+    log_info("executing atomic fetch_nbi: dest = %p", (void *)dest);           \
     int mype = shmem_my_pe();                                                  \
     shmem_##TYPENAME##_atomic_fetch_nbi(&fetch, dest, mype);                   \
     shmem_quiet();                                                             \
     shmem_barrier_all();                                                       \
     success = (fetch == value);                                                \
+    if (!success)                                                              \
+      log_fail("atomic fetch_nbi on %s did not produce expected values: "      \
+               "fetch = %d (expected %d)", #TYPE, (char)fetch, (char)value);   \
+    else                                                                       \
+      log_info("atomic fetch_nbi on a %s at %p produced expected results: "    \
+               "fetch = %d", #TYPE, dest, (char)fetch);                        \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })
 
 int main(int argc, char *argv[]) {
   shmem_init();
+  log_init(__FILE__);
 
   bool result = true;
   int rc = EXIT_SUCCESS;
@@ -58,6 +71,7 @@ int main(int argc, char *argv[]) {
     rc = EXIT_FAILURE;
   }
 
+  log_close(rc);
   shmem_finalize();
   return rc;
 }

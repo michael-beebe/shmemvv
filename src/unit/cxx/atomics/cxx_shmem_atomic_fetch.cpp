@@ -9,27 +9,39 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "log.h"
 #include "shmemvv.h"
 
 #define TEST_CXX_SHMEM_ATOMIC_FETCH(TYPE, TYPENAME)                            \
   ({                                                                           \
+    log_routine("shmem_" #TYPENAME "_atomic_fetch");                           \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
     static TYPE fetch;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
+    log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
     TYPE value = 42;                                                           \
     *dest = value;                                                             \
+    log_info("set %p to %d", (void *)dest, (char)value);                       \
     shmem_barrier_all();                                                       \
+    log_info("executing atomic fetch: dest = %p", (void *)dest);               \
     int mype = shmem_my_pe();                                                  \
     fetch = shmem_##TYPENAME##_atomic_fetch(dest, mype);                       \
     shmem_barrier_all();                                                       \
     success = (fetch == value);                                                \
+    if (!success)                                                              \
+      log_fail("atomic fetch on %s did not produce expected values: "          \
+               "fetch = %d (expected %d)", #TYPE, (char)fetch, (char)value);   \
+    else                                                                       \
+      log_info("atomic fetch on a %s at %p produced expected results: "        \
+               "fetch = %d", #TYPE, dest, (char)fetch);                        \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })
 
 int main(int argc, char *argv[]) {
   shmem_init();
+  log_init(__FILE__);
 
   bool result = true;
   int rc = EXIT_SUCCESS;

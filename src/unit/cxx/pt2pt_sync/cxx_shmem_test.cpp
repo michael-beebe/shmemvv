@@ -1,5 +1,5 @@
 /**
- * @file c_shmem_test.cpp
+ * @file cxx_shmem_test.cpp
  * @brief Unit test shmem_test() routine.
  */
 
@@ -9,18 +9,24 @@
 #include <time.h>
 #include <unistd.h>
 
+#include "log.h"
 #include "shmemvv.h"
 
 #define TIMEOUT 2
 
 #define TEST_CXX_SHMEM_TEST(TYPE, TYPENAME)                                    \
   ({                                                                           \
+    log_routine("shmem_" #TYPENAME "_test()");                                 \
     bool success = true;                                                       \
     TYPE *flag = (TYPE *)shmem_malloc(sizeof(TYPE));                           \
+    log_info("Allocated flag (%zu bytes) at address %p",                       \
+             sizeof(TYPE), (void *)flag);                                      \
     if (flag == NULL) {                                                        \
+      log_fail("Memory allocation failed - shmem_malloc returned NULL");       \
       success = false;                                                         \
     } else {                                                                   \
       *flag = 0;                                                               \
+      log_info("Initialized flag to 0");                                       \
       int mype = shmem_my_pe();                                                \
                                                                                \
       shmem_barrier_all();                                                     \
@@ -36,11 +42,14 @@
         time_t start_time = time(NULL);                                        \
         while (!shmem_##TYPENAME##_test(flag, SHMEM_CMP_EQ, 1)) {              \
           if (time(NULL) - start_time > TIMEOUT) {                             \
+            log_warn("Test timed out after %d seconds", TIMEOUT);              \
             break;                                                             \
           }                                                                    \
           usleep(1000);                                                        \
         }                                                                      \
         if (*flag != 1) {                                                      \
+          log_fail("Flag value %d does not match expected value 1",            \
+                   (int)*flag);                                                \
           success = false;                                                     \
         }                                                                      \
       }                                                                        \
@@ -51,6 +60,7 @@
 
 int main(int argc, char **argv) {
   shmem_init();
+  log_init(__FILE__);
 
   int result = true;
   int rc = EXIT_SUCCESS;
@@ -80,6 +90,7 @@ int main(int argc, char **argv) {
     rc = EXIT_FAILURE;
   }
 
+  log_close(rc);
   shmem_finalize();
   return rc;
 }

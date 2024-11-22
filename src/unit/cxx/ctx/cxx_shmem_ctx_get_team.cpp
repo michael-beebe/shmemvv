@@ -8,6 +8,7 @@
 #include <stdlib.h>
 
 #include "shmemvv.h"
+#include "log.h"
 
 /**
  * @brief Tests the `shmem_ctx_get_team()` function.
@@ -18,21 +19,49 @@
  * @return `true` if the test passes, `false` otherwise.
  */
 bool test_shmem_ctx_get_team(void) {
+  log_routine("shmem_ctx_get_team()");
+
   shmem_ctx_t ctx;
-  shmem_ctx_create(0, &ctx);
+  log_info("attempting to create context");
+  int create_ret = shmem_ctx_create(0, &ctx);
+  if (create_ret != 0) {
+    log_fail("shmem_ctx_create returned non-zero value %d", create_ret);
+    return false;
+  }
+  log_info("context created successfully");
+
   shmem_team_t team;
+  log_info("getting team from context");
   int ret = shmem_ctx_get_team(ctx, &team);
+  if (ret != 0) {
+    log_fail("shmem_ctx_get_team returned non-zero value %d", ret);
+    shmem_ctx_destroy(ctx);
+    return false;
+  }
+
+  bool success = (team == SHMEM_TEAM_WORLD);
+  if (success) {
+    log_info("team matches expected SHMEM_TEAM_WORLD");
+  } else {
+    log_fail("team does not match SHMEM_TEAM_WORLD");
+  }
+
+  log_info("destroying context");
   shmem_ctx_destroy(ctx);
-  return (ret == 0 && team == SHMEM_TEAM_WORLD);
+  log_info("context destroyed");
+
+  return success;
 }
 
 int main(int argc, char *argv[]) {
   shmem_init();
+  log_init(__FILE__);
 
   if (!(shmem_n_pes() <= 2)) {
     if (shmem_my_pe() == 0) {
       display_not_enough_pes("ctx");
     }
+    log_close(EXIT_SUCCESS);
     shmem_finalize();
     return EXIT_SUCCESS;
   }
@@ -52,6 +81,7 @@ int main(int argc, char *argv[]) {
     rc = EXIT_FAILURE;
   }
 
+  log_close(rc);
   shmem_finalize();
   return rc;
 }
