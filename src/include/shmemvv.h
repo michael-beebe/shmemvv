@@ -1,6 +1,6 @@
 /**
- * @file shmemvv.h 
- * 
+ * @file shmemvv.h
+ *
  */
 
 #ifndef SHMEMVV_H
@@ -31,20 +31,21 @@ extern "C" {
   @brief Struct to hold selected tests options.
  */
 typedef struct {
-  bool test_all;               /**< Flag to run all tests */
-  bool test_setup;             /**< Flag to run setup tests */
-  bool test_threads;           /**< Flag to run thread support tests */
-  bool test_mem;               /**< Flag to run memory management tests */
-  bool test_teams;             /**< Flag to run team management tests */
-  bool test_ctx;               /**< Flag to run communication management tests */
-  bool test_remote;            /**< Flag to run remote memory access tests */
-  bool test_atomics;           /**< Flag to run atomic memory operations tests */
-  bool test_signaling;         /**< Flag to run signaling operations tests */
-  bool test_collectives;       /**< Flag to run collective operations tests */
-  bool test_pt2pt_synch;       /**< Flag to run point-to-point synchronization tests */
-  bool test_mem_ordering;      /**< Flag to run memory ordering tests */
-  bool test_locking;           /**< Flag to run distributed locking tests */
-  bool help;                   /**< Flag to display help message */
+  bool test_all;         /**< Flag to run all tests */
+  bool test_setup;       /**< Flag to run setup tests */
+  bool test_threads;     /**< Flag to run thread support tests */
+  bool test_mem;         /**< Flag to run memory management tests */
+  bool test_teams;       /**< Flag to run team management tests */
+  bool test_ctx;         /**< Flag to run communication management tests */
+  bool test_remote;      /**< Flag to run remote memory access tests */
+  bool test_atomics;     /**< Flag to run atomic memory operations tests */
+  bool test_signaling;   /**< Flag to run signaling operations tests */
+  bool test_collectives; /**< Flag to run collective operations tests */
+  bool
+      test_pt2pt_synch; /**< Flag to run point-to-point synchronization tests */
+  bool test_mem_ordering; /**< Flag to run memory ordering tests */
+  bool test_locking;      /**< Flag to run distributed locking tests */
+  bool help;              /**< Flag to display help message */
 } test_options;
 
 /**
@@ -80,7 +81,8 @@ void display_test_header(const char *test_name);
   @param shmem_version Version of the OpenSHMEM library.
   @param npes Number of PEs (Processing Elements).
  */
-void display_test_info(const char *shmem_name, const char *shmem_version, int npes);
+void display_test_info(const char *shmem_name, const char *shmem_version,
+                       int npes);
 
 /**
   @brief Checks whether the tested OpenSHMEM implementation has a given routine
@@ -90,8 +92,8 @@ void display_test_info(const char *shmem_name, const char *shmem_version, int np
 bool check_if_exists(const char *routine_name);
 
 /**
-  @brief Displays a warning message that the given routine is not available in the
-        tested OpenSHMEM library
+  @brief Displays a warning message that the given routine is not available in
+  the tested OpenSHMEM library
   @param routine_name OpenSHMEM routine
   @param required True if test is required, false otherwise
  */

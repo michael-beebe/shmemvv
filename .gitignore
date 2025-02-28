@@ -16,7 +16,8 @@ build
 *.bk
 # BUILD.sh
 NM.*
-TODO.txt
+# TODO.txt
 .vscode
 
 
+logs/*

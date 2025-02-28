@@ -1,0 +1,16 @@
+- C
+  - memory_ordering
+  
+  - pt2pt_sync
+
+  - setup
+
+  - signaling
+
+  - teams
+
+  - threads
+
+
+- C11
+  - pt2pt_sync
