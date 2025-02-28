@@ -9,41 +9,64 @@
 #include <time.h>
 #include <unistd.h>
 
+#include "log.h"
 #include "shmemvv.h"
 
 #define TIMEOUT 2
 
 #define TEST_C_SHMEM_TEST(TYPE, TYPENAME)                                      \
   ({                                                                           \
+    log_routine("c11_shmem_test(" #TYPE ")");                                  \
     bool success = true;                                                       \
     TYPE *flag = (TYPE *)shmem_malloc(sizeof(TYPE));                           \
+    log_info("Allocated flag array (%zu bytes) at address %p", sizeof(TYPE),   \
+             (void *)flag);                                                    \
     if (flag == NULL) {                                                        \
+      log_fail("Memory allocation failed - shmem_malloc returned NULL");       \
       success = false;                                                         \
     } else {                                                                   \
       *flag = 0;                                                               \
+      log_info("Initialized flag to 0");                                       \
       int mype = shmem_my_pe();                                                \
                                                                                \
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype == 0) {                                                         \
+        log_info("PE 0: Setting flag to 1");                                   \
         *flag = 1;                                                             \
         shmem_quiet();                                                         \
+        log_info("PE 0: Called shmem_quiet() after setting flag");             \
       }                                                                        \
                                                                                \
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype != 0) {                                                         \
         time_t start_time = time(NULL);                                        \
+        int iterations = 0;                                                    \
+        log_info(                                                              \
+            "PE %d: Starting test loop (flag=%p, condition=SHMEM_CMP_EQ, "     \
+            "target=1)",                                                       \
+            mype, (void *)flag);                                               \
         while (!shmem_##TYPENAME##_test(flag, SHMEM_CMP_EQ, 1)) {              \
           if (time(NULL) - start_time > TIMEOUT) {                             \
+            log_fail("PE %d: Test timed out after %d iterations", mype,        \
+                     iterations);                                              \
             break;                                                             \
           }                                                                    \
           usleep(1000);                                                        \
+          iterations++;                                                        \
         }                                                                      \
+        log_info("PE %d: Test loop completed after %d iterations", mype,       \
+                 iterations);                                                  \
         if (*flag != 1) {                                                      \
+          log_fail("PE %d: Validation failed - flag=%d, expected 1", mype,     \
+                   (int)*flag);                                                \
           success = false;                                                     \
+        } else {                                                               \
+          log_info("PE %d: Successfully validated flag=1", mype);              \
         }                                                                      \
       }                                                                        \
+      log_info("Freeing allocated memory at %p", (void *)flag);                \
       shmem_free(flag);                                                        \
     }                                                                          \
     success;                                                                   \
@@ -51,6 +74,7 @@
 
 int main(int argc, char **argv) {
   shmem_init();
+  log_init(__FILE__);
 
   int result = true;
   int rc = EXIT_SUCCESS;
@@ -80,6 +104,7 @@ int main(int argc, char **argv) {
     rc = EXIT_FAILURE;
   }
 
+  log_close(rc);
   shmem_finalize();
   return rc;
 }

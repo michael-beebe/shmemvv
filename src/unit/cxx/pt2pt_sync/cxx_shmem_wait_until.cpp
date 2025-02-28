@@ -1,6 +1,6 @@
 /**
- * @file c_shmem_signal_wait_until.cpp
- * @brief Unit test for shmem_signal_wait_until
+ * @file cxx_shmem_wait_until.cpp
+ * @brief Unit test for shmem_wait_until
  */
 
 #include <shmem.h>
@@ -9,37 +9,54 @@
 #include <time.h>
 #include <unistd.h>
 
+#include "log.h"
 #include "shmemvv.h"
 
 #define TIMEOUT 2
 #define TEST_CXX_SHMEM_WAIT_UNTIL(TYPE, TYPENAME)                              \
   ({                                                                           \
+    log_routine("shmem_" #TYPENAME "_wait_until()");                           \
     bool success = true;                                                       \
     TYPE *flag = (TYPE *)shmem_malloc(sizeof(TYPE));                           \
+    log_info("Allocated flag (%zu bytes) at address %p", sizeof(TYPE),         \
+             (void *)flag);                                                    \
     if (flag == NULL) {                                                        \
+      log_fail("Memory allocation failed - shmem_malloc returned NULL");       \
       success = false;                                                         \
     } else {                                                                   \
       *flag = 0;                                                               \
       int mype = shmem_my_pe();                                                \
       int npes = shmem_n_pes();                                                \
+      log_info("PE %d: Initialized flag to 0", mype);                          \
                                                                                \
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype == 0) {                                                         \
         for (int pe = 1; pe < npes; ++pe) {                                    \
+          log_info("PE 0: Setting flag to 1 on PE %d", pe);                    \
           shmem_##TYPENAME##_p(flag, 1, pe);                                   \
         }                                                                      \
         shmem_quiet();                                                         \
+        log_info("PE 0: Called shmem_quiet() after setting flags");            \
       }                                                                        \
                                                                                \
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype != 0) {                                                         \
+        log_info("PE %d: Waiting for flag to become 1", mype);                 \
         shmem_##TYPENAME##_wait_until(flag, SHMEM_CMP_EQ, 1);                  \
+        log_info("PE %d: wait_until completed, flag value is %d", mype,        \
+                 (int)*flag);                                                  \
         if (*flag != 1) {                                                      \
+          log_fail("PE %d: Test failed - flag value mismatch after wait. "     \
+                   "Expected 1 but got %d",                                    \
+                   mype, (int)*flag);                                          \
           success = false;                                                     \
+        } else {                                                               \
+          log_info("PE %d: Successfully received expected flag value", mype);  \
         }                                                                      \
       }                                                                        \
+      log_info("Freeing allocated memory at %p", (void *)flag);                \
       shmem_free(flag);                                                        \
     }                                                                          \
     success;                                                                   \
@@ -47,6 +64,7 @@
 
 int main(int argc, char **argv) {
   shmem_init();
+  log_init(__FILE__);
 
   int result = true;
   int rc = EXIT_SUCCESS;
@@ -74,6 +92,7 @@ int main(int argc, char **argv) {
     rc = EXIT_FAILURE;
   }
 
+  log_close(rc);
   shmem_finalize();
   return rc;
 }

@@ -5,6 +5,7 @@
 # --- Add the common source files
 set(SOURCES
     ../../../shmemvv.c
+    ../../../log.c
 )
 
 # --- Add the executables

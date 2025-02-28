@@ -8,8 +8,12 @@
 #include <stdlib.h>
 
 #include "shmemvv.h"
+#include "log.h"
 
 bool test_c_shmem_lock_unlock(void) {
+  log_routine("shmem_lock_unlock()");
+
+  log_info("allocating lock");
   long *lock = (long *)shmem_malloc(sizeof(long));
   *lock = 0;
   int mype = shmem_my_pe();
@@ -18,34 +22,47 @@ bool test_c_shmem_lock_unlock(void) {
   shmem_barrier_all();
 
   if (mype == 0) {
+    log_info("PE 0: acquiring lock");
     shmem_set_lock(lock);
+    log_info("PE 0: setting lock value to 1");
     *lock = 1;
+    log_info("PE 0: releasing lock");
     shmem_clear_lock(lock);
   }
 
   shmem_barrier_all();
 
   if (mype == 1) {
+    log_info("PE 1: acquiring lock");
     shmem_set_lock(lock);
     if (*lock != 1) {
+      log_fail("PE 1: lock value is not 1");
       result = false;
+    } else {
+      log_info("PE 1: lock value verified as 1");
     }
+    log_info("PE 1: releasing lock");
     shmem_clear_lock(lock);
   }
 
   shmem_barrier_all();
 
+  log_info("freeing lock");
   shmem_free(lock);
   return result;
 }
 
 int main(int argc, char *argv[]) {
   shmem_init();
+  log_init(__FILE__);
 
   if (!(shmem_n_pes() > 1)) {
     if (shmem_my_pe() == 0) {
       display_not_enough_pes("DISTRIBUTED LOCKING");
     }
+    log_close(EXIT_SUCCESS);
+    shmem_finalize();
+    return EXIT_SUCCESS;
   }
 
   bool result = true;
@@ -64,6 +81,7 @@ int main(int argc, char *argv[]) {
     rc = EXIT_FAILURE;
   }
 
+  log_close(rc);
   shmem_finalize();
   return EXIT_SUCCESS;
 }

@@ -7,36 +7,57 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "log.h"
 #include "shmemvv.h"
 
 #define TEST_C_SHMEM_IGET(TYPE, TYPENAME)                                      \
   ({                                                                           \
+    log_routine("shmem_" #TYPENAME "_iget()");                                 \
     bool success = true;                                                       \
     static TYPE src[10], dest[10];                                             \
+    log_info("Allocated static arrays: src at %p, dest at %p", (void *)&src,   \
+             (void *)&dest);                                                   \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
+    log_info("Running on PE %d of %d total PEs", mype, npes);                  \
                                                                                \
     if (mype == 0) {                                                           \
       for (int i = 0; i < 10; i++) {                                           \
         src[i] = i;                                                            \
+        log_info("PE %d: Initialized src[%d] = %d", mype, i, i);               \
       }                                                                        \
     }                                                                          \
                                                                                \
     shmem_barrier_all();                                                       \
+    log_info("Completed barrier synchronization");                             \
                                                                                \
     if (mype == 1) {                                                           \
+      log_info("PE 1: Starting iget operation from PE 0");                     \
+      log_info("PE 1: dest=%p, src=%p, dst_stride=2, src_stride=2, nelems=5",  \
+               (void *)dest, (void *)src);                                     \
       shmem_##TYPENAME##_iget(dest, src, 2, 2, 5, 0);                          \
+      log_info("PE 1: Completed iget operation");                              \
     }                                                                          \
                                                                                \
     shmem_barrier_all();                                                       \
+    log_info("Completed barrier synchronization");                             \
                                                                                \
     if (mype == 1) {                                                           \
+      log_info("PE 1: Beginning validation of received data");                 \
       for (int i = 0; i < 10; i += 2) {                                        \
         if (dest[i] != i / 2) {                                                \
+          log_fail("PE 1: Validation failed - dest[%d] = %d, expected %d", i,  \
+                   (int)dest[i], i / 2);                                       \
           success = false;                                                     \
           break;                                                               \
         }                                                                      \
+        log_info("PE 1: dest[%d] = %d (valid)", i, (int)dest[i]);              \
       }                                                                        \
+      if (success) {                                                           \
+        log_info("PE 1: All elements validated successfully");                 \
+      }                                                                        \
+    } else {                                                                   \
+      log_info("PE 0: Waiting for PE 1 to complete validation");               \
     }                                                                          \
                                                                                \
     success;                                                                   \
@@ -44,8 +65,11 @@
 
 int main(int argc, char *argv[]) {
   shmem_init();
+  log_init(__FILE__);
 
   if (!(shmem_n_pes() <= 2)) {
+    log_warn("Not enough PEs to run test (requires 2 PEs, have %d PEs)",
+             shmem_n_pes());
     if (shmem_my_pe() == 0) {
       display_not_enough_pes("RMA");
     }
@@ -91,6 +115,7 @@ int main(int argc, char *argv[]) {
     rc = EXIT_FAILURE;
   }
 
+  log_close(rc);
   shmem_finalize();
   return rc;
 }

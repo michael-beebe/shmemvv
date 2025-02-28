@@ -9,6 +9,7 @@ set(CMAKE_C_STANDARD 11)
 # --- Add the common source files
 set(SOURCES
   ../../../shmemvv.c
+  ../../../log.c
 )
 
 # --- Add the executables

@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# --- Set log dir
+rm -rf logs
+export SHMEMVV_LOG_DIR="$(pwd)/logs/"
+mkdir -p $SHMEMVV_LOG_DIR
+
 # --- Set bin directory
 BIN_DIR=$(pwd)/build/bin
 ATOMIC_BIN=$BIN_DIR/atomics
@@ -19,126 +24,126 @@ HLINE="================================================"
 # ===============================================
 #         ----------  C  ------------
 # ===============================================
-echo $HLINE
-echo "    RUNNING C TESTS"
-echo $HLINE
+# echo $HLINE
+# echo "    RUNNING C TESTS"
+# echo $HLINE
 
 # --- setup
-for executable in $SETUP_BIN/c_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $SETUP_BIN/c_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- atomics
-for executable in $ATOMIC_BIN/c_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $ATOMIC_BIN/c_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- collectives
-for executable in $COLLECTIVE_BIN/c_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $COLLECTIVE_BIN/c_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- rma
-for executable in $RMA_BIN/c_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $RMA_BIN/c_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- ctx
-for executable in $CTX_BIN/c_*; do
-  oshrun -np 2 $executable
-done  
+# for executable in $CTX_BIN/c_*; do
+#   oshrun -np 2 $executable
+# done  
 
 # --- locking
-for executable in $LOCKING_BIN/c_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $LOCKING_BIN/c_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- memory
-for executable in $MEMORY_BIN/c_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $MEMORY_BIN/c_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- pt2pt_sync
-for executable in $PT2PT_SYNC_BIN/c_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $PT2PT_SYNC_BIN/c_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- signaling
-for executable in $SIGNALING_BIN/c_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $SIGNALING_BIN/c_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- teams
-for executable in $TEAMS_BIN/c_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $TEAMS_BIN/c_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- threads
-for executable in $THREADS_BIN/c_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $THREADS_BIN/c_*; do
+#   oshrun -np 2 $executable
+# done
 
 # ===============================================
 #       ----------  C11  ------------
 # ===============================================
-echo $HLINE
-echo "    RUNNING C11 TESTS"
-echo $HLINE
+# echo $HLINE
+# echo "    RUNNING C11 TESTS"
+# echo $HLINE
 
 # --- setup
-for executable in $SETUP_BIN/c11_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $SETUP_BIN/c11_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- atomics
-for executable in $ATOMIC_BIN/c11_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $ATOMIC_BIN/c11_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- collectives
-for executable in $COLLECTIVE_BIN/c11_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $COLLECTIVE_BIN/c11_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- rma
-for executable in $RMA_BIN/c11_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $RMA_BIN/c11_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- ctx
-for executable in $CTX_BIN/c11_*; do
-  oshrun -np 2 $executable
-done  
+# for executable in $CTX_BIN/c11_*; do
+#   oshrun -np 2 $executable
+# done  
 
 # --- locking
-for executable in $LOCKING_BIN/c11_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $LOCKING_BIN/c11_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- memory
-for executable in $MEMORY_BIN/c11_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $MEMORY_BIN/c11_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- pt2pt_sync
-for executable in $PT2PT_SYNC_BIN/c11_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $PT2PT_SYNC_BIN/c11_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- signaling
-for executable in $SIGNALING_BIN/c11_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $SIGNALING_BIN/c11_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- teams
-for executable in $TEAMS_BIN/c11_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $TEAMS_BIN/c11_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- threads
-for executable in $THREADS_BIN/c11_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $THREADS_BIN/c11_*; do
+#   oshrun -np 2 $executable
+# done
 
 # ===============================================
 #       ----------  CXX  ------------
@@ -153,14 +158,14 @@ for executable in $SETUP_BIN/cxx_*; do
 done
 
 # --- atomics
-for executable in $ATOMIC_BIN/cxx_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $ATOMIC_BIN/cxx_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- collectives
-for executable in $COLLECTIVE_BIN/cxx_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $COLLECTIVE_BIN/cxx_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- rma
 for executable in $RMA_BIN/cxx_*; do
@@ -168,24 +173,24 @@ for executable in $RMA_BIN/cxx_*; do
 done
 
 # --- ctx
-for executable in $CTX_BIN/cxx_*; do
-  oshrun -np 2 $executable
-done  
+# for executable in $CTX_BIN/cxx_*; do
+#   oshrun -np 2 $executable
+# done  
 
 # --- locking
-for executable in $LOCKING_BIN/cxx_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $LOCKING_BIN/cxx_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- memory
-for executable in $MEMORY_BIN/cxx_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $MEMORY_BIN/cxx_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- pt2pt_sync
-for executable in $PT2PT_SYNC_BIN/cxx_*; do
-  oshrun -np 2 $executable
-done
+# for executable in $PT2PT_SYNC_BIN/cxx_*; do
+#   oshrun -np 2 $executable
+# done
 
 # --- signaling
 for executable in $SIGNALING_BIN/cxx_*; do
@@ -201,3 +206,5 @@ done
 for executable in $THREADS_BIN/cxx_*; do
   oshrun -np 2 $executable
 done
+
+

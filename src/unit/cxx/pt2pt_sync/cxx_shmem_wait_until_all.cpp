@@ -1,9 +1,10 @@
 /**
- * @file c_shmem_wait_until_all.cpp
+ * @file cxx_shmem_wait_until_all.cpp
  * @brief Unit test shmem_wait_until_all() routine.
  */
 
 #include "shmemvv.h"
+#include "log.h"
 #include <shmem.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -14,9 +15,13 @@
 
 #define TEST_CXX_SHMEM_WAIT_UNTIL_ALL(TYPE, TYPENAME)                          \
   ({                                                                           \
+    log_routine("shmem_" #TYPENAME "_wait_until_all()");                       \
     bool success = true;                                                       \
     TYPE *flags = (TYPE *)shmem_malloc(2 * sizeof(TYPE));                      \
+    log_info("Allocated flags array (%zu bytes) at address %p",                \
+             2 * sizeof(TYPE), (void *)flags);                                 \
     if (flags == NULL) {                                                       \
+      log_fail("Memory allocation failed - shmem_malloc returned NULL");       \
       success = false;                                                         \
     } else {                                                                   \
       flags[0] = 0;                                                            \
@@ -39,6 +44,8 @@
       if (mype != 0) {                                                         \
         shmem_##TYPENAME##_wait_until_all(flags, 2, NULL, SHMEM_CMP_EQ, 1);    \
         if (flags[0] != 1 || flags[1] != 1) {                                  \
+          log_fail("flags[0] = %d, flags[1] = %d, expected both to be 1",      \
+                   (int)flags[0], (int)flags[1]);                              \
           success = false;                                                     \
         }                                                                      \
       }                                                                        \
@@ -49,6 +56,7 @@
 
 int main(int argc, char **argv) {
   shmem_init();
+  log_init(__FILE__);
 
   int result = true;
   int rc = EXIT_SUCCESS;
@@ -78,6 +86,7 @@ int main(int argc, char **argv) {
     rc = EXIT_FAILURE;
   }
 
+  log_close(rc);
   shmem_finalize();
   return rc;
 }

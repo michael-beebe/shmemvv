@@ -7,10 +7,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "log.h"
 #include "shmemvv.h"
 
 #define TEST_C_SHMEM_PUT_SIGNAL(TYPE, TYPENAME)                                \
   ({                                                                           \
+    log_routine("shmem_" #TYPENAME "_put_signal()");                           \
     bool success = true;                                                       \
     static TYPE dest = 0;                                                      \
     static TYPE value = (TYPE)123;                                             \
@@ -22,10 +24,14 @@
       success = false;                                                         \
     } else {                                                                   \
       int target_pe = (mype + 1) % npes;                                       \
+      log_info("dest @ %p, value @ %p, signal @ %p", &dest, &value, &signal);  \
                                                                                \
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype == 0) {                                                         \
+        log_info("calling shmem_" #TYPENAME "_put_signal(dest=%p, value=%p, "  \
+                 "signal=%p, target_pe=%d)",                                   \
+                 &dest, &value, &signal, target_pe);                           \
         shmem_##TYPENAME##_put_signal(&dest, &value, 1, &signal, 1, target_pe, \
                                       SHMEM_SIGNAL_SET);                       \
       }                                                                        \
@@ -34,7 +40,12 @@
                                                                                \
       if (mype == 1) {                                                         \
         if (dest != 123 || signal != 1) {                                      \
+          log_fail("validation failed: dest = %d (expected 123), "             \
+                   "signal = %d (expected 1)",                                 \
+                   (int)dest, (int)signal);                                    \
           success = false;                                                     \
+        } else {                                                               \
+          log_info("result is valid");                                         \
         }                                                                      \
       }                                                                        \
     }                                                                          \
@@ -43,6 +54,7 @@
 
 int main(int argc, char *argv[]) {
   shmem_init();
+  log_init(__FILE__);
 
   int npes = shmem_n_pes();
   int mype = shmem_my_pe();

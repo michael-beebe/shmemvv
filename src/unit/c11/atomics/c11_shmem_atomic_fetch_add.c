@@ -9,27 +9,43 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "log.h"
 #include "shmemvv.h"
 
 #define TEST_C11_SHMEM_ATOMIC_FETCH_ADD(TYPE)                                  \
   ({                                                                           \
+    log_routine("shmem_atomic_fetch_add(" #TYPE ")");                          \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
     static TYPE fetch;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
+    log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
     TYPE value = 42, add_val = 10;                                             \
     *dest = value;                                                             \
+    log_info("set %p to %d", (void *)dest, (char)value);                       \
     shmem_barrier_all();                                                       \
     int mype = shmem_my_pe();                                                  \
+    log_info("executing atomic fetch add: dest = %p, add_val = %d",            \
+             (void *)dest, (char)add_val);                                     \
     fetch = shmem_atomic_fetch_add(dest, add_val, mype);                       \
     shmem_barrier_all();                                                       \
-    success = (fetch == value && *dest == value + add_val);                    \
+    success = (fetch == value && *dest == (value + add_val));                  \
+    if (!success)                                                              \
+      log_fail("atomic add on %s did not produce expected value = %d, ret = "  \
+               "%d, got "                                                      \
+               "instead value = %d, ret = %d",                                 \
+               #TYPE, (char)(value + add_val), (char)value, (char)*dest,       \
+               (char)fetch);                                                   \
+    else                                                                       \
+      log_info("atomic fetch add on a %s at %p produced expected result",      \
+               #TYPE, (void *)dest);                                           \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })
 
 int main(int argc, char *argv[]) {
   shmem_init();
+  log_init(__FILE__);
 
   bool result = true;
   int rc = EXIT_SUCCESS;
@@ -57,6 +73,7 @@ int main(int argc, char *argv[]) {
     rc = EXIT_FAILURE;
   }
 
+  log_close(rc);
   shmem_finalize();
   return rc;
 }

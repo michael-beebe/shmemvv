@@ -20,6 +20,7 @@ link_directories(${CMAKE_LIBRARY_PATH})
 set(SOURCES
   main.cpp
   shmemvv.c
+  log.c
 )
 
 # ---- Add the main executable

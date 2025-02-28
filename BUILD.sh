@@ -23,4 +23,4 @@ echo ; echo
 
 # --- Run tests
 ./RUN.sh
-
+ls -l logs

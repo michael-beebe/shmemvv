@@ -3,22 +3,35 @@
  * @brief Unit test for shmem_min_reduce().
  */
 
+#include "log.h"
 #include "shmemvv.h"
 
 #define TEST_C11_SHMEM_MIN_REDUCE(TYPE)                                        \
   ({                                                                           \
+    log_routine("shmem_min_reduce(" #TYPE ")");                                \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
                                                                                \
     TYPE *src = (TYPE *)shmem_malloc(sizeof(TYPE));                            \
     TYPE *dest = (TYPE *)shmem_malloc(sizeof(TYPE));                           \
+    log_info("shmem_malloc'd %d bytes @ &src = %p, %d bytes @ &dest = %p",     \
+             sizeof(TYPE), (void *)src, sizeof(TYPE), (void *)dest);           \
                                                                                \
     *src = mype;                                                               \
+    log_info("set src (%p) to %d", (void *)src, mype);                         \
                                                                                \
+    log_info("executing shmem_max_reduce: dest = %p, src = %p", (void *)dest,  \
+             (void *)src);                                                     \
     shmem_min_reduce(SHMEM_TEAM_WORLD, dest, src, 1);                          \
                                                                                \
     bool success = (*dest == 0);                                               \
                                                                                \
+    if (success)                                                               \
+      log_info("shmem_max_reduce on " #TYPE " produced expected result.");     \
+    else                                                                       \
+      log_fail("shmem_max_reduce on " #TYPE                                    \
+               " produced unexpected result: expected %d, found %d",           \
+               0, (char)*dest);                                                \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
                                                                                \
@@ -27,6 +40,7 @@
 
 int main(int argc, char *argv[]) {
   shmem_init();
+  log_init(__FILE__);
 
   bool result = true;
   int rc = EXIT_SUCCESS;
@@ -66,6 +80,7 @@ int main(int argc, char *argv[]) {
     rc = EXIT_FAILURE;
   }
 
+  log_close(rc);
   shmem_finalize();
   return rc;
 }

@@ -5,6 +5,7 @@
 # --- Add the common source files
 set(SOURCES
   ../../../shmemvv.c
+  ../../../log.c
 )
 
 add_executable(c_shmem_put_signal c_shmem_put_signal.c ${SOURCES})

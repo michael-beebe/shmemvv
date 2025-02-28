@@ -1,5 +1,5 @@
 /**
- * @file c_shmem_p.cpp
+ * @file cxx_shmem_p.cpp
  * @brief Unit test for the shmem_p() routine.
  */
 
@@ -7,29 +7,45 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "log.h"
 #include "shmemvv.h"
 
 #define TEST_CXX_SHMEM_P(TYPE, TYPENAME)                                       \
   ({                                                                           \
+    log_routine("shmem_" #TYPENAME "_p()");                                    \
     bool success = true;                                                       \
     static TYPE src, dest;                                                     \
+    log_info("Allocated static variables: src at %p, dest at %p",              \
+             (void *)&src, (void *)&dest);                                     \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
+    log_info("Running on PE %d of %d total PEs", mype, npes);                  \
                                                                                \
     src = mype;                                                                \
+    log_info("PE %d: Initialized src = %d", mype, (int)src);                   \
                                                                                \
     shmem_barrier_all();                                                       \
+    log_info("Completed barrier synchronization");                             \
                                                                                \
     if (mype == 0) {                                                           \
+      log_info("PE 0: Putting value to PE 1");                                 \
       shmem_##TYPENAME##_p(&dest, src, 1);                                     \
     }                                                                          \
                                                                                \
     shmem_barrier_all();                                                       \
+    log_info("Completed barrier synchronization");                             \
                                                                                \
     if (mype == 1) {                                                           \
+      log_info("PE 1: Beginning validation");                                  \
       if (dest != 0) {                                                         \
+        log_fail("PE 1: Validation failed - expected dest=0, got dest=%d",     \
+                 (int)dest);                                                   \
         success = false;                                                       \
+      } else {                                                                 \
+        log_info("PE 1: Validation successful - dest=0 as expected");          \
       }                                                                        \
+    } else {                                                                   \
+      log_info("PE 0: Waiting for PE 1 to complete validation");               \
     }                                                                          \
                                                                                \
     success;                                                                   \
@@ -37,8 +53,11 @@
 
 int main(int argc, char *argv[]) {
   shmem_init();
+  log_init(__FILE__);
 
   if (!(shmem_n_pes() <= 2)) {
+    log_warn("Not enough PEs to run test (requires 2 PEs, have %d PEs)",
+             shmem_n_pes());
     if (shmem_my_pe() == 0) {
       display_not_enough_pes("RMA");
     }
@@ -84,6 +103,7 @@ int main(int argc, char *argv[]) {
     rc = EXIT_FAILURE;
   }
 
+  log_close(rc);
   shmem_finalize();
   return rc;
 }
