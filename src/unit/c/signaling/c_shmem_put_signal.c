@@ -100,7 +100,7 @@ int main(int argc, char *argv[]) {
   }
 
   if (mype == 0) {
-    display_test_result("C shmem_put_signal()", result, false);
+    display_test_result("C shmem_put_signal", result, false);
   }
 
   shmem_finalize();

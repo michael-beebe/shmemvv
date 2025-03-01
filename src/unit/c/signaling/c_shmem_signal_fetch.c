@@ -71,7 +71,7 @@ int main(int argc, char *argv[]) {
   }
 
   if (mype == 0) {
-    display_test_result("C shmem_signal_fetch()", result, false);
+    display_test_result("C shmem_signal_fetch", result, false);
   }
 
   log_close(rc);

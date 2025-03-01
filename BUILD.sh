@@ -5,12 +5,29 @@ rm -rf build
 mkdir -p build
 cd build
 
-# --- Create install prefix
-PREFIX=$SWHOME/shmemvv
-mkdir -p $PREFIX
+# --- Configure build based on option
+if [ "$1" = "osss" ]; then
+    # --- Configure build with OSSS
+    OSSS_BIN=/root/lanl/openshmem/osss/osss-ucx_testing/build/build/bin
+    OSHCC="$OSSS_BIN/oshcc"
+    OSHCXX="$OSSS_BIN/oshcxx"
+elif [ "$1" = "sos" ]; then
+    # --- Configure build with SOS
+    SOS_BIN=/root/sw/linuxkit-aarch64/sos_1.5.2/bin/
+    OSHCC="$SOS_BIN/oshcc"
+    OSHCXX="$SOS_BIN/oshc++"
+else
+    echo "Please specify either 'osss' or 'sos' as an argument"
+    exit 1
+fi
 
-# --- Configure build with SOS
-export CC=oshcc ; export CXX=oshc++
+export CC=$OSHCC ; export CXX=$OSHCXX
+
+echo "----------------------------------------"
+echo "CC: $CC"
+echo "CXX: $CXX"
+echo "----------------------------------------"
+
 cmake ../
 
 # --- Compile
@@ -22,5 +39,5 @@ cd ../
 echo ; echo
 
 # --- Run tests
-./RUN.sh
+./RUN.sh $1
 ls -l logs

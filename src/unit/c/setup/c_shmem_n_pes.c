@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
   }
 
   if (shmem_my_pe() == 0) {
-    display_test_result("C shmem_n_pes()", result, false);
+    display_test_result("C shmem_n_pes", result, false);
   }
 
   log_close(rc);

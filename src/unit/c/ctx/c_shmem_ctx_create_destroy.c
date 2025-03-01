@@ -54,8 +54,8 @@ int main(void) {
   shmem_barrier_all();
 
   if (shmem_my_pe() == 0) {
-    display_test_result("C shmem_ctx_create()", result, false);
-    display_test_result("C shmem_ctx_destroy()", result, false);
+    display_test_result("C shmem_ctx_create", result, false);
+    display_test_result("C shmem_ctx_destroy", result, false);
   }
 
   if (!result) {

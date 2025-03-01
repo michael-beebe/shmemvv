@@ -60,7 +60,7 @@ int main(void) {
   shmem_barrier_all();
 
   if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_atomic_fetch_xor()", result, false);
+    display_test_result("C11 shmem_atomic_fetch_xor", result, false);
   }
 
   if (!result) {

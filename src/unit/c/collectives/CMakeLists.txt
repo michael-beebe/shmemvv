@@ -10,6 +10,7 @@ set(SOURCES
 
 # --- Add the executables, one for each collective test
 add_executable(c_shmem_alltoall c_shmem_alltoall.c ${SOURCES})
+add_executable(c_shmem_alltoallmem c_shmem_alltoallmem.c ${SOURCES})
 add_executable(c_shmem_alltoalls c_shmem_alltoalls.c ${SOURCES})
 add_executable(c_shmem_broadcast c_shmem_broadcast.c ${SOURCES})
 add_executable(c_shmem_collect c_shmem_collect.c ${SOURCES})
@@ -22,6 +23,7 @@ add_executable(c_shmem_sync_all c_shmem_sync_all.c ${SOURCES})
 # --- Set the output directory for the executables
 set_target_properties(
   c_shmem_alltoall
+  c_shmem_alltoallmem
   c_shmem_alltoalls
   c_shmem_broadcast
   c_shmem_collect
@@ -38,6 +40,7 @@ set_target_properties(
 
 # --- Include directories for each target
 target_include_directories(c_shmem_alltoall PRIVATE src/include)
+target_include_directories(c_shmem_alltoallmem PRIVATE src/include)
 target_include_directories(c_shmem_alltoalls PRIVATE src/include)
 target_include_directories(c_shmem_broadcast PRIVATE src/include)
 target_include_directories(c_shmem_collect PRIVATE src/include)
@@ -49,6 +52,7 @@ target_include_directories(c_shmem_sync_all PRIVATE src/include)
 
 # --- Link any necessary libraries to each target (replace `your_library` with actual libraries if any)
 target_link_libraries(c_shmem_alltoall)
+target_link_libraries(c_shmem_alltoallmem)
 target_link_libraries(c_shmem_alltoalls)
 target_link_libraries(c_shmem_broadcast)
 target_link_libraries(c_shmem_collect)

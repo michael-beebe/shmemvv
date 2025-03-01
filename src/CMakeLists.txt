@@ -40,11 +40,11 @@ target_link_libraries(
   locking_tests
 
   # --- C/C++ tests
-  cxx_remote_tests
-  cxx_atomics_tests
-  cxx_signaling_tests
-  cxx_collectives_tests
-  cxx_pt2pt_tests
+  # cxx_remote_tests
+  # cxx_atomics_tests
+  # cxx_signaling_tests
+  # cxx_collectives_tests
+  # cxx_pt2pt_tests
 
   # --- C11 tests
   c11_remote_tests

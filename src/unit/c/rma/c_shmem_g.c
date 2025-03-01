@@ -99,7 +99,7 @@ int main(int argc, char *argv[]) {
   shmem_barrier_all();
 
   if (shmem_my_pe() == 0) {
-    display_test_result("C shmem_g()", result, false);
+    display_test_result("C shmem_g", result, false);
   }
 
   if (!result) {
