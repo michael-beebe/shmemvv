@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # --- Clean build
-rm -rf build
-mkdir -p build
-cd build
+./CLEAN.sh
+
+mkdir build ; cd build
 
 # --- Configure build based on option
 if [ "$1" = "osss" ]; then

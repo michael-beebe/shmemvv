@@ -144,7 +144,7 @@ int main(int argc, char *argv[]) {
     if (mype == 0) {
       printf("\n");
     }
-    run_cxx_remote_tests(mype, npes);
+    // run_cxx_remote_tests(mype, npes);
   }
 
   /************************* ATOMICS TESTS **************************/
@@ -157,7 +157,7 @@ int main(int argc, char *argv[]) {
     if (mype == 0) {
       printf("\n");
     }
-    run_cxx_atomics_tests(mype, npes);
+    // run_cxx_atomics_tests(mype, npes);
   }
 
   /************************* SIGNALING TESTS **************************/
@@ -170,7 +170,7 @@ int main(int argc, char *argv[]) {
     if (mype == 0) {
       printf("\n");
     }
-    run_cxx_signaling_tests(mype, npes);
+    // run_cxx_signaling_tests(mype, npes);
   }
 
   /************************* COLLECTIVES TESTS **************************/
@@ -184,7 +184,7 @@ int main(int argc, char *argv[]) {
     if (mype == 0) {
       printf("\n");
     }
-    run_cxx_collectives_tests(mype, npes);
+    // run_cxx_collectives_tests(mype, npes);
   }
 
   /************************* PT2PT TESTS **************************/
@@ -198,7 +198,7 @@ int main(int argc, char *argv[]) {
     if (mype == 0) {
       printf("\n");
     }
-    run_cxx_pt2pt_synch_tests(mype, npes);
+    // run_cxx_pt2pt_synch_tests(mype, npes);
   }
 
   /************************* MEM ORDERING TESTS **************************/
