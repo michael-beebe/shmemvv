@@ -53,7 +53,7 @@
     success;                                                                   \
   })
 
-#define TEST_C11_CTX_SHMEM_P(TYPE)                                              \
+#define TEST_C11_CTX_SHMEM_P(TYPE)                                             \
   ({                                                                           \
     log_routine("shmem_p(ctx, " #TYPE ")");                                    \
     bool success = true;                                                       \
