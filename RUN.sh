@@ -60,9 +60,9 @@ fi
 # done
 
 # --- rma
-for executable in $RMA_BIN/c_*; do
-  $OSHRUN -np 2 $executable
-done
+# for executable in $RMA_BIN/c_*; do
+#   $OSHRUN -np 2 $executable
+# done
 
 # --- ctx
 # for executable in $CTX_BIN/c_*; do
@@ -85,9 +85,9 @@ done
 # done
 
 # --- signaling
-# for executable in $SIGNALING_BIN/c_*; do
-#   $OSHRUN -np 2 $executable
-# done
+for executable in $SIGNALING_BIN/c_*; do
+  $OSHRUN -np 2 $executable
+done
 
 # --- teams
 # for executable in $TEAMS_BIN/c_*; do
@@ -122,9 +122,9 @@ done
 # done
 
 # --- rma
-for executable in $RMA_BIN/c11_*; do
-  $OSHRUN -np 2 $executable
-done
+# for executable in $RMA_BIN/c11_*; do
+#   $OSHRUN -np 2 $executable
+# done
 
 # --- ctx
 # for executable in $CTX_BIN/c11_*; do
@@ -147,9 +147,9 @@ done
 # done
 
 # --- signaling
-# for executable in $SIGNALING_BIN/c11_*; do
-#   $OSHRUN -np 2 $executable
-# done
+for executable in $SIGNALING_BIN/c11_*; do
+  $OSHRUN -np 2 $executable
+done
 
 # --- teams
 # for executable in $TEAMS_BIN/c11_*; do

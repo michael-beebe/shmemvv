@@ -1,5 +1,1 @@
-- Generic memory RMA tests
-- Generic memory with context RMA tests
-- Signal with context
-
 - Context atomics
