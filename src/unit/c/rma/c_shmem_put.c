@@ -60,6 +60,71 @@
     success;                                                                   \
   })
 
+#define TEST_C_CTX_SHMEM_PUT(TYPE, TYPENAME)                                  \
+  ({                                                                          \
+    log_routine("shmem_ctx_" #TYPENAME "_put()");                             \
+    bool success = true;                                                      \
+    static TYPE src[10], dest[10];                                            \
+    log_info("Allocated static arrays: src at %p, dest at %p", (void *)&src,  \
+             (void *)&dest);                                                  \
+    int mype = shmem_my_pe();                                                 \
+    int npes = shmem_n_pes();                                                 \
+    log_info("Running on PE %d of %d total PEs", mype, npes);                 \
+                                                                              \
+    /* Create a context for the operation */                                  \
+    shmem_ctx_t ctx;                                                          \
+    int ctx_create_status = shmem_ctx_create(0, &ctx);                        \
+                                                                              \
+    if (ctx_create_status != 0) {                                             \
+      log_fail("Failed to create context");                                   \
+      return false;                                                           \
+    }                                                                         \
+    log_info("Successfully created context");                                 \
+                                                                              \
+    for (int i = 0; i < 10; i++) {                                            \
+      src[i] = i + 20 + mype; /* Different values for context test */         \
+      log_info("PE %d: Initialized src[%d] = %d", mype, i, i + 20 + mype);    \
+    }                                                                         \
+                                                                              \
+    shmem_barrier_all();                                                      \
+    log_info("Completed barrier synchronization");                            \
+                                                                              \
+    if (mype == 0) {                                                          \
+      log_info("PE 0: Starting context-based put to PE 1");                   \
+      log_info("PE 0: dest=%p, src=%p, nelems=10", (void *)dest, (void *)src);\
+      shmem_ctx_##TYPENAME##_put(ctx, dest, src, 10, 1);                      \
+      log_info("PE 0: Completed context-based put operation");                \
+    }                                                                         \
+                                                                              \
+    shmem_barrier_all();                                                      \
+    log_info("Completed barrier synchronization");                            \
+                                                                              \
+    if (mype == 1) {                                                          \
+      log_info("PE 1: Beginning validation of received data");                \
+      for (int i = 0; i < 10; i++) {                                          \
+        int expected = i + 20; /* PE 0's value */                             \
+        if (dest[i] != expected) {                                            \
+          log_fail("PE 1: Validation failed - dest[%d] = %d, expected %d", i, \
+                   (int)dest[i], expected);                                   \
+          success = false;                                                    \
+          break;                                                              \
+        }                                                                     \
+        log_info("PE 1: dest[%d] = %d (valid)", i, (int)dest[i]);             \
+      }                                                                       \
+      if (success) {                                                          \
+        log_info("PE 1: All elements validated successfully");                \
+      }                                                                       \
+    } else {                                                                  \
+      log_info("PE 0: Waiting for PE 1 to complete validation");              \
+    }                                                                         \
+                                                                              \
+    /* Destroy the context */                                                 \
+    shmem_ctx_destroy(ctx);                                                   \
+    log_info("Context destroyed");                                            \
+                                                                              \
+    success;                                                                  \
+  })
+
 int main(int argc, char *argv[]) {
   shmem_init();
   log_init(__FILE__);
@@ -75,6 +140,7 @@ int main(int argc, char *argv[]) {
   int result = true;
   int rc = EXIT_SUCCESS;
 
+  /* Test standard shmem_put variants */
   result &= TEST_C_SHMEM_PUT(float, float);
   result &= TEST_C_SHMEM_PUT(double, double);
   result &= TEST_C_SHMEM_PUT(long double, longdouble);
@@ -108,6 +174,44 @@ int main(int argc, char *argv[]) {
 
   if (!result) {
     rc = EXIT_FAILURE;
+  }
+
+  /* Test context-specific shmem_put variants */
+  int result_ctx = true;
+
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(float, float);
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(double, double);
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(long double, longdouble);
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(char, char);
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(signed char, schar);
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(short, short);
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(int, int);
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(long, long);
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(long long, longlong);
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(unsigned char, uchar);
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(unsigned short, ushort);
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(unsigned int, uint);
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(unsigned long, ulong);
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(unsigned long long, ulonglong);
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(int8_t, int8);
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(int16_t, int16);
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(int32_t, int32);
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(int64_t, int64);
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(uint8_t, uint8);
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(uint16_t, uint16);
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(uint32_t, uint32);
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(uint64_t, uint64);
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(size_t, size);
+  result_ctx &= TEST_C_CTX_SHMEM_PUT(ptrdiff_t, ptrdiff);
+
+  shmem_barrier_all();
+
+  if (!result_ctx) {
+    rc = EXIT_FAILURE;
+  }
+
+  if (shmem_my_pe() == 0) {
+    display_test_result("C shmem_ctx_put", result_ctx, false);
   }
 
   log_close(rc);

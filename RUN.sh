@@ -55,14 +55,14 @@ fi
 # done
 
 # --- collectives
-for executable in $COLLECTIVE_BIN/c_*; do
-  $OSHRUN -np 4 $executable
-done
+# for executable in $COLLECTIVE_BIN/c_*; do
+#   $OSHRUN -np 4 $executable
+# done
 
 # --- rma
-# for executable in $RMA_BIN/c_*; do
-#   $OSHRUN -np 2 $executable
-# done
+for executable in $RMA_BIN/c_*; do
+  $OSHRUN -np 2 $executable
+done
 
 # --- ctx
 # for executable in $CTX_BIN/c_*; do
@@ -122,9 +122,9 @@ done
 # done
 
 # --- rma
-# for executable in $RMA_BIN/c11_*; do
-#   $OSHRUN -np 2 $executable
-# done
+for executable in $RMA_BIN/c11_*; do
+  $OSHRUN -np 2 $executable
+done
 
 # --- ctx
 # for executable in $CTX_BIN/c11_*; do
