@@ -104,8 +104,9 @@
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype == 0) {                                                         \
-        log_info("PE 0: Initiating context non-blocking put with signal to PE %d", \
-                 target_pe);                                                   \
+        log_info(                                                              \
+            "PE 0: Initiating context non-blocking put with signal to PE %d",  \
+            target_pe);                                                        \
         log_info("Sending value %d with signal value 1", (int)value);          \
         shmem_put_signal_nbi(ctx, &dest, &value, 1, &signal, 1, target_pe,     \
                              SHMEM_SIGNAL_SET);                                \

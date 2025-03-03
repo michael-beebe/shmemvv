@@ -50,9 +50,9 @@ fi
 # done
 
 # --- atomics
-# for executable in $ATOMIC_BIN/c_*; do
-#   $OSHRUN -np 2 $executable
-# done
+for executable in $ATOMIC_BIN/c_*; do
+  $OSHRUN -np 2 $executable
+done
 
 # --- collectives
 # for executable in $COLLECTIVE_BIN/c_*; do
@@ -85,9 +85,9 @@ fi
 # done
 
 # --- signaling
-for executable in $SIGNALING_BIN/c_*; do
-  $OSHRUN -np 2 $executable
-done
+# for executable in $SIGNALING_BIN/c_*; do
+#   $OSHRUN -np 2 $executable
+# done
 
 # --- teams
 # for executable in $TEAMS_BIN/c_*; do
@@ -112,9 +112,9 @@ done
 # done
 
 # --- atomics
-# for executable in $ATOMIC_BIN/c11_*; do
-#   $OSHRUN -np 2 $executable
-# done
+for executable in $ATOMIC_BIN/c11_*; do
+  $OSHRUN -np 2 $executable
+done
 
 # --- collectives
 # for executable in $COLLECTIVE_BIN/c11_*; do
@@ -147,9 +147,9 @@ done
 # done
 
 # --- signaling
-for executable in $SIGNALING_BIN/c11_*; do
-  $OSHRUN -np 2 $executable
-done
+# for executable in $SIGNALING_BIN/c11_*; do
+#   $OSHRUN -np 2 $executable
+# done
 
 # --- teams
 # for executable in $TEAMS_BIN/c11_*; do
@@ -222,5 +222,3 @@ done
 # for executable in $THREADS_BIN/cxx_*; do
 #   $OSHRUN -np 2 $executable
 # done
-
-

@@ -46,13 +46,62 @@
     success;                                                                   \
   })
 
+#define TEST_C11_CTX_SHMEM_ATOMIC_FETCH_XOR_NBI(TYPE)                          \
+  ({                                                                           \
+    log_routine("shmem_atomic_fetch_xor_nbi(ctx, " #TYPE ")");                 \
+    bool success = true;                                                       \
+    static TYPE *dest;                                                         \
+    static TYPE fetch;                                                         \
+    dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
+    log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
+    fetch = 0;                                                                 \
+    TYPE value = 42, xor_val = 15;                                             \
+    *dest = value;                                                             \
+    log_info("set %p to %d", (void *)dest, (char)value);                       \
+                                                                               \
+    shmem_ctx_t ctx;                                                           \
+    int ctx_create_status = shmem_ctx_create(0, &ctx);                         \
+    if (ctx_create_status != 0) {                                              \
+      log_fail("Failed to create context");                                    \
+      shmem_free(dest);                                                        \
+      return false;                                                            \
+    }                                                                          \
+    log_info("Successfully created context");                                  \
+                                                                               \
+    shmem_barrier_all();                                                       \
+    log_info("executing atomic fetch xor nbi with context: dest = %p, "        \
+             "xor_val = %d",                                                   \
+             (void *)dest, (char)xor_val);                                     \
+    int mype = shmem_my_pe();                                                  \
+    shmem_atomic_fetch_xor_nbi(ctx, &fetch, dest, xor_val, mype);              \
+    shmem_ctx_quiet(ctx);                                                      \
+    shmem_barrier_all();                                                       \
+    success = (fetch == value && *dest == (value ^ xor_val));                  \
+    if (!success)                                                              \
+      log_fail("atomic fetch xor nbi with context on %s did not produce "      \
+               "expected value = %d, ret = %d, got instead value = %d, "       \
+               "ret = %d",                                                     \
+               #TYPE, (char)(value ^ xor_val), (char)value, (char)*dest,       \
+               (char)fetch);                                                   \
+    else                                                                       \
+      log_info("atomic fetch xor nbi with context on a %s at %p produced "     \
+               "expected result",                                              \
+               #TYPE, (void *)dest);                                           \
+                                                                               \
+    shmem_ctx_destroy(ctx);                                                    \
+    log_info("Context destroyed");                                             \
+    shmem_free(dest);                                                          \
+    success;                                                                   \
+  })
+
 int main(int argc, char *argv[]) {
   shmem_init();
   log_init(__FILE__);
 
-  bool result = true;
   int rc = EXIT_SUCCESS;
 
+  /* Test standard atomic fetch-xor nbi operations */
+  bool result = true;
   result &= TEST_C11_SHMEM_ATOMIC_FETCH_XOR_NBI(unsigned int);
   result &= TEST_C11_SHMEM_ATOMIC_FETCH_XOR_NBI(unsigned long);
   result &= TEST_C11_SHMEM_ATOMIC_FETCH_XOR_NBI(unsigned long long);
@@ -61,13 +110,26 @@ int main(int argc, char *argv[]) {
   result &= TEST_C11_SHMEM_ATOMIC_FETCH_XOR_NBI(uint32_t);
   result &= TEST_C11_SHMEM_ATOMIC_FETCH_XOR_NBI(uint64_t);
 
-  shmem_barrier_all();
-
   if (shmem_my_pe() == 0) {
     display_test_result("C11 shmem_atomic_fetch_xor_nbi", result, false);
   }
 
-  if (!result) {
+  /* Test context-specific atomic fetch-xor nbi operations */
+  bool result_ctx = true;
+  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_XOR_NBI(unsigned int);
+  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_XOR_NBI(unsigned long);
+  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_XOR_NBI(unsigned long long);
+  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_XOR_NBI(int32_t);
+  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_XOR_NBI(int64_t);
+  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_XOR_NBI(uint32_t);
+  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_XOR_NBI(uint64_t);
+
+  if (shmem_my_pe() == 0) {
+    display_test_result("C11 shmem_atomic_fetch_xor_nbi with ctx", result_ctx,
+                        false);
+  }
+
+  if (!result || !result_ctx) {
     rc = EXIT_FAILURE;
   }
 
