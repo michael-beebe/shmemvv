@@ -37,7 +37,3 @@ make -j $(( $(nproc) - 1 ))
 echo ; echo
 cd ../
 echo ; echo
-
-# --- Run tests
-./RUN.sh $1
-ls -l logs
