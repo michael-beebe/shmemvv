@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['help_0',['help',['../structtest__options.html#a3263b245af6a78eb31c1b28b12342b9c',1,'test_options']]],
-  ['hline_1',['HLINE',['../shmemvv_8hpp.html#abc631afa5d0e817648b3b26d74a422f0',1,'shmemvv.hpp']]]
+  ['red_5fcolor_0',['RED_COLOR',['../shmemvv_8h.html#a683cdc96b34c5ddea1306e8e9f9ec438',1,'shmemvv.h']]],
+  ['reset_5fcolor_1',['RESET_COLOR',['../shmemvv_8h.html#ad7c3b975e5552a122f836b02fa138502',1,'shmemvv.h']]]
 ];

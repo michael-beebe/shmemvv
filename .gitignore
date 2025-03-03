@@ -18,6 +18,4 @@ build
 NM.*
 # TODO.txt
 .vscode
-
-
 logs/*

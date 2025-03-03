@@ -1,0 +1,127 @@
+\doxysection{src/include/shmemvv.h File Reference}
+\hypertarget{shmemvv_8h}{}\label{shmemvv_8h}\index{src/include/shmemvv.h@{src/include/shmemvv.h}}
+{\ttfamily \#include $<$shmem.\+h$>$}\newline
+{\ttfamily \#include $<$getopt.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$dlfcn.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for shmemvv.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{shmemvv_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{shmemvv_8h_ad7c3b975e5552a122f836b02fa138502}{RESET\+\_\+\+COLOR}}~"{}\textbackslash{}033\mbox{[}0m"{}
+\item 
+\#define \mbox{\hyperlink{shmemvv_8h_a683cdc96b34c5ddea1306e8e9f9ec438}{RED\+\_\+\+COLOR}}~"{}\textbackslash{}033\mbox{[}31m"{}
+\item 
+\#define \mbox{\hyperlink{shmemvv_8h_ac4bdeb73d33895bb745d17b3d8539a6a}{GREEN\+\_\+\+COLOR}}~"{}\textbackslash{}033\mbox{[}32m"{}
+\item 
+\#define \mbox{\hyperlink{shmemvv_8h_a35a34f2f8dca5dd35f23c60054b18887}{YELLOW\+\_\+\+COLOR}}~"{}\textbackslash{}033\mbox{[}33m"{}
+\item 
+\#define \mbox{\hyperlink{shmemvv_8h_abc631afa5d0e817648b3b26d74a422f0}{HLINE}}~"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{shmemvv_8h_a397d2458e48b1757f2d89f82a94f2631}{display\+\_\+not\+\_\+enough\+\_\+pes}} (const char \texorpdfstring{$\ast$}{*}test\+\_\+type)
+\begin{DoxyCompactList}\small\item\em Print error message saying that there needs to be at least 2 PEs for the given test type. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{shmemvv_8h_ac8fa8d1b916bc2b60ed7135b67736baa}{display\+\_\+test\+\_\+result}} (const char \texorpdfstring{$\ast$}{*}routine\+\_\+name, bool passed, bool required)
+\begin{DoxyCompactList}\small\item\em Displays whether the test passed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{shmemvv_8h_ac4bdeb73d33895bb745d17b3d8539a6a}\label{shmemvv_8h_ac4bdeb73d33895bb745d17b3d8539a6a} 
+\index{shmemvv.h@{shmemvv.h}!GREEN\_COLOR@{GREEN\_COLOR}}
+\index{GREEN\_COLOR@{GREEN\_COLOR}!shmemvv.h@{shmemvv.h}}
+\doxysubsubsection{\texorpdfstring{GREEN\_COLOR}{GREEN\_COLOR}}
+{\footnotesize\ttfamily \#define GREEN\+\_\+\+COLOR~"{}\textbackslash{}033\mbox{[}32m"{}}
+
+
+
+Definition at line \mbox{\hyperlink{shmemvv_8h_source_l00020}{20}} of file \mbox{\hyperlink{shmemvv_8h_source}{shmemvv.\+h}}.
+
+\Hypertarget{shmemvv_8h_abc631afa5d0e817648b3b26d74a422f0}\label{shmemvv_8h_abc631afa5d0e817648b3b26d74a422f0} 
+\index{shmemvv.h@{shmemvv.h}!HLINE@{HLINE}}
+\index{HLINE@{HLINE}!shmemvv.h@{shmemvv.h}}
+\doxysubsubsection{\texorpdfstring{HLINE}{HLINE}}
+{\footnotesize\ttfamily \#define HLINE~"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}}
+
+
+
+Definition at line \mbox{\hyperlink{shmemvv_8h_source_l00023}{23}} of file \mbox{\hyperlink{shmemvv_8h_source}{shmemvv.\+h}}.
+
+\Hypertarget{shmemvv_8h_a683cdc96b34c5ddea1306e8e9f9ec438}\label{shmemvv_8h_a683cdc96b34c5ddea1306e8e9f9ec438} 
+\index{shmemvv.h@{shmemvv.h}!RED\_COLOR@{RED\_COLOR}}
+\index{RED\_COLOR@{RED\_COLOR}!shmemvv.h@{shmemvv.h}}
+\doxysubsubsection{\texorpdfstring{RED\_COLOR}{RED\_COLOR}}
+{\footnotesize\ttfamily \#define RED\+\_\+\+COLOR~"{}\textbackslash{}033\mbox{[}31m"{}}
+
+
+
+Definition at line \mbox{\hyperlink{shmemvv_8h_source_l00019}{19}} of file \mbox{\hyperlink{shmemvv_8h_source}{shmemvv.\+h}}.
+
+\Hypertarget{shmemvv_8h_ad7c3b975e5552a122f836b02fa138502}\label{shmemvv_8h_ad7c3b975e5552a122f836b02fa138502} 
+\index{shmemvv.h@{shmemvv.h}!RESET\_COLOR@{RESET\_COLOR}}
+\index{RESET\_COLOR@{RESET\_COLOR}!shmemvv.h@{shmemvv.h}}
+\doxysubsubsection{\texorpdfstring{RESET\_COLOR}{RESET\_COLOR}}
+{\footnotesize\ttfamily \#define RESET\+\_\+\+COLOR~"{}\textbackslash{}033\mbox{[}0m"{}}
+
+
+
+Definition at line \mbox{\hyperlink{shmemvv_8h_source_l00018}{18}} of file \mbox{\hyperlink{shmemvv_8h_source}{shmemvv.\+h}}.
+
+\Hypertarget{shmemvv_8h_a35a34f2f8dca5dd35f23c60054b18887}\label{shmemvv_8h_a35a34f2f8dca5dd35f23c60054b18887} 
+\index{shmemvv.h@{shmemvv.h}!YELLOW\_COLOR@{YELLOW\_COLOR}}
+\index{YELLOW\_COLOR@{YELLOW\_COLOR}!shmemvv.h@{shmemvv.h}}
+\doxysubsubsection{\texorpdfstring{YELLOW\_COLOR}{YELLOW\_COLOR}}
+{\footnotesize\ttfamily \#define YELLOW\+\_\+\+COLOR~"{}\textbackslash{}033\mbox{[}33m"{}}
+
+
+
+Definition at line \mbox{\hyperlink{shmemvv_8h_source_l00021}{21}} of file \mbox{\hyperlink{shmemvv_8h_source}{shmemvv.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{shmemvv_8h_a397d2458e48b1757f2d89f82a94f2631}\label{shmemvv_8h_a397d2458e48b1757f2d89f82a94f2631} 
+\index{shmemvv.h@{shmemvv.h}!display\_not\_enough\_pes@{display\_not\_enough\_pes}}
+\index{display\_not\_enough\_pes@{display\_not\_enough\_pes}!shmemvv.h@{shmemvv.h}}
+\doxysubsubsection{\texorpdfstring{display\_not\_enough\_pes()}{display\_not\_enough\_pes()}}
+{\footnotesize\ttfamily void display\+\_\+not\+\_\+enough\+\_\+pes (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{test\+\_\+type }\end{DoxyParamCaption})}
+
+
+
+Print error message saying that there needs to be at least 2 PEs for the given test type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em test\+\_\+type} & Category of tests \\
+\hline
+\end{DoxyParams}
+\Hypertarget{shmemvv_8h_ac8fa8d1b916bc2b60ed7135b67736baa}\label{shmemvv_8h_ac8fa8d1b916bc2b60ed7135b67736baa} 
+\index{shmemvv.h@{shmemvv.h}!display\_test\_result@{display\_test\_result}}
+\index{display\_test\_result@{display\_test\_result}!shmemvv.h@{shmemvv.h}}
+\doxysubsubsection{\texorpdfstring{display\_test\_result()}{display\_test\_result()}}
+{\footnotesize\ttfamily void display\+\_\+test\+\_\+result (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{routine\+\_\+name,  }\item[{bool}]{passed,  }\item[{bool}]{required }\end{DoxyParamCaption})}
+
+
+
+Displays whether the test passed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em routine\+\_\+name} & Open\+SHMEM routine that was tested \\
+\hline
+{\em passed} & True if the test passed, false if the test failed \\
+\hline
+{\em required} & True if the test is required, false otherwise \\
+\hline
+\end{DoxyParams}

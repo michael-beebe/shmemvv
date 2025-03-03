@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['display_5fhelp_0',['display_help',['../shmemvv_8hpp.html#a8f0b63bf650a5ceefc36d7e3bcb02f63',1,'shmemvv.hpp']]],
-  ['display_5flogo_1',['display_logo',['../shmemvv_8hpp.html#afbe17f94210e7ceb339630701ea3cafe',1,'shmemvv.hpp']]],
-  ['display_5fnot_5fenough_5fpes_2',['display_not_enough_pes',['../shmemvv_8hpp.html#a0b87be5ceb3ec9cd8fe88dc9d091621b',1,'shmemvv.hpp']]],
-  ['display_5fnot_5ffound_5fwarning_3',['display_not_found_warning',['../shmemvv_8hpp.html#aa5395bcb7c5e375f9da4f6ecffe778c4',1,'shmemvv.hpp']]],
-  ['display_5ftest_5fheader_4',['display_test_header',['../shmemvv_8hpp.html#a06eae8577451a4800aa038a6beae5da5',1,'shmemvv.hpp']]],
-  ['display_5ftest_5finfo_5',['display_test_info',['../shmemvv_8hpp.html#a9f322f8967d1b4179a54dad321c94889',1,'shmemvv.hpp']]],
-  ['display_5ftest_5fresult_6',['display_test_result',['../shmemvv_8hpp.html#acde92749a5795f8e12fca17596e5bc14',1,'shmemvv.hpp']]]
+  ['log_5fclose_0',['log_close',['../log_8h.html#a816a49c19ed40862560ae8bb57148b20',1,'log.h']]],
+  ['log_5ffail_1',['log_fail',['../log_8h.html#a35f849df488f74db7a0f10ca363bde32',1,'log.h']]],
+  ['log_5finfo_2',['log_info',['../log_8h.html#a7d36d10abf4b1061dddb6e971a0d5301',1,'log.h']]],
+  ['log_5finit_3',['log_init',['../log_8h.html#a3cc4ff4f123a89dc4994797e35664ad5',1,'log.h']]],
+  ['log_5fline_4',['log_line',['../log_8h.html#a00433e568587a4549e4016f15f1a9cbe',1,'log.h']]],
+  ['log_5froutine_5',['log_routine',['../log_8h.html#a6eade29757cc5e7b16f6b72114df57ff',1,'log.h']]],
+  ['log_5fwarn_6',['log_warn',['../log_8h.html#a635bb46d4f2a5b575cc651ddd9e93338',1,'log.h']]]
 ];

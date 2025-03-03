@@ -1,0 +1,133 @@
+\doxysection{src/include/log.h File Reference}
+\hypertarget{log_8h}{}\label{log_8h}\index{src/include/log.h@{src/include/log.h}}
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$shmem.\+h$>$}\newline
+{\ttfamily \#include $<$libgen.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+Include dependency graph for log.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{log_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{log_8h_a9a7e674528aaf646319d5a5e2292564d}{MAX\+\_\+\+LOG\+\_\+\+LEN}}~512
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{log_8h_a00433e568587a4549e4016f15f1a9cbe}{log\+\_\+line}} (const char \texorpdfstring{$\ast$}{*}string, const char \texorpdfstring{$\ast$}{*}prefix)
+\begin{DoxyCompactList}\small\item\em Output a line of information to the global LOGGER. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{log_8h_a7d36d10abf4b1061dddb6e971a0d5301}{log\+\_\+info}} (const char \texorpdfstring{$\ast$}{*}fstring,...)
+\item 
+void \mbox{\hyperlink{log_8h_a635bb46d4f2a5b575cc651ddd9e93338}{log\+\_\+warn}} (const char \texorpdfstring{$\ast$}{*}fstring,...)
+\item 
+void \mbox{\hyperlink{log_8h_a35f849df488f74db7a0f10ca363bde32}{log\+\_\+fail}} (const char \texorpdfstring{$\ast$}{*}fstring,...)
+\item 
+void \mbox{\hyperlink{log_8h_a3cc4ff4f123a89dc4994797e35664ad5}{log\+\_\+init}} (const char \texorpdfstring{$\ast$}{*}test\+\_\+name)
+\item 
+void \mbox{\hyperlink{log_8h_a6eade29757cc5e7b16f6b72114df57ff}{log\+\_\+routine}} (const char \texorpdfstring{$\ast$}{*}routine)
+\item 
+void \mbox{\hyperlink{log_8h_a816a49c19ed40862560ae8bb57148b20}{log\+\_\+close}} (int result)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{log_8h_a9a7e674528aaf646319d5a5e2292564d}\label{log_8h_a9a7e674528aaf646319d5a5e2292564d} 
+\index{log.h@{log.h}!MAX\_LOG\_LEN@{MAX\_LOG\_LEN}}
+\index{MAX\_LOG\_LEN@{MAX\_LOG\_LEN}!log.h@{log.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_LOG\_LEN}{MAX\_LOG\_LEN}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+LOG\+\_\+\+LEN~512}
+
+
+
+Definition at line \mbox{\hyperlink{log_8h_source_l00018}{18}} of file \mbox{\hyperlink{log_8h_source}{log.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{log_8h_a816a49c19ed40862560ae8bb57148b20}\label{log_8h_a816a49c19ed40862560ae8bb57148b20} 
+\index{log.h@{log.h}!log\_close@{log\_close}}
+\index{log\_close@{log\_close}!log.h@{log.h}}
+\doxysubsubsection{\texorpdfstring{log\_close()}{log\_close()}}
+{\footnotesize\ttfamily void log\+\_\+close (\begin{DoxyParamCaption}\item[{int}]{result }\end{DoxyParamCaption})}
+
+\Hypertarget{log_8h_a35f849df488f74db7a0f10ca363bde32}\label{log_8h_a35f849df488f74db7a0f10ca363bde32} 
+\index{log.h@{log.h}!log\_fail@{log\_fail}}
+\index{log\_fail@{log\_fail}!log.h@{log.h}}
+\doxysubsubsection{\texorpdfstring{log\_fail()}{log\_fail()}}
+{\footnotesize\ttfamily void log\+\_\+fail (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{fstring,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+Logs a fatal message to the logger.
+
+Calling this function does not cause the program to exit. Execution will continue past this function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fstring} & Format string specifying the message to be logged. \\
+\hline
+{\em ...} & Variable arguments to be formatted into the message using {\ttfamily fstring}. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{log_8h_a7d36d10abf4b1061dddb6e971a0d5301}\label{log_8h_a7d36d10abf4b1061dddb6e971a0d5301} 
+\index{log.h@{log.h}!log\_info@{log\_info}}
+\index{log\_info@{log\_info}!log.h@{log.h}}
+\doxysubsubsection{\texorpdfstring{log\_info()}{log\_info()}}
+{\footnotesize\ttfamily void log\+\_\+info (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{fstring,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+Logs an informational message to the logger.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fstring} & Format string specifying the message to be logged. \\
+\hline
+{\em ...} & Variable arguments to be formatted into the message using {\ttfamily fstring}. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{log_8h_a3cc4ff4f123a89dc4994797e35664ad5}\label{log_8h_a3cc4ff4f123a89dc4994797e35664ad5} 
+\index{log.h@{log.h}!log\_init@{log\_init}}
+\index{log\_init@{log\_init}!log.h@{log.h}}
+\doxysubsubsection{\texorpdfstring{log\_init()}{log\_init()}}
+{\footnotesize\ttfamily void log\+\_\+init (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{test\+\_\+name }\end{DoxyParamCaption})}
+
+\Hypertarget{log_8h_a00433e568587a4549e4016f15f1a9cbe}\label{log_8h_a00433e568587a4549e4016f15f1a9cbe} 
+\index{log.h@{log.h}!log\_line@{log\_line}}
+\index{log\_line@{log\_line}!log.h@{log.h}}
+\doxysubsubsection{\texorpdfstring{log\_line()}{log\_line()}}
+{\footnotesize\ttfamily void log\+\_\+line (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{string,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{prefix }\end{DoxyParamCaption})}
+
+
+
+Output a line of information to the global LOGGER. 
+
+Prefixed with current time and prefix, in that order. Affixed with ~\newline
+. \Hypertarget{log_8h_a6eade29757cc5e7b16f6b72114df57ff}\label{log_8h_a6eade29757cc5e7b16f6b72114df57ff} 
+\index{log.h@{log.h}!log\_routine@{log\_routine}}
+\index{log\_routine@{log\_routine}!log.h@{log.h}}
+\doxysubsubsection{\texorpdfstring{log\_routine()}{log\_routine()}}
+{\footnotesize\ttfamily void log\+\_\+routine (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{routine }\end{DoxyParamCaption})}
+
+\Hypertarget{log_8h_a635bb46d4f2a5b575cc651ddd9e93338}\label{log_8h_a635bb46d4f2a5b575cc651ddd9e93338} 
+\index{log.h@{log.h}!log\_warn@{log\_warn}}
+\index{log\_warn@{log\_warn}!log.h@{log.h}}
+\doxysubsubsection{\texorpdfstring{log\_warn()}{log\_warn()}}
+{\footnotesize\ttfamily void log\+\_\+warn (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{fstring,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+Logs a warning message to the logger.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fstring} & Format string specifying the message to be logged. \\
+\hline
+{\em ...} & Variable arguments to be formatted into the message using {\ttfamily fstring}. \\
+\hline
+\end{DoxyParams}

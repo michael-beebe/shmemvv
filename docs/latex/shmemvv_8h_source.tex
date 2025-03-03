@@ -1,0 +1,39 @@
+\doxysection{shmemvv.\+h}
+\hypertarget{shmemvv_8h_source}{}\label{shmemvv_8h_source}\index{src/include/shmemvv.h@{src/include/shmemvv.h}}
+\mbox{\hyperlink{shmemvv_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00006}00006\ \textcolor{preprocessor}{\#ifndef\ SHMEMVV\_H}}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00007}00007\ \textcolor{preprocessor}{\#define\ SHMEMVV\_H}}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <shmem.h>}}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <getopt.h>}}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00012}00012\ \textcolor{preprocessor}{\#include\ <dlfcn.h>}}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00017}00017\ \textcolor{comment}{/*\ ANSI\ color\ codes\ for\ pretty\ output\ */}}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00018}\mbox{\hyperlink{shmemvv_8h_ad7c3b975e5552a122f836b02fa138502}{00018}}\ \textcolor{preprocessor}{\#define\ RESET\_COLOR\ "{}\(\backslash\)033[0m"{}}}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00019}\mbox{\hyperlink{shmemvv_8h_a683cdc96b34c5ddea1306e8e9f9ec438}{00019}}\ \textcolor{preprocessor}{\#define\ RED\_COLOR\ "{}\(\backslash\)033[31m"{}}}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00020}\mbox{\hyperlink{shmemvv_8h_ac4bdeb73d33895bb745d17b3d8539a6a}{00020}}\ \textcolor{preprocessor}{\#define\ GREEN\_COLOR\ "{}\(\backslash\)033[32m"{}}}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00021}\mbox{\hyperlink{shmemvv_8h_a35a34f2f8dca5dd35f23c60054b18887}{00021}}\ \textcolor{preprocessor}{\#define\ YELLOW\_COLOR\ "{}\(\backslash\)033[33m"{}}}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00023}\mbox{\hyperlink{shmemvv_8h_abc631afa5d0e817648b3b26d74a422f0}{00023}}\ \textcolor{preprocessor}{\#define\ HLINE\ "{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}}}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00025}00025\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00026}00026\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00027}00027\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00034}\mbox{\hyperlink{shmemvv_8h_a397d2458e48b1757f2d89f82a94f2631}{00034}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{shmemvv_8h_a397d2458e48b1757f2d89f82a94f2631}{display\_not\_enough\_pes}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *test\_type);}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00042}\mbox{\hyperlink{shmemvv_8h_ac8fa8d1b916bc2b60ed7135b67736baa}{00042}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{shmemvv_8h_ac8fa8d1b916bc2b60ed7135b67736baa}{display\_test\_result}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *routine\_name,\ \textcolor{keywordtype}{bool}\ passed,\ \textcolor{keywordtype}{bool}\ required);}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00044}00044\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00045}00045\ \}}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00046}00046\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{shmemvv_8h_source_l00048}00048\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ SHMEMVV\_H\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,118 @@
+.TH "src/include/log.h" 3 "Version 0.1" "shmemvv" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/include/log.h
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <string\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdarg\&.h>\fP
+.br
+\fC#include <errno\&.h>\fP
+.br
+\fC#include <time\&.h>\fP
+.br
+\fC#include <shmem\&.h>\fP
+.br
+\fC#include <libgen\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <sys/time\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBMAX_LOG_LEN\fP   512"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBlog_line\fP (const char *string, const char *prefix)"
+.br
+.RI "Output a line of information to the global LOGGER\&. "
+.ti -1c
+.RI "void \fBlog_info\fP (const char *fstring,\&.\&.\&.)"
+.br
+.ti -1c
+.RI "void \fBlog_warn\fP (const char *fstring,\&.\&.\&.)"
+.br
+.ti -1c
+.RI "void \fBlog_fail\fP (const char *fstring,\&.\&.\&.)"
+.br
+.ti -1c
+.RI "void \fBlog_init\fP (const char *test_name)"
+.br
+.ti -1c
+.RI "void \fBlog_routine\fP (const char *routine)"
+.br
+.ti -1c
+.RI "void \fBlog_close\fP (int result)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define MAX_LOG_LEN   512"
+
+.PP
+Definition at line \fB18\fP of file \fBlog\&.h\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "void log_close (int result)"
+
+.SS "void log_fail (const char * fstring,  \&.\&.\&.)"
+Logs a fatal message to the logger\&.
+.PP
+Calling this function does not cause the program to exit\&. Execution will continue past this function\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIfstring\fP Format string specifying the message to be logged\&. 
+.br
+\fI\&.\&.\&.\fP Variable arguments to be formatted into the message using \fCfstring\fP\&. 
+.RE
+.PP
+
+.SS "void log_info (const char * fstring,  \&.\&.\&.)"
+Logs an informational message to the logger\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIfstring\fP Format string specifying the message to be logged\&. 
+.br
+\fI\&.\&.\&.\fP Variable arguments to be formatted into the message using \fCfstring\fP\&. 
+.RE
+.PP
+
+.SS "void log_init (const char * test_name)"
+
+.SS "void log_line (const char * string, const char * prefix)"
+
+.PP
+Output a line of information to the global LOGGER\&. Prefixed with current time and prefix, in that order\&. Affixed with 
+.br
+\&. 
+.SS "void log_routine (const char * routine)"
+
+.SS "void log_warn (const char * fstring,  \&.\&.\&.)"
+Logs a warning message to the logger\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIfstring\fP Format string specifying the message to be logged\&. 
+.br
+\fI\&.\&.\&.\fP Variable arguments to be formatted into the message using \fCfstring\fP\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for shmemvv from the source code\&.
