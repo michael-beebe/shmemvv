@@ -17,7 +17,7 @@ bool test_shmem_pe_accessible(void) {
   int pe = shmem_my_pe();
   log_info("Current PE number is %d", pe);
 
-  log_info("Checking if PE %d is accessible via shmem_pe_accessible()", pe);
+  log_info("Checking if PE %d is accessible via shmem_pe_accessible", pe);
   if (!shmem_pe_accessible(pe)) {
     log_fail(
         "PE accessibility check failed - PE %d is not accessible to itself",
@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
   }
 
   if (shmem_my_pe() == 0) {
-    display_test_result("C shmem_pe_accessible()", result, false);
+    display_test_result("C shmem_pe_accessible", result, false);
   }
 
   log_close(rc);

@@ -69,7 +69,7 @@ int main(int argc, char *argv[]) {
   }
 
   if (mype == 0) {
-    display_test_result("C shmem_team_destroy()", result, false);
+    display_test_result("C shmem_team_destroy", result, false);
   }
 
   log_info("Test completed with %s", result ? "SUCCESS" : "FAILURE");

@@ -53,7 +53,7 @@ int main(int argc, char *argv[]) {
   int mype = shmem_my_pe();
   int npes = shmem_n_pes();
 
-  if (!(npes <= 2)) {
+  if (!(npes >= 2)) {
     if (mype == 0) {
       display_not_enough_pes("SIGNALING");
     }
@@ -71,7 +71,7 @@ int main(int argc, char *argv[]) {
   }
 
   if (mype == 0) {
-    display_test_result("C shmem_signal_fetch()", result, false);
+    display_test_result("C shmem_signal_fetch", result, false);
   }
 
   log_close(rc);

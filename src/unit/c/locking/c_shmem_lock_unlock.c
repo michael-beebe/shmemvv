@@ -71,8 +71,8 @@ int main(int argc, char *argv[]) {
   shmem_barrier_all();
 
   if (shmem_my_pe() == 0) {
-    display_test_result("C shmem_lock_lock()", result, false);
-    display_test_result("C shmem_lock_unlock()", result, false);
+    display_test_result("C shmem_lock_lock", result, false);
+    display_test_result("C shmem_lock_unlock", result, false);
   }
 
   if (!result) {

@@ -1,0 +1,56 @@
+\doxysection{log.\+h}
+\hypertarget{log_8h_source}{}\label{log_8h_source}\index{src/include/log.h@{src/include/log.h}}
+\mbox{\hyperlink{log_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ LOG\_H\_}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ LOG\_H\_}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00004}00004\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00005}00005\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00006}00006\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <stdarg.h>}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ <errno.h>}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00012}00012\ \textcolor{preprocessor}{\#include\ <time.h>}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <shmem.h>}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <libgen.h>}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <sys/time.h>}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00018}\mbox{\hyperlink{log_8h_a9a7e674528aaf646319d5a5e2292564d}{00018}}\ \textcolor{preprocessor}{\#define\ MAX\_LOG\_LEN\ 512}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00020}00020\ \textcolor{comment}{/*\ Your\ step-\/by-\/step\ guide\ to\ adding\ logging\ to\ a\ test:}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00021}00021\ \textcolor{comment}{\ *\ 1.\ Call\ once,\ \`{}log\_init(\_\_FILE\_\_)`\ after\ \`{}shmem\_init()`.}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00022}00022\ \textcolor{comment}{\ *\ 2.\ Call\ \`{}log\_routine("{}shmem\_routine\_im\_testing\_and\_}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00023}00023\ \textcolor{comment}{\ *\ \ \ \ maybe\_the("{}\ \#TYPE\ "{})"{})`\ whereever\ applicable.}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00024}00024\ \textcolor{comment}{\ *\ 3.\ Sprinkle\ \`{}log\_[info,warn,fail]("{}my\ format\ string\ \%s"{},\ "{}with\ my\ args"{})`}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00025}00025\ \textcolor{comment}{\ *\ \ \ \ as\ necessary.}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00026}00026\ \textcolor{comment}{\ *\ 4.\ Call\ once,\ \`{}log\_close(return\_code)`\ before}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00027}00027\ \textcolor{comment}{\ *\ \ \ \ \`{}shmem\_finalize()`.}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00028}00028\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00029}00029\ \textcolor{comment}{\ *\ Logs\ will\ be\ placed\ into\ env(SHMEMVV\_LOG\_DIR)\ or\ /tmp\ if\ unset.}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00030}00030\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00037}\mbox{\hyperlink{log_8h_a00433e568587a4549e4016f15f1a9cbe}{00037}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{log_8h_a00433e568587a4549e4016f15f1a9cbe}{log\_line}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\textcolor{keywordtype}{string},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *prefix);}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00046}\mbox{\hyperlink{log_8h_a7d36d10abf4b1061dddb6e971a0d5301}{00046}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{log_8h_a7d36d10abf4b1061dddb6e971a0d5301}{log\_info}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *fstring,\ ...);}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00055}\mbox{\hyperlink{log_8h_a635bb46d4f2a5b575cc651ddd9e93338}{00055}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{log_8h_a635bb46d4f2a5b575cc651ddd9e93338}{log\_warn}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *fstring,\ ...);}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00067}\mbox{\hyperlink{log_8h_a35f849df488f74db7a0f10ca363bde32}{00067}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{log_8h_a35f849df488f74db7a0f10ca363bde32}{log\_fail}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *fstring,\ ...);}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00069}\mbox{\hyperlink{log_8h_a3cc4ff4f123a89dc4994797e35664ad5}{00069}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{log_8h_a3cc4ff4f123a89dc4994797e35664ad5}{log\_init}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *test\_name);}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00071}\mbox{\hyperlink{log_8h_a6eade29757cc5e7b16f6b72114df57ff}{00071}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{log_8h_a6eade29757cc5e7b16f6b72114df57ff}{log\_routine}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *routine);}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00073}\mbox{\hyperlink{log_8h_a816a49c19ed40862560ae8bb57148b20}{00073}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{log_8h_a816a49c19ed40862560ae8bb57148b20}{log\_close}}(\textcolor{keywordtype}{int}\ result);}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00075}00075\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00076}00076\ \}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00077}00077\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{log_8h_source_l00079}00079\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_LOG\_H\_}}
+
+\end{DoxyCode}

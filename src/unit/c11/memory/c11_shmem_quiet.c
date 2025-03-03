@@ -71,7 +71,7 @@ int main(int argc, char **argv) {
   int rc = EXIT_SUCCESS;
 
   if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_quiet()", result, false);
+    display_test_result("C11 shmem_quiet", result, false);
   }
 
   if (!result) {

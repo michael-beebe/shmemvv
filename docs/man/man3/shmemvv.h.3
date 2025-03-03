@@ -1,0 +1,107 @@
+.TH "src/include/shmemvv.h" 3 "Version 0.1" "shmemvv" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/include/shmemvv.h
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <shmem\&.h>\fP
+.br
+\fC#include <getopt\&.h>\fP
+.br
+\fC#include <stdbool\&.h>\fP
+.br
+\fC#include <dlfcn\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBRESET_COLOR\fP   '\\033[0m'"
+.br
+.ti -1c
+.RI "#define \fBRED_COLOR\fP   '\\033[31m'"
+.br
+.ti -1c
+.RI "#define \fBGREEN_COLOR\fP   '\\033[32m'"
+.br
+.ti -1c
+.RI "#define \fBYELLOW_COLOR\fP   '\\033[33m'"
+.br
+.ti -1c
+.RI "#define \fBHLINE\fP   '\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-'"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBdisplay_not_enough_pes\fP (const char *test_type)"
+.br
+.RI "Print error message saying that there needs to be at least 2 PEs for the given test type\&. "
+.ti -1c
+.RI "void \fBdisplay_test_result\fP (const char *routine_name, bool passed, bool required)"
+.br
+.RI "Displays whether the test passed\&. "
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define GREEN_COLOR   '\\033[32m'"
+
+.PP
+Definition at line \fB20\fP of file \fBshmemvv\&.h\fP\&.
+.SS "#define HLINE   '\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-'"
+
+.PP
+Definition at line \fB23\fP of file \fBshmemvv\&.h\fP\&.
+.SS "#define RED_COLOR   '\\033[31m'"
+
+.PP
+Definition at line \fB19\fP of file \fBshmemvv\&.h\fP\&.
+.SS "#define RESET_COLOR   '\\033[0m'"
+
+.PP
+Definition at line \fB18\fP of file \fBshmemvv\&.h\fP\&.
+.SS "#define YELLOW_COLOR   '\\033[33m'"
+
+.PP
+Definition at line \fB21\fP of file \fBshmemvv\&.h\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "void display_not_enough_pes (const char * test_type)"
+
+.PP
+Print error message saying that there needs to be at least 2 PEs for the given test type\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItest_type\fP Category of tests 
+.RE
+.PP
+
+.SS "void display_test_result (const char * routine_name, bool passed, bool required)"
+
+.PP
+Displays whether the test passed\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIroutine_name\fP OpenSHMEM routine that was tested 
+.br
+\fIpassed\fP True if the test passed, false if the test failed 
+.br
+\fIrequired\fP True if the test is required, false otherwise 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for shmemvv from the source code\&.

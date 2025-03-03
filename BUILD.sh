@@ -1,26 +1,15 @@
 #!/bin/bash
 
 # --- Clean build
-rm -rf build
-mkdir -p build
-cd build
+./CLEAN.sh
 
-# --- Create install prefix
-PREFIX=$SWHOME/shmemvv
-mkdir -p $PREFIX
+mkdir build ; cd build
 
-# --- Configure build with SOS
-export CC=oshcc ; export CXX=oshc++
-cmake ../
+cmake \
+    -DCMAKE_C_COMPILER=$(which oshcc) \
+    ..
 
 # --- Compile
 make -j $(( $(nproc) - 1 ))
 
-# --- Move back to project root
 echo ; echo
-cd ../
-echo ; echo
-
-# --- Run tests
-./RUN.sh
-ls -l logs

@@ -66,7 +66,7 @@ int main(int argc, char *argv[]) {
   int rc = result ? EXIT_SUCCESS : EXIT_FAILURE;
 
   if (mype == 0) {
-    display_test_result("C shmem_team_split_strided()", result, false);
+    display_test_result("C shmem_team_split_strided", result, false);
   }
 
   log_info("Test completed with %s", result ? "SUCCESS" : "FAILURE");

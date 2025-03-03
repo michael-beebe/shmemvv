@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
   int rc = result ? EXIT_SUCCESS : EXIT_FAILURE;
 
   if (mype == 0) {
-    display_test_result("C11 shmem_team_my_pe()", result, false);
+    display_test_result("C11 shmem_team_my_pe", result, false);
   }
 
   log_close(rc);

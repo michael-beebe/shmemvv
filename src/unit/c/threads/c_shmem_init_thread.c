@@ -60,7 +60,7 @@ int main(int argc, char *argv[]) {
   int npes = shmem_n_pes();
 
   if (mype == 0) {
-    display_test_result("C shmem_init_thread()", result, false);
+    display_test_result("C shmem_init_thread", result, false);
   }
 
   log_close(rc);

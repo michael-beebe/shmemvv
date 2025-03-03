@@ -1,228 +1,260 @@
-# SHMEMVV
-Verification & Validation (V&V) suite for the [OpenSHMEM v1.5 specification](http://www.openshmem.org/site/sites/default/site_files/OpenSHMEM-1.5.pdf)
+# SHMEMVV - OpenSHMEM Verification & Validation Suite
 
-![Logo](extra/logo.png)
+A comprehensive testing suite for the [OpenSHMEM v1.5 specification](http://www.openshmem.org/site/sites/default/site_files/OpenSHMEM-1.5.pdf). This suite provides extensive coverage of the OpenSHMEM API across both C and C11 language bindings.
+
+## Overview
+
+SHMEMVV tests the correctness and conformance of OpenSHMEM implementations by systematically exercising all aspects of the v1.5 specification, including:
+
+- Memory management
+- Communication contexts
+- Remote memory access
+- Atomic memory operations
+- Team-based operations
+- Signaling operations
+- Point-to-point synchronization
+- Collectives
+- Distributed locking
+- Thread safety
+
+Tests are implemented in both standard C and C11 to verify the correctness across different language standards.
 
 ## Requirements
 
-- Implementation of the OpenSHMEM v1.5
+- An implementation of OpenSHMEM v1.5
 - CMake 3.10 or greater
+- C compiler supporting both standard C and C11 standards
 
-## Limitations
-There are a few limitations to SHMEMVV that are currently being addressed:
+## Environment Setup
 
-- ONLY supports the implementations that adhere to the 1.5 specification, if you try to run this on an older OpenSHMEM implementation, you WILL get compiler errors.
+Before building the test suite, ensure your OpenSHMEM environment is properly configured:
 
-- No debug output or logging.
+1. **Setting up OpenSHMEM compiler wrappers**:
+   - The OpenSHMEM implementation must provide the `oshcc` compiler wrapper
+   - This wrapper must be in your PATH
+   - Verify with: `which oshcc`
 
-## Building
+2. **Setting up the OpenSHMEM launcher**:
+   - The OpenSHMEM implementation must provide the `oshrun` launcher
+   - This launcher must be in your PATH
+   - Verify with: `which oshrun`
+   - Some implementations may use a different launcher name. In that case, you'll need to specify it with the `--launcher` option when running the tests
+
+3. **OpenSHMEM runtime configuration**:
+   - Some OpenSHMEM implementations require additional environment variables
+   - Consult your OpenSHMEM implementation's documentation for specific requirements
+   - Common variables include:
+     - `SHMEM_SYMMETRIC_SIZE`: Size of the symmetric heap
+     - `SHMEM_DEBUG`: Enable debugging output
+
+## Building the Test Suite
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/michael-beebe/shmemvv.git
+   cd shmemvv
+   ```
+
+2. Create a build directory:
+   ```bash
+   mkdir build
+   cd build
+   ```
+
+3. Configure with CMake:
+   ```bash
+   # Basic configuration using the oshcc in your PATH
+   cmake ..
+   
+   # Or explicitly specify the compiler path
+   cmake \
+    -DCMAKE_C_COMPILER=$(which oshcc) \
+    ..
+   
+   # If your OpenSHMEM implementation's compiler is installed in a non-standard location:
+   cmake \
+    -DCMAKE_C_COMPILER=/path/to/custom/installation/bin/oshcc \
+    ..
+   ```
+
+4. Build the test suite:
+   ```bash
+   make
+   ```
+
+### CMake Build Options
+
+You can customize the build using various CMake options:
+
+- `-DDISABLE_ALL_C_TESTS=ON`: Skip building all standard C tests
+- `-DDISABLE_ALL_C11_TESTS=ON`: Skip building all C11 tests 
+- `-DDISABLE_C_ATOMICS=ON`: Skip building standard C atomic tests
+- `-DDISABLE_C11_ATOMICS=ON`: Skip building C11 atomic tests
+- `-DCMAKE_INSTALL_PREFIX=/path/to/install`: Specify installation directory
+
+Example with multiple options:
 ```bash
-$ mkdir build
-$ cd build
-$ export CC=`which oshcc` ; export CXX=`which oshc++`
-$ cmake ../
+cmake \
+  -DCMAKE_C_COMPILER=$(which oshcc) \
+  -DDISABLE_ALL_C11_TESTS=ON        \
+  ..
 ```
 
-## Tests
-By default, SHMEMVV will run all the tests, but if you want to only run a specific set or sets of tests, you can use one of these runtime flags. For example, this command will run the tests for the communication/context management routines.
-```
-oshrun -np 2 shmemvv --test_comms
+For a complete list of build options, refer to the `CMakeLists.txt` file.
+
+## Running Tests
+
+The test suite comes with a versatile test runner script that allows you to selectively run different categories of tests:
+
+```bash
+./shmemvv.sh --enable_c --enable_c11  # Run both standard C and C11 tests
 ```
 
-Since all the tests need the items within the setup routines, those will be run no matter, regardless of which tests you select.
+### Launcher Configuration
+
+By default, the test script uses `oshrun` as the launcher. If your OpenSHMEM implementation uses a different launcher or if the launcher is in a non-standard location:
+
+```bash
+# Use a different launcher
+./shmemvv.sh --enable_c --launcher mpirun
+
+# Specify the full path to the launcher
+./shmemvv.sh --enable_c --launcher /path/to/custom/oshrun 
+
+# Add custom arguments to the launcher
+./shmemvv.sh --enable_c --launcher mpirun --launcher_args "--oversubscribe --map-by node"
+```
+
+### Test Categories
+
+You can run specific test categories using the following options:
+
+```bash
+./shmemvv.sh --enable_c --test_atomics            # Run only atomic tests for standard C
+./shmemvv.sh --enable_c11 --test_collectives      # Run only collective tests for C11
+./shmemvv.sh --enable_c --enable_c11 --test_setup # Run setup tests for both standard C and C11
+```
+
+### Language Selection
+
+- `--enable_c`: Enable standard C tests
+- `--enable_c11`: Enable C11 tests
+
+You must enable at least one of these options.
+
+### Process Count Control
+
+You can override the default number of PEs (Processing Elements) for all tests:
+
+```bash
+./shmemvv.sh --enable_c --enable_c11 --np 4  # Run all tests with 4 PEs
+```
+
+### Excluding Categories
+
+You can exclude specific test categories:
+
+```bash
+./shmemvv.sh --enable_c --enable_c11 --exclude_pt2pt_synch  # Run everything except point-to-point sync tests
+```
+
+### Full Options List
+
+The complete list of available options for the `shmemvv.sh` script:
 
 ```
-Usage: shmemvv [options]
+OpenSHMEM Verification and Validation Test Suite
+
+Usage: ./shmemvv.sh [options]
+
 Options:
-  --test_setup         Run setup tests
-  --test_threads       Run thread support tests
-  --test_mem           Run memory management tests
-  --test_teams         Run team management tests
-  --test_ctx           Run communication management tests
-  --test_remote        Run remote memory access tests
-  --test_atomics       Run atomic memory operations tests
-  --test_signaling     Run signaling operations tests
-  --test_collectives   Run collective operations tests
-  --test_pt2pt_synch   Run point-to-point synchronization tests
-  --test_mem_ordering  Run memory ordering tests
-  --test_locking       Run distributed locking tests
-  --test_all           (default) Run all tests
-  --help               Display help message
+  --test_setup            Run setup tests
+  --test_threads          Run thread support tests
+  --test_mem              Run memory management tests
+  --test_teams            Run team management tests
+  --test_ctx              Run communication/context management tests
+  --test_remote           Run remote memory access tests
+  --test_atomics          Run atomic memory operations tests
+  --test_signaling        Run signaling operations tests
+  --test_collectives      Run collective operations tests
+  --test_pt2pt_synch      Run point-to-point synchronization tests
+  --test_locking          Run distributed locking tests
+  --test_all              (default) Run all tests
+
+  --exclude_setup         Exclude setup tests
+  --exclude_threads       Exclude thread support tests
+  --exclude_mem           Exclude memory management tests
+  --exclude_teams         Exclude team management tests
+  --exclude_ctx           Exclude communication/context management tests
+  --exclude_remote        Exclude remote memory access tests
+  --exclude_atomics       Exclude atomic memory operations tests
+  --exclude_signaling     Exclude signaling operations tests
+  --exclude_collectives   Exclude collective operations tests
+  --exclude_pt2pt_synch   Exclude point-to-point synchronization tests
+  --exclude_locking       Exclude distributed locking tests
+
+  --np <N>                (default=varies by test) Override default PE count for all tests
+  --launcher <cmd>        (default=/root/sw/linuxkit-aarch64/sos_1.5.2/bin/oshrun) Path to oshrun launcher
+  --launcher_args <args>  Add custom arguments to launcher
+  --enable_c11            Enable C11 tests
+  --enable_c              Enable C/C++ tests
+  --verbose               Enable verbose output
+  --no-color              Disable colored output
+  --help                  Display this help message
+
+Note: You must enable at least one of --enable_c or --enable_c11
 ```
 
-#### Library Setup, Exit, and Query Routines
-```
---test_setup
-```
-Will ONLY test the following routines:
-- shmem_init()
-- shmem_my_pe()
-- shmem_n_pes()
-- shmem_pe_accessible()
-- shmem_barrier_all()
-- shmem_barrier()
-- shmem_info_get_version()
-- shmem_info_get_name()
-- shmem_finalize()
-- shmem_global_exit()
+## Test Results
 
-#### Thread Support
-```
---test_threads
-```
-Will test the following routines:
-- shmem_init_thread()
-- shmem_query_thread()
+Each test reports whether it passed or failed. The script provides a summary at the end of the run. Detailed logs are saved in the `logs/` directory.
 
-#### Memory Management Routines
-```
---test_mem
-```
-Will test the following routines:
-- shmem_addr_accessible()
-- shmem_ptr()
-- shmem_malloc()
-- shmem_free()
-- shmem_realloc()
-- shmem_align()
-- shmem_malloc_with_hints()
-- shmem_calloc()
+## Advanced Usage
 
-#### Team Managment Routines
-```
---test_teams
-```
-Will test the following routines:
-- shmem_team_my_pe()
-- shmem_team_n_pes()
-- shmem_team_get_config()
-- shmem_team_translate_pe()
-- shmem_team_split_strided()
-- shmem_team_split_2d()
-- shmem_team_destroy()
+### Custom Launcher
 
-#### Communication/Context Management Routines
-```
---test_ctx
-```
-Will test the following routines:
-- shmem_ctx_create()
-- shmem_team_create_ctx()
-- shmem_ctx_destroy()
-- shmem_ctx_get_team()
+You can specify a custom launcher for running MPI processes:
 
-#### Remote Access Routines
+```bash
+./shmemvv.sh --enable_c --launcher mpirun --launcher_args "--oversubscribe"
 ```
---test_remote
-```
-Will test the following routines:
-- shmem_put()
-- shmem_p()
-- shmem_iput()
-- shmem_get()
-- shmem_g()
-- shmem_iget()
-- shmem_put_nbi()
-- shmem_get_nbi()
 
-#### Atomic Memory Operations
-```
---test_atomics
-```
-Will test the following routines:
-- shmem_atomic_fetch()
-- shmem_atomic_set()
-- shmem_atomic_compare_swap()
-- shmem_atomic_swap
-- shmem_atomic_fetch_inc()
-- shmem_atomic_inc()
-- shmem_atomic_fetch_add()
-- shmem_atomic_add()
-- shmem_atomic_fetch_and()
-- shmem_atomic_and()
-- shmem_atomic_fetch_or()
-- shmem_atomic_or()
-- shmem_atomic_fetch_xor()
-- shmem_atomic_xor()
-- shmem_atomic_fetch_nbi()
-- shmem_atomic_compare_swap_nbi()
-- shmem_atomic_swap_nbi()
-- shmem_atomic_fetch_inc_nbi()
-- shmem_atomic_fetch_add_nbi()
-- shmem_atomic_fetch_and_nbi()
-- shmem_atomic_fetch_or_nbi()
-- shmem_atomic_fetch_xor_nbi()
+### Running Multiple Test Categories
 
-#### Signaling Operations
-```
---test_signaling
-```
-Will test the following routines:
-- shmem_put_signal()
-- shmem_put_signal_nbi()
-- shmem_signal_fetch()
+You can combine multiple test categories in a single run:
 
-#### Collective Routines
+```bash
+./shmemvv.sh --enable_c --test_atomics --test_collectives --test_remote
 ```
---test_collectives
-```
-Will test the following routines:
-- shmem_sync()
-- shmem_sync_all()
-- shmem_alltoall()
-- shmem_alltoalls()
-- shmem_broadcast()
-- shmem_collect()
-- shmem_fcollect()
-- shmem_max_reduce()
-- shmem_min_reduce()
-- shmem_sum_reduce()
-- shmem_prod_reduce()
-<!-- - shmem_and_reduce()
-- shmem_or_reduce()
-- shmem_xor_reduce() -->
 
-#### Point-Point Synchronization Routines
-```
---test_pt2pt_synch
-```
-Will test the following routines:
-- shmem_wait_until()
-- shmem_wait_until_all()
-- shmem_wait_until_any()
-- shmem_wait_until_some()
-- shmem_wait_until_all_vector()
-- shmem_wait_until_any_vector()
-- shmem_wait_until_some_vector()
-- shmem_test()
-- shmem_test_all()
-- shmem_test_any()
-- shmem_test_some()
-- shmem_test_all_vector()
-- shmem_test_any_vector()
-- shmem_test_some_vector()
-- shmem_signal_wait_until()
+## Interpreting Test Output
 
-#### Memory Ordering Routines
-```
---test_mem_ordering
-```
-Will test the following routines:
-- shmem_fence()
-- shmem_quiet()
+The test output provides information about each test run, including:
 
-#### Distributed Locking Routines
-```
---test_locking
-```
-Will test the following routines:
-- shmem_set_lock()
-- shmem_clear_unlock()
+- Test name and category
+- Number of PEs used
+- Success or failure status
+- Error messages for failed tests
 
-#### All tests
-```
---test_all
-```
-Will run all the tests
+Detailed logs for each test are stored in the logs directory for further analysis.
 
+## Troubleshooting
 
+### Common Issues
+
+1. **Tests taking too long**: Some tests, especially point-to-point synchronization tests, may take longer to run. Use the `--exclude_pt2pt_synch` option if needed.
+
+2. **Build failures**: Ensure your compiler supports C11 features if building C11 tests.
+
+3. **Launcher not found**: Make sure the OpenSHMEM launcher (`oshrun` by default) is in your PATH. Use `which oshrun` to verify, and consult your OpenSHMEM implementation's documentation for launcher setup instructions.
+
+4. **Compilation errors**: Verify that you're using the OpenSHMEM wrapper compiler (`oshcc`) rather than standard compilers. Check with `which oshcc` to ensure it's properly installed and in your PATH.
+
+5. **"Command not found" errors**: If you encounter issues with missing commands, ensure your OpenSHMEM implementation is properly installed and its environment is sourced in your current shell.
+
+## Contributing
+
+Contributions to improve the test suite are welcome. Please submit pull requests with test improvements, bug fixes, or new tests for untested features.
+
+## License
+See LICENSE

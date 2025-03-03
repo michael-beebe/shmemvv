@@ -12,7 +12,10 @@
 #include "log.h"
 #include "shmemvv.h"
 
-#define TIMEOUT 2
+// Reduce timeout to speed up tests
+#define TIMEOUT 1
+// Reduce sleep time between iterations
+#define SLEEP_USEC 100
 
 #define TEST_C_SHMEM_TEST(TYPE, TYPENAME)                                      \
   ({                                                                           \
@@ -47,13 +50,19 @@
             "PE %d: Starting test loop (flag=%p, condition=SHMEM_CMP_EQ, "     \
             "target=1)",                                                       \
             mype, (void *)flag);                                               \
+        int aggressive_polling = 0;                                            \
         while (!shmem_##TYPENAME##_test(flag, SHMEM_CMP_EQ, 1)) {              \
           if (time(NULL) - start_time > TIMEOUT) {                             \
             log_fail("PE %d: Test timed out after %d iterations", mype,        \
                      iterations);                                              \
             break;                                                             \
           }                                                                    \
-          usleep(1000);                                                        \
+          /* More aggressive polling initially, then backoff */                \
+          if (aggressive_polling < 1000) {                                     \
+            aggressive_polling++;                                              \
+          } else {                                                             \
+            usleep(SLEEP_USEC);                                                \
+          }                                                                    \
           iterations++;                                                        \
         }                                                                      \
         log_info("PE %d: Test loop completed after %d iterations", mype,       \
@@ -97,7 +106,7 @@ int main(int argc, char **argv) {
   shmem_barrier_all();
 
   if (shmem_my_pe() == 0) {
-    display_test_result("C shmem_test()", result, false);
+    display_test_result("C shmem_test", result, false);
   }
 
   if (!result) {
