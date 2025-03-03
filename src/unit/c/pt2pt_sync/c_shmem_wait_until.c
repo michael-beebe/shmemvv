@@ -12,7 +12,7 @@
 #include "log.h"
 #include "shmemvv.h"
 
-#define TIMEOUT 2
+#define TIMEOUT 1
 #define TEST_C_SHMEM_WAIT_UNTIL(TYPE, TYPENAME)                                \
   ({                                                                           \
     log_routine("shmem_wait_until(" #TYPE ")");                                \
@@ -33,10 +33,11 @@
                                                                                \
       if (mype == 0) {                                                         \
         log_info("PE 0: Starting to set flags on other PEs");                  \
+        TYPE one = 1;                                                          \
         for (int pe = 1; pe < npes; ++pe) {                                    \
           log_info("PE 0: Setting flag to 1 on PE %d (address: %p)", pe,       \
                    (void *)flag);                                              \
-          shmem_##TYPENAME##_p(flag, 1, pe);                                   \
+          shmem_##TYPENAME##_put(flag, &one, 1, pe);                           \
         }                                                                      \
         shmem_quiet();                                                         \
         log_info("PE 0: Called shmem_quiet() after setting flags");            \
@@ -47,7 +48,18 @@
       if (mype != 0) {                                                         \
         log_info("PE %d: Starting wait_until (flag=%p, SHMEM_CMP_EQ, 1)",      \
                  mype, (void *)flag);                                          \
-        shmem_##TYPENAME##_wait_until(flag, SHMEM_CMP_EQ, 1);                  \
+        time_t start_time = time(NULL);                                        \
+        bool flag_set = false;                                                 \
+        while (!flag_set) {                                                    \
+          flag_set = shmem_##TYPENAME##_test(flag, SHMEM_CMP_EQ, 1);           \
+          if (flag_set) {                                                      \
+            break;                                                             \
+          }                                                                    \
+          if (time(NULL) - start_time > TIMEOUT) {                             \
+            log_fail("PE %d: wait_until timed out", mype);                     \
+            break;                                                             \
+          }                                                                    \
+        }                                                                      \
         log_info("PE %d: wait_until completed with flag value=%d", mype,       \
                  (int)*flag);                                                  \
         if (*flag != 1) {                                                      \

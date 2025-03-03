@@ -357,9 +357,14 @@ run_all_tests() {
 print_summary() {
   echo -e "\n${BOLD}Test Summary:${NC}"
   echo -e "${BLUE}Total tests run: $TESTS_TOTAL${NC}"
-  
-  # FIXME: Add pass/fail counts 
 
+  # FIXME: Add pass/fail counts
+
+  echo ""
+
+  # Print logs directory location
+  echo -e "${BOLD}Test logs are available in:${NC} ${YELLOW}$SHMEMVV_LOG_DIR${NC}"
+  echo -e "For detailed test results, check the log files in this directory."
   echo ""
 }
 
@@ -528,14 +533,14 @@ parse_args() {
 main() {
   parse_args "$@"
   apply_np_override
-  
+
   # Check if at least one language is enabled
   if [ $ENABLE_C -eq 0 ] && [ $ENABLE_C11 -eq 0 ]; then
     echo -e "${RED}Error: You must enable at least one test language using --enable_c or --enable_c11${NC}"
     display_usage
     exit 1
   fi
-  
+
   setup_environment
 
   echo -e ""

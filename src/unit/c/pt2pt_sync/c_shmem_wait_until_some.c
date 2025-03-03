@@ -12,7 +12,7 @@
 #include "log.h"
 #include "shmemvv.h"
 
-#define TIMEOUT 2
+#define TIMEOUT 1
 
 #define TEST_C_SHMEM_WAIT_UNTIL_SOME(TYPE, TYPENAME)                           \
   ({                                                                           \
@@ -37,8 +37,9 @@
         log_info("PE 0: Setting flags[1] and flags[3] to 1 on PE 1 "           \
                  "(addresses: %p, %p)",                                        \
                  (void *)&flags[1], (void *)&flags[3]);                        \
-        shmem_##TYPENAME##_p(&flags[1], 1, 1);                                 \
-        shmem_##TYPENAME##_p(&flags[3], 1, 1);                                 \
+        TYPE values[2] = {1, 1};                                               \
+        shmem_##TYPENAME##_put(&flags[1], &values[0], 1, 1);                   \
+        shmem_##TYPENAME##_put(&flags[3], &values[1], 1, 1);                   \
         shmem_quiet();                                                         \
         log_info("PE 0: Called shmem_quiet() after setting flags");            \
       }                                                                        \
@@ -52,8 +53,16 @@
         log_info("PE %d: Starting wait_until_some (flags=%p, n=4, "            \
                  "indices=%p, status=[SHMEM_CMP_EQ x4], target=1)",            \
                  mype, (void *)flags, (void *)indices);                        \
-        size_t count = shmem_##TYPENAME##_wait_until_some(                     \
-            flags, 4, indices, status, SHMEM_CMP_EQ, 1);                       \
+        time_t start_time = time(NULL);                                        \
+        size_t count = 0;                                                      \
+        while (count == 0) {                                                   \
+          count = shmem_##TYPENAME##_wait_until_some(flags, 4, indices,        \
+                                                     status, SHMEM_CMP_EQ, 1); \
+          if (time(NULL) - start_time > TIMEOUT) {                             \
+            log_fail("PE %d: wait_until_some timed out", mype);                \
+            break;                                                             \
+          }                                                                    \
+        }                                                                      \
         log_info("PE %d: wait_until_some completed with count=%zu", mype,      \
                  count);                                                       \
         if (count < 2) {                                                       \
