@@ -141,7 +141,7 @@ int main(int argc, char *argv[]) {
   int npes = shmem_n_pes();
   int mype = shmem_my_pe();
 
-  if (!(npes <= 2)) {
+  if (!(npes >= 2)) {
     if (mype == 0) {
       display_not_enough_pes("SIGNALING");
     }

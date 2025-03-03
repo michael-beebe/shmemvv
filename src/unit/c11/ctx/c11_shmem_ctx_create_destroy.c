@@ -37,7 +37,7 @@ int main(void) {
   shmem_init();
   log_init(__FILE__);
 
-  if (!(shmem_n_pes() <= 2)) {
+  if (!(shmem_n_pes() >= 2)) {
     if (shmem_my_pe() == 0) {
       log_fail("need at least 2 PEs, found %d", shmem_n_pes());
       display_not_enough_pes("ctx");

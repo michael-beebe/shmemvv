@@ -130,7 +130,7 @@ int main(int argc, char *argv[]) {
   shmem_init();
   log_init(__FILE__);
 
-  if (!(shmem_n_pes() <= 2)) {
+  if (!(shmem_n_pes() >= 2)) {
     log_warn("Not enough PEs to run test (requires 2 PEs, have %d PEs)",
              shmem_n_pes());
     if (shmem_my_pe() == 0) {

@@ -13,6 +13,7 @@ LAUNCHER="oshrun"
 LAUNCHER_ARGS=""
 HLINE="================================================"
 ENABLE_C11=0 # By default, don't run C11 tests
+ENABLE_C=0   # By default, don't run C/C++ tests
 
 # --- PE counts for different test categories
 SETUP_NP=2
@@ -122,10 +123,13 @@ display_usage() {
   echo "  --np <N>                (default=varies by test) Override default PE count for all tests"
   echo "  --launcher <cmd>        (default=$(which oshrun)) Path to oshrun launcher"
   echo "  --launcher_args <args>  Add custom arguments to launcher"
-  echo "  --enable_c11            Also run C11 tests (default: only run C tests)"
+  echo "  --enable_c11            Enable C11 tests"
+  echo "  --enable_c              Enable C/C++ tests"
   echo "  --verbose               Enable verbose output"
   echo "  --no-color              Disable colored output"
   echo "  --help                  Display this help message"
+  echo ""
+  echo "Note: You must enable at least one of --enable_c or --enable_c11"
   echo ""
 }
 
@@ -171,7 +175,7 @@ setup_environment() {
     exit 1
   fi
 
-  echo -e "${GREEN}Found $test_count test executables. Test suite appears to be built correctly.${NC}"
+  # echo -e "${GREEN}Found $test_count test executables. Test suite appears to be built correctly.${NC}"
 }
 
 # --- Run a single test
@@ -187,20 +191,12 @@ run_test() {
     echo "Command: $LAUNCHER $LAUNCHER_ARGS -np $np $test_path"
   fi
 
-  # --- Run the test
-  $LAUNCHER $LAUNCHER_ARGS -np $np $test_path
+  # --- Run the test and capture output
+  local output=$($LAUNCHER $LAUNCHER_ARGS -np $np $test_path 2>&1)
   local status=$?
 
-  # FIXME: tests that are failing aren't being counted as failures in the test summary
-
-  # --- Following the behavior of RUN.sh, we treat all executed tests as passed
-  # --- regardless of their exit code, since the tests print PASSED even when
-  # --- they return non-zero exit codes
-  TESTS_PASSED=$((TESTS_PASSED + 1))
-
-  if [ $VERBOSE -eq 1 ] && [ $status -ne 0 ]; then
-    echo -e "${YELLOW}Note: Test $test_name returned non-zero exit code $status but is still counted as passed${NC}"
-  fi
+  # --- Display the test output
+  echo "$output"
 }
 
 # --- Run all tests in a directory
@@ -219,12 +215,19 @@ run_test_category() {
   echo -e "${BOLD}Running $category_name tests (${np} PEs)...${NC}"
   echo "$HLINE"
 
-  # --- Find and run all executables matching the pattern in the directory
+  # --- Check if any executables matching the pattern exist
+  local found_tests=0
   for executable in $test_dir/$pattern; do
     if [ -x "$executable" ]; then
+      found_tests=1
       run_test "$executable" "$np"
     fi
   done
+
+  # --- Display message if no tests were found
+  if [ $found_tests -eq 0 ]; then
+    echo -e "${YELLOW}No compiled tests found for $category_name. Make sure to build these tests first.${NC}"
+  fi
 
   echo ""
 }
@@ -235,16 +238,18 @@ run_all_langs() {
   local name=$2
   local np=$3
 
-  # Run C tests
-  run_test_category "$dir" "$name (C/C++)" "$np" "c_*"
+  # --- Run C tests if enabled
+  if [ $ENABLE_C -eq 1 ]; then
+    run_test_category "$dir" "$name (C/C++)" "$np" "c_*"
+  fi
 
-  # Run C11 tests only if enabled
+  # --- Run C11 tests if enabled
   if [ $ENABLE_C11 -eq 1 ]; then
     run_test_category "$dir" "$name (C11)" "$np" "c11_*"
   fi
 }
 
-# Test category functions
+# --- Test category functions
 run_setup_tests() {
   if [ $EXCLUDE_SETUP -eq 1 ]; then
     return
@@ -351,18 +356,9 @@ run_all_tests() {
 # --- Print test summary
 print_summary() {
   echo -e "\n${BOLD}Test Summary:${NC}"
-  echo -e "Total tests run: $TESTS_TOTAL"
-  echo -e "Tests passed: ${GREEN}$TESTS_PASSED${NC}"
-
-  # Since we're not tracking failures based on exit codes, always report 0 failures
-  # This matches the behavior of the original RUN.sh
-  echo -e "Tests failed: ${RED}0${NC}"
-
-  echo -e "\n${GREEN}All tests executed successfully!${NC}"
-  if [ $VERBOSE -eq 1 ]; then
-    echo -e "${YELLOW}Note: Some tests may have returned non-zero exit codes while still printing PASSED.${NC}"
-    echo -e "${YELLOW}This is consistent with the original RUN.sh behavior which did not check exit codes.${NC}"
-  fi
+  echo -e "${BLUE}Total tests run: $TESTS_TOTAL${NC}"
+  
+  # FIXME: Add pass/fail counts 
 
   echo ""
 }
@@ -390,9 +386,13 @@ parse_args() {
     case "$1" in
     --help)
       display_usage
+      exit 0
       ;;
     --enable_c11)
       ENABLE_C11=1
+      ;;
+    --enable_c)
+      ENABLE_C=1
       ;;
     --test_setup)
       RUN_SETUP=1
@@ -528,8 +528,17 @@ parse_args() {
 main() {
   parse_args "$@"
   apply_np_override
+  
+  # Check if at least one language is enabled
+  if [ $ENABLE_C -eq 0 ] && [ $ENABLE_C11 -eq 0 ]; then
+    echo -e "${RED}Error: You must enable at least one test language using --enable_c or --enable_c11${NC}"
+    display_usage
+    exit 1
+  fi
+  
   setup_environment
 
+  echo -e ""
   echo -e "${BOLD}OpenSHMEM V&V Test Suite Runner${NC}"
   echo -e "Using launcher: $LAUNCHER $LAUNCHER_ARGS"
   echo ""
