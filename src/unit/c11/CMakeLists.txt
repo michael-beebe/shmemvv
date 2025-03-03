@@ -2,6 +2,10 @@
 # src/unit/c11/CMakeLists.txt
 #####################################
 
+# --- Specify C standard
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED True)
+
 # --- Define options to disable specific C11 test categories
 # All test categories are built by default unless explicitly disabled
 option(DISABLE_C11_ATOMICS "Disable C11 atomic memory operation tests" OFF)

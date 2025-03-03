@@ -2,10 +2,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 # ---- Project name and version
-project(shmemvv VERSION 1.0)
-
-# ---- Enable Testing 
-enable_testing()
+project(shmemvv VERSION 1.5.1)
 
 # ---- Add debug option
 option(DEBUG "Enable debugging output" OFF)
