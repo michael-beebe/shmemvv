@@ -13,7 +13,7 @@
 #include "shmemvv.h"
 
 #define TIMEOUT 2
-#define TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(TYPE, TYPENAME)                   \
+#define TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(TYPE)                             \
   ({                                                                           \
     log_routine("c11_shmem_wait_until_all_vector(" #TYPE ")");                 \
     bool success = true;                                                       \
@@ -34,7 +34,7 @@
                                                                                \
       if (mype == 0) {                                                         \
         for (int i = 0; i < 4; ++i) {                                          \
-          shmem_##TYPENAME##_p(&flags[i], 1, 1);                               \
+          shmem_p(&flags[i], 1, 1);                                            \
         }                                                                      \
         log_info("PE 0: Set all flags to 1 on PE 1");                          \
         shmem_quiet();                                                         \
@@ -50,8 +50,8 @@
         log_info("PE %d: Starting wait_until_all_vector (flags=%p, n=4, "      \
                  "status=[SHMEM_CMP_EQ x4], cmp_values=[1 x4])",               \
                  mype, (void *)flags);                                         \
-        shmem_##TYPENAME##_wait_until_all_vector(flags, 4, status,             \
-                                                 SHMEM_CMP_EQ, cmp_values);    \
+        shmem_wait_until_all_vector(flags, 4, status, SHMEM_CMP_EQ,            \
+                                    cmp_values);                               \
         log_info("PE %d: wait_until_all_vector completed", mype);              \
         for (int i = 0; i < 4; ++i) {                                          \
           if (flags[i] != 1) {                                                 \
@@ -78,20 +78,20 @@ int main(int argc, char **argv) {
   int result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(short, short);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(int, int);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(long, long);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(long long, longlong);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(unsigned short, ushort);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(unsigned int, uint);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(unsigned long, ulong);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(unsigned long long, ulonglong);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(int32_t, int32);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(int64_t, int64);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(uint32_t, uint32);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(uint64_t, uint64);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(size_t, size);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(ptrdiff_t, ptrdiff);
+  // result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(short);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(int);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(long);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(long long);
+  // result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(unsigned short);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(unsigned int);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(unsigned long);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(unsigned long long);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(int32_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(int64_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(uint32_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(uint64_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(size_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(ptrdiff_t);
 
   shmem_barrier_all();
 

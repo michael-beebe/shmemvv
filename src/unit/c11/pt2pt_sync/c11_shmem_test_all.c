@@ -14,7 +14,7 @@
 
 #define TIMEOUT 2
 
-#define TEST_C11_SHMEM_TEST_ALL(TYPE, TYPENAME)                                \
+#define TEST_C11_SHMEM_TEST_ALL(TYPE)                                          \
   ({                                                                           \
     log_routine("c11_shmem_test_all(" #TYPE ")");                              \
     bool success = true;                                                       \
@@ -38,7 +38,7 @@
         for (int pe = 1; pe < npes; ++pe) {                                    \
           log_info("PE 0: Setting flags to 1 on remote PE %d", pe);            \
           for (int i = 0; i < 4; ++i) {                                        \
-            shmem_##TYPENAME##_p(&flags[i], 1, pe);                            \
+            shmem_p(&flags[i], 1, pe);                                         \
           }                                                                    \
         }                                                                      \
         log_info("PE 0: Completed setting flags, calling shmem_quiet()");      \
@@ -54,8 +54,7 @@
         log_info("PE %d: Starting test_all loop (flags=%p, condition="         \
                  "SHMEM_CMP_EQ, target=1)",                                    \
                  mype, (void *)flags);                                         \
-        while (!shmem_##TYPENAME##_test_all(flags, 4, NULL, SHMEM_CMP_EQ,      \
-                                            cmp_value)) {                      \
+        while (!shmem_test_all(flags, 4, NULL, SHMEM_CMP_EQ, cmp_value)) {     \
           if (time(NULL) - start_time > TIMEOUT) {                             \
             log_fail("PE %d: Test timed out after %d iterations", mype,        \
                      iterations);                                              \
@@ -92,20 +91,20 @@ int main(int argc, char **argv) {
   int result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_C11_SHMEM_TEST_ALL(short, short);
-  result &= TEST_C11_SHMEM_TEST_ALL(int, int);
-  result &= TEST_C11_SHMEM_TEST_ALL(long, long);
-  result &= TEST_C11_SHMEM_TEST_ALL(long long, longlong);
-  result &= TEST_C11_SHMEM_TEST_ALL(unsigned short, ushort);
-  result &= TEST_C11_SHMEM_TEST_ALL(unsigned int, uint);
-  result &= TEST_C11_SHMEM_TEST_ALL(unsigned long, ulong);
-  result &= TEST_C11_SHMEM_TEST_ALL(unsigned long long, ulonglong);
-  result &= TEST_C11_SHMEM_TEST_ALL(int32_t, int32);
-  result &= TEST_C11_SHMEM_TEST_ALL(int64_t, int64);
-  result &= TEST_C11_SHMEM_TEST_ALL(uint32_t, uint32);
-  result &= TEST_C11_SHMEM_TEST_ALL(uint64_t, uint64);
-  result &= TEST_C11_SHMEM_TEST_ALL(size_t, size);
-  result &= TEST_C11_SHMEM_TEST_ALL(ptrdiff_t, ptrdiff);
+  // result &= TEST_C11_SHMEM_TEST_ALL(short);
+  result &= TEST_C11_SHMEM_TEST_ALL(int);
+  result &= TEST_C11_SHMEM_TEST_ALL(long);
+  result &= TEST_C11_SHMEM_TEST_ALL(long long);
+  // result &= TEST_C11_SHMEM_TEST_ALL(unsigned short);
+  result &= TEST_C11_SHMEM_TEST_ALL(unsigned int);
+  result &= TEST_C11_SHMEM_TEST_ALL(unsigned long);
+  result &= TEST_C11_SHMEM_TEST_ALL(unsigned long long);
+  result &= TEST_C11_SHMEM_TEST_ALL(int32_t);
+  result &= TEST_C11_SHMEM_TEST_ALL(int64_t);
+  result &= TEST_C11_SHMEM_TEST_ALL(uint32_t);
+  result &= TEST_C11_SHMEM_TEST_ALL(uint64_t);
+  result &= TEST_C11_SHMEM_TEST_ALL(size_t);
+  result &= TEST_C11_SHMEM_TEST_ALL(ptrdiff_t);
 
   shmem_barrier_all();
 

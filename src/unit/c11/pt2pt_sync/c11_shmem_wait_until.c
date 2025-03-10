@@ -15,7 +15,7 @@
 // Reduce timeout for faster test completion
 #define TIMEOUT 1
 
-#define TEST_C11_SHMEM_WAIT_UNTIL(TYPE, TYPENAME)                              \
+#define TEST_C11_SHMEM_WAIT_UNTIL(TYPE)                              \
   ({                                                                           \
     log_routine("shmem_wait_until(" #TYPE ")");                                \
     bool success = true;                                                       \
@@ -40,7 +40,7 @@
         for (int pe = 1; pe < npes; ++pe) {                                    \
           log_info("PE 0: Setting flag to 1 on PE %d (address: %p)", pe,       \
                    (void *)flag);                                              \
-          shmem_##TYPENAME##_put(flag, &one, 1, pe);                           \
+          shmem_put(flag, &one, 1, pe);                           \
         }                                                                      \
         shmem_quiet();                                                         \
         log_info("PE 0: Called shmem_quiet() after setting flags");            \
@@ -55,7 +55,7 @@
         time_t start_time = time(NULL);                                        \
         bool flag_set = false;                                                 \
         while (!flag_set) {                                                    \
-          flag_set = shmem_##TYPENAME##_test(flag, SHMEM_CMP_EQ, 1);           \
+          flag_set = shmem_test(flag, SHMEM_CMP_EQ, 1);           \
           if (flag_set) {                                                      \
             break;                                                             \
           }                                                                    \
@@ -87,18 +87,18 @@ int main(int argc, char **argv) {
   int result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_C11_SHMEM_WAIT_UNTIL(int, int);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL(long, long);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL(long long, longlong);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL(unsigned int, uint);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL(unsigned long, ulong);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL(unsigned long long, ulonglong);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL(int32_t, int32);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL(int64_t, int64);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL(uint32_t, uint32);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL(uint64_t, uint64);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL(size_t, size);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL(ptrdiff_t, ptrdiff);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL(int);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL(long);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL(long long);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL(unsigned int);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL(unsigned long);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL(unsigned long long);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL(int32_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL(int64_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL(uint32_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL(uint64_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL(size_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL(ptrdiff_t);
 
   shmem_barrier_all();
 

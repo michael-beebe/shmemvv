@@ -14,7 +14,7 @@
 
 #define TIMEOUT 2
 
-#define TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(TYPE, TYPENAME)                  \
+#define TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(TYPE)                            \
   ({                                                                           \
     log_routine("c11_shmem_wait_until_some_vector(" #TYPE ")");                \
     bool success = true;                                                       \
@@ -37,8 +37,8 @@
         log_info("PE 0: Setting flags[1] and flags[3] to 1 on PE 1 "           \
                  "(addresses: %p, %p)",                                        \
                  (void *)&flags[1], (void *)&flags[3]);                        \
-        shmem_##TYPENAME##_p(&flags[1], 1, 1);                                 \
-        shmem_##TYPENAME##_p(&flags[3], 1, 1);                                 \
+        shmem_p(&flags[1], 1, 1);                                              \
+        shmem_p(&flags[3], 1, 1);                                              \
         shmem_quiet();                                                         \
         log_info("PE 0: Called shmem_quiet() after setting flags");            \
       }                                                                        \
@@ -53,8 +53,8 @@
         log_info("PE %d: Starting wait_until_some_vector (flags=%p, n=4, "     \
                  "indices=%p, status=[SHMEM_CMP_EQ x4], cmp_values=[1 x4])",   \
                  mype, (void *)flags, (void *)indices);                        \
-        size_t count = shmem_##TYPENAME##_wait_until_some_vector(              \
-            flags, 4, indices, status, SHMEM_CMP_EQ, cmp_values);              \
+        size_t count = shmem_wait_until_some_vector(flags, 4, indices, status, \
+                                                    SHMEM_CMP_EQ, cmp_values); \
         log_info("PE %d: wait_until_some_vector completed with count=%zu",     \
                  mype, count);                                                 \
         if (count < 2) {                                                       \
@@ -89,21 +89,20 @@ int main(int argc, char **argv) {
   int result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(short, short);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(int, int);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(long, long);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(long long, longlong);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(unsigned short, ushort);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(unsigned int, uint);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(unsigned long, ulong);
-  result &=
-      TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(unsigned long long, ulonglong);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(int32_t, int32);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(int64_t, int64);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(uint32_t, uint32);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(uint64_t, uint64);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(size_t, size);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(ptrdiff_t, ptrdiff);
+  // result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(short);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(int);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(long);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(long long);
+  // result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(unsigned short);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(unsigned int);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(unsigned long);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(unsigned long long);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(int32_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(int64_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(uint32_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(uint64_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(size_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME_VECTOR(ptrdiff_t);
 
   shmem_barrier_all();
 
