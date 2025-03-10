@@ -79,7 +79,7 @@ int main(int argc, char **argv) {
   int result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_CXX_SHMEM_SIGNAL_WAIT_UNTIL();
+  result &= TEST_C11_SHMEM_SIGNAL_WAIT_UNTIL();
 
   shmem_barrier_all();
 
