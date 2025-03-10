@@ -59,4 +59,5 @@ export PMIX_MCA_pcompress_base_silence_warning=1
   --launcher $OSHRUN                    \
   --launcher_args "--allow-run-as-root" \
   --np 4                                \
-  --test_teams
+  --test_teams \
+  --test_pt2pt_synch 

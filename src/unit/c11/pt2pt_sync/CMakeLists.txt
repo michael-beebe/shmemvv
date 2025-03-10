@@ -11,7 +11,6 @@ set(SOURCES
 )
 
 # --- Add the executables
-add_executable(c11_shmem_signal_wait_until c11_shmem_signal_wait_until.c ${SOURCES})
 add_executable(c11_shmem_test_all_vector c11_shmem_test_all_vector.c ${SOURCES})
 add_executable(c11_shmem_test_all c11_shmem_test_all.c ${SOURCES})
 add_executable(c11_shmem_test_any_vector c11_shmem_test_any_vector.c ${SOURCES})
@@ -29,7 +28,6 @@ add_executable(c11_shmem_wait_until c11_shmem_wait_until.c ${SOURCES})
 
 # --- Set the output directory for the executables
 set_target_properties(
-  c11_shmem_signal_wait_until
   c11_shmem_test_all_vector
   c11_shmem_test_all
   c11_shmem_test_any_vector
@@ -49,7 +47,6 @@ set_target_properties(
 )
 
 # --- Include directories for each target
-target_include_directories(c11_shmem_signal_wait_until PRIVATE src/include)
 target_include_directories(c11_shmem_test_all_vector PRIVATE src/include)
 target_include_directories(c11_shmem_test_all PRIVATE src/include)
 target_include_directories(c11_shmem_test_any_vector PRIVATE src/include)
@@ -65,7 +62,6 @@ target_include_directories(c11_shmem_wait_until_some PRIVATE src/include)
 target_include_directories(c11_shmem_wait_until PRIVATE src/include)
 
 # --- Link any necessary libraries to each target
-target_link_libraries(c11_shmem_signal_wait_until)
 target_link_libraries(c11_shmem_test_all_vector)
 target_link_libraries(c11_shmem_test_all)
 target_link_libraries(c11_shmem_test_any_vector)
