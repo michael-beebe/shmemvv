@@ -13,7 +13,7 @@
 
 #define TIMEOUT 2
 
-#define TEST_C_SHMEM_WAIT_UNTIL_ALL(TYPE, TYPENAME)                            \
+#define TEST_C11_SHMEM_WAIT_UNTIL_ALL(TYPE, TYPENAME)                          \
   ({                                                                           \
     log_routine("c11_shmem_wait_until_all(" #TYPE ")");                        \
     bool success = true;                                                       \
@@ -72,20 +72,20 @@ int main(int argc, char **argv) {
   int result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(short, short);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(int, int);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(long, long);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(long long, longlong);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(unsigned short, ushort);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(unsigned int, uint);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(unsigned long, ulong);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(unsigned long long, ulonglong);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(int32_t, int32);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(int64_t, int64);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(uint32_t, uint32);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(uint64_t, uint64);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(size_t, size);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(ptrdiff_t, ptrdiff);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL(short, short);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL(int, int);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL(long, long);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL(long long, longlong);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL(unsigned short, ushort);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL(unsigned int, uint);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL(unsigned long, ulong);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL(unsigned long long, ulonglong);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL(int32_t, int32);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL(int64_t, int64);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL(uint32_t, uint32);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL(uint64_t, uint64);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL(size_t, size);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ALL(ptrdiff_t, ptrdiff);
 
   shmem_barrier_all();
 

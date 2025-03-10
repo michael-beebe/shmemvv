@@ -14,7 +14,7 @@
 
 #define TIMEOUT 2
 
-#define TEST_C_SHMEM_TEST_ANY(TYPE, TYPENAME)                                  \
+#define TEST_C11_SHMEM_TEST_ANY(TYPE, TYPENAME)                                \
   ({                                                                           \
     log_routine("c11_shmem_test_any(" #TYPE ")");                              \
     bool success = true;                                                       \
@@ -85,20 +85,20 @@ int main(int argc, char **argv) {
   int result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_C_SHMEM_TEST_ANY(short, short);
-  result &= TEST_C_SHMEM_TEST_ANY(int, int);
-  result &= TEST_C_SHMEM_TEST_ANY(long, long);
-  result &= TEST_C_SHMEM_TEST_ANY(long long, longlong);
-  result &= TEST_C_SHMEM_TEST_ANY(unsigned short, ushort);
-  result &= TEST_C_SHMEM_TEST_ANY(unsigned int, uint);
-  result &= TEST_C_SHMEM_TEST_ANY(unsigned long, ulong);
-  result &= TEST_C_SHMEM_TEST_ANY(unsigned long long, ulonglong);
-  result &= TEST_C_SHMEM_TEST_ANY(int32_t, int32);
-  result &= TEST_C_SHMEM_TEST_ANY(int64_t, int64);
-  result &= TEST_C_SHMEM_TEST_ANY(uint32_t, uint32);
-  result &= TEST_C_SHMEM_TEST_ANY(uint64_t, uint64);
-  result &= TEST_C_SHMEM_TEST_ANY(size_t, size);
-  result &= TEST_C_SHMEM_TEST_ANY(ptrdiff_t, ptrdiff);
+  result &= TEST_C11_SHMEM_TEST_ANY(short, short);
+  result &= TEST_C11_SHMEM_TEST_ANY(int, int);
+  result &= TEST_C11_SHMEM_TEST_ANY(long, long);
+  result &= TEST_C11_SHMEM_TEST_ANY(long long, longlong);
+  result &= TEST_C11_SHMEM_TEST_ANY(unsigned short, ushort);
+  result &= TEST_C11_SHMEM_TEST_ANY(unsigned int, uint);
+  result &= TEST_C11_SHMEM_TEST_ANY(unsigned long, ulong);
+  result &= TEST_C11_SHMEM_TEST_ANY(unsigned long long, ulonglong);
+  result &= TEST_C11_SHMEM_TEST_ANY(int32_t, int32);
+  result &= TEST_C11_SHMEM_TEST_ANY(int64_t, int64);
+  result &= TEST_C11_SHMEM_TEST_ANY(uint32_t, uint32);
+  result &= TEST_C11_SHMEM_TEST_ANY(uint64_t, uint64);
+  result &= TEST_C11_SHMEM_TEST_ANY(size_t, size);
+  result &= TEST_C11_SHMEM_TEST_ANY(ptrdiff_t, ptrdiff);
 
   shmem_barrier_all();
 

@@ -14,7 +14,7 @@
 
 #define TIMEOUT 2
 
-#define TEST_CXX_SHMEM_SIGNAL_WAIT_UNTIL()                                     \
+#define TEST_C11_SHMEM_SIGNAL_WAIT_UNTIL()                                     \
   ({                                                                           \
     log_routine("c11_shmem_signal_wait_until()");                              \
     bool success = true;                                                       \

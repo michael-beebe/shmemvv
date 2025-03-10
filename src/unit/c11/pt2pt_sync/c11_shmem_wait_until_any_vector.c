@@ -14,7 +14,7 @@
 
 #define TIMEOUT 2
 
-#define TEST_C_SHMEM_WAIT_UNTIL_ANY_VECTOR(TYPE, TYPENAME)                     \
+#define TEST_C11_SHMEM_WAIT_UNTIL_ANY_VECTOR(TYPE, TYPENAME)                   \
   ({                                                                           \
     log_routine("c11_shmem_wait_until_any_vector(" #TYPE ")");                 \
     bool success = true;                                                       \
@@ -79,18 +79,18 @@ int main(int argc, char **argv) {
   int result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY_VECTOR(int, int);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY_VECTOR(long, long);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY_VECTOR(long long, longlong);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY_VECTOR(unsigned int, uint);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY_VECTOR(unsigned long, ulong);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY_VECTOR(unsigned long long, ulonglong);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY_VECTOR(int32_t, int32);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY_VECTOR(int64_t, int64);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY_VECTOR(uint32_t, uint32);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY_VECTOR(uint64_t, uint64);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY_VECTOR(size_t, size);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY_VECTOR(ptrdiff_t, ptrdiff);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY_VECTOR(int, int);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY_VECTOR(long, long);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY_VECTOR(long long, longlong);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY_VECTOR(unsigned int, uint);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY_VECTOR(unsigned long, ulong);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY_VECTOR(unsigned long long, ulonglong);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY_VECTOR(int32_t, int32);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY_VECTOR(int64_t, int64);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY_VECTOR(uint32_t, uint32);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY_VECTOR(uint64_t, uint64);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY_VECTOR(size_t, size);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY_VECTOR(ptrdiff_t, ptrdiff);
 
   shmem_barrier_all();
 
