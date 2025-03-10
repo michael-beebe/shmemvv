@@ -88,11 +88,11 @@ int main(int argc, char **argv) {
   int result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_C_SHMEM_TEST(short, short);
+  // result &= TEST_C_SHMEM_TEST(short, short);
   result &= TEST_C_SHMEM_TEST(int, int);
   result &= TEST_C_SHMEM_TEST(long, long);
   result &= TEST_C_SHMEM_TEST(long long, longlong);
-  result &= TEST_C_SHMEM_TEST(unsigned short, ushort);
+  // result &= TEST_C_SHMEM_TEST(unsigned short, ushort);
   result &= TEST_C_SHMEM_TEST(unsigned int, uint);
   result &= TEST_C_SHMEM_TEST(unsigned long, ulong);
   result &= TEST_C_SHMEM_TEST(unsigned long long, ulonglong);

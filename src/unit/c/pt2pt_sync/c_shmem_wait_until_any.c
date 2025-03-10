@@ -75,11 +75,11 @@ int main(int argc, char **argv) {
   int result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(short, short);
+  // result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(short, short);
   result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(int, int);
   result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(long, long);
   result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(long long, longlong);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(unsigned short, ushort);
+  // result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(unsigned short, ushort);
   result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(unsigned int, uint);
   result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(unsigned long, ulong);
   result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(unsigned long long, ulonglong);

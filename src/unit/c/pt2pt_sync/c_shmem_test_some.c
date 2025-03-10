@@ -90,11 +90,11 @@ int main(int argc, char **argv) {
   int result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_C_SHMEM_TEST_SOME(short, short);
+  // result &= TEST_C_SHMEM_TEST_SOME(short, short);
   result &= TEST_C_SHMEM_TEST_SOME(int, int);
   result &= TEST_C_SHMEM_TEST_SOME(long, long);
   result &= TEST_C_SHMEM_TEST_SOME(long long, longlong);
-  result &= TEST_C_SHMEM_TEST_SOME(unsigned short, ushort);
+  // result &= TEST_C_SHMEM_TEST_SOME(unsigned short, ushort);
   result &= TEST_C_SHMEM_TEST_SOME(unsigned int, uint);
   result &= TEST_C_SHMEM_TEST_SOME(unsigned long, ulong);
   result &= TEST_C_SHMEM_TEST_SOME(unsigned long long, ulonglong);

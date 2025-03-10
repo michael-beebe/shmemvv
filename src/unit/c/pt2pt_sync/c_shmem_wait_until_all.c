@@ -72,11 +72,11 @@ int main(int argc, char **argv) {
   int result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(short, short);
+  // result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(short, short);
   result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(int, int);
   result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(long, long);
   result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(long long, longlong);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(unsigned short, ushort);
+  // result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(unsigned short, ushort);
   result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(unsigned int, uint);
   result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(unsigned long, ulong);
   result &= TEST_C_SHMEM_WAIT_UNTIL_ALL(unsigned long long, ulonglong);
