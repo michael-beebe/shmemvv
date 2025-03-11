@@ -1,5 +1,5 @@
 /**
- * @file c11_shmem_team_sync.c
+ * @file c11_shmem_sync.c
  * @brief Unit test for the shmem_team_sync() routine.
  */
 
@@ -37,7 +37,7 @@ bool test_shmem_team_sync(void) {
   shmem_atomic_inc(&shared_counter, 0);
 
   log_info("Initiating team synchronization");
-  shmem_team_sync(team);
+  shmem_sync(team);
   log_info("Team synchronization completed");
 
   log_info("Validating shared counter value");
@@ -86,7 +86,7 @@ int main(int argc, char *argv[]) {
   int rc = result ? EXIT_SUCCESS : EXIT_FAILURE;
 
   if (mype == 0) {
-    display_test_result("C11 shmem_team_sync", result, false);
+    display_test_result("C11 shmem_sync", result, false);
   }
 
   log_info("Test completed with %s", result ? "SUCCESS" : "FAILURE");
