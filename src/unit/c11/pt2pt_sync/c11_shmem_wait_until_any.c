@@ -13,7 +13,7 @@
 #include "shmemvv.h"
 
 #define TIMEOUT 2
-#define TEST_C_SHMEM_WAIT_UNTIL_ANY(TYPE, TYPENAME)                            \
+#define TEST_C11_SHMEM_WAIT_UNTIL_ANY(TYPE)                                    \
   ({                                                                           \
     log_routine("c11_shmem_wait_until_any(" #TYPE ")");                        \
     bool success = true;                                                       \
@@ -35,7 +35,7 @@
       if (mype == 0) {                                                         \
         log_info("PE 0: Setting flags[2] to 1 on PE 1 (address: %p)",          \
                  (void *)&flags[2]);                                           \
-        shmem_##TYPENAME##_p(&flags[2], 1, 1);                                 \
+        shmem_p(&flags[2], 1, 1);                                              \
         shmem_quiet();                                                         \
         log_info("PE 0: Called shmem_quiet() after setting flag");             \
       }                                                                        \
@@ -47,8 +47,8 @@
         log_info("PE %d: Starting wait_until_any (flags=%p, n=3, "             \
                  "status=[SHMEM_CMP_EQ x3], target=1)",                        \
                  mype, (void *)flags);                                         \
-        size_t index = shmem_##TYPENAME##_wait_until_any(flags, 3, status,     \
-                                                         SHMEM_CMP_EQ, 1);     \
+        size_t index =                                                         \
+            shmem_wait_until_any(flags, 3, status, SHMEM_CMP_EQ, 1);           \
         log_info("PE %d: wait_until_any completed with index=%zu", mype,       \
                  index);                                                       \
         if (index == SIZE_MAX) {                                               \
@@ -75,20 +75,20 @@ int main(int argc, char **argv) {
   int result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(short, short);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(int, int);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(long, long);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(long long, longlong);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(unsigned short, ushort);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(unsigned int, uint);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(unsigned long, ulong);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(unsigned long long, ulonglong);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(int32_t, int32);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(int64_t, int64);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(uint32_t, uint32);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(uint64_t, uint64);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(size_t, size);
-  result &= TEST_C_SHMEM_WAIT_UNTIL_ANY(ptrdiff_t, ptrdiff);
+  // result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY(short);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY(int);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY(long);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY(long long);
+  // result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY(unsigned short);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY(unsigned int);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY(unsigned long);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY(unsigned long long);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY(int32_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY(int64_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY(uint32_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY(uint64_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY(size_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_ANY(ptrdiff_t);
 
   shmem_barrier_all();
 

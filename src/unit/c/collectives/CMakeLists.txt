@@ -23,6 +23,7 @@ add_executable(c_shmem_max_reduce c_shmem_max_reduce.c ${SOURCES})
 add_executable(c_shmem_prod_reduce c_shmem_prod_reduce.c ${SOURCES})
 add_executable(c_shmem_sum_reduce c_shmem_sum_reduce.c ${SOURCES})
 add_executable(c_shmem_sync_all c_shmem_sync_all.c ${SOURCES})
+add_executable(c_shmem_team_sync c_shmem_team_sync.c ${SOURCES})
 
 # --- Set the output directory for the executables
 set_target_properties(
@@ -40,6 +41,7 @@ set_target_properties(
   c_shmem_prod_reduce
   c_shmem_sum_reduce
   c_shmem_sync_all
+  c_shmem_team_sync
   
   PROPERTIES
   # TODO: come up with a better way to organize unit tests bins
@@ -61,6 +63,7 @@ target_include_directories(c_shmem_max_reduce PRIVATE src/include)
 target_include_directories(c_shmem_prod_reduce PRIVATE src/include)
 target_include_directories(c_shmem_sum_reduce PRIVATE src/include)
 target_include_directories(c_shmem_sync_all PRIVATE src/include)
+target_include_directories(c_shmem_team_sync PRIVATE src/include)
 
 # --- Link any necessary libraries to each target (replace `your_library` with actual libraries if any)
 target_link_libraries(c_shmem_alltoall)
@@ -77,3 +80,4 @@ target_link_libraries(c_shmem_max_reduce)
 target_link_libraries(c_shmem_prod_reduce)
 target_link_libraries(c_shmem_sum_reduce)
 target_link_libraries(c_shmem_sync_all)
+target_link_libraries(c_shmem_team_sync)

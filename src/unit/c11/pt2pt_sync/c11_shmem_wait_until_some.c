@@ -15,7 +15,7 @@
 // Reduce timeout for faster test completion
 #define TIMEOUT 1
 
-#define TEST_C11_SHMEM_WAIT_UNTIL_SOME(TYPE, TYPENAME)                         \
+#define TEST_C11_SHMEM_WAIT_UNTIL_SOME(TYPE)                                   \
   ({                                                                           \
     log_routine("shmem_wait_until_some(" #TYPE ")");                           \
     bool success = true;                                                       \
@@ -42,8 +42,8 @@
                  (void *)&flags[1], (void *)&flags[3]);                        \
         /* Use put instead of p for better performance with multiple values */ \
         TYPE values[2] = {1, 1};                                               \
-        shmem_##TYPENAME##_put(&flags[1], &values[0], 1, 1);                   \
-        shmem_##TYPENAME##_put(&flags[3], &values[1], 1, 1);                   \
+        shmem_put(&flags[1], &values[0], 1, 1);                                \
+        shmem_put(&flags[3], &values[1], 1, 1);                                \
         shmem_quiet();                                                         \
         log_info("PE 0: Called shmem_quiet() after setting flags");            \
       }                                                                        \
@@ -61,8 +61,8 @@
         time_t start_time = time(NULL);                                        \
         size_t count = 0;                                                      \
         while (count == 0) {                                                   \
-          count = shmem_##TYPENAME##_wait_until_some(flags, 4, indices,        \
-                                                     status, SHMEM_CMP_EQ, 1); \
+          count = shmem_wait_until_some(flags, 4, indices, status,             \
+                                        SHMEM_CMP_EQ, 1);                      \
           if (time(NULL) - start_time > TIMEOUT) {                             \
             log_fail("PE %d: wait_until_some timed out", mype);                \
             break;                                                             \
@@ -102,18 +102,18 @@ int main(int argc, char **argv) {
   int result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(int, int);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(long, long);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(long long, longlong);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(unsigned int, uint);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(unsigned long, ulong);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(unsigned long long, ulonglong);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(int32_t, int32);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(int64_t, int64);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(uint32_t, uint32);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(uint64_t, uint64);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(size_t, size);
-  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(ptrdiff_t, ptrdiff);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(int);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(long);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(long long);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(unsigned int);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(unsigned long);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(unsigned long long);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(int32_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(int64_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(uint32_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(uint64_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(size_t);
+  result &= TEST_C11_SHMEM_WAIT_UNTIL_SOME(ptrdiff_t);
 
   shmem_barrier_all();
 

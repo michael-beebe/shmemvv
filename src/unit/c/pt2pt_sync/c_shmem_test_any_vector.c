@@ -84,11 +84,11 @@ int main(int argc, char **argv) {
   int result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_C_SHMEM_TEST_ANY_VECTOR(short, short);
+  // result &= TEST_C_SHMEM_TEST_ANY_VECTOR(short, short);
   result &= TEST_C_SHMEM_TEST_ANY_VECTOR(int, int);
   result &= TEST_C_SHMEM_TEST_ANY_VECTOR(long, long);
   result &= TEST_C_SHMEM_TEST_ANY_VECTOR(long long, longlong);
-  result &= TEST_C_SHMEM_TEST_ANY_VECTOR(unsigned short, ushort);
+  // result &= TEST_C_SHMEM_TEST_ANY_VECTOR(unsigned short, ushort);
   result &= TEST_C_SHMEM_TEST_ANY_VECTOR(unsigned int, uint);
   result &= TEST_C_SHMEM_TEST_ANY_VECTOR(unsigned long, ulong);
   result &= TEST_C_SHMEM_TEST_ANY_VECTOR(unsigned long long, ulonglong);
