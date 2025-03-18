@@ -51,13 +51,38 @@ OSHRUN=/root/lanl/openshmem/osss/osss-ucx_testing/build/build/bin/oshrun
 # Note: You must enable at least one of --enable_c or --enable_c11
 # ---------------------------------------------------------------------
 
-# --- Run tests
+# --- Suppress PMIX warnings for now
 export PMIX_MCA_pcompress_base_silence_warning=1
+
+# --- Set UCX transport
+export UCX_TLS=self,sm,tcp,posix
+
+# --- For containerized environments, sometimes memory registration needs to be disabled
+export UCX_MEMTYPE_CACHE=n
+export UCX_RCACHE_ENABLE=n
+  
+# --- Make TCP more robust in container settings
+export UCX_TCP_CM_REUSEADDR=y
+export UCX_TCP_TX_SEG_SIZE=16k
+export UCX_TCP_RX_SEG_SIZE=16k
+  
+# --- Force TCP to be used for all traffic
+#export UCX_NET_DEVICES=eth0
+#export UCX_UNIFIED_MODE=y
+  
+# --- Reduce log level to see exactly what's failing
+#export UCX_LOG_LEVEL=DEBUG
+
+# --- Disable huge pages for now
+export UCX_MM_HUGETLB=n
+export UCX_SYSV_HUGETLB=n
+export UCX_POSIX_HUGETLB=n
+
+# --- Run tests
 ./shmemvv.sh \
   --enable_c                            \
-  --enable_c11                          \
   --launcher $OSHRUN                    \
   --launcher_args "--allow-run-as-root" \
-  --np 4                                \
-  --test_teams \
-  --test_pt2pt_synch 
+  --np 2                                \
+  --test_all # --test_signaling
+
