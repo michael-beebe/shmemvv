@@ -51,7 +51,7 @@
         log_info("PE %d: Starting signal_wait_until loop (flag=%p, "           \
                  "condition=SHMEM_CMP_EQ, target=1)",                          \
                  mype, (void *)flag);                                          \
-        while (!shmem_uint64_test(flag, SHMEM_CMP_EQ, value) &&                       \
+        while (!shmem_uint64_test(flag, SHMEM_CMP_EQ, value) &&                \
                time(NULL) - start_time < TIMEOUT) {                            \
           shmem_signal_wait_until(flag, SHMEM_CMP_EQ, value);                  \
         }                                                                      \

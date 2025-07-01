@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # --- Clean build
-./CLEAN.sh
+./scripts/clean.sh
 
 mkdir build ; cd build
 
-OSHCC=/root/lanl/openshmem/osss/osss-ucx_testing/build/build/bin/oshcc
+OSHCC=$OSSS_TESTING_BIN/oshcc
 
 cmake \
     -DCMAKE_C_COMPILER=$OSHCC \

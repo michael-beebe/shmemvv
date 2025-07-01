@@ -48,8 +48,8 @@
         TYPE cmp_values[4] = {1, 1, 1, 1};                                     \
         time_t start_time = time(NULL);                                        \
         int iterations = 0;                                                    \
-        while (!shmem_test_all_vector(flags, 4, NULL, SHMEM_CMP_EQ,           \
-                                       cmp_values)) {                          \
+        while (!shmem_test_all_vector(flags, 4, NULL, SHMEM_CMP_EQ,            \
+                                      cmp_values)) {                           \
           if (time(NULL) - start_time > TIMEOUT) {                             \
             log_fail("PE %d: Test timed out after %d iterations", mype,        \
                      iterations);                                              \

@@ -1,30 +1,22 @@
 #!/bin/bash
 
-# --- Clean build
-./CLEAN.sh
-
-# --- Compile testing library
-./BUILD.sh
-
-# -- Set launcher
-OSHRUN=/root/lanl/openshmem/osss/osss-ucx_testing/build/build/bin/oshrun
-
-# ---------------------------------------------------------------------
-# Remaining list of tests to make sure we pass, go through each
-# option one by one. Delete the line once they pass.
-#
-# NOTE: RMA relies on signaling so do those together.
 # ---------------------------------------------------------------------
 # OpenSHMEM Verification and Validation Test Suite
 
 # Usage: ./shmemvv.sh [options]
 
 # Options:
+#   --test_setup            Run setup tests
+#   --test_threads          Run thread support tests
+#   --test_mem              Run memory management tests
 #   --test_teams            Run team management tests
+#   --test_ctx              Run communication/context management tests
 #   --test_remote           Run remote memory access tests
+#   --test_atomics          Run atomic memory operations tests
 #   --test_signaling        Run signaling operations tests
 #   --test_collectives      Run collective operations tests
 #   --test_pt2pt_synch      Run point-to-point synchronization tests
+#   --test_locking          Run distributed locking tests
 #   --test_all              (default) Run all tests
 
 #   --exclude_setup         Exclude setup tests
@@ -40,7 +32,7 @@ OSHRUN=/root/lanl/openshmem/osss/osss-ucx_testing/build/build/bin/oshrun
 #   --exclude_locking       Exclude distributed locking tests
 
 #   --np <N>                (default=varies by test) Override default PE count for all tests
-#   --launcher <cmd>        (default=/root/sw/linuxkit-aarch64/sos_1.5.2/bin/oshrun) Path to oshrun launcher
+#   --launcher <cmd>        (default=/mnt/DISCL/home/mibeebe/lanl/shmem/osss/osss-ucx_sanity/build/install/bin/oshrun) Path to oshrun launcher
 #   --launcher_args <args>  Add custom arguments to launcher
 #   --enable_c11            Enable C11 tests
 #   --enable_c              Enable C/C++ tests
@@ -51,38 +43,51 @@ OSHRUN=/root/lanl/openshmem/osss/osss-ucx_testing/build/build/bin/oshrun
 # Note: You must enable at least one of --enable_c or --enable_c11
 # ---------------------------------------------------------------------
 
-# --- Suppress PMIX warnings for now
-export PMIX_MCA_pcompress_base_silence_warning=1
+hline="----------------------------------------------------"
 
-# --- Set UCX transport
-export UCX_TLS=self,sm,tcp,posix
+# --- Get a list of unique hostnames from the srun command, sorted and concatenated with commas
+hosts=$(srun hostname | sort | uniq | paste -sd, -)
+# --- Count the number of unique hosts
+num_hosts=$(echo "$hosts" | tr ',' '\n' | wc -l)
 
-# --- For containerized environments, sometimes memory registration needs to be disabled
-export UCX_MEMTYPE_CACHE=n
-export UCX_RCACHE_ENABLE=n
-  
-# --- Make TCP more robust in container settings
-export UCX_TCP_CM_REUSEADDR=y
-export UCX_TCP_TX_SEG_SIZE=16k
-export UCX_TCP_RX_SEG_SIZE=16k
-  
-# --- Force TCP to be used for all traffic
-#export UCX_NET_DEVICES=eth0
-#export UCX_UNIFIED_MODE=y
-  
-# --- Reduce log level to see exactly what's failing
-#export UCX_LOG_LEVEL=DEBUG
+# --- Set the number of processes per host and the total number of processes
+ppn=2
+np=$(( $num_hosts * $ppn ))
 
-# --- Disable huge pages for now
-export UCX_MM_HUGETLB=n
-export UCX_SYSV_HUGETLB=n
-export UCX_POSIX_HUGETLB=n
+# --- Create a hostfile with specified slots per host
+create_hostfile() {
+  local ppn=$1
+  local hostfile="hostfile.txt"
+  # --- Clear the hostfile if it exists
+  > "$hostfile"
+  # --- Write each host and its slots to the hostfile
+  for host in ${hosts//,/ }; do
+    echo "$host slots=$ppn" >> "$hostfile"
+  done
+  # --- Return the hostfile name
+  echo "$hostfile"
+}
+
+# ---  Create hostfile with 2 slots per host
+hostfile=$(create_hostfile $ppn)
+
+# --- Set launcher
+oshrun=$OSSS_TESTING_BIN/oshrun
+
+# --- Run tests
+echo $hline
+echo "Running tests with $num_hosts hosts and $ppn processes per host"
+echo "Hostfile:"
+cat $hostfile
+echo $hline
 
 # --- Run tests
 ./shmemvv.sh \
-  --enable_c                            \
-  --launcher $OSHRUN                    \
-  --launcher_args "--allow-run-as-root" \
-  --np 2                                \
-  --test_all # --test_signaling
+  --enable_c \
+  --launcher $oshrun \
+  --launcher_args "--hostfile $hostfile" \
+  --np $np \
+  --test_threads
 
+# --- Clean up
+rm $hostfile

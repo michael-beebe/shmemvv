@@ -15,7 +15,7 @@
 // Reduce timeout for faster test completion
 #define TIMEOUT 1
 
-#define TEST_C11_SHMEM_WAIT_UNTIL(TYPE)                              \
+#define TEST_C11_SHMEM_WAIT_UNTIL(TYPE)                                        \
   ({                                                                           \
     log_routine("shmem_wait_until(" #TYPE ")");                                \
     bool success = true;                                                       \
@@ -40,7 +40,7 @@
         for (int pe = 1; pe < npes; ++pe) {                                    \
           log_info("PE 0: Setting flag to 1 on PE %d (address: %p)", pe,       \
                    (void *)flag);                                              \
-          shmem_put(flag, &one, 1, pe);                           \
+          shmem_put(flag, &one, 1, pe);                                        \
         }                                                                      \
         shmem_quiet();                                                         \
         log_info("PE 0: Called shmem_quiet() after setting flags");            \
@@ -55,7 +55,7 @@
         time_t start_time = time(NULL);                                        \
         bool flag_set = false;                                                 \
         while (!flag_set) {                                                    \
-          flag_set = shmem_test(flag, SHMEM_CMP_EQ, 1);           \
+          flag_set = shmem_test(flag, SHMEM_CMP_EQ, 1);                        \
           if (flag_set) {                                                      \
             break;                                                             \
           }                                                                    \

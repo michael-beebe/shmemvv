@@ -21,7 +21,7 @@
     TYPE *src = (TYPE *)shmem_malloc(npes * npes * sizeof(TYPE));              \
     TYPE *dest = (TYPE *)shmem_malloc(npes * npes * sizeof(TYPE));             \
     log_info("shmem_malloc'd %d bytes @ &src = %p, %d bytes @ &dest = %p",     \
-             npes *npes * sizeof(TYPE), (void *)src,                           \
+             npes * npes * sizeof(TYPE), (void *)src,                          \
              npes * npes * sizeof(TYPE), (void *)dest);                        \
                                                                                \
     for (int i = 0; i < npes; ++i) {                                           \
@@ -39,7 +39,7 @@
     for (int i = 0; i < npes; ++i) {                                           \
       if (dest[i] != i * npes + mype) {                                        \
         log_info("index %d of dest (%p) failed. expected %d, got %d", i,       \
-                 &dest[i], i *npes + mype, (char)dest[i]);                     \
+                 &dest[i], i * npes + mype, (char)dest[i]);                    \
         success = false;                                                       \
         break;                                                                 \
       }                                                                        \
