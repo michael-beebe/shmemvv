@@ -6,12 +6,12 @@
 # Usage: ./shmemvv.sh [options]
 
 # Options:
-#   --test_setup            Run setup tests
-#   --test_threads          Run thread support tests
-#   --test_mem              Run memory management tests
-#   --test_teams            Run team management tests
-#   --test_ctx              Run communication/context management tests
-#   --test_remote           Run remote memory access tests
+#   COMPLETE --test_setup            Run setup tests
+#   COMPLETE --test_threads          Run thread support tests
+#   COMPLETE --test_mem              Run memory management tests
+#   COMPLETE --test_teams            Run team management tests
+#   COMPLETE --test_ctx              Run communication/context management tests
+#   COMPLETE --test_remote           Run remote memory access tests
 #   --test_atomics          Run atomic memory operations tests
 #   --test_signaling        Run signaling operations tests
 #   --test_collectives      Run collective operations tests
@@ -89,7 +89,7 @@ export PMIX_DEBUG=1
 
 # --- Run tests
 ./shmemvv.sh \
-  --enable_c \
+  --enable_c11 \
   --launcher $oshrun \
   --launcher_args "--hostfile $hostfile" \
   --np $np \
