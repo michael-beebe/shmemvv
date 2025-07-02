@@ -26,19 +26,36 @@ bool test_shmem_team_translate_pe(void) {
     return false;
   }
   log_info("Team split successful");
+  
+  shmem_barrier_all();
 
-  log_info("Calling team_translate_pe(split_team -> world team)");
-  int pe_in_team = shmem_team_translate_pe(team, 0, SHMEM_TEAM_WORLD);
-  if (pe_in_team >= 0)
-    log_info("Returned PE is valid");
-  else
-    log_fail("Returned PE is invalid! Expected >= 0, got %d", pe_in_team);
+  int team_mype = shmem_team_my_pe(team);
+  log_info("Our PE in team: %d", team_mype);
+  
+  if (team_mype < 0) {
+    log_fail("shmem_team_my_pe() returned %d, PE not in team", team_mype);
+    shmem_team_destroy(team);
+    return false;
+  }
+  
+  log_info("Calling team_translate_pe(team PE %d -> world team)", team_mype);
+  int pe_in_world = shmem_team_translate_pe(team, team_mype, SHMEM_TEAM_WORLD);
+  int expected_world_pe = shmem_my_pe();
+  
+  log_info("Translation result: team PE %d -> world PE %d (expected %d)", 
+           team_mype, pe_in_world, expected_world_pe);
+  
+  if (pe_in_world != expected_world_pe) {
+    log_fail("Translation failed! Expected world PE %d, got %d", expected_world_pe, pe_in_world);
+  } else {
+    log_info("Translation successful");
+  }
 
   log_info("Destroying team");
   shmem_team_destroy(team);
   log_info("Team destroyed successfully");
 
-  return (pe_in_team >= 0);
+  return (pe_in_world == expected_world_pe);
 }
 
 int main(int argc, char *argv[]) {

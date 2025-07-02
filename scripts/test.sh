@@ -74,12 +74,18 @@ hostfile=$(create_hostfile $ppn)
 # --- Set launcher
 oshrun=$OSSS_TESTING_BIN/oshrun
 
-# --- Run tests
+# --- Print hostfile
 echo $hline
 echo "Running tests with $num_hosts hosts and $ppn processes per host"
 echo "Hostfile:"
 cat $hostfile
 echo $hline
+
+# --- Set some UCX vars
+export UCX_LOG_LEVEL=error
+export PMIX_MCA_gds=hash
+export PMIX_DEBUG=1
+
 
 # --- Run tests
 ./shmemvv.sh \
@@ -87,7 +93,7 @@ echo $hline
   --launcher $oshrun \
   --launcher_args "--hostfile $hostfile" \
   --np $np \
-  --test_threads
+  --test_remote
 
 # --- Clean up
 rm $hostfile
