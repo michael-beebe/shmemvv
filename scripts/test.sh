@@ -93,7 +93,7 @@ export PMIX_DEBUG=1
   --launcher $oshrun \
   --launcher_args "--hostfile $hostfile" \
   --np $np \
-  --test_remote
+  --test_teams
 
 # --- Clean up
 rm $hostfile

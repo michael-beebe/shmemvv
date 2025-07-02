@@ -26,7 +26,7 @@ bool test_shmem_team_n_pes(void) {
     return false;
   }
   log_info("Team split successful");
-  
+
   shmem_barrier_all();
 
   log_info("Calling shmem_team_n_pes()");
