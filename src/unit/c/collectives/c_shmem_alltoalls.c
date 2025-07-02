@@ -18,11 +18,11 @@
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
                                                                                \
-    TYPE *src = (TYPE *)shmem_malloc(npes * npes * sizeof(TYPE));              \
-    TYPE *dest = (TYPE *)shmem_malloc(npes * npes * sizeof(TYPE));             \
+    TYPE *src = (TYPE *)shmem_malloc(npes * sizeof(TYPE));                     \
+    TYPE *dest = (TYPE *)shmem_malloc(npes * sizeof(TYPE));                    \
     log_info("shmem_malloc'd %d bytes @ &src = %p, %d bytes @ &dest = %p",     \
-             npes * npes * sizeof(TYPE), (void *)src,                          \
-             npes * npes * sizeof(TYPE), (void *)dest);                        \
+             npes * sizeof(TYPE), (void *)src,                                 \
+             npes * sizeof(TYPE), (void *)dest);                               \
                                                                                \
     for (int i = 0; i < npes; ++i) {                                           \
       src[i] = mype + i * npes;                                                \
@@ -32,14 +32,14 @@
                                                                                \
     log_info("executing shmem_alltoalls: dest = %p, src = %p", (void *)dest,   \
              (void *)src);                                                     \
-    shmem_##TYPENAME##_alltoalls(SHMEM_TEAM_WORLD, dest, src, 1, 1, npes);     \
+    shmem_##TYPENAME##_alltoalls(SHMEM_TEAM_WORLD, dest, src, 1, 1, 1);        \
                                                                                \
     log_info("validating result...");                                          \
     bool success = true;                                                       \
     for (int i = 0; i < npes; ++i) {                                           \
-      if (dest[i] != i * npes + mype) {                                        \
+      if (dest[i] != i + mype * npes) {                                        \
         log_info("index %d of dest (%p) failed. expected %d, got %d", i,       \
-                 &dest[i], i * npes + mype, (char)dest[i]);                    \
+                 &dest[i], i + mype * npes, (char)dest[i]);                    \
         success = false;                                                       \
         break;                                                                 \
       }                                                                        \

@@ -12,7 +12,7 @@
 #   COMPLETE --test_teams            Run team management tests
 #   COMPLETE --test_ctx              Run communication/context management tests
 #   COMPLETE --test_remote           Run remote memory access tests
-#   --test_atomics          Run atomic memory operations tests
+#   COMPLETE --test_atomics          Run atomic memory operations tests
 #   --test_signaling        Run signaling operations tests
 #   --test_collectives      Run collective operations tests
 #   --test_pt2pt_synch      Run point-to-point synchronization tests
@@ -86,14 +86,17 @@ export UCX_LOG_LEVEL=error
 export PMIX_MCA_gds=hash
 export PMIX_DEBUG=1
 
+# --- Set up log directory for all nodes
+export SHMEMVV_LOG_DIR="$(pwd)/logs/"
+mkdir -p $SHMEMVV_LOG_DIR
 
 # --- Run tests
 ./shmemvv.sh \
-  --enable_c11 \
+  --enable_c --enable_c11 \
   --launcher $oshrun \
-  --launcher_args "--hostfile $hostfile" \
+  --launcher_args "--hostfile $hostfile -x SHMEMVV_LOG_DIR" \
   --np $np \
-  --test_remote
+  --test_collectives
 
 # --- Clean up
 rm $hostfile

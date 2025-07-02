@@ -96,8 +96,17 @@ void log_routine(const char *routine) {
 }
 
 void log_init(const char *test_name) {
-  if (LOGGER)
-    return;
+  /* Close existing logger if it exists and is not stdout/stderr */
+  if (LOGGER && LOGGER != stdout && LOGGER != stderr) {
+    fclose(LOGGER);
+    LOGGER = NULL;
+  }
+  
+  /* If LOGGER is stdout/stderr, reset it to allow new file creation */
+  if (LOGGER == stdout || LOGGER == stderr) {
+    LOGGER = NULL;
+  }
+  
   const char *path_prefix = getenv("SHMEMVV_LOG_DIR");
   if (!path_prefix)
     path_prefix = "/tmp/";
@@ -118,7 +127,14 @@ void log_init(const char *test_name) {
 void log_close(int failed) {
   fprintf(LOGGER, "---------- END TEST: %s\n",
           failed == 0 ? "PASSED" : "FAILED");
-  fclose(LOGGER);
+  
+  /* Only close if it's a real file, not stdout/stderr */
+  if (LOGGER && LOGGER != stdout && LOGGER != stderr) {
+    fclose(LOGGER);
+  }
+  
+  /* Reset the global logger to allow reinitialization */
+  LOGGER = NULL;
 }
 
 #ifdef __cplusplus

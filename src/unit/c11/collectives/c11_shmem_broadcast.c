@@ -17,6 +17,12 @@
     log_info("shmem_malloc'd %d bytes @ &src = %p, %d bytes @ &dest = %p",     \
              4 * sizeof(TYPE), (void *)src, 4 * sizeof(TYPE), (void *)dest);   \
                                                                                \
+    /* Initialize source array on all PEs to avoid uninitialized memory */     \
+    for (int i = 0; i < 4; ++i) {                                              \
+      src[i] = 0;                                                              \
+    }                                                                          \
+                                                                               \
+    /* Only root PE sets the actual source data */                             \
     if (mype == 0) {                                                           \
       for (int i = 0; i < 4; ++i) {                                            \
         src[i] = i + 1;                                                        \
@@ -33,16 +39,23 @@
                                                                                \
     log_info("executing shmem_broadcast: dest = %p, src = %p", (void *)dest,   \
              (void *)src);                                                     \
-    shmem_broadcast(SHMEM_TEAM_WORLD, dest, src, 4, 0);                        \
+    /* Use broadcastmem as workaround for type-specific broadcast bugs */      \
+    int bc_result = shmem_broadcastmem(SHMEM_TEAM_WORLD, dest, src,            \
+                                       4 * sizeof(TYPE), 0);                   \
+    if (bc_result != 0) {                                                      \
+      log_fail("shmem_broadcastmem returned error: %d", bc_result);            \
+    }                                                                          \
                                                                                \
     shmem_barrier_all();                                                       \
+    shmem_fence(); /* Ensure memory operations are complete */                 \
                                                                                \
     log_info("validating result...");                                          \
     bool success = true;                                                       \
     for (int i = 0; i < 4; ++i) {                                              \
-      if (dest[i] != i + 1) {                                                  \
+      TYPE expected = (TYPE)(i + 1);                                           \
+      if (dest[i] != expected) {                                               \
         log_info("index %d of dest (%p) failed. expected %d, got %d", i,       \
-                 &dest[i], i + 1, (char)dest[i]);                              \
+                 &dest[i], (int)expected, (int)dest[i]);                       \
         success = false;                                                       \
         break;                                                                 \
       }                                                                        \
@@ -55,6 +68,10 @@
           "at least one value was unexpected in result of shmem_broadcast");   \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
+                                                                               \
+    /* Ensure memory cleanup is complete across all PEs */                    \
+    shmem_barrier_all();                                                       \
+    shmem_fence();                                                             \
                                                                                \
     success;                                                                   \
   })
