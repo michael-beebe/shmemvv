@@ -40,8 +40,8 @@
     log_info("executing shmem_broadcast: dest = %p, src = %p", (void *)dest,   \
              (void *)src);                                                     \
     /* Use broadcastmem as workaround for type-specific broadcast bugs */      \
-    int bc_result = shmem_broadcastmem(SHMEM_TEAM_WORLD, dest, src,            \
-                                       4 * sizeof(TYPE), 0);                   \
+    int bc_result =                                                            \
+        shmem_broadcastmem(SHMEM_TEAM_WORLD, dest, src, 4 * sizeof(TYPE), 0);  \
     if (bc_result != 0) {                                                      \
       log_fail("shmem_broadcastmem returned error: %d", bc_result);            \
     }                                                                          \
@@ -69,7 +69,7 @@
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
                                                                                \
-    /* Ensure memory cleanup is complete across all PEs */                    \
+    /* Ensure memory cleanup is complete across all PEs */                     \
     shmem_barrier_all();                                                       \
     shmem_fence();                                                             \
                                                                                \

@@ -40,8 +40,8 @@
     log_info("executing shmem_broadcast: dest = %p, src = %p", (void *)dest,   \
              (void *)src);                                                     \
     /* Use broadcastmem as workaround for type-specific broadcast bugs */      \
-    int bc_result = shmem_broadcastmem(SHMEM_TEAM_WORLD, dest, src,            \
-                                       4 * sizeof(TYPE), 0);                   \
+    int bc_result =                                                            \
+        shmem_broadcastmem(SHMEM_TEAM_WORLD, dest, src, 4 * sizeof(TYPE), 0);  \
     if (bc_result != 0) {                                                      \
       log_fail("shmem_broadcastmem returned error: %d", bc_result);            \
     }                                                                          \
@@ -59,8 +59,8 @@
         /* Additional debugging for the first few bytes */                     \
         if (i == 0) {                                                          \
           unsigned char *ptr = (unsigned char *)&dest[i];                      \
-          log_info("First element bytes: %02x %02x %02x %02x",                 \
-                   ptr[0], ptr[1], ptr[2], ptr[3]);                            \
+          log_info("First element bytes: %02x %02x %02x %02x", ptr[0], ptr[1], \
+                   ptr[2], ptr[3]);                                            \
         }                                                                      \
         success = false;                                                       \
         break;                                                                 \
@@ -75,7 +75,7 @@
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
                                                                                \
-    /* Ensure memory cleanup is complete across all PEs */                    \
+    /* Ensure memory cleanup is complete across all PEs */                     \
     shmem_barrier_all();                                                       \
     shmem_fence();                                                             \
                                                                                \

@@ -21,8 +21,8 @@
     TYPE *src = (TYPE *)shmem_malloc(npes * sizeof(TYPE));                     \
     TYPE *dest = (TYPE *)shmem_malloc(npes * sizeof(TYPE));                    \
     log_info("shmem_malloc'd %d bytes @ &src = %p, %d bytes @ &dest = %p",     \
-             npes * sizeof(TYPE), (void *)src,                                 \
-             npes * sizeof(TYPE), (void *)dest);                               \
+             npes * sizeof(TYPE), (void *)src, npes * sizeof(TYPE),            \
+             (void *)dest);                                                    \
                                                                                \
     for (int i = 0; i < npes; ++i) {                                           \
       src[i] = mype + i * npes;                                                \
