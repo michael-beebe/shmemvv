@@ -10,11 +10,17 @@
 
 bool test_shmem_team_sync(void) {
   log_routine("shmem_team_sync()");
-  static long shared_counter;
-  log_info("Shared counter initialized at address %p", (void *)&shared_counter);
   bool success = true;
 
-  shared_counter = 0;
+  /* Allocate counter in symmetric memory so all PEs can access it */
+  long *shared_counter = (long *)shmem_malloc(sizeof(long));
+  if (shared_counter == NULL) {
+    log_fail("Failed to allocate shared counter");
+    return false;
+  }
+
+  *shared_counter = 0;
+  log_info("Shared counter initialized at address %p", (void *)shared_counter);
   log_info("Initialized shared counter to 0");
   shmem_barrier_all();
   log_info("Completed initial barrier synchronization");
@@ -34,17 +40,19 @@ bool test_shmem_team_sync(void) {
   log_info("Team split successful");
 
   log_info("Performing atomic increment on shared counter at PE 0");
-  shmem_atomic_inc(&shared_counter, 0);
+  shmem_atomic_inc(shared_counter, 0);
 
   log_info("Initiating team synchronization");
   shmem_sync(team);
   log_info("Team synchronization completed");
 
   log_info("Validating shared counter value");
-  if (shared_counter != shmem_n_pes()) {
+  /* All PEs read the counter value from PE 0 */
+  long final_count = shmem_long_g(shared_counter, 0);
+  if (final_count != shmem_n_pes()) {
     log_fail("Shared counter validation failed: expected %d, got %ld",
-             shmem_n_pes(), shared_counter);
-    if (shared_counter < shmem_n_pes()) {
+             shmem_n_pes(), final_count);
+    if (final_count < shmem_n_pes()) {
       log_fail("Team synchronization may have failed to propagate all atomic "
                "operations");
     } else {
@@ -59,6 +67,7 @@ bool test_shmem_team_sync(void) {
 
   log_info("Destroying team");
   shmem_team_destroy(team);
+  shmem_free(shared_counter);
   log_info("Team destroyed successfully");
   return success;
 }

@@ -11,15 +11,21 @@
 bool test_shmem_team_sync(void) {
   log_routine("shmem_team_sync()");
   static long pSync[SHMEM_SYNC_SIZE];
-  static long shared_counter;
-  log_info("counter @ %p", (void *)&shared_counter);
   bool success = true;
+
+  /* Allocate counter in symmetric memory so all PEs can access it */
+  long *shared_counter = (long *)shmem_malloc(sizeof(long));
+  if (shared_counter == NULL) {
+    log_fail("Failed to allocate shared counter");
+    return false;
+  }
 
   for (int i = 0; i < SHMEM_SYNC_SIZE; i++) {
     pSync[i] = SHMEM_SYNC_VALUE;
   }
 
-  shared_counter = 0;
+  *shared_counter = 0;
+  log_info("counter @ %p", (void *)shared_counter);
   log_info("set counter to 0");
   shmem_barrier_all();
 
@@ -29,15 +35,17 @@ bool test_shmem_team_sync(void) {
                            &team);
 
   log_info("incrementing counter");
-  shmem_atomic_inc(&shared_counter, 0);
+  shmem_atomic_inc(shared_counter, 0);
 
   log_info("calling team_sync");
   shmem_team_sync(team);
 
   log_info("validating result...");
-  if (shared_counter != shmem_n_pes()) {
-    log_fail("expected counter = %d, got %d!", shmem_n_pes(), shared_counter);
-    if (shared_counter < shmem_n_pes())
+  /* All PEs read the counter value from PE 0 */
+  long final_count = shmem_long_g(shared_counter, 0);
+  if (final_count != shmem_n_pes()) {
+    log_fail("expected counter = %d, got %ld!", shmem_n_pes(), final_count);
+    if (final_count < shmem_n_pes())
       log_fail("team_sync may not have sent all atomic operations!");
     else
       log_fail("team_split_strided may have made too many teams, or team_sync "
@@ -48,6 +56,7 @@ bool test_shmem_team_sync(void) {
   }
 
   shmem_team_destroy(team);
+  shmem_free(shared_counter);
   return success;
 }
 
