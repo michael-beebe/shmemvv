@@ -1,2 +1,0 @@
-rpc-91-2 slots=2
-rpc-91-3 slots=2
