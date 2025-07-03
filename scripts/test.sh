@@ -15,8 +15,8 @@
 #   COMPLETE --test_atomics          Run atomic memory operations tests
 #   --test_signaling        Run signaling operations tests
 #   COMPLETE --test_collectives      Run collective operations tests
-#   --test_pt2pt_synch      Run point-to-point synchronization tests
-#   --test_locking          Run distributed locking tests
+#   COMPLETE --test_pt2pt_synch      Run point-to-point synchronization tests
+#   COMPLETE --test_locking          Run distributed locking tests
 #   --test_all              (default) Run all tests
 
 #   --exclude_setup         Exclude setup tests
@@ -92,7 +92,7 @@ mkdir -p $SHMEMVV_LOG_DIR
 
 # --- Run tests
 ./shmemvv.sh \
-  --enable_c \
+  --enable_c --enable_c11 \
   --launcher $oshrun \
   --launcher_args "--hostfile $hostfile -x SHMEMVV_LOG_DIR" \
   --np $np \

@@ -6,64 +6,68 @@
 #include <shmem.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 #include <time.h>
 #include <unistd.h>
 
 #include "log.h"
 #include "shmemvv.h"
 
-#define TIMEOUT 2
+#define TIMEOUT 10
+
 #define TEST_C11_SHMEM_WAIT_UNTIL_ANY(TYPE)                                    \
   ({                                                                           \
     log_routine("c11_shmem_wait_until_any(" #TYPE ")");                        \
     bool success = true;                                                       \
-    TYPE *flags = (TYPE *)shmem_malloc(3 * sizeof(TYPE));                      \
-    log_info("Allocated flags array (%zu bytes) at address %p",                \
-             3 * sizeof(TYPE), (void *)flags);                                 \
-    if (flags == NULL) {                                                       \
-      log_fail("Memory allocation failed - shmem_malloc returned NULL");       \
+    int mype = shmem_my_pe();                                                  \
+    int npes = shmem_n_pes();                                                  \
+    TYPE *wait_vars = (TYPE *)shmem_calloc(npes, sizeof(TYPE));                \
+    log_info("Allocated wait_vars array (%zu bytes) at address %p",            \
+             npes * sizeof(TYPE), (void *)wait_vars);                          \
+    if (wait_vars == NULL) {                                                   \
+      log_fail("Memory allocation failed - shmem_calloc returned NULL");       \
       success = false;                                                         \
     } else {                                                                   \
-      for (int i = 0; i < 3; i++) {                                            \
-        flags[i] = 0;                                                          \
+      log_info("PE %d: Sending value %d to all PEs", mype, (int)(mype + 1));   \
+      /* Put mype+1 to every PE */                                             \
+      for (int i = 0; i < npes; i++) {                                         \
+        TYPE value = (TYPE)(mype + 1);                                         \
+        shmem_put(&wait_vars[mype], &value, 1, i);                             \
       }                                                                        \
-      log_info("Initialized all flags to 0");                                  \
-      int mype = shmem_my_pe();                                                \
+      shmem_quiet();                                                           \
+      log_info("PE %d: Completed sending to all PEs", mype);                   \
                                                                                \
-      shmem_barrier_all();                                                     \
-                                                                               \
-      if (mype == 0) {                                                         \
-        log_info("PE 0: Setting flags[2] to 1 on PE 1 (address: %p)",          \
-                 (void *)&flags[2]);                                           \
-        shmem_p(&flags[2], 1, 1);                                              \
-        shmem_quiet();                                                         \
-        log_info("PE 0: Called shmem_quiet() after setting flag");             \
-      }                                                                        \
-                                                                               \
-      shmem_barrier_all();                                                     \
-                                                                               \
-      if (mype != 0) {                                                         \
-        int status[3] = {SHMEM_CMP_EQ, SHMEM_CMP_EQ, SHMEM_CMP_EQ};            \
-        log_info("PE %d: Starting wait_until_any (flags=%p, n=3, "             \
-                 "status=[SHMEM_CMP_EQ x3], target=1)",                        \
-                 mype, (void *)flags);                                         \
+      int nrecv = 0, errors = 0;                                               \
+      log_info("PE %d: Starting to wait for messages from all PEs", mype);     \
+      /* Wait for all messages to arrive using shmem_wait_until_any */         \
+      while (nrecv < npes) {                                                   \
+        log_info("PE %d: Waiting for any message using shmem_wait_until_any",  \
+                 mype);                                                        \
         size_t index =                                                         \
-            shmem_wait_until_any(flags, 3, status, SHMEM_CMP_EQ, 1);           \
-        log_info("PE %d: wait_until_any completed with index=%zu", mype,       \
-                 index);                                                       \
+            shmem_wait_until_any(wait_vars, npes, NULL, SHMEM_CMP_NE, 0);      \
         if (index == SIZE_MAX) {                                               \
-          log_fail("PE %d: wait_until_any failed - returned SIZE_MAX", mype);  \
-          success = false;                                                     \
-        } else if (flags[index] != 1) {                                        \
-          log_fail("PE %d: Validation failed - flags[%zu]=%d, expected 1",     \
-                   mype, index, (int)flags[index]);                            \
-          success = false;                                                     \
-        } else {                                                               \
-          log_info("PE %d: Successfully validated flags[%zu]=1", mype, index); \
+          log_fail("PE %d: shmem_wait_until_any returned SIZE_MAX", mype);     \
+          errors++;                                                            \
+          break;                                                               \
         }                                                                      \
+        TYPE expected = (TYPE)(index + 1);                                     \
+        if (wait_vars[index] != expected) {                                    \
+          log_fail("PE %d: wait_vars[%zu] = %d, expected %d", mype, index,     \
+                   (int)wait_vars[index], (int)expected);                      \
+          errors++;                                                            \
+        } else {                                                               \
+          log_info("PE %d: Received correct value %d from PE %zu", mype,       \
+                   (int)wait_vars[index], index);                              \
+        }                                                                      \
+        wait_vars[index] = 0; /* Reset so we don't find it again */            \
+        nrecv++;                                                               \
       }                                                                        \
-      log_info("Freeing allocated memory at %p", (void *)flags);               \
-      shmem_free(flags);                                                       \
+      log_info("PE %d: Received %d messages with %d errors", mype, nrecv,      \
+               errors);                                                        \
+      if (errors > 0)                                                          \
+        success = false;                                                       \
+      log_info("Freeing allocated memory at %p", (void *)wait_vars);           \
+      shmem_free(wait_vars);                                                   \
     }                                                                          \
     success;                                                                   \
   })

@@ -6,67 +6,69 @@
 #include <shmem.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 #include <time.h>
 #include <unistd.h>
 
 #include "log.h"
 #include "shmemvv.h"
 
-#define TIMEOUT 2
+#define TIMEOUT 10
+
 #define TEST_C11_SHMEM_WAIT_UNTIL_ALL_VECTOR(TYPE)                             \
   ({                                                                           \
     log_routine("c11_shmem_wait_until_all_vector(" #TYPE ")");                 \
     bool success = true;                                                       \
-    TYPE *flags = (TYPE *)shmem_malloc(4 * sizeof(TYPE));                      \
-    log_info("Allocated flags array (%zu bytes) at address %p",                \
-             4 * sizeof(TYPE), (void *)flags);                                 \
-    if (flags == NULL) {                                                       \
-      log_fail("Memory allocation failed - shmem_malloc returned NULL");       \
+    int mype = shmem_my_pe();                                                  \
+    int npes = shmem_n_pes();                                                  \
+    TYPE *wait_vars = (TYPE *)shmem_calloc(npes, sizeof(TYPE));                \
+    log_info("Allocated wait_vars array (%zu bytes) at address %p",            \
+             npes * sizeof(TYPE), (void *)wait_vars);                          \
+    if (wait_vars == NULL) {                                                   \
+      log_fail("Memory allocation failed - shmem_calloc returned NULL");       \
       success = false;                                                         \
     } else {                                                                   \
-      for (int i = 0; i < 4; ++i) {                                            \
-        flags[i] = 0;                                                          \
+      log_info("PE %d: Sending value %d to all PEs", mype, (int)(mype + 1));   \
+      /* Put mype+1 to every PE */                                             \
+      for (int i = 0; i < npes; i++) {                                         \
+        TYPE value = (TYPE)(mype + 1);                                         \
+        shmem_put(&wait_vars[mype], &value, 1, i);                             \
       }                                                                        \
-      log_info("Initialized all flags to 0");                                  \
-      int mype = shmem_my_pe();                                                \
+      shmem_quiet();                                                           \
+      log_info("PE %d: Completed sending to all PEs", mype);                   \
                                                                                \
-      shmem_barrier_all();                                                     \
-                                                                               \
-      if (mype == 0) {                                                         \
-        for (int i = 0; i < 4; ++i) {                                          \
-          shmem_p(&flags[i], 1, 1);                                            \
-        }                                                                      \
-        log_info("PE 0: Set all flags to 1 on PE 1");                          \
-        shmem_quiet();                                                         \
-        log_info("PE 0: Called shmem_quiet() after setting flags");            \
+      TYPE cmp_values[npes];                                                   \
+      /* Set up comparison values - wait for each PE's expected value */       \
+      for (int i = 0; i < npes; i++) {                                         \
+        cmp_values[i] = (TYPE)(i + 1);                                         \
       }                                                                        \
+      log_info("PE %d: Waiting for all messages to arrive using "              \
+               "shmem_wait_until_all_vector",                                  \
+               mype);                                                          \
+      /* Wait for all messages to arrive using shmem_wait_until_all_vector */  \
+      shmem_wait_until_all_vector(wait_vars, npes, NULL, SHMEM_CMP_EQ,         \
+                                  cmp_values);                                 \
+      log_info("PE %d: shmem_wait_until_all_vector completed", mype);          \
                                                                                \
-      shmem_barrier_all();                                                     \
-                                                                               \
-      if (mype != 0) {                                                         \
-        int status[4] = {SHMEM_CMP_EQ, SHMEM_CMP_EQ, SHMEM_CMP_EQ,             \
-                         SHMEM_CMP_EQ};                                        \
-        TYPE cmp_values[4] = {1, 1, 1, 1};                                     \
-        log_info("PE %d: Starting wait_until_all_vector (flags=%p, n=4, "      \
-                 "status=[SHMEM_CMP_EQ x4], cmp_values=[1 x4])",               \
-                 mype, (void *)flags);                                         \
-        shmem_wait_until_all_vector(flags, 4, status, SHMEM_CMP_EQ,            \
-                                    cmp_values);                               \
-        log_info("PE %d: wait_until_all_vector completed", mype);              \
-        for (int i = 0; i < 4; ++i) {                                          \
-          if (flags[i] != 1) {                                                 \
-            log_fail("PE %d: Validation failed - flags[%d]=%d, expected 1",    \
-                     mype, i, (int)flags[i]);                                  \
-            success = false;                                                   \
-            break;                                                             \
-          }                                                                    \
-        }                                                                      \
-        if (success) {                                                         \
-          log_info("PE %d: Successfully validated all flags=1", mype);         \
+      int errors = 0;                                                          \
+      /* Validate all received messages */                                     \
+      for (int who = 0; who < npes; who++) {                                   \
+        TYPE expected = (TYPE)(who + 1);                                       \
+        if (wait_vars[who] != expected) {                                      \
+          log_fail("PE %d: wait_vars[%d] = %d, expected %d", mype, who,        \
+                   (int)wait_vars[who], (int)expected);                        \
+          errors++;                                                            \
+        } else {                                                               \
+          log_info("PE %d: Received correct value %d from PE %d", mype,        \
+                   (int)wait_vars[who], who);                                  \
         }                                                                      \
       }                                                                        \
-      log_info("Freeing allocated memory at %p", (void *)flags);               \
-      shmem_free(flags);                                                       \
+      log_info("PE %d: Validated %d messages with %d errors", mype, npes,      \
+               errors);                                                        \
+      if (errors > 0)                                                          \
+        success = false;                                                       \
+      log_info("Freeing allocated memory at %p", (void *)wait_vars);           \
+      shmem_free(wait_vars);                                                   \
     }                                                                          \
     success;                                                                   \
   })
