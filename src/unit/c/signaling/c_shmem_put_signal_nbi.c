@@ -15,57 +15,57 @@
   ({                                                                           \
     log_routine("shmem_" #TYPENAME "_put_signal_nbi");                         \
     bool success = true;                                                       \
-    static TYPE dest = 0;                                                      \
-    static TYPE value = (TYPE)123;                                             \
-    static uint64_t signal = 0;                                                \
-    log_info(                                                                  \
-        "Test variables initialized - signal @ %p, value @ %p, dest @ %p",     \
-        &signal, &value, &dest);                                               \
+    TYPE *dest = (TYPE *)shmem_malloc(sizeof(TYPE));                           \
+    TYPE *value = (TYPE *)shmem_malloc(sizeof(TYPE));                          \
+    uint64_t *signal = (uint64_t *)shmem_malloc(sizeof(uint64_t));             \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
-    log_info("Running on PE %d of %d total PEs", mype, npes);                  \
                                                                                \
-    if (npes < 2) {                                                            \
+    if (!dest || !value || !signal) {                                          \
+      log_fail("Failed to allocate symmetric memory");                         \
+      success = false;                                                         \
+    } else if (npes < 2) {                                                     \
       log_fail("Test requires at least 2 PEs, but only %d PE(s) available",    \
                npes);                                                          \
       success = false;                                                         \
     } else {                                                                   \
-      int target_pe = (mype + 1) % npes;                                       \
-      log_info("PE %d will send data to PE %d", mype, target_pe);              \
+      log_info("dest @ %p, value @ %p, signal @ %p", dest, value, signal);     \
                                                                                \
-      log_info("Entering barrier before data transfer");                       \
+      /* Initialize values */                                                  \
+      *dest = 0;                                                               \
+      *value = (TYPE)123;                                                      \
+      *signal = 0;                                                             \
+                                                                               \
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype == 0) {                                                         \
-        log_info("PE 0: Initiating non-blocking put with signal to PE %d",     \
-                 target_pe);                                                   \
-        log_info("Sending value %d with signal value 1", (int)value);          \
-        shmem_##TYPENAME##_put_signal_nbi(&dest, &value, 1, &signal, 1,        \
-                                          target_pe, SHMEM_SIGNAL_SET);        \
-        log_info("Calling quiet to ensure transfer completion");               \
-        shmem_quiet();                                                         \
+        log_info("PE 0: Broadcasting to all PEs using put_signal_nbi");        \
+        for (int i = 0; i < npes; i++) {                                       \
+          log_info("calling shmem_" #TYPENAME "_put_signal_nbi to PE %d", i);  \
+          shmem_##TYPENAME##_put_signal_nbi(dest, value, 1, signal, 1,         \
+                                            SHMEM_SIGNAL_SET, i);              \
+        }                                                                      \
       }                                                                        \
                                                                                \
-      log_info("Entering barrier after data transfer");                        \
-      shmem_barrier_all();                                                     \
+      /* Each PE waits for its own signal */                                   \
+      shmem_uint64_wait_until(signal, SHMEM_CMP_EQ, 1);                        \
                                                                                \
-      if (mype == 1) {                                                         \
-        log_info("PE 1: Validating received data and signal");                 \
-        log_info("Expected: dest = 123, signal = 1");                          \
-        log_info("Received: dest = %d, signal = %lu", (int)dest,               \
-                 (unsigned long)signal);                                       \
-        if (dest != 123 || signal != 1) {                                      \
-          log_fail("Validation failed: Data or signal mismatch");              \
-          success = false;                                                     \
-        } else {                                                               \
-          log_info(                                                            \
-              "Validation successful: Data and signal match expected values"); \
-        }                                                                      \
+      if (*dest != 123 || *signal != 1) {                                      \
+        log_fail("validation failed: dest = %d (expected 123), "               \
+                 "signal = %d (expected 1)",                                   \
+                 (int)*dest, (int)*signal);                                    \
+        success = false;                                                       \
       } else {                                                                 \
-        log_info("PE %d: Waiting while PE 1 validates results", mype);         \
+        log_info("result is valid");                                           \
       }                                                                        \
     }                                                                          \
-    log_info("Test completed with %s", success ? "SUCCESS" : "FAILURE");       \
+                                                                               \
+    if (dest)                                                                  \
+      shmem_free(dest);                                                        \
+    if (value)                                                                 \
+      shmem_free(value);                                                       \
+    if (signal)                                                                \
+      shmem_free(signal);                                                      \
     success;                                                                   \
   })
 
@@ -74,70 +74,77 @@
   ({                                                                           \
     log_routine("shmem_ctx_" #TYPENAME "_put_signal_nbi");                     \
     bool success = true;                                                       \
-    static TYPE dest = 0;                                                      \
-    static TYPE value = (TYPE)456;                                             \
-    static uint64_t signal = 0;                                                \
-    log_info(                                                                  \
-        "Test variables initialized - signal @ %p, value @ %p, dest @ %p",     \
-        &signal, &value, &dest);                                               \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
-    log_info("Running on PE %d of %d total PEs", mype, npes);                  \
                                                                                \
     if (npes < 2) {                                                            \
       log_fail("Test requires at least 2 PEs, but only %d PE(s) available",    \
                npes);                                                          \
       success = false;                                                         \
     } else {                                                                   \
-      int target_pe = (mype + 1) % npes;                                       \
-      log_info("PE %d will send data to PE %d", mype, target_pe);              \
+      TYPE *dest = (TYPE *)shmem_malloc(sizeof(TYPE));                         \
+      TYPE *value = (TYPE *)shmem_malloc(sizeof(TYPE));                        \
+      uint64_t *signal = (uint64_t *)shmem_malloc(sizeof(uint64_t));           \
                                                                                \
-      shmem_ctx_t ctx;                                                         \
-      int ctx_create_status = shmem_ctx_create(0, &ctx);                       \
+      if (!dest || !value || !signal) {                                        \
+        log_fail("Failed to allocate symmetric memory");                       \
+        success = false;                                                       \
+      } else {                                                                 \
+        log_info("dest @ %p, value @ %p, signal @ %p", dest, value, signal);   \
                                                                                \
-      if (ctx_create_status != 0) {                                            \
-        log_fail("Failed to create context");                                  \
-        return false;                                                          \
-      }                                                                        \
-      log_info("Successfully created context");                                \
+        /* Initialize values - use smaller value for small types */            \
+        *dest = 0;                                                             \
+        *value = (sizeof(TYPE) == 1) ? (TYPE)42 : (TYPE)456;                   \
+        *signal = 0;                                                           \
                                                                                \
-      log_info("Entering barrier before data transfer");                       \
-      shmem_barrier_all();                                                     \
+        shmem_ctx_t ctx;                                                       \
+        int ctx_create_status = shmem_ctx_create(0, &ctx);                     \
                                                                                \
-      if (mype == 0) {                                                         \
-        log_info(                                                              \
-            "PE 0: Initiating context non-blocking put with signal to PE %d",  \
-            target_pe);                                                        \
-        log_info("Sending value %d with signal value 1", (int)value);          \
-        shmem_ctx_##TYPENAME##_put_signal_nbi(ctx, &dest, &value, 1, &signal,  \
-                                              1, target_pe, SHMEM_SIGNAL_SET); \
-        log_info("Calling quiet to ensure transfer completion");               \
-        shmem_ctx_quiet(ctx);                                                  \
-      }                                                                        \
-                                                                               \
-      log_info("Entering barrier after data transfer");                        \
-      shmem_barrier_all();                                                     \
-                                                                               \
-      if (mype == 1) {                                                         \
-        log_info("PE 1: Validating received data and signal");                 \
-        log_info("Expected: dest = 456, signal = 1");                          \
-        log_info("Received: dest = %d, signal = %lu", (int)dest,               \
-                 (unsigned long)signal);                                       \
-        if (dest != 456 || signal != 1) {                                      \
-          log_fail("Validation failed: Data or signal mismatch");              \
+        if (ctx_create_status != 0) {                                          \
+          log_fail("Failed to create context");                                \
           success = false;                                                     \
         } else {                                                               \
-          log_info(                                                            \
-              "Validation successful: Data and signal match expected values"); \
+          log_info("Successfully created context");                            \
+                                                                               \
+          shmem_barrier_all();                                                 \
+                                                                               \
+          if (mype == 0) {                                                     \
+            log_info(                                                          \
+                "PE 0: Broadcasting to all PEs using ctx put_signal_nbi");     \
+            for (int i = 0; i < npes; i++) {                                   \
+              log_info("calling shmem_ctx_" #TYPENAME                          \
+                       "_put_signal_nbi to PE %d",                             \
+                       i);                                                     \
+              shmem_ctx_##TYPENAME##_put_signal_nbi(                           \
+                  ctx, dest, value, 1, signal, 1, SHMEM_SIGNAL_SET, i);        \
+            }                                                                  \
+          }                                                                    \
+                                                                               \
+          /* Each PE waits for its own signal */                               \
+          shmem_uint64_wait_until(signal, SHMEM_CMP_EQ, 1);                    \
+                                                                               \
+          TYPE expected_value = (sizeof(TYPE) == 1) ? (TYPE)42 : (TYPE)456;    \
+          if (*dest != expected_value || *signal != 1) {                       \
+            log_fail("validation failed: dest = %d (expected %d), "            \
+                     "signal = %d (expected 1)",                               \
+                     (int)*dest, (int)expected_value, (int)*signal);           \
+            success = false;                                                   \
+          } else {                                                             \
+            log_info("result is valid");                                       \
+          }                                                                    \
+                                                                               \
+          shmem_ctx_destroy(ctx);                                              \
+          log_info("Context destroyed");                                       \
         }                                                                      \
-      } else {                                                                 \
-        log_info("PE %d: Waiting while PE 1 validates results", mype);         \
       }                                                                        \
                                                                                \
-      shmem_ctx_destroy(ctx);                                                  \
-      log_info("Context destroyed");                                           \
+      if (dest)                                                                \
+        shmem_free(dest);                                                      \
+      if (value)                                                               \
+        shmem_free(value);                                                     \
+      if (signal)                                                              \
+        shmem_free(signal);                                                    \
     }                                                                          \
-    log_info("Test completed with %s", success ? "SUCCESS" : "FAILURE");       \
     success;                                                                   \
   })
 
@@ -146,58 +153,61 @@
   ({                                                                           \
     log_routine("shmem_put" #SIZE "_signal_nbi");                              \
     bool success = true;                                                       \
-    static uint##SIZE##_t dest = 0;                                            \
-    static uint##SIZE##_t value = 123;                                         \
-    static uint64_t signal = 0;                                                \
-    log_info(                                                                  \
-        "Test variables initialized - signal @ %p, value @ %p, dest @ %p",     \
-        &signal, &value, &dest);                                               \
+    uint##SIZE##_t *dest =                                                     \
+        (uint##SIZE##_t *)shmem_malloc(sizeof(uint##SIZE##_t));                \
+    uint##SIZE##_t *value =                                                    \
+        (uint##SIZE##_t *)shmem_malloc(sizeof(uint##SIZE##_t));                \
+    uint64_t *signal = (uint64_t *)shmem_malloc(sizeof(uint64_t));             \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
-    log_info("Running on PE %d of %d total PEs", mype, npes);                  \
                                                                                \
-    if (npes < 2) {                                                            \
+    if (!dest || !value || !signal) {                                          \
+      log_fail("Failed to allocate symmetric memory");                         \
+      success = false;                                                         \
+    } else if (npes < 2) {                                                     \
       log_fail("Test requires at least 2 PEs, but only %d PE(s) available",    \
                npes);                                                          \
       success = false;                                                         \
     } else {                                                                   \
-      int target_pe = (mype + 1) % npes;                                       \
-      log_info("PE %d will send data to PE %d", mype, target_pe);              \
+      log_info("SIZE=%d: dest @ %p, value @ %p, signal @ %p", SIZE, dest,      \
+               value, signal);                                                 \
                                                                                \
-      log_info("Entering barrier before data transfer");                       \
+      /* Initialize values */                                                  \
+      *dest = 0;                                                               \
+      *value = 123;                                                            \
+      *signal = 0;                                                             \
+                                                                               \
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype == 0) {                                                         \
-        log_info("PE 0: Initiating SIZE-specific non-blocking put with "       \
-                 "signal to PE %d",                                            \
-                 target_pe);                                                   \
-        log_info("Sending value %d with signal value 1", (int)value);          \
-        shmem_put##SIZE##_signal_nbi(&dest, &value, 1, &signal, 1, target_pe,  \
-                                     SHMEM_SIGNAL_SET);                        \
-        log_info("Calling quiet to ensure transfer completion");               \
-        shmem_quiet();                                                         \
+        log_info("PE 0: Broadcasting to all PEs using put" #SIZE               \
+                 "_signal_nbi");                                               \
+        for (int i = 0; i < npes; i++) {                                       \
+          log_info("calling shmem_put" #SIZE "_signal_nbi to PE %d", i);       \
+          shmem_put##SIZE##_signal_nbi(dest, value, 1, signal, 1,              \
+                                       SHMEM_SIGNAL_SET, i);                   \
+        }                                                                      \
       }                                                                        \
                                                                                \
-      log_info("Entering barrier after data transfer");                        \
-      shmem_barrier_all();                                                     \
+      /* Each PE waits for its own signal */                                   \
+      shmem_uint64_wait_until(signal, SHMEM_CMP_EQ, 1);                        \
                                                                                \
-      if (mype == 1) {                                                         \
-        log_info("PE 1: Validating received data and signal");                 \
-        log_info("Expected: dest = 123, signal = 1");                          \
-        log_info("Received: dest = %d, signal = %lu", (int)dest,               \
-                 (unsigned long)signal);                                       \
-        if (dest != 123 || signal != 1) {                                      \
-          log_fail("Validation failed: Data or signal mismatch");              \
-          success = false;                                                     \
-        } else {                                                               \
-          log_info(                                                            \
-              "Validation successful: Data and signal match expected values"); \
-        }                                                                      \
+      if (*dest != 123 || *signal != 1) {                                      \
+        log_fail("validation failed: dest = %d (expected 123), "               \
+                 "signal = %d (expected 1)",                                   \
+                 (int)*dest, (int)*signal);                                    \
+        success = false;                                                       \
       } else {                                                                 \
-        log_info("PE %d: Waiting while PE 1 validates results", mype);         \
+        log_info("result is valid");                                           \
       }                                                                        \
     }                                                                          \
-    log_info("Test completed with %s", success ? "SUCCESS" : "FAILURE");       \
+                                                                               \
+    if (dest)                                                                  \
+      shmem_free(dest);                                                        \
+    if (value)                                                                 \
+      shmem_free(value);                                                       \
+    if (signal)                                                                \
+      shmem_free(signal);                                                      \
     success;                                                                   \
   })
 
@@ -206,77 +216,79 @@
   ({                                                                           \
     log_routine("shmem_ctx_put" #SIZE "_signal_nbi");                          \
     bool success = true;                                                       \
-    static uint##SIZE##_t dest = 0;                                            \
-    /* Choose an appropriate value based on SIZE */                            \
-    static uint##SIZE##_t value = (SIZE == 8)    ? 200                         \
-                                  : (SIZE == 16) ? 456                         \
-                                                 : 456;                        \
-    static uint64_t signal = 0;                                                \
-    log_info(                                                                  \
-        "Test variables initialized - signal @ %p, value @ %p, dest @ %p",     \
-        &signal, &value, &dest);                                               \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
-    log_info("Running on PE %d of %d total PEs", mype, npes);                  \
                                                                                \
     if (npes < 2) {                                                            \
       log_fail("Test requires at least 2 PEs, but only %d PE(s) available",    \
                npes);                                                          \
       success = false;                                                         \
     } else {                                                                   \
-      int target_pe = (mype + 1) % npes;                                       \
-      log_info("PE %d will send data to PE %d", mype, target_pe);              \
+      uint##SIZE##_t *dest =                                                   \
+          (uint##SIZE##_t *)shmem_malloc(sizeof(uint##SIZE##_t));              \
+      uint##SIZE##_t *value =                                                  \
+          (uint##SIZE##_t *)shmem_malloc(sizeof(uint##SIZE##_t));              \
+      uint64_t *signal = (uint64_t *)shmem_malloc(sizeof(uint64_t));           \
                                                                                \
-      shmem_ctx_t ctx;                                                         \
-      int ctx_create_status = shmem_ctx_create(0, &ctx);                       \
+      if (!dest || !value || !signal) {                                        \
+        log_fail("Failed to allocate symmetric memory");                       \
+        success = false;                                                       \
+      } else {                                                                 \
+        log_info("CTX SIZE=%d: dest @ %p, value @ %p, signal @ %p", SIZE,      \
+                 dest, value, signal);                                         \
                                                                                \
-      if (ctx_create_status != 0) {                                            \
-        log_fail("Failed to create context");                                  \
-        return false;                                                          \
-      }                                                                        \
-      log_info("Successfully created context");                                \
+        /* Initialize values - use smaller value for small types */            \
+        *dest = 0;                                                             \
+        *value = (SIZE == 8) ? 42 : 456;                                       \
+        *signal = 0;                                                           \
                                                                                \
-      log_info("Entering barrier before data transfer");                       \
-      shmem_barrier_all();                                                     \
+        shmem_ctx_t ctx;                                                       \
+        int ctx_create_status = shmem_ctx_create(0, &ctx);                     \
                                                                                \
-      if (mype == 0) {                                                         \
-        log_info("PE 0: Initiating context SIZE-specific non-blocking put "    \
-                 "with signal to PE %d",                                       \
-                 target_pe);                                                   \
-        log_info("Sending value %d with signal value 1", (int)value);          \
-        shmem_ctx_put##SIZE##_signal_nbi(ctx, &dest, &value, 1, &signal, 1,    \
-                                         target_pe, SHMEM_SIGNAL_SET);         \
-        log_info("Calling quiet to ensure transfer completion");               \
-        shmem_ctx_quiet(ctx);                                                  \
-      }                                                                        \
-                                                                               \
-      log_info("Entering barrier after data transfer");                        \
-      shmem_barrier_all();                                                     \
-                                                                               \
-      if (mype == 1) {                                                         \
-        log_info("PE 1: Validating received data and signal");                 \
-        /* Use the appropriate expected value based on SIZE */                 \
-        uint##SIZE##_t expected = (SIZE == 8)    ? 200                         \
-                                  : (SIZE == 16) ? 456                         \
-                                                 : 456;                        \
-        log_info("Expected: dest = %d, signal = 1", (int)expected);            \
-        log_info("Received: dest = %d, signal = %lu", (int)dest,               \
-                 (unsigned long)signal);                                       \
-        if (dest != expected || signal != 1) {                                 \
-          log_fail("Validation failed: Data or signal mismatch");              \
+        if (ctx_create_status != 0) {                                          \
+          log_fail("Failed to create context");                                \
           success = false;                                                     \
         } else {                                                               \
-          log_info(                                                            \
-              "Validation successful: Data and signal match expected values"); \
+          log_info("Successfully created context");                            \
+                                                                               \
+          shmem_barrier_all();                                                 \
+                                                                               \
+          if (mype == 0) {                                                     \
+            log_info("PE 0: Broadcasting to all PEs using ctx put" #SIZE       \
+                     "_signal_nbi");                                           \
+            for (int i = 0; i < npes; i++) {                                   \
+              log_info("calling shmem_ctx_put" #SIZE "_signal_nbi to PE %d",   \
+                       i);                                                     \
+              shmem_ctx_put##SIZE##_signal_nbi(ctx, dest, value, 1, signal, 1, \
+                                               SHMEM_SIGNAL_SET, i);           \
+            }                                                                  \
+          }                                                                    \
+                                                                               \
+          /* Each PE waits for its own signal */                               \
+          shmem_uint64_wait_until(signal, SHMEM_CMP_EQ, 1);                    \
+                                                                               \
+          uint##SIZE##_t expected = (SIZE == 8) ? 42 : 456;                    \
+          if (*dest != expected || *signal != 1) {                             \
+            log_fail("validation failed: dest = %d (expected %d), "            \
+                     "signal = %d (expected 1)",                               \
+                     (int)*dest, (int)expected, (int)*signal);                 \
+            success = false;                                                   \
+          } else {                                                             \
+            log_info("result is valid");                                       \
+          }                                                                    \
+                                                                               \
+          shmem_ctx_destroy(ctx);                                              \
+          log_info("Context destroyed");                                       \
         }                                                                      \
-      } else {                                                                 \
-        log_info("PE %d: Waiting while PE 1 validates results", mype);         \
       }                                                                        \
                                                                                \
-      shmem_ctx_destroy(ctx);                                                  \
-      log_info("Context destroyed");                                           \
+      if (dest)                                                                \
+        shmem_free(dest);                                                      \
+      if (value)                                                               \
+        shmem_free(value);                                                     \
+      if (signal)                                                              \
+        shmem_free(signal);                                                    \
     }                                                                          \
-    log_info("Test completed with %s", success ? "SUCCESS" : "FAILURE");       \
     success;                                                                   \
   })
 
@@ -285,58 +297,58 @@
   ({                                                                           \
     log_routine("shmem_putmem_signal_nbi");                                    \
     bool success = true;                                                       \
-    static char dest[10];                                                      \
-    static char value[10] = "Hello";                                           \
-    static uint64_t signal = 0;                                                \
-    log_info(                                                                  \
-        "Test variables initialized - signal @ %p, value @ %p, dest @ %p",     \
-        &signal, value, dest);                                                 \
+    char *dest = (char *)shmem_malloc(10);                                     \
+    char *value = (char *)shmem_malloc(10);                                    \
+    uint64_t *signal = (uint64_t *)shmem_malloc(sizeof(uint64_t));             \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
-    log_info("Running on PE %d of %d total PEs", mype, npes);                  \
                                                                                \
-    if (npes < 2) {                                                            \
+    if (!dest || !value || !signal) {                                          \
+      log_fail("Failed to allocate symmetric memory");                         \
+      success = false;                                                         \
+    } else if (npes < 2) {                                                     \
       log_fail("Test requires at least 2 PEs, but only %d PE(s) available",    \
                npes);                                                          \
       success = false;                                                         \
     } else {                                                                   \
-      int target_pe = (mype + 1) % npes;                                       \
-      log_info("PE %d will send data to PE %d", mype, target_pe);              \
+      log_info("MEM: dest @ %p, value @ %p, signal @ %p", dest, value,         \
+               signal);                                                        \
                                                                                \
-      log_info("Entering barrier before data transfer");                       \
+      /* Initialize values */                                                  \
+      memset(dest, 0, 10);                                                     \
+      strcpy(value, "Hello");                                                  \
+      *signal = 0;                                                             \
+                                                                               \
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype == 0) {                                                         \
-        log_info("PE 0: Initiating memory-specific non-blocking put with "     \
-                 "signal to PE %d",                                            \
-                 target_pe);                                                   \
-        log_info("Sending value '%s' with signal value 1", value);             \
-        shmem_putmem_signal_nbi(dest, value, 6, &signal, 1, target_pe,         \
-                                SHMEM_SIGNAL_SET);                             \
-        log_info("Calling quiet to ensure transfer completion");               \
-        shmem_quiet();                                                         \
+        log_info("PE 0: Broadcasting to all PEs using putmem_signal_nbi");     \
+        for (int i = 0; i < npes; i++) {                                       \
+          log_info("calling shmem_putmem_signal_nbi to PE %d", i);             \
+          shmem_putmem_signal_nbi(dest, value, 6, signal, 1, SHMEM_SIGNAL_SET, \
+                                  i);                                          \
+        }                                                                      \
       }                                                                        \
                                                                                \
-      log_info("Entering barrier after data transfer");                        \
-      shmem_barrier_all();                                                     \
+      /* Each PE waits for its own signal */                                   \
+      shmem_uint64_wait_until(signal, SHMEM_CMP_EQ, 1);                        \
                                                                                \
-      if (mype == 1) {                                                         \
-        log_info("PE 1: Validating received data and signal");                 \
-        log_info("Expected: dest = 'Hello', signal = 1");                      \
-        log_info("Received: dest = '%s', signal = %lu", dest,                  \
-                 (unsigned long)signal);                                       \
-        if (strcmp(dest, "Hello") != 0 || signal != 1) {                       \
-          log_fail("Validation failed: Data or signal mismatch");              \
-          success = false;                                                     \
-        } else {                                                               \
-          log_info(                                                            \
-              "Validation successful: Data and signal match expected values"); \
-        }                                                                      \
+      if (strcmp(dest, "Hello") != 0 || *signal != 1) {                        \
+        log_fail("validation failed: dest = '%s' (expected 'Hello'), "         \
+                 "signal = %d (expected 1)",                                   \
+                 dest, (int)*signal);                                          \
+        success = false;                                                       \
       } else {                                                                 \
-        log_info("PE %d: Waiting while PE 1 validates results", mype);         \
+        log_info("result is valid");                                           \
       }                                                                        \
     }                                                                          \
-    log_info("Test completed with %s", success ? "SUCCESS" : "FAILURE");       \
+                                                                               \
+    if (dest)                                                                  \
+      shmem_free(dest);                                                        \
+    if (value)                                                                 \
+      shmem_free(value);                                                       \
+    if (signal)                                                                \
+      shmem_free(signal);                                                      \
     success;                                                                   \
   })
 
@@ -345,70 +357,75 @@
   ({                                                                           \
     log_routine("shmem_ctx_putmem_signal_nbi");                                \
     bool success = true;                                                       \
-    static char dest[10];                                                      \
-    static char value[10] = "World";                                           \
-    static uint64_t signal = 0;                                                \
-    log_info(                                                                  \
-        "Test variables initialized - signal @ %p, value @ %p, dest @ %p",     \
-        &signal, value, dest);                                                 \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
-    log_info("Running on PE %d of %d total PEs", mype, npes);                  \
                                                                                \
     if (npes < 2) {                                                            \
       log_fail("Test requires at least 2 PEs, but only %d PE(s) available",    \
                npes);                                                          \
       success = false;                                                         \
     } else {                                                                   \
-      int target_pe = (mype + 1) % npes;                                       \
-      log_info("PE %d will send data to PE %d", mype, target_pe);              \
+      char *dest = (char *)shmem_malloc(10);                                   \
+      char *value = (char *)shmem_malloc(10);                                  \
+      uint64_t *signal = (uint64_t *)shmem_malloc(sizeof(uint64_t));           \
                                                                                \
-      shmem_ctx_t ctx;                                                         \
-      int ctx_create_status = shmem_ctx_create(0, &ctx);                       \
+      if (!dest || !value || !signal) {                                        \
+        log_fail("Failed to allocate symmetric memory");                       \
+        success = false;                                                       \
+      } else {                                                                 \
+        log_info("CTX MEM: dest @ %p, value @ %p, signal @ %p", dest, value,   \
+                 signal);                                                      \
                                                                                \
-      if (ctx_create_status != 0) {                                            \
-        log_fail("Failed to create context");                                  \
-        return false;                                                          \
-      }                                                                        \
-      log_info("Successfully created context");                                \
+        /* Initialize values */                                                \
+        memset(dest, 0, 10);                                                   \
+        strcpy(value, "World");                                                \
+        *signal = 0;                                                           \
                                                                                \
-      log_info("Entering barrier before data transfer");                       \
-      shmem_barrier_all();                                                     \
+        shmem_ctx_t ctx;                                                       \
+        int ctx_create_status = shmem_ctx_create(0, &ctx);                     \
                                                                                \
-      if (mype == 0) {                                                         \
-        log_info("PE 0: Initiating context memory-specific non-blocking put "  \
-                 "with signal to PE %d",                                       \
-                 target_pe);                                                   \
-        log_info("Sending value '%s' with signal value 1", value);             \
-        shmem_ctx_putmem_signal_nbi(ctx, dest, value, 6, &signal, 1,           \
-                                    target_pe, SHMEM_SIGNAL_SET);              \
-        log_info("Calling quiet to ensure transfer completion");               \
-        shmem_ctx_quiet(ctx);                                                  \
-      }                                                                        \
-                                                                               \
-      log_info("Entering barrier after data transfer");                        \
-      shmem_barrier_all();                                                     \
-                                                                               \
-      if (mype == 1) {                                                         \
-        log_info("PE 1: Validating received data and signal");                 \
-        log_info("Expected: dest = 'World', signal = 1");                      \
-        log_info("Received: dest = '%s', signal = %lu", dest,                  \
-                 (unsigned long)signal);                                       \
-        if (strcmp(dest, "World") != 0 || signal != 1) {                       \
-          log_fail("Validation failed: Data or signal mismatch");              \
+        if (ctx_create_status != 0) {                                          \
+          log_fail("Failed to create context");                                \
           success = false;                                                     \
         } else {                                                               \
-          log_info(                                                            \
-              "Validation successful: Data and signal match expected values"); \
+          log_info("Successfully created context");                            \
+                                                                               \
+          shmem_barrier_all();                                                 \
+                                                                               \
+          if (mype == 0) {                                                     \
+            log_info(                                                          \
+                "PE 0: Broadcasting to all PEs using ctx putmem_signal_nbi");  \
+            for (int i = 0; i < npes; i++) {                                   \
+              log_info("calling shmem_ctx_putmem_signal_nbi to PE %d", i);     \
+              shmem_ctx_putmem_signal_nbi(ctx, dest, value, 6, signal, 1,      \
+                                          SHMEM_SIGNAL_SET, i);                \
+            }                                                                  \
+          }                                                                    \
+                                                                               \
+          /* Each PE waits for its own signal */                               \
+          shmem_uint64_wait_until(signal, SHMEM_CMP_EQ, 1);                    \
+                                                                               \
+          if (strcmp(dest, "World") != 0 || *signal != 1) {                    \
+            log_fail("validation failed: dest = '%s' (expected 'World'), "     \
+                     "signal = %d (expected 1)",                               \
+                     dest, (int)*signal);                                      \
+            success = false;                                                   \
+          } else {                                                             \
+            log_info("result is valid");                                       \
+          }                                                                    \
+                                                                               \
+          shmem_ctx_destroy(ctx);                                              \
+          log_info("Context destroyed");                                       \
         }                                                                      \
-      } else {                                                                 \
-        log_info("PE %d: Waiting while PE 1 validates results", mype);         \
       }                                                                        \
                                                                                \
-      shmem_ctx_destroy(ctx);                                                  \
-      log_info("Context destroyed");                                           \
+      if (dest)                                                                \
+        shmem_free(dest);                                                      \
+      if (value)                                                               \
+        shmem_free(value);                                                     \
+      if (signal)                                                              \
+        shmem_free(signal);                                                    \
     }                                                                          \
-    log_info("Test completed with %s", success ? "SUCCESS" : "FAILURE");       \
     success;                                                                   \
   })
 

@@ -17,12 +17,22 @@
     log_info("shmem_malloc'd %d bytes @ &src = %p, %d bytes @ &dest = %p",     \
              sizeof(TYPE), (void *)src, npes * sizeof(TYPE), (void *)dest);    \
                                                                                \
+    /* Initialize dest array to detect unwritten elements */                   \
+    for (int i = 0; i < npes; ++i) {                                           \
+      dest[i] = (TYPE) - 1;                                                    \
+    }                                                                          \
+                                                                               \
     src[0] = mype;                                                             \
     log_info("set %p (src[0]) to %d", (void *)src, mype);                      \
                                                                                \
-    shmem_fcollect(SHMEM_TEAM_WORLD, dest, src, 1);                            \
+    shmem_barrier_all(); /* Ensure all PEs are ready */                        \
+                                                                               \
     log_info("executing shmem_fcollect: dest = %p, src = %p", (void *)dest,    \
              (void *)src);                                                     \
+    shmem_fcollect(SHMEM_TEAM_WORLD, dest, src, 1);                            \
+                                                                               \
+    shmem_barrier_all(); /* Ensure all PEs complete fcollect before validation \
+                          */                                                   \
                                                                                \
     log_info("validating result...");                                          \
     bool success = true;                                                       \

@@ -1,0 +1,9 @@
+# --------------------------------
+#           COLLECTIVES
+# --------------------------------
+- shmem_fcollect()
+- shmem_prod_reduce()
+- shmem_min_reduce()
+- shmem_or_reduce()
+- shmem_xor_reduce()
+- shmem_and_reduce()

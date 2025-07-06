@@ -6,6 +6,7 @@
 #include <shmem.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "log.h"
 #include "shmemvv.h"
@@ -14,41 +15,60 @@
   ({                                                                           \
     log_routine("shmem_" #TYPENAME "_put_signal()");                           \
     bool success = true;                                                       \
-    static TYPE dest = 0;                                                      \
-    static TYPE value = (TYPE)123;                                             \
-    static uint64_t signal = 0;                                                \
+    TYPE *dest = (TYPE *)shmem_malloc(sizeof(TYPE));                           \
+    TYPE *value = (TYPE *)shmem_malloc(sizeof(TYPE));                          \
+    uint64_t *signal = (uint64_t *)shmem_malloc(sizeof(uint64_t));             \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
                                                                                \
-    if (npes < 2) {                                                            \
+    if (!dest || !value || !signal) {                                          \
+      log_fail("Failed to allocate symmetric memory");                         \
+      success = false;                                                         \
+    } else if (npes < 2) {                                                     \
+      log_fail("Test requires at least 2 PEs, but only %d PE(s) available",    \
+               npes);                                                          \
       success = false;                                                         \
     } else {                                                                   \
-      int target_pe = (mype + 1) % npes;                                       \
-      log_info("dest @ %p, value @ %p, signal @ %p", &dest, &value, &signal);  \
+      int target_pe = 1; /* Simple: PE 0 sends to PE 1 */                      \
+      log_info("dest @ %p, value @ %p, signal @ %p", dest, value, signal);     \
+                                                                               \
+      /* Initialize values */                                                  \
+      *dest = 0;                                                               \
+      *value = (TYPE)123;                                                      \
+      *signal = 0;                                                             \
                                                                                \
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype == 0) {                                                         \
         log_info("calling shmem_" #TYPENAME "_put_signal(dest=%p, value=%p, "  \
                  "signal=%p, target_pe=%d)",                                   \
-                 &dest, &value, &signal, target_pe);                           \
-        shmem_##TYPENAME##_put_signal(&dest, &value, 1, &signal, 1, target_pe, \
-                                      SHMEM_SIGNAL_SET);                       \
+                 dest, value, signal, target_pe);                              \
+        shmem_##TYPENAME##_put_signal(dest, value, 1, signal, 1,               \
+                                      SHMEM_SIGNAL_SET, target_pe);            \
       }                                                                        \
                                                                                \
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype == 1) {                                                         \
-        if (dest != 123 || signal != 1) {                                      \
+        /* Wait for signal to be set */                                        \
+        shmem_uint64_wait_until(signal, SHMEM_CMP_EQ, 1);                      \
+        if (*dest != 123 || *signal != 1) {                                    \
           log_fail("validation failed: dest = %d (expected 123), "             \
                    "signal = %d (expected 1)",                                 \
-                   (int)dest, (int)signal);                                    \
+                   (int)*dest, (int)*signal);                                  \
           success = false;                                                     \
         } else {                                                               \
           log_info("result is valid");                                         \
         }                                                                      \
       }                                                                        \
     }                                                                          \
+                                                                               \
+    if (dest)                                                                  \
+      shmem_free(dest);                                                        \
+    if (value)                                                                 \
+      shmem_free(value);                                                       \
+    if (signal)                                                                \
+      shmem_free(signal);                                                      \
     success;                                                                   \
   })
 
@@ -57,42 +77,63 @@
   ({                                                                           \
     log_routine("shmem_put" #SIZE "_signal()");                                \
     bool success = true;                                                       \
-    static uint##SIZE##_t dest = 0;                                            \
-    static uint##SIZE##_t value = 123;                                         \
-    static uint64_t signal = 0;                                                \
+    uint##SIZE##_t *dest =                                                     \
+        (uint##SIZE##_t *)shmem_malloc(sizeof(uint##SIZE##_t));                \
+    uint##SIZE##_t *value =                                                    \
+        (uint##SIZE##_t *)shmem_malloc(sizeof(uint##SIZE##_t));                \
+    uint64_t *signal = (uint64_t *)shmem_malloc(sizeof(uint64_t));             \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
                                                                                \
-    if (npes < 2) {                                                            \
+    if (!dest || !value || !signal) {                                          \
+      log_fail("Failed to allocate symmetric memory");                         \
+      success = false;                                                         \
+    } else if (npes < 2) {                                                     \
+      log_fail("Test requires at least 2 PEs, but only %d PE(s) available",    \
+               npes);                                                          \
       success = false;                                                         \
     } else {                                                                   \
-      int target_pe = (mype + 1) % npes;                                       \
-      log_info("SIZE=%d: dest @ %p, value @ %p, signal @ %p", SIZE, &dest,     \
-               &value, &signal);                                               \
+      int target_pe = 1; /* Simple: PE 0 sends to PE 1 */                      \
+      log_info("SIZE=%d: dest @ %p, value @ %p, signal @ %p", SIZE, dest,      \
+               value, signal);                                                 \
+                                                                               \
+      /* Initialize values */                                                  \
+      *dest = 0;                                                               \
+      *value = 123;                                                            \
+      *signal = 0;                                                             \
                                                                                \
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype == 0) {                                                         \
         log_info("calling shmem_put" #SIZE "_signal(dest=%p, value=%p, "       \
                  "signal=%p, target_pe=%d)",                                   \
-                 &dest, &value, &signal, target_pe);                           \
-        shmem_put##SIZE##_signal(&dest, &value, 1, &signal, 1, target_pe,      \
-                                 SHMEM_SIGNAL_SET);                            \
+                 dest, value, signal, target_pe);                              \
+        shmem_put##SIZE##_signal(dest, value, 1, signal, 1, SHMEM_SIGNAL_SET,  \
+                                 target_pe);                                   \
       }                                                                        \
                                                                                \
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype == 1) {                                                         \
-        if (dest != 123 || signal != 1) {                                      \
+        /* Wait for signal to be set */                                        \
+        shmem_uint64_wait_until(signal, SHMEM_CMP_EQ, 1);                      \
+        if (*dest != 123 || *signal != 1) {                                    \
           log_fail("validation failed: dest = %d (expected 123), "             \
                    "signal = %d (expected 1)",                                 \
-                   (int)dest, (int)signal);                                    \
+                   (int)*dest, (int)*signal);                                  \
           success = false;                                                     \
         } else {                                                               \
           log_info("result is valid");                                         \
         }                                                                      \
       }                                                                        \
     }                                                                          \
+                                                                               \
+    if (dest)                                                                  \
+      shmem_free(dest);                                                        \
+    if (value)                                                                 \
+      shmem_free(value);                                                       \
+    if (signal)                                                                \
+      shmem_free(signal);                                                      \
     success;                                                                   \
   })
 
@@ -101,42 +142,61 @@
   ({                                                                           \
     log_routine("shmem_putmem_signal()");                                      \
     bool success = true;                                                       \
-    static char dest[10];                                                      \
-    static char value[10] = "Hello";                                           \
-    static uint64_t signal = 0;                                                \
+    char *dest = (char *)shmem_malloc(10);                                     \
+    char *value = (char *)shmem_malloc(10);                                    \
+    uint64_t *signal = (uint64_t *)shmem_malloc(sizeof(uint64_t));             \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
                                                                                \
-    if (npes < 2) {                                                            \
+    if (!dest || !value || !signal) {                                          \
+      log_fail("Failed to allocate symmetric memory");                         \
+      success = false;                                                         \
+    } else if (npes < 2) {                                                     \
+      log_fail("Test requires at least 2 PEs, but only %d PE(s) available",    \
+               npes);                                                          \
       success = false;                                                         \
     } else {                                                                   \
-      int target_pe = (mype + 1) % npes;                                       \
+      int target_pe = 1; /* Simple: PE 0 sends to PE 1 */                      \
       log_info("MEM: dest @ %p, value @ %p, signal @ %p", dest, value,         \
-               &signal);                                                       \
+               signal);                                                        \
+                                                                               \
+      /* Initialize values */                                                  \
+      memset(dest, 0, 10);                                                     \
+      strcpy(value, "Hello");                                                  \
+      *signal = 0;                                                             \
                                                                                \
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype == 0) {                                                         \
         log_info("calling shmem_putmem_signal(dest=%p, value=%p, nelems=6, "   \
                  "signal=%p, target_pe=%d)",                                   \
-                 dest, value, &signal, target_pe);                             \
-        shmem_putmem_signal(dest, value, 6, &signal, 1, target_pe,             \
-                            SHMEM_SIGNAL_SET);                                 \
+                 dest, value, signal, target_pe);                              \
+        shmem_putmem_signal(dest, value, 6, signal, 1, SHMEM_SIGNAL_SET,       \
+                            target_pe);                                        \
       }                                                                        \
                                                                                \
       shmem_barrier_all();                                                     \
                                                                                \
       if (mype == 1) {                                                         \
-        if (strcmp(dest, "Hello") != 0 || signal != 1) {                       \
+        /* Wait for signal to be set */                                        \
+        shmem_uint64_wait_until(signal, SHMEM_CMP_EQ, 1);                      \
+        if (strcmp(dest, "Hello") != 0 || *signal != 1) {                      \
           log_fail("validation failed: dest = '%s' (expected 'Hello'), "       \
                    "signal = %d (expected 1)",                                 \
-                   dest, (int)signal);                                         \
+                   dest, (int)*signal);                                        \
           success = false;                                                     \
         } else {                                                               \
           log_info("result is valid");                                         \
         }                                                                      \
       }                                                                        \
     }                                                                          \
+                                                                               \
+    if (dest)                                                                  \
+      shmem_free(dest);                                                        \
+    if (value)                                                                 \
+      shmem_free(value);                                                       \
+    if (signal)                                                                \
+      shmem_free(signal);                                                      \
     success;                                                                   \
   })
 
@@ -145,61 +205,81 @@
   ({                                                                           \
     log_routine("shmem_ctx_put" #SIZE "_signal()");                            \
     bool success = true;                                                       \
-    static uint##SIZE##_t dest = 0;                                            \
-    /* Choose an appropriate value based on SIZE */                            \
-    static uint##SIZE##_t value = (SIZE == 8)    ? 200                         \
-                                  : (SIZE == 16) ? 456                         \
-                                                 : 456;                        \
-    static uint64_t signal = 0;                                                \
+    uint##SIZE##_t *dest =                                                     \
+        (uint##SIZE##_t *)shmem_malloc(sizeof(uint##SIZE##_t));                \
+    uint##SIZE##_t *value =                                                    \
+        (uint##SIZE##_t *)shmem_malloc(sizeof(uint##SIZE##_t));                \
+    uint64_t *signal = (uint64_t *)shmem_malloc(sizeof(uint64_t));             \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
                                                                                \
-    if (npes < 2) {                                                            \
+    if (!dest || !value || !signal) {                                          \
+      log_fail("Failed to allocate symmetric memory");                         \
+      success = false;                                                         \
+    } else if (npes < 2) {                                                     \
+      log_fail("Test requires at least 2 PEs, but only %d PE(s) available",    \
+               npes);                                                          \
       success = false;                                                         \
     } else {                                                                   \
-      int target_pe = (mype + 1) % npes;                                       \
-      log_info("CTX SIZE=%d: dest @ %p, value @ %p, signal @ %p", SIZE, &dest, \
-               &value, &signal);                                               \
+      int target_pe = 1; /* Simple: PE 0 sends to PE 1 */                      \
+      log_info("CTX SIZE=%d: dest @ %p, value @ %p, signal @ %p", SIZE, dest,  \
+               value, signal);                                                 \
+                                                                               \
+      /* Initialize values */                                                  \
+      *dest = 0;                                                               \
+      /* Choose an appropriate value based on SIZE */                          \
+      *value = (SIZE == 8) ? 200 : (SIZE == 16) ? 456 : 456;                   \
+      *signal = 0;                                                             \
                                                                                \
       shmem_ctx_t ctx;                                                         \
       int ctx_create_status = shmem_ctx_create(0, &ctx);                       \
                                                                                \
       if (ctx_create_status != 0) {                                            \
         log_fail("Failed to create context");                                  \
-        return false;                                                          \
-      }                                                                        \
-      log_info("Successfully created context");                                \
+        success = false;                                                       \
+      } else {                                                                 \
+        log_info("Successfully created context");                              \
                                                                                \
-      shmem_barrier_all();                                                     \
+        shmem_barrier_all();                                                   \
                                                                                \
-      if (mype == 0) {                                                         \
-        log_info("calling shmem_ctx_put" #SIZE "_signal(ctx, dest=%p, "        \
-                 "value=%p, signal=%p, target_pe=%d)",                         \
-                 &dest, &value, &signal, target_pe);                           \
-        shmem_ctx_put##SIZE##_signal(ctx, &dest, &value, 1, &signal, 1,        \
-                                     target_pe, SHMEM_SIGNAL_SET);             \
-      }                                                                        \
-                                                                               \
-      shmem_barrier_all();                                                     \
-                                                                               \
-      if (mype == 1) {                                                         \
-        /* Use the appropriate expected value based on SIZE */                 \
-        uint##SIZE##_t expected = (SIZE == 8)    ? 200                         \
-                                  : (SIZE == 16) ? 456                         \
-                                                 : 456;                        \
-        if (dest != expected || signal != 1) {                                 \
-          log_fail("validation failed: dest = %d (expected %d), "              \
-                   "signal = %d (expected 1)",                                 \
-                   (int)dest, (int)expected, (int)signal);                     \
-          success = false;                                                     \
-        } else {                                                               \
-          log_info("result is valid");                                         \
+        if (mype == 0) {                                                       \
+          log_info("calling shmem_ctx_put" #SIZE "_signal(ctx, dest=%p, "      \
+                   "value=%p, signal=%p, target_pe=%d)",                       \
+                   dest, value, signal, target_pe);                            \
+          shmem_ctx_put##SIZE##_signal(ctx, dest, value, 1, signal, 1,         \
+                                       SHMEM_SIGNAL_SET, target_pe);           \
         }                                                                      \
-      }                                                                        \
                                                                                \
-      shmem_ctx_destroy(ctx);                                                  \
-      log_info("Context destroyed");                                           \
+        shmem_barrier_all();                                                   \
+                                                                               \
+        if (mype == 1) {                                                       \
+          /* Wait for signal to be set */                                      \
+          shmem_uint64_wait_until(signal, SHMEM_CMP_EQ, 1);                    \
+          /* Use the appropriate expected value based on SIZE */               \
+          uint##SIZE##_t expected = (SIZE == 8)    ? 200                       \
+                                    : (SIZE == 16) ? 456                       \
+                                                   : 456;                      \
+          if (*dest != expected || *signal != 1) {                             \
+            log_fail("validation failed: dest = %d (expected %d), "            \
+                     "signal = %d (expected 1)",                               \
+                     (int)*dest, (int)expected, (int)*signal);                 \
+            success = false;                                                   \
+          } else {                                                             \
+            log_info("result is valid");                                       \
+          }                                                                    \
+        }                                                                      \
+                                                                               \
+        shmem_ctx_destroy(ctx);                                                \
+        log_info("Context destroyed");                                         \
+      }                                                                        \
     }                                                                          \
+                                                                               \
+    if (dest)                                                                  \
+      shmem_free(dest);                                                        \
+    if (value)                                                                 \
+      shmem_free(value);                                                       \
+    if (signal)                                                                \
+      shmem_free(signal);                                                      \
     success;                                                                   \
   })
 
@@ -208,54 +288,74 @@
   ({                                                                           \
     log_routine("shmem_ctx_putmem_signal()");                                  \
     bool success = true;                                                       \
-    static char dest[10];                                                      \
-    static char value[10] = "World";                                           \
-    static uint64_t signal = 0;                                                \
+    char *dest = (char *)shmem_malloc(10);                                     \
+    char *value = (char *)shmem_malloc(10);                                    \
+    uint64_t *signal = (uint64_t *)shmem_malloc(sizeof(uint64_t));             \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
                                                                                \
-    if (npes < 2) {                                                            \
+    if (!dest || !value || !signal) {                                          \
+      log_fail("Failed to allocate symmetric memory");                         \
+      success = false;                                                         \
+    } else if (npes < 2) {                                                     \
+      log_fail("Test requires at least 2 PEs, but only %d PE(s) available",    \
+               npes);                                                          \
       success = false;                                                         \
     } else {                                                                   \
-      int target_pe = (mype + 1) % npes;                                       \
+      int target_pe = 1; /* Simple: PE 0 sends to PE 1 */                      \
       log_info("CTX MEM: dest @ %p, value @ %p, signal @ %p", dest, value,     \
-               &signal);                                                       \
+               signal);                                                        \
+                                                                               \
+      /* Initialize values */                                                  \
+      memset(dest, 0, 10);                                                     \
+      strcpy(value, "World");                                                  \
+      *signal = 0;                                                             \
                                                                                \
       shmem_ctx_t ctx;                                                         \
       int ctx_create_status = shmem_ctx_create(0, &ctx);                       \
                                                                                \
       if (ctx_create_status != 0) {                                            \
         log_fail("Failed to create context");                                  \
-        return false;                                                          \
-      }                                                                        \
-      log_info("Successfully created context");                                \
+        success = false;                                                       \
+      } else {                                                                 \
+        log_info("Successfully created context");                              \
                                                                                \
-      shmem_barrier_all();                                                     \
+        shmem_barrier_all();                                                   \
                                                                                \
-      if (mype == 0) {                                                         \
-        log_info("calling shmem_ctx_putmem_signal(ctx, dest=%p, value=%p, "    \
-                 "nelems=6, signal=%p, target_pe=%d)",                         \
-                 dest, value, &signal, target_pe);                             \
-        shmem_ctx_putmem_signal(ctx, dest, value, 6, &signal, 1, target_pe,    \
-                                SHMEM_SIGNAL_SET);                             \
-      }                                                                        \
-                                                                               \
-      shmem_barrier_all();                                                     \
-                                                                               \
-      if (mype == 1) {                                                         \
-        if (strcmp(dest, "World") != 0 || signal != 1) {                       \
-          log_fail("validation failed: dest = '%s' (expected 'World'), "       \
-                   "signal = %d (expected 1)",                                 \
-                   dest, (int)signal);                                         \
-          success = false;                                                     \
-        } else {                                                               \
-          log_info("result is valid");                                         \
+        if (mype == 0) {                                                       \
+          log_info("calling shmem_ctx_putmem_signal(ctx, dest=%p, value=%p, "  \
+                   "nelems=6, signal=%p, target_pe=%d)",                       \
+                   dest, value, signal, target_pe);                            \
+          shmem_ctx_putmem_signal(ctx, dest, value, 6, signal, 1,              \
+                                  SHMEM_SIGNAL_SET, target_pe);                \
         }                                                                      \
-      }                                                                        \
                                                                                \
-      shmem_ctx_destroy(ctx);                                                  \
-      log_info("Context destroyed");                                           \
+        shmem_barrier_all();                                                   \
+                                                                               \
+        if (mype == 1) {                                                       \
+          /* Wait for signal to be set */                                      \
+          shmem_uint64_wait_until(signal, SHMEM_CMP_EQ, 1);                    \
+          if (strcmp(dest, "World") != 0 || *signal != 1) {                    \
+            log_fail("validation failed: dest = '%s' (expected 'World'), "     \
+                     "signal = %d (expected 1)",                               \
+                     dest, (int)*signal);                                      \
+            success = false;                                                   \
+          } else {                                                             \
+            log_info("result is valid");                                       \
+          }                                                                    \
+        }                                                                      \
+                                                                               \
+        shmem_ctx_destroy(ctx);                                                \
+        log_info("Context destroyed");                                         \
+      }                                                                        \
     }                                                                          \
+                                                                               \
+    if (dest)                                                                  \
+      shmem_free(dest);                                                        \
+    if (value)                                                                 \
+      shmem_free(value);                                                       \
+    if (signal)                                                                \
+      shmem_free(signal);                                                      \
     success;                                                                   \
   })
 
