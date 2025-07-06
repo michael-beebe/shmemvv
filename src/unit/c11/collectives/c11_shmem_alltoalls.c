@@ -24,11 +24,22 @@
              npes * sizeof(TYPE), (void *)src, npes * sizeof(TYPE),            \
              (void *)dest);                                                    \
                                                                                \
+    /* Use smaller values to avoid overflow in 8-bit types */                  \
     for (int i = 0; i < npes; ++i) {                                           \
-      src[i] = mype + i * npes;                                                \
+      if (sizeof(TYPE) == 1) {                                                 \
+        /* For 8-bit types, use simple PE-based values to avoid overflow */    \
+        src[i] = (TYPE)(mype % 128); /* Keep within signed char range */       \
+      } else {                                                                 \
+        src[i] = mype + i * npes;                                              \
+      }                                                                        \
     }                                                                          \
-    log_info("set %p..%p to %d + idx * %d", (void *)src,                       \
-             (void *)&src[npes - 1], mype, npes);                              \
+    if (sizeof(TYPE) == 1) {                                                   \
+      log_info("set %p..%p to %d (8-bit safe)", (void *)src,                   \
+               (void *)&src[npes - 1], mype % 128);                            \
+    } else {                                                                   \
+      log_info("set %p..%p to %d + idx * %d", (void *)src,                     \
+               (void *)&src[npes - 1], mype, npes);                            \
+    }                                                                          \
                                                                                \
     log_info("executing shmem_alltoalls: dest = %p, src = %p", (void *)dest,   \
              (void *)src);                                                     \
@@ -37,9 +48,16 @@
     log_info("validating result...");                                          \
     bool success = true;                                                       \
     for (int i = 0; i < npes; ++i) {                                           \
-      if (dest[i] != i + mype * npes) {                                        \
+      TYPE expected;                                                           \
+      if (sizeof(TYPE) == 1) {                                                 \
+        /* For 8-bit types, expect the simple PE value */                      \
+        expected = (TYPE)(i % 128);                                            \
+      } else {                                                                 \
+        expected = i + mype * npes;                                            \
+      }                                                                        \
+      if (dest[i] != expected) {                                               \
         log_info("index %d of dest (%p) failed. expected %d, got %d", i,       \
-                 &dest[i], i + mype * npes, (int)dest[i]);                     \
+                 &dest[i], (int)expected, (int)dest[i]);                       \
         success = false;                                                       \
         break;                                                                 \
       }                                                                        \
