@@ -92,7 +92,9 @@ void log_fail(const char *fstring, ...) {
 }
 
 void log_routine(const char *routine) {
+  log_line("---------------------------------------------------", "");
   log_line(&routine[0], "------ BEGIN TEST ROUTINE: ");
+  log_line("---------------------------------------------------", "");
 }
 
 void log_init(const char *test_name) {
