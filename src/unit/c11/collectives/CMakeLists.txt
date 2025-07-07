@@ -46,7 +46,7 @@ target_include_directories(c11_shmem_reduce PRIVATE src/include)
 target_include_directories(c11_shmem_sync_all PRIVATE src/include)
 target_include_directories(c11_shmem_sync PRIVATE src/include)
 
-# --- Link any necessary libraries to each target (replace `your_library` with actual libraries if any)
+# --- Link any necessary libraries to each target 
 target_link_libraries(c11_shmem_alltoall)
 target_link_libraries(c11_shmem_alltoalls)
 target_link_libraries(c11_shmem_broadcast)
