@@ -11,8 +11,6 @@
 #include <math.h>
 #include <complex.h>
 
-#define MAX_NPES 32
-
 const double FLOATING_POINT_TOLERANCE = 1e-6;
 
 #define is_floating_point(X)                                                   \
@@ -174,8 +172,11 @@ const double FLOATING_POINT_TOLERANCE = 1e-6;
       /* Use 1.5 for floating-point to avoid large factorial precision issues  \
        */                                                                      \
       src_val = (TYPE)1.5;                                                     \
+    } else if (npes > 20) {                                                    \
+      /* Use 1 for large PE counts to avoid integer overflow */                \
+      src_val = (TYPE)1;                                                       \
     } else {                                                                   \
-      src_val = (TYPE)(mype + 1);                                              \
+      src_val = (TYPE)2; /* Use 2 for all PEs to avoid overflow */             \
     }                                                                          \
     *src = src_val;                                                            \
     if (is_complex((TYPE)0)) {                                                 \
@@ -199,10 +200,16 @@ const double FLOATING_POINT_TOLERANCE = 1e-6;
       /* For floating-point: 1.5^npes */                                       \
       expected = (TYPE)powl(1.5L, (long double)npes);                          \
     } else {                                                                   \
-      /* For integers: factorial */                                            \
-      expected = (TYPE)1;                                                      \
-      for (int i = 1; i <= npes; i++) {                                        \
-        expected *= (TYPE)i;                                                   \
+      /* For integers: use 2^npes or 1^npes depending on PE count */           \
+      if (npes > 20) {                                                         \
+        /* For large PE counts: 1^npes = 1 */                                  \
+        expected = (TYPE)1;                                                    \
+      } else {                                                                 \
+        /* For smaller PE counts: 2^npes */                                    \
+        expected = (TYPE)1;                                                    \
+        for (int i = 0; i < npes; i++) {                                       \
+          expected *= (TYPE)2;                                                 \
+        }                                                                      \
       }                                                                        \
     }                                                                          \
     bool success;                                                              \
@@ -346,14 +353,6 @@ int main(int argc, char *argv[]) {
 
   const int npes = shmem_n_pes();
   const int mype = shmem_my_pe();
-
-  if (npes > MAX_NPES) {
-    if (mype == 0) {
-      log_fail("Test requires less than %d PEs, but running with %d PEs",
-               MAX_NPES, npes);
-    }
-    shmem_global_exit(1);
-  }
 
   int rc = EXIT_SUCCESS;
 

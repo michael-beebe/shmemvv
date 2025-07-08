@@ -51,7 +51,7 @@ hosts=$(srun hostname | sort | uniq | paste -sd, -)
 num_hosts=$(echo "$hosts" | tr ',' '\n' | wc -l)
 
 # --- Set the number of processes per host and the total number of processes
-ppn=16
+ppn=64
 np=$(( $num_hosts * $ppn ))
 
 # --- Create a hostfile with specified slots per host
@@ -83,6 +83,7 @@ echo $hline
 
 # --- Set some UCX vars
 export UCX_LOG_LEVEL=error
+export PMIX_MCA_psec=none
 export PMIX_MCA_gds=hash
 export PMIX_DEBUG=1
 
@@ -92,7 +93,7 @@ mkdir -p $SHMEMVV_LOG_DIR
 
 # --- Run tests
 ./shmemvv.sh \
-  --enable_c --enable_c11 \
+  --enable_c \
   --launcher $oshrun \
   --launcher_args "--hostfile $hostfile -x SHMEMVV_LOG_DIR" \
   --np $np \

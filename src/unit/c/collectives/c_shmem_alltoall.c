@@ -24,22 +24,36 @@
              npes * sizeof(TYPE), (void *)src, npes * sizeof(TYPE),            \
              (void *)dest);                                                    \
                                                                                \
+    /* Initialize source array - each PE puts its PE number in all elements */ \
     for (int i = 0; i < npes; ++i) {                                           \
-      src[i] = mype + i;                                                       \
+      src[i] = (TYPE)mype;                                                     \
     }                                                                          \
-    log_info("set %p..%p to %d + idx", (void *)src, (void *)&src[npes - 1],    \
-             mype);                                                            \
+    /* Initialize destination array to a known bad value */                    \
+    for (int i = 0; i < npes; ++i) {                                           \
+      dest[i] = (TYPE) - 1;                                                    \
+    }                                                                          \
+    log_info("set %p..%p to %d", (void *)src, (void *)&src[npes - 1], mype);   \
+                                                                               \
+    /* Ensure all PEs are ready before starting alltoall */                    \
+    shmem_barrier_all();                                                       \
                                                                                \
     log_info("executing shmem_alltoall: dest = %p, src = %p", (void *)dest,    \
              (void *)src);                                                     \
     shmem_##TYPENAME##_alltoall(SHMEM_TEAM_WORLD, dest, src, 1);               \
                                                                                \
+    /* Ensure all PEs complete the alltoall before validation */               \
+    shmem_barrier_all();                                                       \
+                                                                               \
     log_info("validating result...");                                          \
     bool success = true;                                                       \
     for (int i = 0; i < npes; ++i) {                                           \
-      if (dest[i] != mype + i) {                                               \
+      /* After alltoall, dest[i] should contain the value that PE i */         \
+      /* had in src[mype], which is just i (since each PE puts its PE# */      \
+      /* in all source elements) */                                            \
+      TYPE expected = (TYPE)i;                                                 \
+      if (dest[i] != expected) {                                               \
         log_info("index %d of dest (%p) failed. expected %d, got %d", i,       \
-                 &dest[i], mype + i, (char)dest[i]);                           \
+                 &dest[i], (int)expected, (int)dest[i]);                       \
         success = false;                                                       \
         break;                                                                 \
       }                                                                        \

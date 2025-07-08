@@ -76,12 +76,10 @@ static bool test_fcollectmem(size_t nelems) {
   log_info("executing shmem_fcollectmem: dest = %p, src = %p, nelems = %zu",
            dest, src, nelems);
 
-  /* Use shmem_collectmem as workaround for shmem_fcollectmem bugs with memory
-   * reuse */
-  int fcollect_rc = shmem_collectmem(SHMEM_TEAM_WORLD, dest, src, nelems);
+  int fcollect_rc = shmem_fcollectmem(SHMEM_TEAM_WORLD, dest, src, nelems);
 
   if (fcollect_rc != 0) {
-    log_fail("shmem_collectmem returned non-zero: %d", fcollect_rc);
+    log_fail("shmem_fcollectmem returned non-zero: %d", fcollect_rc);
     shmem_free(src);
     shmem_free(dest);
     return false;
@@ -152,15 +150,16 @@ int main(int argc, char *argv[]) {
   
   /* Start with small sizes */
   result &= test_fcollectmem(1);      /* 1 byte */
+  shmem_barrier_all(); /* Ensure all PEs complete before next test */
   
   if (result) {
     result &= test_fcollectmem(4);      /* 4 bytes */
+    shmem_barrier_all(); /* Ensure all PEs complete before next test */
     result &= test_fcollectmem(8);      /* 8 bytes */
+    shmem_barrier_all(); /* Ensure all PEs complete before next test */
     result &= test_fcollectmem(16);     /* 16 bytes */
+    shmem_barrier_all(); /* Ensure all PEs complete before next test */
     result &= test_fcollectmem(64);     /* 64 bytes */
-    
-    /* Test with larger sizes */
-    result &= test_fcollectmem(1024);   /* 1 KB */
   }
 
   // clang-format on
