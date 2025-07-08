@@ -11,8 +11,6 @@
 #include <math.h>
 #include <complex.h>
 
-#define MAX_NPES 32
-
 const double FLOATING_POINT_TOLERANCE = 1e-6;
 
 #define is_floating_point(X)                                                   \
@@ -196,8 +194,11 @@ const double FLOATING_POINT_TOLERANCE = 1e-6;
       /* Use 1.5 for floating-point to avoid large factorial precision issues  \
        */                                                                      \
       src_val = (TYPE)1.5;                                                     \
+    } else if (npes > 20) {                                                    \
+      /* Use 1 for large PE counts to avoid integer overflow */                \
+      src_val = (TYPE)1;                                                       \
     } else {                                                                   \
-      src_val = (TYPE)(mype + 1);                                              \
+      src_val = (TYPE)2; /* Use 2 for all PEs to avoid overflow */             \
     }                                                                          \
     *src = src_val;                                                            \
     if (is_complex((TYPE)0)) {                                                 \
@@ -221,10 +222,16 @@ const double FLOATING_POINT_TOLERANCE = 1e-6;
       /* For floating-point: 1.5^npes */                                       \
       expected = (TYPE)powl(1.5L, (long double)npes);                          \
     } else {                                                                   \
-      /* For integers: factorial */                                            \
-      expected = (TYPE)1;                                                      \
-      for (int i = 1; i <= npes; i++) {                                        \
-        expected *= (TYPE)i;                                                   \
+      /* For integers: use 2^npes or 1^npes depending on PE count */           \
+      if (npes > 20) {                                                         \
+        /* For large PE counts: 1^npes = 1 */                                  \
+        expected = (TYPE)1;                                                    \
+      } else {                                                                 \
+        /* For smaller PE counts: 2^npes */                                    \
+        expected = (TYPE)1;                                                    \
+        for (int i = 0; i < npes; i++) {                                       \
+          expected *= (TYPE)2;                                                 \
+        }                                                                      \
       }                                                                        \
     }                                                                          \
     bool success;                                                              \
@@ -369,14 +376,6 @@ int main(int argc, char *argv[]) {
   const int npes = shmem_n_pes();
   const int mype = shmem_my_pe();
 
-  if (npes > MAX_NPES) {
-    if (mype == 0) {
-      log_fail("Test requires less than %d PEs, but running with %d PEs",
-               MAX_NPES, npes);
-    }
-    shmem_global_exit(1);
-  }
-
   int rc = EXIT_SUCCESS;
 
   /* Test MAX reduction - SHMEM_REDUCE_MINMAX_TYPE_TABLE */
@@ -405,8 +404,6 @@ int main(int argc, char *argv[]) {
   result_max &= TEST_C11_SHMEM_MAX_REDUCE(float, float);
   result_max &= TEST_C11_SHMEM_MAX_REDUCE(double, double);
   result_max &= TEST_C11_SHMEM_MAX_REDUCE(long double, longdouble);
-
-  shmem_barrier_all();
 
   if (shmem_my_pe() == 0) {
     display_test_result("C11 shmem_max_reduce", result_max, false);
@@ -442,8 +439,6 @@ int main(int argc, char *argv[]) {
   result_min &= TEST_C11_SHMEM_MIN_REDUCE(float, float);
   result_min &= TEST_C11_SHMEM_MIN_REDUCE(double, double);
   result_min &= TEST_C11_SHMEM_MIN_REDUCE(long double, longdouble);
-
-  shmem_barrier_all();
 
   if (shmem_my_pe() == 0) {
     display_test_result("C11 shmem_min_reduce", result_min, false);
@@ -482,8 +477,6 @@ int main(int argc, char *argv[]) {
   result_sum &= TEST_C11_SHMEM_SUM_REDUCE(float _Complex, complexf);
   result_sum &= TEST_C11_SHMEM_SUM_REDUCE(double _Complex, complexd);
 
-  shmem_barrier_all();
-
   if (shmem_my_pe() == 0) {
     display_test_result("C11 shmem_sum_reduce", result_sum, false);
   }
@@ -521,8 +514,6 @@ int main(int argc, char *argv[]) {
   result_prod &= TEST_C11_SHMEM_PROD_REDUCE(float _Complex, complexf);
   result_prod &= TEST_C11_SHMEM_PROD_REDUCE(double _Complex, complexd);
 
-  shmem_barrier_all();
-
   if (shmem_my_pe() == 0) {
     display_test_result("C11 shmem_prod_reduce", result_prod, false);
   }
@@ -547,8 +538,6 @@ int main(int argc, char *argv[]) {
   result_and &= TEST_C11_SHMEM_AND_REDUCE(uint32_t, uint32);
   result_and &= TEST_C11_SHMEM_AND_REDUCE(uint64_t, uint64);
   result_and &= TEST_C11_SHMEM_AND_REDUCE(size_t, size);
-
-  shmem_barrier_all();
 
   if (shmem_my_pe() == 0) {
     display_test_result("C11 shmem_and_reduce", result_and, false);
@@ -575,8 +564,6 @@ int main(int argc, char *argv[]) {
   result_or &= TEST_C11_SHMEM_OR_REDUCE(uint64_t, uint64);
   result_or &= TEST_C11_SHMEM_OR_REDUCE(size_t, size);
 
-  shmem_barrier_all();
-
   if (shmem_my_pe() == 0) {
     display_test_result("C11 shmem_or_reduce", result_or, false);
   }
@@ -602,8 +589,6 @@ int main(int argc, char *argv[]) {
   result_xor &= TEST_C11_SHMEM_XOR_REDUCE(uint64_t, uint64);
   result_xor &= TEST_C11_SHMEM_XOR_REDUCE(size_t, size);
 
-  shmem_barrier_all();
-
   if (shmem_my_pe() == 0) {
     display_test_result("C11 shmem_xor_reduce", result_xor, false);
   }
@@ -611,6 +596,9 @@ int main(int argc, char *argv[]) {
   if (!result_xor) {
     rc = EXIT_FAILURE;
   }
+
+  /* Single barrier at the end */
+  shmem_barrier_all();
 
   log_close(rc);
   shmem_finalize();

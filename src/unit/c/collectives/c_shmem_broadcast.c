@@ -30,11 +30,19 @@
       dest[i] = (TYPE)0;                                                       \
     }                                                                          \
                                                                                \
-    /* Initialize source array on ALL PEs (SOS pattern) */                     \
+    /* Initialize source array: only root PE has data, others zero */          \
     for (int i = 0; i < 4; ++i) {                                              \
-      src[i] = (TYPE)(i + 1);                                                  \
+      if (mype == root_pe) {                                                   \
+        src[i] = (TYPE)(i + 1);                                                \
+      } else {                                                                 \
+        src[i] = (TYPE)0;                                                      \
+      }                                                                        \
     }                                                                          \
-    log_info("set src[0..4] to [1,2,3,4] on all PEs");                         \
+    if (mype == root_pe) {                                                     \
+      log_info("set src[0..4] to [1,2,3,4] on root PE %d", root_pe);           \
+    } else {                                                                   \
+      log_info("set src[0..4] to [0,0,0,0] on non-root PE %d", mype);          \
+    }                                                                          \
                                                                                \
     shmem_barrier_all();                                                       \
                                                                                \

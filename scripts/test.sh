@@ -93,7 +93,7 @@ mkdir -p $SHMEMVV_LOG_DIR
 
 # --- Run tests
 ./shmemvv.sh \
-  --enable_c \
+  --enable_c --enable_c11 \
   --launcher $oshrun \
   --launcher_args "--hostfile $hostfile -x SHMEMVV_LOG_DIR" \
   --np $np \

@@ -19,8 +19,10 @@
                                                                                \
     if (!src || !dest) {                                                       \
       log_fail("Failed to allocate symmetric memory");                         \
-      if (src) shmem_free(src);                                                \
-      if (dest) shmem_free(dest);                                              \
+      if (src)                                                                 \
+        shmem_free(src);                                                       \
+      if (dest)                                                                \
+        shmem_free(dest);                                                      \
       return false;                                                            \
     }                                                                          \
                                                                                \
@@ -105,4 +107,3 @@ int main(int argc, char *argv[]) {
   shmem_finalize();
   return rc;
 }
-

@@ -18,7 +18,6 @@
 /* Wait for any entry in the given ivar array to match the wait criteria using
  * vector comparison */
 
-
 #define TEST_C_SHMEM_TEST_ANY_VECTOR(TYPE, TYPENAME)                           \
   ({                                                                           \
     log_routine("shmem_test_any_vector(" #TYPE ")");                           \
