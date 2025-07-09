@@ -17,7 +17,7 @@ SHMEMVV tests the correctness and conformance of OpenSHMEM implementations by sy
 - Distributed locking
 - Thread safety
 
-Tests are implemented in both standard C and C11 to verify the correctness across different language standards.
+Tests are implemented in standard C for all categories, with additional C11 variants available for atomic operations, collective operations, point-to-point synchronization, remote memory access, and signaling operations.
 
 ## Requirements
 
@@ -132,13 +132,14 @@ You can run specific test categories using the following options:
 ```bash
 ./shmemvv.sh --enable_c --test_atomics            # Run only atomic tests for standard C
 ./shmemvv.sh --enable_c11 --test_collectives      # Run only collective tests for C11
-./shmemvv.sh --enable_c --enable_c11 --test_setup # Run setup tests for both standard C and C11
+./shmemvv.sh --enable_c --test_setup               # Run setup tests (C11 not available for setup)
+./shmemvv.sh --enable_c --enable_c11 --test_remote # Run remote memory access tests for both C and C11
 ```
 
 ### Language Selection
 
-- `--enable_c`: Enable standard C tests
-- `--enable_c11`: Enable C11 tests
+- `--enable_c`: Enable standard C tests (available for all test categories)
+- `--enable_c11`: Enable C11 tests (available for: atomics, collectives, pt2pt_sync, rma, signaling)
 
 You must enable at least one of these options.
 
@@ -196,7 +197,7 @@ Options:
   --np <N>                (default=varies by test) Override default PE count for all tests
   --launcher <cmd>        (default=/root/sw/linuxkit-aarch64/sos_1.5.2/bin/oshrun) Path to oshrun launcher
   --launcher_args <args>  Add custom arguments to launcher
-  --enable_c11            Enable C11 tests
+  --enable_c11            Enable C11 tests (available for: atomics, collectives, pt2pt_sync, rma, signaling)
   --enable_c              Enable C/C++ tests
   --verbose               Enable verbose output
   --no-color              Disable colored output

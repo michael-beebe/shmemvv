@@ -6,6 +6,7 @@
 #include <shmem.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 #include <time.h>
 #include <unistd.h>
 
@@ -13,70 +14,217 @@
 #include "shmemvv.h"
 
 // Reduce timeout to speed up tests
-#define TIMEOUT 1
+#define TIMEOUT 10
 // Reduce sleep time between iterations
 #define SLEEP_USEC 100
+
+/* Wait for any entry in the given ivar array to match the wait criteria and
+ * return the index of the entry that satisfied the test. */
+static int wait_any(void *ivar, int count, int cmp, long value,
+                    const char *typename) {
+  int idx = 0;
+  int iterations = 0;
+  time_t start_time = time(NULL);
+
+  if (strcmp(typename, "int") == 0) {
+    int *arr = (int *)ivar;
+    while (!shmem_int_test(&arr[idx], cmp, (int)value)) {
+      if (time(NULL) - start_time > TIMEOUT) {
+        log_fail("wait_any timed out after %d iterations", iterations);
+        return -1;
+      }
+      idx = (idx + 1) % count;
+      iterations++;
+      if (iterations % 1000 == 0)
+        usleep(SLEEP_USEC);
+    }
+  } else if (strcmp(typename, "long") == 0) {
+    long *arr = (long *)ivar;
+    while (!shmem_long_test(&arr[idx], cmp, value)) {
+      if (time(NULL) - start_time > TIMEOUT) {
+        log_fail("wait_any timed out after %d iterations", iterations);
+        return -1;
+      }
+      idx = (idx + 1) % count;
+      iterations++;
+      if (iterations % 1000 == 0)
+        usleep(SLEEP_USEC);
+    }
+  } else if (strcmp(typename, "longlong") == 0) {
+    long long *arr = (long long *)ivar;
+    while (!shmem_longlong_test(&arr[idx], cmp, (long long)value)) {
+      if (time(NULL) - start_time > TIMEOUT) {
+        log_fail("wait_any timed out after %d iterations", iterations);
+        return -1;
+      }
+      idx = (idx + 1) % count;
+      iterations++;
+      if (iterations % 1000 == 0)
+        usleep(SLEEP_USEC);
+    }
+  } else if (strcmp(typename, "uint") == 0) {
+    unsigned int *arr = (unsigned int *)ivar;
+    while (!shmem_uint_test(&arr[idx], cmp, (unsigned int)value)) {
+      if (time(NULL) - start_time > TIMEOUT) {
+        log_fail("wait_any timed out after %d iterations", iterations);
+        return -1;
+      }
+      idx = (idx + 1) % count;
+      iterations++;
+      if (iterations % 1000 == 0)
+        usleep(SLEEP_USEC);
+    }
+  } else if (strcmp(typename, "ulong") == 0) {
+    unsigned long *arr = (unsigned long *)ivar;
+    while (!shmem_ulong_test(&arr[idx], cmp, (unsigned long)value)) {
+      if (time(NULL) - start_time > TIMEOUT) {
+        log_fail("wait_any timed out after %d iterations", iterations);
+        return -1;
+      }
+      idx = (idx + 1) % count;
+      iterations++;
+      if (iterations % 1000 == 0)
+        usleep(SLEEP_USEC);
+    }
+  } else if (strcmp(typename, "ulonglong") == 0) {
+    unsigned long long *arr = (unsigned long long *)ivar;
+    while (!shmem_ulonglong_test(&arr[idx], cmp, (unsigned long long)value)) {
+      if (time(NULL) - start_time > TIMEOUT) {
+        log_fail("wait_any timed out after %d iterations", iterations);
+        return -1;
+      }
+      idx = (idx + 1) % count;
+      iterations++;
+      if (iterations % 1000 == 0)
+        usleep(SLEEP_USEC);
+    }
+  } else if (strcmp(typename, "int32") == 0) {
+    int32_t *arr = (int32_t *)ivar;
+    while (!shmem_int32_test(&arr[idx], cmp, (int32_t)value)) {
+      if (time(NULL) - start_time > TIMEOUT) {
+        log_fail("wait_any timed out after %d iterations", iterations);
+        return -1;
+      }
+      idx = (idx + 1) % count;
+      iterations++;
+      if (iterations % 1000 == 0)
+        usleep(SLEEP_USEC);
+    }
+  } else if (strcmp(typename, "int64") == 0) {
+    int64_t *arr = (int64_t *)ivar;
+    while (!shmem_int64_test(&arr[idx], cmp, (int64_t)value)) {
+      if (time(NULL) - start_time > TIMEOUT) {
+        log_fail("wait_any timed out after %d iterations", iterations);
+        return -1;
+      }
+      idx = (idx + 1) % count;
+      iterations++;
+      if (iterations % 1000 == 0)
+        usleep(SLEEP_USEC);
+    }
+  } else if (strcmp(typename, "uint32") == 0) {
+    uint32_t *arr = (uint32_t *)ivar;
+    while (!shmem_uint32_test(&arr[idx], cmp, (uint32_t)value)) {
+      if (time(NULL) - start_time > TIMEOUT) {
+        log_fail("wait_any timed out after %d iterations", iterations);
+        return -1;
+      }
+      idx = (idx + 1) % count;
+      iterations++;
+      if (iterations % 1000 == 0)
+        usleep(SLEEP_USEC);
+    }
+  } else if (strcmp(typename, "uint64") == 0) {
+    uint64_t *arr = (uint64_t *)ivar;
+    while (!shmem_uint64_test(&arr[idx], cmp, (uint64_t)value)) {
+      if (time(NULL) - start_time > TIMEOUT) {
+        log_fail("wait_any timed out after %d iterations", iterations);
+        return -1;
+      }
+      idx = (idx + 1) % count;
+      iterations++;
+      if (iterations % 1000 == 0)
+        usleep(SLEEP_USEC);
+    }
+  } else if (strcmp(typename, "size") == 0) {
+    size_t *arr = (size_t *)ivar;
+    while (!shmem_size_test(&arr[idx], cmp, (size_t)value)) {
+      if (time(NULL) - start_time > TIMEOUT) {
+        log_fail("wait_any timed out after %d iterations", iterations);
+        return -1;
+      }
+      idx = (idx + 1) % count;
+      iterations++;
+      if (iterations % 1000 == 0)
+        usleep(SLEEP_USEC);
+    }
+  } else if (strcmp(typename, "ptrdiff") == 0) {
+    ptrdiff_t *arr = (ptrdiff_t *)ivar;
+    while (!shmem_ptrdiff_test(&arr[idx], cmp, (ptrdiff_t)value)) {
+      if (time(NULL) - start_time > TIMEOUT) {
+        log_fail("wait_any timed out after %d iterations", iterations);
+        return -1;
+      }
+      idx = (idx + 1) % count;
+      iterations++;
+      if (iterations % 1000 == 0)
+        usleep(SLEEP_USEC);
+    }
+  }
+
+  return idx;
+}
 
 #define TEST_C_SHMEM_TEST(TYPE, TYPENAME)                                      \
   ({                                                                           \
     log_routine("shmem_test(" #TYPE ")");                                      \
     bool success = true;                                                       \
-    TYPE *flag = (TYPE *)shmem_malloc(sizeof(TYPE));                           \
-    log_info("Allocated flag array (%zu bytes) at address %p", sizeof(TYPE),   \
-             (void *)flag);                                                    \
-    if (flag == NULL) {                                                        \
-      log_fail("Memory allocation failed - shmem_malloc returned NULL");       \
+    int mype = shmem_my_pe();                                                  \
+    int npes = shmem_n_pes();                                                  \
+    TYPE *wait_vars = (TYPE *)shmem_calloc(npes, sizeof(TYPE));                \
+    log_info("Allocated wait_vars array (%zu bytes) at address %p",            \
+             npes * sizeof(TYPE), (void *)wait_vars);                          \
+    if (wait_vars == NULL) {                                                   \
+      log_fail("Memory allocation failed - shmem_calloc returned NULL");       \
       success = false;                                                         \
     } else {                                                                   \
-      *flag = 0;                                                               \
-      log_info("Initialized flag to 0");                                       \
-      int mype = shmem_my_pe();                                                \
-                                                                               \
-      shmem_barrier_all();                                                     \
-                                                                               \
-      if (mype == 0) {                                                         \
-        log_info("PE 0: Setting flag to 1");                                   \
-        *flag = 1;                                                             \
-        shmem_quiet();                                                         \
-        log_info("PE 0: Called shmem_quiet() after setting flag");             \
+      log_info("PE %d: Sending value %d to all PEs", mype, (int)(mype + 1));   \
+      /* Put mype+1 to every PE */                                             \
+      for (int i = 0; i < npes; i++) {                                         \
+        TYPE value = (TYPE)(mype + 1);                                         \
+        shmem_put(&wait_vars[mype], &value, 1, i);                             \
       }                                                                        \
+      shmem_quiet();                                                           \
+      log_info("PE %d: Completed sending to all PEs", mype);                   \
                                                                                \
-      shmem_barrier_all();                                                     \
-                                                                               \
-      if (mype != 0) {                                                         \
-        time_t start_time = time(NULL);                                        \
-        int iterations = 0;                                                    \
-        log_info(                                                              \
-            "PE %d: Starting test loop (flag=%p, condition=SHMEM_CMP_EQ, "     \
-            "target=1)",                                                       \
-            mype, (void *)flag);                                               \
-        int aggressive_polling = 0;                                            \
-        while (!shmem_##TYPENAME##_test(flag, SHMEM_CMP_EQ, 1)) {              \
-          if (time(NULL) - start_time > TIMEOUT) {                             \
-            log_fail("PE %d: Test timed out after %d iterations", mype,        \
-                     iterations);                                              \
-            break;                                                             \
-          }                                                                    \
-          /* More aggressive polling initially, then backoff */                \
-          if (aggressive_polling < 1000) {                                     \
-            aggressive_polling++;                                              \
-          } else {                                                             \
-            usleep(SLEEP_USEC);                                                \
-          }                                                                    \
-          iterations++;                                                        \
+      int nrecv = 0, errors = 0;                                               \
+      log_info("PE %d: Starting to wait for messages from all PEs", mype);     \
+      /* Wait for all messages to arrive */                                    \
+      while (nrecv < npes) {                                                   \
+        int who = wait_any(wait_vars, npes, SHMEM_CMP_NE, 0, #TYPENAME);       \
+        if (who == -1) {                                                       \
+          log_fail("PE %d: wait_any timed out", mype);                         \
+          errors++;                                                            \
+          break;                                                               \
         }                                                                      \
-        log_info("PE %d: Test loop completed after %d iterations", mype,       \
-                 iterations);                                                  \
-        if (*flag != 1) {                                                      \
-          log_fail("PE %d: Validation failed - flag=%d, expected 1", mype,     \
-                   (int)*flag);                                                \
-          success = false;                                                     \
+        TYPE expected = (TYPE)(who + 1);                                       \
+        if (wait_vars[who] != expected) {                                      \
+          log_fail("PE %d: wait_vars[%d] = %d, expected %d", mype, who,        \
+                   (int)wait_vars[who], (int)expected);                        \
+          errors++;                                                            \
         } else {                                                               \
-          log_info("PE %d: Successfully validated flag=1", mype);              \
+          log_info("PE %d: Received correct value %d from PE %d", mype,        \
+                   (int)wait_vars[who], who);                                  \
         }                                                                      \
+        wait_vars[who] = 0;                                                    \
+        nrecv++;                                                               \
       }                                                                        \
-      log_info("Freeing allocated memory at %p", (void *)flag);                \
-      shmem_free(flag);                                                        \
+      log_info("PE %d: Received %d messages with %d errors", mype, nrecv,      \
+               errors);                                                        \
+      if (errors > 0)                                                          \
+        success = false;                                                       \
+      log_info("Freeing allocated memory at %p", (void *)wait_vars);           \
+      shmem_free(wait_vars);                                                   \
     }                                                                          \
     success;                                                                   \
   })

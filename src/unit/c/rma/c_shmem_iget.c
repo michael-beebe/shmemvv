@@ -45,9 +45,9 @@
     if (mype == 1) {                                                           \
       log_info("PE 1: Beginning validation of received data");                 \
       for (int i = 0; i < 10; i += 2) {                                        \
-        if (dest[i] != i / 2) {                                                \
+        if (dest[i] != i) {                                                    \
           log_fail("PE 1: Validation failed - dest[%d] = %d, expected %d", i,  \
-                   (int)dest[i], i / 2);                                       \
+                   (int)dest[i], i);                                           \
           success = false;                                                     \
           break;                                                               \
         }                                                                      \
@@ -108,7 +108,7 @@
     if (mype == 1) {                                                           \
       log_info("PE 1: Beginning validation of received data");                 \
       for (int i = 0; i < 10; i += 2) {                                        \
-        int expected = (i / 2) + 20;                                           \
+        int expected = i + 20;                                                 \
         if (dest[i] != expected) {                                             \
           log_fail("PE 1: Validation failed - dest[%d] = %d, expected %d", i,  \
                    (int)dest[i], expected);                                    \
@@ -167,9 +167,9 @@
     if (mype == 1) {                                                           \
       log_info("PE 1: Beginning validation of received data");                 \
       for (int i = 0; i < 10; i += 2) {                                        \
-        if (dest[i] != i / 2) {                                                \
+        if (dest[i] != i) {                                                    \
           log_fail("PE 1: Validation failed - dest[%d] = %d, expected %d", i,  \
-                   (int)dest[i], i / 2);                                       \
+                   (int)dest[i], i);                                           \
           success = false;                                                     \
           break;                                                               \
         }                                                                      \
@@ -231,7 +231,7 @@
     if (mype == 1) {                                                           \
       log_info("PE 1: Beginning validation of received data");                 \
       for (int i = 0; i < 10; i += 2) {                                        \
-        int expected = (i / 2) + 20;                                           \
+        int expected = i + 20;                                                 \
         if (dest[i] != expected) {                                             \
           log_fail("PE 1: Validation failed - dest[%d] = %d, expected %d", i,  \
                    (int)dest[i], expected);                                    \

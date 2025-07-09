@@ -17,8 +17,8 @@
     log_info("shmem_malloc'd %d bytes @ &src = %p, %d bytes @ &dest = %p",     \
              sizeof(TYPE), (void *)src, npes * sizeof(TYPE), (void *)dest);    \
                                                                                \
-    src[0] = mype;                                                             \
-    log_info("set %p (src[0]) to %d", (void *)src, mype);                      \
+    src[0] = (TYPE)mype; /* Cast handles overflow/wraparound */                \
+    log_info("set %p (src[0]) to %d", (void *)src, (int)(TYPE)mype);           \
                                                                                \
     log_info("executing shmem_collect: dest = %p, src = %p", (void *)dest,     \
              (void *)src);                                                     \
@@ -27,9 +27,10 @@
     log_info("validating result...");                                          \
     bool success = true;                                                       \
     for (int i = 0; i < npes; ++i) {                                           \
-      if (dest[i] != i) {                                                      \
+      TYPE expected = (TYPE)i; /* This handles overflow/wraparound */          \
+      if (dest[i] != expected) {                                               \
         log_info("index %d of dest (%p) failed. expected %d, got %d", i,       \
-                 &dest[i], i, (char)dest[i]);                                  \
+                 &dest[i], (int)expected, (int)dest[i]);                       \
         success = false;                                                       \
         break;                                                                 \
       }                                                                        \

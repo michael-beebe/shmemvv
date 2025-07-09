@@ -12,24 +12,39 @@
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
                                                                                \
-    TYPE *src = (TYPE *)shmem_malloc(sizeof(TYPE));                            \
-    TYPE *dest = (TYPE *)shmem_malloc(npes * sizeof(TYPE));                    \
-    log_info("shmem_malloc'd %d bytes @ &src = %p, %d bytes @ &dest = %p",     \
+    TYPE *src = (TYPE *)shmem_calloc(1, sizeof(TYPE));                         \
+    TYPE *dest = (TYPE *)shmem_calloc(npes, sizeof(TYPE));                     \
+    log_info("shmem_calloc'd %d bytes @ &src = %p, %d bytes @ &dest = %p",     \
              sizeof(TYPE), (void *)src, npes * sizeof(TYPE), (void *)dest);    \
                                                                                \
-    src[0] = mype;                                                             \
+    if (!src || !dest) {                                                       \
+      log_fail("Failed to allocate symmetric memory");                         \
+      if (src)                                                                 \
+        shmem_free(src);                                                       \
+      if (dest)                                                                \
+        shmem_free(dest);                                                      \
+      return false;                                                            \
+    }                                                                          \
+                                                                               \
+    src[0] = (TYPE)mype;                                                       \
     log_info("set %p (src[0]) to %d", (void *)src, mype);                      \
+                                                                               \
+    shmem_barrier_all(); /* Ensure all PEs are ready */                        \
                                                                                \
     log_info("executing shmem_fcollect: dest = %p, src = %p", (void *)dest,    \
              (void *)src);                                                     \
     shmem_##TYPENAME##_fcollect(SHMEM_TEAM_WORLD, dest, src, 1);               \
                                                                                \
+    shmem_barrier_all(); /* Ensure all PEs complete fcollect before validation \
+                          */                                                   \
+                                                                               \
     log_info("validating result...");                                          \
     bool success = true;                                                       \
     for (int i = 0; i < npes; ++i) {                                           \
-      if (dest[i] != i) {                                                      \
+      TYPE expected = (TYPE)i;                                                 \
+      if (dest[i] != expected) {                                               \
         log_info("index %d of dest (%p) failed. expected %d, got %d", i,       \
-                 &dest[i], i, (char)dest[i]);                                  \
+                 &dest[i], (int)expected, (int)dest[i]);                       \
         success = false;                                                       \
         break;                                                                 \
       }                                                                        \

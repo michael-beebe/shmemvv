@@ -27,6 +27,8 @@ bool test_shmem_team_n_pes(void) {
   }
   log_info("Team split successful");
 
+  shmem_barrier_all();
+
   log_info("Calling shmem_team_n_pes()");
   int npes = shmem_team_n_pes(team);
   log_info("Team has %d PEs (expected %d)", npes, shmem_n_pes());

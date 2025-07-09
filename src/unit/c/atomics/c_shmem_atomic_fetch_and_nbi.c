@@ -83,7 +83,7 @@
     else                                                                       \
       log_info("atomic fetch and nbi with context on a %s at %p produced "     \
                "expected result (%d == %d && %d == %d)",                       \
-               #TYPE, dest, value, fetch, value &and_val, *dest);              \
+               #TYPE, dest, value, fetch, value & and_val, *dest);             \
                                                                                \
     shmem_ctx_destroy(ctx);                                                    \
     log_info("Context destroyed");                                             \

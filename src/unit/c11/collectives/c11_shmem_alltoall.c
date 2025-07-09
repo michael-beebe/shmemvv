@@ -37,9 +37,10 @@
     log_info("validating result...");                                          \
     bool success = true;                                                       \
     for (int i = 0; i < npes; ++i) {                                           \
-      if (dest[i] != mype + i) {                                               \
+      TYPE expected = (TYPE)(mype + i);                                        \
+      if (dest[i] != expected) {                                               \
         log_info("index %d of dest (%p) failed. expected %d, got %d", i,       \
-                 &dest[i], mype + i, (char)dest[i]);                           \
+                 &dest[i], (int)expected, (int)dest[i]);                       \
         success = false;                                                       \
         break;                                                                 \
       }                                                                        \

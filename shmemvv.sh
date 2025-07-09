@@ -24,7 +24,7 @@ CTX_NP=2
 REMOTE_NP=2
 ATOMICS_NP=2
 SIGNALING_NP=2
-COLLECTIVES_NP=2 # Change from 4 to 2 to match RUN.sh
+COLLECTIVES_NP=2 
 PT2PT_SYNC_NP=2
 LOCKING_NP=2
 
@@ -123,7 +123,7 @@ display_usage() {
   echo "  --np <N>                (default=varies by test) Override default PE count for all tests"
   echo "  --launcher <cmd>        (default=$(which oshrun)) Path to oshrun launcher"
   echo "  --launcher_args <args>  Add custom arguments to launcher"
-  echo "  --enable_c11            Enable C11 tests"
+  echo "  --enable_c11            Enable C11 tests (available for: atomics, collectives, pt2pt_sync, rma, signaling)"
   echo "  --enable_c              Enable C/C++ tests"
   echo "  --verbose               Enable verbose output"
   echo "  --no-color              Disable colored output"
@@ -249,13 +249,25 @@ run_all_langs() {
   fi
 }
 
+# --- Run C tests only for categories without C11 variants
+run_c_only() {
+  local dir=$1
+  local name=$2
+  local np=$3
+
+  # --- Run C tests if enabled
+  if [ $ENABLE_C -eq 1 ]; then
+    run_test_category "$dir" "$name (C/C++)" "$np" "c_*"
+  fi
+}
+
 # --- Test category functions
 run_setup_tests() {
   if [ $EXCLUDE_SETUP -eq 1 ]; then
     return
   fi
   local np=${SETUP_NP}
-  run_all_langs "$SETUP_BIN" "Setup" "$np"
+  run_c_only "$SETUP_BIN" "Setup" "$np"
 }
 
 run_threads_tests() {
@@ -263,7 +275,7 @@ run_threads_tests() {
     return
   fi
   local np=${THREADS_NP}
-  run_all_langs "$THREADS_BIN" "Threads Support" "$np"
+  run_c_only "$THREADS_BIN" "Threads Support" "$np"
 }
 
 run_memory_tests() {
@@ -271,7 +283,7 @@ run_memory_tests() {
     return
   fi
   local np=${MEMORY_NP}
-  run_all_langs "$MEMORY_BIN" "Memory Management" "$np"
+  run_c_only "$MEMORY_BIN" "Memory Management" "$np"
 }
 
 run_teams_tests() {
@@ -279,7 +291,7 @@ run_teams_tests() {
     return
   fi
   local np=${TEAMS_NP}
-  run_all_langs "$TEAMS_BIN" "Teams Management" "$np"
+  run_c_only "$TEAMS_BIN" "Teams Management" "$np"
 }
 
 run_ctx_tests() {
@@ -287,7 +299,7 @@ run_ctx_tests() {
     return
   fi
   local np=${CTX_NP}
-  run_all_langs "$CTX_BIN" "Context Management" "$np"
+  run_c_only "$CTX_BIN" "Context Management" "$np"
 }
 
 run_remote_tests() {
@@ -335,7 +347,7 @@ run_locking_tests() {
     return
   fi
   local np=${LOCKING_NP}
-  run_all_langs "$LOCKING_BIN" "Distributed Locking" "$np"
+  run_c_only "$LOCKING_BIN" "Distributed Locking" "$np"
 }
 
 # --- Run all tests

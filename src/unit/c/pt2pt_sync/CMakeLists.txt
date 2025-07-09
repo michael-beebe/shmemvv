@@ -33,6 +33,7 @@ set_target_properties(
   c_shmem_test_any_vector
   c_shmem_test_any
   c_shmem_test_some_vector
+  c_shmem_test_some
   c_shmem_test
   c_shmem_wait_until_all_vector
   c_shmem_wait_until_all
@@ -53,6 +54,7 @@ target_include_directories(c_shmem_test_all PRIVATE src/include)
 target_include_directories(c_shmem_test_any_vector PRIVATE src/include)
 target_include_directories(c_shmem_test_any PRIVATE src/include)
 target_include_directories(c_shmem_test_some_vector PRIVATE src/include)
+target_include_directories(c_shmem_test_some PRIVATE src/include)
 target_include_directories(c_shmem_test PRIVATE src/include)
 target_include_directories(c_shmem_wait_until_all_vector PRIVATE src/include)
 target_include_directories(c_shmem_wait_until_all PRIVATE src/include)
@@ -69,6 +71,7 @@ target_link_libraries(c_shmem_test_all)
 target_link_libraries(c_shmem_test_any_vector)
 target_link_libraries(c_shmem_test_any)
 target_link_libraries(c_shmem_test_some_vector)
+target_link_libraries(c_shmem_test_some)
 target_link_libraries(c_shmem_test)
 target_link_libraries(c_shmem_wait_until_all_vector)
 target_link_libraries(c_shmem_wait_until_all)

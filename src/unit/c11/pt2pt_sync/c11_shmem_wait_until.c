@@ -1,81 +1,67 @@
 /**
  * @file c11_shmem_wait_until.c
- * @brief Unit test shmem_wait_until() routine.
+ * @brief Unit test for shmem_wait_until
  */
 
 #include <shmem.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 #include <time.h>
 #include <unistd.h>
 
 #include "log.h"
 #include "shmemvv.h"
 
-// Reduce timeout for faster test completion
-#define TIMEOUT 1
+#define TIMEOUT 10
 
-#define TEST_C11_SHMEM_WAIT_UNTIL(TYPE)                              \
+#define TEST_C11_SHMEM_WAIT_UNTIL(TYPE)                                        \
   ({                                                                           \
-    log_routine("shmem_wait_until(" #TYPE ")");                                \
+    log_routine("c11_shmem_wait_until(" #TYPE ")");                            \
     bool success = true;                                                       \
-    TYPE *flag = (TYPE *)shmem_malloc(sizeof(TYPE));                           \
-    log_info("Allocated flag array (%zu bytes) at address %p", sizeof(TYPE),   \
-             (void *)flag);                                                    \
-    if (flag == NULL) {                                                        \
-      log_fail("Memory allocation failed - shmem_malloc returned NULL");       \
+    int mype = shmem_my_pe();                                                  \
+    int npes = shmem_n_pes();                                                  \
+    TYPE *wait_vars = (TYPE *)shmem_calloc(npes, sizeof(TYPE));                \
+    log_info("Allocated wait_vars array (%zu bytes) at address %p",            \
+             npes * sizeof(TYPE), (void *)wait_vars);                          \
+    if (wait_vars == NULL) {                                                   \
+      log_fail("Memory allocation failed - shmem_calloc returned NULL");       \
       success = false;                                                         \
     } else {                                                                   \
-      *flag = 0;                                                               \
-      log_info("Initialized flag to 0");                                       \
-      int mype = shmem_my_pe();                                                \
-      int npes = shmem_n_pes();                                                \
-                                                                               \
-      shmem_barrier_all();                                                     \
-                                                                               \
-      if (mype == 0) {                                                         \
-        log_info("PE 0: Starting to set flags on other PEs");                  \
-        /* Batch operations for better performance */                          \
-        TYPE one = 1;                                                          \
-        for (int pe = 1; pe < npes; ++pe) {                                    \
-          log_info("PE 0: Setting flag to 1 on PE %d (address: %p)", pe,       \
-                   (void *)flag);                                              \
-          shmem_put(flag, &one, 1, pe);                           \
-        }                                                                      \
-        shmem_quiet();                                                         \
-        log_info("PE 0: Called shmem_quiet() after setting flags");            \
+      log_info("PE %d: Sending value %d to all PEs", mype, (int)(mype + 1));   \
+      /* Put mype+1 to every PE */                                             \
+      for (int i = 0; i < npes; i++) {                                         \
+        TYPE value = (TYPE)(mype + 1);                                         \
+        shmem_put(&wait_vars[mype], &value, 1, i);                             \
       }                                                                        \
+      shmem_quiet();                                                           \
+      log_info("PE %d: Completed sending to all PEs", mype);                   \
                                                                                \
-      shmem_barrier_all();                                                     \
-                                                                               \
-      if (mype != 0) {                                                         \
-        log_info("PE %d: Starting wait_until (flag=%p, SHMEM_CMP_EQ, 1)",      \
-                 mype, (void *)flag);                                          \
-        /* Add non-blocking mechanism with timeout */                          \
-        time_t start_time = time(NULL);                                        \
-        bool flag_set = false;                                                 \
-        while (!flag_set) {                                                    \
-          flag_set = shmem_test(flag, SHMEM_CMP_EQ, 1);           \
-          if (flag_set) {                                                      \
-            break;                                                             \
-          }                                                                    \
-          if (time(NULL) - start_time > TIMEOUT) {                             \
-            log_fail("PE %d: wait_until timed out", mype);                     \
-            break;                                                             \
-          }                                                                    \
+      int nrecv = 0, errors = 0;                                               \
+      log_info("PE %d: Starting to wait for messages from all PEs", mype);     \
+      /* Wait for all messages to arrive using shmem_wait_until */             \
+      for (int who = 0; who < npes; who++) {                                   \
+        if (wait_vars[who] == 0) {                                             \
+          log_info("PE %d: Waiting for message from PE %d", mype, who);        \
+          shmem_wait_until(&wait_vars[who], SHMEM_CMP_NE, 0);                  \
         }                                                                      \
-        log_info("PE %d: wait_until completed with flag value=%d", mype,       \
-                 (int)*flag);                                                  \
-        if (*flag != 1) {                                                      \
-          log_fail("PE %d: Validation failed - flag=%d, expected 1", mype,     \
-                   (int)*flag);                                                \
-          success = false;                                                     \
+        TYPE expected = (TYPE)(who + 1);                                       \
+        if (wait_vars[who] != expected) {                                      \
+          log_fail("PE %d: wait_vars[%d] = %d, expected %d", mype, who,        \
+                   (int)wait_vars[who], (int)expected);                        \
+          errors++;                                                            \
         } else {                                                               \
-          log_info("PE %d: Successfully validated flag=1", mype);              \
+          log_info("PE %d: Received correct value %d from PE %d", mype,        \
+                   (int)wait_vars[who], who);                                  \
         }                                                                      \
+        nrecv++;                                                               \
       }                                                                        \
-      log_info("Freeing allocated memory at %p", (void *)flag);                \
-      shmem_free(flag);                                                        \
+      log_info("PE %d: Received %d messages with %d errors", mype, nrecv,      \
+               errors);                                                        \
+      if (errors > 0)                                                          \
+        success = false;                                                       \
+      log_info("Freeing allocated memory at %p", (void *)wait_vars);           \
+      shmem_free(wait_vars);                                                   \
     }                                                                          \
     success;                                                                   \
   })

@@ -16,9 +16,7 @@ add_executable(c11_shmem_alltoalls c11_shmem_alltoalls.c ${SOURCES})
 add_executable(c11_shmem_broadcast c11_shmem_broadcast.c ${SOURCES})
 add_executable(c11_shmem_collect c11_shmem_collect.c ${SOURCES})
 add_executable(c11_shmem_fcollect c11_shmem_fcollect.c ${SOURCES})
-add_executable(c11_shmem_max_reduce c11_shmem_max_reduce.c ${SOURCES})
-add_executable(c11_shmem_prod_reduce c11_shmem_prod_reduce.c ${SOURCES})
-add_executable(c11_shmem_sum_reduce c11_shmem_sum_reduce.c ${SOURCES})
+add_executable(c11_shmem_reduce c11_shmem_reduce.c ${SOURCES})
 add_executable(c11_shmem_sync_all c11_shmem_sync_all.c ${SOURCES})
 add_executable(c11_shmem_sync c11_shmem_sync.c ${SOURCES})
 
@@ -29,9 +27,7 @@ set_target_properties(
   c11_shmem_broadcast
   c11_shmem_collect
   c11_shmem_fcollect
-  c11_shmem_max_reduce
-  c11_shmem_prod_reduce
-  c11_shmem_sum_reduce
+  c11_shmem_reduce
   c11_shmem_sync_all
   c11_shmem_sync
   
@@ -46,21 +42,17 @@ target_include_directories(c11_shmem_alltoalls PRIVATE src/include)
 target_include_directories(c11_shmem_broadcast PRIVATE src/include)
 target_include_directories(c11_shmem_collect PRIVATE src/include)
 target_include_directories(c11_shmem_fcollect PRIVATE src/include)
-target_include_directories(c11_shmem_max_reduce PRIVATE src/include)
-target_include_directories(c11_shmem_prod_reduce PRIVATE src/include)
-target_include_directories(c11_shmem_sum_reduce PRIVATE src/include)
+target_include_directories(c11_shmem_reduce PRIVATE src/include)
 target_include_directories(c11_shmem_sync_all PRIVATE src/include)
 target_include_directories(c11_shmem_sync PRIVATE src/include)
 
-# --- Link any necessary libraries to each target (replace `your_library` with actual libraries if any)
+# --- Link any necessary libraries to each target 
 target_link_libraries(c11_shmem_alltoall)
 target_link_libraries(c11_shmem_alltoalls)
 target_link_libraries(c11_shmem_broadcast)
 target_link_libraries(c11_shmem_collect)
 target_link_libraries(c11_shmem_fcollect)
-target_link_libraries(c11_shmem_max_reduce)
-target_link_libraries(c11_shmem_prod_reduce)
-target_link_libraries(c11_shmem_sum_reduce)
+target_link_libraries(c11_shmem_reduce)
 target_link_libraries(c11_shmem_sync_all)
 target_link_libraries(c11_shmem_sync)
 

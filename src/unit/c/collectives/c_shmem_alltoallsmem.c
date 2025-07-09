@@ -152,20 +152,29 @@ int main(int argc, char *argv[]) {
   
   /* Basic tests with contiguous arrays (stride=1) */
   result &= test_alltoallsmem_with_params(8, 1, 1);  /* 8-byte elements */
+  shmem_barrier_all();
   result &= test_alltoallsmem_with_params(4, 1, 1);  /* 4-byte elements */
+  shmem_barrier_all();
   result &= test_alltoallsmem_with_params(1, 1, 1);  /* 1-byte elements */
+  shmem_barrier_all();
   
   /* Test with non-contiguous data (stride>1) */
   result &= test_alltoallsmem_with_params(8, 2, 2);  /* 8-byte elements, stride=2 */
+  shmem_barrier_all();
   result &= test_alltoallsmem_with_params(4, 3, 3);  /* 4-byte elements, stride=3 */
+  shmem_barrier_all();
   
   /* Testing with different strides for source and destination */
   result &= test_alltoallsmem_with_params(8, 2, 3);  /* 8-byte elements, different strides */
+  shmem_barrier_all();
   result &= test_alltoallsmem_with_params(4, 3, 2);  /* 4-byte elements, different strides */
+  shmem_barrier_all();
   
   /* Test with various sizes */
   result &= test_alltoallsmem_with_params(12, 2, 2); /* 12-byte elements */
+  shmem_barrier_all();
   result &= test_alltoallsmem_with_params(16, 2, 2); /* 16-byte elements */
+  shmem_barrier_all();
   result &= test_alltoallsmem_with_params(32, 2, 2); /* 32-byte elements */
 
   // clang-format on
