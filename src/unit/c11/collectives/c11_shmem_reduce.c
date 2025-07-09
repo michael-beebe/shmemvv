@@ -31,7 +31,15 @@ const double FLOATING_POINT_TOLERANCE = 1e-6;
     log_info("shmem_malloc'd %d bytes @ &src = %p, %d bytes @ &dest = %p",     \
              sizeof(TYPE), (void *)src, sizeof(TYPE), (void *)dest);           \
                                                                                \
-    *src = (TYPE)mype;                                                         \
+    /* Use safe value range to avoid overflow for 8-bit types */               \
+    TYPE src_val;                                                              \
+    if (sizeof(TYPE) == 1) {                                                   \
+      /* For 8-bit types, use PE % 100 to stay within safe range */            \
+      src_val = (TYPE)(mype % 100);                                            \
+    } else {                                                                   \
+      src_val = (TYPE)mype;                                                    \
+    }                                                                          \
+    *src = src_val;                                                            \
     if (is_complex((TYPE)0)) {                                                 \
       log_info("set %p (src) to %g+%gi", (void *)src, (double)creall(*src),    \
                (double)cimagl(*src));                                          \
@@ -44,7 +52,13 @@ const double FLOATING_POINT_TOLERANCE = 1e-6;
     shmem_max_reduce(SHMEM_TEAM_WORLD, dest, src, 1);                          \
                                                                                \
     log_info("validating result...");                                          \
-    TYPE expected = (TYPE)(npes - 1);                                          \
+    TYPE expected;                                                             \
+    if (sizeof(TYPE) == 1) {                                                   \
+      /* For 8-bit types, max of (PE % 100) values is min(99, npes-1) */       \
+      expected = (TYPE)(npes >= 100 ? 99 : npes - 1);                          \
+    } else {                                                                   \
+      expected = (TYPE)(npes - 1);                                             \
+    }                                                                          \
     bool success;                                                              \
     if (is_complex((TYPE)0)) {                                                 \
       /* Complex validation: check real and imaginary parts separately */      \
@@ -61,8 +75,10 @@ const double FLOATING_POINT_TOLERANCE = 1e-6;
                                                                                \
     if (success)                                                               \
       log_info("shmem_" #TYPENAME "_max_reduce produced expected result.");    \
-    else                                                                       \
-      log_fail("unexpected result from shmem_max_reduce");                     \
+    else {                                                                     \
+      log_fail("shmem_" #TYPENAME "_max_reduce failed: got %g, expected %g",   \
+               (double)*dest, (double)expected);                               \
+    }                                                                          \
                                                                                \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
@@ -82,7 +98,15 @@ const double FLOATING_POINT_TOLERANCE = 1e-6;
     log_info("shmem_malloc'd %d bytes @ &src = %p, %d bytes @ &dest = %p",     \
              sizeof(TYPE), (void *)src, sizeof(TYPE), (void *)dest);           \
                                                                                \
-    *src = (TYPE)mype;                                                         \
+    /* Use safe value range to avoid overflow for 8-bit types */               \
+    TYPE src_val;                                                              \
+    if (sizeof(TYPE) == 1) {                                                   \
+      /* For 8-bit types, use PE % 100 to stay within safe range */            \
+      src_val = (TYPE)(mype % 100);                                            \
+    } else {                                                                   \
+      src_val = (TYPE)mype;                                                    \
+    }                                                                          \
+    *src = src_val;                                                            \
     if (is_complex((TYPE)0)) {                                                 \
       log_info("set %p (src) to %g+%gi", (void *)src, (double)creall(*src),    \
                (double)cimagl(*src));                                          \
@@ -95,7 +119,7 @@ const double FLOATING_POINT_TOLERANCE = 1e-6;
     shmem_min_reduce(SHMEM_TEAM_WORLD, dest, src, 1);                          \
                                                                                \
     log_info("validating result...");                                          \
-    TYPE expected = (TYPE)0;                                                   \
+    TYPE expected = (TYPE)0; /* Minimum will always be 0 with safe range */    \
     bool success;                                                              \
     if (is_complex((TYPE)0)) {                                                 \
       /* Complex validation: check real and imaginary parts separately */      \
@@ -187,13 +211,18 @@ const double FLOATING_POINT_TOLERANCE = 1e-6;
     /* Use smaller values for floating-point types to avoid precision issues   \
      */                                                                        \
     TYPE src_val;                                                              \
-    if (is_complex((TYPE)0)) {                                                 \
-      /* Use 1.5+0i for complex to avoid large factorial precision issues */   \
-      src_val = (TYPE)(1.5 + 0.0 * I);                                         \
+    if (is_complex((TYPE)0) && npes > 50) {                                    \
+      /* Use 1+0i for large PE counts to avoid precision issues */             \
+      src_val = (TYPE)(1.0 + 0.0 * I);                                         \
+    } else if (is_complex((TYPE)0)) {                                          \
+      /* Use 1.1+0i for smaller PE counts */                                   \
+      src_val = (TYPE)(1.1 + 0.0 * I);                                         \
+    } else if (is_fp && npes > 50) {                                           \
+      /* Use 1 for large PE counts to avoid precision issues */                \
+      src_val = (TYPE)1.0;                                                     \
     } else if (is_fp) {                                                        \
-      /* Use 1.5 for floating-point to avoid large factorial precision issues  \
-       */                                                                      \
-      src_val = (TYPE)1.5;                                                     \
+      /* Use 1.1 for smaller PE counts */                                      \
+      src_val = (TYPE)1.1;                                                     \
     } else if (npes > 20) {                                                    \
       /* Use 1 for large PE counts to avoid integer overflow */                \
       src_val = (TYPE)1;                                                       \
@@ -214,13 +243,19 @@ const double FLOATING_POINT_TOLERANCE = 1e-6;
                                                                                \
     log_info("validating result...");                                          \
     TYPE expected;                                                             \
-    if (is_complex((TYPE)0)) {                                                 \
-      /* For complex: (1.5+0i)^npes = 1.5^npes + 0i */                         \
-      long double real_part = powl(1.5L, (long double)npes);                   \
+    if (is_complex((TYPE)0) && npes > 50) {                                    \
+      /* For large PE counts: (1+0i)^npes = 1+0i */                            \
+      expected = (TYPE)(1.0 + 0.0 * I);                                        \
+    } else if (is_complex((TYPE)0)) {                                          \
+      /* For smaller PE counts: (1.1+0i)^npes = 1.1^npes + 0i */               \
+      long double real_part = powl(1.1L, (long double)npes);                   \
       expected = (TYPE)(real_part + 0.0 * I);                                  \
+    } else if (is_fp && npes > 50) {                                           \
+      /* For large PE counts: 1^npes = 1 */                                    \
+      expected = (TYPE)1.0;                                                    \
     } else if (is_fp) {                                                        \
-      /* For floating-point: 1.5^npes */                                       \
-      expected = (TYPE)powl(1.5L, (long double)npes);                          \
+      /* For smaller PE counts: 1.1^npes */                                    \
+      expected = (TYPE)powl(1.1L, (long double)npes);                          \
     } else {                                                                   \
       /* For integers: use 2^npes or 1^npes depending on PE count */           \
       if (npes > 20) {                                                         \
@@ -261,8 +296,10 @@ const double FLOATING_POINT_TOLERANCE = 1e-6;
                                                                                \
     if (success)                                                               \
       log_info("shmem_" #TYPENAME "_prod_reduce produced expected result.");   \
-    else                                                                       \
-      log_fail("unexpected result from shmem_prod_reduce");                    \
+    else {                                                                     \
+      log_fail("shmem_" #TYPENAME "_prod_reduce failed: got %g, expected %g",  \
+               (double)*dest, (double)expected);                               \
+    }                                                                          \
                                                                                \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \

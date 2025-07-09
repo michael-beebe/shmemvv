@@ -1,2 +1,0 @@
-rpc-94-17 slots=64
-rpc-94-18 slots=64
