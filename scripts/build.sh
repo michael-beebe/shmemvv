@@ -5,11 +5,10 @@
 
 mkdir build ; cd build
 
-OSHCC=$OSSS_TESTING_BIN/oshcc
+export CC=$OSSS_TESTING_BIN/oshcc
+export CXX=$OSSS_TESTING_BIN/oshc++
 
-cmake \
-    -DCMAKE_C_COMPILER=$OSHCC \
-    ..
+cmake ..
 
 # --- Compile
 make -j $(( $(nproc) - 1 ))
