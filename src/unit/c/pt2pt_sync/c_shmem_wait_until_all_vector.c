@@ -37,6 +37,9 @@
       shmem_quiet();                                                           \
       log_info("PE %d: Completed sending to all PEs", mype);                   \
                                                                                \
+      /* Ensure all PEs have completed their puts before proceeding */         \
+      shmem_barrier_all();                                                     \
+                                                                               \
       TYPE cmp_values[npes];                                                   \
       /* Set up comparison values - wait for each PE's expected value */       \
       for (int i = 0; i < npes; i++) {                                         \
@@ -61,6 +64,14 @@
         } else {                                                               \
           log_info("PE %d: Received correct value %d from PE %d", mype,        \
                    (int)wait_vars[who], who);                                  \
+        }                                                                      \
+      }                                                                        \
+      /* Debug: show all values received */                                    \
+      if (errors > 0) {                                                        \
+        log_info("PE %d: Debug - all wait_vars values:", mype);                \
+        for (int who = 0; who < npes; who++) {                                 \
+          log_info("PE %d: wait_vars[%d] = %d", mype, who,                     \
+                   (int)wait_vars[who]);                                       \
         }                                                                      \
       }                                                                        \
       log_info("PE %d: Validated %d messages with %d errors", mype, npes,      \

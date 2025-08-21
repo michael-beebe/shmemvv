@@ -98,7 +98,7 @@ mkdir -p $SHMEMVV_LOG_DIR
   --launcher $oshrun \
   --launcher_args "--hostfile $hostfile -x SHMEMVV_LOG_DIR" \
   --np $np \
-  --test_collectives
+  --test_pt2pt_synch
 
 # --- Clean up
 rm $hostfile
