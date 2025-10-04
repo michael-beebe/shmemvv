@@ -40,7 +40,8 @@
         shmem_##TYPENAME##_atomic_set(&wait_vars[mype], (TYPE)mype, i);        \
         cmp_values[i] = (TYPE)i; /* Expect PE i's value */                     \
       }                                                                        \
-      log_info("PE %d: Completed sending to all PEs", mype);                   \
+      log_info("PE %d: Completed sending to all PEs", mype);   \
+      shmem_barrier_all();                 \
                                                                                \
       int nrecv = 0, errors = 0;                                               \
       int expected_sum = (npes - 1) * npes / 2;                                \
