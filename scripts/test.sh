@@ -101,4 +101,3 @@ mkdir -p $SHMEMVV_LOG_DIR
 
 # --- Clean up
 rm $hostfile
-

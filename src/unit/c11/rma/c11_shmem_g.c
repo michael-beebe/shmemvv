@@ -9,7 +9,7 @@
 
 #include "log.h"
 #include "shmemvv.h"
-#include "datatypes.h"
+#include "type_tables.h"
 
 #define TEST_C11_SHMEM_G(TYPE)                                                 \
   ({                                                                           \
@@ -34,12 +34,7 @@
       log_info("PE 1: Fetching remote value from PE 0");                       \
       dest = shmem_g(&src, 0);                                                 \
       log_info("PE 1: Fetched value dest = %d", (int)dest);                    \
-    }                                                                          \
                                                                                \
-    shmem_barrier_all();                                                       \
-    log_info("Completed barrier synchronization");                             \
-                                                                               \
-    if (mype == 1) {                                                           \
       log_info("PE 1: Beginning validation");                                  \
       if (dest != 10) {                                                        \
         log_fail("PE 1: Validation failed - expected dest=10, got dest=%d",    \
@@ -88,12 +83,7 @@
       log_info("PE 1: Fetching remote value from PE 0 using context");         \
       dest = shmem_g(ctx, &src, 0);                                            \
       log_info("PE 1: Fetched value dest = %d", (int)dest);                    \
-    }                                                                          \
                                                                                \
-    shmem_barrier_all();                                                       \
-    log_info("Completed barrier synchronization");                             \
-                                                                               \
-    if (mype == 1) {                                                           \
       log_info("PE 1: Beginning validation");                                  \
       if (dest != 20) {                                                        \
         log_fail("PE 1: Validation failed - expected dest=20, got dest=%d",    \
@@ -131,8 +121,8 @@ int main(int argc, char *argv[]) {
   int rc = EXIT_SUCCESS;
 
 
-  #define X(type) result &= TEST_C11_SHMEM_G(type);
-    RMA_TYPES
+  #define X(type, shmem_types) result &= TEST_C11_SHMEM_G(type);
+    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
   #undef X
 
   shmem_barrier_all();
@@ -148,8 +138,8 @@ int main(int argc, char *argv[]) {
   int result_ctx = true;
 
   /* Test context-specific shmem_g variants */
-  #define X(type) result &= TEST_C11_CTX_SHMEM_G(type);
-    RMA_TYPES
+  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_G(type);
+    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
   #undef X
 
   shmem_barrier_all();
