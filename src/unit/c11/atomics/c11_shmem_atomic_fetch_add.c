@@ -11,6 +11,7 @@
 
 #include "log.h"
 #include "shmemvv.h"
+#include "type_tables.h"
 
 #define TEST_C11_SHMEM_ATOMIC_FETCH_ADD(TYPE)                                  \
   ({                                                                           \
@@ -100,18 +101,10 @@ int main(int argc, char *argv[]) {
 
   /* Test standard atomic fetch-add operations */
   bool result = true;
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD(int);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD(long);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD(long long);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD(unsigned int);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD(unsigned long);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD(unsigned long long);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD(int32_t);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD(int64_t);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD(uint32_t);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD(uint64_t);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD(size_t);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD(ptrdiff_t);
+
+  #define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD(type);
+    SHMEM_STANDARD_AMO_TYPE_TABLE(X)
+  #undef X
 
   if (shmem_my_pe() == 0) {
     display_test_result("C11 shmem_atomic_fetch_add", result, false);
@@ -119,18 +112,10 @@ int main(int argc, char *argv[]) {
 
   /* Test context-specific atomic fetch-add operations */
   bool result_ctx = true;
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD(int);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD(long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD(long long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD(unsigned int);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD(unsigned long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD(unsigned long long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD(int32_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD(int64_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD(uint32_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD(uint64_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD(size_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD(ptrdiff_t);
+
+  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD(type);
+    SHMEM_STANDARD_AMO_TYPE_TABLE(X)
+  #undef X
 
   if (shmem_my_pe() == 0) {
     display_test_result("C11 shmem_atomic_fetch_add with ctx", result_ctx,
