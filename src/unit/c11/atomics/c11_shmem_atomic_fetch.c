@@ -16,12 +16,12 @@
 #define TEST_C11_SHMEM_ATOMIC_FETCH(TYPE)                                      \
   ({                                                                           \
     log_routine("shmem_atomic_fetch(" #TYPE ")");                              \
-    const TYPE value = 42;                                                     \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
     static TYPE fetch = 0;                                                     \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
+    TYPE value = 42;                                                           \
     *dest = value;                                                             \
     log_info("set %p to %d", (void *)dest, (int)value);                        \
     shmem_barrier_all();                                                       \
@@ -45,13 +45,12 @@
 #define TEST_C11_CTX_SHMEM_ATOMIC_FETCH(TYPE)                                  \
   ({                                                                           \
     log_routine("shmem_atomic_fetch(ctx, " #TYPE ")");                         \
-    const TYPE value = 59; /*Different value for ctx test*/                    \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
-    static TYPE fetch = 0;                                                         \
+    static TYPE fetch = 0;                                                     \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
-                                                                              \
+    TYPE value = 59; /*Different value for ctx test*/                          \
     *dest = value;                                                             \
     log_info("set %p to %d", (void *)dest, (int)value);                        \
                                                                                \
