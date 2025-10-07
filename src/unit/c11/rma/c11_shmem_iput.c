@@ -48,8 +48,16 @@
                                                                                \
     if (mype == 1) {                                                           \
       log_info("PE 1: Beginning validation of received data");                 \
-      for (int i = 0; i < 10; i += 2) {                                        \
-        if (dest[i] != i) {                                                    \
+      for (int i = 0; i < 10; i += 1) {                                        \
+        /*ensure even indexes contain transfered data*/                        \
+        if (dest[i] != i && i % 2 == 0) {                                      \
+          log_fail("PE 1: Validation failed - dest[%d] = %d, expected %d", i,  \
+                   (int)dest[i], i);                                           \
+          success = false;                                                     \
+          break;                                                               \
+        }                                                                      \
+        /*ensure odd indexes do not contain transfered data*/                  \
+        if (dest[i] != 0 && i % 2 == 1) {                                      \
           log_fail("PE 1: Validation failed - dest[%d] = %d, expected %d", i,  \
                    (int)dest[i], i);                                           \
           success = false;                                                     \
@@ -114,11 +122,19 @@
                                                                                \
     if (mype == 1) {                                                           \
       log_info("PE 1: Beginning validation of received data");                 \
-      for (int i = 0; i < 10; i += 2) {                                        \
+      for (int i = 0; i < 10; i += 1) {                                        \
         int expected = i + 20; /* PE 0's value */                              \
-        if (dest[i] != expected) {                                             \
+        /*ensure even indexes contain transfered data*/                        \
+        if (dest[i] != expected && i % 2 == 0) {                               \
           log_fail("PE 1: Validation failed - dest[%d] = %d, expected %d", i,  \
-                   (int)dest[i], expected);                                    \
+                   (int)dest[i], i);                                           \
+          success = false;                                                     \
+          break;                                                               \
+        }                                                                      \
+        /*ensure odd indexes do not contain transfered data*/                  \
+        if (dest[i] != 0 && i % 2 == 1) {                                      \
+          log_fail("PE 1: Validation failed - dest[%d] = %d, expected %d", i,  \
+                   (int)dest[i], i);                                           \
           success = false;                                                     \
           break;                                                               \
         }                                                                      \
