@@ -48,18 +48,22 @@
                                                                                \
     if (mype == 1) {                                                           \
       log_info("PE 1: Beginning validation of received data");                 \
-      for (int i = 0; i < 10; i += 1) {                                        \
-        /*ensure even indexes contain transfered data*/                        \
-        if (dest[i] != i && i % 2 == 0) {                                      \
+      /*ensure even indexes contain transfered data*/                          \
+      for (int i = 0; i < 10; i += 2) {                                        \
+        if (dest[i] != i) {                                                    \
           log_fail("PE 1: Validation failed - dest[%d] = %d, expected %d", i,  \
                    (int)dest[i], i);                                           \
           success = false;                                                     \
           break;                                                               \
         }                                                                      \
-        /*ensure odd indexes do not contain transfered data*/                  \
-        if (dest[i] != 0 && i % 2 == 1) {                                      \
-          log_fail("PE 1: Validation failed - dest[%d] = %d, expected %d", i,  \
-                   (int)dest[i], i);                                           \
+      }                                                                        \
+      log_info("PE 1: Beginning validation of unchanged elements between "     \
+         "strides");                                                           \
+      /*ensure odd indexes do not contain transfered data*/                    \
+      for (int i = 1; i < 10; i += 2){                                         \
+        if (dest[i] != 0) {                                                    \
+          log_fail("PE 1: Validation failed - dest[%d] = %d, expected 0", i,   \
+                   (int)dest[i]);                                              \
           success = false;                                                     \
           break;                                                               \
         }                                                                      \
@@ -122,19 +126,23 @@
                                                                                \
     if (mype == 1) {                                                           \
       log_info("PE 1: Beginning validation of received data");                 \
-      for (int i = 0; i < 10; i += 1) {                                        \
-        int expected = i + 20; /* PE 0's value */                              \
-        /*ensure even indexes contain transfered data*/                        \
-        if (dest[i] != expected && i % 2 == 0) {                               \
+      /*ensure even indexes contain transfered data*/                          \
+      for (int i = 0; i < 10; i += 2) {                                        \
+        int expected = i + 20;                                                 \
+        if (dest[i] != expected) {                                             \
           log_fail("PE 1: Validation failed - dest[%d] = %d, expected %d", i,  \
-                   (int)dest[i], i);                                           \
+                   (int)dest[i], expected);                                    \
           success = false;                                                     \
           break;                                                               \
         }                                                                      \
-        /*ensure odd indexes do not contain transfered data*/                  \
-        if (dest[i] != 0 && i % 2 == 1) {                                      \
-          log_fail("PE 1: Validation failed - dest[%d] = %d, expected %d", i,  \
-                   (int)dest[i], i);                                           \
+      }                                                                        \
+      log_info("PE 1: Beginning validation of unchanged elements between "     \
+         "strides");                                                           \
+      /*ensure odd indexes do not contain transfered data*/                    \
+      for (int i = 1; i < 10; i += 2){                                         \
+        if (dest[i] != 0) {                                                    \
+          log_fail("PE 1: Validation failed - dest[%d] = %d, expected 0", i,   \
+                   (int)dest[i]);                                              \
           success = false;                                                     \
           break;                                                               \
         }                                                                      \
@@ -168,8 +176,8 @@ int main(int argc, char *argv[]) {
     return EXIT_SUCCESS;
   }
 
-  int result = true;
-  int rc = EXIT_SUCCESS;
+  static int result = true;
+  static int result_ctx = true;
 
   /* Test standard shmem_iput variants */
   #define X(type, shmem_types) result &= TEST_C11_SHMEM_IPUT(type);
@@ -178,31 +186,19 @@ int main(int argc, char *argv[]) {
 
   shmem_barrier_all();
 
-  if (!result) {
-    rc = EXIT_FAILURE;
-  }
-
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_iput", result, false);
-  }
+  reduce_test_result("C11 shmem_iput", &result, false);
 
   /* Test context-specific shmem_iput variants */
-  int result_ctx = true;
   #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_IPUT(type);
     SHMEM_STANDARD_RMA_TYPE_TABLE(X)
   #undef X
 
   shmem_barrier_all();
 
-  if (!result_ctx) {
-    rc = EXIT_FAILURE;
-  }
+  reduce_test_result("C11 shmem_iput with ctx", &result_ctx, false);
 
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_iput with ctx", result_ctx, false);
-  }
 
-  log_close(rc);
+  log_close(result & result_ctx);
   shmem_finalize();
-  return rc;
+  return result & result_ctx ? EXIT_SUCCESS : EXIT_FAILURE;
 }
