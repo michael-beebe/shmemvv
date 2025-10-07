@@ -88,6 +88,7 @@
       log_info("PE 0: Completed context-based put operation");                 \
     }                                                                          \
                                                                                \
+    shmem_ctx_quiet(ctx);                                                      \
     shmem_barrier_all();                                                       \
     log_info("Completed barrier synchronization");                             \
                                                                                \
@@ -125,8 +126,8 @@ int main(int argc, char *argv[]) {
     return EXIT_SUCCESS;
   }
 
-  int result = true;
-  int rc = EXIT_SUCCESS;
+  static int result = true;
+  static int result_ctx = true;
 
   /* Test standard shmem_p variants */
   #define X(type, shmem_types) result &= TEST_C11_SHMEM_P(type);
@@ -135,15 +136,7 @@ int main(int argc, char *argv[]) {
 
   shmem_barrier_all();
 
-  if (!result) {
-    rc = EXIT_FAILURE;
-  }
-
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_p", result, false);
-  }
-
-  int result_ctx = true;
+  reduce_test_result("C11 shmem_p", &result, false);
   
   /* Test context-specific shmem_p variants */
   #define X(type, shmem_types) result &= TEST_C11_CTX_SHMEM_P(type);
@@ -152,15 +145,10 @@ int main(int argc, char *argv[]) {
 
   shmem_barrier_all();
 
-  if (!result_ctx) {
-    rc = EXIT_FAILURE;
-  }
+  reduce_test_result("C11 shmem_p with ctx", &result_ctx, false);
 
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_p with ctx", result_ctx, false);
-  }
-
-  log_close(rc);
+  bool passed = result & result_ctx;
+  log_close(!passed);
   shmem_finalize();
-  return rc;
+  return passed ? EXIT_SUCCESS : EXIT_FAILURE;
 }

@@ -170,7 +170,7 @@ int main(int argc, char *argv[]) {
 
   shmem_barrier_all();
 
-  reduce_test_result("C11 shmem_iput", &result, false);
+  reduce_test_result("C11 shmem_iget", &result, false);
 
 
   /* Test context-specific shmem_iget variants */  
@@ -180,9 +180,10 @@ int main(int argc, char *argv[]) {
 
   shmem_barrier_all();
 
-  reduce_test_result("C11 shmem_iput with ctx", &result_ctx, false);
+  reduce_test_result("C11 shmem_iget with ctx", &result_ctx, false);
 
-  log_close(result & result_ctx);
+  bool passed = result & result_ctx;
+  log_close(!passed);
   shmem_finalize();
-  return result & result_ctx ? EXIT_SUCCESS : EXIT_FAILURE;
+  return passed ? EXIT_SUCCESS : EXIT_FAILURE;
 }

@@ -52,6 +52,6 @@ void reduce_test_result(const char *routine_name, int *result, bool required) {
     for (int i = 0; i < npes; i ++){
       passed &= shmem_g(result, i);
     }
+    display_test_result(routine_name, passed, required);
   }
-  display_test_result(routine_name, passed, required);
 }

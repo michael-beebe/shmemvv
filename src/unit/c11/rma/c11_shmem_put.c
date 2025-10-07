@@ -91,6 +91,7 @@
       log_info("PE %d: Initialized src[%d] = %d", mype, i, i + 20 + mype);     \
     }                                                                          \
                                                                                \
+    shmem_ctx_quiet(ctx);                                                      \
     shmem_barrier_all();                                                       \
     log_info("Completed barrier synchronization");                             \
                                                                                \
@@ -146,8 +147,8 @@ int main(int argc, char *argv[]) {
     return EXIT_SUCCESS;
   }
 
-  int result = true;
-  int rc = EXIT_SUCCESS;
+  static int result = true;
+  static int result_ctx = true;
 
   /* Test standard shmem_put variants */
   #define X(type, shmem_types) result &= TEST_C11_SHMEM_PUT(type);
@@ -156,32 +157,19 @@ int main(int argc, char *argv[]) {
 
   shmem_barrier_all();
 
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_put", result, false);
-  }
-
-  if (!result) {
-    rc = EXIT_FAILURE;
-  }
+  reduce_test_result("C11 shmem_put", &result, false);
 
   /* Test context-specific shmem_put variants */
-  int result_ctx = true;
-
-  #define X(type, shmem_types) result &= TEST_C11_CTX_SHMEM_PUT(type);
+  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_PUT(type);
     SHMEM_STANDARD_RMA_TYPE_TABLE(X)
   #undef X
 
   shmem_barrier_all();
 
-  if (!result_ctx) {
-    rc = EXIT_FAILURE;
-  }
+  reduce_test_result("C11 shmem_put with ctx", &result_ctx, false);
 
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_put with ctx", result_ctx, false);
-  }
-
-  log_close(rc);
+  bool passed = result & result_ctx;
+  log_close(!passed);
   shmem_finalize();
-  return rc;
+  return passed ? EXIT_SUCCESS : EXIT_FAILURE;
 }
