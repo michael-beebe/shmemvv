@@ -9,12 +9,13 @@
 
 #include "log.h"
 #include "shmemvv.h"
+#include "type_tables.h"
 
 #define TEST_C11_SHMEM_IPUT(TYPE)                                              \
   ({                                                                           \
     log_routine("shmem_iput(" #TYPE ")");                                      \
     bool success = true;                                                       \
-    static TYPE src[10], dest[10];                                             \
+    static TYPE src[10] = {0}, dest[10] = {0};                                 \
     log_info("Allocated static arrays: src at %p, dest at %p", (void *)&src,   \
              (void *)&dest);                                                   \
     int mype = shmem_my_pe();                                                  \
@@ -35,6 +36,10 @@
       log_info("PE 0: dest=%p, src=%p, dest_stride=2, src_stride=2, nelems=5", \
                (void *)dest, (void *)src);                                     \
       shmem_iput(dest, src, 2, 2, 5, 1);                                       \
+      /*set src array to 0 to test shmem_iput blocking behavior*/              \
+      for (int i = 0; i < 10; i++){                                            \
+        src[i] = 0;                                                            \
+      }                                                                        \
       log_info("PE 0: Completed strided put operation");                       \
     }                                                                          \
                                                                                \
@@ -66,7 +71,7 @@
   ({                                                                           \
     log_routine("shmem_iput(ctx, " #TYPE ")");                                 \
     bool success = true;                                                       \
-    static TYPE src[10], dest[10];                                             \
+    static TYPE src[10] = {0}, dest[10] = {0};                                 \
     log_info("Allocated static arrays: src at %p, dest at %p", (void *)&src,   \
              (void *)&dest);                                                   \
     int mype = shmem_my_pe();                                                  \
@@ -97,6 +102,10 @@
       log_info("PE 0: dest=%p, src=%p, dest_stride=2, src_stride=2, nelems=5", \
                (void *)dest, (void *)src);                                     \
       shmem_iput(ctx, dest, src, 2, 2, 5, 1);                                  \
+      /*set src array to 0 to test shmem_iput blocking behavior*/              \
+      for (int i = 0; i < 10; i++){                                            \
+        src[i] = 0;                                                            \
+      }                                                                        \
       log_info("PE 0: Completed context-based strided put operation");         \
     }                                                                          \
                                                                                \
@@ -147,30 +156,9 @@ int main(int argc, char *argv[]) {
   int rc = EXIT_SUCCESS;
 
   /* Test standard shmem_iput variants */
-  result &= TEST_C11_SHMEM_IPUT(float);
-  result &= TEST_C11_SHMEM_IPUT(double);
-  result &= TEST_C11_SHMEM_IPUT(long double);
-  result &= TEST_C11_SHMEM_IPUT(char);
-  result &= TEST_C11_SHMEM_IPUT(signed char);
-  result &= TEST_C11_SHMEM_IPUT(short);
-  result &= TEST_C11_SHMEM_IPUT(int);
-  result &= TEST_C11_SHMEM_IPUT(long);
-  result &= TEST_C11_SHMEM_IPUT(long long);
-  result &= TEST_C11_SHMEM_IPUT(unsigned char);
-  result &= TEST_C11_SHMEM_IPUT(unsigned short);
-  result &= TEST_C11_SHMEM_IPUT(unsigned int);
-  result &= TEST_C11_SHMEM_IPUT(unsigned long);
-  result &= TEST_C11_SHMEM_IPUT(unsigned long long);
-  result &= TEST_C11_SHMEM_IPUT(int8_t);
-  result &= TEST_C11_SHMEM_IPUT(int16_t);
-  result &= TEST_C11_SHMEM_IPUT(int32_t);
-  result &= TEST_C11_SHMEM_IPUT(int64_t);
-  result &= TEST_C11_SHMEM_IPUT(uint8_t);
-  result &= TEST_C11_SHMEM_IPUT(uint16_t);
-  result &= TEST_C11_SHMEM_IPUT(uint32_t);
-  result &= TEST_C11_SHMEM_IPUT(uint64_t);
-  result &= TEST_C11_SHMEM_IPUT(size_t);
-  result &= TEST_C11_SHMEM_IPUT(ptrdiff_t);
+  #define X(type, shmem_types) result &= TEST_C11_SHMEM_IPUT(type);
+    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+  #undef X
 
   shmem_barrier_all();
 
@@ -184,31 +172,9 @@ int main(int argc, char *argv[]) {
 
   /* Test context-specific shmem_iput variants */
   int result_ctx = true;
-
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(float);
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(double);
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(long double);
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(char);
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(signed char);
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(short);
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(int);
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(long);
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(long long);
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(unsigned char);
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(unsigned short);
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(unsigned int);
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(unsigned long);
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(unsigned long long);
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(int8_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(int16_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(int32_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(int64_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(uint8_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(uint16_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(uint32_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(uint64_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(size_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_IPUT(ptrdiff_t);
+  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_IPUT(type);
+    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+  #undef X
 
   shmem_barrier_all();
 

@@ -9,12 +9,13 @@
 
 #include "log.h"
 #include "shmemvv.h"
+#include "type_tables.h"
 
 #define TEST_C11_SHMEM_P(TYPE)                                                 \
   ({                                                                           \
     log_routine("shmem_p(" #TYPE ")");                                         \
     bool success = true;                                                       \
-    static TYPE src, dest;                                                     \
+    static TYPE src = -1, dest = -1;                                           \
     log_info("Allocated static variables: src at %p, dest at %p",              \
              (void *)&src, (void *)&dest);                                     \
     int mype = shmem_my_pe();                                                  \
@@ -57,7 +58,7 @@
   ({                                                                           \
     log_routine("shmem_p(ctx, " #TYPE ")");                                    \
     bool success = true;                                                       \
-    static TYPE src, dest;                                                     \
+    static TYPE src = -1, dest = -1;                                           \
     log_info("Allocated static variables: src at %p, dest at %p",              \
              (void *)&src, (void *)&dest);                                     \
     int mype = shmem_my_pe();                                                  \
@@ -128,30 +129,9 @@ int main(int argc, char *argv[]) {
   int rc = EXIT_SUCCESS;
 
   /* Test standard shmem_p variants */
-  result &= TEST_C11_SHMEM_P(float);
-  result &= TEST_C11_SHMEM_P(double);
-  result &= TEST_C11_SHMEM_P(long double);
-  result &= TEST_C11_SHMEM_P(char);
-  result &= TEST_C11_SHMEM_P(signed char);
-  result &= TEST_C11_SHMEM_P(short);
-  result &= TEST_C11_SHMEM_P(int);
-  result &= TEST_C11_SHMEM_P(long);
-  result &= TEST_C11_SHMEM_P(long long);
-  result &= TEST_C11_SHMEM_P(unsigned char);
-  result &= TEST_C11_SHMEM_P(unsigned short);
-  result &= TEST_C11_SHMEM_P(unsigned int);
-  result &= TEST_C11_SHMEM_P(unsigned long);
-  result &= TEST_C11_SHMEM_P(unsigned long long);
-  result &= TEST_C11_SHMEM_P(int8_t);
-  result &= TEST_C11_SHMEM_P(int16_t);
-  result &= TEST_C11_SHMEM_P(int32_t);
-  result &= TEST_C11_SHMEM_P(int64_t);
-  result &= TEST_C11_SHMEM_P(uint8_t);
-  result &= TEST_C11_SHMEM_P(uint16_t);
-  result &= TEST_C11_SHMEM_P(uint32_t);
-  result &= TEST_C11_SHMEM_P(uint64_t);
-  result &= TEST_C11_SHMEM_P(size_t);
-  result &= TEST_C11_SHMEM_P(ptrdiff_t);
+  #define X(type, shmem_types) result &= TEST_C11_SHMEM_P(type);
+    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+  #undef X
 
   shmem_barrier_all();
 
@@ -163,33 +143,12 @@ int main(int argc, char *argv[]) {
     display_test_result("C11 shmem_p", result, false);
   }
 
-  /* Test context-specific shmem_p variants */
   int result_ctx = true;
-
-  result_ctx &= TEST_C11_CTX_SHMEM_P(float);
-  result_ctx &= TEST_C11_CTX_SHMEM_P(double);
-  result_ctx &= TEST_C11_CTX_SHMEM_P(long double);
-  result_ctx &= TEST_C11_CTX_SHMEM_P(char);
-  result_ctx &= TEST_C11_CTX_SHMEM_P(signed char);
-  result_ctx &= TEST_C11_CTX_SHMEM_P(short);
-  result_ctx &= TEST_C11_CTX_SHMEM_P(int);
-  result_ctx &= TEST_C11_CTX_SHMEM_P(long);
-  result_ctx &= TEST_C11_CTX_SHMEM_P(long long);
-  result_ctx &= TEST_C11_CTX_SHMEM_P(unsigned char);
-  result_ctx &= TEST_C11_CTX_SHMEM_P(unsigned short);
-  result_ctx &= TEST_C11_CTX_SHMEM_P(unsigned int);
-  result_ctx &= TEST_C11_CTX_SHMEM_P(unsigned long);
-  result_ctx &= TEST_C11_CTX_SHMEM_P(unsigned long long);
-  result_ctx &= TEST_C11_CTX_SHMEM_P(int8_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_P(int16_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_P(int32_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_P(int64_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_P(uint8_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_P(uint16_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_P(uint32_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_P(uint64_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_P(size_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_P(ptrdiff_t);
+  
+  /* Test context-specific shmem_p variants */
+  #define X(type, shmem_types) result &= TEST_C11_CTX_SHMEM_P(type);
+    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+  #undef X
 
   shmem_barrier_all();
 
