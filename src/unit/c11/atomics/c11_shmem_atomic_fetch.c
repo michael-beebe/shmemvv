@@ -98,8 +98,6 @@ int main(int argc, char *argv[]) {
     SHMEM_EXTENDED_AMO_TYPE_TABLE(X)
   #undef X
 
-  // result &= ATOMIC_TEST_C11_SHMEM_ATOMIC_FETCH(float);
-
   if (shmem_my_pe() == 0) {
     display_test_result("C11 shmem_atomic_fetch", result, false);
   }
