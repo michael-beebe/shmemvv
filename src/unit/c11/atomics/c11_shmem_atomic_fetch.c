@@ -11,16 +11,17 @@
 
 #include "shmemvv.h"
 #include "log.h"
+#include "type_tables.h"
 
 #define TEST_C11_SHMEM_ATOMIC_FETCH(TYPE)                                      \
   ({                                                                           \
     log_routine("shmem_atomic_fetch(" #TYPE ")");                              \
+    const TYPE value = 42;                                                     \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
-    static TYPE fetch;                                                         \
+    static TYPE fetch = 0;                                                     \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
-    TYPE value = 42;                                                           \
     *dest = value;                                                             \
     log_info("set %p to %d", (void *)dest, (int)value);                        \
     shmem_barrier_all();                                                       \
@@ -44,12 +45,13 @@
 #define TEST_C11_CTX_SHMEM_ATOMIC_FETCH(TYPE)                                  \
   ({                                                                           \
     log_routine("shmem_atomic_fetch(ctx, " #TYPE ")");                         \
+    const TYPE value = 59; /*Different value for ctx test*/                    \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
-    static TYPE fetch;                                                         \
+    static TYPE fetch = 0;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
-    TYPE value = 42;                                                           \
+                                                                              \
     *dest = value;                                                             \
     log_info("set %p to %d", (void *)dest, (int)value);                        \
                                                                                \
@@ -93,18 +95,11 @@ int main(int argc, char *argv[]) {
 
   /* Test standard atomic fetch operations */
   bool result = true;
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH(int);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH(long);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH(long long);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH(unsigned int);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH(unsigned long);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH(unsigned long long);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH(int32_t);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH(int64_t);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH(uint32_t);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH(uint64_t);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH(size_t);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH(ptrdiff_t);
+  #define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_FETCH(type);
+    SHMEM_EXTENDED_AMO_TYPE_TABLE(X)
+  #undef X
+
+  // result &= ATOMIC_TEST_C11_SHMEM_ATOMIC_FETCH(float);
 
   if (shmem_my_pe() == 0) {
     display_test_result("C11 shmem_atomic_fetch", result, false);
@@ -112,18 +107,9 @@ int main(int argc, char *argv[]) {
 
   /* Test context-specific atomic fetch operations */
   bool result_ctx = true;
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH(int);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH(long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH(long long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH(unsigned int);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH(unsigned long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH(unsigned long long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH(int32_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH(int64_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH(uint32_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH(uint64_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH(size_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH(ptrdiff_t);
+  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH(type);
+    SHMEM_EXTENDED_AMO_TYPE_TABLE(X)
+  #undef X
 
   if (shmem_my_pe() == 0) {
     display_test_result("C11 shmem_atomic_fetch with ctx", result_ctx, false);
