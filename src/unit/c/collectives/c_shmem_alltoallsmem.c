@@ -21,15 +21,19 @@ static bool test_alltoallsmem_with_params(size_t elem_size,
                                           ptrdiff_t dst_stride,
                                           ptrdiff_t src_stride) {
   char routine_name[64];
-  snprintf(routine_name, sizeof(routine_name), "shmem_alltoallsmem");
+  snprintf(routine_name, sizeof(routine_name),
+           "shmem_alltoallsmem(elem_size=%zu, dst=%td, src=%td)", elem_size,
+           dst_stride, src_stride);
   log_routine(routine_name);
 
   int npes = shmem_n_pes();
   int mype = shmem_my_pe();
 
-  /* Calculate total bytes needed for source and destination buffers */
-  size_t total_src_bytes = npes * src_stride * elem_size;
-  size_t total_dst_bytes = npes * dst_stride * elem_size;
+  /* Calculate buffer sizes according to OpenSHMEM spec */
+  /* For alltoallsmem, nelems=1, so buffer size = stride * 1 * npes * elem_size
+   */
+  size_t total_src_bytes = src_stride * 1 * npes * elem_size;
+  size_t total_dst_bytes = dst_stride * 1 * npes * elem_size;
 
   void *src = shmem_malloc(total_src_bytes);
   void *dest = shmem_malloc(total_dst_bytes);
@@ -52,24 +56,19 @@ static bool test_alltoallsmem_with_params(size_t elem_size,
 
   /*
    * Initialize source array with test pattern.
-   * For stride > 1, only initialize the first byte of each element and leave
-   * the rest as 0's. This matches observed behavior of alltoallsmem where it
-   * only transfers the first byte with stride > 1.
+   * Each PE puts its data at specific stride positions for each destination PE.
    */
   for (int pe = 0; pe < npes; pe++) {
+    /* Source offset: (pe * 1 + 0) * src_stride * elem_size = pe * src_stride *
+     * elem_size */
     size_t offset = pe * src_stride * elem_size;
     unsigned char *src_ptr = (unsigned char *)src + offset;
 
     /* Create a distinct value for each destination PE */
     unsigned char value = (unsigned char)((mype * 10 + pe) % 256);
 
-    if (src_stride == 1 && dst_stride == 1) {
-      /* For stride=1, fill the entire element */
-      memset(src_ptr, value, elem_size);
-    } else {
-      /* For stride>1, just set the first byte */
-      *src_ptr = value;
-    }
+    /* Fill the entire element with the value */
+    memset(src_ptr, value, elem_size);
 
     log_info("Source: PE %d setting elem for PE %d at offset %zu with value %d",
              mype, pe, offset, value);
@@ -86,36 +85,27 @@ static bool test_alltoallsmem_with_params(size_t elem_size,
                      elem_size);
   shmem_barrier_all(); /* Ensure all PEs complete the operation */
 
-  /* Validate results based on observed behavior */
+  /* Validate results */
   log_info("validating result...");
   bool success = true;
 
   for (int pe = 0; pe < npes; pe++) {
-    /* Calculate destination offset for data received from PE pe */
+    /* Destination offset: (pe * 1 + 0) * dst_stride * elem_size = pe *
+     * dst_stride * elem_size */
     size_t offset = pe * dst_stride * elem_size;
     unsigned char *dest_ptr = (unsigned char *)dest + offset;
 
     /* Expected value from PE pe */
     unsigned char expected = (unsigned char)((pe * 10 + mype) % 256);
 
-    if (src_stride == 1 && dst_stride == 1) {
-      /* For stride=1, check all bytes in element */
-      for (size_t j = 0; j < elem_size; j++) {
-        if (dest_ptr[j] != expected) {
-          log_info("PE %d: Data from PE %d at offset %zu+%zu failed. Expected "
-                   "%d, got %d",
-                   mype, pe, offset, j, expected, dest_ptr[j]);
-          success = false;
-          break;
-        }
-      }
-    } else {
-      /* For stride>1, just check the first byte */
-      if (dest_ptr[0] != expected) {
-        log_info(
-            "PE %d: Data from PE %d at offset %zu failed. Expected %d, got %d",
-            mype, pe, offset, expected, dest_ptr[0]);
+    /* Check all bytes in the element */
+    for (size_t j = 0; j < elem_size; j++) {
+      if (dest_ptr[j] != expected) {
+        log_info("PE %d: Data from PE %d at offset %zu+%zu failed. Expected "
+                 "%d, got %d",
+                 mype, pe, offset, j, expected, dest_ptr[j]);
         success = false;
+        break;
       }
     }
 
@@ -132,6 +122,16 @@ static bool test_alltoallsmem_with_params(size_t elem_size,
         "at least one value was unexpected in result of shmem_alltoallsmem "
         "with element size %zu, dst stride %td, src stride %td",
         elem_size, dst_stride, src_stride);
+
+  /* Print sample results for first few PEs */
+  if (mype < 2) {
+    log_info("PE %d: Sample results:", mype);
+    for (int pe = 0; pe < npes && pe < 3; pe++) {
+      size_t offset = pe * dst_stride * elem_size;
+      unsigned char *dest_ptr = (unsigned char *)dest + offset;
+      log_info("  dest[%zu] = %d", offset, (int)dest_ptr[0]);
+    }
+  }
 
   shmem_free(src);
   shmem_free(dest);

@@ -12,62 +12,86 @@
 #include "log.h"
 #include "shmemvv.h"
 
-#define TEST_C11_SHMEM_ALLTOALLS(TYPE)                                         \
+#define TEST_C11_SHMEM_ALLTOALLS(TYPE, DST_STRIDE, SST_STRIDE, NELEMS)       \
   ({                                                                           \
-    log_routine("shmem_alltoalls(" #TYPE ")");                                 \
+    log_routine("shmem_alltoalls(" #TYPE ", dst=" #DST_STRIDE                  \
+                ", sst=" #SST_STRIDE ", nelems=" #NELEMS ")");                 \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
                                                                                \
-    TYPE *src = (TYPE *)shmem_malloc(npes * sizeof(TYPE));                     \
-    TYPE *dest = (TYPE *)shmem_malloc(npes * sizeof(TYPE));                    \
-    log_info("shmem_malloc'd %d bytes @ &src = %p, %d bytes @ &dest = %p",     \
-             npes * sizeof(TYPE), (void *)src, npes * sizeof(TYPE),            \
-             (void *)dest);                                                    \
+    /* Calculate buffer sizes according to OpenSHMEM spec */                   \
+    size_t src_size = SST_STRIDE * NELEMS * npes * sizeof(TYPE);               \
+    size_t dst_size = DST_STRIDE * NELEMS * npes * sizeof(TYPE);               \
                                                                                \
-    /* Use smaller values to avoid overflow in 8-bit types */                  \
-    for (int i = 0; i < npes; ++i) {                                           \
-      if (sizeof(TYPE) == 1) {                                                 \
-        /* For 8-bit types, use simple PE-based values to avoid overflow */    \
-        src[i] = (TYPE)(mype % 128); /* Keep within signed char range */       \
-      } else {                                                                 \
-        src[i] = mype + i * npes;                                              \
+    TYPE *src = (TYPE *)shmem_malloc(src_size);                                \
+    TYPE *dest = (TYPE *)shmem_malloc(dst_size);                               \
+    log_info("shmem_malloc'd %zu bytes @ &src = %p, %zu bytes @ &dest = %p",   \
+             src_size, (void *)src, dst_size, (void *)dest);                   \
+                                                                               \
+    /* Initialize source array - each PE puts its PE number in specific        \
+     * positions */                                                            \
+    for (int pe = 0; pe < npes; pe++) {                                        \
+      for (int i = 0; i < NELEMS; i++) {                                       \
+        size_t offset = (pe * NELEMS + i) * SST_STRIDE;                        \
+        src[offset] = (TYPE)mype;                                              \
       }                                                                        \
     }                                                                          \
-    if (sizeof(TYPE) == 1) {                                                   \
-      log_info("set %p..%p to %d (8-bit safe)", (void *)src,                   \
-               (void *)&src[npes - 1], mype % 128);                            \
-    } else {                                                                   \
-      log_info("set %p..%p to %d + idx * %d", (void *)src,                     \
-               (void *)&src[npes - 1], mype, npes);                            \
+                                                                               \
+    /* Initialize destination array to a known bad value */                    \
+    for (size_t i = 0; i < dst_size / sizeof(TYPE); i++) {                     \
+      dest[i] = (TYPE) - 1;                                                    \
     }                                                                          \
+                                                                               \
+    log_info("set source elements at stride %d positions to %d", SST_STRIDE,   \
+             mype);                                                            \
+                                                                               \
+    /* Ensure all PEs are ready before starting alltoalls */                   \
+    shmem_barrier_all();                                                       \
                                                                                \
     log_info("executing shmem_alltoalls: dest = %p, src = %p", (void *)dest,   \
              (void *)src);                                                     \
-    shmem_alltoalls(SHMEM_TEAM_WORLD, dest, src, 1, 1, 1);                     \
+    shmem_alltoalls(SHMEM_TEAM_WORLD, dest, src, DST_STRIDE,                   \
+                    SST_STRIDE, NELEMS);                                       \
+                                                                               \
+    /* Ensure all PEs complete the alltoalls before validation */              \
+    shmem_barrier_all();                                                       \
                                                                                \
     log_info("validating result...");                                          \
     bool success = true;                                                       \
-    for (int i = 0; i < npes; ++i) {                                           \
-      TYPE expected;                                                           \
-      if (sizeof(TYPE) == 1) {                                                 \
-        /* For 8-bit types, expect the simple PE value */                      \
-        expected = (TYPE)(i % 128);                                            \
-      } else {                                                                 \
-        expected = i + mype * npes;                                            \
+    for (int pe = 0; pe < npes; pe++) {                                        \
+      for (int i = 0; i < NELEMS; i++) {                                       \
+        size_t offset = (pe * NELEMS + i) * DST_STRIDE;                        \
+        TYPE expected = (TYPE)pe;                                              \
+        if (dest[offset] != expected) {                                        \
+          log_info("dest[%zu] failed. expected %d, got %d", offset,            \
+                   (int)expected, (int)dest[offset]);                          \
+          success = false;                                                     \
+          break;                                                               \
+        }                                                                      \
       }                                                                        \
-      if (dest[i] != expected) {                                               \
-        log_info("index %d of dest (%p) failed. expected %d, got %d", i,       \
-                 &dest[i], (int)expected, (int)dest[i]);                       \
-        success = false;                                                       \
+      if (!success)                                                            \
         break;                                                                 \
-      }                                                                        \
     }                                                                          \
                                                                                \
     if (success)                                                               \
-      log_info("shmem_alltoalls on " #TYPE " produced expected result.");      \
+      log_info("shmem_alltoalls on " #TYPE " with dst=" #DST_STRIDE            \
+               ", sst=" #SST_STRIDE ", nelems=" #NELEMS                        \
+               " produced expected result.");                                  \
     else                                                                       \
       log_fail(                                                                \
           "at least one value was unexpected in result of shmem_alltoalls");   \
+                                                                               \
+    /* Print sample results for first few PEs */                               \
+    if (mype < 2) {                                                            \
+      log_info("PE %d: Sample results:", mype);                                \
+      for (int pe = 0; pe < npes && pe < 3; pe++) {                            \
+        for (int i = 0; i < NELEMS && i < 2; i++) {                            \
+          size_t offset = (pe * NELEMS + i) * DST_STRIDE;                      \
+          log_info("  dest[%zu] = %d", offset, (int)dest[offset]);             \
+        }                                                                      \
+      }                                                                        \
+    }                                                                          \
+                                                                               \
     shmem_free(src);                                                           \
     shmem_free(dest);                                                          \
                                                                                \
@@ -81,30 +105,45 @@ int main(int argc, char *argv[]) {
   bool result = true;
   int rc = EXIT_SUCCESS;
 
-  result &= TEST_C11_SHMEM_ALLTOALLS(float);
-  result &= TEST_C11_SHMEM_ALLTOALLS(double);
-  result &= TEST_C11_SHMEM_ALLTOALLS(long double);
-  result &= TEST_C11_SHMEM_ALLTOALLS(char);
-  result &= TEST_C11_SHMEM_ALLTOALLS(signed char);
-  result &= TEST_C11_SHMEM_ALLTOALLS(short);
-  result &= TEST_C11_SHMEM_ALLTOALLS(int);
-  result &= TEST_C11_SHMEM_ALLTOALLS(long);
-  result &= TEST_C11_SHMEM_ALLTOALLS(long long);
-  result &= TEST_C11_SHMEM_ALLTOALLS(unsigned char);
-  result &= TEST_C11_SHMEM_ALLTOALLS(unsigned short);
-  result &= TEST_C11_SHMEM_ALLTOALLS(unsigned int);
-  result &= TEST_C11_SHMEM_ALLTOALLS(unsigned long);
-  result &= TEST_C11_SHMEM_ALLTOALLS(unsigned long long);
-  result &= TEST_C11_SHMEM_ALLTOALLS(int8_t);
-  result &= TEST_C11_SHMEM_ALLTOALLS(int16_t);
-  result &= TEST_C11_SHMEM_ALLTOALLS(int32_t);
-  result &= TEST_C11_SHMEM_ALLTOALLS(int64_t);
-  result &= TEST_C11_SHMEM_ALLTOALLS(uint8_t);
-  result &= TEST_C11_SHMEM_ALLTOALLS(uint16_t);
-  result &= TEST_C11_SHMEM_ALLTOALLS(uint32_t);
-  result &= TEST_C11_SHMEM_ALLTOALLS(uint64_t);
-  result &= TEST_C11_SHMEM_ALLTOALLS(size_t);
-  result &= TEST_C11_SHMEM_ALLTOALLS(ptrdiff_t);
+  result &= TEST_C11_SHMEM_ALLTOALLS(float, 1, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(double, 1, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(long double, 1, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(char, 1, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(signed char, 1, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(short, 1, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(int, 1, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(long, 1, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(long long, 1, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(unsigned char, 1, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(unsigned short, 1, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(unsigned int, 1, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(unsigned long, 1, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(unsigned long long, 1, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(int8_t, 1, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(int16_t, 1, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(int32_t, 1, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(int64_t, 1, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(uint8_t, 1, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(uint16_t, 1, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(uint32_t, 1, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(uint64_t, 1, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(size_t, 1, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(ptrdiff_t, 1, 1, 1);
+
+  /* Test comprehensive functionality with int type using different strides and elements */
+  result &= TEST_C11_SHMEM_ALLTOALLS(int, 2, 1, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(int, 1, 2, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(int, 2, 2, 1);
+  result &= TEST_C11_SHMEM_ALLTOALLS(int, 1, 1, 2);
+  result &= TEST_C11_SHMEM_ALLTOALLS(int, 2, 1, 2);
+  result &= TEST_C11_SHMEM_ALLTOALLS(int, 2, 2, 2);
+  result &= TEST_C11_SHMEM_ALLTOALLS(int, 3, 3, 3);
+
+  /* Test with 64-bit types using different strides */
+  result &= TEST_C11_SHMEM_ALLTOALLS(int64_t, 2, 2, 2);
+
+  /* Test with floating point types using different strides */
+  result &= TEST_C11_SHMEM_ALLTOALLS(double, 2, 1, 2);
 
   shmem_barrier_all();
 

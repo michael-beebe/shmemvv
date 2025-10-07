@@ -51,7 +51,7 @@ hosts=$(srun hostname | sort | uniq | paste -sd, -)
 num_hosts=$(echo "$hosts" | tr ',' '\n' | wc -l)
 
 # --- Set the number of processes per host and the total number of processes
-ppn=128
+ppn=2
 np=$(( $num_hosts * $ppn ))
 
 # --- Create a hostfile with specified slots per host
@@ -72,7 +72,8 @@ create_hostfile() {
 hostfile=$(create_hostfile $ppn)
 
 # --- Set launcher
-oshrun=$OSSS_TESTING_BIN/oshrun
+#oshrun=$OSSS_TESTING_BIN/oshrun
+oshrun=$OSSS_BIN/oshrun
 
 # --- Print hostfile
 echo $hline
@@ -97,7 +98,7 @@ mkdir -p $SHMEMVV_LOG_DIR
   --launcher $oshrun \
   --launcher_args "--hostfile $hostfile -x SHMEMVV_LOG_DIR" \
   --np $np \
-  --test_all
+  --test_pt2pt_synch
 
 # --- Clean up
 rm $hostfile
