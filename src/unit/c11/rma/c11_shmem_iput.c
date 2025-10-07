@@ -121,6 +121,7 @@
       log_info("PE 0: Completed context-based strided put operation");         \
     }                                                                          \
                                                                                \
+    shmem_ctx_quiet(ctx);                                                      \
     shmem_barrier_all();                                                       \
     log_info("Completed barrier synchronization");                             \
                                                                                \
