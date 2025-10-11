@@ -131,8 +131,8 @@ int main(int argc, char *argv[]) {
     return EXIT_SUCCESS;
   }
 
-  int result = true;
-  int rc = EXIT_SUCCESS;
+  static int result = true;
+  static int result_ctx = true;
 
   /* Test standard shmem_get variants */
   #define X(type, shmem_types) result &= TEST_C11_SHMEM_GET(type);
@@ -141,32 +141,19 @@ int main(int argc, char *argv[]) {
 
   shmem_barrier_all();
 
-  if (!result) {
-    rc = EXIT_FAILURE;
-  }
-
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_get", result, false);
-  }
+  reduce_test_result("C11 shmem_get", &result, false);
 
   /* Test context-specific shmem_get variants */
-  int result_ctx = true;
-
   #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_GET(type);
     SHMEM_STANDARD_RMA_TYPE_TABLE(X)
   #undef X
 
   shmem_barrier_all();
 
-  if (!result_ctx) {
-    rc = EXIT_FAILURE;
-  }
+  reduce_test_result("C11 shmem_get with ctx", &result_ctx, false);
 
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_get with ctx", result_ctx, false);
-  }
-
-  log_close(rc);
+  bool passed = result & result_ctx;
+  log_close(!passed);
   shmem_finalize();
-  return rc;
+  return passed ? EXIT_SUCCESS : EXIT_FAILURE;
 }

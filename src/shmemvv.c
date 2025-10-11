@@ -44,3 +44,14 @@ void display_test_result(const char *routine_name, bool passed, bool required) {
     }
   }
 }
+
+void reduce_test_result(const char *routine_name, int *result, bool required) {
+  int npes = shmem_n_pes();
+  int passed = true;
+  if (shmem_my_pe() == 0) {
+    for (int i = 0; i < npes; i ++){
+      passed &= shmem_g(result, i);
+    }
+    display_test_result(routine_name, passed, required);
+  }
+}
