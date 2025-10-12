@@ -17,6 +17,7 @@
   ({                                                                           \
     log_routine("shmem_atomic_fetch(" #TYPE ")");                              \
     int mype = shmem_my_pe();                                                  \
+    int fetch_pe = (mype + 1) % shmem_n_pes();                                 \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
     static TYPE fetch = 0;                                                     \
@@ -24,22 +25,22 @@
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
     TYPE value = 42 + mype; /*some arbitrary number*/                          \
     *dest = value;                                                             \
+    TYPE expected = 42 + fetch_pe;                                             \
     log_info("set %p to %d", (void *)dest, (int)value);                        \
     shmem_barrier_all();                                                       \
-    int fetch_pe = (mype + 1) % shmem_n_pes();                                 \
     log_info("PE %d: executing atomic fetch from PE %d: dest = %p",mype,       \
       fetch_pe, (void *)dest);                                                 \
     fetch = shmem_atomic_fetch(dest, fetch_pe);                                \
     /*no barrier, routine should be blocking*/                                 \
-    success = (fetch == 42 + fetch_pe);                                        \
+    success = (fetch == expected);                                             \
     if (!success)                                                              \
       log_fail("atomic fetch on %s did not produce expected value %d, "        \
                "got instead %d",                                               \
-               #TYPE, (int)value, (int)fetch);                                 \
+               #TYPE, (int)expected, (int)fetch);                              \
     else                                                                       \
       log_info(                                                                \
           "atomic fetch on a %s at %p produced expected result (%d == %d)",    \
-          #TYPE, (void *)dest, (int)value, (int)fetch);                        \
+          #TYPE, (void *)dest, (int)expected, (int)fetch);                     \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })
@@ -57,30 +58,31 @@
                                                                                \
     bool success = true;                                                       \
     int mype = shmem_my_pe();                                                  \
+    int fetch_pe = (mype + 1) % shmem_n_pes();                                 \
     static TYPE *dest;                                                         \
     static TYPE fetch = 0;                                                     \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
     TYPE value = 52 + mype; /*some arbitrary number, different for ctx*/       \
     *dest = value;                                                             \
+    TYPE expected = 52 + fetch_pe;                                             \
     log_info("set %p to %d", (void *)dest, (int)value);                        \
                                                                                \
     shmem_barrier_all();                                                       \
-    int fetch_pe = (mype + 1) % shmem_n_pes();                                 \
     log_info("PE %d: executing atomic fetch with context from PE %d:"          \
       " dest = %p", mype, fetch_pe, (void *)dest);                             \
     fetch = shmem_atomic_fetch(ctx, dest, fetch_pe);                           \
     /*no barrier, routine should be blocking*/                                 \
-    success = (fetch == 52 + fetch_pe);                                        \
+    success = (fetch == expected);                                             \
     if (!success)                                                              \
       log_fail("atomic fetch with context on %s did not produce expected "     \
                "value %d, got instead %d",                                     \
-               #TYPE, (int)value, (int)fetch);                                 \
+               #TYPE, (int)expected, (int)fetch);                              \
     else                                                                       \
       log_info(                                                                \
           "atomic fetch with context on a %s at %p produced expected result "  \
           "(%d == %d)",                                                        \
-          #TYPE, (void *)dest, (int)value, (int)fetch);                        \
+          #TYPE, (void *)dest, (int)expected, (int)fetch);                     \
                                                                                \
     shmem_ctx_destroy(ctx);                                                    \
     log_info("Context destroyed");                                             \
