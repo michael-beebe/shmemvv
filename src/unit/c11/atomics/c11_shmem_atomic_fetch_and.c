@@ -25,24 +25,25 @@
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
     TYPE value = 42;                                                           \
     TYPE and_value = 15;                                                       \
-    *dest = value + mype;                                                             \
+    *dest = value + mype;                                                      \
     log_info("initialized dest at %p to %d", (void *)dest, (int)value);        \
     shmem_barrier_all();                                                       \
     log_info("executing atomic fetch-and: dest = %p, value = %d",              \
              (void *)dest, (int)and_value);                                    \
-    TYPE fetched = shmem_atomic_fetch_and(dest, and_value, fetch_pe); \
+    TYPE fetched = shmem_atomic_fetch_and(dest, and_value, fetch_pe);          \
     shmem_barrier_all();                                                       \
-    success = (fetched == value + fetch_pe && *dest == ((value + mype) & and_value));              \
+    success = (fetched == value + fetch_pe &&                                  \
+       *dest == ((value + mype) & and_value));                                 \
     if (!success)                                                              \
       log_fail("atomic fetch-and on %s did not produce expected values: "      \
                "fetched = %d (expected %d), dest = %d (expected %d)",          \
-               #TYPE, (int)fetched, (int)(value + fetch_pe), (int)*dest,                    \
-               (int)((value + mype) & and_value));                                      \
+               #TYPE, (int)fetched, (int)(value + fetch_pe), (int)*dest,       \
+               (int)((value + mype) & and_value));                             \
     else                                                                       \
       log_info("atomic fetch-and on a %s at %p produced expected result "      \
-               "(fetched = %d, dest = (%d + %d) & %d = %d)",                          \
-               #TYPE, (void *)dest, (int)fetched, (int)value, (int)mype, (int)and_value,  \
-               (int)*dest);                                                    \
+               "(fetched = %d, dest = (%d + %d) & %d = %d)",                   \
+               #TYPE, (void *)dest, (int)fetched, (int)value, (int)mype,       \
+                (int)and_value, (int)*dest);                                   \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })
@@ -59,7 +60,7 @@
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
     TYPE value = 42;                                                           \
     TYPE and_value = 15;                                                       \
-    *dest = value + mype;                                                             \
+    *dest = value + mype;                                                      \
     log_info("initialized dest at %p to %d", (void *)dest, (int)value);        \
                                                                                \
     shmem_ctx_t ctx;                                                           \
@@ -75,20 +76,21 @@
     log_info("executing atomic fetch-and with context: dest = %p, value = %d", \
              (void *)dest, (int)and_value);                                    \
     TYPE fetched =                                                             \
-        shmem_atomic_fetch_and(ctx, dest, and_value, fetch_pe);       \
+        shmem_atomic_fetch_and(ctx, dest, and_value, fetch_pe);                \
     shmem_ctx_quiet(ctx);                                                      \
     shmem_barrier_all();                                                       \
-    success = (fetched == value + fetch_pe && *dest == ((value + mype) & and_value));              \
+    success = (fetched == value + fetch_pe &&                                  \
+       *dest == ((value + mype) & and_value));                                 \
     if (!success)                                                              \
-      log_fail("atomic fetch-and on %s  with context did not produce expected values: "      \
-               "fetched = %d (expected %d), dest = %d (expected %d)",          \
-               #TYPE, (int)fetched, (int)(value + fetch_pe), (int)*dest,                    \
-               (int)((value + mype) & and_value));                                      \
+      log_fail("atomic fetch-and on %s  with context did not produce expected "\
+          "values: fetched = %d (expected %d), dest = %d (expected %d)",       \
+          #TYPE, (int)fetched, (int)(value + fetch_pe), (int)*dest,            \
+          (int)((value + mype) & and_value));                                  \
     else                                                                       \
-       log_info("atomic fetch-and with context on a %s at %p produced expected result "      \
-               "(fetched = %d, dest = (%d + %d) & %d = %d)",                          \
-               #TYPE, (void *)dest, (int)fetched, (int)value, (int)mype, (int)and_value,  \
-               (int)*dest);                                                    \
+       log_info("atomic fetch-and with context on a %s at %p produced expected"\
+          " result (fetched = %d, dest = (%d + %d) & %d = %d)", #TYPE,         \
+          (void *)dest, (int)fetched, (int)value, (int)mype, (int)and_value,   \
+          (int)*dest);                                                         \
                                                                                \
     shmem_ctx_destroy(ctx);                                                    \
     log_info("Context destroyed");                                             \
