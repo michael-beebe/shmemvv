@@ -19,24 +19,26 @@
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
+    int mype = shmem_my_pe();                                                  \
+    int npes = shmem_n_pes();                                                  \
+    int fetch_pe = (mype + 1) % npes;                                          \
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
     TYPE value = 42;                                                           \
     TYPE add_value = 5;                                                        \
-    *dest = value;                                                             \
+    *dest = value + mype; /*each PE contains a unique dest*/                   \
     log_info("initialized dest at %p to %d", (void *)dest, (int)value);        \
     shmem_barrier_all();                                                       \
-    int mype = shmem_my_pe();                                                  \
-    int npes = shmem_n_pes();                                                  \
     log_info("executing atomic fetch-add: dest = %p, value = %d",              \
              (void *)dest, (int)add_value);                                    \
-    TYPE fetched = shmem_atomic_fetch_add(dest, add_value, (mype + 1) % npes); \
+    TYPE fetched = shmem_atomic_fetch_add(dest, add_value, fetch_pe);          \
     shmem_barrier_all();                                                       \
-    success = (fetched == value && *dest == value + add_value);                \
+    success = (fetched == value + fetch_pe &&                                  \
+      *dest == value + mype + add_value);                                      \
     if (!success)                                                              \
       log_fail("atomic fetch-add on %s did not produce expected values: "      \
                "fetched = %d (expected %d), dest = %d (expected %d)",          \
-               #TYPE, (int)fetched, (int)value, (int)*dest,                    \
-               (int)(value + add_value));                                      \
+               #TYPE, (int)fetched, (int)(value + fetch_pe), (int)*dest,       \
+               (int)(value + mype + add_value));                               \
     else                                                                       \
       log_info("atomic fetch-add on a %s at %p produced expected result "      \
                "(fetched = %d, dest = %d)",                                    \
@@ -51,10 +53,13 @@
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
+    int mype = shmem_my_pe();                                                  \
+    int npes = shmem_n_pes();                                                  \
+    int fetch_pe = (mype + 1) % npes;                                          \
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
-    TYPE value = 42;                                                           \
+    TYPE value = 52;                                                           \
     TYPE add_value = 5;                                                        \
-    *dest = value;                                                             \
+    *dest = value + mype; /*each PE contains a unique dest*/                   \
     log_info("initialized dest at %p to %d", (void *)dest, (int)value);        \
                                                                                \
     shmem_ctx_t ctx;                                                           \
@@ -67,21 +72,20 @@
     log_info("Successfully created context");                                  \
                                                                                \
     shmem_barrier_all();                                                       \
-    int mype = shmem_my_pe();                                                  \
-    int npes = shmem_n_pes();                                                  \
     log_info("executing atomic fetch-add with context: dest = %p, value = %d", \
              (void *)dest, (int)add_value);                                    \
     TYPE fetched =                                                             \
-        shmem_atomic_fetch_add(ctx, dest, add_value, (mype + 1) % npes);       \
+        shmem_atomic_fetch_add(ctx, dest, add_value, fetch_pe);                \
     shmem_ctx_quiet(ctx);                                                      \
     shmem_barrier_all();                                                       \
-    success = (fetched == value && *dest == value + add_value);                \
+    success = (fetched == value + fetch_pe &&                                  \
+      *dest == value + mype + add_value);                                      \
     if (!success)                                                              \
       log_fail("atomic fetch-add with context on %s did not produce "          \
                "expected values: fetched = %d (expected %d), dest = %d "       \
                "(expected %d)",                                                \
-               #TYPE, (int)fetched, (int)value, (int)*dest,                    \
-               (int)(value + add_value));                                      \
+               #TYPE, (int)fetched, (int)(value + fetch_pe), (int)*dest,       \
+               (int)(value + mype + add_value));                               \
     else                                                                       \
       log_info("atomic fetch-add with context on a %s at %p produced "         \
                "expected result (fetched = %d, dest = %d)",                    \
@@ -97,35 +101,38 @@ int main(int argc, char *argv[]) {
   shmem_init();
   log_init(__FILE__);
 
-  int rc = EXIT_SUCCESS;
+  if (!(shmem_n_pes() >= 2)) {
+    log_warn("Not enough PEs to run test (requires 2 PEs, have %d PEs)",
+             shmem_n_pes());
+    if (shmem_my_pe() == 0) {
+      display_not_enough_pes("RMA");
+    }
+    shmem_finalize();
+    return EXIT_SUCCESS;
+  }
+
+  static int result = true;
+  static int result_ctx = true;
 
   /* Test standard atomic fetch-add operations */
-  bool result = true;
-
   #define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD(type);
     SHMEM_STANDARD_AMO_TYPE_TABLE(X)
   #undef X
 
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_atomic_fetch_add", result, false);
-  }
+  shmem_barrier_all();
+
+  reduce_test_result("C11 shmem_atomic_fetch_add", &result, false);
 
   /* Test context-specific atomic fetch-add operations */
-  bool result_ctx = true;
-
   #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD(type);
     SHMEM_STANDARD_AMO_TYPE_TABLE(X)
   #undef X
 
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_atomic_fetch_add with ctx", result_ctx,
-                        false);
-  }
+  shmem_barrier_all();
 
-  if (!result || !result_ctx) {
-    rc = EXIT_FAILURE;
-  }
+  reduce_test_result("C11 shmem_atomic_fetch_add with ctx", &result_ctx, false);
 
+  bool rc = result & result_ctx ? EXIT_SUCCESS : EXIT_FAILURE;
   log_close(rc);
   shmem_finalize();
   return rc;
