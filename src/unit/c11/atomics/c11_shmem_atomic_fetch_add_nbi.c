@@ -11,6 +11,7 @@
 
 #include "log.h"
 #include "shmemvv.h"
+#include "type_tables.h"
 
 #define TEST_C11_SHMEM_ATOMIC_FETCH_ADD_NBI(TYPE)                              \
   ({                                                                           \
@@ -19,30 +20,31 @@
     static TYPE *dest;                                                         \
     static TYPE fetch;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
+    int mype = shmem_my_pe();                                                  \
+    int npes = shmem_n_pes();                                                  \
+    int fetch_pe = (mype + 1) % npes;                                          \
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
     fetch = 0;                                                                 \
     TYPE value = 42, add_val = 10;                                             \
-    *dest = value;                                                             \
+    *dest = value + mype;  /*each PE contains a unique dest*/                  \
     log_info("set %p to %d", (void *)dest, (char)value);                       \
     shmem_barrier_all();                                                       \
     log_info("executing atomic fetch add (nbi): dest = %p, add_val = %d",      \
              (void *)dest, (char)add_val);                                     \
-    int mype = shmem_my_pe();                                                  \
-    shmem_atomic_fetch_add_nbi(&fetch, dest, add_val, mype);                   \
+    shmem_atomic_fetch_add_nbi(&fetch, dest, add_val, fetch_pe);               \
     shmem_quiet();                                                             \
     shmem_barrier_all();                                                       \
-    success = (fetch == value && *dest == value + add_val);                    \
+    success = (fetch == value + fetch_pe &&                                    \
+      *dest == value + mype + add_val);                                        \
     if (!success)                                                              \
-      log_fail("atomic fetch add (nbi) on %s did not produce expected value "  \
-               "= %d, ret = "                                                  \
-               "%d, got "                                                      \
-               "instead value = %d, ret = %d",                                 \
-               #TYPE, (char)(value + add_val), (char)value, (char)*dest,       \
-               (char)fetch);                                                   \
+      log_fail("atomic fetch-add (nbi) on %s did not produce expected values: "\
+               "fetch = %d (expected %d), dest = %d (expected %d)",            \
+               #TYPE, (int)fetch, (int)(value + fetch_pe), (int)*dest,         \
+               (int)(value + mype + add_val));                                 \
     else                                                                       \
-      log_info(                                                                \
-          "atomic fetch add (nbi) on a %s at %p produced expected result",     \
-          #TYPE, (void *)dest);                                                \
+      log_info("atomic fetch-add (nbi) on a %s at %p produced expected result "\
+               "(fetch = %d, dest = %d)",                                      \
+               #TYPE, (void *)dest, (int)fetch, (int)*dest);                   \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })
@@ -54,10 +56,13 @@
     static TYPE *dest;                                                         \
     static TYPE fetch;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
+    int mype = shmem_my_pe();                                                  \
+    int npes = shmem_n_pes();                                                  \
+    int fetch_pe = (mype + 1) % npes;                                          \
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
     fetch = 0;                                                                 \
-    TYPE value = 42, add_val = 10;                                             \
-    *dest = value;                                                             \
+    TYPE value = 52, add_val = 10;                                             \
+    *dest = value + mype;   /*each PE contains a unique dest*/                 \
     log_info("set %p to %d", (void *)dest, (char)value);                       \
                                                                                \
     shmem_ctx_t ctx;                                                           \
@@ -73,21 +78,20 @@
     log_info("executing atomic fetch add nbi with context: dest = %p, "        \
              "add_val = %d",                                                   \
              (void *)dest, (char)add_val);                                     \
-    int mype = shmem_my_pe();                                                  \
-    shmem_atomic_fetch_add_nbi(ctx, &fetch, dest, add_val, mype);              \
+    shmem_atomic_fetch_add_nbi(ctx, &fetch, dest, add_val, fetch_pe);          \
     shmem_ctx_quiet(ctx);                                                      \
     shmem_barrier_all();                                                       \
-    success = (fetch == value && *dest == value + add_val);                    \
+    success = (fetch == value + fetch_pe &&                                    \
+      *dest == value + mype + add_val);                                        \
     if (!success)                                                              \
-      log_fail("atomic fetch add nbi with context on %s did not produce "      \
-               "expected value = %d, ret = %d, got instead value = %d, "       \
-               "ret = %d",                                                     \
-               #TYPE, (char)(value + add_val), (char)value, (char)*dest,       \
-               (char)fetch);                                                   \
+      log_fail("atomic fetch-add nbi with context on %s did not produce "      \
+        "expected values: fetch = %d (expected %d), dest = %d (expected %d)",  \
+               #TYPE, (int)fetch, (int)(value + fetch_pe), (int)*dest,         \
+               (int)(value + mype + add_val));                                 \
     else                                                                       \
-      log_info("atomic fetch add nbi with context on a %s at %p produced "     \
-               "expected result",                                              \
-               #TYPE, (void *)dest);                                           \
+      log_info("atomic fetch-add nbi with context on a %s at %p produced "     \
+        "expected result (fetch = %d, dest = %d)",                             \
+               #TYPE, (void *)dest, (int)fetch, (int)*dest);                   \
                                                                                \
     shmem_ctx_destroy(ctx);                                                    \
     log_info("Context destroyed");                                             \
@@ -99,51 +103,38 @@ int main(int argc, char *argv[]) {
   shmem_init();
   log_init(__FILE__);
 
-  int rc = EXIT_SUCCESS;
+  if (!(shmem_n_pes() >= 2)) {
+    log_warn("Not enough PEs to run test (requires 2 PEs, have %d PEs)",
+             shmem_n_pes());
+    if (shmem_my_pe() == 0) {
+      display_not_enough_pes("RMA");
+    }
+    shmem_finalize();
+    return EXIT_SUCCESS;
+  }
+
+  static int result = true;
+  static int result_ctx = true;
 
   /* Test standard atomic fetch-add nbi operations */
-  bool result = true;
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD_NBI(int);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD_NBI(long);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD_NBI(long long);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD_NBI(unsigned int);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD_NBI(unsigned long);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD_NBI(unsigned long long);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD_NBI(int32_t);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD_NBI(int64_t);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD_NBI(uint32_t);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD_NBI(uint64_t);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD_NBI(size_t);
-  result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD_NBI(ptrdiff_t);
+  #define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD_NBI(type);
+    SHMEM_STANDARD_AMO_TYPE_TABLE(X)
+  #undef X
 
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_atomic_fetch_add_nbi", result, false);
-  }
+  shmem_barrier_all();
+
+  reduce_test_result("C11 shmem_atomic_fetch_add", &result, false);
 
   /* Test context-specific atomic fetch-add nbi operations */
-  bool result_ctx = true;
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD_NBI(int);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD_NBI(long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD_NBI(long long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD_NBI(unsigned int);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD_NBI(unsigned long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD_NBI(unsigned long long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD_NBI(int32_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD_NBI(int64_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD_NBI(uint32_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD_NBI(uint64_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD_NBI(size_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD_NBI(ptrdiff_t);
+  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD_NBI(type);
+    SHMEM_STANDARD_AMO_TYPE_TABLE(X)
+  #undef X
 
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_atomic_fetch_add_nbi with ctx", result_ctx,
-                        false);
-  }
+  shmem_barrier_all();
 
-  if (!result || !result_ctx) {
-    rc = EXIT_FAILURE;
-  }
+  reduce_test_result("C11 shmem_atomic_fetch_add_nbi with ctx", &result_ctx, false);
 
+  bool rc = result & result_ctx ? EXIT_SUCCESS : EXIT_FAILURE;
   log_close(rc);
   shmem_finalize();
   return rc;
