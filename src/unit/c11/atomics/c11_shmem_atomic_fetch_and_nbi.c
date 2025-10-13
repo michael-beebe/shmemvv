@@ -106,7 +106,7 @@ int main(int argc, char *argv[]) {
     log_warn("Not enough PEs to run test (requires 2 PEs, have %d PEs)",
              shmem_n_pes());
     if (shmem_my_pe() == 0) {
-      display_not_enough_pes("RMA");
+      display_not_enough_pes("atomic");
     }
     shmem_finalize();
     return EXIT_SUCCESS;
