@@ -20,7 +20,7 @@
     static TYPE *dest;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
-    TYPE value = 0xFFFF;                                                       \
+    TYPE value = 0xFF;                                                         \
     TYPE and_value = shmem_my_pe();                                            \
     *dest = value;                                                             \
     log_info("initialized dest at %p to %d", (void *)dest, (int)value);        \
@@ -32,7 +32,7 @@
     shmem_atomic_and(dest, and_value, (mype + 1) % npes);                      \
     shmem_barrier_all();                                                       \
     TYPE prev_pe = (mype + npes - 1) % npes; /*find prev pe number*/           \
-    success = (*dest == (value & prev_pe));                                      \
+    success = (*dest == (value & prev_pe));                                    \
     if (!success)                                                              \
       log_fail("atomic and on %s did not produce expected value %d, "          \
                "got instead %d",                                               \
@@ -75,7 +75,7 @@
     shmem_ctx_quiet(ctx);                                                      \
     shmem_barrier_all();                                                       \
     TYPE prev_pe = (mype + npes - 1) % npes; /*find prev pe number*/           \
-    success = (*dest == (value & prev_pe));                                      \
+    success = (*dest == (value & prev_pe));                                    \
     if (!success)                                                              \
       log_fail("atomic and with context on %s did not produce expected "       \
                "value %d, got instead %d",                                     \
