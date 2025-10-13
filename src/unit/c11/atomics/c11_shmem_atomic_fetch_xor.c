@@ -13,9 +13,9 @@
 #include "shmemvv.h"
 #include "type_tables.h"
 
-#define TEST_C11_SHMEM_ATOMIC_FETCH_XOR(TYPE)                                   \
+#define TEST_C11_SHMEM_ATOMIC_FETCH_XOR(TYPE)                                  \
   ({                                                                           \
-    log_routine("shmem_atomic_fetch_xor(" #TYPE ")");                           \
+    log_routine("shmem_atomic_fetch_xor(" #TYPE ")");                          \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
@@ -24,33 +24,33 @@
     int fetch_pe = (mype + 1) % npes;                                          \
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
     TYPE value = 42;                                                           \
-    TYPE xor_value = 15;                                                        \
+    TYPE xor_value = 15;                                                       \
     *dest = value + mype;                                                      \
     log_info("initialized dest at %p to %d", (void *)dest, (int)*dest);        \
     shmem_barrier_all();                                                       \
-    log_info("executing atomic fetch-xor: dest = %p, value = %d", (void *)dest, \
-             (int)xor_value);                                                   \
-    TYPE fetched = shmem_atomic_fetch_xor(dest, xor_value, fetch_pe);            \
+    log_info("executing atomic fetch-xor: dest = %p, value = %d", (void *)dest,\
+             (int)xor_value);                                                  \
+    TYPE fetched = shmem_atomic_fetch_xor(dest, xor_value, fetch_pe);          \
     shmem_barrier_all();                                                       \
     success = (fetched == value + fetch_pe &&                                  \
-               *dest == (value + mype) ^ xor_value);                            \
+               *dest == (value + mype) ^ xor_value);                           \
     if (!success)                                                              \
-      log_fail("atomic fetch-xor on %s did not produce expected values: "       \
+      log_fail("atomic fetch-xor on %s did not produce expected values: "      \
                "fetched = %d (expected %d), dest = %d (expected %d)",          \
                #TYPE, (int)fetched, (int)(value + fetch_pe), (int)*dest,       \
-               (int)((value + mype) ^ xor_value));                              \
+               (int)((value + mype) ^ xor_value));                             \
     else                                                                       \
-      log_info("atomic fetch-xor on a %s at %p produced expected result "       \
+      log_info("atomic fetch-xor on a %s at %p produced expected result "      \
                "(fetched = %d, dest = %d ^ %d = %d)",                          \
                #TYPE, (void *)dest, (int)fetched, (int)(value + mype),         \
-               (int)xor_value, (int)*dest);                                     \
+               (int)xor_value, (int)*dest);                                    \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })
 
-#define TEST_C11_CTX_SHMEM_ATOMIC_FETCH_XOR(TYPE)                               \
+#define TEST_C11_CTX_SHMEM_ATOMIC_FETCH_XOR(TYPE)                              \
   ({                                                                           \
-    log_routine("shmem_atomic_fetch_xor(ctx, " #TYPE ")");                      \
+    log_routine("shmem_atomic_fetch_xor(ctx, " #TYPE ")");                     \
     bool success = true;                                                       \
     static TYPE *dest;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
@@ -59,7 +59,7 @@
     int fetch_pe = (mype + 1) % npes;                                          \
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
     TYPE value = 52;                                                           \
-    TYPE xor_value = 15;                                                        \
+    TYPE xor_value = 15;                                                       \
     *dest = value + mype;                                                      \
     log_info("initialized dest at %p to %d", (void *)dest, (int)value);        \
                                                                                \
@@ -73,23 +73,23 @@
     log_info("Successfully created context");                                  \
                                                                                \
     shmem_barrier_all();                                                       \
-    log_info("executing atomic fetch-xor with context: dest = %p, value = %d",  \
-             (void *)dest, (int)xor_value);                                     \
-    TYPE fetched = shmem_atomic_fetch_xor(ctx, dest, xor_value, fetch_pe);       \
+    log_info("executing atomic fetch-xor with context: dest = %p, value = %d", \
+             (void *)dest, (int)xor_value);                                    \
+    TYPE fetched = shmem_atomic_fetch_xor(ctx, dest, xor_value, fetch_pe);     \
     shmem_ctx_quiet(ctx);                                                      \
     shmem_barrier_all();                                                       \
      success = (fetched == value + fetch_pe &&                                 \
-               *dest == (value + mype) ^ xor_value);                            \
+               *dest == (value + mype) ^ xor_value);                           \
     if (!success)                                                              \
-      log_fail("atomic fetch-xor with ctx on %s did not produce expected "      \
+      log_fail("atomic fetch-xor with ctx on %s did not produce expected "     \
                "values: fetched = %d (expected %d), dest = %d (expected %d)",  \
                #TYPE, (int)fetched, (int)(value + fetch_pe), (int)*dest,       \
-               (int)((value + mype) ^ xor_value));                              \
+               (int)((value + mype) ^ xor_value));                             \
     else                                                                       \
-      log_info("atomic fetch-xor with context on a %s at %p produced expected"  \
+      log_info("atomic fetch-xor with context on a %s at %p produced expected" \
                "result (fetched = %d, dest = %d ^ %d = %d)",                   \
                #TYPE, (void *)dest, (int)fetched, (int)(value + mype),         \
-               (int)xor_value, (int)*dest);                                     \
+               (int)xor_value, (int)*dest);                                    \
                                                                                \
     shmem_ctx_destroy(ctx);                                                    \
     log_info("Context destroyed");                                             \
@@ -114,7 +114,7 @@ int main(int argc, char *argv[]) {
   static int result = true;
   static int result_ctx = true;
 
-  /* Test standard atomic fetch-or operations */
+  /* Test standard atomic fetch-xor operations */
   #define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_FETCH_XOR(type);
     SHMEM_BITWISE_AMO_TYPE_TABLE(X)
   #undef X
@@ -123,7 +123,7 @@ int main(int argc, char *argv[]) {
 
   reduce_test_result("C11 shmem_atomic_fetch_xor", &result, false);
 
-  /* Test context-specific atomic fetch-or operations */
+  /* Test context-specific atomic fetch-xor operations */
   #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_XOR(type);
     SHMEM_BITWISE_AMO_TYPE_TABLE(X)
   #undef X
