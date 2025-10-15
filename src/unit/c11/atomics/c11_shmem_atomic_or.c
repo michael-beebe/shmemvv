@@ -52,7 +52,7 @@
     static TYPE *dest;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
-    TYPE value = 0;                                                         \
+    TYPE value = 0;                                                            \
     TYPE or_value = shmem_my_pe();                                             \
     *dest = value;                                                             \
     log_info("initialized dest at %p to %d", (void *)dest, (int)value);        \
@@ -94,6 +94,16 @@
 int main(int argc, char *argv[]) {
   shmem_init();
   log_init(__FILE__);
+
+  if (!(shmem_n_pes() >= 2)) {
+    log_warn("Not enough PEs to run test (requires 2 PEs, have %d PEs)",
+             shmem_n_pes());
+    if (shmem_my_pe() == 0) {
+      display_not_enough_pes("atomic");
+    }
+    shmem_finalize();
+    return EXIT_SUCCESS;
+  }
 
   static int result = true;
   static int result_ctx = true;
