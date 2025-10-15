@@ -20,7 +20,7 @@
     static TYPE *dest;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
-    TYPE value = 0;                                                            \
+    TYPE value = 0b10101010;                                                   \
     TYPE or_value = shmem_my_pe();                                             \
     *dest = value;                                                             \
     log_info("initialized dest at %p to %d", (void *)dest, (int)value);        \
@@ -52,7 +52,7 @@
     static TYPE *dest;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
-    TYPE value = 0;                                                            \
+    TYPE value = 0b10101010;                                                   \
     TYPE or_value = shmem_my_pe();                                             \
     *dest = value;                                                             \
     log_info("initialized dest at %p to %d", (void *)dest, (int)value);        \
