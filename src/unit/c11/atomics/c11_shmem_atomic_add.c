@@ -11,6 +11,7 @@
 
 #include "log.h"
 #include "shmemvv.h"
+#include "type_tables.h"
 
 #define TEST_C11_SHMEM_ATOMIC_ADD(TYPE)                                        \
   ({                                                                           \
@@ -20,7 +21,7 @@
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
     TYPE value = 42;                                                           \
-    TYPE add_value = 5;                                                        \
+    TYPE add_value = shmem_my_pe();                                            \
     *dest = value;                                                             \
     log_info("initialized dest at %p to %d", (void *)dest, (int)value);        \
     shmem_barrier_all();                                                       \
@@ -30,15 +31,16 @@
              (int)add_value);                                                  \
     shmem_atomic_add(dest, add_value, (mype + 1) % npes);                      \
     shmem_barrier_all();                                                       \
-    success = (*dest == value + add_value);                                    \
+    TYPE prev_pe = (mype + npes - 1) % npes; /*find prev pe number*/           \
+    success = (*dest == value + prev_pe);                                      \
     if (!success)                                                              \
       log_fail("atomic add on %s did not produce expected value %d, "          \
                "got instead %d",                                               \
-               #TYPE, (int)(value + add_value), (int)*dest);                   \
+               #TYPE, (int)(value + prev_pe), (int)*dest);                     \
     else                                                                       \
       log_info("atomic add on a %s at %p produced expected result "            \
                "(%d + %d = %d)",                                               \
-               #TYPE, (void *)dest, (int)value, (int)add_value, (int)*dest);   \
+               #TYPE, (void *)dest, (int)value, (int)prev_pe, (int)*dest);     \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })
@@ -50,8 +52,8 @@
     static TYPE *dest;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
-    TYPE value = 42;                                                           \
-    TYPE add_value = 5;                                                        \
+    TYPE value = 52;                                                           \
+    TYPE add_value = shmem_my_pe();                                            \
     *dest = value;                                                             \
     log_info("initialized dest at %p to %d", (void *)dest, (int)value);        \
                                                                                \
@@ -72,15 +74,16 @@
     shmem_atomic_add(ctx, dest, add_value, (mype + 1) % npes);                 \
     shmem_ctx_quiet(ctx);                                                      \
     shmem_barrier_all();                                                       \
-    success = (*dest == value + add_value);                                    \
+    TYPE prev_pe = (mype + npes - 1) % npes; /*find prev pe number*/           \
+    success = (*dest == value + prev_pe);                                      \
     if (!success)                                                              \
       log_fail("atomic add with context on %s did not produce expected "       \
                "value %d, got instead %d",                                     \
-               #TYPE, (int)(value + add_value), (int)*dest);                   \
+               #TYPE, (int)(value + prev_pe), (int)*dest);                     \
     else                                                                       \
       log_info("atomic add with context on a %s at %p produced expected "      \
                "result (%d + %d = %d)",                                        \
-               #TYPE, (void *)dest, (int)value, (int)add_value, (int)*dest);   \
+               #TYPE, (void *)dest, (int)value, (int)prev_pe, (int)*dest);     \
                                                                                \
     shmem_ctx_destroy(ctx);                                                    \
     log_info("Context destroyed");                                             \
@@ -92,50 +95,39 @@ int main(int argc, char *argv[]) {
   shmem_init();
   log_init(__FILE__);
 
-  int rc = EXIT_SUCCESS;
+  if (!(shmem_n_pes() >= 2)) {
+    log_warn("Not enough PEs to run test (requires 2 PEs, have %d PEs)",
+             shmem_n_pes());
+    if (shmem_my_pe() == 0) {
+      display_not_enough_pes("atomic");
+    }
+    shmem_finalize();
+    return EXIT_SUCCESS;
+  }
+
+  static int result = true;
+  static int result_ctx = true;
 
   /* Test standard atomic add operations */
-  bool result = true;
-  result &= TEST_C11_SHMEM_ATOMIC_ADD(int);
-  result &= TEST_C11_SHMEM_ATOMIC_ADD(long);
-  result &= TEST_C11_SHMEM_ATOMIC_ADD(long long);
-  result &= TEST_C11_SHMEM_ATOMIC_ADD(unsigned int);
-  result &= TEST_C11_SHMEM_ATOMIC_ADD(unsigned long);
-  result &= TEST_C11_SHMEM_ATOMIC_ADD(unsigned long long);
-  result &= TEST_C11_SHMEM_ATOMIC_ADD(int32_t);
-  result &= TEST_C11_SHMEM_ATOMIC_ADD(int64_t);
-  result &= TEST_C11_SHMEM_ATOMIC_ADD(uint32_t);
-  result &= TEST_C11_SHMEM_ATOMIC_ADD(uint64_t);
-  result &= TEST_C11_SHMEM_ATOMIC_ADD(size_t);
-  result &= TEST_C11_SHMEM_ATOMIC_ADD(ptrdiff_t);
+  #define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_ADD(type);
+    SHMEM_STANDARD_AMO_TYPE_TABLE(X)
+  #undef X
 
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_atomic_add", result, false);
-  }
+  shmem_barrier_all();
+
+  reduce_test_result("C11 shmem_atomic_add", &result, false);
+
 
   /* Test context-specific atomic add operations */
-  bool result_ctx = true;
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_ADD(int);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_ADD(long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_ADD(long long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_ADD(unsigned int);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_ADD(unsigned long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_ADD(unsigned long long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_ADD(int32_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_ADD(int64_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_ADD(uint32_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_ADD(uint64_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_ADD(size_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_ADD(ptrdiff_t);
+  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_ADD(type);
+    SHMEM_STANDARD_AMO_TYPE_TABLE(X)
+  #undef X
 
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_atomic_add with ctx", result_ctx, false);
-  }
+  shmem_barrier_all();
 
-  if (!result || !result_ctx) {
-    rc = EXIT_FAILURE;
-  }
+  reduce_test_result("C11 shmem_atomic_add with ctx", &result_ctx, false);
 
+  bool rc = result & result_ctx ? EXIT_SUCCESS : EXIT_FAILURE;
   log_close(rc);
   shmem_finalize();
   return rc;

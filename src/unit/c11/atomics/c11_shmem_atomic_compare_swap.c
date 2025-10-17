@@ -11,6 +11,7 @@
 
 #include "log.h"
 #include "shmemvv.h"
+#include "type_tables.h"
 
 #define TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP(TYPE)                               \
   ({                                                                           \
@@ -19,23 +20,24 @@
     static TYPE *dest;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
-    TYPE old = 42, new_val = 43;                                               \
-    *dest = old;                                                               \
-    log_info("initialized dest at %p to %d", (void *)dest, (int)old);          \
-    shmem_barrier_all();                                                       \
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
+    int prev_pe = (mype + npes - 1) % npes, next_pe = (mype + 1) % npes;       \
+    TYPE value = mype, new_val = next_pe;                                      \
+    *dest = value;                                                             \
+    log_info("initialized dest at %p to %d", (void *)dest, (int)value);        \
+    shmem_barrier_all();                                                       \
     log_info(                                                                  \
         "executing atomic compare swap: dest = %p, cond = %d, value = %d",     \
-        (void *)dest, (int)old, (int)new_val);                                 \
+        (void *)dest, (int)next_pe, (int)new_val);                             \
     TYPE swapped =                                                             \
-        shmem_atomic_compare_swap(dest, old, new_val, (mype + 1) % npes);      \
+        shmem_atomic_compare_swap(dest, new_val, value, next_pe);              \
     shmem_barrier_all();                                                       \
-    success = (swapped == old && *dest == new_val);                            \
+    success = (swapped == new_val && *dest == (TYPE) prev_pe);                 \
     if (!success)                                                              \
       log_fail("atomic compare swap on %s did not produce expected values: "   \
                "swapped = %d (expected %d), dest = %d (expected %d)",          \
-               #TYPE, (int)swapped, (int)old, (int)*dest, (int)new_val);       \
+               #TYPE, (int)swapped, (int)next_pe, (int)*dest, (int)prev_pe);   \
     else                                                                       \
       log_info("atomic compare swap on a %s at %p produced expected result "   \
                "(swapped = %d, dest = %d)",                                    \
@@ -51,9 +53,12 @@
     static TYPE *dest;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
-    TYPE old = 42, new_val = 43;                                               \
-    *dest = old;                                                               \
-    log_info("initialized dest at %p to %d", (void *)dest, (int)old);          \
+    int mype = shmem_my_pe();                                                  \
+    int npes = shmem_n_pes();                                                  \
+    int prev_pe = (mype + npes - 1) % npes, next_pe = (mype + 1) % npes;       \
+    TYPE value = mype, new_val = next_pe;                                      \
+    *dest = value;                                                             \
+    log_info("initialized dest at %p to %d", (void *)dest, (int)value);        \
                                                                                \
     shmem_ctx_t ctx;                                                           \
     int ctx_create_status = shmem_ctx_create(0, &ctx);                         \
@@ -65,22 +70,20 @@
     log_info("Successfully created context");                                  \
                                                                                \
     shmem_barrier_all();                                                       \
-    int mype = shmem_my_pe();                                                  \
-    int npes = shmem_n_pes();                                                  \
     log_info(                                                                  \
         "executing atomic compare swap with context: dest = %p, cond = %d, "   \
         "value = %d",                                                          \
-        (void *)dest, (int)old, (int)new_val);                                 \
+        (void *)dest, (int)next_pe, (int)new_val);                             \
     TYPE swapped =                                                             \
-        shmem_atomic_compare_swap(ctx, dest, old, new_val, (mype + 1) % npes); \
+        shmem_atomic_compare_swap(ctx, dest, new_val, value, next_pe);         \
     shmem_ctx_quiet(ctx);                                                      \
     shmem_barrier_all();                                                       \
-    success = (swapped == old && *dest == new_val);                            \
+    success = (swapped == new_val && *dest == (TYPE) prev_pe);                 \
     if (!success)                                                              \
       log_fail(                                                                \
           "atomic compare swap with context on %s did not produce expected "   \
           "values: swapped = %d (expected %d), dest = %d (expected %d)",       \
-          #TYPE, (int)swapped, (int)old, (int)*dest, (int)new_val);            \
+          #TYPE, (int)swapped, (int)next_pe, (int)*dest, (int)prev_pe);        \
     else                                                                       \
       log_info(                                                                \
           "atomic compare swap with context on a %s at %p produced expected "  \
@@ -97,51 +100,39 @@ int main(int argc, char *argv[]) {
   shmem_init();
   log_init(__FILE__);
 
-  int rc = EXIT_SUCCESS;
-
-  /* Test standard atomic compare swap operations */
-  bool result = true;
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP(int);
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP(long);
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP(long long);
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP(unsigned int);
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP(unsigned long);
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP(unsigned long long);
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP(int32_t);
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP(int64_t);
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP(uint32_t);
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP(uint64_t);
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP(size_t);
-  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP(ptrdiff_t);
-
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_atomic_compare_swap", result, false);
+  if (!(shmem_n_pes() >= 2)) {
+    log_warn("Not enough PEs to run test (requires 2 PEs, have %d PEs)",
+             shmem_n_pes());
+    if (shmem_my_pe() == 0) {
+      display_not_enough_pes("atomic");
+    }
+    shmem_finalize();
+    return EXIT_SUCCESS;
   }
 
-  /* Test context-specific atomic compare swap operations */
-  bool result_ctx = true;
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_COMPARE_SWAP(int);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_COMPARE_SWAP(long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_COMPARE_SWAP(long long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_COMPARE_SWAP(unsigned int);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_COMPARE_SWAP(unsigned long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_COMPARE_SWAP(unsigned long long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_COMPARE_SWAP(int32_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_COMPARE_SWAP(int64_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_COMPARE_SWAP(uint32_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_COMPARE_SWAP(uint64_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_COMPARE_SWAP(size_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_COMPARE_SWAP(ptrdiff_t);
+  static int result = true;
+  static int result_ctx = true;
 
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_atomic_compare_swap with ctx", result_ctx,
-                        false);
-  }
+  /* Test standard atomic add operations */
+  #define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP(type);
+    SHMEM_STANDARD_AMO_TYPE_TABLE(X)
+  #undef X
 
-  if (!result || !result_ctx) {
-    rc = EXIT_FAILURE;
-  }
+  shmem_barrier_all();
 
+  reduce_test_result("C11 shmem_atomic_compare_swap", &result, false);
+
+
+  /* Test context-specific atomic add operations */
+  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_COMPARE_SWAP(type);
+    SHMEM_STANDARD_AMO_TYPE_TABLE(X)
+  #undef X
+
+  shmem_barrier_all();
+
+  reduce_test_result("C11 shmem_atomic_compare_swap with ctx", &result_ctx, false);
+
+  bool rc = result & result_ctx ? EXIT_SUCCESS : EXIT_FAILURE;
   log_close(rc);
   shmem_finalize();
   return rc;
