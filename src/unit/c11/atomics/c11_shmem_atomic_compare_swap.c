@@ -33,7 +33,7 @@
     TYPE swapped =                                                             \
         shmem_atomic_compare_swap(dest, new_val, value, next_pe);              \
     shmem_barrier_all();                                                       \
-    success = (swapped == next_pe && *dest == prev_pe);                        \
+    success = (swapped == new_val && *dest == (TYPE) prev_pe);                 \
     if (!success)                                                              \
       log_fail("atomic compare swap on %s did not produce expected values: "   \
                "swapped = %d (expected %d), dest = %d (expected %d)",          \
@@ -78,7 +78,7 @@
         shmem_atomic_compare_swap(ctx, dest, new_val, value, next_pe);         \
     shmem_ctx_quiet(ctx);                                                      \
     shmem_barrier_all();                                                       \
-    success = (swapped == next_pe && *dest == prev_pe);                        \
+    success = (swapped == new_val && *dest == (TYPE) prev_pe);                 \
     if (!success)                                                              \
       log_fail(                                                                \
           "atomic compare swap with context on %s did not produce expected "   \

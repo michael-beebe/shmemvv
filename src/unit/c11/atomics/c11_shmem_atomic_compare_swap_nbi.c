@@ -33,7 +33,7 @@
     shmem_atomic_compare_swap_nbi(&fetch, dest, new_val, val, next_pe);        \
     shmem_quiet();                                                             \
     shmem_barrier_all();                                                       \
-    success = (fetch == next_pe && *dest == (TYPE) prev_pe);                   \
+    success = (fetch == new_val && *dest == (TYPE) prev_pe);                   \
     if (!success)                                                              \
       log_fail(                                                                \
           "atomic cmp swp on %s did not produce expected fetch = %d, dest = "  \
@@ -77,7 +77,7 @@
     shmem_atomic_compare_swap_nbi(ctx, &fetch, dest, new_val, val, next_pe);   \
     shmem_ctx_quiet(ctx);                                                      \
     shmem_barrier_all();                                                       \
-    success = (fetch == next_pe && *dest == (TYPE) prev_pe);                   \
+    success = (fetch == new_val && *dest == (TYPE) prev_pe);                   \
     if (!success)                                                              \
       log_fail(                                                                \
           "atomic cmp swp nbi on %s did not produce expected fetch = %d, "     \
