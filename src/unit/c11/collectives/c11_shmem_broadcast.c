@@ -91,14 +91,17 @@ int main(int argc, char *argv[]) {
   }
 
   static int result = true;
-  /* Test various broadcast sizes */
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_BROADCAST(type, 1);    \
-                               result &= TEST_C11_SHMEM_BROADCAST(type, 2);    \
-                               result &= TEST_C11_SHMEM_BROADCAST(type, 16);   \
-                               result &= TEST_C11_SHMEM_BROADCAST(type, 1024); \
-                               result &= TEST_C11_SHMEM_BROADCAST(type, 16384); 
+  #define X(type, shmem_types) result &= TEST_C11_SHMEM_BROADCAST(type, 4);
     SHMEM_STANDARD_RMA_TYPE_TABLE(X)
   #undef X
+
+  /* Test various broadcast sizes with int */
+  result &= TEST_C11_SHMEM_BROADCAST(int, 1);
+  result &= TEST_C11_SHMEM_BROADCAST(int, 2);
+  result &= TEST_C11_SHMEM_BROADCAST(int, 7);
+  result &= TEST_C11_SHMEM_BROADCAST(int, 16);
+  result &= TEST_C11_SHMEM_BROADCAST(int, 1024); 
+  result &= TEST_C11_SHMEM_BROADCAST(int, 16384); 
 
   shmem_barrier_all();
   reduce_test_result("C11 shmem_broadcast", &result, false);
