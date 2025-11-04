@@ -5,17 +5,20 @@
 
 #include "log.h"
 #include "shmemvv.h"
+#include "type_tables.h"
 
-#define TEST_C11_SHMEM_FCOLLECT(TYPE)                                          \
+#define TEST_C11_SHMEM_FCOLLECT(TYPE, NELEMS)                                  \
   ({                                                                           \
     log_routine("shmem_fcollect(" #TYPE ")");                                  \
+    log_info("shmem_collect() parameter nelems set to %d.", NELEMS);           \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
                                                                                \
-    TYPE *src = (TYPE *)shmem_calloc(1, sizeof(TYPE));                         \
-    TYPE *dest = (TYPE *)shmem_calloc(npes, sizeof(TYPE));                     \
-    log_info("shmem_calloc'd %d bytes @ &src = %p, %d bytes @ &dest = %p",     \
-             sizeof(TYPE), (void *)src, npes * sizeof(TYPE), (void *)dest);    \
+    TYPE *src = (TYPE *)shmem_calloc(NELEMS, sizeof(TYPE));                    \
+    TYPE *dest = (TYPE *)shmem_calloc(npes * NELEMS, sizeof(TYPE));            \
+    log_info("shmem_malloc'd %d bytes @ &src = %p, %d bytes @ &dest = %p",     \
+             sizeof(TYPE) * NELEMS, (void *)src, npes * sizeof(TYPE) * NELEMS, \
+             (void *)dest);                                                    \
                                                                                \
     if (!src || !dest) {                                                       \
       log_fail("Failed to allocate symmetric memory");                         \
@@ -26,27 +29,31 @@
       return false;                                                            \
     }                                                                          \
                                                                                \
-    src[0] = (TYPE)mype;                                                       \
-    log_info("set %p (src[0]) to %d", (void *)src, mype);                      \
+    /*create unique pattern for each element*/                                 \
+    for (int elem = 0; elem < NELEMS; elem ++){                                \
+      /* Cast handles overflow/wraparound */                                   \
+      src[elem] = (TYPE)((mype << 4) ^ (elem));                                \
+    }                                                                          \
+    log_info("set %p...%p to src[elem] = (%d << 4) ^ elem.", (void *)src,      \
+            (void*) (src + NELEMS - 1), (int)mype);                            \
                                                                                \
     shmem_barrier_all(); /* Ensure all PEs are ready */                        \
                                                                                \
     log_info("executing shmem_fcollect: dest = %p, src = %p", (void *)dest,    \
              (void *)src);                                                     \
-    shmem_fcollect(SHMEM_TEAM_WORLD, dest, src, 1);                            \
-                                                                               \
-    shmem_barrier_all(); /* Ensure all PEs complete fcollect before validation \
-                          */                                                   \
+    shmem_fcollect(SHMEM_TEAM_WORLD, dest, src, NELEMS);                       \
                                                                                \
     log_info("validating result...");                                          \
     bool success = true;                                                       \
     for (int i = 0; i < npes; ++i) {                                           \
-      TYPE expected = (TYPE)i;                                                 \
-      if (dest[i] != expected) {                                               \
-        log_info("index %d of dest (%p) failed. expected %d, got %d", i,       \
-                 &dest[i], (int)expected, (int)dest[i]);                       \
-        success = false;                                                       \
-        break;                                                                 \
+      for (int elem = 0; elem < NELEMS; elem ++){                              \
+        TYPE expected = ((i << 4) ^ (elem));                                   \
+        if (dest[i*NELEMS + elem] != expected) {                               \
+          log_fail("index %d of dest (%p) failed. expected %d, got %d",        \
+            i*NELEMS + elem, &dest[i], (int)expected, (int)dest[i]);           \
+          success = false;                                                     \
+          break;                                                               \
+        }                                                                      \
       }                                                                        \
     }                                                                          \
                                                                                \
@@ -65,45 +72,30 @@ int main(int argc, char *argv[]) {
   shmem_init();
   log_init(__FILE__);
 
-  bool result = true;
-  int rc = EXIT_SUCCESS;
+  if (!(shmem_n_pes() >= 2)) {
+    log_warn("Not enough PEs to run test (requires 2 PEs, have %d PEs)",
+             shmem_n_pes());
+    if (shmem_my_pe() == 0) {
+      display_not_enough_pes("RMA");
+    }
+    shmem_finalize();
+    return EXIT_SUCCESS;
+  }
 
-  result &= TEST_C11_SHMEM_FCOLLECT(float);
-  result &= TEST_C11_SHMEM_FCOLLECT(double);
-  result &= TEST_C11_SHMEM_FCOLLECT(long double);
-  result &= TEST_C11_SHMEM_FCOLLECT(char);
-  result &= TEST_C11_SHMEM_FCOLLECT(signed char);
-  result &= TEST_C11_SHMEM_FCOLLECT(short);
-  result &= TEST_C11_SHMEM_FCOLLECT(int);
-  result &= TEST_C11_SHMEM_FCOLLECT(long);
-  result &= TEST_C11_SHMEM_FCOLLECT(long long);
-  result &= TEST_C11_SHMEM_FCOLLECT(unsigned char);
-  result &= TEST_C11_SHMEM_FCOLLECT(unsigned short);
-  result &= TEST_C11_SHMEM_FCOLLECT(unsigned int);
-  result &= TEST_C11_SHMEM_FCOLLECT(unsigned long);
-  result &= TEST_C11_SHMEM_FCOLLECT(unsigned long long);
-  result &= TEST_C11_SHMEM_FCOLLECT(int8_t);
-  result &= TEST_C11_SHMEM_FCOLLECT(int16_t);
-  result &= TEST_C11_SHMEM_FCOLLECT(int32_t);
-  result &= TEST_C11_SHMEM_FCOLLECT(int64_t);
-  result &= TEST_C11_SHMEM_FCOLLECT(uint8_t);
-  result &= TEST_C11_SHMEM_FCOLLECT(uint16_t);
-  result &= TEST_C11_SHMEM_FCOLLECT(uint32_t);
-  result &= TEST_C11_SHMEM_FCOLLECT(uint64_t);
-  result &= TEST_C11_SHMEM_FCOLLECT(size_t);
-  result &= TEST_C11_SHMEM_FCOLLECT(ptrdiff_t);
+  static int result = true;
+  /*test multiple nelem values*/
+  #define X(type, shmem_types) result &= TEST_C11_SHMEM_FCOLLECT(type, 1); \
+                               result &= TEST_C11_SHMEM_FCOLLECT(type, 4); \
+                               result &= TEST_C11_SHMEM_FCOLLECT(type, 7);
+    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+  #undef X
 
   shmem_barrier_all();
 
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_fcollect", result, false);
-  }
+  reduce_test_result("C11 shmem_fcollect", &result, false);
 
-  if (!result) {
-    rc = EXIT_FAILURE;
-  }
-
-  log_close(rc);
+  bool passed = result;
+  log_close(!passed);
   shmem_finalize();
-  return rc;
+  return passed ? EXIT_SUCCESS : EXIT_FAILURE;
 }

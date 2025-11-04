@@ -28,7 +28,7 @@
     log_info("set %p...%p to src[elem] = (%d << 4) ^ elem.", (void *)src,      \
             (void*) (src + NELEMS - 1), (int)mype);                            \
                                                                                \
-    shmem_team_sync(SHMEM_TEAM_WORLD);                                         \
+    shmem_barrier_all(); /* Ensure all PEs are ready */                        \
     log_info("executing shmem_collect: dest = %p, src = %p", (void *)dest,     \
              (void *)src);                                                     \
     shmem_collect(SHMEM_TEAM_WORLD, dest, src, NELEMS);                        \
