@@ -88,7 +88,7 @@ int main(int argc, char *argv[]) {
     shmem_finalize();
     return EXIT_SUCCESS;
   }
-  static int result;
+  static bool result;
   result = test_shmem_sync_all();
 
   reduce_test_result("C11 shmem_sync_all", &result, false);

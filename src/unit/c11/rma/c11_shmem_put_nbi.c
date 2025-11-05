@@ -140,8 +140,8 @@ int main(int argc, char *argv[]) {
     return EXIT_SUCCESS;
   }
 
-  static int result = true;
-  static int result_ctx = true;
+  static bool result = true;
+  static bool result_ctx = true;
 
   /* Test standard shmem_put_nbi variants */
   #define X(type, shmem_type) result &= TEST_C11_SHMEM_PUT_NBI(type);

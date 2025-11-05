@@ -134,7 +134,7 @@ int main(int argc, char *argv[]) {
     return EXIT_SUCCESS;
   }
 
-  static int result = true;
+  static bool result = true;
   #define X(type, shmem_types) result &= TEST_C11_SHMEM_ALLTOALL(type, 4);
     SHMEM_STANDARD_RMA_TYPE_TABLE(X)
   #undef X
@@ -142,7 +142,7 @@ int main(int argc, char *argv[]) {
   shmem_barrier_all();
   reduce_test_result("C11 shmem_alltoall", &result, false);
 
-  static int result_mem = true;
+  static bool result_mem = true;
   result_mem &= TEST_C11_SHMEM_ALLTOALLMEM(4);
 
   shmem_barrier_all();  

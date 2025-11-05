@@ -82,7 +82,7 @@ int main(int argc, char *argv[]) {
     return EXIT_SUCCESS;
   }
 
-  static int result = true;
+  static bool result = true;
   /*test multiple nelem values*/
   #define X(type, shmem_types) result &= TEST_C11_SHMEM_FCOLLECT(type, 1); \
                                result &= TEST_C11_SHMEM_FCOLLECT(type, 4); \

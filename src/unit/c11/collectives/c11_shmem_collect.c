@@ -120,7 +120,7 @@ int main(int argc, char *argv[]) {
     return EXIT_SUCCESS;
   }
 
-  static int result = true;
+  static bool result = true;
   #define X(type, shmem_types) result &= TEST_C11_SHMEM_COLLECT(type, 4);
     SHMEM_STANDARD_RMA_TYPE_TABLE(X)
   #undef X
@@ -129,7 +129,7 @@ int main(int argc, char *argv[]) {
 
   reduce_test_result("C11 shmem_collect", &result, false);
 
-  static int result_var_nelems = true;
+  static bool result_var_nelems = true;
   #define X(type, shmem_types) result_var_nelems &= TEST_C11_SHMEM_COLLECT_VAR_NELEMS(type);
     SHMEM_STANDARD_RMA_TYPE_TABLE(X)
   #undef X

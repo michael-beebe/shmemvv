@@ -464,19 +464,19 @@ int main(int argc, char *argv[]) {
 
   const int npes = shmem_n_pes();
   const int mype = shmem_my_pe();
-  /*probably don't need, right?*/
-  // if (!(npes >= 2)) {
-  //   log_warn("Not enough PEs to run test (requires 2 PEs, have %d PEs)",
-  //            shmem_n_pes());
-  //   if (mype == 0) {
-  //     display_not_enough_pes("atomic");
-  //   }
-  //   shmem_finalize();
-  //   return EXIT_SUCCESS;
-  // }
+
+  if (!(npes >= 2)) {
+    log_warn("Not enough PEs to run test (requires 2 PEs, have %d PEs)",
+             shmem_n_pes());
+    if (mype == 0) {
+      display_not_enough_pes("atomic");
+    }
+    shmem_finalize();
+    return EXIT_SUCCESS;
+  }
 
   /* Test MAX reduction - SHMEM_REDUCE_MINMAX_TYPE_TABLE */
-  static int result_max = true;
+  static bool result_max = true;
   #define X(type, shmem_types) result_max &= TEST_C11_SHMEM_MAX_REDUCE(type, shmem_types);
     SHMEM_REDUCE_MINMAX_TYPE_TABLE(X)
   #undef X
@@ -484,7 +484,7 @@ int main(int argc, char *argv[]) {
   reduce_test_result("C11 shmem_max_reduce", &result_max, false);
 
   /* Test MIN reduction - SHMEM_REDUCE_MINMAX_TYPE_TABLE */
-  static int result_min = true;
+  static bool result_min = true;
   #define X(type, shmem_types) result_min &= TEST_C11_SHMEM_MIN_REDUCE(type, shmem_types);
     SHMEM_REDUCE_MINMAX_TYPE_TABLE(X)
   #undef X
@@ -492,14 +492,14 @@ int main(int argc, char *argv[]) {
   reduce_test_result("C11 shmem_min_reduce", &result_min, false);
 
   /* Test SUM reduction - SHMEM_REDUCE_ARITH_TYPE_TABLE */
-  static int result_sum = true;
+  static bool result_sum = true;
   #define X(type, shmem_types) result_sum &= TEST_C11_SHMEM_SUM_REDUCE(type, shmem_types);
     SHMEM_REDUCE_ARITH_TYPE_TABLE(X)
   #undef X
   reduce_test_result("C11 shmem_sum_reduce", &result_sum, false);
 
   /* Test PROD reduction - SHMEM_REDUCE_ARITH_TYPE_TABLE */
-  static int result_prod = true;
+  static bool result_prod = true;
   #define X(type, shmem_types) result_prod &= TEST_C11_SHMEM_PROD_REDUCE(type, shmem_types);
     SHMEM_REDUCE_ARITH_TYPE_TABLE(X)
   #undef X
@@ -507,7 +507,7 @@ int main(int argc, char *argv[]) {
   reduce_test_result("C11 shmem_prod_reduce", &result_prod, false);
 
   /* Test AND reduction - unsigned integer types only */
-  static int result_and = true;
+  static bool result_and = true;
   #define X(type, shmem_types) result_and &= TEST_C11_SHMEM_AND_REDUCE(type, shmem_types);
     SHMEM_REDUCE_BITWISE_TYPE_TABLE(X)
   #undef X
@@ -515,14 +515,14 @@ int main(int argc, char *argv[]) {
   reduce_test_result("C11 shmem_and_reduce", &result_and, false);
 
   /* Test OR reduction - unsigned integer types only */
-  static int result_or = true;
+  static bool result_or = true;
   #define X(type, shmem_types) result_or &= TEST_C11_SHMEM_OR_REDUCE(type, shmem_types);
     SHMEM_REDUCE_BITWISE_TYPE_TABLE(X)
   #undef X
   reduce_test_result("C11 shmem_or_reduce", &result_or, false);
 
   /* Test XOR reduction - unsigned integer types only */
-  static int result_xor = true;
+  static bool result_xor = true;
   #define X(type, shmem_types) result_xor &= TEST_C11_SHMEM_XOR_REDUCE(type, shmem_types);
     SHMEM_REDUCE_BITWISE_TYPE_TABLE(X)
   #undef X

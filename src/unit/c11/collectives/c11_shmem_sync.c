@@ -117,7 +117,7 @@ int main(int argc, char *argv[]) {
     return EXIT_SUCCESS;
   }
 
-  static int result;
+  static bool result;
   result = test_shmem_team_sync();
 
   reduce_test_result("C11 shmem_sync", &result, false);

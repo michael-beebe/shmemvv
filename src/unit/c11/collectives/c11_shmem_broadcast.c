@@ -90,7 +90,7 @@ int main(int argc, char *argv[]) {
     return EXIT_SUCCESS;
   }
 
-  static int result = true;
+  static bool result = true;
   #define X(type, shmem_types) result &= TEST_C11_SHMEM_BROADCAST(type, 4);
     SHMEM_STANDARD_RMA_TYPE_TABLE(X)
   #undef X

@@ -105,7 +105,7 @@ int main(int argc, char *argv[]) {
   log_init(__FILE__);
 
   /* Test all data types */
-  static int result = true;
+  static bool result = true;
   #define X(type, shmem_types) result &= TEST_C11_SHMEM_ALLTOALLS(type, 1, 1, 1);
     SHMEM_STANDARD_RMA_TYPE_TABLE(X)
   #undef X
