@@ -56,7 +56,7 @@
     int mype = shmem_my_pe();                                                  \
     int npes = shmem_n_pes();                                                  \
     int fetch_pe = (mype + 1) % npes;                                          \
-    *dest = value + fetch_pe;                                                  \
+    *dest = value + mype;                                                      \
     log_info("set %p to %d", (void *)dest, (char)*dest);                       \
                                                                                \
     shmem_ctx_t ctx;                                                           \
@@ -118,7 +118,7 @@ int main(int argc, char *argv[]) {
     SHMEM_EXTENDED_AMO_TYPE_TABLE(X)
   #undef X
 
-  reduce_test_result("C11 shmem_atomic_fetch_nbi with ctx", &result, false);
+  reduce_test_result("C11 shmem_atomic_fetch_nbi with ctx", &result_ctx, false);
 
   bool rc = result & result_ctx ? EXIT_SUCCESS : EXIT_FAILURE;
   log_close(rc);
