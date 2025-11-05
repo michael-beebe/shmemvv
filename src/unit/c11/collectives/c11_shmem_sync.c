@@ -4,13 +4,16 @@
  */
 
 #include <shmem.h>
+#include <unistd.h> 
 
 #include "log.h"
 #include "shmemvv.h"
 
-bool test_shmem_team_sync(void) {
+int test_shmem_team_sync(){
   log_routine("shmem_team_sync()");
   bool success = true;
+  int mype = shmem_my_pe();
+  int npes = shmem_n_pes();
 
   /* Allocate counter in symmetric memory so all PEs can access it */
   long *shared_counter = (long *)shmem_malloc(sizeof(long));
@@ -39,33 +42,56 @@ bool test_shmem_team_sync(void) {
   }
   log_info("Team split successful");
 
-  log_info("Performing atomic increment on shared counter at PE 0");
-  shmem_atomic_inc(shared_counter, 0);
+  log_info("Creating Team Context");
+  shmem_ctx_t ctx;
+  int ctx_create_status = shmem_team_create_ctx(team, 0, &ctx);
+  if (ctx_create_status != 0) {
+    log_fail("Failed to create context");
+    return false;
+  }
+  log_info("Successfully created context");
 
-  log_info("Initiating team synchronization");
-  shmem_sync(team);
-  log_info("Team synchronization completed");
+  if (mype != 0) {
+    /* Sleep incrementing PEs to give sync a chance to fail */
+    usleep((int)0.25E+6); // sleep for a quarter of a second
+    log_info("PE %d Performing atomic increment on shared counter at PE 0", mype);
+    shmem_atomic_inc(ctx, shared_counter, 0);
+    shmem_ctx_quiet(ctx);
 
-  log_info("Validating shared counter value");
-  /* All PEs read the counter value from PE 0 */
-  long final_count = shmem_long_g(shared_counter, 0);
-  if (final_count != shmem_n_pes()) {
-    log_fail("Shared counter validation failed: expected %d, got %ld",
-             shmem_n_pes(), final_count);
-    if (final_count < shmem_n_pes()) {
-      log_fail("Team synchronization may have failed to propagate all atomic "
+    log_info("Initiating team synchronization");
+    shmem_sync(team);
+    log_info("Team synchronization completed");
+  }
+  else{ /* mype == 0 */
+    log_info("Initiating team synchronization");
+    /* If sync fails, pe will move to validation immediately, failing test */
+    shmem_sync(team);
+    log_info("Team synchronization completed");
+
+    int expected = npes - 1;
+    if (*shared_counter != expected){ 
+      log_fail("Shared counter validation failed: expected %d, got %ld",
+             expected, *shared_counter);
+      if (*shared_counter < expected) {
+        log_fail("Team synchronization may have failed to propagate all atomic "
                "operations");
-    } else {
-      log_fail("Either team split created incorrect number of teams or team "
-               "sync duplicated operations");
+      } else {
+        log_fail("Either team split created incorrect number of teams or team "
+                "sync duplicated operations");
+      }
+      success = false;
     }
-    success = false;
-  } else {
-    log_info("Shared counter validation successful: value matches expected %d",
-             shmem_n_pes());
+    else {
+      log_info("Shared counter validation successful: value matches expected %d",
+             expected);
+      success = true; 
+    }
   }
 
-  log_info("Destroying team");
+  shmem_barrier_all();
+
+  log_info("Destroying team and context");
+  shmem_ctx_destroy(ctx);
   shmem_team_destroy(team);
   shmem_free(shared_counter);
   log_info("Team destroyed successfully");
@@ -91,14 +117,13 @@ int main(int argc, char *argv[]) {
     return EXIT_SUCCESS;
   }
 
-  bool result = test_shmem_team_sync();
-  int rc = result ? EXIT_SUCCESS : EXIT_FAILURE;
+  static int result;
+  result = test_shmem_team_sync();
 
-  if (mype == 0) {
-    display_test_result("C11 shmem_sync", result, false);
-  }
+  reduce_test_result("C11 shmem_sync", &result, false);
 
   log_info("Test completed with %s", result ? "SUCCESS" : "FAILURE");
+  int rc = result ? EXIT_SUCCESS : EXIT_FAILURE;
   log_close(rc);
   shmem_finalize();
   return rc;
