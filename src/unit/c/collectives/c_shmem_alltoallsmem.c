@@ -140,7 +140,7 @@ int main(int argc, char *argv[]) {
   shmem_init();
   log_init(__FILE__);
 
-  static int result = true;
+  static bool result = true;
   /* Test shmem_alltoallsmem with various element sizes and strides */
 
   // clang-format off

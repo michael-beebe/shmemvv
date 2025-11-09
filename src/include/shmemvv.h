@@ -48,7 +48,7 @@ void display_test_result(const char *routine_name, bool passed, bool required);
   @param result Symetric address of the result boolean foreach test
   @param required True if the test is required, false otherwise
  */
-void reduce_test_result(const char *routine_name, int *result, bool required);
+void reduce_test_result(const char *routine_name, bool *result, bool required);
 
 #ifdef __cplusplus
 }

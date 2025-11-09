@@ -108,8 +108,8 @@ int main(int argc, char *argv[]) {
     return EXIT_SUCCESS;
   }
 
-  static int result = true;
-  static int result_ctx = true;
+  static bool result = true;
+  static bool result_ctx = true;
 
   /* Test standard atomic add operations */
   #define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP_NBI(type);
