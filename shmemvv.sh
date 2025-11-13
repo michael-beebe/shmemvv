@@ -184,8 +184,6 @@ run_test() {
   local test_name=$(basename $test_path)
   local np=$2
 
-  TESTS_TOTAL=$((TESTS_TOTAL + 1))
-
   if [ $VERBOSE -eq 1 ]; then
     echo -e "${BLUE}Running test:${NC} $test_name with $np PEs"
     echo "Command: $LAUNCHER $LAUNCHER_ARGS -np $np $test_path"
@@ -193,7 +191,14 @@ run_test() {
 
   # --- Run the test and capture output
   local output=$($LAUNCHER $LAUNCHER_ARGS -np $np $test_path 2>&1)
-  local status=$?
+
+  # --- Count passing and failing tests
+  passing=$(echo "$output" | grep -o "PASSED" | wc -l)
+  failing=$(echo "$output" | grep -o "FAILED" | wc -l)
+  
+  TESTS_PASSED=$((TESTS_PASSED + $passing))
+  TESTS_FAILED=$((TESTS_FAILED + $failing))
+  TESTS_TOTAL=$((TESTS_TOTAL + $passing + $failing))
 
   # --- Display the test output
   echo "$output"
@@ -369,7 +374,8 @@ run_all_tests() {
 print_summary() {
   echo -e "\n${BOLD}Test Summary:${NC}"
   echo -e "${BLUE}Total tests run: $TESTS_TOTAL${NC}"
-
+  echo -e "${GREEN}Passing tests: $TESTS_PASSED${NC}"
+  echo -e "${RED}Failing tests: $TESTS_FAILED${NC}"
   # FIXME: Add pass/fail counts
 
   echo ""

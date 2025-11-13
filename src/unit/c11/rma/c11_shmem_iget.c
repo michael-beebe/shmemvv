@@ -9,6 +9,7 @@
 
 #include "log.h"
 #include "shmemvv.h"
+#include "type_tables.h"
 
 #define TEST_C11_SHMEM_IGET(TYPE)                                              \
   ({                                                                           \
@@ -37,17 +38,24 @@
                (void *)dest, (void *)src);                                     \
       shmem_iget(dest, src, 2, 2, 5, 0);                                       \
       log_info("PE 1: Completed strided get operation");                       \
-    }                                                                          \
                                                                                \
-    shmem_barrier_all();                                                       \
-    log_info("Completed barrier synchronization");                             \
-                                                                               \
-    if (mype == 1) {                                                           \
       log_info("PE 1: Beginning validation of received data");                 \
+      /*ensure even indexes contain transfered data*/                          \
       for (int i = 0; i < 10; i += 2) {                                        \
         if (dest[i] != i) {                                                    \
           log_fail("PE 1: Validation failed - dest[%d] = %d, expected %d", i,  \
                    (int)dest[i], i);                                           \
+          success = false;                                                     \
+          break;                                                               \
+        }                                                                      \
+      }                                                                        \
+      log_info("PE 1: Beginning validation of unchanged elements between "     \
+         "strides");                                                           \
+      /*ensure odd indexes do not contain transfered data*/                    \
+      for (int i = 1; i < 10; i += 2) {                                        \
+        if (dest[i] != 0) {                                                    \
+          log_fail("PE 1: Validation failed - dest[%d] = %d, expected 0", i,   \
+                   (int)dest[i]);                                              \
           success = false;                                                     \
           break;                                                               \
         }                                                                      \
@@ -100,18 +108,25 @@
                (void *)dest, (void *)src);                                     \
       shmem_iget(ctx, dest, src, 2, 2, 5, 0);                                  \
       log_info("PE 1: Completed context-based strided get operation");         \
-    }                                                                          \
                                                                                \
-    shmem_barrier_all();                                                       \
-    log_info("Completed barrier synchronization");                             \
-                                                                               \
-    if (mype == 1) {                                                           \
       log_info("PE 1: Beginning validation of received data");                 \
+      /*ensure even indexes contain transfered data*/                          \
       for (int i = 0; i < 10; i += 2) {                                        \
         int expected = i + 20;                                                 \
         if (dest[i] != expected) {                                             \
           log_fail("PE 1: Validation failed - dest[%d] = %d, expected %d", i,  \
                    (int)dest[i], expected);                                    \
+          success = false;                                                     \
+          break;                                                               \
+        }                                                                      \
+      }                                                                        \
+      log_info("PE 1: Beginning validation of unchanged elements between "     \
+         "strides");                                                           \
+      /*ensure odd indexes do not contain transfered data*/                    \
+      for (int i = 1; i < 10; i += 2) {                                        \
+        if (dest[i] != 0) {                                                    \
+          log_fail("PE 1: Validation failed - dest[%d] = %d, expected 0", i,   \
+                   (int)dest[i]);                                              \
           success = false;                                                     \
           break;                                                               \
         }                                                                      \
@@ -145,84 +160,30 @@ int main(int argc, char *argv[]) {
     return EXIT_SUCCESS;
   }
 
-  int result = true;
-  int rc = EXIT_SUCCESS;
+  static bool result = true;
+  static bool result_ctx = true;
 
   /* Test standard shmem_iget variants */
-  result &= TEST_C11_SHMEM_IGET(float);
-  result &= TEST_C11_SHMEM_IGET(double);
-  result &= TEST_C11_SHMEM_IGET(long double);
-  result &= TEST_C11_SHMEM_IGET(char);
-  result &= TEST_C11_SHMEM_IGET(signed char);
-  result &= TEST_C11_SHMEM_IGET(short);
-  result &= TEST_C11_SHMEM_IGET(int);
-  result &= TEST_C11_SHMEM_IGET(long);
-  result &= TEST_C11_SHMEM_IGET(long long);
-  result &= TEST_C11_SHMEM_IGET(unsigned char);
-  result &= TEST_C11_SHMEM_IGET(unsigned short);
-  result &= TEST_C11_SHMEM_IGET(unsigned int);
-  result &= TEST_C11_SHMEM_IGET(unsigned long);
-  result &= TEST_C11_SHMEM_IGET(unsigned long long);
-  result &= TEST_C11_SHMEM_IGET(int8_t);
-  result &= TEST_C11_SHMEM_IGET(int16_t);
-  result &= TEST_C11_SHMEM_IGET(int32_t);
-  result &= TEST_C11_SHMEM_IGET(int64_t);
-  result &= TEST_C11_SHMEM_IGET(uint8_t);
-  result &= TEST_C11_SHMEM_IGET(uint16_t);
-  result &= TEST_C11_SHMEM_IGET(uint32_t);
-  result &= TEST_C11_SHMEM_IGET(uint64_t);
-  result &= TEST_C11_SHMEM_IGET(size_t);
-  result &= TEST_C11_SHMEM_IGET(ptrdiff_t);
+  #define X(type, shmem_types) result &= TEST_C11_SHMEM_IGET(type);
+    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+  #undef X
 
   shmem_barrier_all();
 
-  if (!result) {
-    rc = EXIT_FAILURE;
-  }
+  reduce_test_result("C11 shmem_iget", &result, false);
 
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_iget", result, false);
-  }
 
-  /* Test context-specific shmem_iget variants */
-  int result_ctx = true;
-
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(float);
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(double);
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(long double);
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(char);
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(signed char);
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(short);
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(int);
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(long);
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(long long);
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(unsigned char);
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(unsigned short);
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(unsigned int);
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(unsigned long);
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(unsigned long long);
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(int8_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(int16_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(int32_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(int64_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(uint8_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(uint16_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(uint32_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(uint64_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(size_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_IGET(ptrdiff_t);
+  /* Test context-specific shmem_iget variants */  
+  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_IGET(type);
+    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+  #undef X
 
   shmem_barrier_all();
 
-  if (!result_ctx) {
-    rc = EXIT_FAILURE;
-  }
+  reduce_test_result("C11 shmem_iget with ctx", &result_ctx, false);
 
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_iget with ctx", result_ctx, false);
-  }
-
-  log_close(rc);
+  bool passed = result & result_ctx;
+  log_close(!passed);
   shmem_finalize();
-  return rc;
+  return passed ? EXIT_SUCCESS : EXIT_FAILURE;
 }

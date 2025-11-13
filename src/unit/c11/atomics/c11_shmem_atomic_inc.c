@@ -11,6 +11,7 @@
 
 #include "log.h"
 #include "shmemvv.h"
+#include "type_tables.h"
 
 #define TEST_C11_SHMEM_ATOMIC_INC(TYPE)                                        \
   ({                                                                           \
@@ -48,7 +49,7 @@
     static TYPE *dest;                                                         \
     dest = (TYPE *)shmem_malloc(sizeof(TYPE));                                 \
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
-    TYPE value = 42;                                                           \
+    TYPE value = 52;                                                           \
     *dest = value;                                                             \
     log_info("initialized dest at %p to %d", (void *)dest, (int)value);        \
                                                                                \
@@ -88,50 +89,39 @@ int main(int argc, char *argv[]) {
   shmem_init();
   log_init(__FILE__);
 
-  int rc = EXIT_SUCCESS;
-
-  /* Test standard atomic inc operations */
-  bool result = true;
-  result &= TEST_C11_SHMEM_ATOMIC_INC(int);
-  result &= TEST_C11_SHMEM_ATOMIC_INC(long);
-  result &= TEST_C11_SHMEM_ATOMIC_INC(long long);
-  result &= TEST_C11_SHMEM_ATOMIC_INC(unsigned int);
-  result &= TEST_C11_SHMEM_ATOMIC_INC(unsigned long);
-  result &= TEST_C11_SHMEM_ATOMIC_INC(unsigned long long);
-  result &= TEST_C11_SHMEM_ATOMIC_INC(int32_t);
-  result &= TEST_C11_SHMEM_ATOMIC_INC(int64_t);
-  result &= TEST_C11_SHMEM_ATOMIC_INC(uint32_t);
-  result &= TEST_C11_SHMEM_ATOMIC_INC(uint64_t);
-  result &= TEST_C11_SHMEM_ATOMIC_INC(size_t);
-  result &= TEST_C11_SHMEM_ATOMIC_INC(ptrdiff_t);
-
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_atomic_inc", result, false);
+  if (!(shmem_n_pes() >= 2)) {
+    log_warn("Not enough PEs to run test (requires 2 PEs, have %d PEs)",
+             shmem_n_pes());
+    if (shmem_my_pe() == 0) {
+      display_not_enough_pes("atomic");
+    }
+    shmem_finalize();
+    return EXIT_SUCCESS;
   }
 
-  /* Test context-specific atomic inc operations */
-  bool result_ctx = true;
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_INC(int);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_INC(long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_INC(long long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_INC(unsigned int);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_INC(unsigned long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_INC(unsigned long long);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_INC(int32_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_INC(int64_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_INC(uint32_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_INC(uint64_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_INC(size_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_INC(ptrdiff_t);
+  static bool result = true;
+  static bool result_ctx = true;
 
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_atomic_inc with ctx", result_ctx, false);
-  }
+  /* Test storard atomic or operations */
+  #define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_INC(type);
+    SHMEM_STANDARD_AMO_TYPE_TABLE(X)
+  #undef X
 
-  if (!result || !result_ctx) {
-    rc = EXIT_FAILURE;
-  }
+  shmem_barrier_all();
 
+  reduce_test_result("C11 shmem_atomic_inc", &result, false);
+
+
+  /* Test context-specific atomic or operations */
+  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_INC(type);
+    SHMEM_STANDARD_AMO_TYPE_TABLE(X)
+  #undef X
+
+  shmem_barrier_all();
+
+  reduce_test_result("C11 shmem_atomic_inc with ctx", &result_ctx, false);
+
+  bool rc = result & result_ctx ? EXIT_SUCCESS : EXIT_FAILURE;
   log_close(rc);
   shmem_finalize();
   return rc;

@@ -11,6 +11,7 @@
 
 #include "log.h"
 #include "shmemvv.h"
+#include "type_tables.h"
 
 #define TEST_C11_SHMEM_ALLTOALLS(TYPE, DST_STRIDE, SST_STRIDE, NELEMS)       \
   ({                                                                           \
@@ -33,17 +34,18 @@
     for (int pe = 0; pe < npes; pe++) {                                        \
       for (int i = 0; i < NELEMS; i++) {                                       \
         size_t offset = (pe * NELEMS + i) * SST_STRIDE;                        \
-        src[offset] = (TYPE)mype;                                              \
+        src[offset] = (TYPE)((mype << 4) ^ (pe << 2) ^ i);                                              \
       }                                                                        \
     }                                                                          \
+    log_info("set source elements at stride %d positions to %d", SST_STRIDE,   \
+             mype);                                                            \
                                                                                \
     /* Initialize destination array to a known bad value */                    \
     for (size_t i = 0; i < dst_size / sizeof(TYPE); i++) {                     \
       dest[i] = (TYPE) - 1;                                                    \
     }                                                                          \
+    log_info("set dest elements to a known bad value, -1");                    \
                                                                                \
-    log_info("set source elements at stride %d positions to %d", SST_STRIDE,   \
-             mype);                                                            \
                                                                                \
     /* Ensure all PEs are ready before starting alltoalls */                   \
     shmem_barrier_all();                                                       \
@@ -61,7 +63,7 @@
     for (int pe = 0; pe < npes; pe++) {                                        \
       for (int i = 0; i < NELEMS; i++) {                                       \
         size_t offset = (pe * NELEMS + i) * DST_STRIDE;                        \
-        TYPE expected = (TYPE)pe;                                              \
+        TYPE expected = (TYPE)((pe << 4) ^ (mype << 2) ^ i);                   \
         if (dest[offset] != expected) {                                        \
           log_info("dest[%zu] failed. expected %d, got %d", offset,            \
                    (int)expected, (int)dest[offset]);                          \
@@ -102,33 +104,11 @@ int main(int argc, char *argv[]) {
   shmem_init();
   log_init(__FILE__);
 
-  bool result = true;
-  int rc = EXIT_SUCCESS;
-
-  result &= TEST_C11_SHMEM_ALLTOALLS(float, 1, 1, 1);
-  result &= TEST_C11_SHMEM_ALLTOALLS(double, 1, 1, 1);
-  result &= TEST_C11_SHMEM_ALLTOALLS(long double, 1, 1, 1);
-  result &= TEST_C11_SHMEM_ALLTOALLS(char, 1, 1, 1);
-  result &= TEST_C11_SHMEM_ALLTOALLS(signed char, 1, 1, 1);
-  result &= TEST_C11_SHMEM_ALLTOALLS(short, 1, 1, 1);
-  result &= TEST_C11_SHMEM_ALLTOALLS(int, 1, 1, 1);
-  result &= TEST_C11_SHMEM_ALLTOALLS(long, 1, 1, 1);
-  result &= TEST_C11_SHMEM_ALLTOALLS(long long, 1, 1, 1);
-  result &= TEST_C11_SHMEM_ALLTOALLS(unsigned char, 1, 1, 1);
-  result &= TEST_C11_SHMEM_ALLTOALLS(unsigned short, 1, 1, 1);
-  result &= TEST_C11_SHMEM_ALLTOALLS(unsigned int, 1, 1, 1);
-  result &= TEST_C11_SHMEM_ALLTOALLS(unsigned long, 1, 1, 1);
-  result &= TEST_C11_SHMEM_ALLTOALLS(unsigned long long, 1, 1, 1);
-  result &= TEST_C11_SHMEM_ALLTOALLS(int8_t, 1, 1, 1);
-  result &= TEST_C11_SHMEM_ALLTOALLS(int16_t, 1, 1, 1);
-  result &= TEST_C11_SHMEM_ALLTOALLS(int32_t, 1, 1, 1);
-  result &= TEST_C11_SHMEM_ALLTOALLS(int64_t, 1, 1, 1);
-  result &= TEST_C11_SHMEM_ALLTOALLS(uint8_t, 1, 1, 1);
-  result &= TEST_C11_SHMEM_ALLTOALLS(uint16_t, 1, 1, 1);
-  result &= TEST_C11_SHMEM_ALLTOALLS(uint32_t, 1, 1, 1);
-  result &= TEST_C11_SHMEM_ALLTOALLS(uint64_t, 1, 1, 1);
-  result &= TEST_C11_SHMEM_ALLTOALLS(size_t, 1, 1, 1);
-  result &= TEST_C11_SHMEM_ALLTOALLS(ptrdiff_t, 1, 1, 1);
+  /* Test all data types */
+  static bool result = true;
+  #define X(type, shmem_types) result &= TEST_C11_SHMEM_ALLTOALLS(type, 1, 1, 1);
+    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+  #undef X
 
   /* Test comprehensive functionality with int type using different strides and elements */
   result &= TEST_C11_SHMEM_ALLTOALLS(int, 2, 1, 1);
@@ -146,17 +126,10 @@ int main(int argc, char *argv[]) {
   result &= TEST_C11_SHMEM_ALLTOALLS(double, 2, 1, 2);
 
   shmem_barrier_all();
+  reduce_test_result("C11 shmem_alltoalls", &result, false);
 
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_alltoalls", result, false);
-  }
-
-  if (!result) {
-    rc = EXIT_FAILURE;
-  }
-
-  log_close(rc);
+  bool passed = result;
+  log_close(!passed);
   shmem_finalize();
-
-  return rc;
+  return passed ? EXIT_SUCCESS : EXIT_FAILURE;
 }

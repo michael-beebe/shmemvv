@@ -9,12 +9,13 @@
 
 #include "log.h"
 #include "shmemvv.h"
+#include "type_tables.h"
 
 #define TEST_C11_SHMEM_PUT_NBI(TYPE)                                           \
   ({                                                                           \
     log_routine("shmem_put_nbi(" #TYPE ")");                                   \
     bool success = true;                                                       \
-    static TYPE src[10], dest[10];                                             \
+    static TYPE src[10] = {0}, dest[10] = {0};                                 \
     log_info("Allocated static arrays: src at %p, dest at %p", (void *)&src,   \
              (void *)&dest);                                                   \
     int mype = shmem_my_pe();                                                  \
@@ -65,7 +66,7 @@
   ({                                                                           \
     log_routine("shmem_put_nbi(ctx, " #TYPE ")");                              \
     bool success = true;                                                       \
-    static TYPE src[10], dest[10];                                             \
+    static TYPE src[10] = {0}, dest[10] = {0};                                 \
     log_info("Allocated static arrays: src at %p, dest at %p", (void *)&src,   \
              (void *)&dest);                                                   \
     int mype = shmem_my_pe();                                                  \
@@ -139,84 +140,29 @@ int main(int argc, char *argv[]) {
     return EXIT_SUCCESS;
   }
 
-  int result = true;
-  int rc = EXIT_SUCCESS;
+  static bool result = true;
+  static bool result_ctx = true;
 
   /* Test standard shmem_put_nbi variants */
-  result &= TEST_C11_SHMEM_PUT_NBI(float);
-  result &= TEST_C11_SHMEM_PUT_NBI(double);
-  result &= TEST_C11_SHMEM_PUT_NBI(long double);
-  result &= TEST_C11_SHMEM_PUT_NBI(char);
-  result &= TEST_C11_SHMEM_PUT_NBI(signed char);
-  result &= TEST_C11_SHMEM_PUT_NBI(short);
-  result &= TEST_C11_SHMEM_PUT_NBI(int);
-  result &= TEST_C11_SHMEM_PUT_NBI(long);
-  result &= TEST_C11_SHMEM_PUT_NBI(long long);
-  result &= TEST_C11_SHMEM_PUT_NBI(unsigned char);
-  result &= TEST_C11_SHMEM_PUT_NBI(unsigned short);
-  result &= TEST_C11_SHMEM_PUT_NBI(unsigned int);
-  result &= TEST_C11_SHMEM_PUT_NBI(unsigned long);
-  result &= TEST_C11_SHMEM_PUT_NBI(unsigned long long);
-  result &= TEST_C11_SHMEM_PUT_NBI(int8_t);
-  result &= TEST_C11_SHMEM_PUT_NBI(int16_t);
-  result &= TEST_C11_SHMEM_PUT_NBI(int32_t);
-  result &= TEST_C11_SHMEM_PUT_NBI(int64_t);
-  result &= TEST_C11_SHMEM_PUT_NBI(uint8_t);
-  result &= TEST_C11_SHMEM_PUT_NBI(uint16_t);
-  result &= TEST_C11_SHMEM_PUT_NBI(uint32_t);
-  result &= TEST_C11_SHMEM_PUT_NBI(uint64_t);
-  result &= TEST_C11_SHMEM_PUT_NBI(size_t);
-  result &= TEST_C11_SHMEM_PUT_NBI(ptrdiff_t);
+  #define X(type, shmem_type) result &= TEST_C11_SHMEM_PUT_NBI(type);
+    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+  #undef X
 
   shmem_barrier_all();
 
-  if (!result) {
-    rc = EXIT_FAILURE;
-  }
-
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_put_nbi", result, false);
-  }
+  reduce_test_result("C11 shmem_put_nbi", &result, false);
 
   /* Test context-specific shmem_put_nbi variants */
-  int result_ctx = true;
-
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(float);
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(double);
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(long double);
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(char);
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(signed char);
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(short);
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(int);
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(long);
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(long long);
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(unsigned char);
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(unsigned short);
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(unsigned int);
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(unsigned long);
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(unsigned long long);
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(int8_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(int16_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(int32_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(int64_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(uint8_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(uint16_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(uint32_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(uint64_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(size_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(ptrdiff_t);
+  #define X(type, shmem_type) result_ctx &= TEST_C11_CTX_SHMEM_PUT_NBI(type);
+    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+  #undef X
 
   shmem_barrier_all();
 
-  if (!result_ctx) {
-    rc = EXIT_FAILURE;
-  }
+  reduce_test_result("C11 shmem_put_nbi with ctx", &result_ctx, false);
 
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_put_nbi with ctx", result_ctx, false);
-  }
-
-  log_close(rc);
+  bool passed = result & result_ctx;
+  log_close(!passed);
   shmem_finalize();
-  return rc;
+  return passed ? EXIT_SUCCESS : EXIT_FAILURE;
 }

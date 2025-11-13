@@ -41,6 +41,15 @@ void display_not_enough_pes(const char *test_type);
  */
 void display_test_result(const char *routine_name, bool passed, bool required);
 
+
+/**
+  @brief pulls results from all PEs, displays results
+  @param routine_name OpenSHMEM routine that was tested
+  @param result Symetric address of the result boolean foreach test
+  @param required True if the test is required, false otherwise
+ */
+void reduce_test_result(const char *routine_name, bool *result, bool required);
+
 #ifdef __cplusplus
 }
 #endif

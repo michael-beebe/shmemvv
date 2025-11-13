@@ -9,6 +9,7 @@
 
 #include "log.h"
 #include "shmemvv.h"
+#include "type_tables.h"
 
 #define TEST_C11_SHMEM_GET(TYPE)                                               \
   ({                                                                           \
@@ -35,12 +36,7 @@
       log_info("PE 1: Starting get of 10 elements from PE 0");                 \
       shmem_get(dest, src, 10, 0);                                             \
       log_info("PE 1: Completed get operation");                               \
-    }                                                                          \
                                                                                \
-    shmem_barrier_all();                                                       \
-    log_info("Completed barrier synchronization");                             \
-                                                                               \
-    if (mype == 1) {                                                           \
       log_info("PE 1: Beginning validation of received data");                 \
       for (int i = 0; i < 10; i++) {                                           \
         if (dest[i] != i) {                                                    \
@@ -96,12 +92,7 @@
       log_info("PE 1: Starting context-based get of 10 elements from PE 0");   \
       shmem_get(ctx, dest, src, 10, 0);                                        \
       log_info("PE 1: Completed context-based get operation");                 \
-    }                                                                          \
                                                                                \
-    shmem_barrier_all();                                                       \
-    log_info("Completed barrier synchronization");                             \
-                                                                               \
-    if (mype == 1) {                                                           \
       log_info("PE 1: Beginning validation of received data");                 \
       for (int i = 0; i < 10; i++) {                                           \
         if (dest[i] != i + 20) {                                               \
@@ -140,84 +131,29 @@ int main(int argc, char *argv[]) {
     return EXIT_SUCCESS;
   }
 
-  int result = true;
-  int rc = EXIT_SUCCESS;
+  static bool result = true;
+  static bool result_ctx = true;
 
   /* Test standard shmem_get variants */
-  result &= TEST_C11_SHMEM_GET(float);
-  result &= TEST_C11_SHMEM_GET(double);
-  result &= TEST_C11_SHMEM_GET(long double);
-  result &= TEST_C11_SHMEM_GET(char);
-  result &= TEST_C11_SHMEM_GET(signed char);
-  result &= TEST_C11_SHMEM_GET(short);
-  result &= TEST_C11_SHMEM_GET(int);
-  result &= TEST_C11_SHMEM_GET(long);
-  result &= TEST_C11_SHMEM_GET(long long);
-  result &= TEST_C11_SHMEM_GET(unsigned char);
-  result &= TEST_C11_SHMEM_GET(unsigned short);
-  result &= TEST_C11_SHMEM_GET(unsigned int);
-  result &= TEST_C11_SHMEM_GET(unsigned long);
-  result &= TEST_C11_SHMEM_GET(unsigned long long);
-  result &= TEST_C11_SHMEM_GET(int8_t);
-  result &= TEST_C11_SHMEM_GET(int16_t);
-  result &= TEST_C11_SHMEM_GET(int32_t);
-  result &= TEST_C11_SHMEM_GET(int64_t);
-  result &= TEST_C11_SHMEM_GET(uint8_t);
-  result &= TEST_C11_SHMEM_GET(uint16_t);
-  result &= TEST_C11_SHMEM_GET(uint32_t);
-  result &= TEST_C11_SHMEM_GET(uint64_t);
-  result &= TEST_C11_SHMEM_GET(size_t);
-  result &= TEST_C11_SHMEM_GET(ptrdiff_t);
+  #define X(type, shmem_types) result &= TEST_C11_SHMEM_GET(type);
+    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+  #undef X
 
   shmem_barrier_all();
 
-  if (!result) {
-    rc = EXIT_FAILURE;
-  }
-
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_get", result, false);
-  }
+  reduce_test_result("C11 shmem_get", &result, false);
 
   /* Test context-specific shmem_get variants */
-  int result_ctx = true;
-
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(float);
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(double);
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(long double);
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(char);
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(signed char);
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(short);
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(int);
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(long);
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(long long);
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(unsigned char);
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(unsigned short);
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(unsigned int);
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(unsigned long);
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(unsigned long long);
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(int8_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(int16_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(int32_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(int64_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(uint8_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(uint16_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(uint32_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(uint64_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(size_t);
-  result_ctx &= TEST_C11_CTX_SHMEM_GET(ptrdiff_t);
+  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_GET(type);
+    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+  #undef X
 
   shmem_barrier_all();
 
-  if (!result_ctx) {
-    rc = EXIT_FAILURE;
-  }
+  reduce_test_result("C11 shmem_get with ctx", &result_ctx, false);
 
-  if (shmem_my_pe() == 0) {
-    display_test_result("C11 shmem_get with ctx", result_ctx, false);
-  }
-
-  log_close(rc);
+  bool passed = result & result_ctx;
+  log_close(!passed);
   shmem_finalize();
-  return rc;
+  return passed ? EXIT_SUCCESS : EXIT_FAILURE;
 }
