@@ -17,6 +17,7 @@ add_executable(c11_shmem_broadcast c11_shmem_broadcast.c ${SOURCES})
 add_executable(c11_shmem_collect c11_shmem_collect.c ${SOURCES})
 add_executable(c11_shmem_fcollect c11_shmem_fcollect.c ${SOURCES})
 add_executable(c11_shmem_reduce c11_shmem_reduce.c ${SOURCES})
+add_executable(c11_shmem_scan c11_shmem_scan.c ${SOURCES})
 add_executable(c11_shmem_sync_all c11_shmem_sync_all.c ${SOURCES})
 add_executable(c11_shmem_sync c11_shmem_sync.c ${SOURCES})
 
@@ -28,6 +29,7 @@ set_target_properties(
   c11_shmem_collect
   c11_shmem_fcollect
   c11_shmem_reduce
+  c11_shmem_scan
   c11_shmem_sync_all
   c11_shmem_sync
   
@@ -43,6 +45,7 @@ target_include_directories(c11_shmem_broadcast PRIVATE src/include)
 target_include_directories(c11_shmem_collect PRIVATE src/include)
 target_include_directories(c11_shmem_fcollect PRIVATE src/include)
 target_include_directories(c11_shmem_reduce PRIVATE src/include)
+target_include_directories(c11_shmem_scan PRIVATE src/include)
 target_include_directories(c11_shmem_sync_all PRIVATE src/include)
 target_include_directories(c11_shmem_sync PRIVATE src/include)
 
@@ -53,6 +56,7 @@ target_link_libraries(c11_shmem_broadcast)
 target_link_libraries(c11_shmem_collect)
 target_link_libraries(c11_shmem_fcollect)
 target_link_libraries(c11_shmem_reduce)
+target_link_libraries(c11_shmem_scan)
 target_link_libraries(c11_shmem_sync_all)
 target_link_libraries(c11_shmem_sync)
 

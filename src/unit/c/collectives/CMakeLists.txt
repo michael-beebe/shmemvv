@@ -20,6 +20,7 @@ add_executable(c_shmem_collectmem c_shmem_collectmem.c ${SOURCES})
 add_executable(c_shmem_fcollect c_shmem_fcollect.c ${SOURCES})
 add_executable(c_shmem_fcollectmem c_shmem_fcollectmem.c ${SOURCES})
 add_executable(c_shmem_reduce c_shmem_reduce.c ${SOURCES})
+add_executable(c_shmem_scan c_shmem_scan.c ${SOURCES})
 add_executable(c_shmem_sync_all c_shmem_sync_all.c ${SOURCES})
 add_executable(c_shmem_team_sync c_shmem_team_sync.c ${SOURCES})
 
@@ -36,6 +37,7 @@ set_target_properties(
   c_shmem_fcollect
   c_shmem_fcollectmem
   c_shmem_reduce
+  c_shmem_scan
   c_shmem_sync_all
   c_shmem_team_sync
   
@@ -56,6 +58,7 @@ target_include_directories(c_shmem_collectmem PRIVATE src/include)
 target_include_directories(c_shmem_fcollect PRIVATE src/include)
 target_include_directories(c_shmem_fcollectmem PRIVATE src/include)
 target_include_directories(c_shmem_reduce PRIVATE src/include)
+target_include_directories(c_shmem_scan PRIVATE src/include)
 target_include_directories(c_shmem_sync_all PRIVATE src/include)
 target_include_directories(c_shmem_team_sync PRIVATE src/include)
 
@@ -71,5 +74,6 @@ target_link_libraries(c_shmem_collectmem)
 target_link_libraries(c_shmem_fcollect)
 target_link_libraries(c_shmem_fcollectmem)
 target_link_libraries(c_shmem_reduce)
+target_link_libraries(c_shmem_scan)
 target_link_libraries(c_shmem_sync_all)
 target_link_libraries(c_shmem_team_sync)
