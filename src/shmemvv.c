@@ -4,6 +4,7 @@
  */
 
 #include "shmemvv.h"
+#include <sys/time.h>
 
 /**
  * @brief Print error message saying that there needs to be at least
@@ -45,6 +46,18 @@ void display_test_result(const char *routine_name, bool passed, bool required) {
   }
 }
 
+
+/**
+ * @brief print success or failure depending on test results
+ *
+ * Test results are gathered from all PEs in a reduce and operation.
+ * If all PEs are successful, prints successful. 
+ * If single PE fails, prints out failure.
+ *
+ * @param routine_name routine name to output to user
+ * @param result pointer to result of each PE 
+ * @param required True if the test is required, false otherwise.
+ */
 void reduce_test_result(const char *routine_name, bool *result, bool required) {
   int npes = shmem_n_pes();
   bool passed = true;
@@ -54,4 +67,15 @@ void reduce_test_result(const char *routine_name, bool *result, bool required) {
     }
     display_test_result(routine_name, passed, required);
   }
+}
+
+/**
+ * @brief return the current time in miliseconds
+ *
+ */
+long current_time_ms() {
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+
+    return tv.tv_sec * 1000L + tv.tv_usec / 1000L;
 }

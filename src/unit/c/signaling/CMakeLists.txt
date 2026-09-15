@@ -11,12 +11,16 @@ set(SOURCES
 add_executable(c_shmem_put_signal c_shmem_put_signal.c ${SOURCES})
 add_executable(c_shmem_put_signal_nbi c_shmem_put_signal_nbi.c ${SOURCES})
 add_executable(c_shmem_signal_fetch c_shmem_signal_fetch.c ${SOURCES})
+add_executable(c_shmem_signal_set c_shmem_signal_set.c ${SOURCES})
+add_executable(c_shmem_signal_add c_shmem_signal_add.c ${SOURCES})
 
 # --- Set the output directory for the executables
 set_target_properties(
   c_shmem_put_signal
   c_shmem_put_signal_nbi
   c_shmem_signal_fetch
+  c_shmem_signal_set
+  c_shmem_signal_add
   PROPERTIES
   RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/signaling
 )
@@ -25,8 +29,12 @@ set_target_properties(
 target_include_directories(c_shmem_put_signal PRIVATE src/include)
 target_include_directories(c_shmem_put_signal_nbi PRIVATE src/include)
 target_include_directories(c_shmem_signal_fetch PRIVATE src/include)
+target_include_directories(c_shmem_signal_set PRIVATE src/include)
+target_include_directories(c_shmem_signal_add PRIVATE src/include)
 
 # --- Link any necessary libraries to each target
 target_link_libraries(c_shmem_put_signal)
 target_link_libraries(c_shmem_put_signal_nbi)
 target_link_libraries(c_shmem_signal_fetch)
+target_link_libraries(c_shmem_signal_set)
+target_link_libraries(c_shmem_signal_add)

@@ -50,6 +50,13 @@ void display_test_result(const char *routine_name, bool passed, bool required);
  */
 void reduce_test_result(const char *routine_name, bool *result, bool required);
 
+
+/**
+ * @brief return the current time in miliseconds
+ *
+ */
+long current_time_ms();
+
 #ifdef __cplusplus
 }
 #endif
