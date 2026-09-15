@@ -14,7 +14,9 @@ add_executable(c_shmem_p c_shmem_p.c ${SOURCES})
 add_executable(c_shmem_get c_shmem_get.c ${SOURCES})
 add_executable(c_shmem_g c_shmem_g.c ${SOURCES})
 add_executable(c_shmem_iput c_shmem_iput.c ${SOURCES})
+add_executable(c_shmem_ibput c_shmem_ibput.c ${SOURCES})
 add_executable(c_shmem_iget c_shmem_iget.c ${SOURCES})
+add_executable(c_shmem_ibget c_shmem_ibget.c ${SOURCES})
 add_executable(c_shmem_put_nbi c_shmem_put_nbi.c ${SOURCES})
 add_executable(c_shmem_get_nbi c_shmem_get_nbi.c ${SOURCES})
 
@@ -25,7 +27,9 @@ set_target_properties(
   c_shmem_get
   c_shmem_g
   c_shmem_iput
+  c_shmem_ibput
   c_shmem_iget
+  c_shmem_ibget
   c_shmem_put_nbi
   c_shmem_get_nbi
   PROPERTIES
@@ -38,7 +42,9 @@ target_include_directories(c_shmem_p PRIVATE src/include)
 target_include_directories(c_shmem_get PRIVATE src/include)
 target_include_directories(c_shmem_g PRIVATE src/include)
 target_include_directories(c_shmem_iput PRIVATE src/include)
+target_include_directories(c_shmem_ibput PRIVATE src/include)
 target_include_directories(c_shmem_iget PRIVATE src/include)
+target_include_directories(c_shmem_ibget PRIVATE src/include)
 target_include_directories(c_shmem_put_nbi PRIVATE src/include)
 target_include_directories(c_shmem_get_nbi PRIVATE src/include)
 
@@ -48,6 +54,8 @@ target_link_libraries(c_shmem_p)
 target_link_libraries(c_shmem_get)
 target_link_libraries(c_shmem_g)
 target_link_libraries(c_shmem_iput)
+target_link_libraries(c_shmem_ibput)
 target_link_libraries(c_shmem_iget)
+target_link_libraries(c_shmem_ibget)
 target_link_libraries(c_shmem_put_nbi)
 target_link_libraries(c_shmem_get_nbi)
