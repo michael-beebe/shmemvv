@@ -11,7 +11,6 @@
 #include "shmemvv.h"
 #include "type_tables.h"
 
-
 #define TEST_C11_SHMEM_GET_NBI(TYPE)                                           \
   ({                                                                           \
     log_routine("shmem_get_nbi(" #TYPE ")");                                   \
@@ -139,19 +138,19 @@ int main(int argc, char *argv[]) {
   static bool result = true;
   static bool result_ctx = true;
 
-  /* Test standard shmem_get_nbi variants */
-  #define X(type, shmem_type) result &= TEST_C11_SHMEM_GET_NBI(type);
-    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
-  #undef X
+/* Test standard shmem_get_nbi variants */
+#define X(type, shmem_type) result &= TEST_C11_SHMEM_GET_NBI(type);
+  SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
   reduce_test_result("C11 shmem_get_nbi", &result, false);
 
-  /* Test context-specific shmem_get_nbi variants */
-  #define X(type, shmem_type) result_ctx &= TEST_C11_CTX_SHMEM_GET_NBI(type);
-    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
-  #undef X
+/* Test context-specific shmem_get_nbi variants */
+#define X(type, shmem_type) result_ctx &= TEST_C11_CTX_SHMEM_GET_NBI(type);
+  SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 

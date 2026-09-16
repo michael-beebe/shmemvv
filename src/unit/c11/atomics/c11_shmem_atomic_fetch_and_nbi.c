@@ -34,13 +34,14 @@
     shmem_atomic_fetch_and_nbi(&fetch, dest, and_val, fetch_pe);               \
     shmem_quiet();                                                             \
     shmem_barrier_all();                                                       \
-    success = (fetch == value + fetch_pe &&                                    \
-       *dest == ((value + mype) & and_val));                                   \
+    success =                                                                  \
+        (fetch == value + fetch_pe && *dest == ((value + mype) & and_val));    \
     if (!success)                                                              \
-      log_fail("atomic fetch-and (nbi) on %s did not produce expected values: "\
-               "fetch = %d (expected %d), dest = %d (expected %d)",            \
-               #TYPE, (int)fetch, (int)(value + fetch_pe), (int)*dest,         \
-               (int)((value + mype) & and_val));                               \
+      log_fail(                                                                \
+          "atomic fetch-and (nbi) on %s did not produce expected values: "     \
+          "fetch = %d (expected %d), dest = %d (expected %d)",                 \
+          #TYPE, (int)fetch, (int)(value + fetch_pe), (int)*dest,              \
+          (int)((value + mype) & and_val));                                    \
     else                                                                       \
       log_info("atomic fetch and on a %s at %p produced expected result",      \
                #TYPE, (void *)dest);                                           \
@@ -80,8 +81,8 @@
     shmem_atomic_fetch_and_nbi(ctx, &fetch, dest, and_val, fetch_pe);          \
     shmem_ctx_quiet(ctx);                                                      \
     shmem_barrier_all();                                                       \
-    success = (fetch == value + fetch_pe &&                                    \
-       *dest == ((value + mype) & and_val));                                   \
+    success =                                                                  \
+        (fetch == value + fetch_pe && *dest == ((value + mype) & and_val));    \
     if (!success)                                                              \
       log_fail("atomic fetch-and nbi with ctx on %s did not produce expected " \
                "values: fetch = %d (expected %d), dest = %d (expected %d)",    \
@@ -115,23 +116,26 @@ int main(int argc, char *argv[]) {
   static bool result = true;
   static bool result_ctx = true;
 
-  /* Test standard atomic fetch-and nbi operations */
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_FETCH_AND_NBI(type);
-    SHMEM_BITWISE_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test standard atomic fetch-and nbi operations */
+#define X(type, shmem_types)                                                   \
+  result &= TEST_C11_SHMEM_ATOMIC_FETCH_AND_NBI(type);
+  SHMEM_BITWISE_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
   reduce_test_result("C11 shmem_atomic_fetch_and_nbi", &result, false);
 
-  /* Test context-specific atomic fetch-and nbi operations */
-  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_AND_NBI(type);
-    SHMEM_BITWISE_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test context-specific atomic fetch-and nbi operations */
+#define X(type, shmem_types)                                                   \
+  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_AND_NBI(type);
+  SHMEM_BITWISE_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
-  reduce_test_result("C11 shmem_atomic_fetch_and_nbi with ctx", &result_ctx, false);
+  reduce_test_result("C11 shmem_atomic_fetch_and_nbi with ctx", &result_ctx,
+                     false);
 
   bool rc = result & result_ctx ? EXIT_SUCCESS : EXIT_FAILURE;
   log_close(rc);

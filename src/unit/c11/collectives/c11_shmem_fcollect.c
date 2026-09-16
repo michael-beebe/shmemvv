@@ -30,12 +30,12 @@
     }                                                                          \
                                                                                \
     /*create unique pattern for each element*/                                 \
-    for (int elem = 0; elem < NELEMS; elem ++){                                \
+    for (int elem = 0; elem < NELEMS; elem++) {                                \
       /* Cast handles overflow/wraparound */                                   \
       src[elem] = (TYPE)((mype << 4) ^ (elem));                                \
     }                                                                          \
     log_info("set %p...%p to src[elem] = (%d << 4) ^ elem.", (void *)src,      \
-            (void*) (src + NELEMS - 1), (int)mype);                            \
+             (void *)(src + NELEMS - 1), (int)mype);                           \
                                                                                \
     shmem_barrier_all(); /* Ensure all PEs are ready */                        \
                                                                                \
@@ -46,11 +46,11 @@
     log_info("validating result...");                                          \
     bool success = true;                                                       \
     for (int i = 0; i < npes; ++i) {                                           \
-      for (int elem = 0; elem < NELEMS; elem ++){                              \
+      for (int elem = 0; elem < NELEMS; elem++) {                              \
         TYPE expected = ((i << 4) ^ (elem));                                   \
-        if (dest[i*NELEMS + elem] != expected) {                               \
+        if (dest[i * NELEMS + elem] != expected) {                             \
           log_fail("index %d of dest (%p) failed. expected %d, got %d",        \
-            i*NELEMS + elem, &dest[i], (int)expected, (int)dest[i]);           \
+                   i * NELEMS + elem, &dest[i], (int)expected, (int)dest[i]);  \
           success = false;                                                     \
           break;                                                               \
         }                                                                      \
@@ -83,12 +83,13 @@ int main(int argc, char *argv[]) {
   }
 
   static bool result = true;
-  /*test multiple nelem values*/
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_FCOLLECT(type, 1); \
-                               result &= TEST_C11_SHMEM_FCOLLECT(type, 4); \
-                               result &= TEST_C11_SHMEM_FCOLLECT(type, 7);
-    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
-  #undef X
+/*test multiple nelem values*/
+#define X(type, shmem_types)                                                   \
+  result &= TEST_C11_SHMEM_FCOLLECT(type, 1);                                  \
+  result &= TEST_C11_SHMEM_FCOLLECT(type, 4);                                  \
+  result &= TEST_C11_SHMEM_FCOLLECT(type, 7);
+  SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 

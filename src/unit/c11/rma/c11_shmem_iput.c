@@ -37,7 +37,7 @@
                (void *)dest, (void *)src);                                     \
       shmem_iput(dest, src, 2, 2, 5, 1);                                       \
       /*set src array to 0 to test shmem_iput blocking behavior*/              \
-      for (int i = 0; i < 10; i++){                                            \
+      for (int i = 0; i < 10; i++) {                                           \
         src[i] = 0;                                                            \
       }                                                                        \
       log_info("PE 0: Completed strided put operation");                       \
@@ -58,9 +58,9 @@
         }                                                                      \
       }                                                                        \
       log_info("PE 1: Beginning validation of unchanged elements between "     \
-         "strides");                                                           \
+               "strides");                                                     \
       /*ensure odd indexes do not contain transfered data*/                    \
-      for (int i = 1; i < 10; i += 2){                                         \
+      for (int i = 1; i < 10; i += 2) {                                        \
         if (dest[i] != 0) {                                                    \
           log_fail("PE 1: Validation failed - dest[%d] = %d, expected 0", i,   \
                    (int)dest[i]);                                              \
@@ -115,7 +115,7 @@
                (void *)dest, (void *)src);                                     \
       shmem_iput(ctx, dest, src, 2, 2, 5, 1);                                  \
       /*set src array to 0 to test shmem_iput blocking behavior*/              \
-      for (int i = 0; i < 10; i++){                                            \
+      for (int i = 0; i < 10; i++) {                                           \
         src[i] = 0;                                                            \
       }                                                                        \
       log_info("PE 0: Completed context-based strided put operation");         \
@@ -138,9 +138,9 @@
         }                                                                      \
       }                                                                        \
       log_info("PE 1: Beginning validation of unchanged elements between "     \
-         "strides");                                                           \
+               "strides");                                                     \
       /*ensure odd indexes do not contain transfered data*/                    \
-      for (int i = 1; i < 10; i += 2){                                         \
+      for (int i = 1; i < 10; i += 2) {                                        \
         if (dest[i] != 0) {                                                    \
           log_fail("PE 1: Validation failed - dest[%d] = %d, expected 0", i,   \
                    (int)dest[i]);                                              \
@@ -180,19 +180,19 @@ int main(int argc, char *argv[]) {
   static bool result = true;
   static bool result_ctx = true;
 
-  /* Test standard shmem_iput variants */
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_IPUT(type);
-    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
-  #undef X
+/* Test standard shmem_iput variants */
+#define X(type, shmem_types) result &= TEST_C11_SHMEM_IPUT(type);
+  SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
   reduce_test_result("C11 shmem_iput", &result, false);
 
-  /* Test context-specific shmem_iput variants */
-  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_IPUT(type);
-    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
-  #undef X
+/* Test context-specific shmem_iput variants */
+#define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_IPUT(type);
+  SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 

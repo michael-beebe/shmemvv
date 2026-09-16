@@ -68,4 +68,6 @@ option(DISABLE_ALL_C11_TESTS "Disable all C11 language tests" OFF)
 include_directories(${CMAKE_SOURCE_DIR}/src/include)
 
 # ---- Add subdirectory for src
+include(CheckSymbolExists)
+check_symbol_exists(shmem_ctx_session_start "shmem.h" SHMEMVV_HAVE_SESSIONS)
 add_subdirectory(src)

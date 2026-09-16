@@ -26,13 +26,13 @@
              (void *)dest);                                                    \
                                                                                \
     for (int pe = 0; pe < npes; ++pe) {                                        \
-      for (int j = 0; j < NELEMS; ++j){                                        \
+      for (int j = 0; j < NELEMS; ++j) {                                       \
         /* create a recognizeable, 8 bit safe pattern*/                        \
         src[pe * NELEMS + j] = (TYPE)((mype << 4) ^ (pe << 2) ^ j);            \
       }                                                                        \
     }                                                                          \
     log_info("set %p..%p to (mype << 4) ^ (pe << 2) ^ j", (void *)src,         \
-            (void *)&src[npes*NELEMS - 1]);                                    \
+             (void *)&src[npes * NELEMS - 1]);                                 \
                                                                                \
     log_info("executing shmem_alltoall: dest = %p, src = %p", (void *)dest,    \
              (void *)src);                                                     \
@@ -41,13 +41,13 @@
     log_info("validating result...");                                          \
     bool success = true;                                                       \
     for (int pe = 0; pe < npes; ++pe) {                                        \
-      for (int j = 0; j < NELEMS; ++j){                                        \
+      for (int j = 0; j < NELEMS; ++j) {                                       \
         /*reproduce pattern*/                                                  \
         TYPE expected = (TYPE)((pe << 4) ^ (mype << 2) ^ j);                   \
-        if (dest[pe * NELEMS + j] != expected){                                \
+        if (dest[pe * NELEMS + j] != expected) {                               \
           log_info("index %d of dest (%p) failed. expected %d, got %d",        \
-            pe * NELEMS + j, &dest[pe * NELEMS + j], (int)expected,            \
-            (int)dest[pe * NELEMS + j]);                                       \
+                   pe * NELEMS + j, &dest[pe * NELEMS + j], (int)expected,     \
+                   (int)dest[pe * NELEMS + j]);                                \
           success = false;                                                     \
           break;                                                               \
         }                                                                      \
@@ -65,7 +65,6 @@
     success;                                                                   \
   })
 
-
 #define TEST_C11_SHMEM_ALLTOALLMEM(NELEMS)                                     \
   ({                                                                           \
     log_routine("shmem_alltoallmem()");                                        \
@@ -74,35 +73,34 @@
     void *src = (void *)shmem_calloc(npes * NELEMS, 1);                        \
     void *dest = (void *)shmem_calloc(npes * NELEMS, 1);                       \
     log_info("shmem_calloc'd %d bytes @ &src = %p, %d bytes @ &dest = %p",     \
-             npes * NELEMS, (void *)src, npes * NELEMS,                        \
-             (void *)dest);                                                    \
+             npes * NELEMS, (void *)src, npes * NELEMS, (void *)dest);         \
                                                                                \
-    unsigned char * src_ptr = (unsigned char *) src;                           \
+    unsigned char *src_ptr = (unsigned char *)src;                             \
     for (int pe = 0; pe < npes; ++pe) {                                        \
-      for (int j = 0; j < NELEMS; ++j){                                        \
+      for (int j = 0; j < NELEMS; ++j) {                                       \
         /* create a recognizeable, 8 bit safe pattern*/                        \
         unsigned char val = (((mype << 4) ^ (pe << 2) ^ j) % 256);             \
         memset(&src_ptr[pe * NELEMS + j], val, 1);                             \
       }                                                                        \
     }                                                                          \
     log_info("set %p..%p to (mype << 4) ^ (pe << 2) ^ j", (void *)src_ptr,     \
-            (void *)(src_ptr + npes*NELEMS - 1));                              \
+             (void *)(src_ptr + npes * NELEMS - 1));                           \
                                                                                \
     log_info("executing shmem_alltoallmem: dest = %p, src = %p", (void *)dest, \
              (void *)src);                                                     \
     shmem_alltoallmem(SHMEM_TEAM_WORLD, dest, src, NELEMS);                    \
                                                                                \
-    unsigned char * dest_ptr = (unsigned char *) dest;                         \
+    unsigned char *dest_ptr = (unsigned char *)dest;                           \
     bool success = true;                                                       \
     log_info("validating result...");                                          \
     for (int pe = 0; pe < npes; ++pe) {                                        \
-      for (int j = 0; j < NELEMS; ++j){                                        \
+      for (int j = 0; j < NELEMS; ++j) {                                       \
         /*reproduce pattern*/                                                  \
         unsigned char expected = (((pe << 4) ^ (mype << 2) ^ j) % 256);        \
-        if (dest_ptr[pe * NELEMS + j] != expected){                            \
+        if (dest_ptr[pe * NELEMS + j] != expected) {                           \
           log_info("index %d of dest (%p) failed. expected %d, got %d",        \
-            pe * NELEMS + j, &dest_ptr[pe * NELEMS + j], (int)expected,        \
-            (int)dest_ptr[pe * NELEMS + j]);                                   \
+                   pe * NELEMS + j, &dest_ptr[pe * NELEMS + j], (int)expected, \
+                   (int)dest_ptr[pe * NELEMS + j]);                            \
           success = false;                                                     \
           break;                                                               \
         }                                                                      \
@@ -135,9 +133,9 @@ int main(int argc, char *argv[]) {
   }
 
   static bool result = true;
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_ALLTOALL(type, 4);
-    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
-  #undef X
+#define X(type, shmem_types) result &= TEST_C11_SHMEM_ALLTOALL(type, 4);
+  SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
   reduce_test_result("C11 shmem_alltoall", &result, false);
@@ -145,7 +143,7 @@ int main(int argc, char *argv[]) {
   static bool result_mem = true;
   result_mem &= TEST_C11_SHMEM_ALLTOALLMEM(4);
 
-  shmem_barrier_all();  
+  shmem_barrier_all();
   reduce_test_result("C11 shmem_alltoallmem", &result_mem, false);
 
   bool passed = result & result_mem;

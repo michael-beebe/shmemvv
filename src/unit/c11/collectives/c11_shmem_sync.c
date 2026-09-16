@@ -4,12 +4,12 @@
  */
 
 #include <shmem.h>
-#include <unistd.h> 
+#include <unistd.h>
 
 #include "log.h"
 #include "shmemvv.h"
 
-int test_shmem_team_sync(){
+int test_shmem_team_sync() {
   log_routine("shmem_team_sync()");
   bool success = true;
   int mype = shmem_my_pe();
@@ -54,37 +54,37 @@ int test_shmem_team_sync(){
   if (mype != 0) {
     /* Sleep incrementing PEs to give sync a chance to fail */
     usleep((int)0.25E+6); // sleep for a quarter of a second
-    log_info("PE %d Performing atomic increment on shared counter at PE 0", mype);
+    log_info("PE %d Performing atomic increment on shared counter at PE 0",
+             mype);
     shmem_atomic_inc(ctx, shared_counter, 0);
     shmem_ctx_quiet(ctx);
 
     log_info("Initiating team synchronization");
     shmem_sync(team);
     log_info("Team synchronization completed");
-  }
-  else{ /* mype == 0 */
+  } else { /* mype == 0 */
     log_info("Initiating team synchronization");
     /* If sync fails, pe will move to validation immediately, failing test */
     shmem_sync(team);
     log_info("Team synchronization completed");
 
     int expected = npes - 1;
-    if (*shared_counter != expected){ 
+    if (*shared_counter != expected) {
       log_fail("Shared counter validation failed: expected %d, got %ld",
-             expected, *shared_counter);
+               expected, *shared_counter);
       if (*shared_counter < expected) {
         log_fail("Team synchronization may have failed to propagate all atomic "
-               "operations");
+                 "operations");
       } else {
         log_fail("Either team split created incorrect number of teams or team "
-                "sync duplicated operations");
+                 "sync duplicated operations");
       }
       success = false;
-    }
-    else {
-      log_info("Shared counter validation successful: value matches expected %d",
-             expected);
-      success = true; 
+    } else {
+      log_info(
+          "Shared counter validation successful: value matches expected %d",
+          expected);
+      success = true;
     }
   }
 

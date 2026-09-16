@@ -17,6 +17,11 @@ add_executable(c_shmem_iput c_shmem_iput.c ${SOURCES})
 add_executable(c_shmem_iget c_shmem_iget.c ${SOURCES})
 add_executable(c_shmem_put_nbi c_shmem_put_nbi.c ${SOURCES})
 add_executable(c_shmem_get_nbi c_shmem_get_nbi.c ${SOURCES})
+if(SHMEMVV_HAVE_SESSIONS)
+  add_executable(c_shmem_sessions c_shmem_sessions.c ${SOURCES})
+  set_target_properties(c_shmem_sessions PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/rma)
+endif()
 
 # --- Set the output directory for the executables
 set_target_properties(

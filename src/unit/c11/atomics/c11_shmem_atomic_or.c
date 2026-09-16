@@ -108,20 +108,19 @@ int main(int argc, char *argv[]) {
   static bool result = true;
   static bool result_ctx = true;
 
-  /* Test storard atomic or operations */
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_OR(type);
-    SHMEM_BITWISE_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test storard atomic or operations */
+#define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_OR(type);
+  SHMEM_BITWISE_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
   reduce_test_result("C11 shmem_atomic_or", &result, false);
 
-
-  /* Test context-specific atomic or operations */
-  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_OR(type);
-    SHMEM_BITWISE_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test context-specific atomic or operations */
+#define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_OR(type);
+  SHMEM_BITWISE_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
@@ -132,4 +131,3 @@ int main(int argc, char *argv[]) {
   shmem_finalize();
   return rc;
 }
-

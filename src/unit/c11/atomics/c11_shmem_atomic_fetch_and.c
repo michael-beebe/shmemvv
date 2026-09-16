@@ -33,7 +33,7 @@
     TYPE fetched = shmem_atomic_fetch_and(dest, and_value, fetch_pe);          \
     shmem_barrier_all();                                                       \
     success = (fetched == value + fetch_pe &&                                  \
-       *dest == ((value + mype) & and_value));                                 \
+               *dest == ((value + mype) & and_value));                         \
     if (!success)                                                              \
       log_fail("atomic fetch-and on %s did not produce expected values: "      \
                "fetched = %d (expected %d), dest = %d (expected %d)",          \
@@ -43,7 +43,7 @@
       log_info("atomic fetch-and on a %s at %p produced expected result "      \
                "(fetched = %d, dest = (%d + %d) & %d = %d)",                   \
                #TYPE, (void *)dest, (int)fetched, (int)value, (int)mype,       \
-                (int)and_value, (int)*dest);                                   \
+               (int)and_value, (int)*dest);                                    \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })
@@ -75,22 +75,22 @@
     shmem_barrier_all();                                                       \
     log_info("executing atomic fetch-and with context: dest = %p, value = %d", \
              (void *)dest, (int)and_value);                                    \
-    TYPE fetched =                                                             \
-        shmem_atomic_fetch_and(ctx, dest, and_value, fetch_pe);                \
+    TYPE fetched = shmem_atomic_fetch_and(ctx, dest, and_value, fetch_pe);     \
     shmem_ctx_quiet(ctx);                                                      \
     shmem_barrier_all();                                                       \
     success = (fetched == value + fetch_pe &&                                  \
-       *dest == ((value + mype) & and_value));                                 \
+               *dest == ((value + mype) & and_value));                         \
     if (!success)                                                              \
-      log_fail("atomic fetch-and on %s  with context did not produce expected "\
+      log_fail(                                                                \
+          "atomic fetch-and on %s  with context did not produce expected "     \
           "values: fetched = %d (expected %d), dest = %d (expected %d)",       \
           #TYPE, (int)fetched, (int)(value + fetch_pe), (int)*dest,            \
           (int)((value + mype) & and_value));                                  \
     else                                                                       \
-       log_info("atomic fetch-and with context on a %s at %p produced expected"\
-          " result (fetched = %d, dest = (%d + %d) & %d = %d)", #TYPE,         \
-          (void *)dest, (int)fetched, (int)value, (int)mype, (int)and_value,   \
-          (int)*dest);                                                         \
+      log_info("atomic fetch-and with context on a %s at %p produced expected" \
+               " result (fetched = %d, dest = (%d + %d) & %d = %d)",           \
+               #TYPE, (void *)dest, (int)fetched, (int)value, (int)mype,       \
+               (int)and_value, (int)*dest);                                    \
                                                                                \
     shmem_ctx_destroy(ctx);                                                    \
     log_info("Context destroyed");                                             \
@@ -115,21 +115,20 @@ int main(int argc, char *argv[]) {
   static bool result = true;
   static bool result_ctx = true;
 
-
-  /* Test standard atomic fetch-and operations */
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_FETCH_AND(type);
-    SHMEM_BITWISE_AMO_TYPE_TABLE(X)
-  #undef X
-
+/* Test standard atomic fetch-and operations */
+#define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_FETCH_AND(type);
+  SHMEM_BITWISE_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
   reduce_test_result("C11 shmem_atomic_fetch_and", &result, false);
 
-  /* Test context-specific atomic fetch-and operations */
-  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_AND(type);
-    SHMEM_BITWISE_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test context-specific atomic fetch-and operations */
+#define X(type, shmem_types)                                                   \
+  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_AND(type);
+  SHMEM_BITWISE_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 

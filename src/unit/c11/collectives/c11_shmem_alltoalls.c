@@ -13,7 +13,7 @@
 #include "shmemvv.h"
 #include "type_tables.h"
 
-#define TEST_C11_SHMEM_ALLTOALLS(TYPE, DST_STRIDE, SST_STRIDE, NELEMS)       \
+#define TEST_C11_SHMEM_ALLTOALLS(TYPE, DST_STRIDE, SST_STRIDE, NELEMS)         \
   ({                                                                           \
     log_routine("shmem_alltoalls(" #TYPE ", dst=" #DST_STRIDE                  \
                 ", sst=" #SST_STRIDE ", nelems=" #NELEMS ")");                 \
@@ -34,7 +34,7 @@
     for (int pe = 0; pe < npes; pe++) {                                        \
       for (int i = 0; i < NELEMS; i++) {                                       \
         size_t offset = (pe * NELEMS + i) * SST_STRIDE;                        \
-        src[offset] = (TYPE)((mype << 4) ^ (pe << 2) ^ i);                                              \
+        src[offset] = (TYPE)((mype << 4) ^ (pe << 2) ^ i);                     \
       }                                                                        \
     }                                                                          \
     log_info("set source elements at stride %d positions to %d", SST_STRIDE,   \
@@ -46,14 +46,13 @@
     }                                                                          \
     log_info("set dest elements to a known bad value, -1");                    \
                                                                                \
-                                                                               \
     /* Ensure all PEs are ready before starting alltoalls */                   \
     shmem_barrier_all();                                                       \
                                                                                \
     log_info("executing shmem_alltoalls: dest = %p, src = %p", (void *)dest,   \
              (void *)src);                                                     \
-    shmem_alltoalls(SHMEM_TEAM_WORLD, dest, src, DST_STRIDE,                   \
-                    SST_STRIDE, NELEMS);                                       \
+    shmem_alltoalls(SHMEM_TEAM_WORLD, dest, src, DST_STRIDE, SST_STRIDE,       \
+                    NELEMS);                                                   \
                                                                                \
     /* Ensure all PEs complete the alltoalls before validation */              \
     shmem_barrier_all();                                                       \
@@ -106,11 +105,12 @@ int main(int argc, char *argv[]) {
 
   /* Test all data types */
   static bool result = true;
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_ALLTOALLS(type, 1, 1, 1);
-    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
-  #undef X
+#define X(type, shmem_types) result &= TEST_C11_SHMEM_ALLTOALLS(type, 1, 1, 1);
+  SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+#undef X
 
-  /* Test comprehensive functionality with int type using different strides and elements */
+  /* Test comprehensive functionality with int type using different strides and
+   * elements */
   result &= TEST_C11_SHMEM_ALLTOALLS(int, 2, 1, 1);
   result &= TEST_C11_SHMEM_ALLTOALLS(int, 1, 2, 1);
   result &= TEST_C11_SHMEM_ALLTOALLS(int, 2, 2, 1);

@@ -35,7 +35,7 @@
       log_info("PE 0: dest=%p, src=%p, nelems=10", (void *)dest, (void *)src); \
       shmem_put(dest, src, 10, 1);                                             \
       /*immediately set values to 0, ensure routine is blocking*/              \
-      for (int i = 0; i < 10; i++){                                            \
+      for (int i = 0; i < 10; i++) {                                           \
         src[i] = 0;                                                            \
       }                                                                        \
       log_info("PE 0: Completed put operation");                               \
@@ -100,7 +100,7 @@
       log_info("PE 0: dest=%p, src=%p, nelems=10", (void *)dest, (void *)src); \
       shmem_put(ctx, dest, src, 10, 1);                                        \
       /*immediately set values to 0, ensure routine is blocking*/              \
-      for (int i = 0; i < 10; i++){                                            \
+      for (int i = 0; i < 10; i++) {                                           \
         src[i] = 0;                                                            \
       }                                                                        \
       log_info("PE 0: Completed context-based put operation");                 \
@@ -151,19 +151,19 @@ int main(int argc, char *argv[]) {
   static bool result = true;
   static bool result_ctx = true;
 
-  /* Test standard shmem_put variants */
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_PUT(type);
-    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
-  #undef X
+/* Test standard shmem_put variants */
+#define X(type, shmem_types) result &= TEST_C11_SHMEM_PUT(type);
+  SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
   reduce_test_result("C11 shmem_put", &result, false);
 
-  /* Test context-specific shmem_put variants */
-  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_PUT(type);
-    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
-  #undef X
+/* Test context-specific shmem_put variants */
+#define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_PUT(type);
+  SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 

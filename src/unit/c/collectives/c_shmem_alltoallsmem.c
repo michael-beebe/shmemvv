@@ -17,8 +17,7 @@
  * Test function for shmem_alltoallmem with configurable element number and
  * strides
  */
-static bool test_alltoallsmem_with_params(size_t n_elems,
-                                          ptrdiff_t dst_stride,
+static bool test_alltoallsmem_with_params(size_t n_elems, ptrdiff_t dst_stride,
                                           ptrdiff_t src_stride) {
   char routine_name[64];
   snprintf(routine_name, sizeof(routine_name),
@@ -70,8 +69,9 @@ static bool test_alltoallsmem_with_params(size_t n_elems,
     /* Fill each byte block with the value */
     memset(src_ptr, value, 1);
 
-    log_info("Source: PE %d setting elem for element %d at offset %zu with value %d",
-             mype, elem, offset, value);
+    log_info(
+        "Source: PE %d setting elem for element %d at offset %zu with value %d",
+        mype, elem, offset, value);
   }
 
   /* Execute alltoallsmem */
@@ -96,16 +96,18 @@ static bool test_alltoallsmem_with_params(size_t n_elems,
     unsigned char *dest_ptr = (unsigned char *)dest + offset;
 
     /* Expected value from PE pe, result of all to all pattern */
-    unsigned char expected = (unsigned char) ((elem / n_elems) * 10 + (n_elems * mype) + (elem % n_elems));
-    
+    unsigned char expected =
+        (unsigned char)((elem / n_elems) * 10 + (n_elems * mype) +
+                        (elem % n_elems));
+
     /* check that the value of each byte is correct */
     if (*dest_ptr != expected) {
       log_info("PE %d: Data from elem %d at offset %zu failed. Expected "
-                "%d, got %d",
-                mype, elem, offset, expected, *dest_ptr);
-      success = false;  
-      }
-    if (!success){
+               "%d, got %d",
+               mype, elem, offset, expected, *dest_ptr);
+      success = false;
+    }
+    if (!success) {
       break;
     }
   }

@@ -108,20 +108,19 @@ int main(int argc, char *argv[]) {
   static bool result = true;
   static bool result_ctx = true;
 
-  /* Test standard atomic add operations */
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_ADD(type);
-    SHMEM_STANDARD_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test standard atomic add operations */
+#define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_ADD(type);
+  SHMEM_STANDARD_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
   reduce_test_result("C11 shmem_atomic_add", &result, false);
 
-
-  /* Test context-specific atomic add operations */
-  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_ADD(type);
-    SHMEM_STANDARD_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test context-specific atomic add operations */
+#define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_ADD(type);
+  SHMEM_STANDARD_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 

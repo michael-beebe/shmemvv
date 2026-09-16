@@ -17,7 +17,8 @@
     TYPE *src = (TYPE *)shmem_calloc(NELEMS, sizeof(TYPE));                    \
     TYPE *dest = (TYPE *)shmem_calloc(NELEMS, sizeof(TYPE));                   \
     log_info("shmem_malloc'd %d bytes @ &src = %p, %d bytes @ &dest = %p",     \
-      NELEMS * sizeof(TYPE), (void *)src, NELEMS * sizeof(TYPE), (void *)dest);\
+             NELEMS * sizeof(TYPE), (void *)src, NELEMS * sizeof(TYPE),        \
+             (void *)dest);                                                    \
     if (!src || !dest) {                                                       \
       log_fail("Failed to allocate symmetric memory");                         \
       if (src)                                                                 \
@@ -75,7 +76,6 @@
     success;                                                                   \
   })
 
-
 int main(int argc, char *argv[]) {
   shmem_init();
   log_init(__FILE__);
@@ -91,17 +91,17 @@ int main(int argc, char *argv[]) {
   }
 
   static bool result = true;
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_BROADCAST(type, 4);
-    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
-  #undef X
+#define X(type, shmem_types) result &= TEST_C11_SHMEM_BROADCAST(type, 4);
+  SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+#undef X
 
   /* Test various broadcast sizes with int */
   result &= TEST_C11_SHMEM_BROADCAST(int, 1);
   result &= TEST_C11_SHMEM_BROADCAST(int, 2);
   result &= TEST_C11_SHMEM_BROADCAST(int, 7);
   result &= TEST_C11_SHMEM_BROADCAST(int, 16);
-  result &= TEST_C11_SHMEM_BROADCAST(int, 1024); 
-  result &= TEST_C11_SHMEM_BROADCAST(int, 16384); 
+  result &= TEST_C11_SHMEM_BROADCAST(int, 1024);
+  result &= TEST_C11_SHMEM_BROADCAST(int, 16384);
 
   shmem_barrier_all();
   reduce_test_result("C11 shmem_broadcast", &result, false);

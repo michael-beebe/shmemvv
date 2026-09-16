@@ -129,19 +129,19 @@ int main(int argc, char *argv[]) {
   static bool result = true;
   static bool result_ctx = true;
 
-  /* Test standard shmem_p variants */
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_P(type);
-    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
-  #undef X
+/* Test standard shmem_p variants */
+#define X(type, shmem_types) result &= TEST_C11_SHMEM_P(type);
+  SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
   reduce_test_result("C11 shmem_p", &result, false);
-  
-  /* Test context-specific shmem_p variants */
-  #define X(type, shmem_types) result &= TEST_C11_CTX_SHMEM_P(type);
-    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
-  #undef X
+
+/* Test context-specific shmem_p variants */
+#define X(type, shmem_types) result &= TEST_C11_CTX_SHMEM_P(type);
+  SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
