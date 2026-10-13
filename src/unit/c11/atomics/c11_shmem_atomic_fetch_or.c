@@ -32,8 +32,8 @@
              (int)or_value);                                                   \
     TYPE fetched = shmem_atomic_fetch_or(dest, or_value, fetch_pe);            \
     shmem_barrier_all();                                                       \
-    success = (fetched == value + fetch_pe &&                                  \
-               *dest == (value + mype) | or_value);                            \
+    success =                                                                  \
+        (fetched == value + fetch_pe && *dest == (value + mype) | or_value);   \
     if (!success)                                                              \
       log_fail("atomic fetch-or on %s did not produce expected values: "       \
                "fetched = %d (expected %d), dest = %d (expected %d)",          \
@@ -78,8 +78,8 @@
     TYPE fetched = shmem_atomic_fetch_or(ctx, dest, or_value, fetch_pe);       \
     shmem_ctx_quiet(ctx);                                                      \
     shmem_barrier_all();                                                       \
-     success = (fetched == value + fetch_pe &&                                 \
-               *dest == (value + mype) | or_value);                            \
+    success =                                                                  \
+        (fetched == value + fetch_pe && *dest == (value + mype) | or_value);   \
     if (!success)                                                              \
       log_fail("atomic fetch-or with ctx on %s did not produce expected "      \
                "values: fetched = %d (expected %d), dest = %d (expected %d)",  \
@@ -114,19 +114,20 @@ int main(int argc, char *argv[]) {
   static bool result = true;
   static bool result_ctx = true;
 
-  /* Test standard atomic fetch-or operations */
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_FETCH_OR(type);
-    SHMEM_BITWISE_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test standard atomic fetch-or operations */
+#define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_FETCH_OR(type);
+  SHMEM_BITWISE_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
   reduce_test_result("C11 shmem_atomic_fetch_or", &result, false);
 
-  /* Test context-specific atomic fetch-or operations */
-  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_OR(type);
-    SHMEM_BITWISE_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test context-specific atomic fetch-or operations */
+#define X(type, shmem_types)                                                   \
+  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_OR(type);
+  SHMEM_BITWISE_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 

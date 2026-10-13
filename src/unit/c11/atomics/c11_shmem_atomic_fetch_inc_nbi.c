@@ -26,7 +26,7 @@
     log_info("shmem_malloc'd %d bytes at %p", sizeof(TYPE), (void *)dest);     \
     fetch = 0;                                                                 \
     TYPE value = 42;                                                           \
-    *dest = value + mype;                                                             \
+    *dest = value + mype;                                                      \
     log_info("initialized dest at %p to %d", (void *)dest, (int)*dest);        \
     shmem_barrier_all();                                                       \
     log_info("executing atomic fetch inc nbi: dest = %p", (void *)dest);       \
@@ -40,9 +40,10 @@
                #TYPE, (int)fetch, (int)(value + fetch_pe), (int)*dest,         \
                (int)(value + mype + 1));                                       \
     else                                                                       \
-      log_info("atomic fetch inc (nbi) on a %s at %p produced expected result "\
-               "(fetch = %d, dest = %d)",                                      \
-               #TYPE, (void *)dest, (int)fetch, (int)*dest);                   \
+      log_info(                                                                \
+          "atomic fetch inc (nbi) on a %s at %p produced expected result "     \
+          "(fetch = %d, dest = %d)",                                           \
+          #TYPE, (void *)dest, (int)fetch, (int)*dest);                        \
     shmem_free(dest);                                                          \
     success;                                                                   \
   })
@@ -74,14 +75,16 @@
                                                                                \
     shmem_barrier_all();                                                       \
     log_info("executing atomic fetch inc nbi with ctx: "                       \
-       "dest = %p", (void *)dest);                                             \
+             "dest = %p",                                                      \
+             (void *)dest);                                                    \
     shmem_atomic_fetch_inc_nbi(ctx, &fetch, dest, fetch_pe);                   \
     shmem_ctx_quiet(ctx);                                                      \
     shmem_barrier_all();                                                       \
     success = (fetch == value + fetch_pe && *dest == value + mype + 1);        \
     if (!success)                                                              \
       log_fail("atomic fetch inc (nbi) with context on %s did not produce "    \
-        "expected values: fetch = %d (expected %d), dest = %d (expected %d)",  \
+               "expected values: fetch = %d (expected %d), dest = %d "         \
+               "(expected %d)",                                                \
                #TYPE, (int)fetch, (int)(value + fetch_pe), (int)*dest,         \
                (int)(value + mype + 1));                                       \
     else                                                                       \
@@ -112,23 +115,26 @@ int main(int argc, char *argv[]) {
   static bool result = true;
   static bool result_ctx = true;
 
-  /* Test standard atomic fetch-inc nbi operations */
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_FETCH_INC_NBI(type);
-    SHMEM_STANDARD_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test standard atomic fetch-inc nbi operations */
+#define X(type, shmem_types)                                                   \
+  result &= TEST_C11_SHMEM_ATOMIC_FETCH_INC_NBI(type);
+  SHMEM_STANDARD_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
   reduce_test_result("C11 shmem_atomic_fetch_inc_nbi", &result, false);
 
-  /* Test context-specific atomic fetch-inc nbi operations */
-  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_INC_NBI(type);
-    SHMEM_STANDARD_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test context-specific atomic fetch-inc nbi operations */
+#define X(type, shmem_types)                                                   \
+  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_INC_NBI(type);
+  SHMEM_STANDARD_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
-  reduce_test_result("C11 shmem_atomic_fetch_inc_nbi with ctx", &result_ctx, false);
+  reduce_test_result("C11 shmem_atomic_fetch_inc_nbi with ctx", &result_ctx,
+                     false);
 
   bool rc = result & result_ctx ? EXIT_SUCCESS : EXIT_FAILURE;
   log_close(rc);

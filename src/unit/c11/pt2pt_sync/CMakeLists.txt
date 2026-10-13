@@ -79,3 +79,16 @@ target_link_libraries(c11_shmem_wait_until_some_vector)
 target_link_libraries(c11_shmem_wait_until_some)
 target_link_libraries(c11_shmem_wait_until)
 
+# --- OpenSHMEM 1.6 coverage
+add_executable(c11_shmem_test_masks ../../c/pt2pt_sync/c_shmem_test_masks.c ${SOURCES})
+target_compile_definitions(c11_shmem_test_masks PRIVATE API_USE_GENERICS)
+set_target_properties(c11_shmem_test_masks PROPERTIES
+  C_STANDARD 11 C_STANDARD_REQUIRED YES
+  RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/pt2pt_sync)
+if(SHMEMVV_HAVE_CONST_VECTOR)
+  add_executable(c11_shmem_vector_const ../../c/pt2pt_sync/c_shmem_vector_const.c ${SOURCES})
+  target_compile_definitions(c11_shmem_vector_const PRIVATE API_USE_GENERICS)
+  set_target_properties(c11_shmem_vector_const PROPERTIES
+    C_STANDARD 11 C_STANDARD_REQUIRED YES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/pt2pt_sync)
+endif()

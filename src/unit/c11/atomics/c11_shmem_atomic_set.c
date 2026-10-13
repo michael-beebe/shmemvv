@@ -79,7 +79,8 @@
                #TYPE, (int)prev_pe, (int)*dest);                               \
     else                                                                       \
       log_info("atomic set with context on a %s at %p produced expected "      \
-         "result (%d == %d)", #TYPE, (void *)dest, (int)prev_pe, (int)*dest);  \
+               "result (%d == %d)",                                            \
+               #TYPE, (void *)dest, (int)prev_pe, (int)*dest);                 \
                                                                                \
     shmem_ctx_destroy(ctx);                                                    \
     log_info("Context destroyed");                                             \
@@ -104,20 +105,19 @@ int main(int argc, char *argv[]) {
   static bool result = true;
   static bool result_ctx = true;
 
-  /* Test storard atomic xor operations */
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_SET(type);
-    SHMEM_EXTENDED_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test storard atomic xor operations */
+#define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_SET(type);
+  SHMEM_EXTENDED_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
   reduce_test_result("C11 shmem_atomic_set", &result, false);
 
-
-  /* Test context-specific atomic xor operations */
-  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_SET(type);
-    SHMEM_EXTENDED_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test context-specific atomic xor operations */
+#define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_SET(type);
+  SHMEM_EXTENDED_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 

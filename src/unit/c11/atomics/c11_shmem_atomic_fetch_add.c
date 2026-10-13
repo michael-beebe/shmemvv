@@ -32,8 +32,8 @@
              (void *)dest, (int)add_value);                                    \
     TYPE fetched = shmem_atomic_fetch_add(dest, add_value, fetch_pe);          \
     shmem_barrier_all();                                                       \
-    success = (fetched == value + fetch_pe &&                                  \
-      *dest == value + mype + add_value);                                      \
+    success =                                                                  \
+        (fetched == value + fetch_pe && *dest == value + mype + add_value);    \
     if (!success)                                                              \
       log_fail("atomic fetch-add on %s did not produce expected values: "      \
                "fetched = %d (expected %d), dest = %d (expected %d)",          \
@@ -74,12 +74,11 @@
     shmem_barrier_all();                                                       \
     log_info("executing atomic fetch-add with context: dest = %p, value = %d", \
              (void *)dest, (int)add_value);                                    \
-    TYPE fetched =                                                             \
-        shmem_atomic_fetch_add(ctx, dest, add_value, fetch_pe);                \
+    TYPE fetched = shmem_atomic_fetch_add(ctx, dest, add_value, fetch_pe);     \
     shmem_ctx_quiet(ctx);                                                      \
     shmem_barrier_all();                                                       \
-    success = (fetched == value + fetch_pe &&                                  \
-      *dest == value + mype + add_value);                                      \
+    success =                                                                  \
+        (fetched == value + fetch_pe && *dest == value + mype + add_value);    \
     if (!success)                                                              \
       log_fail("atomic fetch-add with context on %s did not produce "          \
                "expected values: fetched = %d (expected %d), dest = %d "       \
@@ -114,19 +113,20 @@ int main(int argc, char *argv[]) {
   static bool result = true;
   static bool result_ctx = true;
 
-  /* Test standard atomic fetch-add operations */
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD(type);
-    SHMEM_STANDARD_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test standard atomic fetch-add operations */
+#define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_FETCH_ADD(type);
+  SHMEM_STANDARD_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
   reduce_test_result("C11 shmem_atomic_fetch_add", &result, false);
 
-  /* Test context-specific atomic fetch-add operations */
-  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD(type);
-    SHMEM_STANDARD_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test context-specific atomic fetch-add operations */
+#define X(type, shmem_types)                                                   \
+  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_ADD(type);
+  SHMEM_STANDARD_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 

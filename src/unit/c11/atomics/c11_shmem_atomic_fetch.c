@@ -28,8 +28,8 @@
     TYPE expected = 42 + fetch_pe;                                             \
     log_info("set %p to %d", (void *)dest, (int)value);                        \
     shmem_barrier_all();                                                       \
-    log_info("PE %d: executing atomic fetch from PE %d: dest = %p",mype,       \
-      fetch_pe, (void *)dest);                                                 \
+    log_info("PE %d: executing atomic fetch from PE %d: dest = %p", mype,      \
+             fetch_pe, (void *)dest);                                          \
     fetch = shmem_atomic_fetch(dest, fetch_pe);                                \
     /*no barrier, routine should be blocking*/                                 \
     success = (fetch == expected);                                             \
@@ -70,7 +70,8 @@
                                                                                \
     shmem_barrier_all();                                                       \
     log_info("PE %d: executing atomic fetch with context from PE %d:"          \
-      " dest = %p", mype, fetch_pe, (void *)dest);                             \
+             " dest = %p",                                                     \
+             mype, fetch_pe, (void *)dest);                                    \
     fetch = shmem_atomic_fetch(ctx, dest, fetch_pe);                           \
     /*no barrier, routine should be blocking*/                                 \
     success = (fetch == expected);                                             \
@@ -107,19 +108,20 @@ int main(int argc, char *argv[]) {
   static bool result = true;
   static bool result_ctx = true;
 
-  /* Test standard atomic fetch operations */
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_FETCH(type);
-    SHMEM_EXTENDED_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test standard atomic fetch operations */
+#define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_FETCH(type);
+  SHMEM_EXTENDED_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
   reduce_test_result("C11 shmem_atomic_fetch", &result, false);
 
-  /* Test context-specific atomic fetch operations */
-  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH(type);
-    SHMEM_EXTENDED_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test context-specific atomic fetch operations */
+#define X(type, shmem_types)                                                   \
+  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH(type);
+  SHMEM_EXTENDED_AMO_TYPE_TABLE(X)
+#undef X
 
   reduce_test_result("C11 shmem_atomic_fetch with ctx", &result_ctx, false);
 

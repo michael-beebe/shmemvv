@@ -21,12 +21,12 @@
              (void *)dest);                                                    \
                                                                                \
     /*create unique pattern for each element*/                                 \
-    for (int elem = 0; elem < NELEMS; elem ++){                                \
+    for (int elem = 0; elem < NELEMS; elem++) {                                \
       /* Cast handles overflow/wraparound */                                   \
       src[elem] = (TYPE)((mype << 4) ^ (elem));                                \
     }                                                                          \
     log_info("set %p...%p to src[elem] = (%d << 4) ^ elem.", (void *)src,      \
-            (void*) (src + NELEMS - 1), (int)mype);                            \
+             (void *)(src + NELEMS - 1), (int)mype);                           \
                                                                                \
     shmem_barrier_all(); /* Ensure all PEs are ready */                        \
     log_info("executing shmem_collect: dest = %p, src = %p", (void *)dest,     \
@@ -36,11 +36,11 @@
     log_info("validating result...");                                          \
     bool success = true;                                                       \
     for (int i = 0; i < npes; ++i) {                                           \
-      for (int elem = 0; elem < NELEMS; elem ++){                              \
+      for (int elem = 0; elem < NELEMS; elem++) {                              \
         TYPE expected = ((i << 4) ^ (elem));                                   \
-        if (dest[i*NELEMS + elem] != expected) {                               \
+        if (dest[i * NELEMS + elem] != expected) {                             \
           log_fail("index %d of dest (%p) failed. expected %d, got %d",        \
-            i*NELEMS + elem, &dest[i], (int)expected, (int)dest[i]);           \
+                   i * NELEMS + elem, &dest[i], (int)expected, (int)dest[i]);  \
           success = false;                                                     \
           break;                                                               \
         }                                                                      \
@@ -58,14 +58,14 @@
     success;                                                                   \
   })
 
-
 /*Unit test to ensure that varing values of nelems on different PEs works*/
 #define TEST_C11_SHMEM_COLLECT_VAR_NELEMS(TYPE)                                \
   ({                                                                           \
     log_routine("shmem_collect(" #TYPE ") variable nelems");                   \
     int npes = shmem_n_pes();                                                  \
     int mype = shmem_my_pe();                                                  \
-    int my_nelem = mype + 1; /*linearly increasing number of elements with PE*/\
+    int my_nelem =                                                             \
+        mype + 1; /*linearly increasing number of elements with PE*/           \
     int total_nelem = (npes * (npes + 1)) / 2;                                 \
                                                                                \
     TYPE *src = (TYPE *)shmem_malloc(sizeof(TYPE) * npes);                     \
@@ -73,11 +73,11 @@
     log_info("shmem_malloc'd %d bytes @ &src = %p, %d3 bytes @ &dest = %p",    \
              my_nelem, (void *)src, total_nelem, (void *)dest);                \
                                                                                \
-    for (int i = 0; i < my_nelem; i++){                                        \
+    for (int i = 0; i < my_nelem; i++) {                                       \
       src[i] = (TYPE)(mype * (mype + 1)) / 2 + i;                              \
     }                                                                          \
     log_info("set %p...%p to %d + i", (void *)src,                             \
-            (void*) (src + my_nelem - 1), (int)((mype * (mype + 1)) / 2));     \
+             (void *)(src + my_nelem - 1), (int)((mype * (mype + 1)) / 2));    \
                                                                                \
     shmem_team_sync(SHMEM_TEAM_WORLD);                                         \
     log_info("executing shmem_collect: dest = %p, src = %p", (void *)dest,     \
@@ -88,9 +88,9 @@
     bool success = true;                                                       \
     for (int i = 0; i < total_nelem; ++i) {                                    \
       TYPE expected = i;                                                       \
-      if (dest[i] != expected){                                                \
-        log_fail("index %d of dest (%p) failed. expected %d, got %d",          \
-               i, (void *)dest, (int) expected, (int) dest[i]);                \
+      if (dest[i] != expected) {                                               \
+        log_fail("index %d of dest (%p) failed. expected %d, got %d", i,       \
+                 (void *)dest, (int)expected, (int)dest[i]);                   \
         success = false;                                                       \
       }                                                                        \
     }                                                                          \
@@ -121,21 +121,23 @@ int main(int argc, char *argv[]) {
   }
 
   static bool result = true;
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_COLLECT(type, 4);
-    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
-  #undef X
+#define X(type, shmem_types) result &= TEST_C11_SHMEM_COLLECT(type, 4);
+  SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
   reduce_test_result("C11 shmem_collect", &result, false);
 
   static bool result_var_nelems = true;
-  #define X(type, shmem_types) result_var_nelems &= TEST_C11_SHMEM_COLLECT_VAR_NELEMS(type);
-    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
-  #undef X
+#define X(type, shmem_types)                                                   \
+  result_var_nelems &= TEST_C11_SHMEM_COLLECT_VAR_NELEMS(type);
+  SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
-  reduce_test_result("C11 shmem_collect (variable nelems)", &result_var_nelems, false);
+  reduce_test_result("C11 shmem_collect (variable nelems)", &result_var_nelems,
+                     false);
 
   bool passed = result & result_var_nelems;
   log_close(!passed);

@@ -34,7 +34,7 @@
     shmem_atomic_swap_nbi(&fetch, dest, value, next_pe);                       \
     shmem_quiet();                                                             \
     shmem_barrier_all();                                                       \
-    success = (fetch == next_pe && *dest == (TYPE) prev_pe);                   \
+    success = (fetch == next_pe && *dest == (TYPE)prev_pe);                    \
     if (!success)                                                              \
       log_fail("atomic swap nbi on %s did not produce expected values: "       \
                "swapped = %d (expected %d), dest = %d (expected %d)",          \
@@ -78,17 +78,17 @@
     shmem_atomic_swap_nbi(ctx, &fetch, dest, value, next_pe);                  \
     shmem_ctx_quiet(ctx);                                                      \
     shmem_barrier_all();                                                       \
-    success = (fetch == next_pe && *dest == (TYPE) prev_pe);                   \
+    success = (fetch == next_pe && *dest == (TYPE)prev_pe);                    \
     if (!success)                                                              \
-      log_fail(                                                                \
-          "atomic swap nbi with context on %s did not produce expected values:"\
-          " swapped = %d (expected %d), dest = %d (expected %d)",              \
-          #TYPE, (int)fetch, (int)next_pe, (int)*dest, (int)prev_pe);          \
+      log_fail("atomic swap nbi with context on %s did not produce expected "  \
+               "values:"                                                       \
+               " swapped = %d (expected %d), dest = %d (expected %d)",         \
+               #TYPE, (int)fetch, (int)next_pe, (int)*dest, (int)prev_pe);     \
     else                                                                       \
-      log_info(                                                                \
-          "atomic swap nbi with context on a %s at %p produced expected result"\
-          " (swapped = %d, dest = %d)",                                        \
-          #TYPE, (void *)dest, (int)fetch, (int)*dest);                        \
+      log_info("atomic swap nbi with context on a %s at %p produced expected " \
+               "result"                                                        \
+               " (swapped = %d, dest = %d)",                                   \
+               #TYPE, (void *)dest, (int)fetch, (int)*dest);                   \
                                                                                \
     shmem_ctx_destroy(ctx);                                                    \
     log_info("Context destroyed");                                             \
@@ -113,20 +113,20 @@ int main(int argc, char *argv[]) {
   static bool result = true;
   static bool result_ctx = true;
 
-  /* Test standard atomic add operations */
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_SWAP_NBI(type);
-    SHMEM_EXTENDED_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test standard atomic add operations */
+#define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_SWAP_NBI(type);
+  SHMEM_EXTENDED_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
   reduce_test_result("C11 shmem_atomic_swap_nbi", &result, false);
 
-
-  /* Test context-specific atomic add operations */
-  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_SWAP_NBI(type);
-    SHMEM_EXTENDED_AMO_TYPE_TABLE(X) 
-  #undef X
+/* Test context-specific atomic add operations */
+#define X(type, shmem_types)                                                   \
+  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_SWAP_NBI(type);
+  SHMEM_EXTENDED_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 

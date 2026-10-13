@@ -32,3 +32,15 @@ target_include_directories(c_shmem_info_get_version PRIVATE src/include)
 target_include_directories(c_shmem_my_pe PRIVATE src/include)
 target_include_directories(c_shmem_n_pes PRIVATE src/include)
 target_include_directories(c_shmem_pe_accessible PRIVATE src/include)
+
+# --- OpenSHMEM 1.6 coverage
+if(SHMEMVV_HAVE_QUERY_INITIALIZED)
+  find_package(Threads REQUIRED)
+  add_executable(c_shmem_query_initialized c_shmem_query_initialized.c ${SOURCES})
+  target_link_libraries(c_shmem_query_initialized PRIVATE Threads::Threads)
+  add_executable(c_shmem_init_finalize c_shmem_init_finalize.c ${SOURCES})
+  add_executable(c_shmem_reinitialize c_shmem_reinitialize.c ${SOURCES})
+  set_target_properties(c_shmem_query_initialized c_shmem_init_finalize
+    c_shmem_reinitialize PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/setup)
+endif()

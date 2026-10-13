@@ -33,8 +33,8 @@
     shmem_atomic_fetch_xor_nbi(&fetch, dest, xor_val, fetch_pe);               \
     shmem_quiet();                                                             \
     shmem_barrier_all();                                                       \
-    success = (fetch == value + fetch_pe &&                                    \
-               *dest == (value + mype) ^ xor_val);                             \
+    success =                                                                  \
+        (fetch == value + fetch_pe && *dest == (value + mype) ^ xor_val);      \
     if (!success)                                                              \
       log_fail("atomic fetch-xor nbi on %s did not produce expected values: "  \
                "fetch = %d (expected %d), dest = %d (expected %d)",            \
@@ -81,18 +81,20 @@
     shmem_atomic_fetch_xor_nbi(ctx, &fetch, dest, xor_val, fetch_pe);          \
     shmem_ctx_quiet(ctx);                                                      \
     shmem_barrier_all();                                                       \
-    success = (fetch == value + fetch_pe &&                                    \
-               *dest == (value + mype) ^ xor_val);                             \
+    success =                                                                  \
+        (fetch == value + fetch_pe && *dest == (value + mype) ^ xor_val);      \
     if (!success)                                                              \
       log_fail("atomic fetch-xor nbi with context on %s did not produce"       \
-         "expected values: fetch = %d (expected %d), dest = %d (expected %d)", \
+               "expected values: fetch = %d (expected %d), dest = %d "         \
+               "(expected %d)",                                                \
                #TYPE, (int)fetch, (int)(value + fetch_pe), (int)*dest,         \
                (int)((value + mype) | xor_val));                               \
     else                                                                       \
-      log_info("atomic fetch-xor with context on a %s at %p produced expected "\
-               "result (fetch = %d, dest = %d ^ %d = %d)",                     \
-               #TYPE, (void *)dest, (int)fetch, (int)(value + mype),           \
-               (int)xor_val, (int)*dest);                                      \
+      log_info(                                                                \
+          "atomic fetch-xor with context on a %s at %p produced expected "     \
+          "result (fetch = %d, dest = %d ^ %d = %d)",                          \
+          #TYPE, (void *)dest, (int)fetch, (int)(value + mype), (int)xor_val,  \
+          (int)*dest);                                                         \
                                                                                \
     shmem_ctx_destroy(ctx);                                                    \
     log_info("Context destroyed");                                             \
@@ -117,23 +119,26 @@ int main(int argc, char *argv[]) {
   static bool result = true;
   static bool result_ctx = true;
 
-  /* Test standard atomic fetch-xor nbi operations */
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_FETCH_XOR_NBI(type);
-    SHMEM_BITWISE_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test standard atomic fetch-xor nbi operations */
+#define X(type, shmem_types)                                                   \
+  result &= TEST_C11_SHMEM_ATOMIC_FETCH_XOR_NBI(type);
+  SHMEM_BITWISE_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
   reduce_test_result("C11 shmem_atomic_fetch_xor_nbi", &result, false);
 
-  /* Test context-specific atomic fetch-xor nbi operations */
-  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_XOR_NBI(type);
-    SHMEM_BITWISE_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test context-specific atomic fetch-xor nbi operations */
+#define X(type, shmem_types)                                                   \
+  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_XOR_NBI(type);
+  SHMEM_BITWISE_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
-  reduce_test_result("C11 shmem_atomic_fetch_xor_nbi with ctx", &result_ctx, false);
+  reduce_test_result("C11 shmem_atomic_fetch_xor_nbi with ctx", &result_ctx,
+                     false);
 
   bool rc = result & result_ctx ? EXIT_SUCCESS : EXIT_FAILURE;
   log_close(rc);

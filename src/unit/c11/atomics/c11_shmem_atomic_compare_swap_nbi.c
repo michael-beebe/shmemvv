@@ -33,7 +33,7 @@
     shmem_atomic_compare_swap_nbi(&fetch, dest, new_val, val, next_pe);        \
     shmem_quiet();                                                             \
     shmem_barrier_all();                                                       \
-    success = (fetch == new_val && *dest == (TYPE) prev_pe);                   \
+    success = (fetch == new_val && *dest == (TYPE)prev_pe);                    \
     if (!success)                                                              \
       log_fail(                                                                \
           "atomic cmp swp on %s did not produce expected fetch = %d, dest = "  \
@@ -77,7 +77,7 @@
     shmem_atomic_compare_swap_nbi(ctx, &fetch, dest, new_val, val, next_pe);   \
     shmem_ctx_quiet(ctx);                                                      \
     shmem_barrier_all();                                                       \
-    success = (fetch == new_val && *dest == (TYPE) prev_pe);                   \
+    success = (fetch == new_val && *dest == (TYPE)prev_pe);                    \
     if (!success)                                                              \
       log_fail(                                                                \
           "atomic cmp swp nbi on %s did not produce expected fetch = %d, "     \
@@ -111,24 +111,26 @@ int main(int argc, char *argv[]) {
   static bool result = true;
   static bool result_ctx = true;
 
-  /* Test standard atomic add operations */
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP_NBI(type);
-    SHMEM_STANDARD_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test standard atomic add operations */
+#define X(type, shmem_types)                                                   \
+  result &= TEST_C11_SHMEM_ATOMIC_COMPARE_SWAP_NBI(type);
+  SHMEM_STANDARD_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
   reduce_test_result("C11 shmem_atomic_compare_swap_nbi", &result, false);
 
-
-  /* Test context-specific atomic add operations */
-  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_COMPARE_SWAP_NBI(type);
-    SHMEM_STANDARD_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test context-specific atomic add operations */
+#define X(type, shmem_types)                                                   \
+  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_COMPARE_SWAP_NBI(type);
+  SHMEM_STANDARD_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
-  reduce_test_result("C11 shmem_atomic_compare_swap_nbi with ctx", &result_ctx, false);
+  reduce_test_result("C11 shmem_atomic_compare_swap_nbi with ctx", &result_ctx,
+                     false);
 
   bool rc = result & result_ctx ? EXIT_SUCCESS : EXIT_FAILURE;
   log_close(rc);

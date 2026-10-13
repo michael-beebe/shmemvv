@@ -106,17 +106,18 @@ int main(int argc, char *argv[]) {
 
   /* Test standard atomic fetch nbi operations */
   static bool result = true;
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_FETCH_NBI(type);
-    SHMEM_EXTENDED_AMO_TYPE_TABLE(X)
-  #undef X
+#define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_FETCH_NBI(type);
+  SHMEM_EXTENDED_AMO_TYPE_TABLE(X)
+#undef X
 
   reduce_test_result("C11 shmem_atomic_fetch_nbi", &result, false);
 
   /* Test context-specific atomic fetch nbi operations */
   static bool result_ctx = true;
-  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_NBI(type);
-    SHMEM_EXTENDED_AMO_TYPE_TABLE(X)
-  #undef X
+#define X(type, shmem_types)                                                   \
+  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_NBI(type);
+  SHMEM_EXTENDED_AMO_TYPE_TABLE(X)
+#undef X
 
   reduce_test_result("C11 shmem_atomic_fetch_nbi with ctx", &result_ctx, false);
 

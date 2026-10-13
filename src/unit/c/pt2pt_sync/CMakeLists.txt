@@ -81,3 +81,13 @@ target_link_libraries(c_shmem_wait_until_some_vector)
 target_link_libraries(c_shmem_wait_until_some)
 target_link_libraries(c_shmem_wait_until)
 
+# --- OpenSHMEM 1.6 coverage
+add_executable(c_shmem_test_masks c_shmem_test_masks.c ${SOURCES})
+set_target_properties(c_shmem_test_masks PROPERTIES
+  RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/pt2pt_sync)
+if(SHMEMVV_HAVE_CONST_VECTOR)
+  # The 1.6 API changes vector comparison parameters to const.
+  add_executable(c_shmem_vector_const c_shmem_vector_const.c ${SOURCES})
+  set_target_properties(c_shmem_vector_const PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/pt2pt_sync)
+endif()

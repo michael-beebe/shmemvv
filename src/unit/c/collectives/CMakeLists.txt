@@ -73,3 +73,17 @@ target_link_libraries(c_shmem_fcollectmem)
 target_link_libraries(c_shmem_reduce)
 target_link_libraries(c_shmem_sync_all)
 target_link_libraries(c_shmem_team_sync)
+
+# --- OpenSHMEM 1.6 coverage
+if(SHMEMVV_HAVE_INSCAN)
+  add_executable(c_shmem_sum_inscan c_shmem_sum_inscan.c ${SOURCES})
+  set_target_properties(c_shmem_sum_inscan PROPERTIES
+    C_STANDARD 11 C_STANDARD_REQUIRED YES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/collectives)
+endif()
+if(SHMEMVV_HAVE_EXSCAN)
+  add_executable(c_shmem_sum_exscan c_shmem_sum_exscan.c ${SOURCES})
+  set_target_properties(c_shmem_sum_exscan PROPERTIES
+    C_STANDARD 11 C_STANDARD_REQUIRED YES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/collectives)
+endif()

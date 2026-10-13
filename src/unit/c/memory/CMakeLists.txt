@@ -55,3 +55,13 @@ target_link_libraries(c_shmem_ptr)
 target_link_libraries(c_shmem_realloc)
 target_link_libraries(c_shmem_quiet)
 target_link_libraries(c_shmem_fence)
+
+# --- OpenSHMEM 1.6 coverage
+if(SHMEMVV_HAVE_PE_QUIET AND SHMEMVV_HAVE_SIGNAL_SET)
+  add_executable(c_shmem_pe_quiet c_shmem_pe_quiet.c ${SOURCES})
+  if(SHMEMVV_HAVE_SESSIONS)
+    target_compile_definitions(c_shmem_pe_quiet PRIVATE SHMEMVV_HAVE_SESSIONS)
+  endif()
+  set_target_properties(c_shmem_pe_quiet PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/memory)
+endif()

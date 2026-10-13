@@ -49,7 +49,7 @@ void reduce_test_result(const char *routine_name, bool *result, bool required) {
   int npes = shmem_n_pes();
   bool passed = true;
   if (shmem_my_pe() == 0) {
-    for (int i = 0; i < npes; i ++){
+    for (int i = 0; i < npes; i++) {
       passed &= shmem_g((char *)result, i);
     }
     display_test_result(routine_name, passed, required);

@@ -120,18 +120,18 @@ int main(int argc, char *argv[]) {
   static bool result = true;
   static bool result_ctx = true;
 
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_G(type);
-    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
-  #undef X
+#define X(type, shmem_types) result &= TEST_C11_SHMEM_G(type);
+  SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
   reduce_test_result("C11 shmem_g", &result, false);
 
-  /* Test context-specific shmem_g variants */
-  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_G(type);
-    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
-  #undef X
+/* Test context-specific shmem_g variants */
+#define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_G(type);
+  SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 

@@ -50,7 +50,7 @@
         }                                                                      \
       }                                                                        \
       log_info("PE 1: Beginning validation of unchanged elements between "     \
-         "strides");                                                           \
+               "strides");                                                     \
       /*ensure odd indexes do not contain transfered data*/                    \
       for (int i = 1; i < 10; i += 2) {                                        \
         if (dest[i] != 0) {                                                    \
@@ -121,7 +121,7 @@
         }                                                                      \
       }                                                                        \
       log_info("PE 1: Beginning validation of unchanged elements between "     \
-         "strides");                                                           \
+               "strides");                                                     \
       /*ensure odd indexes do not contain transfered data*/                    \
       for (int i = 1; i < 10; i += 2) {                                        \
         if (dest[i] != 0) {                                                    \
@@ -163,20 +163,19 @@ int main(int argc, char *argv[]) {
   static bool result = true;
   static bool result_ctx = true;
 
-  /* Test standard shmem_iget variants */
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_IGET(type);
-    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
-  #undef X
+/* Test standard shmem_iget variants */
+#define X(type, shmem_types) result &= TEST_C11_SHMEM_IGET(type);
+  SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
   reduce_test_result("C11 shmem_iget", &result, false);
 
-
-  /* Test context-specific shmem_iget variants */  
-  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_IGET(type);
-    SHMEM_STANDARD_RMA_TYPE_TABLE(X)
-  #undef X
+/* Test context-specific shmem_iget variants */
+#define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_IGET(type);
+  SHMEM_STANDARD_RMA_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 

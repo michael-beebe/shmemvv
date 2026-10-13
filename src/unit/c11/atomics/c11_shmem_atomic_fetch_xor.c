@@ -28,12 +28,12 @@
     *dest = value + mype;                                                      \
     log_info("initialized dest at %p to %d", (void *)dest, (int)*dest);        \
     shmem_barrier_all();                                                       \
-    log_info("executing atomic fetch-xor: dest = %p, value = %d", (void *)dest,\
-             (int)xor_value);                                                  \
+    log_info("executing atomic fetch-xor: dest = %p, value = %d",              \
+             (void *)dest, (int)xor_value);                                    \
     TYPE fetched = shmem_atomic_fetch_xor(dest, xor_value, fetch_pe);          \
     shmem_barrier_all();                                                       \
-    success = (fetched == value + fetch_pe &&                                  \
-               *dest == (value + mype) ^ xor_value);                           \
+    success =                                                                  \
+        (fetched == value + fetch_pe && *dest == (value + mype) ^ xor_value);  \
     if (!success)                                                              \
       log_fail("atomic fetch-xor on %s did not produce expected values: "      \
                "fetched = %d (expected %d), dest = %d (expected %d)",          \
@@ -78,8 +78,8 @@
     TYPE fetched = shmem_atomic_fetch_xor(ctx, dest, xor_value, fetch_pe);     \
     shmem_ctx_quiet(ctx);                                                      \
     shmem_barrier_all();                                                       \
-     success = (fetched == value + fetch_pe &&                                 \
-               *dest == (value + mype) ^ xor_value);                           \
+    success =                                                                  \
+        (fetched == value + fetch_pe && *dest == (value + mype) ^ xor_value);  \
     if (!success)                                                              \
       log_fail("atomic fetch-xor with ctx on %s did not produce expected "     \
                "values: fetched = %d (expected %d), dest = %d (expected %d)",  \
@@ -114,19 +114,20 @@ int main(int argc, char *argv[]) {
   static bool result = true;
   static bool result_ctx = true;
 
-  /* Test standard atomic fetch-xor operations */
-  #define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_FETCH_XOR(type);
-    SHMEM_BITWISE_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test standard atomic fetch-xor operations */
+#define X(type, shmem_types) result &= TEST_C11_SHMEM_ATOMIC_FETCH_XOR(type);
+  SHMEM_BITWISE_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
   reduce_test_result("C11 shmem_atomic_fetch_xor", &result, false);
 
-  /* Test context-specific atomic fetch-xor operations */
-  #define X(type, shmem_types) result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_XOR(type);
-    SHMEM_BITWISE_AMO_TYPE_TABLE(X)
-  #undef X
+/* Test context-specific atomic fetch-xor operations */
+#define X(type, shmem_types)                                                   \
+  result_ctx &= TEST_C11_CTX_SHMEM_ATOMIC_FETCH_XOR(type);
+  SHMEM_BITWISE_AMO_TYPE_TABLE(X)
+#undef X
 
   shmem_barrier_all();
 
