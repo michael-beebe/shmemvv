@@ -20,10 +20,10 @@ bool test_shmem_query_thread(void) {
        provided == SHMEM_THREAD_MULTIPLE);
   if (!success)
     log_fail("expected shmem_query_thread to return either "
-             "(SHMEM_THREAD_MULTIPLE) %d, (SHMEM_THREAD_FUNNELED) %d, or "
-             "(SHMEM_THREAD_SERIALIZED) %d\n but got %d",
+             "(SHMEM_THREAD_MULTIPLE) %d, (SHMEM_THREAD_FUNNELED) %d, "
+             "(SHMEM_THREAD_SERIALIZED) %d, or (SHMEM_THREAD_SINGLE) %d\n but got %d",
              SHMEM_THREAD_MULTIPLE, SHMEM_THREAD_FUNNELED,
-             SHMEM_THREAD_SERIALIZED, provided);
+             SHMEM_THREAD_SERIALIZED, SHMEM_THREAD_SINGLE, provided);
   else
     log_info("thread query is valid (%d)", provided);
   return success;

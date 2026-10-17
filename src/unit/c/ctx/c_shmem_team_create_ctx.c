@@ -23,14 +23,21 @@
  * @return True if the test passes, false otherwise.
  */
 bool test_shmem_team_create_ctx(void) {
-  shmem_team_t team;
-  shmem_ctx_t ctx;
-  shmem_team_split_strided(SHMEM_TEAM_WORLD, 0, 1, shmem_n_pes(), NULL, 0,
-                           &team);
+  shmem_team_t team = SHMEM_TEAM_INVALID;
+  shmem_ctx_t ctx = SHMEM_CTX_INVALID;
+  shmem_team_config_t config = {0};
+  config.num_contexts = 1;
+  int split = shmem_team_split_strided(SHMEM_TEAM_WORLD, 0, 1, shmem_n_pes(),
+                                      &config, SHMEM_TEAM_NUM_CONTEXTS, &team);
+  if (split != 0 || team == SHMEM_TEAM_INVALID) {
+    log_fail("shmem_team_split_strided failed: %d", split);
+    return false;
+  }
   log_info("creating teams...");
   int ret = shmem_team_create_ctx(team, 0, &ctx);
-  if (ret != 0) {
-    log_fail("shmem_team_create_ctx ret'd non-zero: %d", ret);
+  if (ret != 0 || ctx == SHMEM_CTX_INVALID) {
+    log_fail("shmem_team_create_ctx failed (status %d)", ret);
+    shmem_team_destroy(team);
     return false;
   }
   shmem_ctx_destroy(ctx);
